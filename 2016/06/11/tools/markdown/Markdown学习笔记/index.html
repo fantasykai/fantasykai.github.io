@@ -1,0 +1,752 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Markdown学习笔记 | kai.fantasy &#39;s 文栖小筑</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kai.Fantasy">
+    
+
+    
+    <meta name="description" content="Markdown 学习笔记·入门　　花一点点时间了解了下Markdown的语法，确实非常简单，这里做下总结，也算是对Markdown语法的熟悉，及模仿造轮子吧~">
+<meta name="keywords" content="Markdown">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown学习笔记">
+<meta property="og:url" content="https://fantasykai.github.io/2016/06/11/tools/markdown/Markdown学习笔记/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="Markdown 学习笔记·入门　　花一点点时间了解了下Markdown的语法，确实非常简单，这里做下总结，也算是对Markdown语法的熟悉，及模仿造轮子吧~">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://i.imgur.com/P7ACmyM.png">
+<meta property="og:updated_time" content="2017-03-10T09:37:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Markdown学习笔记">
+<meta name="twitter:description" content="Markdown 学习笔记·入门　　花一点点时间了解了下Markdown的语法，确实非常简单，这里做下总结，也算是对Markdown语法的熟悉，及模仿造轮子吧~">
+<meta name="twitter:image" content="http://i.imgur.com/P7ACmyM.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="kai.fantasy &#39;s 文栖小筑" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.gif" alt="kai.fantasy &#39;s 文栖小筑" title="kai.fantasy &#39;s 文栖小筑"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="kai.fantasy &#39;s 文栖小筑">kai.fantasy &#39;s 文栖小筑</a></h1>
+				<h2 class="blog-motto">没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/timeline">时光轴</a></li>
+					
+						<li><a href="/2048">放松下</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+	        <form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+	          <label>Search</label>
+	          <input type="text" id="search" class="st-default-search-input" maxlength="20" placeholder="Search" />
+	       </form>
+					
+					</li>
+				</ul>
+			</nav>
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/06/11/tools/markdown/Markdown学习笔记/" title="Markdown学习笔记" itemprop="url">Markdown学习笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kai.Fantasy" target="_blank" itemprop="author">Kai.Fantasy</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-11T04:35:14.000Z" itemprop="datePublished"> 发表于 2016-06-11</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Markdown-学习笔记·入门"><span class="toc-number">1.</span> <span class="toc-text">Markdown 学习笔记·入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-简介"><span class="toc-number">1.1.</span> <span class="toc-text">markdown 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特点总结"><span class="toc-number">1.2.</span> <span class="toc-text">特点总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown-语法介绍"><span class="toc-number">1.3.</span> <span class="toc-text">Markdown 语法介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本符号"><span class="toc-number">1.3.1.</span> <span class="toc-text">基本符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标题"><span class="toc-number">1.3.2.</span> <span class="toc-text">标题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字体：斜体-加粗"><span class="toc-number">1.3.3.</span> <span class="toc-text">字体：斜体 / 加粗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#换行"><span class="toc-number">1.3.4.</span> <span class="toc-text">换行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表"><span class="toc-number">1.3.5.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链接"><span class="toc-number">1.3.6.</span> <span class="toc-text">链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图片"><span class="toc-number">1.3.7.</span> <span class="toc-text">图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用"><span class="toc-number">1.3.8.</span> <span class="toc-text">引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转义"><span class="toc-number">1.3.9.</span> <span class="toc-text">转义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表格"><span class="toc-number">1.3.10.</span> <span class="toc-text">表格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码块"><span class="toc-number">1.3.11.</span> <span class="toc-text">代码块</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Markdown-学习笔记·入门"><a href="#Markdown-学习笔记·入门" class="headerlink" title="Markdown 学习笔记·入门"></a>Markdown 学习笔记·入门</h1><p>　　花一点点时间了解了下Markdown的语法，确实非常简单，这里做下总结，也算是对Markdown语法的熟悉，及模仿造轮子吧~ <a id="more"></a>  </p>
+<h2 id="markdown-简介"><a href="#markdown-简介" class="headerlink" title="markdown 简介"></a>markdown 简介</h2><blockquote>
+<p>Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。<br>Markdown具有一系列衍生版本，用于扩展Markdown的功能（如表格、脚注、内嵌HTML等等），这些功能原初的Markdown尚不具备，它们能让Markdown转换成更多的格式，例如LaTeX，Docbook。Markdown增强版中比较有名的有Markdown Extra、MultiMarkdown、 Maruku等。这些衍生版本要么基于工具，如Pandoc；要么基于网站，如GitHub和Wikipedia，在语法上基本兼容，但在一些语法和渲染效果上有改动。–百度百科</p>
+</blockquote>
+<h2 id="特点总结"><a href="#特点总结" class="headerlink" title="特点总结"></a>特点总结</h2><blockquote>
+<ul>
+<li>纯文本，所以兼容性极强，可以用所有文本编辑器打开。</li>
+<li>让你专注于文字而不是排版。</li>
+<li>格式转换方便，Markdown 的文本你可以轻松转换为 html、电子书等。</li>
+<li>Markdown 的标记语法有极好的可读性。</li>
+</ul>
+</blockquote>
+<h2 id="Markdown-语法介绍"><a href="#Markdown-语法介绍" class="headerlink" title="Markdown 语法介绍"></a>Markdown 语法介绍</h2><h3 id="基本符号"><a href="#基本符号" class="headerlink" title="基本符号"></a>基本符号</h3><ul>
+<li>*,-,+ 3个符号 被称为Markdown符号</li>
+<li>空白行表示另起一个段落</li>
+<li>`是表示inline代码，tab是用来标记 代码段，分别对应html的code，pre标签</li>
+</ul>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><ul>
+<li><p><code>#</code> + 空格 后面的文字即表示为标题</p>
+<pre><code># 表示一级标题，## 表示二级标题，依次表示 1-6 级标题
+</code></pre></li>
+<li><p>注意： 符号后面要加一个 <strong>空格</strong> 和文本内容隔开</p>
+</li>
+<li><p>还可以在文字下行加= 表示大标题 - 表示小标题 慎用吧</p>
+<pre><code>例如：
+大标题
+=
+小标题
+-
+</code></pre><h3 id="字体：斜体-加粗"><a href="#字体：斜体-加粗" class="headerlink" title="字体：斜体 / 加粗"></a>字体：斜体 / 加粗</h3></li>
+</ul>
+<pre><code>*文本* 表示文本内容为斜体， **文本** 表示文本内容为加粗
+</code></pre><ul>
+<li>效果： <em>斜体文本</em>  <strong>加粗文本</strong><h3 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h3></li>
+<li>段落间加一个 <strong>空白行</strong> 分割 同html中的 <code>&lt;p&gt;</code></li>
+<li>连续两个空格即为换行 同html中的 <code>&lt;br&gt;</code><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3></li>
+<li>使用*,+,-加上一个空格来表示</li>
+<li><p>可以支持嵌套,如</p>
+<pre><code>*,+,-效果一样的
+- 外层列表项目
+      + 内层列表项目
+     + 内层无序列表项目
+    + 内层列表项目
+- 外层列表项目
+</code></pre></li>
+<li>效果         </li>
+</ul>
+<hr>
+<ul>
+<li>外层列表项目<ul>
+<li>内层列表项目</li>
+<li>内层列表项目</li>
+<li>内层列表项目</li>
+</ul>
+</li>
+<li>外层列表项目</li>
+</ul>
+<hr>
+<ul>
+<li><p>有序列表用 数字+英文点+空格来表示</p>
+<pre><code>- 1. 这样会展示序号 
+</code></pre></li>
+<li>效果：</li>
+<li><ol>
+<li>这样会展示序号</li>
+</ol>
+</li>
+<li>注意：列表内容很长的，不需要手工输入换行符，css控制段落的宽度，会自动的缩放的<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3></li>
+<li><p>这其实是我第一个接触的markdown语法，第一篇资料收集时就用到了</p>
+<pre><code>直接使用 [文本](链接)
+</code></pre></li>
+<li><p>效果：<a href="https://www.baidu.com/" target="_blank" rel="external">百度</a></p>
+<pre><code>如果很多地方需要相同的url呢，可以预先定义url 这样玩：[ref_name]:URL  
+ref_name 一般使用数字表示，显得专业 然后在需要使用链接的地方 使用[文本][ref_name] 这种方式即可,酷炫
+</code></pre></li>
+<li><p>效果 </p>
+</li>
+</ul>
+<pre><code>[ref_name]：url 如： [1]:https://www.baidu.com/ 
+</code></pre><ul>
+<li>引用上面定义的url <a href="https://www.baidu.com/" target="_blank" rel="external">百度</a></li>
+<li><p>如果想把URL展示出来，并可以作为链接使用  这样玩：<code>&lt;URL&gt;</code></p>
+<pre><code>&lt;url&gt; 如： &lt;https://www.baidu.com/&gt; 
+</code></pre></li>
+<li>效果：<a href="https://www.baidu.com/" target="_blank" rel="external">https://www.baidu.com/</a><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3></li>
+<li><p>图片语法与链接类似</p>
+<pre><code>![](图片地址) 如： ![](http://i.imgur.com/P7ACmyM.png)
+</code></pre><p><img src="http://i.imgur.com/P7ACmyM.png" alt=""></p>
+</li>
+<li><p>同样可以使用引用的方式使用图片</p>
+<pre><code>这样定义：[id]:图片url  这样引用定义 ![][id]
+</code></pre></li>
+<li>定义图片的大小或比例</li>
+<li>方法一：嵌入HTML代码</li>
+</ul>
+<pre><code>&lt;img src=&quot;./xxx.png&quot; width = &quot;300&quot; height = &quot;200&quot; alt=&quot;图片名称&quot; align=center /&gt; 注意：要居中展示，外围加&lt;div&gt;即可
+</code></pre><ul>
+<li>方法二：使用支持图片大小更改操作的 Mou 编辑器 （mac可以玩）</li>
+</ul>
+<pre><code>![](url =100x100) 注意: =前有个空格，可以只写宽度。         
+</code></pre><ul>
+<li>方法三： 阿里云的OSS，七牛云的图片服务器时，url上加上相关操字段即可实现图片大小，比例修改，具体见各自的产品文档~</li>
+</ul>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><ul>
+<li>开篇关于Markdown的简介和特点就是引用的百度， 只要在第一行加上 “&gt;”和一个空格，表示代码引用，还可以嵌套<h3 id="转义"><a href="#转义" class="headerlink" title="转义"></a>转义</h3></li>
+<li><p>使用 \ 来转义，表示文本中的markdown符号</p>
+<pre><code>如： \[百度](https://www.baidu.com/)
+</code></pre></li>
+<li>效果：[百度](<a href="https://www.baidu.com/" target="_blank" rel="external">https://www.baidu.com/</a>) <h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3></li>
+<li><p>表格代码</p>
+<blockquote>
+<p>| Tables        | Are           | Cool  |<br>| ————- |:————-:| —–:|<br>| col 3 is      | right-aligned | $1600 |<br>| col 2 is      | centered      |   $12 |<br>| zebra stripes | are neat      |    $1 |  </p>
+</blockquote>
+<p>   ————- 左对齐 :————-: 居中 —–:右对齐</p>
+</li>
+</ul>
+<ul>
+<li>效果：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Tables</th>
+<th style="text-align:center">Are</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col 3 is</td>
+<td style="text-align:center">right-aligned</td>
+<td style="text-align:right">$1600</td>
+</tr>
+<tr>
+<td>col 2 is</td>
+<td style="text-align:center">centered</td>
+<td style="text-align:right">$12</td>
+</tr>
+<tr>
+<td>zebra stripes</td>
+<td style="text-align:center">are neat</td>
+<td style="text-align:right">$1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><ul>
+<li><p>按下Tab键 或4个空格即表示代码块</p>
+</li>
+<li><p>下面是一小段代码举例：</p>
+</li>
+</ul>
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里显示一些代码，使用```java```，进行代码染色，这是一段使用JAVA代码</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Blog</span></span>&#123;</div><div class="line">	  <span class="keyword">public</span> <span class="keyword">int</span> Id </div><div class="line">	  <span class="keyword">public</span> string Subject</div><div class="line">  省略 get() set() toString() ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><p>这样基本就可以玩起来了，还是需要多实践，多谢，多总结。</p>
+<blockquote>
+<p>我们活在各自的的心灵世界，我们有什么样的心，就决定我们看到什么样的世界</p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/工具/">工具</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Markdown/">Markdown</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://fantasykai.github.io/2016/06/11/tools/markdown/Markdown学习笔记/" data-title="Markdown学习笔记 | kai.fantasy &#39;s 文栖小筑" data-tsina="1896404674" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/06/16/Linux/ssh-keygen简介/" title="ssh-keygen">
+  <strong>上一篇：</strong><br/>
+  <span>
+  ssh-keygen</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/06/10/tools/markdown/Markdown资料收集/"  title="学习下Markdown">
+ <strong>下一篇：</strong><br/> 
+ <span>学习下Markdown
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/06/11/tools/markdown/Markdown学习笔记/" data-title="Markdown学习笔记" data-url="https://fantasykai.github.io/2016/06/11/tools/markdown/Markdown学习笔记/"></div>
+  <script type="text/javascript">
+   var duoshuoQuery = {short_name:"fantasykai"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Markdown-学习笔记·入门"><span class="toc-number">1.</span> <span class="toc-text">Markdown 学习笔记·入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-简介"><span class="toc-number">1.1.</span> <span class="toc-text">markdown 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特点总结"><span class="toc-number">1.2.</span> <span class="toc-text">特点总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown-语法介绍"><span class="toc-number">1.3.</span> <span class="toc-text">Markdown 语法介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本符号"><span class="toc-number">1.3.1.</span> <span class="toc-text">基本符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标题"><span class="toc-number">1.3.2.</span> <span class="toc-text">标题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字体：斜体-加粗"><span class="toc-number">1.3.3.</span> <span class="toc-text">字体：斜体 / 加粗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#换行"><span class="toc-number">1.3.4.</span> <span class="toc-text">换行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表"><span class="toc-number">1.3.5.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链接"><span class="toc-number">1.3.6.</span> <span class="toc-text">链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图片"><span class="toc-number">1.3.7.</span> <span class="toc-text">图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用"><span class="toc-number">1.3.8.</span> <span class="toc-text">引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转义"><span class="toc-number">1.3.9.</span> <span class="toc-text">转义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表格"><span class="toc-number">1.3.10.</span> <span class="toc-text">表格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码块"><span class="toc-number">1.3.11.</span> <span class="toc-text">代码块</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="fantasykai" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/容器/" title="容器">容器<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>13</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/技术小栈/" title="技术小栈">技术小栈<sup>17</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/杂记/" title="杂记">杂记<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/测试/" title="测试">测试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/笔记/" title="笔记">笔记<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/" title="网络">网络<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Chrome-效率插件/" style="font-size: 10px;">Chrome 效率插件</a> <a href="/tags/Druid/" style="font-size: 10px;">Druid</a> <a href="/tags/IPv6/" style="font-size: 11.67px;">IPv6</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Mysql/" style="font-size: 13.33px;">Mysql</a> <a href="/tags/Spring/" style="font-size: 13.33px;">Spring</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/idea/" style="font-size: 16.67px;">idea</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/js/" style="font-size: 18.33px;">js</a> <a href="/tags/mac/" style="font-size: 11.67px;">mac</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/日志/" style="font-size: 10px;">日志</a> <a href="/tags/杂记/" style="font-size: 13.33px;">杂记</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a>
+    </div>
+  </div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://program-think.blogspot.com/" target="_blank" title="编程随想的博客">编程随想的博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/" target="_blank" title="阮一峰的博客">阮一峰的博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.liaoxuefeng.com/" target="_blank" title="廖雪峰">廖雪峰</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.codeceo.com/" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ifeve.com/" target="_blank" title="并发编程">并发编程</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://coolshell.cn/" target="_blank" title="酷壳">酷壳</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 文字，摄影，健身，旅行 ··· 感恩，生活不止于此 <br/>
+			This is my blog,Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1896404674" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/fantasykai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/kai.fantasy@gmail.com" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kai.Fantasy">Kai.Fantasy</a>
+		
+		
+		</p>
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','Smu72CUeM7VzuxVq3ryE','2.0.0');
+</script>		
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"fantasykai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261140604'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261140604%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  </body>
+</html>

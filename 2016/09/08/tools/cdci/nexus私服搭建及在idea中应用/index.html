@@ -1,0 +1,667 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>简述nexus私服搭建及在idea中应用 | kai.fantasy &#39;s 文栖小筑</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kai.Fantasy">
+    
+
+    
+    <meta name="description" content="简述nexus私服搭建及在idea中应用简述 Nexus是一个强大的Maven仓库管理器，它极大地简化了自己内部仓库的维护和外部仓库的访问。利用Nexus你可以只在一个地方就能够完全控制访问 和部署在你所维护仓库中的每个Artifact。Nexus是一套“开箱即用”的系统不需要数据库，它使用文件系统加Lucene来组织数据。Nexus 使用ExtJS来开发界面，利用Restlet来提供完整的RES">
+<meta name="keywords" content="idea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简述nexus私服搭建及在idea中应用">
+<meta property="og:url" content="https://fantasykai.github.io/2016/09/08/tools/cdci/nexus私服搭建及在idea中应用/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="简述nexus私服搭建及在idea中应用简述 Nexus是一个强大的Maven仓库管理器，它极大地简化了自己内部仓库的维护和外部仓库的访问。利用Nexus你可以只在一个地方就能够完全控制访问 和部署在你所维护仓库中的每个Artifact。Nexus是一套“开箱即用”的系统不需要数据库，它使用文件系统加Lucene来组织数据。Nexus 使用ExtJS来开发界面，利用Restlet来提供完整的RES">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://i.imgur.com/J7tH3Sl.png">
+<meta property="og:image" content="http://i.imgur.com/gKlcHk0.png">
+<meta property="og:image" content="http://i.imgur.com/4D8JvUR.png">
+<meta property="og:updated_time" content="2016-09-08T03:47:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简述nexus私服搭建及在idea中应用">
+<meta name="twitter:description" content="简述nexus私服搭建及在idea中应用简述 Nexus是一个强大的Maven仓库管理器，它极大地简化了自己内部仓库的维护和外部仓库的访问。利用Nexus你可以只在一个地方就能够完全控制访问 和部署在你所维护仓库中的每个Artifact。Nexus是一套“开箱即用”的系统不需要数据库，它使用文件系统加Lucene来组织数据。Nexus 使用ExtJS来开发界面，利用Restlet来提供完整的RES">
+<meta name="twitter:image" content="http://i.imgur.com/J7tH3Sl.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="kai.fantasy &#39;s 文栖小筑" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.gif" alt="kai.fantasy &#39;s 文栖小筑" title="kai.fantasy &#39;s 文栖小筑"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="kai.fantasy &#39;s 文栖小筑">kai.fantasy &#39;s 文栖小筑</a></h1>
+				<h2 class="blog-motto">没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/timeline">时光轴</a></li>
+					
+						<li><a href="/2048">放松下</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+	        <form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+	          <label>Search</label>
+	          <input type="text" id="search" class="st-default-search-input" maxlength="20" placeholder="Search" />
+	       </form>
+					
+					</li>
+				</ul>
+			</nav>
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/09/08/tools/cdci/nexus私服搭建及在idea中应用/" title="简述nexus私服搭建及在idea中应用" itemprop="url">简述nexus私服搭建及在idea中应用</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kai.Fantasy" target="_blank" itemprop="author">Kai.Fantasy</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-08T03:47:02.000Z" itemprop="datePublished"> 发表于 2016-09-08</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简述nexus私服搭建及在idea中应用"><span class="toc-number">1.</span> <span class="toc-text">简述nexus私服搭建及在idea中应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简述"><span class="toc-number">1.1.</span> <span class="toc-text">简述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载安装-Nexus"><span class="toc-number">1.2.</span> <span class="toc-text">下载安装 Nexus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简述配置（win版本）"><span class="toc-number">1.3.</span> <span class="toc-text">简述配置（win版本）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问服务"><span class="toc-number">1.4.</span> <span class="toc-text">访问服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nexus中的仓库"><span class="toc-number">1.5.</span> <span class="toc-text">Nexus中的仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类型介绍"><span class="toc-number">1.5.1.</span> <span class="toc-text">类型介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#管理本地仓库"><span class="toc-number">1.5.2.</span> <span class="toc-text">管理本地仓库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IDEA-在项目中的配置"><span class="toc-number">1.6.</span> <span class="toc-text">IDEA 在项目中的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置settings-xml文件"><span class="toc-number">1.6.1.</span> <span class="toc-text">配置settings.xml文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置pom-xml"><span class="toc-number">1.6.2.</span> <span class="toc-text">配置pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDEA-的maven配置"><span class="toc-number">1.6.3.</span> <span class="toc-text">IDEA 的maven配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布jar包"><span class="toc-number">1.6.4.</span> <span class="toc-text">发布jar包</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="简述nexus私服搭建及在idea中应用"><a href="#简述nexus私服搭建及在idea中应用" class="headerlink" title="简述nexus私服搭建及在idea中应用"></a>简述nexus私服搭建及在idea中应用</h1><h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><blockquote>
+<p>Nexus是一个强大的Maven仓库管理器，它极大地简化了自己内部仓库的维护和外部仓库的访问。利用Nexus你可以只在一个地方就能够完全控制访问 和部署在你所维护仓库中的每个Artifact。Nexus是一套“开箱即用”的系统不需要数据库，它使用文件系统加Lucene来组织数据。Nexus 使用ExtJS来开发界面，利用Restlet来提供完整的REST APIs，通过m2eclipse与Eclipse集成使用。Nexus支持WebDAV与LDAP安全身份认证。</p>
+</blockquote>
+<h2 id="下载安装-Nexus"><a href="#下载安装-Nexus" class="headerlink" title="下载安装 Nexus"></a>下载安装 Nexus</h2><ul>
+<li>下载地址 <a href="http://www.sonatype.org/nexus/" target="_blank" rel="external">Nexus官网</a> </li>
+</ul>
+<p><strong>注意：</strong> 选择NEXUS OSS（开源版本）</p>
+<h2 id="简述配置（win版本）"><a href="#简述配置（win版本）" class="headerlink" title="简述配置（win版本）"></a>简述配置（win版本）</h2><ul>
+<li>将下载好的ZIP包进行解压</li>
+<li>配置环境变量</li>
+<li>启动</li>
+</ul>
+<h2 id="访问服务"><a href="#访问服务" class="headerlink" title="访问服务"></a>访问服务</h2><p> 访问<a href="http://localhost:8081/nexus/" target="_blank" rel="external">http://localhost:8081/nexus/</a> 在右上角有个Log in 点击登录</p>
+<ul>
+<li><p>默认的用户名是 admin 密码是 admin123</p>
+<p><img src="http://i.imgur.com/J7tH3Sl.png" alt=""></p>
+</li>
+</ul>
+<h2 id="Nexus中的仓库"><a href="#Nexus中的仓库" class="headerlink" title="Nexus中的仓库"></a>Nexus中的仓库</h2><h3 id="类型介绍"><a href="#类型介绍" class="headerlink" title="类型介绍"></a>类型介绍</h3><blockquote>
+<p>　登陆Nexus，在左边菜单栏里选择Repositories，然后会出现右边的画面，右边上半部分是列出来的repository，黑体字是类型为group的repository。
+　　　　</p>
+</blockquote>
+<p>简单介绍下几种repository的类型：</p>
+<ul>
+<li>hosted，本地仓库，通常我们会部署自己的构件到这一类型的仓库。比如公司的第二方库。</li>
+<li>proxy，代理仓库，它们被用来代理远程的公共仓库，如maven中央仓库。</li>
+<li>group，仓库组，用来合并多个hosted/proxy仓库，当你的项目希望在多个repository使用资源时就不需要多次引用了，只需要引用一个group即可。</li>
+</ul>
+<p><img src="http://i.imgur.com/gKlcHk0.png" alt=""></p>
+<h3 id="管理本地仓库"><a href="#管理本地仓库" class="headerlink" title="管理本地仓库"></a>管理本地仓库</h3><p>　　　　</p>
+<blockquote>
+<p>hosted的为本地仓库，Nexus预定义了3个本地仓库，分别是Releases, Snapshots, 3rd Party.</p>
+</blockquote>
+<ul>
+<li><p>Releases:</p>
+<pre><code>这里存放我们自己项目中发布的构建, 通常是Release版本的, 比如我们自己做了一个FTP Server的项目, 生成的构件为ftpserver.war, 我们就可以把这个构建发布到Nexus的Releases本地仓库. 关于符合发布后面会有介绍.
+</code></pre></li>
+<li><p>Snapshots:</p>
+<pre><code>这个仓库非常的有用, 它的目的是让我们可以发布那些非release版本, 非稳定版本, 比如我们在trunk下开发一个项目,在正式release之前你可能需要临时发布一个版本给你的同伴使用, 因为你的同伴正在依赖你的模块开发, 那么这个时候我们就可以发布Snapshot版本到这个仓库, 你的同伴就可以通过简单的命令来获取和使用这个临时版本.
+</code></pre></li>
+<li><p>3rd Party:</p>
+<pre><code>顾名思义, 第三方库, 你可能会问不是有中央仓库来管理第三方库嘛,没错, 这里的是指可以让你添加自己的第三方库, 比如有些构件在中央仓库是不存在的. 比如你在中央仓库找不到Oracle 的JDBC驱动, 这个时候我们就需要自己添加到3rdparty仓库。
+</code></pre></li>
+</ul>
+<blockquote>
+<p>后续再补充一下配置自己的项目</p>
+</blockquote>
+<h2 id="IDEA-在项目中的配置"><a href="#IDEA-在项目中的配置" class="headerlink" title="IDEA 在项目中的配置"></a>IDEA 在项目中的配置</h2><h3 id="配置settings-xml文件"><a href="#配置settings-xml文件" class="headerlink" title="配置settings.xml文件"></a>配置settings.xml文件</h3><p>在 settings.xml 中添加：</p>
+<pre><code><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </div><div class="line">          <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">          <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </div><div class="line">          <span class="tag">&lt;<span class="name">name</span>&gt;</span>Central Repository<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">          <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://IP:8081/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </div><div class="line">      <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span>  </div><div class="line"></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">server</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-releases<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">username</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="name">password</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">server</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">server</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-snapshots<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">username</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="name">password</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">server</span>&gt;</span>  </div><div class="line"> 	<span class="tag">&lt;/<span class="name">servers</span>&gt;</span></div></pre></td></tr></table></figure>
+</code></pre><h3 id="配置pom-xml"><a href="#配置pom-xml" class="headerlink" title="配置pom.xml"></a>配置pom.xml</h3><pre><code>```xml
+&lt;distributionManagement&gt;  
+    &lt;repository&gt;  
+        &lt;id&gt;nexus-releases&lt;/id&gt;  
+        &lt;name&gt;Nexus Release Repository&lt;/name&gt;  
+        &lt;url&gt;http://IP/域名:8081/nexus/content/repositories/releases/&lt;/url&gt;  
+    &lt;/repository&gt;  
+    &lt;snapshotRepository&gt;  
+        &lt;id&gt;nexus-snapshots&lt;/id&gt;  
+        &lt;name&gt;Nexus Snapshot Repository&lt;/name&gt;  
+        &lt;url&gt;http://IP/域名:8081/nexus/content/repositories/snapshots/&lt;/url&gt;  
+    &lt;/snapshotRepository&gt;  
+&lt;/distributionManagement&gt;
+``` 
+</code></pre><h3 id="IDEA-的maven配置"><a href="#IDEA-的maven配置" class="headerlink" title="IDEA 的maven配置"></a>IDEA 的maven配置</h3><p>选择配置好的settings.xml文件</p>
+<p><img src="http://i.imgur.com/4D8JvUR.png" alt=""></p>
+<h3 id="发布jar包"><a href="#发布jar包" class="headerlink" title="发布jar包"></a>发布jar包</h3><blockquote>
+<p>  执行deploy按钮就可以将 打好的 jar 包或者 war包上传到 私服中  （install  是将jar包 拷贝到本地仓库）</p>
+<p>在后续使用过程中，多多总结提高吧</p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/笔记/">笔记</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/idea/">idea</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://fantasykai.github.io/2016/09/08/tools/cdci/nexus私服搭建及在idea中应用/" data-title="简述nexus私服搭建及在idea中应用 | kai.fantasy &#39;s 文栖小筑" data-tsina="1896404674" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/09/08/tools/tomcat/daemon模式启动tomcat/" title="daemon模式启动tomcat">
+  <strong>上一篇：</strong><br/>
+  <span>
+  daemon模式启动tomcat</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/09/08/tools/cdci/CD 持续发布/"  title="CD 持续发布">
+ <strong>下一篇：</strong><br/> 
+ <span>CD 持续发布
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/09/08/tools/cdci/nexus私服搭建及在idea中应用/" data-title="简述nexus私服搭建及在idea中应用" data-url="https://fantasykai.github.io/2016/09/08/tools/cdci/nexus私服搭建及在idea中应用/"></div>
+  <script type="text/javascript">
+   var duoshuoQuery = {short_name:"fantasykai"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简述nexus私服搭建及在idea中应用"><span class="toc-number">1.</span> <span class="toc-text">简述nexus私服搭建及在idea中应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简述"><span class="toc-number">1.1.</span> <span class="toc-text">简述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载安装-Nexus"><span class="toc-number">1.2.</span> <span class="toc-text">下载安装 Nexus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简述配置（win版本）"><span class="toc-number">1.3.</span> <span class="toc-text">简述配置（win版本）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问服务"><span class="toc-number">1.4.</span> <span class="toc-text">访问服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nexus中的仓库"><span class="toc-number">1.5.</span> <span class="toc-text">Nexus中的仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类型介绍"><span class="toc-number">1.5.1.</span> <span class="toc-text">类型介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#管理本地仓库"><span class="toc-number">1.5.2.</span> <span class="toc-text">管理本地仓库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IDEA-在项目中的配置"><span class="toc-number">1.6.</span> <span class="toc-text">IDEA 在项目中的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置settings-xml文件"><span class="toc-number">1.6.1.</span> <span class="toc-text">配置settings.xml文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置pom-xml"><span class="toc-number">1.6.2.</span> <span class="toc-text">配置pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDEA-的maven配置"><span class="toc-number">1.6.3.</span> <span class="toc-text">IDEA 的maven配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布jar包"><span class="toc-number">1.6.4.</span> <span class="toc-text">发布jar包</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="fantasykai" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/容器/" title="容器">容器<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>13</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/技术小栈/" title="技术小栈">技术小栈<sup>17</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/杂记/" title="杂记">杂记<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/测试/" title="测试">测试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/笔记/" title="笔记">笔记<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/" title="网络">网络<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Chrome-效率插件/" style="font-size: 10px;">Chrome 效率插件</a> <a href="/tags/Druid/" style="font-size: 10px;">Druid</a> <a href="/tags/IPv6/" style="font-size: 11.67px;">IPv6</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Mysql/" style="font-size: 13.33px;">Mysql</a> <a href="/tags/Spring/" style="font-size: 13.33px;">Spring</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/idea/" style="font-size: 16.67px;">idea</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/js/" style="font-size: 18.33px;">js</a> <a href="/tags/mac/" style="font-size: 11.67px;">mac</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/日志/" style="font-size: 10px;">日志</a> <a href="/tags/杂记/" style="font-size: 13.33px;">杂记</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a>
+    </div>
+  </div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://program-think.blogspot.com/" target="_blank" title="编程随想的博客">编程随想的博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/" target="_blank" title="阮一峰的博客">阮一峰的博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.liaoxuefeng.com/" target="_blank" title="廖雪峰">廖雪峰</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.codeceo.com/" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ifeve.com/" target="_blank" title="并发编程">并发编程</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://coolshell.cn/" target="_blank" title="酷壳">酷壳</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 文字，摄影，健身，旅行 ··· 感恩，生活不止于此 <br/>
+			This is my blog,Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1896404674" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/fantasykai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/kai.fantasy@gmail.com" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kai.Fantasy">Kai.Fantasy</a>
+		
+		
+		</p>
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','Smu72CUeM7VzuxVq3ryE','2.0.0');
+</script>		
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"fantasykai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261140604'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261140604%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  </body>
+</html>

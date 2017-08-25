@@ -1,0 +1,810 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>MongoDB·入门 | kai.fantasy &#39;s 文栖小筑</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kai.Fantasy">
+    
+
+    
+    <meta name="description" content="MongoDB·入门##何为 NoSql  NoSQL(NoSQL = Not Only SQL )">
+<meta name="keywords" content="mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB·入门">
+<meta property="og:url" content="https://fantasykai.github.io/2016/07/10/dateBase/NOSQL/MongoDB·入门/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="MongoDB·入门##何为 NoSql  NoSQL(NoSQL = Not Only SQL )">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-01-20T13:18:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB·入门">
+<meta name="twitter:description" content="MongoDB·入门##何为 NoSql  NoSQL(NoSQL = Not Only SQL )">
+
+    
+    <link rel="alternative" href="/atom.xml" title="kai.fantasy &#39;s 文栖小筑" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.gif" alt="kai.fantasy &#39;s 文栖小筑" title="kai.fantasy &#39;s 文栖小筑"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="kai.fantasy &#39;s 文栖小筑">kai.fantasy &#39;s 文栖小筑</a></h1>
+				<h2 class="blog-motto">没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/timeline">时光轴</a></li>
+					
+						<li><a href="/2048">放松下</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+	        <form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+	          <label>Search</label>
+	          <input type="text" id="search" class="st-default-search-input" maxlength="20" placeholder="Search" />
+	       </form>
+					
+					</li>
+				</ul>
+			</nav>
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/10/dateBase/NOSQL/MongoDB·入门/" title="MongoDB·入门" itemprop="url">MongoDB·入门</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kai.Fantasy" target="_blank" itemprop="author">Kai.Fantasy</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-09T16:00:00.000Z" itemprop="datePublished"> 发表于 2016-07-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MongoDB·入门"><span class="toc-number">1.</span> <span class="toc-text">MongoDB·入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NoSQL四大类"><span class="toc-number">1.1.</span> <span class="toc-text">NoSQL四大类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-key-value存储"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.key-value存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-列式数据库"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.列式数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-文档型数据库"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.文档型数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-图结构数据库"><span class="toc-number">1.1.4.</span> <span class="toc-text">4.图结构数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MongoDB简介"><span class="toc-number">1.2.</span> <span class="toc-text">MongoDB简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特点"><span class="toc-number">1.2.2.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#功能"><span class="toc-number">1.2.3.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#适用场合"><span class="toc-number">1.2.4.</span> <span class="toc-text">适用场合</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="MongoDB·入门"><a href="#MongoDB·入门" class="headerlink" title="MongoDB·入门"></a>MongoDB·入门</h1><p>##何为 NoSql</p>
+<blockquote>
+<p>NoSQL(NoSQL = Not Only SQL ) <a id="more"></a></p>
+</blockquote>
+<ul>
+<li>为什么使用NoSQL 强项：</li>
+</ul>
+<pre><code>1.对数据库高并发读写。
+
+2.对海量数据的高效率存储和访问。
+
+3.对数据库的高可扩展性和高可用性。
+</code></pre><ul>
+<li><p>弱项：</p>
+<pre><code>1.数据库事务一致性需求
+
+2.数据库的写实时性和读实时性需求
+
+3.对复杂的SQL查询，特别是多表关联查询的需求
+</code></pre></li>
+</ul>
+<h2 id="NoSQL四大类"><a href="#NoSQL四大类" class="headerlink" title="NoSQL四大类"></a>NoSQL四大类</h2><h3 id="1-key-value存储"><a href="#1-key-value存储" class="headerlink" title="1.key-value存储"></a>1.key-value存储</h3><blockquote>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+<th>Redis, Tokyo Cabinet/Tyrant, Tair</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>典型应用场景</td>
+<td>内容缓存，主要用于处理大量数据的高访问负载。</td>
+</tr>
+<tr>
+<td>数据模型</td>
+<td>Key 指向 Value 的键值对，通常用hash table来实现</td>
+</tr>
+<tr>
+<td>强项</td>
+<td>查找速度快</td>
+</tr>
+<tr>
+<td>弱项</td>
+<td>数据无结构化（或弱结构），通常只被当作字符串或者二进制数据</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="2-列式数据库"><a href="#2-列式数据库" class="headerlink" title="2.列式数据库"></a>2.列式数据库</h3><blockquote>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+<th style="text-align:left">Cassandra  HBase Riak  SybaseIQ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>典型应用场景</td>
+<td style="text-align:left">分布式的文件系统、大数据分析。</td>
+</tr>
+<tr>
+<td>数据模型</td>
+<td style="text-align:left">以列簇式存储，将同一列数据存在一起</td>
+</tr>
+<tr>
+<td>强项</td>
+<td style="text-align:left">查找速度快，可扩展性强，更容易进行分布式扩展</td>
+</tr>
+<tr>
+<td>弱项</td>
+<td style="text-align:left">功能相对局限</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="3-文档型数据库"><a href="#3-文档型数据库" class="headerlink" title="3.文档型数据库"></a>3.文档型数据库</h3><blockquote>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+<th>MongoDb，CouchDB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>典型应用场景</td>
+<td>Web应用(Value是结构化的，数据库能够了解Value的内容)</td>
+</tr>
+<tr>
+<td>数据模型</td>
+<td>Key-Value对应的键值对，Value为结构化文档数据</td>
+</tr>
+<tr>
+<td>强项</td>
+<td>数据结构要求不严格，表结构可变，不需要像关系型数据库一样需要预先定义表结构</td>
+</tr>
+<tr>
+<td>弱项</td>
+<td>相比其他NoSql查询性能不高，而且缺乏统一的查询语法</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="4-图结构数据库"><a href="#4-图结构数据库" class="headerlink" title="4.图结构数据库"></a>4.图结构数据库</h3><blockquote>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+<th>Neo4J, InfoGrid, Infinite Graph</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>典型应用场景</td>
+<td>社交网络，推荐系统等。专注于构建关系图谱</td>
+</tr>
+<tr>
+<td>数据模型</td>
+<td>图结构</td>
+</tr>
+<tr>
+<td>强项</td>
+<td>利用图结构相关算法。比如最短路径寻址，N度关系查找等</td>
+</tr>
+<tr>
+<td>弱项</td>
+<td>很多时候需要对整个图做计算才能得出需要的信息，而且这种结构不太好做分布式的集群方案</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h2 id="MongoDB简介"><a href="#MongoDB简介" class="headerlink" title="MongoDB简介"></a>MongoDB简介</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><blockquote>
+<p>Mongo 是一个高性能，开源，无模式的文档型数据库，它在许多场景下可用于替代传统的关系型数据库或键/值存储方式。MongoDB使用C++开发。不支持SQL，但有自己功能强大的查询语法。MongoDB使用BSON作为数据存储和传输的格式。BSON是一种类似JSON的二进制序列化文档。MongoDB很像MySQL，是最像关系型数据库的NoSql。</p>
+</blockquote>
+<ul>
+<li>字段对应关系</li>
+</ul>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>MySQL term</th>
+<th style="text-align:left">Mongo term/conceptp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>database</td>
+<td style="text-align:left">database</td>
+</tr>
+<tr>
+<td>table</td>
+<td style="text-align:left">collection</td>
+</tr>
+<tr>
+<td>index</td>
+<td style="text-align:left">index</td>
+</tr>
+<tr>
+<td>row</td>
+<td style="text-align:left">BSON document</td>
+</tr>
+<tr>
+<td>column</td>
+<td style="text-align:left">BSON field</td>
+</tr>
+<tr>
+<td>join</td>
+<td style="text-align:left">embedding and linking</td>
+</tr>
+<tr>
+<td>primary key</td>
+<td style="text-align:left">_id field</td>
+</tr>
+<tr>
+<td>group by</td>
+<td style="text-align:left">aggregation</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><blockquote>
+<ul>
+<li>高性能、易部署、易使用，存储数据非常方便。</li>
+<li>面向集合存储，易存储对象类型的数据</li>
+<li>模式自由</li>
+<li>支持动态查询</li>
+<li>支持完全索引，包含内部对象。</li>
+<li>支持复制和故障恢复。 </li>
+<li>使用高效的二进制数据存储，包括大型对象（如视频等）</li>
+<li>自动处理碎片，以支持云计算层次的扩展性</li>
+<li>支持Python，PHP，Ruby，Java，C，C#，Javascript，Perl及C++语言的驱动程序</li>
+<li>文件存储格式为BSON（一种JSON的扩展）</li>
+</ul>
+</blockquote>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><blockquote>
+<ul>
+<li>面向集合的存储：适合存储对象及JSON形式的数据。</li>
+<li>动态查询：MongoDB 支持丰富的查询表达式。查询指令使用JSON形式的标记，可轻易查询文档中内嵌的对象及数组。</li>
+<li>完整的索引支持：包括文档内嵌对象及数组。MongoDB的查询优化器会分析查询表达式，并生成一个高效的查询计划。</li>
+<li>查询监视：MongoDB包含一系列监视工具用于分析数据库操作的性能。</li>
+<li>复制及自动故障转移：MongoDB数据库支持服务器之间的数据复制，支持主-从模式及服务器之间的相互复制。复制的主要目标是提供冗余及自动故障转移。</li>
+<li>高效的传统存储方式：支持二进制数据及大型对象（如照片或图片）。</li>
+<li>自动分片以支持云级别的伸缩性：自动分片功能支持水平的数据库集群。</li>
+</ul>
+</blockquote>
+<h3 id="适用场合"><a href="#适用场合" class="headerlink" title="适用场合"></a>适用场合</h3><blockquote>
+<ul>
+<li>网站数据：Mongo非常适合实时的插入，更新与查询，并具备网站实时数据存储所需的复制及高度伸缩性。</li>
+<li>大数据量，低价值的数据：使用传统的关系型数据库存储一些数据时可能会比较昂贵，在此之前，很多时候程序员往往会选择传统的文件进行存储。</li>
+<li>高伸缩性的场景：Mongo非常适合由数十或数百台服务器组成的数据库。Mongo的路线图中已经包含对MapReduce引擎的内置支持。</li>
+<li>用于对象及JSON数据的存储：Mongo的BSON数据格式非常适合文档化格式的存储及查询。</li>
+</ul>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/数据库/">数据库</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/mongodb/">mongodb</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://fantasykai.github.io/2016/07/10/dateBase/NOSQL/MongoDB·入门/" data-title="MongoDB·入门 | kai.fantasy &#39;s 文栖小筑" data-tsina="1896404674" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/07/12/dateBase/NOSQL/mongodb 安装与配置(win) /" title="MongoDB·安装与配置(win)">
+  <strong>上一篇：</strong><br/>
+  <span>
+  MongoDB·安装与配置(win)</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/06/30/JAVA/Spring3 Schedule Task之注解实现 （两次起动Schedule Task 的解决方案）/"  title="Spring Spring3 Schedule Task之注解实现 （两次起动Schedule Task 的解决方案）">
+ <strong>下一篇：</strong><br/> 
+ <span>Spring Spring3 Schedule Task之注解实现 （两次起动Schedule Task 的解决方案）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/07/10/dateBase/NOSQL/MongoDB·入门/" data-title="MongoDB·入门" data-url="https://fantasykai.github.io/2016/07/10/dateBase/NOSQL/MongoDB·入门/"></div>
+  <script type="text/javascript">
+   var duoshuoQuery = {short_name:"fantasykai"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MongoDB·入门"><span class="toc-number">1.</span> <span class="toc-text">MongoDB·入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NoSQL四大类"><span class="toc-number">1.1.</span> <span class="toc-text">NoSQL四大类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-key-value存储"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.key-value存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-列式数据库"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.列式数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-文档型数据库"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.文档型数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-图结构数据库"><span class="toc-number">1.1.4.</span> <span class="toc-text">4.图结构数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MongoDB简介"><span class="toc-number">1.2.</span> <span class="toc-text">MongoDB简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特点"><span class="toc-number">1.2.2.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#功能"><span class="toc-number">1.2.3.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#适用场合"><span class="toc-number">1.2.4.</span> <span class="toc-text">适用场合</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="fantasykai" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/容器/" title="容器">容器<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>13</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/技术小栈/" title="技术小栈">技术小栈<sup>17</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/杂记/" title="杂记">杂记<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/测试/" title="测试">测试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/笔记/" title="笔记">笔记<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/" title="网络">网络<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Chrome-效率插件/" style="font-size: 10px;">Chrome 效率插件</a> <a href="/tags/Druid/" style="font-size: 10px;">Druid</a> <a href="/tags/IPv6/" style="font-size: 11.67px;">IPv6</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Mysql/" style="font-size: 13.33px;">Mysql</a> <a href="/tags/Spring/" style="font-size: 13.33px;">Spring</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/idea/" style="font-size: 16.67px;">idea</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/js/" style="font-size: 18.33px;">js</a> <a href="/tags/mac/" style="font-size: 11.67px;">mac</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/日志/" style="font-size: 10px;">日志</a> <a href="/tags/杂记/" style="font-size: 13.33px;">杂记</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a>
+    </div>
+  </div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://program-think.blogspot.com/" target="_blank" title="编程随想的博客">编程随想的博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/" target="_blank" title="阮一峰的博客">阮一峰的博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.liaoxuefeng.com/" target="_blank" title="廖雪峰">廖雪峰</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.codeceo.com/" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ifeve.com/" target="_blank" title="并发编程">并发编程</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://coolshell.cn/" target="_blank" title="酷壳">酷壳</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 文字，摄影，健身，旅行 ··· 感恩，生活不止于此 <br/>
+			This is my blog,Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1896404674" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/fantasykai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/kai.fantasy@gmail.com" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kai.Fantasy">Kai.Fantasy</a>
+		
+		
+		</p>
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','Smu72CUeM7VzuxVq3ryE','2.0.0');
+</script>		
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"fantasykai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261140604'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261140604%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  </body>
+</html>

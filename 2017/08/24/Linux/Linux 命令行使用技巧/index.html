@@ -1,0 +1,661 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Linux 命令行使用技巧 | kai.fantasy &#39;s 文栖小筑</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kai.Fantasy">
+    
+
+    
+    <meta name="description" content="最实用的 Linux 命令行使用技巧 【已翻译100%】英文原文：Most Useful Linux Command Line Tricks  我们可能每天都会要使用到很多的 Linux 命令行。 我们也会网络上知晓一些使用它们的小技巧，但是如果我们没有时常来进行练习，就有可能会忘掉怎么去使用它们。 所以我就决定把那些你可能会忘记的小提示和小技巧，或者对你而言可能是全新的东西都列表来。 将输出内容">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 命令行使用技巧">
+<meta property="og:url" content="https://fantasykai.github.io/2017/08/24/Linux/Linux 命令行使用技巧/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="最实用的 Linux 命令行使用技巧 【已翻译100%】英文原文：Most Useful Linux Command Line Tricks  我们可能每天都会要使用到很多的 Linux 命令行。 我们也会网络上知晓一些使用它们的小技巧，但是如果我们没有时常来进行练习，就有可能会忘掉怎么去使用它们。 所以我就决定把那些你可能会忘记的小提示和小技巧，或者对你而言可能是全新的东西都列表来。 将输出内容">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0823/091303_TBUa_2903254.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0823/091553_PTLs_2903254.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0823/091607_Z6PD_2903254.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0823/091735_Hqk6_2903254.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0823/091900_QTKd_2903254.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0823/091924_12e3_2903254.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0823/091937_H48w_2903254.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0823/092000_PnE3_2903254.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0823/092013_Bvae_2903254.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0823/092025_pFb6_2903254.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0823/092151_LtpJ_2903254.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0823/092206_tCmM_2903254.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0823/092230_Phyw_2903254.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0823/092303_cq15_2903254.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/img/201708/23092445_75a4.png">
+<meta property="og:updated_time" content="2017-08-24T03:01:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 命令行使用技巧">
+<meta name="twitter:description" content="最实用的 Linux 命令行使用技巧 【已翻译100%】英文原文：Most Useful Linux Command Line Tricks  我们可能每天都会要使用到很多的 Linux 命令行。 我们也会网络上知晓一些使用它们的小技巧，但是如果我们没有时常来进行练习，就有可能会忘掉怎么去使用它们。 所以我就决定把那些你可能会忘记的小提示和小技巧，或者对你而言可能是全新的东西都列表来。 将输出内容">
+<meta name="twitter:image" content="https://static.oschina.net/uploads/space/2017/0823/091303_TBUa_2903254.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="kai.fantasy &#39;s 文栖小筑" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.gif" alt="kai.fantasy &#39;s 文栖小筑" title="kai.fantasy &#39;s 文栖小筑"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="kai.fantasy &#39;s 文栖小筑">kai.fantasy &#39;s 文栖小筑</a></h1>
+				<h2 class="blog-motto">没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/timeline">时光轴</a></li>
+					
+						<li><a href="/2048">放松下</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+	        <form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+	          <label>Search</label>
+	          <input type="text" id="search" class="st-default-search-input" maxlength="20" placeholder="Search" />
+	       </form>
+					
+					</li>
+				</ul>
+			</nav>
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/08/24/Linux/Linux 命令行使用技巧/" title="Linux 命令行使用技巧" itemprop="url">Linux 命令行使用技巧</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kai.Fantasy" target="_blank" itemprop="author">Kai.Fantasy</a>
+		
+  <p class="article-time">
+    <time datetime="2017-08-24T03:01:06.000Z" itemprop="datePublished"> 发表于 2017-08-24</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#最实用的-Linux-命令行使用技巧-【已翻译100-】"><span class="toc-number">1.</span> <span class="toc-text">最实用的 Linux 命令行使用技巧 【已翻译100%】</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#将输出内容以表格的形式显示出来"><span class="toc-number">1.1.</span> <span class="toc-text">将输出内容以表格的形式显示出来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重复执行一个命令，直到它运行成功"><span class="toc-number">1.2.</span> <span class="toc-text">重复执行一个命令，直到它运行成功</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#按内存资源的使用量对进程进行排序"><span class="toc-number">1.3.</span> <span class="toc-text">按内存资源的使用量对进程进行排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#按-CPU-资源的使用量对进程进行排序"><span class="toc-number">1.4.</span> <span class="toc-text">按 CPU 资源的使用量对进程进行排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可以同时查看多个日志文件"><span class="toc-number">1.5.</span> <span class="toc-text">可以同时查看多个日志文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回到你操作过的上一个目录去"><span class="toc-number">1.6.</span> <span class="toc-text">回到你操作过的上一个目录去</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#让非交互式-Shell-会话可进行交互"><span class="toc-number">1.7.</span> <span class="toc-text">让非交互式 Shell 会话可进行交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定时的监视性命令输出"><span class="toc-number">1.8.</span> <span class="toc-text">定时的监视性命令输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在会话关掉以后继续运行程序"><span class="toc-number">1.9.</span> <span class="toc-text">在会话关掉以后继续运行程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自动对任何命令回答-Yes-或者-No"><span class="toc-number">1.10.</span> <span class="toc-text">自动对任何命令回答 Yes 或者 No</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建具有指定大小的文件"><span class="toc-number">1.11.</span> <span class="toc-text">创建具有指定大小的文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以根目录用户来运行最后一个命令"><span class="toc-number">1.12.</span> <span class="toc-text">以根目录用户来运行最后一个命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对命令行会话进行记录"><span class="toc-number">1.13.</span> <span class="toc-text">对命令行会话进行记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用标签符号替换空格符"><span class="toc-number">1.14.</span> <span class="toc-text">用标签符号替换空格符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将文件内容转换为大写或者小写"><span class="toc-number">1.15.</span> <span class="toc-text">将文件内容转换为大写或者小写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#强大的-Xargs-命令"><span class="toc-number">1.16.</span> <span class="toc-text">强大的 Xargs 命令</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="最实用的-Linux-命令行使用技巧-【已翻译100-】"><a href="#最实用的-Linux-命令行使用技巧-【已翻译100-】" class="headerlink" title="最实用的 Linux 命令行使用技巧 【已翻译100%】"></a>最实用的 Linux 命令行使用技巧 【已翻译100%】</h1><p>英文原文：<a href="https://dzone.com/articles/most-useful-linux-command-line-tricks" target="_blank" rel="external">Most Useful Linux Command Line Tricks</a></p>
+<hr>
+<p>我们可能每天都会要使用到很多的 <a href="https://likegeeks.com/main-linux-commands-easy-guide/" target="_blank" rel="external">Linux 命令行</a>。 我们也会网络上知晓一些使用它们的小技巧，但是如果我们没有时常来进行练习，就有可能会忘掉怎么去使用它们。 所以我就决定把那些你可能会忘记的小提示和小技巧，或者对你而言可能是全新的东西都列表来。</p>
+<h2 id="将输出内容以表格的形式显示出来"><a href="#将输出内容以表格的形式显示出来" class="headerlink" title="将输出内容以表格的形式显示出来"></a>将输出内容以表格的形式显示出来</h2><p>有时，在你看到命令行执行的输出时，因为字符串过度拥挤（比如说 mount 命令的输出）导致输出内容难以识别。如果我们看到的内容是一张表格会如何呢？其实这是很容易做到的！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount | column –t:</div></pre></td></tr></table></figure>
+<p><img src="https://static.oschina.net/uploads/space/2017/0823/091303_TBUa_2903254.png" alt="img"></p>
+<p>在此例中，由于内容中留了空格，所以输出的形式就美观了起来。 那如果想要的分隔符是别的什么符号，比如说冒号，又该怎么去做呢？ （例如，在 cat/etc/passwd 的输出内容中使用）</p>
+<p>这时候只需要使用 -s 参数指定分隔符就行了，像下面这样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/passwd | column -t -s:</div></pre></td></tr></table></figure>
+<p><img src="https://static.oschina.net/uploads/space/2017/0823/091553_PTLs_2903254.png" alt="img"></p>
+<h2 id="重复执行一个命令，直到它运行成功"><a href="#重复执行一个命令，直到它运行成功" class="headerlink" title="重复执行一个命令，直到它运行成功"></a>重复执行一个命令，直到它运行成功</h2><p>如果在 Google 上搜索这个功能，你会发现很多人都问到了如何重复执行命令，直到这个命令成功返回并且运行正常。 Google上的建议里就包括 ping 服务器，直到它变得空闲为止，还有就是检查是否有向特定的目录上传了具有特定扩展名的文件，还有就是检查特定的URL是否已经存在，诸如此类的办法。</p>
+<p>其实你还可以使用 while true 的循环来实现来实现这个功能：</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0823/091607_Z6PD_2903254.png" alt="img"></p>
+<p>在上面这个示例中，&gt;/dev/null 2&gt;＆1 会让程序的输出重定向到 /dev/ null。标准错误和标准输出都会被包含进去。</p>
+<p>这是我认为最酷的Linux命令行技巧之一。</p>
+<h2 id="按内存资源的使用量对进程进行排序"><a href="#按内存资源的使用量对进程进行排序" class="headerlink" title="按内存资源的使用量对进程进行排序"></a>按内存资源的使用量对进程进行排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps aux | sort -rnk 4:</div></pre></td></tr></table></figure>
+<p><img src="https://static.oschina.net/uploads/space/2017/0823/091735_Hqk6_2903254.png" alt="img"></p>
+<h2 id="按-CPU-资源的使用量对进程进行排序"><a href="#按-CPU-资源的使用量对进程进行排序" class="headerlink" title="按 CPU 资源的使用量对进程进行排序"></a>按 CPU 资源的使用量对进程进行排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps aux | sort -nk 3:</div></pre></td></tr></table></figure>
+<p><img src="https://static.oschina.net/uploads/space/2017/0823/091900_QTKd_2903254.png" alt="img"></p>
+<p>如果想要检查你的机器架构，那就执行 getconf LONG_BIT。</p>
+<h2 id="可以同时查看多个日志文件"><a href="#可以同时查看多个日志文件" class="headerlink" title="可以同时查看多个日志文件"></a>可以同时查看多个日志文件</h2><p>毫无疑问，你可能已经会使用 tail  命令来查看日志文件了，但可能有时候你还想着能同时查看多个日志文件。 使用 multi-tail 命令就支持支持文本的高亮显示，内容过滤以及更多你可能需要的功能：</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0823/091924_12e3_2903254.png" alt="img"><img src="https://static.oschina.net/uploads/space/2017/0823/091937_H48w_2903254.png" alt="img"></p>
+<p>如果系统里还没有这个命令，运行 apt-get install multitail 命令就可以把它给装上。</p>
+<h2 id="回到你操作过的上一个目录去"><a href="#回到你操作过的上一个目录去" class="headerlink" title="回到你操作过的上一个目录去"></a>回到你操作过的上一个目录去</h2><p>只需敲入 cd - 就会返回到你操作过的上一个目录中去。</p>
+<h2 id="让非交互式-Shell-会话可进行交互"><a href="#让非交互式-Shell-会话可进行交互" class="headerlink" title="让非交互式 Shell 会话可进行交互"></a>让非交互式 Shell 会话可进行交互</h2><p>想要这样做，那就把设置从 ~/.bashrc 改成 ~/.bash_profile 吧。</p>
+<h2 id="定时的监视性命令输出"><a href="#定时的监视性命令输出" class="headerlink" title="定时的监视性命令输出"></a>定时的监视性命令输出</h2><p>使用 watch 命令（watch df -h），你就可以查看到任何命令的任何输出。例如，你可以查看可用空间以及它的使用量增长情况。</p>
+<p>通过利用 watch 命令来操作会变化的数据，你可以尽情想象自己能拿这个来做些什么哦。</p>
+<h2 id="在会话关掉以后继续运行程序"><a href="#在会话关掉以后继续运行程序" class="headerlink" title="在会话关掉以后继续运行程序"></a>在会话关掉以后继续运行程序</h2><p>如果你在后台运行了什么程序，然后你关掉了的 shell 会话，那么这个后台运行的程序就会被你的 shell 杀掉。关闭 shell 以后怎么让程序继续运行下去呢？</p>
+<p>这个可以用 nohup 命令做到 - 该指令表示不做挂断操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup wget site.com/file.zip</div></pre></td></tr></table></figure>
+<p>此命令是最容易被遗忘的 Linux 命令行技巧之一，因为我们许多人都会使用另外一个类命令的 screen 环境：</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0823/092000_PnE3_2903254.png" alt="img"></p>
+<p>这样会在同一个目录下生成一个名称为 nohup.out 的文件，其中包含了正在运行的程序的输出内容：</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0823/092013_Bvae_2903254.png" alt="img"></p>
+<p>命令很酷，对吧？</p>
+<h2 id="自动对任何命令回答-Yes-或者-No"><a href="#自动对任何命令回答-Yes-或者-No" class="headerlink" title="自动对任何命令回答 Yes 或者 No"></a>自动对任何命令回答 Yes 或者 No</h2><p>如果你想自动化需要向用户说的 Yes 的过程，可以使用 yes 命令来实现：yes | apt-get update。</p>
+<p>也许你想做的是自动地说“No”。这个可以使用 yes no | 命令来实现。</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0823/092025_pFb6_2903254.png" alt="img"></p>
+<h2 id="创建具有指定大小的文件"><a href="#创建具有指定大小的文件" class="headerlink" title="创建具有指定大小的文件"></a>创建具有指定大小的文件</h2><p>可以使用 dd 命令来创建出具有指定大小的文件：dd if=/dev/zero of=out.txt bs=1M count=10。</p>
+<p>这样就会创建出一个 10 MB 的文件，填充零作为内容：</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0823/092151_LtpJ_2903254.png" alt="img"></p>
+<h2 id="以根目录用户来运行最后一个命令"><a href="#以根目录用户来运行最后一个命令" class="headerlink" title="以根目录用户来运行最后一个命令"></a>以根目录用户来运行最后一个命令</h2><p>有时，你会忘记在需要 root 权限的命令之前敲入 sudo。这时候你没必要去重写命令; 只要输入 sudo 就行了！</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0823/092206_tCmM_2903254.png" alt="img"></p>
+<h2 id="对命令行会话进行记录"><a href="#对命令行会话进行记录" class="headerlink" title="对命令行会话进行记录"></a>对命令行会话进行记录</h2><p>如果想要把自己在 shell 屏幕上敲的内容记录下来，可以使用 script 命令将所有敲写的内容保存到一个名为 typescriptscript 的文件中去。</p>
+<p>等你敲入 exit 命令以后，所有命令就都会被写入该文件，以便你事后再回过头去查看。</p>
+<h2 id="用标签符号替换空格符"><a href="#用标签符号替换空格符" class="headerlink" title="用标签符号替换空格符"></a>用标签符号替换空格符</h2><p>可以使用 tr 命令替换任何字符，这个用起来非常方便：cat geeks.txt | tr ‘:[space]:’ ‘\t’ &gt; out.txt.</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0823/092230_Phyw_2903254.png" alt="img"></p>
+<h2 id="将文件内容转换为大写或者小写"><a href="#将文件内容转换为大写或者小写" class="headerlink" title="将文件内容转换为大写或者小写"></a>将文件内容转换为大写或者小写</h2><p>可以这样实现：cat myfile | tr a-z A-Z&gt; output.txt。</p>
+<h2 id="强大的-Xargs-命令"><a href="#强大的-Xargs-命令" class="headerlink" title="强大的 Xargs 命令"></a>强大的 Xargs 命令</h2><p>xargs 命令是最重要的 Linux 命令行技巧之一。你可以使用这个命令将命令的输出作为参数传递给另一个命令。例如，搜索 png 文件然后对其进行压缩或者其它操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find. -name *.png -type f -print | xargs tar -cvzf images.tar.gz</div></pre></td></tr></table></figure>
+<p>又或者你的文件中有一个 URL 的列表，而你想要做的是以不同的方式下载或者处理这些 URL，可以这样做：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat urls.txt | xargs wget</div></pre></td></tr></table></figure>
+<p><img src="https://static.oschina.net/uploads/space/2017/0823/092303_cq15_2903254.png" alt="img"></p>
+<p><img src="https://static.oschina.net/uploads/img/201708/23092445_75a4.png" alt="xargs command"></p>
+<p>请你要记得，第一个命令的输出会在 xargs 命令结尾处传递。</p>
+<p>那如果命令需要中间过程的输出，该怎么办呢？这个简单！</p>
+<p>只需要使用 {} 并结合 -i 参数就行了。如下所示，替换在第一个命令的输出应该去的地方的参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls /etc/*.conf | xargs -i cp &#123;&#125; /home/likegeeks/Desktop/out</div></pre></td></tr></table></figure>
+<p>这只是 Linux 命令行技巧其中的几个而已。你可以使用其他命令来做一些更 HAPPY 的事情，比如 awk 命令和 sed 命令！</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/技术小栈/">技术小栈</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux/">Linux</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://fantasykai.github.io/2017/08/24/Linux/Linux 命令行使用技巧/" data-title="Linux 命令行使用技巧 | kai.fantasy &#39;s 文栖小筑" data-tsina="1896404674" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/08/24/mac/Mac上安装Mongo/"  title="Mac OX上安装MongoDb">
+ <strong>下一篇：</strong><br/> 
+ <span>Mac OX上安装MongoDb
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/08/24/Linux/Linux 命令行使用技巧/" data-title="Linux 命令行使用技巧" data-url="https://fantasykai.github.io/2017/08/24/Linux/Linux 命令行使用技巧/"></div>
+  <script type="text/javascript">
+   var duoshuoQuery = {short_name:"fantasykai"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#最实用的-Linux-命令行使用技巧-【已翻译100-】"><span class="toc-number">1.</span> <span class="toc-text">最实用的 Linux 命令行使用技巧 【已翻译100%】</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#将输出内容以表格的形式显示出来"><span class="toc-number">1.1.</span> <span class="toc-text">将输出内容以表格的形式显示出来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重复执行一个命令，直到它运行成功"><span class="toc-number">1.2.</span> <span class="toc-text">重复执行一个命令，直到它运行成功</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#按内存资源的使用量对进程进行排序"><span class="toc-number">1.3.</span> <span class="toc-text">按内存资源的使用量对进程进行排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#按-CPU-资源的使用量对进程进行排序"><span class="toc-number">1.4.</span> <span class="toc-text">按 CPU 资源的使用量对进程进行排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可以同时查看多个日志文件"><span class="toc-number">1.5.</span> <span class="toc-text">可以同时查看多个日志文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回到你操作过的上一个目录去"><span class="toc-number">1.6.</span> <span class="toc-text">回到你操作过的上一个目录去</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#让非交互式-Shell-会话可进行交互"><span class="toc-number">1.7.</span> <span class="toc-text">让非交互式 Shell 会话可进行交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定时的监视性命令输出"><span class="toc-number">1.8.</span> <span class="toc-text">定时的监视性命令输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在会话关掉以后继续运行程序"><span class="toc-number">1.9.</span> <span class="toc-text">在会话关掉以后继续运行程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自动对任何命令回答-Yes-或者-No"><span class="toc-number">1.10.</span> <span class="toc-text">自动对任何命令回答 Yes 或者 No</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建具有指定大小的文件"><span class="toc-number">1.11.</span> <span class="toc-text">创建具有指定大小的文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以根目录用户来运行最后一个命令"><span class="toc-number">1.12.</span> <span class="toc-text">以根目录用户来运行最后一个命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对命令行会话进行记录"><span class="toc-number">1.13.</span> <span class="toc-text">对命令行会话进行记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用标签符号替换空格符"><span class="toc-number">1.14.</span> <span class="toc-text">用标签符号替换空格符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将文件内容转换为大写或者小写"><span class="toc-number">1.15.</span> <span class="toc-text">将文件内容转换为大写或者小写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#强大的-Xargs-命令"><span class="toc-number">1.16.</span> <span class="toc-text">强大的 Xargs 命令</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="fantasykai" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/容器/" title="容器">容器<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>13</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/技术小栈/" title="技术小栈">技术小栈<sup>17</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/杂记/" title="杂记">杂记<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/测试/" title="测试">测试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/笔记/" title="笔记">笔记<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/" title="网络">网络<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Chrome-效率插件/" style="font-size: 10px;">Chrome 效率插件</a> <a href="/tags/Druid/" style="font-size: 10px;">Druid</a> <a href="/tags/IPv6/" style="font-size: 11.67px;">IPv6</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Mysql/" style="font-size: 13.33px;">Mysql</a> <a href="/tags/Spring/" style="font-size: 13.33px;">Spring</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/idea/" style="font-size: 16.67px;">idea</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/js/" style="font-size: 18.33px;">js</a> <a href="/tags/mac/" style="font-size: 11.67px;">mac</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/日志/" style="font-size: 10px;">日志</a> <a href="/tags/杂记/" style="font-size: 13.33px;">杂记</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a>
+    </div>
+  </div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://program-think.blogspot.com/" target="_blank" title="编程随想的博客">编程随想的博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/" target="_blank" title="阮一峰的博客">阮一峰的博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.liaoxuefeng.com/" target="_blank" title="廖雪峰">廖雪峰</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.codeceo.com/" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ifeve.com/" target="_blank" title="并发编程">并发编程</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://coolshell.cn/" target="_blank" title="酷壳">酷壳</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 文字，摄影，健身，旅行 ··· 感恩，生活不止于此 <br/>
+			This is my blog,Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1896404674" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/fantasykai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/kai.fantasy@gmail.com" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kai.Fantasy">Kai.Fantasy</a>
+		
+		
+		</p>
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','Smu72CUeM7VzuxVq3ryE','2.0.0');
+</script>		
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"fantasykai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261140604'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261140604%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  </body>
+</html>

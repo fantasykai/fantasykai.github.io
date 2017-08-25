@@ -1,0 +1,893 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>MongoDB·常用命令记录 | kai.fantasy &#39;s 文栖小筑</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kai.Fantasy">
+    
+
+    
+    <meta name="description" content="MongoDB 笔记常用命令1 查询所有存在的数据库 show dbs 2 进入数据库 use admin 3 查看所有的collection集合 show collections     4 增加或修改密码 db.addUser(&amp;apos;userTest&amp;apos;,&amp;apos;123456&amp;apos;)  db.addUser(&amp;quot;userTest&amp;quot;,&amp;quot;1234">
+<meta name="keywords" content="mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB·常用命令记录">
+<meta property="og:url" content="https://fantasykai.github.io/2016/07/30/dateBase/NOSQL/MongoDB-常用命令/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="MongoDB 笔记常用命令1 查询所有存在的数据库 show dbs 2 进入数据库 use admin 3 查看所有的collection集合 show collections     4 增加或修改密码 db.addUser(&amp;apos;userTest&amp;apos;,&amp;apos;123456&amp;apos;)  db.addUser(&amp;quot;userTest&amp;quot;,&amp;quot;1234">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-07-25T09:15:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB·常用命令记录">
+<meta name="twitter:description" content="MongoDB 笔记常用命令1 查询所有存在的数据库 show dbs 2 进入数据库 use admin 3 查看所有的collection集合 show collections     4 增加或修改密码 db.addUser(&amp;apos;userTest&amp;apos;,&amp;apos;123456&amp;apos;)  db.addUser(&amp;quot;userTest&amp;quot;,&amp;quot;1234">
+
+    
+    <link rel="alternative" href="/atom.xml" title="kai.fantasy &#39;s 文栖小筑" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.gif" alt="kai.fantasy &#39;s 文栖小筑" title="kai.fantasy &#39;s 文栖小筑"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="kai.fantasy &#39;s 文栖小筑">kai.fantasy &#39;s 文栖小筑</a></h1>
+				<h2 class="blog-motto">没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/timeline">时光轴</a></li>
+					
+						<li><a href="/2048">放松下</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+	        <form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+	          <label>Search</label>
+	          <input type="text" id="search" class="st-default-search-input" maxlength="20" placeholder="Search" />
+	       </form>
+					
+					</li>
+				</ul>
+			</nav>
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/30/dateBase/NOSQL/MongoDB-常用命令/" title="MongoDB·常用命令记录" itemprop="url">MongoDB·常用命令记录</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kai.Fantasy" target="_blank" itemprop="author">Kai.Fantasy</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-29T16:00:00.000Z" itemprop="datePublished"> 发表于 2016-07-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MongoDB-笔记"><span class="toc-number">1.</span> <span class="toc-text">MongoDB 笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-number">1.1.</span> <span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MongoDB增删改命令"><span class="toc-number">1.2.</span> <span class="toc-text">MongoDB增删改命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#索引"><span class="toc-number">1.3.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询"><span class="toc-number">1.4.</span> <span class="toc-text">查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MongoDB下根据数组大小进行查询的方法"><span class="toc-number">1.4.1.</span> <span class="toc-text">MongoDB下根据数组大小进行查询的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#aggregate"><span class="toc-number">1.4.2.</span> <span class="toc-text">aggregate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#各种更新操作"><span class="toc-number">1.4.3.</span> <span class="toc-text">各种更新操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理"><span class="toc-number">1.5.</span> <span class="toc-text">管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mongoDB关于数据库的操作"><span class="toc-number">1.5.1.</span> <span class="toc-text">mongoDB关于数据库的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#User相关的基本操作："><span class="toc-number">1.5.1.1.</span> <span class="toc-text">User相关的基本操作：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Database相关的基本操作："><span class="toc-number">1.5.1.2.</span> <span class="toc-text">Database相关的基本操作：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Collection相关的基本操作："><span class="toc-number">1.5.1.3.</span> <span class="toc-text">Collection相关的基本操作：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看聚集集合的基本信息"><span class="toc-number">1.5.1.4.</span> <span class="toc-text">查看聚集集合的基本信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mongoDB数据的导入和导出"><span class="toc-number">1.5.1.5.</span> <span class="toc-text">mongoDB数据的导入和导出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mongodb中的mongoimport工具可以把一个特定格式文件中的内容导入到指定的collection中。该工具可以导入JSON格式数据，也可以导入CSV格式数据"><span class="toc-number">1.5.1.6.</span> <span class="toc-text">Mongodb中的mongoimport工具可以把一个特定格式文件中的内容导入到指定的collection中。该工具可以导入JSON格式数据，也可以导入CSV格式数据</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#如果要导入CSV格式文件中的内容，则需要通过–type参数指定导入格式-CSV-格式良好，主流数据库都支持导出为CSV-的格式，所以这种格式非常利于异构数据迁移"><span class="toc-number">1.5.1.6.1.</span> <span class="toc-text">如果要导入CSV格式文件中的内容，则需要通过–type参数指定导入格式(CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MongoDB的数据备份和恢复"><span class="toc-number">1.5.1.7.</span> <span class="toc-text">MongoDB的数据备份和恢复</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#用mongorestore-来做MongoDB-的库或表级别的数据恢复"><span class="toc-number">1.5.1.7.1.</span> <span class="toc-text">用mongorestore 来做MongoDB 的库或表级别的数据恢复</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从阿里云备份的数据，导入本地"><span class="toc-number">1.5.2.</span> <span class="toc-text">从阿里云备份的数据，导入本地</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="MongoDB-笔记"><a href="#MongoDB-笔记" class="headerlink" title="MongoDB 笔记"></a>MongoDB 笔记</h1><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>1 查询所有存在的数据库</p>
+<pre><code>show dbs
+</code></pre><p>2 进入数据库</p>
+<pre><code>use admin
+</code></pre><p>3 查看所有的collection集合</p>
+<pre><code>show collections    
+</code></pre><p>4 增加或修改密码</p>
+<pre><code>db.addUser(&apos;userTest&apos;,&apos;123456&apos;)
+
+db.addUser(&quot;userTest&quot;,&quot;123456&quot;,true) 参数分别为 用户名、密码、是否只读
+</code></pre><p>5 查看用户列表</p>
+<pre><code>db.system.users.find()
+</code></pre><p>6 用户认证</p>
+<pre><code>db.auth(&apos;userTest&apos;,&apos;123456&apos;)
+</code></pre><p>7 删除用户</p>
+<pre><code>db.removeUser(&apos;userTest&apos;)
+</code></pre><p>8 查看所有用户</p>
+<pre><code>show users
+</code></pre><p>9 查看各个collection的状态</p>
+<pre><code>db.printCollectionStats()
+</code></pre><p>10 查看主从复制状态</p>
+<pre><code>db.printReplicationInfo()
+</code></pre><p>11 修复数据库</p>
+<pre><code>db.repairDatabase()
+</code></pre><p>12 设置profiling,0:off 1:slow 2 all</p>
+<pre><code>db.setProfilingLevel(1)
+</code></pre><p>13 查看profiling</p>
+<pre><code>show profiling
+</code></pre><p>14 拷贝数据库</p>
+<pre><code>db.copyDatabase(&apos;userTest&apos;,&apos;userTest1&apos;)
+
+db.copyDatabase(&quot;userTest&quot;,&quot;temp&quot;,&quot;127.0.0.1&quot;)
+</code></pre><p>15 删除集合collection</p>
+<pre><code>db.userTest.drop()
+</code></pre><p>16 删除当前数据库</p>
+<pre><code>db.dropDatabase()
+</code></pre><hr>
+<h2 id="MongoDB增删改命令"><a href="#MongoDB增删改命令" class="headerlink" title="MongoDB增删改命令"></a>MongoDB增删改命令</h2><p>1 存储数据</p>
+<pre><code>db.collection.insert({&apos;name&apos;:&apos;userTest&apos;})
+
+db.collection.save({&apos;age&apos;:18})
+</code></pre><p>1 存储嵌套的对象</p>
+<pre><code>db.foo.save({&apos;name&apos;:&apos;userTest&apos;,&apos;age&apos;:25,&apos;address&apos;:{&apos;city&apos;:&apos;changchun&apos;,&apos;Province&apos;:&apos;Jilin&apos;}})
+</code></pre><p>2 存储数组对象</p>
+<pre><code>db.foo.save({&apos;name&apos;:userTest,&apos;age&apos;:25,&apos;address&apos;:[&apos;Jilin Province&apos;,&apos;Liaoning Province&apos;]})
+</code></pre><p>3 根据query条件修改，如果不存在则插入，允许修改多条记录</p>
+<pre><code>db.foo.update({&apos;age&apos;:&apos;25&apos;},{&apos;$set&apos;:{&apos;name&apos;:&apos;userTest&apos;}},upsert=true,multi=true)
+</code></pre><p>4 删除yy=5的记录</p>
+<pre><code>db.foo.remove({&apos;name&apos;:&apos;userTest&apos;})
+</code></pre><p>5 删除所有的记录</p>
+<pre><code>db.foo.remove()
+</code></pre><h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>1 增加索引:1 asc -1 desc</p>
+<pre><code>db.foo.ensureIndex({firstname:1,lastname:-1},{unieap:true})
+</code></pre><p>2 索引子对象(不懂)</p>
+<pre><code>db.foo.ensureIndex({&apos;Al.Em&apos;:!})
+</code></pre><p>3 查看索引信息</p>
+<pre><code>db.foo.getIndexes()
+
+db.foo.getIndexKeys()
+</code></pre><p>4 根据索引名删除索引(不懂)</p>
+<pre><code>db.foo.dropIndex(&apos;Al.Em_1&apos;)
+</code></pre><h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><pre><code>$gt ---- &gt;
+$lt ---- &lt;
+$gte ---- &gt;=
+$lte ---- &lt;=
+$ne ---- != 、&lt;&gt;
+$in ---- in
+$nin ---- not in
+$all ---- all
+$or ---- or
+$not ---- 反匹配
+</code></pre><p>1 查询所有记录</p>
+<pre><code>db.foo.find() ---- select * from foo
+</code></pre><p>2 查询某列非重复的记录</p>
+<pre><code>db.foo.distinct(&quot;userTest&quot;) ---- select distinct name from foo
+</code></pre><p>3 查询age = 22 的记录</p>
+<pre><code>db.foo.find({&quot;age&quot;:22}) ---- select * from foo where age = 22
+</code></pre><p>4 查询age &gt; 22 的记录</p>
+<pre><code>db.foo.find({age:{$gt:22}}) ---- select * from foo where age &gt; 22
+</code></pre><p>5 查询age &lt; 22 的记录</p>
+<pre><code>db.foo.find({age:{$lt:22}}) ---- select * from foo where age &lt; 22
+</code></pre><p>6 查询age &lt;= 25的记录</p>
+<pre><code>db.foo.find({age:{$lte:25}})
+</code></pre><p>7 查询age &gt;= 23 并且 age &lt;=26的记录</p>
+<pre><code>db.foo.find({age:{gte:23,lte:26}})
+</code></pre><p>8 查询name中包含userTest的数据</p>
+<pre><code>db.foo.find({name:/userTest/}) ---- select * from foo where name like &apos;%userTest%&apos;
+</code></pre><p>9 查询name中以userTest开头的数据</p>
+<pre><code>db.foo.find({name:/^userTest/}) ---- select * from foo where name like &apos;userTest%&apos;
+</code></pre><p>10 查询指定列name、age的数据</p>
+<pre><code>db.foo.find({},{name:1,age:1}) ---- select name,age from foo
+</code></pre><p>11 查询制定列name、age数据，并且age &gt; 22</p>
+<pre><code>db.foo.find({age:{$gt:22}},{name:1,age:1}) ---- select name,age from foo where age &gt;22
+</code></pre><p>12 按照年龄排序</p>
+<ul>
+<li>升序：db.foo.find().sort({age:1})  降序：db.foo.find().sort({age:-1})</li>
+</ul>
+<p>13 查询name=userTest.age=25的数据</p>
+<pre><code>db.foo.find({name:&apos;userTest&apos;,age:22}) ---- select * from foo where name=&apos;userTest&apos; and age =&apos;25&apos;
+</code></pre><p>14 查询前5条数据</p>
+<pre><code>db.foo.find().limit(5) ---- select top 5 * from foo
+</code></pre><p>15 查询10条以后的数据</p>
+<pre><code>db.foo.find().skip(10) ---- select * from foo where id not in (select top 10 * from foo);
+</code></pre><p>16 查询在5-10之间的数据</p>
+<pre><code>db.foo.find().limit(10).skip(5) 
+</code></pre><p>17 or与查询</p>
+<pre><code>db.foo.find({$or:[{age:22},{age:25}]}) ---- select * from foo where age=22 or age =25
+</code></pre><p>18 查询第一条数据</p>
+<pre><code>db.foo.findOne() 、db.foo.find().limit(1)---- select top 1 * from foo
+</code></pre><p>19 查询某个结果集的记录条数</p>
+<pre><code>db.foo.find({age:{$gte:25}}).count() ---- select count(*) from foo where age &gt;= 20
+</code></pre><p>20 按照某列进行排序</p>
+<pre><code>db.foo.find({sex:{$exists:true}}).count() ---- select count(sex) from foo
+</code></pre><p>21 查询age取模10等于0的数据</p>
+<pre><code>db.foo.find(&apos;this.age % 10 == 0&apos;)、db.foo.find({age:{$mod:[10,0]}})
+</code></pre><p>22 匹配所有</p>
+<pre><code>db.foo.find({age:{$all:[22,25]}})
+</code></pre><p>23 查询不匹配name=X*带头的记录</p>
+<pre><code>db.foo.find({name:{$not:/^X.*/}})
+</code></pre><p>24 排除返回age字段</p>
+<pre><code>db.foo.find({name:&apos;userTest&apos;},{age:0})
+</code></pre><p>25 判断字段是否存在</p>
+<pre><code>db.foo.find({name:{$exists:true}})    
+</code></pre><p>26 查询两个字段值相同的记录</p>
+<pre><code>db.foo.find({$where:&quot;this.bluid==this.seqid&quot;}).count();
+</code></pre><h3 id="MongoDB下根据数组大小进行查询的方法"><a href="#MongoDB下根据数组大小进行查询的方法" class="headerlink" title="MongoDB下根据数组大小进行查询的方法"></a>MongoDB下根据数组大小进行查询的方法</h3><p>1.测试数据</p>
+<pre><code>db.array_test.insert({name:&apos;a&apos;, num:[11,22,33,44,55]});
+db.array_test.insert({name:&apos;b&apos;, num:[111,222]});
+db.array_test.insert({name:&apos;c&apos;, num:[1111]});
+db.array_test.insert({name:&apos;d&apos;, num:[2222]});
+</code></pre><ol>
+<li><p><code>$size</code> 查询指定大小的数据</p>
+<p> db.array_test.find({num:{$size:2}})</p>
+</li>
+</ol>
+<ul>
+<li>注意：$size 无法查询某个范围的大小，例如下面的语句是无法按照预期运行的：</li>
+</ul>
+<pre><code>db.array_test.find({num:{$size:{$gt:3}}}); //错误
+</code></pre><p>官方文档中建议，如果需要查询的数组大小在某个范围，可以另外为每个文档添加一个键来保存当前数组的大小。</p>
+<p>2.其他思路：</p>
+<p>   使用$where，例如如果要求数组大小小于3：</p>
+<pre><code>db.array_test.find({ $where: &quot;this.num.length &lt; 3&quot; }).pretty()
+
+这种方法具有很大的灵活性，但是速度会慢一些。
+</code></pre><p>另外一个比较高效的方法是判断数组中的某个指定索引的元素是否存在，例如如果要求数组大小小于3：</p>
+<pre><code>db.array_test.find({ &quot;num.2&quot;: {$exists:0} })
+
+数组大小小于3，也就是num[2]不存在。
+
+db.array_test.find({ &quot;num.3&quot;: {$exists:1} })
+
+数据大于等于 3
+</code></pre><h3 id="aggregate"><a href="#aggregate" class="headerlink" title="aggregate"></a>aggregate</h3><p>1 分组查询</p>
+<pre><code>db.users.aggregate([
+{$match : {&apos;_created&apos;:{&apos;$gte&apos;: ISODate(&apos;2017-04-01 0:0:0&apos;)}}},
+{$group : {_id : &quot;$channel&quot;, channel_count:{$sum:1}}},
+{$sort:{channel_count:-1}}
+]);
+</code></pre><p>2 多次分组查询</p>
+<pre><code>db.logins.aggregate([
+{&apos;$match&apos;: {&apos;operate&apos;: &apos;get_token&apos;}}, 
+{&apos;$group&apos;: {&apos;_id&apos;: {&apos;userId&apos;: &apos;$user_id&apos;, &apos;brand&apos;: &apos;$brand&apos;, &apos;deviceType&apos;: &apos;$src&apos;}}}, 
+{&apos;$group&apos;: {&apos;_id&apos;: {&apos;brand&apos;: &apos;$_id.brand&apos;, &apos;deviceType&apos;: &apos;$_id.deviceType&apos;}, &apos;num&apos;: {&apos;$sum&apos;: 1}}}, 
+{&apos;$sort&apos;: {&apos;_id.deviceType&apos;: -1, &apos;num&apos;: -1}}, 
+{&apos;$limit&apos;: 20}]);
+</code></pre><h3 id="各种更新操作"><a href="#各种更新操作" class="headerlink" title="各种更新操作"></a>各种更新操作</h3><ul>
+<li><p>更新语法</p>
+<pre><code>db.collection.update(criteria, objNew, upsert, multi )
+</code></pre></li>
+<li><p>criteria:update的查询条件，类似sql update查询内where后面的</p>
+</li>
+<li><p>objNew:update的对象和一些更新的操作符（如$,$inc…）等，也可以理解为sql update查询内set后面的。</p>
+</li>
+<li><p>upsert : 如果不存在update的记录，是否插入objNew,true为插入，默认是false，不插入。</p>
+</li>
+<li><p>multi : mongodb默认是false,只更新找到的第一条记录，如果这个参数为true,就把按条件查出来多条记录全部更新。</p>
+</li>
+</ul>
+<p>1 修改字段数据类型语法</p>
+<ul>
+<li><p><a href="https://docs.mongodb.com/manual/reference/operator/query/type/" target="_blank" rel="external">MongoDB 数据类型</a></p>
+<pre><code>db.users.find({&quot;recv&quot;:{$type:2}}).forEach(  
+         function(x){  
+             x.recv=new NumberLong(x.recv);  
+             db.users.save(x);  
+         }  
+    ); 
+</code></pre></li>
+</ul>
+<p>2 mongodb 更新一个字段的值为另外一个字段的值</p>
+<pre><code>db.users.find({&apos;client.src&apos;:2}).forEach(
+   function(item){                 
+       db.users.update({&quot;_id&quot;:item._id},{&quot;$set&quot;:{&quot;client.deviceName&quot;:item.client.sysDesc}},false,true) 
+    }
+)
+</code></pre><p>3 mongoDB 同步collection从一个数据库到另一个数据库中</p>
+<ul>
+<li><p>new_database是目的数据库</p>
+<pre><code>db.&lt;collection_name&gt;.find().forEach(function(d){ db.getSiblingDB(&apos;&lt;new_database&gt;&apos;)[&apos;&lt;collection_name&gt;&apos;].insert(d); });
+</code></pre></li>
+</ul>
+<h2 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h2><p>1 查看collection数据大小</p>
+<pre><code>db.userTest.dataSize()
+</code></pre><p>2 查看collection状态</p>
+<pre><code>db.userTest.stats()
+</code></pre><p>3 查询所有索引的大小</p>
+<pre><code>db.userTest.totalIndexSize()
+</code></pre><h3 id="mongoDB关于数据库的操作"><a href="#mongoDB关于数据库的操作" class="headerlink" title="mongoDB关于数据库的操作"></a>mongoDB关于数据库的操作</h3><h4 id="User相关的基本操作："><a href="#User相关的基本操作：" class="headerlink" title="User相关的基本操作："></a>User相关的基本操作：</h4><pre><code>&gt; show users　　　　　　　　　　　　　　　　　       ------查看所有用户
+&gt; db.system.users.find()　　　　　　　　　　　　　　------查看用户列表
+&gt; db.addUser(&apos;name&apos;,&apos;pwd&apos;)　　　　　　                     ------增加或修改用户密码
+&gt; db.addUser(&quot;userName&quot;, &quot;pwd123&quot;, true)　　　　　 ------添加用户、设置密码、是否只读
+&gt; db.auth(&quot;userName&quot;, &quot;123123&quot;)　　　　　　            ------数据库认证、安全模式
+&gt; db.removeUser(&apos;name&apos;)　　　　　　                         ------根据用户名删除用户
+</code></pre><h4 id="Database相关的基本操作："><a href="#Database相关的基本操作：" class="headerlink" title="Database相关的基本操作："></a>Database相关的基本操作：</h4><pre><code>&gt; show dbs                                                                           ------查看所有数据库
+&gt; use [db-name]                                                                  ------当创建一个集合(table)的时候会自动创建当前数据库，这个指令相当于mysql的use [database-name]
+&gt; db.dropDatabase()                                                          ------删除当前的数据库
+&gt; db.repairDatabase()                                                        ------修复数据库
+&gt; db.copyDatabase(&apos;mail_addr&apos;,&apos;mail_addr_tmp&apos;)         -----拷贝数据库
+&gt; db.copyDatabase(&quot;mydb&quot;, &quot;temp&quot;, &quot;127.0.0.1&quot;)          ------将本机的mydb的数据复制到temp数据库中
+&gt; db.cloneDatabase(“127.0.0.1”)                                     ------将指定机器上的数据库的数据克隆到当前数据库
+</code></pre><h4 id="Collection相关的基本操作："><a href="#Collection相关的基本操作：" class="headerlink" title="Collection相关的基本操作："></a>Collection相关的基本操作：</h4><pre><code>&gt; show collections                                                             ------查看所有的集合 
+&gt; db.printReplicationInfo()　                                            ------查看主从复制状态
+&gt; db.mail_addr.drop()　                                                    ------删除collection(mail_addr 是collections的名字)
+&gt; db.createCollection(“collectionName”, {size: 20, capped: 5, max: 100})            ------创建一个聚集集合
+&gt; db.getCollection(&quot;account&quot;)                                        ------得到指定名称的聚集集合
+&gt; db.getCollectionNames()                                             ------得到当前db的所有聚集集合
+&gt; db.printCollectionStats()                                              ------查看各collection的状态
+其它：
+&gt; db.getPrevError()                                                          ------查询之前的错误信息
+&gt; db.resetError()                                                               ------清除错误记录
+</code></pre><h4 id="查看聚集集合的基本信息"><a href="#查看聚集集合的基本信息" class="headerlink" title="查看聚集集合的基本信息"></a>查看聚集集合的基本信息</h4><pre><code>&gt; db.test.count();     　　　　　　　　　　　　　------查询当前集合的数据条数
+&gt; db.test.dataSIze();                                                   ------查询数据空间大小
+&gt; db.test.getDB();                                                       ------得到当前聚集集合所在的database
+&gt; db.test.stats();                                                          ------得到当前聚集的状态
+&gt; db.test.totalSize();　                                               ------得到聚集集合总大小
+&gt; db.test.storageSize();                                             ------得到聚集集合储存空间大小
+&gt; db.test.getShardVersion();                                    ------Shard版本信息
+&gt; db.test.renameCollection(&quot;users&quot;);                     ------将集合test重名为users
+&gt; db.test.drop();                                                          ------删除当前聚集集合
+</code></pre><h4 id="mongoDB数据的导入和导出"><a href="#mongoDB数据的导入和导出" class="headerlink" title="mongoDB数据的导入和导出"></a>mongoDB数据的导入和导出</h4><pre><code>Mongodb中的mongoexport工具可以把一个collection导出成JSON格式或CSV格式的文件。可以通过参数指定导出的数据项，也可以根据指定的条件导出数据。
+    　　
+    　　
+</code></pre><ul>
+<li><p>命令选项说明:　</p>
+<pre><code>　　
+-h:指明数据库宿主机的IP
+-u:指明数据库的用户名
+-p:指明数据库的密码
+-d:指明数据库的名字
+-c:指明collection的名字
+-f:指明要导出那些列
+-o:指明到要导出的文件名
+-q:指明导出数据的过滤条件
+</code></pre></li>
+</ul>
+<h4 id="Mongodb中的mongoimport工具可以把一个特定格式文件中的内容导入到指定的collection中。该工具可以导入JSON格式数据，也可以导入CSV格式数据"><a href="#Mongodb中的mongoimport工具可以把一个特定格式文件中的内容导入到指定的collection中。该工具可以导入JSON格式数据，也可以导入CSV格式数据" class="headerlink" title="Mongodb中的mongoimport工具可以把一个特定格式文件中的内容导入到指定的collection中。该工具可以导入JSON格式数据，也可以导入CSV格式数据"></a>Mongodb中的mongoimport工具可以把一个特定格式文件中的内容导入到指定的collection中。该工具可以导入JSON格式数据，也可以导入CSV格式数据</h4><pre><code>　
+导入命令选项说明:　  
+    -h:指明数据库宿主机的IP
+    -u:指明数据库的用户名
+    -p:指明数据库的密码
+    -d:指明数据库的名字
+    -c:指明collection的名字
+    -f:指明要导入那些列
+</code></pre><h5 id="如果要导入CSV格式文件中的内容，则需要通过–type参数指定导入格式-CSV-格式良好，主流数据库都支持导出为CSV-的格式，所以这种格式非常利于异构数据迁移"><a href="#如果要导入CSV格式文件中的内容，则需要通过–type参数指定导入格式-CSV-格式良好，主流数据库都支持导出为CSV-的格式，所以这种格式非常利于异构数据迁移" class="headerlink" title="如果要导入CSV格式文件中的内容，则需要通过–type参数指定导入格式(CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移)"></a>如果要导入CSV格式文件中的内容，则需要通过–type参数指定导入格式(CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移)</h5><ul>
+<li><p>参数说明：</p>
+<pre><code>-type:指明要导入的文件格式
+-headerline:指明第一行是列名，不需要导入
+-file：指明要导入的文件
+</code></pre></li>
+</ul>
+<h4 id="MongoDB的数据备份和恢复"><a href="#MongoDB的数据备份和恢复" class="headerlink" title="MongoDB的数据备份和恢复"></a>MongoDB的数据备份和恢复</h4><p>用mongodump 来做MongoDB 的库或表级别的备份</p>
+<ul>
+<li><p>备份选项说明(sudo ./mongodump  –help)：</p>
+<pre><code>-h:指明数据库宿主机的IP
+-u:指明数据库的用户名
+-p:指明数据库的密码
+-d:指明数据库的名字
+-c:指明collection的名字
+-o:输出目录
+-q:json query(json查询)
+</code></pre></li>
+</ul>
+<h5 id="用mongorestore-来做MongoDB-的库或表级别的数据恢复"><a href="#用mongorestore-来做MongoDB-的库或表级别的数据恢复" class="headerlink" title="用mongorestore 来做MongoDB 的库或表级别的数据恢复"></a>用mongorestore 来做MongoDB 的库或表级别的数据恢复</h5><ul>
+<li><p>恢复选项说明(sudo ./mongorestore  –help):</p>
+<pre><code>-u:指明数据库的用户名
+-p:指明数据库的密码
+-d:指明数据库的名字
+-c:指明collection的名字　　　
+</code></pre></li>
+</ul>
+<h3 id="从阿里云备份的数据，导入本地"><a href="#从阿里云备份的数据，导入本地" class="headerlink" title="从阿里云备份的数据，导入本地"></a>从阿里云备份的数据，导入本地</h3><ul>
+<li><p>阿里云建议的语法</p>
+<pre><code>cat xx.ar| mongorestore -h xxx --port xxx -u xxx -p xxx --drop --gzip --archive -vvvv --stopOnError
+</code></pre></li>
+<li><p>我在windows上导入的语法</p>
+</li>
+</ul>
+<pre><code>mongorestore -h 127.0.0.1 --port 27017  --drop --gzip --archive=hins1226667_data_2212.ar --stopOnError
+</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/数据库/">数据库</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/mongodb/">mongodb</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://fantasykai.github.io/2016/07/30/dateBase/NOSQL/MongoDB-常用命令/" data-title="MongoDB·常用命令记录 | kai.fantasy &#39;s 文栖小筑" data-tsina="1896404674" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/08/10/dateBase/MYSQL/MySQL命名、设计及使用规范/" title="MySQL命名、设计及使用规范">
+  <strong>上一篇：</strong><br/>
+  <span>
+  MySQL命名、设计及使用规范</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/07/12/dateBase/NOSQL/mongodb 安装与配置(win) /"  title="MongoDB·安装与配置(win)">
+ <strong>下一篇：</strong><br/> 
+ <span>MongoDB·安装与配置(win)
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/07/30/dateBase/NOSQL/MongoDB-常用命令/" data-title="MongoDB·常用命令记录" data-url="https://fantasykai.github.io/2016/07/30/dateBase/NOSQL/MongoDB-常用命令/"></div>
+  <script type="text/javascript">
+   var duoshuoQuery = {short_name:"fantasykai"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MongoDB-笔记"><span class="toc-number">1.</span> <span class="toc-text">MongoDB 笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-number">1.1.</span> <span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MongoDB增删改命令"><span class="toc-number">1.2.</span> <span class="toc-text">MongoDB增删改命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#索引"><span class="toc-number">1.3.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询"><span class="toc-number">1.4.</span> <span class="toc-text">查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MongoDB下根据数组大小进行查询的方法"><span class="toc-number">1.4.1.</span> <span class="toc-text">MongoDB下根据数组大小进行查询的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#aggregate"><span class="toc-number">1.4.2.</span> <span class="toc-text">aggregate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#各种更新操作"><span class="toc-number">1.4.3.</span> <span class="toc-text">各种更新操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理"><span class="toc-number">1.5.</span> <span class="toc-text">管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mongoDB关于数据库的操作"><span class="toc-number">1.5.1.</span> <span class="toc-text">mongoDB关于数据库的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#User相关的基本操作："><span class="toc-number">1.5.1.1.</span> <span class="toc-text">User相关的基本操作：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Database相关的基本操作："><span class="toc-number">1.5.1.2.</span> <span class="toc-text">Database相关的基本操作：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Collection相关的基本操作："><span class="toc-number">1.5.1.3.</span> <span class="toc-text">Collection相关的基本操作：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看聚集集合的基本信息"><span class="toc-number">1.5.1.4.</span> <span class="toc-text">查看聚集集合的基本信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mongoDB数据的导入和导出"><span class="toc-number">1.5.1.5.</span> <span class="toc-text">mongoDB数据的导入和导出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mongodb中的mongoimport工具可以把一个特定格式文件中的内容导入到指定的collection中。该工具可以导入JSON格式数据，也可以导入CSV格式数据"><span class="toc-number">1.5.1.6.</span> <span class="toc-text">Mongodb中的mongoimport工具可以把一个特定格式文件中的内容导入到指定的collection中。该工具可以导入JSON格式数据，也可以导入CSV格式数据</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#如果要导入CSV格式文件中的内容，则需要通过–type参数指定导入格式-CSV-格式良好，主流数据库都支持导出为CSV-的格式，所以这种格式非常利于异构数据迁移"><span class="toc-number">1.5.1.6.1.</span> <span class="toc-text">如果要导入CSV格式文件中的内容，则需要通过–type参数指定导入格式(CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MongoDB的数据备份和恢复"><span class="toc-number">1.5.1.7.</span> <span class="toc-text">MongoDB的数据备份和恢复</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#用mongorestore-来做MongoDB-的库或表级别的数据恢复"><span class="toc-number">1.5.1.7.1.</span> <span class="toc-text">用mongorestore 来做MongoDB 的库或表级别的数据恢复</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从阿里云备份的数据，导入本地"><span class="toc-number">1.5.2.</span> <span class="toc-text">从阿里云备份的数据，导入本地</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="fantasykai" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/容器/" title="容器">容器<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>13</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/技术小栈/" title="技术小栈">技术小栈<sup>17</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/杂记/" title="杂记">杂记<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/测试/" title="测试">测试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/笔记/" title="笔记">笔记<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/" title="网络">网络<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Chrome-效率插件/" style="font-size: 10px;">Chrome 效率插件</a> <a href="/tags/Druid/" style="font-size: 10px;">Druid</a> <a href="/tags/IPv6/" style="font-size: 11.67px;">IPv6</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Mysql/" style="font-size: 13.33px;">Mysql</a> <a href="/tags/Spring/" style="font-size: 13.33px;">Spring</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/idea/" style="font-size: 16.67px;">idea</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/js/" style="font-size: 18.33px;">js</a> <a href="/tags/mac/" style="font-size: 11.67px;">mac</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/日志/" style="font-size: 10px;">日志</a> <a href="/tags/杂记/" style="font-size: 13.33px;">杂记</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a>
+    </div>
+  </div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://program-think.blogspot.com/" target="_blank" title="编程随想的博客">编程随想的博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/" target="_blank" title="阮一峰的博客">阮一峰的博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.liaoxuefeng.com/" target="_blank" title="廖雪峰">廖雪峰</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.codeceo.com/" target="_blank" title="码农圈">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ifeve.com/" target="_blank" title="并发编程">并发编程</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://coolshell.cn/" target="_blank" title="酷壳">酷壳</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 文字，摄影，健身，旅行 ··· 感恩，生活不止于此 <br/>
+			This is my blog,Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1896404674" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/fantasykai" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/kai.fantasy@gmail.com" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kai.Fantasy">Kai.Fantasy</a>
+		
+		
+		</p>
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','Smu72CUeM7VzuxVq3ryE','2.0.0');
+</script>		
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"fantasykai"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261140604'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261140604%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  </body>
+</html>
