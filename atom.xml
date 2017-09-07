@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.github.io/"/>
-  <updated>2017-09-07T12:26:47.000Z</updated>
+  <updated>2017-09-07T12:52:06.000Z</updated>
   <id>https://fantasykai.github.io/</id>
   
   <author>
@@ -20,12 +20,11 @@
     <link href="https://fantasykai.github.io/2017/09/07/Linux/Web%20%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%9A%84%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4/"/>
     <id>https://fantasykai.github.io/2017/09/07/Linux/Web 开发常用的终端命令/</id>
     <published>2017-09-07T12:16:05.000Z</published>
-    <updated>2017-09-07T12:26:47.000Z</updated>
+    <updated>2017-09-07T12:52:06.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Web-开发常用的终端命令"><a href="#Web-开发常用的终端命令" class="headerlink" title="Web 开发常用的终端命令"></a>Web 开发常用的终端命令</h2><p>终端是开发人员的军火库中最重要的生产力工具之一。把它掌握好了可以对你的工作产生非常积极的影响。</p>
 <p>这里记录一些常用到的命令</p>
-<p><strong>curl</strong></p>
-<p><a href="https://curl.haxx.se/" target="_blank" rel="external">https://curl.haxx.se/</a></p>
+<h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a><strong>curl</strong></h3><p><a href="https://curl.haxx.se/" target="_blank" rel="external">https://curl.haxx.se/</a></p>
 <p>curl 是一个命令行工具，用来通过 HTTP（s），FTP 等其它几十种你可能尚未听说过的协议来发起网络请求。它可以下载文件，检查响应消息头以及方便地访问远程数据。</p>
 <p>在 Web 开发中， curl 经常被用来测试连接，还有调用 REST 风格的 API。</p>
 <figure class="image-bubble">
@@ -36,9 +35,7 @@
                 <div class="image-caption"></div>
             </figure>
 <p>curl 的用法还可以比这更复杂。它有许多选项可以用来控制消息头，Cookie，身份验证等等这些要素。你可以通过 Everything curl 这本优秀的电子书来了解更多。</p>
-<p>## </p>
-<p><strong>tree</strong></p>
-<p><a href="https://www.computerhope.com/unix/tree.htm" target="_blank" rel="external">https://www.computerhope.com/unix/tree.htm</a></p>
+<h3 id="tree"><a href="#tree" class="headerlink" title="tree"></a><strong>tree</strong></h3><p><a href="https://www.computerhope.com/unix/tree.htm" target="_blank" rel="external">https://www.computerhope.com/unix/tree.htm</a></p>
 <p>tree 是一个小巧的命令行工具程序，它可以用可视化的效果向你展示一个目录下的文件。它的运行是递归的，会以树的形式遍历每个级别的嵌套关系，并显示出每一级目录。 如此你就可以快速地进行浏览并找到自己想要的文件。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -55,9 +52,7 @@
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<p>## </p>
-<p><strong>tmux</strong></p>
-<p><a href="https://tmux.github.io/" target="_blank" rel="external">https://tmux.github.io/</a></p>
+<h3 id="tmux"><a href="#tmux" class="headerlink" title="tmux"></a><strong>tmux</strong></h3><p><a href="https://tmux.github.io/" target="_blank" rel="external">https://tmux.github.io/</a></p>
 <p>根据维基的描述，tmux 是一个终端复用器，说人话就是，它是一个可以将多个终端连接到单个终端会话的工具。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -68,9 +63,7 @@
             </figure>
 <p>一个 tmux 终端带有三个分屏的效果</p>
 <p>它让你可以在一个终端中进行程序之间的切换，添加分屏窗格，还有就是将多个终端连接到同一个会话，使它们保持同步。 当你在远程服务器上工作时，tmux 特别有用，因为它可以让你创建新的选项卡，然后在选项卡之间切换，而无需反反复复的退出然后登录。</p>
-<p>## </p>
-<p><strong>disk usage - du</strong></p>
-<p><a href="https://www.computerhope.com/unix/udu.htm" target="_blank" rel="external">https://www.computerhope.com/unix/udu.htm</a></p>
+<h3 id="disk-usage-du"><a href="#disk-usage-du" class="headerlink" title="disk usage - du"></a><strong>disk usage - du</strong></h3><p><a href="https://www.computerhope.com/unix/udu.htm" target="_blank" rel="external">https://www.computerhope.com/unix/udu.htm</a></p>
 <h2 id="运行-du-命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。"><a href="#运行-du-命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。" class="headerlink" title="运行 du 命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。"></a>运行 du 命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。</h2><p>du 通常在你发现某个驱动器的空间不足，但不知道是因为什么造成的时候使用。使用此命令可以快速查看每个文件夹所占用的存储空间，从而把耗费存储的大户给找出来。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -80,15 +73,11 @@
                 <div class="image-caption"></div>
             </figure>
 <p>还有一个用途类似的命令 df（Disk Free），它会返回关于可用磁盘空间的各种信息（与 du 正好相反）。</p>
-<p>## </p>
-<p><strong>git</strong></p>
-<p><a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a></p>
+<h3 id="git"><a href="#git" class="headerlink" title="git"></a><strong>git</strong></h3><p><a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a></p>
 <p>git 是迄今为止最流行的版本控制系统。它是现代 Web 开发的指定工具之一，我们根本没办法把它从列表中给删掉。</p>
 <p>尽管有很多的第三方应用和工具可用，但是大多数人还是喜欢通过终端对 git 来进行本地访问。git CLI 真的很强大，可以用来处理那些盘根错节的项目历史。</p>
 <p>如果想了解更多的关于 git 的信息，建议你看看我们的教程“30 分钟学会用 git”。</p>
-<p>## </p>
-<p><strong>tar</strong></p>
-<p><a href="https://www.computerhope.com/unix/utar.htm" target="_blank" rel="external">https://www.computerhope.com/unix/utar.htm</a></p>
+<h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a><strong>tar</strong></h3><p><a href="https://www.computerhope.com/unix/utar.htm" target="_blank" rel="external">https://www.computerhope.com/unix/utar.htm</a></p>
 <p>tar 是用来处理文件压缩的默认 Unix 工具。它能让你快速的将多个文件打成一个包，这样在后续就更加容易存储和移动它们了。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -115,9 +104,7 @@
                 <div class="image-caption"></div>
             </figure>
 <p>如果你的操作系统并不支持该版本的 tar，还可以使用 gzip, zcat 或者 compress 来限制文件压缩包的大小。</p>
-<p>## </p>
-<p><strong>md5sum</strong></p>
-<p><a href="https://en.wikipedia.org/wiki/Md5sum" target="_blank" rel="external">https://en.wikipedia.org/wiki/Md5sum</a></p>
+<h3 id="md5sum"><a href="#md5sum" class="headerlink" title="md5sum"></a><strong>md5sum</strong></h3><p><a href="https://en.wikipedia.org/wiki/Md5sum" target="_blank" rel="external">https://en.wikipedia.org/wiki/Md5sum</a></p>
 <p>Unix 内置了一些像 md5sum、sha1sum 这样的命令行工具，它们在编程中有各自的作用，但最重要的是它们可以用来检查文件的完整性。</p>
 <p>譬如，如果你从不受信的网络下载了一个 .iso 文件，这个文件中存在恶意脚本的风险。为了确认这个 .iso 是安全的，你可以生成它的 md5 或者其它摘要信息。</p>
 <figure class="image-bubble">
@@ -128,9 +115,7 @@
                 <div class="image-caption"></div>
             </figure>
 <p>然后将生成的字符串与原作者提供的（比如 UbuntuHashes）进行比较。</p>
-<p>## </p>
-<p><strong>htop</strong></p>
-<p><a href="http://hisham.hm/htop/" target="_blank" rel="external">http://hisham.hm/htop/</a></p>
+<h3 id="htop"><a href="#htop" class="headerlink" title="htop"></a><strong>htop</strong></h3><p><a href="http://hisham.hm/htop/" target="_blank" rel="external">http://hisham.hm/htop/</a></p>
 <p>htop 是个比内置的 top 任务管理更强大的工具。它提供了带有诸多选项的高级接口用于监控系统进程。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -141,9 +126,7 @@
             </figure>
 <p>运行中的 htop 任务管理器</p>
 <p>虽然 htop 在终端中运行，但它对鼠标操作支持良好。所以使用 htop 的菜单导航、选择进程，以及通过排序和过滤来管理任务都很容易。</p>
-<p>## </p>
-<p><strong>ln</strong></p>
-<p><a href="https://www.computerhope.com/unix/uln.htm" target="_blank" rel="external">https://www.computerhope.com/unix/uln.htm</a></p>
+<h3 id="ln"><a href="#ln" class="headerlink" title="ln"></a><strong>ln</strong></h3><p><a href="https://www.computerhope.com/unix/uln.htm" target="_blank" rel="external">https://www.computerhope.com/unix/uln.htm</a></p>
 <p>Unix 里面的链接同 Windows 中的快捷方式类似，允许你快速地访问到一个特定的文件。链接可以通过 ln 命令创建出来，而且可以有两种类型 : 硬的（hard） 或者符号的（symbolic）。每种类型都有不同的属性而且各有其用途 (了解更多)。</p>
 <p>这里有一个示例，展示了使用链接的最常见方式。假如说我们在桌面上有一个目录叫做 Scripts，里面整齐的摆放着我们最常用的 bash 脚本。每次我们想要调用其中的一个脚本的时候，我们会这样做:</p>
 <figure class="image-bubble">
@@ -169,9 +152,7 @@
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<p>## </p>
-<p><strong>ssh</strong></p>
-<p><a href="https://www.ssh.com/ssh/command/" target="_blank" rel="external">https://www.ssh.com/ssh/command/</a></p>
+<h3 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a><strong>ssh</strong></h3><p><a href="https://www.ssh.com/ssh/command/" target="_blank" rel="external">https://www.ssh.com/ssh/command/</a></p>
 <p>使用 ssh 命令，用户可以快速地连接到一个远程主机，然后登录进入其 Unix shell。这就使得通过自己本地机器的终端在服务器上提交指令成为了可能。</p>
 <p>要定位一个连接，你只需要指定正确的 IP 地址或者 url 就行了。在你第一次连接到一台新的服务器的时候，会需要某种形式的认证。</p>
 <figure class="image-bubble">
@@ -190,9 +171,7 @@
                 <div class="image-caption"></div>
             </figure>
 <p>你还可以用 SHH 做更多事情，像创建代理或者隧道，用私钥来保护你的连接，传输文件等。在这里的一个指南中你可以了解到更多信息。</p>
-<p>## </p>
-<p><strong>grep</strong></p>
-<p><a href="https://www.computerhope.com/unix/ugrep.htm" target="_blank" rel="external">https://www.computerhope.com/unix/ugrep.htm</a></p>
+<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a><strong>grep</strong></h3><p><a href="https://www.computerhope.com/unix/ugrep.htm" target="_blank" rel="external">https://www.computerhope.com/unix/ugrep.htm</a></p>
 <p>Grep 是一个用来在文本中查找字符串的标准 Unix 工具。它可以从一个文件或者直接就是流的形式获取到输入, 通过一个正则表达式来分析内容，然后返回匹配的行。</p>
 <p>该命令在需要对大型文件进行内容过滤的时候非常趁手。下面我们利用 grep 结合 date 命令，来在一个大型的日志文件中进行查找，然后生成一个只包含当天错误日志的新文件。</p>
 <figure class="image-bubble">
@@ -203,9 +182,7 @@
                 <div class="image-caption"></div>
             </figure>
 <p>另外一个用来操作字符串的强大工具就是 sed。它比起 grep 更加强大 (当然也更加复杂)，可以执行几乎所有的字符串相关的操作任务，包括添加、删除还有替换字符串的内容。</p>
-<p>## </p>
-<p><strong>alias</strong></p>
-<p><a href="https://www.computerhope.com/unix/ualias.htm" target="_blank" rel="external">https://www.computerhope.com/unix/ualias.htm</a></p>
+<h3 id="alias"><a href="#alias" class="headerlink" title="alias"></a><strong>alias</strong></h3><p><a href="https://www.computerhope.com/unix/ualias.htm" target="_blank" rel="external">https://www.computerhope.com/unix/ualias.htm</a></p>
 <p>许多的 Unix 命令，包括本文中提到的一些，在你加上许多选项之后，看起来都相当的长了。为了能更加容易记忆，你可以使用 alias 这个 bash 内置的命令来为它们创建一个短别名：</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
