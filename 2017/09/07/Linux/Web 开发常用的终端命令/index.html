@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2017/09/07/Linux/Web 开发常用的终端命令/">
+    
+    
+    <title>web 开发常用的终端命令 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="Linux">
+    <meta name="description" content="Web 开发常用的终端命令终端是开发人员的军火库中最重要的生产力工具之一。把它掌握好了可以对你的工作产生非常积极的影响。 这里记录一些常用到的命令 curl https://curl.haxx.se/ curl 是一个命令行工具，用来通过 HTTP（s），FTP 等其它几十种你可能尚未听说过的协议来发起网络请求。它可以下载文件，检查响应消息头以及方便地访问远程数据。 在 Web 开发中， curl">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web 开发常用的终端命令">
+<meta property="og:url" content="https://fantasykai.github.io/2017/09/07/Linux/Web 开发常用的终端命令/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="Web 开发常用的终端命令终端是开发人员的军火库中最重要的生产力工具之一。把它掌握好了可以对你的工作产生非常积极的影响。 这里记录一些常用到的命令 curl https://curl.haxx.se/ curl 是一个命令行工具，用来通过 HTTP（s），FTP 等其它几十种你可能尚未听说过的协议来发起网络请求。它可以下载文件，检查响应消息头以及方便地访问远程数据。 在 Web 开发中， curl">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZ5hhcRs3dvwZnkGXMuVa07fuRnbFfEaqkm2GN1ER3TRia6Dwfkty5scA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZNSicN7Tt3m2xJzGcGhe7QHQiacNTmoWAJiaYdYnf3YSOaia2Lr5HTviaicCQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZqVzjfdGiarpmMPDvKFI8DuQibTS2CKXgJyV0oZVddOJdAAtOfle03VFw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZeI8ic2etia9QFG6rhPssIoWQXb3hQ1hzGMMicIH6XSgH1pmkqicBb9QB1g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:updated_time" content="2017-09-07T12:26:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web 开发常用的终端命令">
+<meta name="twitter:description" content="Web 开发常用的终端命令终端是开发人员的军火库中最重要的生产力工具之一。把它掌握好了可以对你的工作产生非常积极的影响。 这里记录一些常用到的命令 curl https://curl.haxx.se/ curl 是一个命令行工具，用来通过 HTTP（s），FTP 等其它几十种你可能尚未听说过的协议来发起网络请求。它可以下载文件，检查响应消息头以及方便地访问远程数据。 在 Web 开发中， curl">
+<meta name="twitter:image" content="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZ5hhcRs3dvwZnkGXMuVa07fuRnbFfEaqkm2GN1ER3TRia6Dwfkty5scA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">web 开发常用的终端命令</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">web 开发常用的终端命令</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-07T12:16:05.000Z" itemprop="datePublished" class="page-time">
+  2017-09-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux/">linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Web-开发常用的终端命令"><span class="post-toc-number">1.</span> <span class="post-toc-text">Web 开发常用的终端命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#运行-du-命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。"><span class="post-toc-number">2.</span> <span class="post-toc-text">运行 du 命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Linux/Web 开发常用的终端命令"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">web 开发常用的终端命令</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-07 20:16:05" datetime="2017-09-07T12:16:05.000Z"  itemprop="datePublished">2017-09-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux/">linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Web-开发常用的终端命令"><a href="#Web-开发常用的终端命令" class="headerlink" title="Web 开发常用的终端命令"></a>Web 开发常用的终端命令</h2><p>终端是开发人员的军火库中最重要的生产力工具之一。把它掌握好了可以对你的工作产生非常积极的影响。</p>
+<p>这里记录一些常用到的命令</p>
+<p><strong>curl</strong></p>
+<p><a href="https://curl.haxx.se/" target="_blank" rel="external">https://curl.haxx.se/</a></p>
+<p>curl 是一个命令行工具，用来通过 HTTP（s），FTP 等其它几十种你可能尚未听说过的协议来发起网络请求。它可以下载文件，检查响应消息头以及方便地访问远程数据。</p>
+<p>在 Web 开发中， curl 经常被用来测试连接，还有调用 REST 风格的 API。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZ5hhcRs3dvwZnkGXMuVa07fuRnbFfEaqkm2GN1ER3TRia6Dwfkty5scA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>curl 的用法还可以比这更复杂。它有许多选项可以用来控制消息头，Cookie，身份验证等等这些要素。你可以通过 Everything curl 这本优秀的电子书来了解更多。</p>
+<p>## </p>
+<p><strong>tree</strong></p>
+<p><a href="https://www.computerhope.com/unix/tree.htm" target="_blank" rel="external">https://www.computerhope.com/unix/tree.htm</a></p>
+<p>tree 是一个小巧的命令行工具程序，它可以用可视化的效果向你展示一个目录下的文件。它的运行是递归的，会以树的形式遍历每个级别的嵌套关系，并显示出每一级目录。 如此你就可以快速地进行浏览并找到自己想要的文件。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZNSicN7Tt3m2xJzGcGhe7QHQiacNTmoWAJiaYdYnf3YSOaia2Lr5HTviaicCQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>它还拥有使用一种类正则表达式的模式来对结果集进行过滤的选项。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>## </p>
+<p><strong>tmux</strong></p>
+<p><a href="https://tmux.github.io/" target="_blank" rel="external">https://tmux.github.io/</a></p>
+<p>根据维基的描述，tmux 是一个终端复用器，说人话就是，它是一个可以将多个终端连接到单个终端会话的工具。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>一个 tmux 终端带有三个分屏的效果</p>
+<p>它让你可以在一个终端中进行程序之间的切换，添加分屏窗格，还有就是将多个终端连接到同一个会话，使它们保持同步。 当你在远程服务器上工作时，tmux 特别有用，因为它可以让你创建新的选项卡，然后在选项卡之间切换，而无需反反复复的退出然后登录。</p>
+<p>## </p>
+<p><strong>disk usage - du</strong></p>
+<p><a href="https://www.computerhope.com/unix/udu.htm" target="_blank" rel="external">https://www.computerhope.com/unix/udu.htm</a></p>
+<h2 id="运行-du-命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。"><a href="#运行-du-命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。" class="headerlink" title="运行 du 命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。"></a>运行 du 命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。</h2><p>du 通常在你发现某个驱动器的空间不足，但不知道是因为什么造成的时候使用。使用此命令可以快速查看每个文件夹所占用的存储空间，从而把耗费存储的大户给找出来。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>还有一个用途类似的命令 df（Disk Free），它会返回关于可用磁盘空间的各种信息（与 du 正好相反）。</p>
+<p>## </p>
+<p><strong>git</strong></p>
+<p><a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a></p>
+<p>git 是迄今为止最流行的版本控制系统。它是现代 Web 开发的指定工具之一，我们根本没办法把它从列表中给删掉。</p>
+<p>尽管有很多的第三方应用和工具可用，但是大多数人还是喜欢通过终端对 git 来进行本地访问。git CLI 真的很强大，可以用来处理那些盘根错节的项目历史。</p>
+<p>如果想了解更多的关于 git 的信息，建议你看看我们的教程“30 分钟学会用 git”。</p>
+<p>## </p>
+<p><strong>tar</strong></p>
+<p><a href="https://www.computerhope.com/unix/utar.htm" target="_blank" rel="external">https://www.computerhope.com/unix/utar.htm</a></p>
+<p>tar 是用来处理文件压缩的默认 Unix 工具。它能让你快速的将多个文件打成一个包，这样在后续就更加容易存储和移动它们了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>使用 -x 选项可以对现有的 .tar 压缩包进行解压缩操作。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>注意大多数其它的格式，像 .zip 和 .rar 这些，都不能使用 tar 来打开，而是需要用其它的像 unzip 这样的工具来进行操作。</p>
+<p>如今许多的 Unix 系统都运行着一个 tar 的扩展版本 (GNU tar) ，它也还可以执行限定文件大小的压缩操作。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如果你的操作系统并不支持该版本的 tar，还可以使用 gzip, zcat 或者 compress 来限制文件压缩包的大小。</p>
+<p>## </p>
+<p><strong>md5sum</strong></p>
+<p><a href="https://en.wikipedia.org/wiki/Md5sum" target="_blank" rel="external">https://en.wikipedia.org/wiki/Md5sum</a></p>
+<p>Unix 内置了一些像 md5sum、sha1sum 这样的命令行工具，它们在编程中有各自的作用，但最重要的是它们可以用来检查文件的完整性。</p>
+<p>譬如，如果你从不受信的网络下载了一个 .iso 文件，这个文件中存在恶意脚本的风险。为了确认这个 .iso 是安全的，你可以生成它的 md5 或者其它摘要信息。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>然后将生成的字符串与原作者提供的（比如 UbuntuHashes）进行比较。</p>
+<p>## </p>
+<p><strong>htop</strong></p>
+<p><a href="http://hisham.hm/htop/" target="_blank" rel="external">http://hisham.hm/htop/</a></p>
+<p>htop 是个比内置的 top 任务管理更强大的工具。它提供了带有诸多选项的高级接口用于监控系统进程。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>运行中的 htop 任务管理器</p>
+<p>虽然 htop 在终端中运行，但它对鼠标操作支持良好。所以使用 htop 的菜单导航、选择进程，以及通过排序和过滤来管理任务都很容易。</p>
+<p>## </p>
+<p><strong>ln</strong></p>
+<p><a href="https://www.computerhope.com/unix/uln.htm" target="_blank" rel="external">https://www.computerhope.com/unix/uln.htm</a></p>
+<p>Unix 里面的链接同 Windows 中的快捷方式类似，允许你快速地访问到一个特定的文件。链接可以通过 ln 命令创建出来，而且可以有两种类型 : 硬的（hard） 或者符号的（symbolic）。每种类型都有不同的属性而且各有其用途 (了解更多)。</p>
+<p>这里有一个示例，展示了使用链接的最常见方式。假如说我们在桌面上有一个目录叫做 Scripts，里面整齐的摆放着我们最常用的 bash 脚本。每次我们想要调用其中的一个脚本的时候，我们会这样做:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>显然，这样做并不方便，每次我们都得写绝对路径。其实我们可以创建一个 symlink，将 Scripts  文件夹链接到 /usr/local/bin，这样就能让脚本在所有的目录下面都可以执行。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>有了这个创建好的 symlink，我们现在就可以简单地通过其名称在任意一个打开的终端中执行脚本了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>## </p>
+<p><strong>ssh</strong></p>
+<p><a href="https://www.ssh.com/ssh/command/" target="_blank" rel="external">https://www.ssh.com/ssh/command/</a></p>
+<p>使用 ssh 命令，用户可以快速地连接到一个远程主机，然后登录进入其 Unix shell。这就使得通过自己本地机器的终端在服务器上提交指令成为了可能。</p>
+<p>要定位一个连接，你只需要指定正确的 IP 地址或者 url 就行了。在你第一次连接到一台新的服务器的时候，会需要某种形式的认证。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如果你需要快速地在服务器上面执行一条命令，但又不想登录，在 url 之后加上一条命令就可以了。命令将会在服务器上执行，而执行结果也会从它那里返回。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>你还可以用 SHH 做更多事情，像创建代理或者隧道，用私钥来保护你的连接，传输文件等。在这里的一个指南中你可以了解到更多信息。</p>
+<p>## </p>
+<p><strong>grep</strong></p>
+<p><a href="https://www.computerhope.com/unix/ugrep.htm" target="_blank" rel="external">https://www.computerhope.com/unix/ugrep.htm</a></p>
+<p>Grep 是一个用来在文本中查找字符串的标准 Unix 工具。它可以从一个文件或者直接就是流的形式获取到输入, 通过一个正则表达式来分析内容，然后返回匹配的行。</p>
+<p>该命令在需要对大型文件进行内容过滤的时候非常趁手。下面我们利用 grep 结合 date 命令，来在一个大型的日志文件中进行查找，然后生成一个只包含当天错误日志的新文件。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZqVzjfdGiarpmMPDvKFI8DuQibTS2CKXgJyV0oZVddOJdAAtOfle03VFw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>另外一个用来操作字符串的强大工具就是 sed。它比起 grep 更加强大 (当然也更加复杂)，可以执行几乎所有的字符串相关的操作任务，包括添加、删除还有替换字符串的内容。</p>
+<p>## </p>
+<p><strong>alias</strong></p>
+<p><a href="https://www.computerhope.com/unix/ualias.htm" target="_blank" rel="external">https://www.computerhope.com/unix/ualias.htm</a></p>
+<p>许多的 Unix 命令，包括本文中提到的一些，在你加上许多选项之后，看起来都相当的长了。为了能更加容易记忆，你可以使用 alias 这个 bash 内置的命令来为它们创建一个短别名：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZeI8ic2etia9QFG6rhPssIoWQXb3hQ1hzGMMicIH6XSgH1pmkqicBb9QB1g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>只要你保持终端一直是打开的状态， 别名就一直会是可用的。如果想永久使用的话，你可以将 alias  命令操作写到你的 .bashrc 文件中去。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-09-07T12:26:47.000Z" itemprop="dateUpdated">2017-09-07 20:26:47</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2017/09/07/Linux/Web 开发常用的终端命令/" target="_blank" rel="external">https://fantasykai.github.io/2017/09/07/Linux/Web 开发常用的终端命令/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.github.io">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.github.io/2017/09/07/Linux/Web 开发常用的终端命令/&title=《web 开发常用的终端命令》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.github.io/2017/09/07/Linux/Web 开发常用的终端命令/&title=《web 开发常用的终端命令》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.github.io/2017/09/07/Linux/Web 开发常用的终端命令/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《web 开发常用的终端命令》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.github.io/2017/09/07/Linux/Web 开发常用的终端命令/&via=https://fantasykai.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.github.io/2017/09/07/Linux/Web 开发常用的终端命令/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/25/mac/hexo 从Windows 迁移到到mac/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">hexo 从Windows 迁移到Mac 上继续玩耍</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        Value as one pleases~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.github.io/2017/09/07/Linux/Web 开发常用的终端命令/&title=《web 开发常用的终端命令》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.github.io/2017/09/07/Linux/Web 开发常用的终端命令/&title=《web 开发常用的终端命令》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.github.io/2017/09/07/Linux/Web 开发常用的终端命令/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《web 开发常用的终端命令》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.github.io/2017/09/07/Linux/Web 开发常用的终端命令/&via=https://fantasykai.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.github.io/2017/09/07/Linux/Web 开发常用的终端命令/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3aQW7cQAwEQP//0w6QUw6W0k3OxA5QOhm78O6UDIh0kx8f8fX5+3p6/c93n35+evfpE95fOXzh4eHhjY7+dL0f5f3Q798y+938zHh4eHi3ee/FoD3W+6M8x7+fJypgeHh4eN/KS444w+clBw8PD+9/5L2HAjfacTw8PLyfyUvCiNmBNlFC8r3HshY8PDy8mNcOwH7Czxfne3h4eHiLqfpmGPZeWvLWfHVaPDw8vAu89kBtG70/+qwKfMzuNx4eHl7JawPTNm6YlYdZFPJFYcDDw8M7xGuXpXLeLITNW+ekwODh4eHd5rVDqfbWbNYCikWBp8KAh4eHd4iXf1z+9Umg0Ea0dQCRY/Dw8PBKXjvuSh7oeWHIg+Nh+46Hh4d3gbcJbWcN7oyXRySPqwN4eHh4F3jRrGwdFsxi2bbdx8PDw/te3j6QbRewNrej7sTx8PDwSt7m0bxpr/OVgk3wgYeHh/cvefuPztvuZFbVrmTh4eHh3ePNHuKbtnsfbeRrYXh4eHg3eKeWpdr//fPBfx5kPNY9PDw8vGu8/bA/XwJIvqstNo87ZXh4eHhHeW1Tm4+mkqZ8XzaiW4CHh4d3gdcGqcn1WV7tCK39Y+Dh4eGd5c2Wrm6sCyRloG7c8fDw8C7w9isCs+a4xW/Og4eHh3eK17bLyYgrigZGcUZ9C/Dw8PAu8zZD/bwpT4LdDXt4//Dw8PAmCcMwFMgDiHY1oS1Xfwkj8PDw8A7xZmOq2S3IC0+Lr1tqPDw8vAWvXQVoH+V56zwLIPDw8PC+i5cXg9kR8+FZUiTqVh4PDw/vGq8tBm2b265nzSoYHh4e3k/jJQd9p27WC4YrYnh4eHg/jHfqRpwalR0uDHh4eHhHw4g2Mshji02E8cUreHh4eBd4ZwdgyUfv49qkXOHh4eFd4P0CTCADJ+B3ksoAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

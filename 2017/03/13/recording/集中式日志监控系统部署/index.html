@@ -1,17 +1,32 @@
-
- <!DOCTYPE HTML>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html>
 <head>
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
-  <meta charset="UTF-8">
-  
-    <title>集中式日志监控系统 | kai.fantasy &#39;s 文栖小筑</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="Kai.Fantasy">
     
 
     
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2017/03/13/recording/集中式日志监控系统部署/">
+    
+    
+    <title>集中式日志监控系统 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="日志">
     <meta name="description" content="集中式日志监控系统为什么需要日志管理系统日志，对于任何系统都是重要的组成，作为程序猿，定位问题，查看系统的健康运载情况，都需要通过查询日志进行分析。 合理的软件架构往往都不会是单点的，即使在同一台应用服务器上，日志有不同的种类，nginx访问日志，操作系统，应用服务，业务逻辑等等。 没有日志管理系统时，我们如何分析日志： tail，cat，grep，sed ，awk ，wc… 显然不可能登录到每一">
 <meta name="keywords" content="日志">
 <meta property="og:type" content="article">
@@ -33,93 +48,173 @@
 <meta name="twitter:title" content="集中式日志监控系统">
 <meta name="twitter:description" content="集中式日志监控系统为什么需要日志管理系统日志，对于任何系统都是重要的组成，作为程序猿，定位问题，查看系统的健康运载情况，都需要通过查询日志进行分析。 合理的软件架构往往都不会是单点的，即使在同一台应用服务器上，日志有不同的种类，nginx访问日志，操作系统，应用服务，业务逻辑等等。 没有日志管理系统时，我们如何分析日志： tail，cat，grep，sed ，awk ，wc… 显然不可能登录到每一">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/7108d6c2ly1fdj6dwfug4j20mo0jswft">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
 
+    <!-- custom head -->
     
-    <link rel="alternative" href="/atom.xml" title="kai.fantasy &#39;s 文栖小筑" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css">
+
 </head>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.gif" alt="kai.fantasy &#39;s 文栖小筑" title="kai.fantasy &#39;s 文栖小筑"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="kai.fantasy &#39;s 文栖小筑">kai.fantasy &#39;s 文栖小筑</a></h1>
-				<h2 class="blog-motto">没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">首页</a></li>
-					
-						<li><a href="/archives">归档</a></li>
-					
-						<li><a href="/tags">标签</a></li>
-					
-						<li><a href="/categories">分类</a></li>
-					
-						<li><a href="/timeline">时光轴</a></li>
-					
-						<li><a href="/2048">放松下</a></li>
-					
-						<li><a href="/about">关于</a></li>
-					
-					<li>
- 					
-	        <form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
-	          <label>Search</label>
-	          <input type="text" id="search" class="st-default-search-input" maxlength="20" placeholder="Search" />
-	       </form>
-					
-					</li>
-				</ul>
-			</nav>
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/03/13/recording/集中式日志监控系统部署/" title="集中式日志监控系统" itemprop="url">集中式日志监控系统</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Kai.Fantasy" target="_blank" itemprop="author">Kai.Fantasy</a>
-		
-  <p class="article-time">
-    <time datetime="2017-03-12T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-03-13</time>
-    
-  </p>
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">集中式日志监控系统</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
 </header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#集中式日志监控系统"><span class="toc-number">1.</span> <span class="toc-text">集中式日志监控系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么需要日志管理系统"><span class="toc-number">1.1.</span> <span class="toc-text">为什么需要日志管理系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ELK-简介"><span class="toc-number">1.2.</span> <span class="toc-text">ELK 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Elasticsearch"><span class="toc-number">1.2.1.</span> <span class="toc-text">Elasticsearch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Logstash"><span class="toc-number">1.2.2.</span> <span class="toc-text">Logstash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kibana"><span class="toc-number">1.2.3.</span> <span class="toc-text">Kibana</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整体架构图"><span class="toc-number">1.3.</span> <span class="toc-text">整体架构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署图"><span class="toc-number">1.4.</span> <span class="toc-text">部署图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署过程"><span class="toc-number">1.5.</span> <span class="toc-text">部署过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#相关环境："><span class="toc-number">1.5.1.</span> <span class="toc-text">相关环境：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-部署Elasticsearch集群"><span class="toc-number">1.5.2.</span> <span class="toc-text">1.部署Elasticsearch集群</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#解压缩tar-tz"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">解压缩tar.tz</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改配置文件"><span class="toc-number">1.5.2.2.</span> <span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ES环境启动"><span class="toc-number">1.5.2.3.</span> <span class="toc-text">ES环境启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Elasticsearch插件安装"><span class="toc-number">1.5.2.4.</span> <span class="toc-text">Elasticsearch插件安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Elasticsearch集群配置"><span class="toc-number">1.5.2.5.</span> <span class="toc-text">Elasticsearch集群配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-部署kafka集群"><span class="toc-number">1.5.3.</span> <span class="toc-text">2.部署kafka集群</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Zookeeper的安装配置"><span class="toc-number">1.5.3.1.</span> <span class="toc-text">1) Zookeeper的安装配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#创建myid文件"><span class="toc-number">1.5.3.1.1.</span> <span class="toc-text">创建myid文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#我从官网下载了-zookeeper-3-4-9-tar-gz"><span class="toc-number">1.5.3.1.2.</span> <span class="toc-text">我从官网下载了 zookeeper-3.4.9.tar.gz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#解压缩tar-tz-1"><span class="toc-number">1.5.3.1.3.</span> <span class="toc-text">解压缩tar.tz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#修改配置文件-1"><span class="toc-number">1.5.3.1.4.</span> <span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#启动zookeeper环境"><span class="toc-number">1.5.3.1.5.</span> <span class="toc-text">启动zookeeper环境</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#查看状态"><span class="toc-number">1.5.3.1.6.</span> <span class="toc-text">查看状态</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-kafka的安装配置"><span class="toc-number">1.5.3.2.</span> <span class="toc-text">2) kafka的安装配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#我从kafka的官网下载了-kafka-2-11-0-10-2-0-tgz"><span class="toc-number">1.5.3.2.1.</span> <span class="toc-text">我从kafka的官网下载了 kafka_2.11-0.10.2.0.tgz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#解压缩tar-tz-2"><span class="toc-number">1.5.3.2.2.</span> <span class="toc-text">解压缩tar.tz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#修改配置文件-2"><span class="toc-number">1.5.3.2.3.</span> <span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#配置主机名对应IP的解析"><span class="toc-number">1.5.3.2.4.</span> <span class="toc-text">配置主机名对应IP的解析</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#启动kafka环境"><span class="toc-number">1.5.3.2.5.</span> <span class="toc-text">启动kafka环境</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-部署logstash服务"><span class="toc-number">1.5.4.</span> <span class="toc-text">3.部署logstash服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#部署日志处理层的logstash"><span class="toc-number">1.5.4.1.</span> <span class="toc-text">部署日志处理层的logstash</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#从GeoLite官网下载-GeoLiteCity-dat-gz"><span class="toc-number">1.5.4.1.1.</span> <span class="toc-text">从GeoLite官网下载 GeoLiteCity.dat.gz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#从elastic官网下载-logstash-2-3-4-tar-gz"><span class="toc-number">1.5.4.1.2.</span> <span class="toc-text">从elastic官网下载 logstash-2.3.4.tar.gz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#解压logstash-2-3-4-tar-gz"><span class="toc-number">1.5.4.1.3.</span> <span class="toc-text">解压logstash-2.3.4.tar.gz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#解压GeoLiteCity-dat-gz"><span class="toc-number">1.5.4.1.4.</span> <span class="toc-text">解压GeoLiteCity.dat.gz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#编辑获取日志并输出到kafka的配置文件"><span class="toc-number">1.5.4.1.5.</span> <span class="toc-text">编辑获取日志并输出到kafka的配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#启动logstash"><span class="toc-number">1.5.4.1.6.</span> <span class="toc-text">启动logstash</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#部署作为consumer的logstash"><span class="toc-number">1.5.4.2.</span> <span class="toc-text">部署作为consumer的logstash</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#编辑从kafka获取日志内容，传输到ES集群的配置文件"><span class="toc-number">1.5.4.2.1.</span> <span class="toc-text">编辑从kafka获取日志内容，传输到ES集群的配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#启动logstash-1"><span class="toc-number">1.5.4.2.2.</span> <span class="toc-text">启动logstash</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-部署日志采集程序Filebeat"><span class="toc-number">1.5.5.</span> <span class="toc-text">4.部署日志采集程序Filebeat</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#从elastic官网下载-filebeat-1-2-3-x86-64-tar-gz"><span class="toc-number">1.5.5.1.</span> <span class="toc-text">从elastic官网下载 filebeat-1.2.3-x86_64.tar.gz</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解压logstash-2-3-4-tar-gz-1"><span class="toc-number">1.5.5.2.</span> <span class="toc-text">解压logstash-2.3.4.tar.gz</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置filebeat-yml-文件"><span class="toc-number">1.5.5.3.</span> <span class="toc-text">配置filebeat.yml 文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#这里把nginx的access日志源改为json格式，方便后续处理"><span class="toc-number">1.5.5.4.</span> <span class="toc-text">这里把nginx的access日志源改为json格式，方便后续处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重启nginx服务"><span class="toc-number">1.5.5.5.</span> <span class="toc-text">重启nginx服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动-filebeat"><span class="toc-number">1.5.5.6.</span> <span class="toc-text">启动 filebeat</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-安装配置kibana"><span class="toc-number">1.5.6.</span> <span class="toc-text">5.安装配置kibana</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装kibana"><span class="toc-number">1.5.6.1.</span> <span class="toc-text">安装kibana</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#从elastic官网下载-kibana-4-6-3-linux-x86-64-tar-gz"><span class="toc-number">1.5.6.1.1.</span> <span class="toc-text">从elastic官网下载 kibana-4.6.3-linux-x86_64.tar.gz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#解压kibana-4-6-3-linux-x86-64-tar-gz"><span class="toc-number">1.5.6.1.2.</span> <span class="toc-text">解压kibana-4.6.3-linux-x86_64.tar.gz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#配置kibana-yml-文件"><span class="toc-number">1.5.6.1.3.</span> <span class="toc-text">配置kibana.yml 文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#启动kibana"><span class="toc-number">1.5.6.1.4.</span> <span class="toc-text">启动kibana</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问kibana，配置日志索引"><span class="toc-number">1.5.6.2.</span> <span class="toc-text">访问kibana，配置日志索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#kibana简单介绍"><span class="toc-number">1.5.6.3.</span> <span class="toc-text">kibana简单介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Discover"><span class="toc-number">1.5.6.3.1.</span> <span class="toc-text">Discover</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Visualize"><span class="toc-number">1.5.6.3.2.</span> <span class="toc-text">Visualize</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Dashboard"><span class="toc-number">1.5.6.3.3.</span> <span class="toc-text">Dashboard</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后续优化："><span class="toc-number">1.5.7.</span> <span class="toc-text">后续优化：</span></a></li></ol></li></ol></li></ol>
-		
-		</div>
-		
-		<h1 id="集中式日志监控系统"><a href="#集中式日志监控系统" class="headerlink" title="集中式日志监控系统"></a>集中式日志监控系统</h1><h2 id="为什么需要日志管理系统"><a href="#为什么需要日志管理系统" class="headerlink" title="为什么需要日志管理系统"></a>为什么需要日志管理系统</h2><p>日志，对于任何系统都是重要的组成，作为程序猿，定位问题，查看系统的健康运载情况，都需要通过查询日志进行分析。</p>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">集中式日志监控系统</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-12T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-03-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/杂记/">杂记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#集中式日志监控系统"><span class="post-toc-number">1.</span> <span class="post-toc-text">集中式日志监控系统</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为什么需要日志管理系统"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">为什么需要日志管理系统</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ELK-简介"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">ELK 简介</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Elasticsearch"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">Elasticsearch</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Logstash"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">Logstash</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Kibana"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">Kibana</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#整体架构图"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">整体架构图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#部署图"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">部署图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#部署过程"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">部署过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#相关环境："><span class="post-toc-number">1.5.1.</span> <span class="post-toc-text">相关环境：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-部署Elasticsearch集群"><span class="post-toc-number">1.5.2.</span> <span class="post-toc-text">1.部署Elasticsearch集群</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解压缩tar-tz"><span class="post-toc-number">1.5.2.1.</span> <span class="post-toc-text">解压缩tar.tz</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#修改配置文件"><span class="post-toc-number">1.5.2.2.</span> <span class="post-toc-text">修改配置文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ES环境启动"><span class="post-toc-number">1.5.2.3.</span> <span class="post-toc-text">ES环境启动</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Elasticsearch插件安装"><span class="post-toc-number">1.5.2.4.</span> <span class="post-toc-text">Elasticsearch插件安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Elasticsearch集群配置"><span class="post-toc-number">1.5.2.5.</span> <span class="post-toc-text">Elasticsearch集群配置</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-部署kafka集群"><span class="post-toc-number">1.5.3.</span> <span class="post-toc-text">2.部署kafka集群</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-Zookeeper的安装配置"><span class="post-toc-number">1.5.3.1.</span> <span class="post-toc-text">1) Zookeeper的安装配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#创建myid文件"><span class="post-toc-number">1.5.3.1.1.</span> <span class="post-toc-text">创建myid文件</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#我从官网下载了-zookeeper-3-4-9-tar-gz"><span class="post-toc-number">1.5.3.1.2.</span> <span class="post-toc-text">我从官网下载了 zookeeper-3.4.9.tar.gz</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#解压缩tar-tz-1"><span class="post-toc-number">1.5.3.1.3.</span> <span class="post-toc-text">解压缩tar.tz</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#修改配置文件-1"><span class="post-toc-number">1.5.3.1.4.</span> <span class="post-toc-text">修改配置文件</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#启动zookeeper环境"><span class="post-toc-number">1.5.3.1.5.</span> <span class="post-toc-text">启动zookeeper环境</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#查看状态"><span class="post-toc-number">1.5.3.1.6.</span> <span class="post-toc-text">查看状态</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-kafka的安装配置"><span class="post-toc-number">1.5.3.2.</span> <span class="post-toc-text">2) kafka的安装配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#我从kafka的官网下载了-kafka-2-11-0-10-2-0-tgz"><span class="post-toc-number">1.5.3.2.1.</span> <span class="post-toc-text">我从kafka的官网下载了 kafka_2.11-0.10.2.0.tgz</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#解压缩tar-tz-2"><span class="post-toc-number">1.5.3.2.2.</span> <span class="post-toc-text">解压缩tar.tz</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#修改配置文件-2"><span class="post-toc-number">1.5.3.2.3.</span> <span class="post-toc-text">修改配置文件</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#配置主机名对应IP的解析"><span class="post-toc-number">1.5.3.2.4.</span> <span class="post-toc-text">配置主机名对应IP的解析</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#启动kafka环境"><span class="post-toc-number">1.5.3.2.5.</span> <span class="post-toc-text">启动kafka环境</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-部署logstash服务"><span class="post-toc-number">1.5.4.</span> <span class="post-toc-text">3.部署logstash服务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#部署日志处理层的logstash"><span class="post-toc-number">1.5.4.1.</span> <span class="post-toc-text">部署日志处理层的logstash</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#从GeoLite官网下载-GeoLiteCity-dat-gz"><span class="post-toc-number">1.5.4.1.1.</span> <span class="post-toc-text">从GeoLite官网下载 GeoLiteCity.dat.gz</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#从elastic官网下载-logstash-2-3-4-tar-gz"><span class="post-toc-number">1.5.4.1.2.</span> <span class="post-toc-text">从elastic官网下载 logstash-2.3.4.tar.gz</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#解压logstash-2-3-4-tar-gz"><span class="post-toc-number">1.5.4.1.3.</span> <span class="post-toc-text">解压logstash-2.3.4.tar.gz</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#解压GeoLiteCity-dat-gz"><span class="post-toc-number">1.5.4.1.4.</span> <span class="post-toc-text">解压GeoLiteCity.dat.gz</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#编辑获取日志并输出到kafka的配置文件"><span class="post-toc-number">1.5.4.1.5.</span> <span class="post-toc-text">编辑获取日志并输出到kafka的配置文件</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#启动logstash"><span class="post-toc-number">1.5.4.1.6.</span> <span class="post-toc-text">启动logstash</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#部署作为consumer的logstash"><span class="post-toc-number">1.5.4.2.</span> <span class="post-toc-text">部署作为consumer的logstash</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#编辑从kafka获取日志内容，传输到ES集群的配置文件"><span class="post-toc-number">1.5.4.2.1.</span> <span class="post-toc-text">编辑从kafka获取日志内容，传输到ES集群的配置文件</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#启动logstash-1"><span class="post-toc-number">1.5.4.2.2.</span> <span class="post-toc-text">启动logstash</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-部署日志采集程序Filebeat"><span class="post-toc-number">1.5.5.</span> <span class="post-toc-text">4.部署日志采集程序Filebeat</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#从elastic官网下载-filebeat-1-2-3-x86-64-tar-gz"><span class="post-toc-number">1.5.5.1.</span> <span class="post-toc-text">从elastic官网下载 filebeat-1.2.3-x86_64.tar.gz</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解压logstash-2-3-4-tar-gz-1"><span class="post-toc-number">1.5.5.2.</span> <span class="post-toc-text">解压logstash-2.3.4.tar.gz</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#配置filebeat-yml-文件"><span class="post-toc-number">1.5.5.3.</span> <span class="post-toc-text">配置filebeat.yml 文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#这里把nginx的access日志源改为json格式，方便后续处理"><span class="post-toc-number">1.5.5.4.</span> <span class="post-toc-text">这里把nginx的access日志源改为json格式，方便后续处理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#重启nginx服务"><span class="post-toc-number">1.5.5.5.</span> <span class="post-toc-text">重启nginx服务</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#启动-filebeat"><span class="post-toc-number">1.5.5.6.</span> <span class="post-toc-text">启动 filebeat</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-安装配置kibana"><span class="post-toc-number">1.5.6.</span> <span class="post-toc-text">5.安装配置kibana</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装kibana"><span class="post-toc-number">1.5.6.1.</span> <span class="post-toc-text">安装kibana</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#从elastic官网下载-kibana-4-6-3-linux-x86-64-tar-gz"><span class="post-toc-number">1.5.6.1.1.</span> <span class="post-toc-text">从elastic官网下载 kibana-4.6.3-linux-x86_64.tar.gz</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#解压kibana-4-6-3-linux-x86-64-tar-gz"><span class="post-toc-number">1.5.6.1.2.</span> <span class="post-toc-text">解压kibana-4.6.3-linux-x86_64.tar.gz</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#配置kibana-yml-文件"><span class="post-toc-number">1.5.6.1.3.</span> <span class="post-toc-text">配置kibana.yml 文件</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#启动kibana"><span class="post-toc-number">1.5.6.1.4.</span> <span class="post-toc-text">启动kibana</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#访问kibana，配置日志索引"><span class="post-toc-number">1.5.6.2.</span> <span class="post-toc-text">访问kibana，配置日志索引</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#kibana简单介绍"><span class="post-toc-number">1.5.6.3.</span> <span class="post-toc-text">kibana简单介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Discover"><span class="post-toc-number">1.5.6.3.1.</span> <span class="post-toc-text">Discover</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Visualize"><span class="post-toc-number">1.5.6.3.2.</span> <span class="post-toc-text">Visualize</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Dashboard"><span class="post-toc-number">1.5.6.3.3.</span> <span class="post-toc-text">Dashboard</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#后续优化："><span class="post-toc-number">1.5.7.</span> <span class="post-toc-text">后续优化：</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-recording/集中式日志监控系统部署"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">集中式日志监控系统</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-03-13 00:00:00" datetime="2017-03-12T16:00:00.000Z"  itemprop="datePublished">2017-03-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/杂记/">杂记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="集中式日志监控系统"><a href="#集中式日志监控系统" class="headerlink" title="集中式日志监控系统"></a>集中式日志监控系统</h1><h2 id="为什么需要日志管理系统"><a href="#为什么需要日志管理系统" class="headerlink" title="为什么需要日志管理系统"></a>为什么需要日志管理系统</h2><p>日志，对于任何系统都是重要的组成，作为程序猿，定位问题，查看系统的健康运载情况，都需要通过查询日志进行分析。</p>
 <p>合理的软件架构往往都不会是单点的，即使在同一台应用服务器上，日志有不同的种类，nginx访问日志，操作系统，应用服务，业务逻辑等等。</p>
 <p>没有日志管理系统时，我们如何分析日志：</p>
 <p>tail，cat，grep，sed ，awk ，wc… 显然不可能登录到每一台应用服务器上敲命令。</p>
@@ -172,8 +267,20 @@
 </ul>
 <p>Beats 将搜集到的数据发送到 Logstash，经 Logstash 解析、过滤后，将其发送到 Elasticsearch 存储</p>
 <p>相比 Logstash，Beats 所占系统的 CPU 和内存几乎可以忽略不计，这样解决了Logstash 在各服务器节点上占用系统资源高的问题。另外，Beats 和 Logstash 之间支持 SSL/TLS 加密传输，客户端和服务器双向认证，保证了通信安全。</p>
-<p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdj6dwfug4j20mo0jswft" alt=""></p>
-<h2 id="部署图"><a href="#部署图" class="headerlink" title="部署图"></a>部署图</h2><p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdfbfjchczj214g10iwpx" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdj6dwfug4j20mo0jswft" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="部署图"><a href="#部署图" class="headerlink" title="部署图"></a>部署图</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdfbfjchczj214g10iwpx" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><p>简单把部署过程及配置文件进行记录，方便后续回顾及优化</p>
 <h3 id="相关环境："><a href="#相关环境：" class="headerlink" title="相关环境："></a>相关环境：</h3><p>部署平台/环境：</p>
 <ul>
@@ -251,7 +358,13 @@ http://ip:9200/_plugin/head/
 </code></pre></li>
 </ul>
 <h4 id="Elasticsearch集群配置"><a href="#Elasticsearch集群配置" class="headerlink" title="Elasticsearch集群配置"></a>Elasticsearch集群配置</h4><p>主要是针对 <code>elasticsearch.yml</code>的配置，上述步骤已经对该文件部分关键字段说明，我在测试环境使用了3台做集群配置，通过head插件可以查看集群的状态：</p>
-<p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdl4okw4u7j20o60hrdks" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdl4okw4u7j20o60hrdks" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>ES 集群搭建OK~</p>
 <h3 id="2-部署kafka集群"><a href="#2-部署kafka集群" class="headerlink" title="2.部署kafka集群"></a>2.部署kafka集群</h3><p>Kafka集群是把状态保存在Zookeeper中的，首先要搭建Zookeeper集群。</p>
 <ul>
@@ -608,18 +721,48 @@ elasticsearch.url: &quot;http://IP:9200&quot;
 <li>访问地址： <code>http://IP:5601</code></li>
 </ul>
 <p>默认情况下，Kibana 认为你要访问的是通过 Logstash 导入 Elasticsearch 的数据。这时候你可以用默认的 logstash-<em> 作为你的 index pattern。通配符(</em>) 匹配索引名中零到多个字符。如果你的 Elasticsearch 索引有其他命名约定，输入合适的 pattern。pattern 也开始是最简单的单个索引的名字。</p>
-<p><img src="https://ws1.sinaimg.cn/mw690/7108d6c2ly1fdlec8xlpfj210z0hbtae" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/mw690/7108d6c2ly1fdlec8xlpfj210z0hbtae" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>如果一个新索引是定期生成，而且索引名中带有时间戳，选择 <code>Use event times to create index names</code> 选项，然后再选择 <code>Index pattern interval</code>。这可以提高搜索性能，Kibana 会至搜索你指定的时间范围内的索引。在你用 Logstash 输出数据给 Elasticsearch 的情况下尤其有效。</p>
 <p>点击 <code>Create</code> 添加 <code>index pattern</code>。第一个被添加的 pattern 会自动被设置为默认值。如果你有多个 index pattern 的时候，你可以在 Settings &gt; Indices 里设置具体哪个是默认值。</p>
-<p><img src="https://ws1.sinaimg.cn/mw690/7108d6c2ly1fdleezdoyrj21070pgq78" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/mw690/7108d6c2ly1fdleezdoyrj21070pgq78" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h4 id="kibana简单介绍"><a href="#kibana简单介绍" class="headerlink" title="kibana简单介绍"></a>kibana简单介绍</h4><p>简单介绍下kibana的三个模块</p>
 <h5 id="Discover"><a href="#Discover" class="headerlink" title="Discover"></a>Discover</h5><p>可以从 <strong><code>Discover</code></strong> 页面以交互方式探索日志数据，可以过滤搜索结果以及查看文档数据。 还可以查看与搜索查询匹配的文档数，并获取字段值统计信息，可以配置时间字段，则日志随时间的分布将显示在页面顶部的直方图中。</p>
-<p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlh5o8arrj218m0ekwgf" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlh5o8arrj218m0ekwgf" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h5 id="Visualize"><a href="#Visualize" class="headerlink" title="Visualize"></a>Visualize</h5><p><strong><code>Visualize</code></strong> 用来构建显示相关可视化的仪表板.Kibana可视化基于Elasticsearch查询。 通过使用一系列Elasticsearch聚合来提取和处理数据</p>
-<p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlh5z4x7ej210p0k6tb6" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlh5z4x7ej210p0k6tb6" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h5 id="Dashboard"><a href="#Dashboard" class="headerlink" title="Dashboard"></a>Dashboard</h5><p>Kibana仪表板显示已保存的可视化对象的集合。 可以根据需要安排和调整可视化对象，并保存仪表板，以便重新加载和共享。</p>
 <p>我在Visualize中制作了一些简单的统计，绘制了一个Dashboard</p>
-<p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlhexd03kj21f30qzqfa" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlhexd03kj21f30qzqfa" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>目前对Kibana及ES尚未深入了解，后续有一定掌握之后再做总结分享。</p>
 <h3 id="后续优化："><a href="#后续优化：" class="headerlink" title="后续优化："></a>后续优化：</h3><ul>
 <li>部署的的相关应用统一管理等</li>
@@ -636,486 +779,308 @@ elasticsearch.url: &quot;http://IP:9200&quot;
 <li><p><a href="https://www.elastic.co" target="_blank" rel="external">elastic.co</a></p>
 </li>
 </ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-13T12:44:44.000Z" itemprop="dateUpdated">2017-03-13 20:44:44</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2017/03/13/recording/集中式日志监控系统部署/" target="_blank" rel="external">https://fantasykai.github.io/2017/03/13/recording/集中式日志监控系统部署/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.github.io">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日志/">日志</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.github.io/2017/03/13/recording/集中式日志监控系统部署/&title=《集中式日志监控系统》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.github.io/2017/03/13/recording/集中式日志监控系统部署/&title=《集中式日志监控系统》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.github.io/2017/03/13/recording/集中式日志监控系统部署/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《集中式日志监控系统》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.github.io/2017/03/13/recording/集中式日志监控系统部署/&via=https://fantasykai.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.github.io/2017/03/13/recording/集中式日志监控系统部署/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
   
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/杂记/">杂记</a>
-</div>
-
-
-  <div class="article-tags">
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/04/05/js/vue2简单总结/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">vue2简单总结</h4>
+      </a>
+    </div>
   
-  <span></span> <a href="/tags/日志/">日志</a>
-  </div>
 
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="https://fantasykai.github.io/2017/03/13/recording/集中式日志监控系统部署/" data-title="集中式日志监控系统 | kai.fantasy &#39;s 文栖小筑" data-tsina="1896404674" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2017/04/05/js/vue2简单总结/" title="vue2简单总结">
-  <strong>上一篇：</strong><br/>
-  <span>
-  vue2简单总结</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2017/03/10/tools/多说评论一篇文章被评论后，其他文章都添加了相同的评论/"  title="多说评论一篇文章被评论后，其他文章都添加了相同的评论">
- <strong>下一篇：</strong><br/> 
- <span>多说评论一篇文章被评论后，其他文章都添加了相同的评论
-</span>
-</a>
-</div>
-
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/03/10/tools/多说评论一篇文章被评论后，其他文章都添加了相同的评论/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">多说评论一篇文章被评论后，其他文章都添加了相同的评论</h4>
+      </a>
+    </div>
+  
 </nav>
 
-	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/03/13/recording/集中式日志监控系统部署/" data-title="集中式日志监控系统" data-url="https://fantasykai.github.io/2017/03/13/recording/集中式日志监控系统部署/"></div>
-  <script type="text/javascript">
-   var duoshuoQuery = {short_name:"fantasykai"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
 </section>
 
 
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#集中式日志监控系统"><span class="toc-number">1.</span> <span class="toc-text">集中式日志监控系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么需要日志管理系统"><span class="toc-number">1.1.</span> <span class="toc-text">为什么需要日志管理系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ELK-简介"><span class="toc-number">1.2.</span> <span class="toc-text">ELK 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Elasticsearch"><span class="toc-number">1.2.1.</span> <span class="toc-text">Elasticsearch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Logstash"><span class="toc-number">1.2.2.</span> <span class="toc-text">Logstash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kibana"><span class="toc-number">1.2.3.</span> <span class="toc-text">Kibana</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整体架构图"><span class="toc-number">1.3.</span> <span class="toc-text">整体架构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署图"><span class="toc-number">1.4.</span> <span class="toc-text">部署图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署过程"><span class="toc-number">1.5.</span> <span class="toc-text">部署过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#相关环境："><span class="toc-number">1.5.1.</span> <span class="toc-text">相关环境：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-部署Elasticsearch集群"><span class="toc-number">1.5.2.</span> <span class="toc-text">1.部署Elasticsearch集群</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#解压缩tar-tz"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">解压缩tar.tz</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改配置文件"><span class="toc-number">1.5.2.2.</span> <span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ES环境启动"><span class="toc-number">1.5.2.3.</span> <span class="toc-text">ES环境启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Elasticsearch插件安装"><span class="toc-number">1.5.2.4.</span> <span class="toc-text">Elasticsearch插件安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Elasticsearch集群配置"><span class="toc-number">1.5.2.5.</span> <span class="toc-text">Elasticsearch集群配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-部署kafka集群"><span class="toc-number">1.5.3.</span> <span class="toc-text">2.部署kafka集群</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Zookeeper的安装配置"><span class="toc-number">1.5.3.1.</span> <span class="toc-text">1) Zookeeper的安装配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#创建myid文件"><span class="toc-number">1.5.3.1.1.</span> <span class="toc-text">创建myid文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#我从官网下载了-zookeeper-3-4-9-tar-gz"><span class="toc-number">1.5.3.1.2.</span> <span class="toc-text">我从官网下载了 zookeeper-3.4.9.tar.gz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#解压缩tar-tz-1"><span class="toc-number">1.5.3.1.3.</span> <span class="toc-text">解压缩tar.tz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#修改配置文件-1"><span class="toc-number">1.5.3.1.4.</span> <span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#启动zookeeper环境"><span class="toc-number">1.5.3.1.5.</span> <span class="toc-text">启动zookeeper环境</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#查看状态"><span class="toc-number">1.5.3.1.6.</span> <span class="toc-text">查看状态</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-kafka的安装配置"><span class="toc-number">1.5.3.2.</span> <span class="toc-text">2) kafka的安装配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#我从kafka的官网下载了-kafka-2-11-0-10-2-0-tgz"><span class="toc-number">1.5.3.2.1.</span> <span class="toc-text">我从kafka的官网下载了 kafka_2.11-0.10.2.0.tgz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#解压缩tar-tz-2"><span class="toc-number">1.5.3.2.2.</span> <span class="toc-text">解压缩tar.tz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#修改配置文件-2"><span class="toc-number">1.5.3.2.3.</span> <span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#配置主机名对应IP的解析"><span class="toc-number">1.5.3.2.4.</span> <span class="toc-text">配置主机名对应IP的解析</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#启动kafka环境"><span class="toc-number">1.5.3.2.5.</span> <span class="toc-text">启动kafka环境</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-部署logstash服务"><span class="toc-number">1.5.4.</span> <span class="toc-text">3.部署logstash服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#部署日志处理层的logstash"><span class="toc-number">1.5.4.1.</span> <span class="toc-text">部署日志处理层的logstash</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#从GeoLite官网下载-GeoLiteCity-dat-gz"><span class="toc-number">1.5.4.1.1.</span> <span class="toc-text">从GeoLite官网下载 GeoLiteCity.dat.gz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#从elastic官网下载-logstash-2-3-4-tar-gz"><span class="toc-number">1.5.4.1.2.</span> <span class="toc-text">从elastic官网下载 logstash-2.3.4.tar.gz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#解压logstash-2-3-4-tar-gz"><span class="toc-number">1.5.4.1.3.</span> <span class="toc-text">解压logstash-2.3.4.tar.gz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#解压GeoLiteCity-dat-gz"><span class="toc-number">1.5.4.1.4.</span> <span class="toc-text">解压GeoLiteCity.dat.gz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#编辑获取日志并输出到kafka的配置文件"><span class="toc-number">1.5.4.1.5.</span> <span class="toc-text">编辑获取日志并输出到kafka的配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#启动logstash"><span class="toc-number">1.5.4.1.6.</span> <span class="toc-text">启动logstash</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#部署作为consumer的logstash"><span class="toc-number">1.5.4.2.</span> <span class="toc-text">部署作为consumer的logstash</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#编辑从kafka获取日志内容，传输到ES集群的配置文件"><span class="toc-number">1.5.4.2.1.</span> <span class="toc-text">编辑从kafka获取日志内容，传输到ES集群的配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#启动logstash-1"><span class="toc-number">1.5.4.2.2.</span> <span class="toc-text">启动logstash</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-部署日志采集程序Filebeat"><span class="toc-number">1.5.5.</span> <span class="toc-text">4.部署日志采集程序Filebeat</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#从elastic官网下载-filebeat-1-2-3-x86-64-tar-gz"><span class="toc-number">1.5.5.1.</span> <span class="toc-text">从elastic官网下载 filebeat-1.2.3-x86_64.tar.gz</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解压logstash-2-3-4-tar-gz-1"><span class="toc-number">1.5.5.2.</span> <span class="toc-text">解压logstash-2.3.4.tar.gz</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置filebeat-yml-文件"><span class="toc-number">1.5.5.3.</span> <span class="toc-text">配置filebeat.yml 文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#这里把nginx的access日志源改为json格式，方便后续处理"><span class="toc-number">1.5.5.4.</span> <span class="toc-text">这里把nginx的access日志源改为json格式，方便后续处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重启nginx服务"><span class="toc-number">1.5.5.5.</span> <span class="toc-text">重启nginx服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动-filebeat"><span class="toc-number">1.5.5.6.</span> <span class="toc-text">启动 filebeat</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-安装配置kibana"><span class="toc-number">1.5.6.</span> <span class="toc-text">5.安装配置kibana</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装kibana"><span class="toc-number">1.5.6.1.</span> <span class="toc-text">安装kibana</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#从elastic官网下载-kibana-4-6-3-linux-x86-64-tar-gz"><span class="toc-number">1.5.6.1.1.</span> <span class="toc-text">从elastic官网下载 kibana-4.6.3-linux-x86_64.tar.gz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#解压kibana-4-6-3-linux-x86-64-tar-gz"><span class="toc-number">1.5.6.1.2.</span> <span class="toc-text">解压kibana-4.6.3-linux-x86_64.tar.gz</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#配置kibana-yml-文件"><span class="toc-number">1.5.6.1.3.</span> <span class="toc-text">配置kibana.yml 文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#启动kibana"><span class="toc-number">1.5.6.1.4.</span> <span class="toc-text">启动kibana</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问kibana，配置日志索引"><span class="toc-number">1.5.6.2.</span> <span class="toc-text">访问kibana，配置日志索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#kibana简单介绍"><span class="toc-number">1.5.6.3.</span> <span class="toc-text">kibana简单介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Discover"><span class="toc-number">1.5.6.3.1.</span> <span class="toc-text">Discover</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Visualize"><span class="toc-number">1.5.6.3.2.</span> <span class="toc-text">Visualize</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Dashboard"><span class="toc-number">1.5.6.3.3.</span> <span class="toc-text">Dashboard</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后续优化："><span class="toc-number">1.5.7.</span> <span class="toc-text">后续优化：</span></a></li></ol></li></ol></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-<div class="github-card">
-<p class="asidetitle">Github 名片</p>
-<div class="github-card" data-github="fantasykai" data-width="220" data-height="119" data-theme="medium">
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-  </div>
 
 
 
-  
-<div class="categorieslist">
-	<p class="asidetitle">分类</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/前端/" title="前端">前端<sup>7</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/容器/" title="容器">容器<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/工具/" title="工具">工具<sup>14</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/技术小栈/" title="技术小栈">技术小栈<sup>17</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/数据库/" title="数据库">数据库<sup>8</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/杂记/" title="杂记">杂记<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/测试/" title="测试">测试<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/笔记/" title="笔记">笔记<sup>6</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/网络/" title="网络">网络<sup>2</sup></a></li>
-		  
-		
-		</ul>
-</div>
 
 
-  
-  <div class="tagcloudlist">
-    <p class="asidetitle">标签云</p>
-    <div class="tagcloudlist clearfix">
-       <a href="/tags/Chrome-效率插件/" style="font-size: 10px;">Chrome 效率插件</a> <a href="/tags/Druid/" style="font-size: 10px;">Druid</a> <a href="/tags/IPv6/" style="font-size: 11.67px;">IPv6</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Mysql/" style="font-size: 13.33px;">Mysql</a> <a href="/tags/Spring/" style="font-size: 13.33px;">Spring</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/idea/" style="font-size: 16.67px;">idea</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/js/" style="font-size: 18.33px;">js</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/日志/" style="font-size: 10px;">日志</a> <a href="/tags/杂记/" style="font-size: 13.33px;">杂记</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a> <a href="/tags/缓存/" style="font-size: 10px;">缓存</a>
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        Value as one pleases~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
     </div>
-  </div>
-
-
-  
-  <div class="archiveslist">
-    <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li></ul>
-  </div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
-        
-          <li>
-            
-            	<a href="https://program-think.blogspot.com/" target="_blank" title="编程随想的博客">编程随想的博客</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="http://www.ruanyifeng.com/" target="_blank" title="阮一峰的博客">阮一峰的博客</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="http://www.liaoxuefeng.com/" target="_blank" title="廖雪峰">廖雪峰</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="http://www.codeceo.com/" target="_blank" title="码农圈">码农圈</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="http://ifeve.com/" target="_blank" title="并发编程">并发编程</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="http://coolshell.cn/" target="_blank" title="酷壳">酷壳</a>
-            
-          </li>
-        
-    </ul>
 </div>
 
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+
+
 </div>
 
-</aside>
-</div>
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> 文字，摄影，健身，旅行 ··· 感恩，生活不止于此 <br/>
-			This is my blog,Try to do better.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/1896404674" target="_blank" class="icon-weibo" title="微博"></a>
-		
-		
-		<a href="https://github.com/fantasykai" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		<a href="https://www.douban.com/people/kai.fantasy@gmail.com" target="_blank" class="icon-douban" title="豆瓣"></a>
-		
-		
-		
-		
-	</div>
-			
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
-		
-		<a href="/about" target="_blank" title="Kai.Fantasy">Kai.Fantasy</a>
-		
-		
-		</p>
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-  
-  _st('install','Smu72CUeM7VzuxVq3ryE','2.0.0');
-</script>		
-</div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
 </footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-});
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.github.io/2017/03/13/recording/集中式日志监控系统部署/&title=《集中式日志监控系统》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.github.io/2017/03/13/recording/集中式日志监控系统部署/&title=《集中式日志监控系统》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.github.io/2017/03/13/recording/集中式日志监控系统部署/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《集中式日志监控系统》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.github.io/2017/03/13/recording/集中式日志监控系统部署/&via=https://fantasykai.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.github.io/2017/03/13/recording/集中式日志监控系统部署/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3a0WojMQwF0Pz/T2dfF0KcK8lKWzjzFNrB4zMBW7ny4xFfz/+u17+fP7+OcB7n3Wiv91y78PDw8AZTfzeJ8wPOU0/AZ9J5Ph+ejoeHh7fGO0/ovCjnW0J+f28+eHh4eL+T9yxevY3kfCceHh7eX+RVl/je5/xZeHh4eN/nJT/+k7w0L6x7m8Ri1oKHh4dXq3Ifvan/1OeV/h4eHh7euKueN/uT7WRyOODZuvDw8PA2eNVyOSEl9+e8XlmPh4eH901eHhbkm0EyZn7cqhoZ4+Hh4W3w5k39fHFPptgLdpvxBB4eHt6YVy1kezHErUii+pXg4eHhzXn5wlo9JlUNF6qN//K3hIeHh3eVN/nZn0S0t15QORDBw8PDW+DlC+6tAwGTA1VJwd3cT/Dw8PBiXnWJ7x2KSu6pNt6iOePh4eEt8PJ9I0mCq0VwdbpVMB4eHt4erzdcdenPX0e1FfdhHDw8PLyrvN6hpbxZVb2nugGM9jo8PDy8Aa+3uM+DicmLi8p9PDw8vAVevsjmxfH8INekmxfNAQ8PD2+B12tB9aY+CUGSiAQPDw9vm5eX0fMgYz5aOVjBw8PDu8SrlqfVJTsJKSYle9Tfw8PDw7vK6wUH74bLQ4Q86q0+fbSr4OHh4bV4vQhgEvve2kjKKTUeHh5eizc5RJXDJn+ZtMrw8PDw9nh7e07v0FXS3IriDDw8PLw1Xi9uqLbw86fcaozh4eHh3eU9i9ekzK1GtPlRrbf/xcPDw1vgfeewVK84rr6Ua3sjHh4eXjCHfDPoRRh5Ed97NR+QeHh4eGu8ZOiEOiH1drDCOQg8PDy8H+L12ma9WGHyQvHw8PB+Dy9vj+XjV+PgQlyLh4eHt8arNr3yGCKZSjUmLoDx8PDwFnjVH/x5KXx3Wpd7enh4eHgd3j9FSV6TzapkRAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
 
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
-
-
-
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"fantasykai"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
 
 
 
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
-
-
-
-<!-- Analytics Begin -->
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
 <script>
-var _hmt = _hmt || [];
 (function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
 })();
 </script>
 
 
 
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261140604'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261140604%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
-
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
-
-
-<!-- MathJax End -->
-
-<!-- Tiny_search Begin -->
-
-<!-- Tiny_search End -->
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-  </body>
+</body>
 </html>

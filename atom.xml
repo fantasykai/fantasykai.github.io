@@ -1,0 +1,3497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>kai.fantasy &#39;s 文栖小筑</title>
+  <subtitle>没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://fantasykai.github.io/"/>
+  <updated>2017-09-07T12:26:47.000Z</updated>
+  <id>https://fantasykai.github.io/</id>
+  
+  <author>
+    <name>Kai.Fantasy</name>
+    <email>kai.fantasy@gmail.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>web 开发常用的终端命令</title>
+    <link href="https://fantasykai.github.io/2017/09/07/Linux/Web%20%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%9A%84%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4/"/>
+    <id>https://fantasykai.github.io/2017/09/07/Linux/Web 开发常用的终端命令/</id>
+    <published>2017-09-07T12:16:05.000Z</published>
+    <updated>2017-09-07T12:26:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Web-开发常用的终端命令"><a href="#Web-开发常用的终端命令" class="headerlink" title="Web 开发常用的终端命令"></a>Web 开发常用的终端命令</h2><p>终端是开发人员的军火库中最重要的生产力工具之一。把它掌握好了可以对你的工作产生非常积极的影响。</p>
+<p>这里记录一些常用到的命令</p>
+<p><strong>curl</strong></p>
+<p><a href="https://curl.haxx.se/" target="_blank" rel="external">https://curl.haxx.se/</a></p>
+<p>curl 是一个命令行工具，用来通过 HTTP（s），FTP 等其它几十种你可能尚未听说过的协议来发起网络请求。它可以下载文件，检查响应消息头以及方便地访问远程数据。</p>
+<p>在 Web 开发中， curl 经常被用来测试连接，还有调用 REST 风格的 API。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZ5hhcRs3dvwZnkGXMuVa07fuRnbFfEaqkm2GN1ER3TRia6Dwfkty5scA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>curl 的用法还可以比这更复杂。它有许多选项可以用来控制消息头，Cookie，身份验证等等这些要素。你可以通过 Everything curl 这本优秀的电子书来了解更多。</p>
+<p>## </p>
+<p><strong>tree</strong></p>
+<p><a href="https://www.computerhope.com/unix/tree.htm" target="_blank" rel="external">https://www.computerhope.com/unix/tree.htm</a></p>
+<p>tree 是一个小巧的命令行工具程序，它可以用可视化的效果向你展示一个目录下的文件。它的运行是递归的，会以树的形式遍历每个级别的嵌套关系，并显示出每一级目录。 如此你就可以快速地进行浏览并找到自己想要的文件。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZNSicN7Tt3m2xJzGcGhe7QHQiacNTmoWAJiaYdYnf3YSOaia2Lr5HTviaicCQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>它还拥有使用一种类正则表达式的模式来对结果集进行过滤的选项。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>## </p>
+<p><strong>tmux</strong></p>
+<p><a href="https://tmux.github.io/" target="_blank" rel="external">https://tmux.github.io/</a></p>
+<p>根据维基的描述，tmux 是一个终端复用器，说人话就是，它是一个可以将多个终端连接到单个终端会话的工具。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>一个 tmux 终端带有三个分屏的效果</p>
+<p>它让你可以在一个终端中进行程序之间的切换，添加分屏窗格，还有就是将多个终端连接到同一个会话，使它们保持同步。 当你在远程服务器上工作时，tmux 特别有用，因为它可以让你创建新的选项卡，然后在选项卡之间切换，而无需反反复复的退出然后登录。</p>
+<p>## </p>
+<p><strong>disk usage - du</strong></p>
+<p><a href="https://www.computerhope.com/unix/udu.htm" target="_blank" rel="external">https://www.computerhope.com/unix/udu.htm</a></p>
+<h2 id="运行-du-命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。"><a href="#运行-du-命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。" class="headerlink" title="运行 du 命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。"></a>运行 du 命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。</h2><p>du 通常在你发现某个驱动器的空间不足，但不知道是因为什么造成的时候使用。使用此命令可以快速查看每个文件夹所占用的存储空间，从而把耗费存储的大户给找出来。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>还有一个用途类似的命令 df（Disk Free），它会返回关于可用磁盘空间的各种信息（与 du 正好相反）。</p>
+<p>## </p>
+<p><strong>git</strong></p>
+<p><a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a></p>
+<p>git 是迄今为止最流行的版本控制系统。它是现代 Web 开发的指定工具之一，我们根本没办法把它从列表中给删掉。</p>
+<p>尽管有很多的第三方应用和工具可用，但是大多数人还是喜欢通过终端对 git 来进行本地访问。git CLI 真的很强大，可以用来处理那些盘根错节的项目历史。</p>
+<p>如果想了解更多的关于 git 的信息，建议你看看我们的教程“30 分钟学会用 git”。</p>
+<p>## </p>
+<p><strong>tar</strong></p>
+<p><a href="https://www.computerhope.com/unix/utar.htm" target="_blank" rel="external">https://www.computerhope.com/unix/utar.htm</a></p>
+<p>tar 是用来处理文件压缩的默认 Unix 工具。它能让你快速的将多个文件打成一个包，这样在后续就更加容易存储和移动它们了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>使用 -x 选项可以对现有的 .tar 压缩包进行解压缩操作。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>注意大多数其它的格式，像 .zip 和 .rar 这些，都不能使用 tar 来打开，而是需要用其它的像 unzip 这样的工具来进行操作。</p>
+<p>如今许多的 Unix 系统都运行着一个 tar 的扩展版本 (GNU tar) ，它也还可以执行限定文件大小的压缩操作。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如果你的操作系统并不支持该版本的 tar，还可以使用 gzip, zcat 或者 compress 来限制文件压缩包的大小。</p>
+<p>## </p>
+<p><strong>md5sum</strong></p>
+<p><a href="https://en.wikipedia.org/wiki/Md5sum" target="_blank" rel="external">https://en.wikipedia.org/wiki/Md5sum</a></p>
+<p>Unix 内置了一些像 md5sum、sha1sum 这样的命令行工具，它们在编程中有各自的作用，但最重要的是它们可以用来检查文件的完整性。</p>
+<p>譬如，如果你从不受信的网络下载了一个 .iso 文件，这个文件中存在恶意脚本的风险。为了确认这个 .iso 是安全的，你可以生成它的 md5 或者其它摘要信息。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>然后将生成的字符串与原作者提供的（比如 UbuntuHashes）进行比较。</p>
+<p>## </p>
+<p><strong>htop</strong></p>
+<p><a href="http://hisham.hm/htop/" target="_blank" rel="external">http://hisham.hm/htop/</a></p>
+<p>htop 是个比内置的 top 任务管理更强大的工具。它提供了带有诸多选项的高级接口用于监控系统进程。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>运行中的 htop 任务管理器</p>
+<p>虽然 htop 在终端中运行，但它对鼠标操作支持良好。所以使用 htop 的菜单导航、选择进程，以及通过排序和过滤来管理任务都很容易。</p>
+<p>## </p>
+<p><strong>ln</strong></p>
+<p><a href="https://www.computerhope.com/unix/uln.htm" target="_blank" rel="external">https://www.computerhope.com/unix/uln.htm</a></p>
+<p>Unix 里面的链接同 Windows 中的快捷方式类似，允许你快速地访问到一个特定的文件。链接可以通过 ln 命令创建出来，而且可以有两种类型 : 硬的（hard） 或者符号的（symbolic）。每种类型都有不同的属性而且各有其用途 (了解更多)。</p>
+<p>这里有一个示例，展示了使用链接的最常见方式。假如说我们在桌面上有一个目录叫做 Scripts，里面整齐的摆放着我们最常用的 bash 脚本。每次我们想要调用其中的一个脚本的时候，我们会这样做:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>显然，这样做并不方便，每次我们都得写绝对路径。其实我们可以创建一个 symlink，将 Scripts  文件夹链接到 /usr/local/bin，这样就能让脚本在所有的目录下面都可以执行。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>有了这个创建好的 symlink，我们现在就可以简单地通过其名称在任意一个打开的终端中执行脚本了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>## </p>
+<p><strong>ssh</strong></p>
+<p><a href="https://www.ssh.com/ssh/command/" target="_blank" rel="external">https://www.ssh.com/ssh/command/</a></p>
+<p>使用 ssh 命令，用户可以快速地连接到一个远程主机，然后登录进入其 Unix shell。这就使得通过自己本地机器的终端在服务器上提交指令成为了可能。</p>
+<p>要定位一个连接，你只需要指定正确的 IP 地址或者 url 就行了。在你第一次连接到一台新的服务器的时候，会需要某种形式的认证。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如果你需要快速地在服务器上面执行一条命令，但又不想登录，在 url 之后加上一条命令就可以了。命令将会在服务器上执行，而执行结果也会从它那里返回。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>你还可以用 SHH 做更多事情，像创建代理或者隧道，用私钥来保护你的连接，传输文件等。在这里的一个指南中你可以了解到更多信息。</p>
+<p>## </p>
+<p><strong>grep</strong></p>
+<p><a href="https://www.computerhope.com/unix/ugrep.htm" target="_blank" rel="external">https://www.computerhope.com/unix/ugrep.htm</a></p>
+<p>Grep 是一个用来在文本中查找字符串的标准 Unix 工具。它可以从一个文件或者直接就是流的形式获取到输入, 通过一个正则表达式来分析内容，然后返回匹配的行。</p>
+<p>该命令在需要对大型文件进行内容过滤的时候非常趁手。下面我们利用 grep 结合 date 命令，来在一个大型的日志文件中进行查找，然后生成一个只包含当天错误日志的新文件。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZqVzjfdGiarpmMPDvKFI8DuQibTS2CKXgJyV0oZVddOJdAAtOfle03VFw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>另外一个用来操作字符串的强大工具就是 sed。它比起 grep 更加强大 (当然也更加复杂)，可以执行几乎所有的字符串相关的操作任务，包括添加、删除还有替换字符串的内容。</p>
+<p>## </p>
+<p><strong>alias</strong></p>
+<p><a href="https://www.computerhope.com/unix/ualias.htm" target="_blank" rel="external">https://www.computerhope.com/unix/ualias.htm</a></p>
+<p>许多的 Unix 命令，包括本文中提到的一些，在你加上许多选项之后，看起来都相当的长了。为了能更加容易记忆，你可以使用 alias 这个 bash 内置的命令来为它们创建一个短别名：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZeI8ic2etia9QFG6rhPssIoWQXb3hQ1hzGMMicIH6XSgH1pmkqicBb9QB1g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>只要你保持终端一直是打开的状态， 别名就一直会是可用的。如果想永久使用的话，你可以将 alias  命令操作写到你的 .bashrc 文件中去。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Web-开发常用的终端命令&quot;&gt;&lt;a href=&quot;#Web-开发常用的终端命令&quot; class=&quot;headerlink&quot; title=&quot;Web 开发常用的终端命令&quot;&gt;&lt;/a&gt;Web 开发常用的终端命令&lt;/h2&gt;&lt;p&gt;终端是开发人员的军火库中最重要的生产力工具之一。把它
+    
+    </summary>
+    
+      <category term="linux" scheme="https://fantasykai.github.io/categories/linux/"/>
+    
+    
+      <category term="Linux" scheme="https://fantasykai.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo 从Windows 迁移到Mac 上继续玩耍</title>
+    <link href="https://fantasykai.github.io/2017/08/25/mac/hexo%20%E4%BB%8EWindows%20%E8%BF%81%E7%A7%BB%E5%88%B0%E5%88%B0mac/"/>
+    <id>https://fantasykai.github.io/2017/08/25/mac/hexo 从Windows 迁移到到mac/</id>
+    <published>2017-08-25T13:05:04.000Z</published>
+    <updated>2017-08-25T13:58:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>最近刚刚入手Mac，各种体验Mac的妙处，后面有时间把总结的各种坑记录下，这次先把基本的工具搬迁过来~</p>
+<p>hexo 的搬家路： windows -&gt; mac </p>
+</blockquote>
+<h2 id="迁移思路"><a href="#迁移思路" class="headerlink" title="迁移思路"></a>迁移思路</h2><ul>
+<li>在mac上安装好 <code>hexo</code>，初始化根目录；</li>
+<li>然后生成新的 <code>SSH key</code>，并将其添加到 <code>github</code>；</li>
+<li>将Windows上的资源、配置复制、直接粘贴覆盖Mac上对应的目录。</li>
+</ul>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p><strong>安装 node/git</strong></p>
+<p>homebrew 安装：</p>
+<p>​    brew install node</p>
+<p>​    brew install git</p>
+<p><strong>安装 hexo</strong></p>
+<p>用 node 的 npm 安装 hexo：</p>
+<pre><code>npm install hexo-cli -g
+</code></pre><ul>
+<li><p>每个版本安装方式可能不一样，这一步需要异步到 官网 </p>
+</li>
+<li><p><a href="https://hexo.io/" target="_blank" rel="external">hexo 官网</a></p>
+</li>
+</ul>
+<p><strong>初始化 hexo</strong></p>
+<p>hexo init blog<br>cd blog<br>npm install<br>hexo server</p>
+<p>启动成功</p>
+<pre><code>INFO  Start processing
+INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.        
+</code></pre><p><strong>生成 SSH key</strong><br>先检查一下本机的 SSH key：<code>cd ~/.ssh</code>；<br>生成 SSH key：<code>ssh-keygen -t rsa -C &quot;xxxx@xxxx.com&quot;</code>，xxxx@xxxx.com 为自己注册 github 的邮箱；</p>
+<p><strong>添加 SSH key 至 github</strong><br>进入.ssh文件夹： <code>cd ~/.ssh</code>，然后打开里面的 id_rsa.pub文件，里面的内容就是 SSH key，复制全部内容；</p>
+<p>网页打开 github 的设置：<em>Settings -&gt; SSH and GPG keys</em>，点击绿色的按钮 <em>New SSH key</em>，然后在输入框中输入刚才复制的内容；</p>
+<p>使用coding的，同理</p>
+<p>测试一下是否成功：<code>ssh git@github.com</code>，<br>看到以下即成功：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">PTY allocation request failed on channel 0</div><div class="line">Hi gjincai! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</div><div class="line">Connection to github.com closed.</div></pre></td></tr></table></figure>
+<p><strong>文件配置转移</strong><br>windows 下的博客根目录 hexo，复制该目录下的：_config.yml, scaffolds, source, themes；<br>把这几个文件复制到mac的目录下，直接覆盖替换相同的文件文件夹。</p>
+<p>哦了！在mac上愉快的玩耍 <code>hexo</code> 吧！</p>
+<ul>
+<li>注意： 如果在 <code>hexo d</code> 部署不成功，有可能是缺少了模块，</li>
+</ul>
+<p>安装以下再尝试：<code>npm install hexo-deployer-git --save</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;最近刚刚入手Mac，各种体验Mac的妙处，后面有时间把总结的各种坑记录下，这次先把基本的工具搬迁过来~&lt;/p&gt;
+&lt;p&gt;hexo 的搬家路： windows -&amp;gt; mac &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;迁移思路&quot;&gt;&lt;a 
+    
+    </summary>
+    
+      <category term="工具" scheme="https://fantasykai.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="mac" scheme="https://fantasykai.github.io/tags/mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 命令行使用技巧</title>
+    <link href="https://fantasykai.github.io/2017/08/24/Linux/Linux%20%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
+    <id>https://fantasykai.github.io/2017/08/24/Linux/Linux 命令行使用技巧/</id>
+    <published>2017-08-24T03:01:06.000Z</published>
+    <updated>2017-08-24T03:01:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="最实用的-Linux-命令行使用技巧-【已翻译100-】"><a href="#最实用的-Linux-命令行使用技巧-【已翻译100-】" class="headerlink" title="最实用的 Linux 命令行使用技巧 【已翻译100%】"></a>最实用的 Linux 命令行使用技巧 【已翻译100%】</h1><p>英文原文：<a href="https://dzone.com/articles/most-useful-linux-command-line-tricks" target="_blank" rel="external">Most Useful Linux Command Line Tricks</a></p>
+<hr>
+<p>我们可能每天都会要使用到很多的 <a href="https://likegeeks.com/main-linux-commands-easy-guide/" target="_blank" rel="external">Linux 命令行</a>。 我们也会网络上知晓一些使用它们的小技巧，但是如果我们没有时常来进行练习，就有可能会忘掉怎么去使用它们。 所以我就决定把那些你可能会忘记的小提示和小技巧，或者对你而言可能是全新的东西都列表来。</p>
+<h2 id="将输出内容以表格的形式显示出来"><a href="#将输出内容以表格的形式显示出来" class="headerlink" title="将输出内容以表格的形式显示出来"></a>将输出内容以表格的形式显示出来</h2><p>有时，在你看到命令行执行的输出时，因为字符串过度拥挤（比如说 mount 命令的输出）导致输出内容难以识别。如果我们看到的内容是一张表格会如何呢？其实这是很容易做到的！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount | column –t:</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2017/0823/091303_TBUa_2903254.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>在此例中，由于内容中留了空格，所以输出的形式就美观了起来。 那如果想要的分隔符是别的什么符号，比如说冒号，又该怎么去做呢？ （例如，在 cat/etc/passwd 的输出内容中使用）</p>
+<p>这时候只需要使用 -s 参数指定分隔符就行了，像下面这样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/passwd | column -t -s:</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2017/0823/091553_PTLs_2903254.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<h2 id="重复执行一个命令，直到它运行成功"><a href="#重复执行一个命令，直到它运行成功" class="headerlink" title="重复执行一个命令，直到它运行成功"></a>重复执行一个命令，直到它运行成功</h2><p>如果在 Google 上搜索这个功能，你会发现很多人都问到了如何重复执行命令，直到这个命令成功返回并且运行正常。 Google上的建议里就包括 ping 服务器，直到它变得空闲为止，还有就是检查是否有向特定的目录上传了具有特定扩展名的文件，还有就是检查特定的URL是否已经存在，诸如此类的办法。</p>
+<p>其实你还可以使用 while true 的循环来实现来实现这个功能：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2017/0823/091607_Z6PD_2903254.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>在上面这个示例中，&gt;/dev/null 2&gt;＆1 会让程序的输出重定向到 /dev/ null。标准错误和标准输出都会被包含进去。</p>
+<p>这是我认为最酷的Linux命令行技巧之一。</p>
+<h2 id="按内存资源的使用量对进程进行排序"><a href="#按内存资源的使用量对进程进行排序" class="headerlink" title="按内存资源的使用量对进程进行排序"></a>按内存资源的使用量对进程进行排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps aux | sort -rnk 4:</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2017/0823/091735_Hqk6_2903254.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<h2 id="按-CPU-资源的使用量对进程进行排序"><a href="#按-CPU-资源的使用量对进程进行排序" class="headerlink" title="按 CPU 资源的使用量对进程进行排序"></a>按 CPU 资源的使用量对进程进行排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps aux | sort -nk 3:</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2017/0823/091900_QTKd_2903254.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>如果想要检查你的机器架构，那就执行 getconf LONG_BIT。</p>
+<h2 id="可以同时查看多个日志文件"><a href="#可以同时查看多个日志文件" class="headerlink" title="可以同时查看多个日志文件"></a>可以同时查看多个日志文件</h2><p>毫无疑问，你可能已经会使用 tail  命令来查看日志文件了，但可能有时候你还想着能同时查看多个日志文件。 使用 multi-tail 命令就支持支持文本的高亮显示，内容过滤以及更多你可能需要的功能：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2017/0823/091937_H48w_2903254.png" alt="img](https://static.oschina.net/uploads/space/2017/0823/091924_12e3_2903254.png)![img" title="">
+                </div>
+                <div class="image-caption">img](https://static.oschina.net/uploads/space/2017/0823/091924_12e3_2903254.png)![img</div>
+            </figure>
+<p>如果系统里还没有这个命令，运行 apt-get install multitail 命令就可以把它给装上。</p>
+<h2 id="回到你操作过的上一个目录去"><a href="#回到你操作过的上一个目录去" class="headerlink" title="回到你操作过的上一个目录去"></a>回到你操作过的上一个目录去</h2><p>只需敲入 cd - 就会返回到你操作过的上一个目录中去。</p>
+<h2 id="让非交互式-Shell-会话可进行交互"><a href="#让非交互式-Shell-会话可进行交互" class="headerlink" title="让非交互式 Shell 会话可进行交互"></a>让非交互式 Shell 会话可进行交互</h2><p>想要这样做，那就把设置从 ~/.bashrc 改成 ~/.bash_profile 吧。</p>
+<h2 id="定时的监视性命令输出"><a href="#定时的监视性命令输出" class="headerlink" title="定时的监视性命令输出"></a>定时的监视性命令输出</h2><p>使用 watch 命令（watch df -h），你就可以查看到任何命令的任何输出。例如，你可以查看可用空间以及它的使用量增长情况。</p>
+<p>通过利用 watch 命令来操作会变化的数据，你可以尽情想象自己能拿这个来做些什么哦。</p>
+<h2 id="在会话关掉以后继续运行程序"><a href="#在会话关掉以后继续运行程序" class="headerlink" title="在会话关掉以后继续运行程序"></a>在会话关掉以后继续运行程序</h2><p>如果你在后台运行了什么程序，然后你关掉了的 shell 会话，那么这个后台运行的程序就会被你的 shell 杀掉。关闭 shell 以后怎么让程序继续运行下去呢？</p>
+<p>这个可以用 nohup 命令做到 - 该指令表示不做挂断操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup wget site.com/file.zip</div></pre></td></tr></table></figure>
+<p>此命令是最容易被遗忘的 Linux 命令行技巧之一，因为我们许多人都会使用另外一个类命令的 screen 环境：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2017/0823/092000_PnE3_2903254.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>这样会在同一个目录下生成一个名称为 nohup.out 的文件，其中包含了正在运行的程序的输出内容：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2017/0823/092013_Bvae_2903254.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>命令很酷，对吧？</p>
+<h2 id="自动对任何命令回答-Yes-或者-No"><a href="#自动对任何命令回答-Yes-或者-No" class="headerlink" title="自动对任何命令回答 Yes 或者 No"></a>自动对任何命令回答 Yes 或者 No</h2><p>如果你想自动化需要向用户说的 Yes 的过程，可以使用 yes 命令来实现：yes | apt-get update。</p>
+<p>也许你想做的是自动地说“No”。这个可以使用 yes no | 命令来实现。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2017/0823/092025_pFb6_2903254.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<h2 id="创建具有指定大小的文件"><a href="#创建具有指定大小的文件" class="headerlink" title="创建具有指定大小的文件"></a>创建具有指定大小的文件</h2><p>可以使用 dd 命令来创建出具有指定大小的文件：dd if=/dev/zero of=out.txt bs=1M count=10。</p>
+<p>这样就会创建出一个 10 MB 的文件，填充零作为内容：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2017/0823/092151_LtpJ_2903254.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<h2 id="以根目录用户来运行最后一个命令"><a href="#以根目录用户来运行最后一个命令" class="headerlink" title="以根目录用户来运行最后一个命令"></a>以根目录用户来运行最后一个命令</h2><p>有时，你会忘记在需要 root 权限的命令之前敲入 sudo。这时候你没必要去重写命令; 只要输入 sudo 就行了！</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2017/0823/092206_tCmM_2903254.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<h2 id="对命令行会话进行记录"><a href="#对命令行会话进行记录" class="headerlink" title="对命令行会话进行记录"></a>对命令行会话进行记录</h2><p>如果想要把自己在 shell 屏幕上敲的内容记录下来，可以使用 script 命令将所有敲写的内容保存到一个名为 typescriptscript 的文件中去。</p>
+<p>等你敲入 exit 命令以后，所有命令就都会被写入该文件，以便你事后再回过头去查看。</p>
+<h2 id="用标签符号替换空格符"><a href="#用标签符号替换空格符" class="headerlink" title="用标签符号替换空格符"></a>用标签符号替换空格符</h2><p>可以使用 tr 命令替换任何字符，这个用起来非常方便：cat geeks.txt | tr ‘:[space]:’ ‘\t’ &gt; out.txt.</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2017/0823/092230_Phyw_2903254.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<h2 id="将文件内容转换为大写或者小写"><a href="#将文件内容转换为大写或者小写" class="headerlink" title="将文件内容转换为大写或者小写"></a>将文件内容转换为大写或者小写</h2><p>可以这样实现：cat myfile | tr a-z A-Z&gt; output.txt。</p>
+<h2 id="强大的-Xargs-命令"><a href="#强大的-Xargs-命令" class="headerlink" title="强大的 Xargs 命令"></a>强大的 Xargs 命令</h2><p>xargs 命令是最重要的 Linux 命令行技巧之一。你可以使用这个命令将命令的输出作为参数传递给另一个命令。例如，搜索 png 文件然后对其进行压缩或者其它操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find. -name *.png -type f -print | xargs tar -cvzf images.tar.gz</div></pre></td></tr></table></figure>
+<p>又或者你的文件中有一个 URL 的列表，而你想要做的是以不同的方式下载或者处理这些 URL，可以这样做：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat urls.txt | xargs wget</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2017/0823/092303_cq15_2903254.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/img/201708/23092445_75a4.png" alt="xargs command" title="">
+                </div>
+                <div class="image-caption">xargs command</div>
+            </figure>
+<p>请你要记得，第一个命令的输出会在 xargs 命令结尾处传递。</p>
+<p>那如果命令需要中间过程的输出，该怎么办呢？这个简单！</p>
+<p>只需要使用 {} 并结合 -i 参数就行了。如下所示，替换在第一个命令的输出应该去的地方的参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls /etc/*.conf | xargs -i cp &#123;&#125; /home/likegeeks/Desktop/out</div></pre></td></tr></table></figure>
+<p>这只是 Linux 命令行技巧其中的几个而已。你可以使用其他命令来做一些更 HAPPY 的事情，比如 awk 命令和 sed 命令！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;最实用的-Linux-命令行使用技巧-【已翻译100-】&quot;&gt;&lt;a href=&quot;#最实用的-Linux-命令行使用技巧-【已翻译100-】&quot; class=&quot;headerlink&quot; title=&quot;最实用的 Linux 命令行使用技巧 【已翻译100%】&quot;&gt;&lt;/a&gt;最实
+    
+    </summary>
+    
+      <category term="技术小栈" scheme="https://fantasykai.github.io/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
+    
+    
+      <category term="Linux" scheme="https://fantasykai.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac OX上安装MongoDb</title>
+    <link href="https://fantasykai.github.io/2017/08/24/mac/Mac%E4%B8%8A%E5%AE%89%E8%A3%85Mongo/"/>
+    <id>https://fantasykai.github.io/2017/08/24/mac/Mac上安装Mongo/</id>
+    <published>2017-08-24T01:48:22.000Z</published>
+    <updated>2017-08-24T01:48:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在mac上安装mongodb有很多方式，HomeBrew 安装 MongoDB是最快速简洁的，也方便后面的维护，这次主要记录使用brew安装的方式</p>
+<ul>
+<li><a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/" target="_blank" rel="external">官方安装文档</a></li>
+</ul>
+<p>更新Homebrew的package源，在Mac的终端中输入：</p>
+<pre><code>$ brew update
+</code></pre><h2 id="开始安装MongoDB"><a href="#开始安装MongoDB" class="headerlink" title="开始安装MongoDB"></a>开始安装MongoDB</h2><pre><code>$ brew install mongodb
+</code></pre><p>然后等待MongoDB下载完成。</p>
+<pre><code>==&gt; Downloading https://homebrew.bintray.com/bottles/mongodb-3.4.7.sierra.bottle.1.tar.gz
+######################################################################## 100.0%
+==&gt; Pouring mongodb-3.4.7.sierra.bottle.1.tar.gz
+==&gt; Caveats
+To have launchd start mongodb now and restart at login:
+  brew services start mongodb
+Or, if you don&apos;t want/need a background service you can just run:
+  mongod --config /usr/local/etc/mongod.conf
+==&gt; Summary
+🍺  /usr/local/Cellar/mongodb/3.4.7: 19 files, 281.9MB
+</code></pre><h2 id="启动MongoDB"><a href="#启动MongoDB" class="headerlink" title="启动MongoDB"></a>启动MongoDB</h2><p>上面最后提示的直接启动MongoDb的方法.</p>
+<pre><code>mongod —config /usr/local/etc/mongod.conf
+</code></pre><p>后台方式启动</p>
+<p>   nohup mongod —config /usr/local/etc/mongod.conf &amp;</p>
+<h2 id="关闭MongoDB服务"><a href="#关闭MongoDB服务" class="headerlink" title="关闭MongoDB服务"></a>关闭MongoDB服务</h2><p>在 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongo.html#bin.mongo" target="_blank" rel="external"><code>mongo</code></a> shell中使用 <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer" target="_blank" rel="external"><code>db.shutdownServer()</code></a> 方法来关闭 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod" target="_blank" rel="external"><code>mongod</code></a> ，如下所示：</p>
+<pre><code>use admin
+db.shutdownServer()
+</code></pre><p>对于启用 <a href="http://docs.mongoing.com/manual-zh/reference/configuration-options.html#security.authorization" target="_blank" rel="external"><code>authorization</code></a> 的系统，通过验证登陆到 <code>admin</code> 数据库，或者在为开启验证的情况下经由本地主机的系统接口登陆到 <code>admin</code> 数据库时，用户可以仅仅通过发送 <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer" target="_blank" rel="external"><code>db.shutdownServer()</code></a> 来关闭实例。</p>
+<p>For systems with <a href="http://docs.mongoing.com/manual-zh/reference/configuration-options.html#security.authorization" target="_blank" rel="external"><code>authorization</code></a> enabled, users may only issue <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer" target="_blank" rel="external"><code>db.shutdownServer()</code></a> when authenticated to the <code>admin</code> database or via the localhost interface on systems without authentication enabled.</p>
+<h3 id="使用-shutdown"><a href="#使用-shutdown" class="headerlink" title="使用 --shutdown"></a>使用 <code>--shutdown</code></h3><p>从Linux命令行关闭 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod" target="_blank" rel="external"><code>mongod</code></a> ，可以使用 <em>–shutdown</em> 选项 如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongod --shutdown</div></pre></td></tr></table></figure>
+<h3 id="使用-CTRL-C"><a href="#使用-CTRL-C" class="headerlink" title="使用 CTRL-C"></a>使用 <code>CTRL-C</code></h3><p>当正在运行一个交互模式 (i.e. without <em>–fork</em>) 的 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod" target="_blank" rel="external"><code>mongod</code></a> 实例时，发送 <code>Control-C</code> 来进行正常关闭。</p>
+<h3 id="使用-kill"><a href="#使用-kill" class="headerlink" title="使用 kill"></a>使用 <code>kill</code></h3><p>From the Linux command line, shut down a specific <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod" target="_blank" rel="external"><code>mongod</code></a> instance using one of the following commands:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">kill &lt;mongod process ID&gt;</div><div class="line">kill -2 &lt;mongod process ID&gt;</div></pre></td></tr></table></figure>
+<h2 id="连接到MongoDb-直接在命令行使用mongo连接："><a href="#连接到MongoDb-直接在命令行使用mongo连接：" class="headerlink" title="连接到MongoDb,直接在命令行使用mongo连接："></a>连接到MongoDb,直接在命令行使用mongo连接：</h2><p>$ mongo</p>
+<pre><code>MongoDB shell version v3.4.7
+connecting to: mongodb://127.0.0.1:27017
+MongoDB server version: 3.4.7
+Server has startup warnings:
+2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten]
+2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten]
+&gt;
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在mac上安装mongodb有很多方式，HomeBrew 安装 MongoDB是最快速简洁的，也方便后面的维护，这次主要记录使用brew安装的方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://docs.mongodb.org/manual/tutorial/i
+    
+    </summary>
+    
+      <category term="工具" scheme="https://fantasykai.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="mac" scheme="https://fantasykai.github.io/tags/mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx常用指令详解</title>
+    <link href="https://fantasykai.github.io/2017/08/06/nginx/Nginx%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/"/>
+    <id>https://fantasykai.github.io/2017/08/06/nginx/Nginx常用指令详解/</id>
+    <published>2017-08-05T16:00:00.000Z</published>
+    <updated>2017-08-24T01:58:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Nginx运维常用指令详解"><a href="#Nginx运维常用指令详解" class="headerlink" title="Nginx运维常用指令详解"></a>Nginx运维常用指令详解</h2><h4 id="目录："><a href="#目录：" class="headerlink" title="目录："></a>目录：</h4><ul>
+<li><p>一、主配置文件框架解析</p>
+</li>
+<li><ul>
+<li><a href="#main_cfg_para">1、Main配置段常用参数</a></li>
+<li><a href="#event_cfg_para">2、event配置段常用参数</a></li>
+<li><a href="#http_cfg_para">3、http配置段常用参数</a></li>
+<li><a href="#clinet_cfg_para">4、面向客户端请求相关的配置</a></li>
+<li><a href="#client_limit">5、对客户端请求进行限制</a></li>
+<li><a href="#file_cfg_para">6、文件操作优化相关的配置</a></li>
+</ul>
+</li>
+<li><p><a href="#ngx_http_access_module">二、ngx_http_access_module模块</a></p>
+</li>
+<li><p><a href="#ngx_http_auth_basic_module">三、ngx_http_auth_basic_module模块</a></p>
+</li>
+<li><p><a href="#ngx_http_log_module">四、ngx_http_log_module模块</a></p>
+</li>
+<li><p><a href="#ngx_http_stub_status_module">五、ngx_http_stub_status_module模块</a></p>
+</li>
+<li><p><a href="#ngx_http_referer_module">六、ngx_http_referer_module模块</a></p>
+</li>
+<li><p><a href="#ngx_http_ssl_module">七、ngx_http_ssl_module模块</a></p>
+</li>
+<li><p><a href="#ngx_http_rewrite_module">八、ngx_http_rewrite_module模块</a></p>
+</li>
+<li><p><a href="#ngx_http_gzip_module">九、ngx_http_gzip_module模块</a></p>
+</li>
+<li><p><a href="#ngx_http_fastcgi_module">十、ngx_http_fastcgi_module模块</a></p>
+</li>
+<li><p><a href="#ngx_http_proxy_module">十一、ngx_http_proxy_module模块</a></p>
+</li>
+<li><p><a href="#ngx_http_headers_module">十二、ngx_http_headers_module模块</a></p>
+</li>
+<li><p><a href="#ngx_http_upstream_module">十三、ngx_http_upstream_module模块</a></p>
+</li>
+</ul>
+<hr>
+<h1 id="nginx常用配置详解"><a href="#nginx常用配置详解" class="headerlink" title="nginx常用配置详解"></a>nginx常用配置详解</h1><h2 id="一、主配置文件框架解析"><a href="#一、主配置文件框架解析" class="headerlink" title="一、主配置文件框架解析"></a>一、主配置文件框架解析</h2><h4 id="1、Main配置段常用参数"><a href="#1、Main配置段常用参数" class="headerlink" title="1、Main配置段常用参数"></a><span id="main_cfg_para">1、Main配置段常用参数</span></h4><h6 id="1-正常运行必备的配置指令"><a href="#1-正常运行必备的配置指令" class="headerlink" title="(1) 正常运行必备的配置指令"></a>(1) 正常运行必备的配置指令</h6><ul>
+<li><p><code>uesr USERNAME [GROUPNAME];</code></p>
+</li>
+<li><ul>
+<li>指定用于运行worker进程的用户和组,默认是nginx用户,nginx组</li>
+</ul>
+</li>
+<li><p><code>pid /path/to/pid_file;</code></p>
+</li>
+<li><ul>
+<li>指定nginx进程的PID文件路径, 默认为:pid /var/runl/nginx/nginx.pid</li>
+</ul>
+</li>
+<li><p><code>worker_rlimit_nofile #;</code></p>
+</li>
+<li><ul>
+<li>指定每个worker进程能打开的最大文件描述符数量(nofile: number of file)</li>
+</ul>
+</li>
+<li><p><code>worker_rlimit_sigpending #;</code></p>
+</li>
+<li><ul>
+<li>指定每个用户能够发往worker进程的信号的最大数量</li>
+</ul>
+</li>
+</ul>
+<h6 id="2-性能优化相关的配置"><a href="#2-性能优化相关的配置" class="headerlink" title="(2) 性能优化相关的配置"></a>(2) 性能优化相关的配置</h6><ul>
+<li><p><code>woker_processes #;</code></p>
+</li>
+<li><ul>
+<li>worker进程的个数,通常应该为物理CPU核心数量减1或者减2,worker_processes auto;可以根据物理CPU自动设定. worker不使用进程或线程处理请求, 而是直接将worker绑定到CPU上, 这样就没有进程切换的说法了.</li>
+</ul>
+</li>
+<li><p><code>worker_cpu_affinity CPUMASK CPUMASK...;</code></p>
+</li>
+<li><ul>
+<li>将worker进程与指定的CPU进行绑定,这种绑定不能隔离CPU,CPU还可能会响应其它进程请求.</li>
+</ul>
+</li>
+<li><p><code>worker_priority NICE;</code></p>
+</li>
+<li><ul>
+<li>[-20,19],worker进程的优先级, 默认为0</li>
+</ul>
+</li>
+</ul>
+<h6 id="3-调试定位问题的配置"><a href="#3-调试定位问题的配置" class="headerlink" title="(3)调试定位问题的配置"></a>(3)调试定位问题的配置</h6><ul>
+<li><p><code>daemon [off|on];</code></p>
+</li>
+<li><ul>
+<li>是否以守护进程方式启动nginx</li>
+</ul>
+</li>
+<li><p><code>master_process [on | off];</code></p>
+</li>
+<li><ul>
+<li>是否以master/worker模型运行nginx,off后,只单个进程启动Nignx.</li>
+</ul>
+</li>
+<li><p><code>error_log /path/to/error_log Level;</code></p>
+</li>
+<li><ul>
+<li>错误日志文件及级别, 出于调试的需要,可以设定为debug,但在debug级别在编译时使用—with-debug选项时才有效</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、event配置段常用参数"><a href="#2、event配置段常用参数" class="headerlink" title="2、event配置段常用参数"></a><span id="event_cfg_para">2、event配置段常用参数</span></h4><ul>
+<li><p><code>worker_connections #;</code></p>
+</li>
+<li><ul>
+<li>每个worker进程所能够响应的最大并发请求数量, 请求的最大上限为:worker_processes * worker_connections</li>
+</ul>
+</li>
+<li><p><code>use [epoll | rgsig | select | poll]]</code></p>
+</li>
+<li><ul>
+<li>定义使用的事件模型, 建议让nginx自动选择</li>
+</ul>
+</li>
+<li><p><code>accept_mutex [on | off];</code></p>
+</li>
+<li><ul>
+<li>定义内部调用请求至worker时请求的互斥锁文件(各worker接收用户的请求的负载均衡锁),on:能够让多个worker轮流地,序列化的响应新请求</li>
+</ul>
+</li>
+<li><p><code>lockfile /path/to/lockfile</code></p>
+</li>
+<li><ul>
+<li>锁文件定义位置</li>
+</ul>
+</li>
+</ul>
+<h4 id="3、http配置段常用参数"><a href="#3、http配置段常用参数" class="headerlink" title="3、http配置段常用参数"></a><span id="http_cfg_para">3、http配置段常用参数</span></h4><ul>
+<li><p><code>server {}</code></p>
+</li>
+<li><ul>
+<li>定义一个虚拟主机,server可以出现一次或多次</li>
+</ul>
+</li>
+<li><p><code>listen address [:port] [default_server] [[ssl] [http2 | spdy]]</code></p>
+</li>
+<li><p><code>listen port [default_server] [ssl] [http2 | spdy]</code></p>
+</li>
+<li><ul>
+<li>default_server:设置默认虚拟主机, 当用户使用IP地址访问时,就返回default_server的虚拟主机, 如果未定义default_server时,第一个虚拟主机将做为默认的主机</li>
+<li>ssl : 用于限制只能通过SSL连接提供服务,不是以端口确认其协议的, 故需要启用ssl,需要在监听的端口后面, 添加ssl选项</li>
+<li>spdy : spdy protocol(google研发的http协议,比http/1.1性能要好, 全称为speedy),在编译时编译了spdy模块的情况下,用于支持spdy协议</li>
+<li>http2 : http version2,在编译时需要开启http2协议支持</li>
+</ul>
+</li>
+<li><p><code>server_name NAME [....];</code> : 指明主机名称</p>
+</li>
+<li><ul>
+<li><p>(1) 先做精确匹配,例如:www.zhenping.me</p>
+</li>
+<li><p>(2) 左侧通配符,例如:*.zhenping.me</p>
+</li>
+<li><p>(3) 右侧通配符,例如:www.zhenping.*</p>
+</li>
+<li><p>(4) 正则表达式匹配,例如:~^.*.zhenping.me$</p>
+</li>
+<li><p>default_server</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx默认工作法则: 先将域的匹配规则,先做hash计算,把计算的结果放置进内存,下次访问请求过来时, 直接做对比</div></pre></td></tr></table></figure>
+</li>
+<li><p>servername后可跟一个或多个主机名, 名称还可以使用通配符和正则表达式(~),域名匹配顺序</p>
+</li>
+</ul>
+</li>
+<li><p><code>tcp_nodelay [on | off];</code></p>
+</li>
+<li><ul>
+<li>对keepalive模式下的连接是否使用tcp_nodelay选项,默认关闭.其功能为:把多个小报文合并为一个报文,一起发送. 此机制可以提高带宽利用率,将发往同一个主机很小的TCP报文合并成一个,实际生产对于用户请求即使浪费带宽也不能合并请求</li>
+</ul>
+</li>
+<li><p><code>tcp_nopush [on | off];</code></p>
+</li>
+<li><ul>
+<li>是否启用tcp_nopush(FreeBSD)或tcp_cork(linux)选项,仅在sendfile为on时有用, 其功能:尝试将多个报文首部压缩成一个发送, 默认为off,不启用该功能</li>
+</ul>
+</li>
+<li><p><code>sendfile [on | off];</code></p>
+</li>
+<li><ul>
+<li>是否启用sendfile功能,静态文件直接在内核中封装响应,而不是从内核空间到用户空间封装后,再发往内核空间.</li>
+</ul>
+</li>
+<li><p><code>roo /PATH/TO/Directory;</code></p>
+</li>
+<li><ul>
+<li>设置web资源的路径映射,用于指明请求的URL所对应的文件的目录路径,可用于server或location中.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>location [ = | ~ | ~* | ^~ ] url { ...}</code></p>
+</li>
+<li><p><code>location @name {...}</code></p>
+</li>
+<li><ul>
+<li><code>=</code> : URI的精确匹配</li>
+<li><code>~</code> : 做正则表达式匹配,区分字符大小写</li>
+<li><code>~*</code> : 做正则表达式匹配,不区分字符大小写</li>
+<li><code>^~</code> : URI的左半部分匹配,不区分字符大小写</li>
+<li>允许根据用户请求的URI来匹配定义的各location,匹配到时, 此请求将被相应的location块中的配置所处理, 简言之:用于为需要用到专用配置的uri提供特定配置.</li>
+<li>当匹配多次时,其匹配优先级为:精确匹配=,^~,~或~*,不带符号的URL, 如果优先级都一样, 就匹配最精确的规则</li>
+</ul>
+</li>
+<li><p><code>alias</code></p>
+</li>
+<li><ul>
+<li>只能用于location配置段,用于定义路径别名</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>index</code></p>
+</li>
+<li><ul>
+<li>设置默认主页(nginx_http_index_module模块引入), 可以带上变量,如$geo根据不同IP地址来设置不同的语言主页,应用上下文为:http,server,location</li>
+</ul>
+</li>
+<li><p><code>error_page code ...[=[response]] uri;</code></p>
+</li>
+<li><ul>
+<li>自定义错误页面,根据http状态码重写向错误页面</li>
+</ul>
+</li>
+<li><p><code>try_files file... uri;</code></p>
+</li>
+<li><p><code>try_files file... =code;</code></p>
+</li>
+<li><ul>
+<li>可用于server,location中, 以指定的顺序检查文件的存在性响应</li>
+<li>尝试查找第1至第N-1个文件,第一个即为返回给请求者的资源,若1至N-1文件都不存在, 则跳转至最后一个uri(必须 不能匹配至当前location,而应该匹配至其它location,否则会导致死循环)</li>
+</ul>
+</li>
+</ul>
+<h4 id="4、面向客户端请求相关的配置"><a href="#4、面向客户端请求相关的配置" class="headerlink" title="4、面向客户端请求相关的配置"></a><span id="clinet_cfg_para">4、面向客户端请求相关的配置</span></h4><ul>
+<li><p><code>keepalive_disable none | browser;</code></p>
+</li>
+<li><ul>
+<li>禁止那些浏览器使用keepalive功能,如: keepalive_disable msie6</li>
+</ul>
+</li>
+<li><p><code>keepalive_timeout #s;</code></p>
+</li>
+<li><ul>
+<li>设定keepalive连接的超时时长,0表示禁止长连接,默认启用为75s</li>
+</ul>
+</li>
+<li><p><code>keepalive_requests #;</code></p>
+</li>
+<li><ul>
+<li>在keepalive连接上所允许请求的最大资源数量,默认为100;</li>
+</ul>
+</li>
+<li><p><code>send_timout #;</code></p>
+</li>
+<li><ul>
+<li>发送响应报文的超时时长,默认为60s;</li>
+</ul>
+</li>
+<li><p><code>client_body_buffer_size SIZE(8k | 16k);</code></p>
+</li>
+<li><ul>
+<li>接收客户请求报文body的缓冲区大小, 默认为16k(64位系统,32位系统为8K),超出指定大小时将被移存于磁盘上.</li>
+</ul>
+</li>
+<li><p><code>client_body_temp_path [Level1 [level2 [level3]]]</code></p>
+</li>
+<li><ul>
+<li>设定用于存储客户端请求body的临时存储路径及子目录结构和数量</li>
+</ul>
+</li>
+</ul>
+<h4 id="5、对客户端请求进行限制"><a href="#5、对客户端请求进行限制" class="headerlink" title="5、对客户端请求进行限制"></a><span id="client_limit">5、对客户端请求进行限制</span></h4><ul>
+<li><p><code>limit_except METHOD {...};</code></p>
+</li>
+<li><ul>
+<li>对指定范围之外的其它方法进行访问控制,应用于location上下文</li>
+</ul>
+</li>
+<li><p><code>limit_rate SPEED;</code></p>
+</li>
+<li><ul>
+<li>限制客户端每秒种所能够传输的字节数, 默认为0,表示不限制,应用于http,server,location,if in location上下文中</li>
+</ul>
+</li>
+<li><p><code>limit_rate_after SIZE;</code></p>
+</li>
+<li><ul>
+<li>超出SIZE的值, 就限制速度,应用于http,server,location,if in locataion上下文中</li>
+</ul>
+</li>
+</ul>
+<h4 id="6、文件操作优化相关的配置"><a href="#6、文件操作优化相关的配置" class="headerlink" title="6、文件操作优化相关的配置"></a><span id="file_cfg_para">6、文件操作优化相关的配置</span></h4><ul>
+<li><p><code>aio on | off;</code></p>
+</li>
+<li><ul>
+<li>是否启用异步IO模式, 应用于http, server,location上下文中</li>
+</ul>
+</li>
+<li><p><code>directio size | off;</code></p>
+</li>
+<li><ul>
+<li>是否启用直接IO操作, 不在内存中缓冲, 直接从硬盘加载使用(当大于指定的size),应用于http,server,location</li>
+</ul>
+</li>
+<li><p><code>open_file_cache off | max=N [inactive=time];</code></p>
+</li>
+<li><ul>
+<li>(1) 文件描述符</li>
+<li>(2) 文件大小</li>
+<li>(3) 最近一次的修改时间</li>
+<li>(4) 打开的目录的结构</li>
+<li>(5) 没有找到或者没有权限操作的文件的相关信息</li>
+<li>对打开的文件进行缓存 ,nginx可以缓存以下三种信息</li>
+<li>max=N : 可缓存的最大条目上限,一旦达到上限, 则会使用LRU算法从缓存中删除最近最少使用的缓存项</li>
+<li>inactive=time : 在此处指定的时长内没有被访问过的缓存项识别为非活动缓存项, 因此直接删除</li>
+</ul>
+</li>
+<li><p><code>open_file_cache errors on|off;</code></p>
+</li>
+<li><ul>
+<li>是否缓存找不到其路径的文件,或没有权限访问的文件相关信息</li>
+</ul>
+</li>
+<li><p><code>open_file_cache_valid time;</code>    </p>
+</li>
+<li><ul>
+<li>每隔多久检查一次缓存中缓存项的有效性,默认为60秒</li>
+</ul>
+</li>
+<li><p><code>open_file_cache_min_uses number;</code></p>
+</li>
+<li><ul>
+<li>缓存项在非活动其限内最少应该被访问的次数</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、ngx-http-access-module模块"><a href="#二、ngx-http-access-module模块" class="headerlink" title="二、ngx_http_access_module模块"></a><span id="ngx_http_access_module">二、ngx_http_access_module模块</span></h2><h4 id="1、基于用户IP的权限控制"><a href="#1、基于用户IP的权限控制" class="headerlink" title="1、基于用户IP的权限控制"></a>1、基于用户IP的权限控制</h4><ul>
+<li><p><code>allow address | CIDR | unix: | all;</code> 允许</p>
+</li>
+<li><p><code>deny address | CIDR | unix: | all;</code> 拒绝</p>
+</li>
+<li><ul>
+<li><p>应用上下文件:http,server,location,limit_except</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">示例:</div><div class="line">  location / &#123;</div><div class="line">      deny 192.168.1.1;</div><div class="line">      allow 192.16.1.0/24;</div><div class="line">      allow 10.1.1.0/16;</div><div class="line">      allow 2001:0db8::32;</div><div class="line">      deny all;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="三、ngx-http-auth-basic-module模块"><a href="#三、ngx-http-auth-basic-module模块" class="headerlink" title="三、ngx_http_auth_basic_module模块"></a><span id="ngx_http_auth_basic_module">三、ngx_http_auth_basic_module模块</span></h2><h4 id="1、基于Basic认证的权限控制"><a href="#1、基于Basic认证的权限控制" class="headerlink" title="1、基于Basic认证的权限控制"></a>1、基于Basic认证的权限控制</h4><ul>
+<li><p><code>auth_basic string | off;</code></p>
+</li>
+<li><ul>
+<li>用户定义认证的名称,string为所给定字符,其作用在于认证时显示的提示信息</li>
+</ul>
+</li>
+<li><p><code>auth_basic_user_file FILE;</code></p>
+</li>
+<li><ul>
+<li>实现用户认证的用户及帐号文件,文件格式如下(需手动创建):</li>
+<li>密码可以使用httpd程序自带的工具htpasswd创建</li>
+</ul>
+</li>
+</ul>
+<h2 id="四、ngx-http-log-module模块的配置-访问日志"><a href="#四、ngx-http-log-module模块的配置-访问日志" class="headerlink" title="四、ngx_http_log_module模块的配置(访问日志)"></a><span id="ngx_http_log_module">四、ngx_http_log_module模块的配置(访问日志)</span></h2><h4 id="1、访问日志控制"><a href="#1、访问日志控制" class="headerlink" title="1、访问日志控制"></a>1、访问日志控制</h4><ul>
+<li><p><code>log_format name string....;</code></p>
+</li>
+<li><ul>
+<li>定义日志格式及其名称,日志格式一般通过调用内置变量来定义,默认格式为combined</li>
+</ul>
+</li>
+<li><p><code>access_log path [format[buffer=size [flush=time]]];</code></p>
+</li>
+<li><p><code>access_log off</code></p>
+</li>
+<li><ul>
+<li>定义日志文件路径,格式名称以及缓存大小和刷写时间间隔,建议定义缓冲以提升性能</li>
+</ul>
+</li>
+<li><p><code>open_log_file_cache max=N [inactive=time] [min_uses] [valid=time];</code></p>
+</li>
+<li><p><code>open_log_file_cache off;</code></p>
+</li>
+</ul>
+<h2 id="五、ngx-http-stub-status-module模块"><a href="#五、ngx-http-stub-status-module模块" class="headerlink" title="五、ngx_http_stub_status_module模块"></a><span id="ngx_http_stub_status_module">五、ngx_http_stub_status_module模块</span></h2><h4 id="1、nginx自身status的信息配置"><a href="#1、nginx自身status的信息配置" class="headerlink" title="1、nginx自身status的信息配置"></a>1、nginx自身status的信息配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Active connections: 1 </div><div class="line">server accepts handled requests</div><div class="line"> 2 2 18 </div><div class="line">Reading: 0 Writing: 1 Waiting: 0</div></pre></td></tr></table></figure>
+<h6 id="各参数说明"><a href="#各参数说明" class="headerlink" title="各参数说明"></a>各参数说明</h6><ul>
+<li>active connections : 当前活动的客户端连接数,包括等待的.</li>
+<li>accepts : 已接受的客户端的连接总数量</li>
+<li>handled : 已处理完成的客户端连接请求总数量</li>
+<li>requests : 客户端总的请求数</li>
+<li>reading : 当前正在读取的客户端请求报文首部信息的数量</li>
+<li>writing : 当前正在向客户端发送响应报文的连接数量</li>
+<li>wating : 等待其发出请求的空闲连接数量</li>
+</ul>
+<h2 id="六、ngx-http-referer-module模块"><a href="#六、ngx-http-referer-module模块" class="headerlink" title="六、ngx_http_referer_module模块"></a><span id="ngx_http_referer_module">六、ngx_http_referer_module模块</span></h2><blockquote>
+<p>基于请求报文中的referer首部的值, 做访问控制 ,可以防止盗链,其只应用于server,location上下文</p>
+</blockquote>
+<ul>
+<li><p><code>referer_hash_bucket_size SIZE;</code></p>
+</li>
+<li><ul>
+<li>可以放多个缓存我要上,默认是64</li>
+</ul>
+</li>
+<li><p><code>referer_hash_max_size SIZE;</code></p>
+</li>
+<li><ul>
+<li>默认2048</li>
+</ul>
+</li>
+<li><p><code>valid_referers none|blocked|server_names|string...;</code></p>
+</li>
+<li><ul>
+<li>none : 请求的报文不存在referer首部</li>
+<li>blocked : 请求报文中存在referer首部,但其没有有效值,或其值非以<a href="">http://或https开头</a></li>
+<li>server_names :其值为一个主机名</li>
+<li>arbitrary string : 直接字符串,可以使用*号匹配</li>
+<li>rugular expression : 以~起始的正则表达式</li>
+</ul>
+</li>
+</ul>
+<h2 id="七、ngx-http-ssl-module模块"><a href="#七、ngx-http-ssl-module模块" class="headerlink" title="七、ngx_http_ssl_module模块"></a><span id="ngx_http_ssl_module">七、ngx_http_ssl_module模块</span></h2><ul>
+<li><p><code>listen 443 ssl;</code></p>
+</li>
+<li><ul>
+<li>在指定端口上启用必须ssl连接</li>
+</ul>
+</li>
+<li><p><code>server_name www.zhenping.me;</code></p>
+</li>
+<li><ul>
+<li>ssl主机的FQDN名称</li>
+</ul>
+</li>
+<li><p><code>ssl_certificate cert.pem;</code></p>
+</li>
+<li><ul>
+<li>ssl的公钥</li>
+</ul>
+</li>
+<li><p><code>ssl_certificate_key cert.key;</code></p>
+</li>
+<li><ul>
+<li>ssl的私钥</li>
+</ul>
+</li>
+<li><p><code>ssl_session_cache off | none | [builtin[:size]] [shard:name:size];</code></p>
+</li>
+<li><ul>
+<li>默认使用shared模式</li>
+<li>off : 禁止缓存 ,关闭缓存,不支持缓存功能</li>
+<li>none :禁止缓存 ,不响应缓存</li>
+<li>builtin : 使用openssl内置的ssl会话缓存 ,此机制为各worker私有</li>
+<li>shared: 在各worker之间使用一个共享的缓存,name:独有名称,size:缓存空间大小, 默认为1M,可以调到10M</li>
+</ul>
+</li>
+<li><p><code>ssl_session_timeout 5m;</code></p>
+</li>
+<li><ul>
+<li>ssl会议超时时长,即ssl session cache中的缓存有效时长,默认为5m</li>
+</ul>
+</li>
+<li><p><code>ssl_prefer_server_ciphers on;</code></p>
+</li>
+<li><ul>
+<li>优先使用服务端选择的加密算法</li>
+</ul>
+</li>
+<li><p><code>ssl on | off;</code></p>
+</li>
+<li><ul>
+<li>启用或关闭ssl,若不在listen处定义，也可以在server{ }中定义ssl on; 来启用https服务</li>
+</ul>
+</li>
+<li><p><code>ssl_buffer_size SIZE;</code></p>
+</li>
+<li><ul>
+<li>ssl缓冲大小</li>
+</ul>
+</li>
+<li><p><code>ssl_ciphers CIPHERS;</code></p>
+</li>
+<li><ul>
+<li>指明由nginx使用的加密算法,可以是openssl库所支持各加密套件</li>
+</ul>
+</li>
+<li><p><code>ssl_client_certificate file;</code></p>
+</li>
+<li><ul>
+<li>需要验证客户端证书</li>
+</ul>
+</li>
+<li><p><code>ssl_crl FILE;</code></p>
+</li>
+<li><ul>
+<li>证书吊销列表</li>
+</ul>
+</li>
+<li><p><code>ssl_protocols [sslv2][sslv3][tlsv1][tlsv1.1][tlsv1.2];</code></p>
+</li>
+<li><ul>
+<li>使用哪些协议版本, 默认为TLSv1,TLSv1.1,TLSv1.2</li>
+</ul>
+</li>
+<li><p><code>ssl_trusted_certificate FILE;</code></p>
+</li>
+<li><ul>
+<li>信任的根证书</li>
+</ul>
+</li>
+<li><p><code>ssl_session_ticket_key FILE;</code></p>
+</li>
+</ul>
+<h2 id="八、ngx-http-rewrite-module模块"><a href="#八、ngx-http-rewrite-module模块" class="headerlink" title="八、ngx_http_rewrite_module模块"></a><span id="ngx_http_rewrite_module">八、ngx_http_rewrite_module模块</span></h2><blockquote>
+<p>将请求的url基于正则表达式进行重写(URL重定向),在如下情况下可以使用:http转换成httpd服务(http→https),域名转换domain.tld →domain2.tld, URL转换uri → uri2,实现SEO搜索引擎优化效果…. 将用户请求的URL基于正则表达式进行重写</p>
+</blockquote>
+<ul>
+<li><p><code>rewrite regex replacement [flag];</code></p>
+</li>
+<li><ul>
+<li>last : 重写完成之后停止对当前uri的进一步处理,改为对新uri的新一轮处理(对URI的重写规则进行匹配,当检查到第一条匹配到的时候,进行重写.然后返回到重写规则的第一条位置进行重新匹配,如果有匹配到的再进行重写,默认只能10次匹配). 此过程用户端感受不到.</li>
+<li>break : 对URI的重写规则进行匹配,只要匹配到就重写,不再进行再次匹配,此过程用户端感受不到.</li>
+<li>redirect : 重写完成之后返回客户端一个临时重定向,由客户端对新的URI重新发起请求, 即302的状态码</li>
+<li>permanent : 重写完成之后,会返回客户端一个永久的重写向,由客户端对新的URI重新发起请求,即301的状态码</li>
+<li>PCRE正则表达式元字符</li>
+<li>字符: .,[],[^]</li>
+<li>次数: *,+,?,{m},{m,}{m,n}</li>
+<li>位置锚定: ^,$</li>
+<li>或者: |</li>
+<li>分组: (), 后向引用: 2,…..</li>
+<li>应用于server,location,if上下文</li>
+<li>regex : 基于perl的正则表达式,用于匹配用户请求的URL;</li>
+<li>replacement : 重写为的结果</li>
+<li>flag:标志位</li>
+</ul>
+</li>
+<li><p><code>if(condition) {...}</code> :条件判断,引用新的配置上下文</p>
+</li>
+<li><ul>
+<li>-f,!-f : 是否存在且为普通文件</li>
+<li>-d,!-d : 是否存在且为目录</li>
+<li>-e,!-e : 是否存在</li>
+<li>-x,!-x : 是否存在且可执行</li>
+<li>==, !=</li>
+<li>~ : 模式匹配,区分字符大小写</li>
+<li>~* : 模式匹配,不区分字符大小写</li>
+<li>!~ : 模式不匹配, 区分字符大小写</li>
+<li>!~* : 模式不匹配,不区分字符大小写</li>
+<li>condition比较表达式:</li>
+<li>文件及目录判断:</li>
+</ul>
+</li>
+<li><p><code>return</code> : 立即停止对请求的URI的处理,并返回指定的状态码</p>
+</li>
+<li><ul>
+<li>returncode [text];</li>
+<li>returncode URL</li>
+<li>return URL;</li>
+</ul>
+</li>
+<li><p><code>set</code> : 设定变量值,或者自定义变量</p>
+</li>
+<li><ul>
+<li>set $variable value;</li>
+</ul>
+</li>
+<li><p><code>rewrite_log on | off;</code></p>
+</li>
+<li><ul>
+<li>是否将重写日志记录errorlog中,默认为关闭(调试方法:错误日志debug,并开启rewrite_log)</li>
+</ul>
+</li>
+</ul>
+<h2 id="九、ngx-http-gzip-module模块"><a href="#九、ngx-http-gzip-module模块" class="headerlink" title="九、ngx_http_gzip_module模块"></a><span id="ngx_http_gzip_module">九、ngx_http_gzip_module模块</span></h2><ul>
+<li><p><code>gzip on | off;</code></p>
+</li>
+<li><ul>
+<li>启用或禁用gzip压缩响应报文</li>
+</ul>
+</li>
+<li><p><code>gzip_buffers number size;</code></p>
+</li>
+<li><ul>
+<li>default 32位系统4k,64位系统8k</li>
+</ul>
+</li>
+<li><p><code>gzip_comp_level LEVEL;</code></p>
+</li>
+<li><ul>
+<li>压缩比,1-9,默认为1</li>
+</ul>
+</li>
+<li><p><code>gzip_disable regex ...;</code></p>
+</li>
+<li><ul>
+<li>regex是为用于匹配客户端响应器类型的正则表达式,表示对何种浏览器禁止使用压缩功能</li>
+</ul>
+</li>
+<li><p><code>gzip_min_length LENGTH;</code></p>
+</li>
+<li><ul>
+<li>触发压缩功能的响应报文的最小长度</li>
+</ul>
+</li>
+<li><p><code>gzip_http_version 1.0 | 1.1;</code></p>
+</li>
+<li><ul>
+<li>设定启用压缩功能的最小版本</li>
+</ul>
+</li>
+<li><p><code>gzip_proxied off | expired | no-cache | no-store | private | no_last_modified | no_etg | auth | any ...;</code></p>
+</li>
+<li><ul>
+<li>定义对客户端请求的具有何种请求属性的资源启用压缩功能,如expired表示:对由于使用expire首部而无法缓存的对象启用压缩功能</li>
+</ul>
+</li>
+<li><p><code>gzip_types mime.type;</code></p>
+</li>
+<li><ul>
+<li>指明对那些类型的资源进行压缩</li>
+</ul>
+</li>
+</ul>
+<h2 id="十、ngx-http-fastcgi-module模块"><a href="#十、ngx-http-fastcgi-module模块" class="headerlink" title="十、ngx_http_fastcgi_module模块"></a><span id="ngx_http_fastcgi_module">十、ngx_http_fastcgi_module模块</span></h2><blockquote>
+<p>fastcgi_module只能对后端的一台应用服务器进行反代,如果需要给多台应用服务器进行反代实现负载,需借助upstream模块定义一组服务器,由fastcgi功能引用来完成, lnmp的架构中, ningx只支持fastcgi的模式连接后端php服务器,不能将应用服务运行为一个子模块的方式.nginx不支持动态加载模块机制(DSO),所以需要编译php工作为fpm机制时,将ngnx_http_fastcgi_module编译到nginx程序中,在php编译时需使用 —enable-fpm,将Php设置为fpm模式.</p>
+</blockquote>
+<p>LNMP架构仅支持一种nginx+php的结合方式,实现方式如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    ...</div><div class="line">    location ~* \.php$ &#123; </div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="1、fastcgi模块指令"><a href="#1、fastcgi模块指令" class="headerlink" title="1、fastcgi模块指令"></a>1、fastcgi模块指令</h4><ul>
+<li><p><code>fastcgi_pass address;</code></p>
+</li>
+<li><ul>
+<li>address为fastcgi server监听的地址,如: fastcgi_pass localhost:9000;</li>
+</ul>
+</li>
+<li><p><code>fastcgi_index NAME;</code></p>
+</li>
+<li><ul>
+<li>定义fastcgi应用的默认主机,如: fastcgi_index index.php;</li>
+</ul>
+</li>
+<li><p><code>fastcgi_param PARAMETER VALUE[if_not_empty];</code></p>
+</li>
+<li><ul>
+<li>用户定义客户端请求的哪些属性传递给后端fastcti_server</li>
+</ul>
+</li>
+<li><p><code>fastcgi_pass_header field;</code></p>
+</li>
+<li><ul>
+<li>允许把fastcgi的响应首部直接发送给客户端</li>
+</ul>
+</li>
+<li><p><code>fastcgi_cache_path path [levels=levels][use_temp_path=on|off] keys_zone=name:size [inactive=time][max_szie=size];</code></p>
+</li>
+<li><ul>
+<li>缓存对象名字都以16进制进行编码,故一级目录一般为16个或者256个</li>
+<li>元数据存在内存中,即为keys_zone</li>
+<li>数据存在硬盘,即为path</li>
+<li>用于定义缓存,缓存 空间等,可应用于http上下文,需要运行php的用户对path有写权限.</li>
+<li>缓存机制:</li>
+<li>levels=#[:#[:#]] : 表示可以使用三级目录进行保存</li>
+<li>keys_zone=name:size : name名称要全局唯一,cache的标识符</li>
+<li>inactive=time : 缓存的非活动时间,缓存的访问次数在指定的time内比较少,就需要清理出去</li>
+<li>max-size : 缓存空间上限,指磁盘的缓存空间上限</li>
+</ul>
+</li>
+<li><p><code>fastcgi_cache zone | off;</code></p>
+</li>
+<li><ul>
+<li>调用定义过的缓存,zone即为通过fastcgi_cache_path定义缓存时其keys_zone参数中的name</li>
+</ul>
+</li>
+<li><p><code>fastcgi_cache_key string;</code></p>
+</li>
+<li><ul>
+<li>定义那些键需要进行缓存,如用户访问的URI,如:fastcgi_cache_key $request_uri;</li>
+</ul>
+</li>
+<li><p><code>fastcgi_cache_methods GET|HEAD|POST...;</code></p>
+</li>
+<li><ul>
+<li>为何种请求方法对应的请求进行缓存,默认为get和head</li>
+</ul>
+</li>
+<li><p><code>fastcgi_cache_min_uses number;</code></p>
+</li>
+<li><ul>
+<li>缓存项的最少使用次数,默认为1次</li>
+</ul>
+</li>
+<li><p><code>fastcgi_cache_revalidate on |off;</code></p>
+</li>
+<li><p><code>fastcgi_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | off;</code></p>
+</li>
+<li><ul>
+<li>是否可使用stale缓存项(不新鲜)响应用户请求,默认是off</li>
+</ul>
+</li>
+<li><p><code>fastcgi_cache_valid [code...] time;</code></p>
+</li>
+<li><ul>
+<li>对不同响应码的响应设定可缓时长</li>
+<li>缓存的设定及调用</li>
+</ul>
+</li>
+</ul>
+<h2 id="十一、ngx-http-proxy-module模块"><a href="#十一、ngx-http-proxy-module模块" class="headerlink" title="十一、ngx_http_proxy_module模块"></a><span id="ngx_http_proxy_module">十一、ngx_http_proxy_module模块</span></h2><p>反向代理(reverse proxy)方式是指以代理服务器来接受internet上的连接请求,然后将请求转发给内部网络上的服务器, 并将从服务器上得到的结果返回给internet上请求连接的客户端,此时站在服务器角度来看,代理服务器对外就表现为一个反向代理服务器,对反向代理服务器的攻击并不会使得后端内网web服务器上网页信息破坏,增强了web服务器的安全性</p>
+<ul>
+<li><p><code>proxy_pass URL;</code></p>
+</li>
+<li><ul>
+<li>应用上下文:Location,if in location, limit_except</li>
+<li>如果location URI时使用正则表达模式匹配时, 其proxy_pass后面的路径一定不能带URI地址</li>
+<li>如果location 中有rewrite重写,在proxy_pass后面的连接地址一定不能带URI地址, 那怕有/也不可以</li>
+</ul>
+</li>
+<li><p><code>proxy_pass_header field;</code></p>
+</li>
+<li><ul>
+<li>传递首部给客户端</li>
+</ul>
+</li>
+<li><p><code>proxy_hide_header field;</code></p>
+</li>
+<li><ul>
+<li>有意隐藏首部</li>
+</ul>
+</li>
+<li><p><code>proxy_set_header field value;</code></p>
+</li>
+<li><ul>
+<li>proxy_set_header HOST $http_host</li>
+<li>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</li>
+<li>request_host传递给host变量,再由代理服务器发起请求的时候,加入host首部(有的情况下代理服务器与backend服务器连接使用的IP地址, 这种传递host参数的情况下,代理发起的访问,都会转为默认的虚拟主机)</li>
+<li>将客户端的真实IP地址赋值给X-Forwarded-For变量,代理请求的时候,将发送给后端的backend server.如果中间有多层代理 , 每经过一层代理时,代理服务器都会将在后面增加自己的IP地址,并以分号分隔开来</li>
+<li>用于proxy_server向backend_server发请求报文时,将某请求首部重新赋值,或在原有值后面添加一个新的值</li>
+</ul>
+</li>
+<li><p><code>proxy_cache_path path [levels=levels][use_temp_path=on|off] keys_zone=name:size [inactive=time][max_size=size];</code></p>
+</li>
+<li><ul>
+<li>定义缓存,可用于http上下文</li>
+</ul>
+</li>
+<li><p><code>proxy_cache zone | off;</code></p>
+</li>
+<li><ul>
+<li>调用缓存,可用于http,server,location上下文</li>
+</ul>
+</li>
+<li><p><code>proxy_cache_key string;</code></p>
+</li>
+<li><ul>
+<li>$scheme : 所使用的协议</li>
+<li>$proxy_host : 请求的那个代理服务器地址</li>
+<li>$request_uri : 向那个URI发出的请求,带参数的: www.zhenping.me?username=1&amp;userid=1</li>
+<li>$uri : 向那个URI发出的请求,不带参数</li>
+<li>定义缓存键,默认为:proxy_cache_key proxy_host$request_uri;</li>
+</ul>
+</li>
+<li><p>`proxy_cache_valid [code…] time;</p>
+</li>
+<li><ul>
+<li>对不同响应码设定其可缓存时长</li>
+</ul>
+</li>
+<li><p><code>proxy_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_502 |http_503 | http_504 | http_403 | http_404 | off...;</code></p>
+</li>
+<li><ul>
+<li>定义如果后端服务器连接不成功,是否可以使用缓存数据进行响应</li>
+</ul>
+</li>
+<li><p><code>proxy_connect_timeout time;</code></p>
+</li>
+<li><ul>
+<li>定义后端服务器建立连接的超时时长,默认为60s,此值不应该超过75s</li>
+</ul>
+</li>
+<li><p><code>proxy_send_timeout time;</code></p>
+</li>
+<li><ul>
+<li>把请求发送给后端服务器的超时时长,默认为60s</li>
+</ul>
+</li>
+<li><p><code>proxy_read_timeout time;</code></p>
+</li>
+<li><ul>
+<li>等待后端服务器发送响应报文的超时时长,如果有大量的502,就需要考虑这个时长是否过短</li>
+</ul>
+</li>
+</ul>
+<h2 id="十二、ngx-http-headers-module模块"><a href="#十二、ngx-http-headers-module模块" class="headerlink" title="十二、ngx_http_headers_module模块"></a><span id="ngx_http_headers_module">十二、ngx_http_headers_module模块</span></h2><ul>
+<li><p><code>add_header_name value [always];</code> : (其可操作响应报文首部)</p>
+</li>
+<li><ul>
+<li><p>向响应报文添加自定义首部,并为其赋值,应用上下文为:http,server,location, if in location</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">add_header Via $server_addr;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>expires [modified] time;</code></p>
+</li>
+<li><p><code>expires epoch | max | off;</code></p>
+</li>
+<li><ul>
+<li>默认expires off, 允许或禁止向响应报文的cache-control或expires首部添加新值或修改其值</li>
+</ul>
+</li>
+</ul>
+<h2 id="十三、ngx-http-upstream-module模块"><a href="#十三、ngx-http-upstream-module模块" class="headerlink" title="十三、ngx_http_upstream_module模块"></a><span id="ngx_http_upstream_module">十三、ngx_http_upstream_module模块</span></h2><blockquote>
+<p>用于将多个服务器定义成服务器组,而由proxy_pass fastcgi_pass等指令引用,应用于http上下文</p>
+</blockquote>
+<ul>
+<li><p><code>upstream name {...};</code></p>
+</li>
+<li><ul>
+<li>定义一个后端服务器组,name为组名称,仅用于http上下文</li>
+</ul>
+</li>
+<li><p><code>server address [parameters];</code></p>
+</li>
+<li><ul>
+<li>weight=number : 定义服务器权重,默认为1</li>
+<li>max_fails=number : 最大失败连接尝试次数(做健康状态检测),失败连接超时时长由fail_timeout参数指定</li>
+<li>fail_timeout=number : 等待目标服务器发送响应的时长,总的超时时长</li>
+<li>backup : 备用服务器,所有主服务器均故障时,才启用此服务器(即sorry server)</li>
+<li>down : 手动标记其不再处理任何用户请求</li>
+<li>在upstream中定义一个服务器及相关参数,仅能用于upstream上下文</li>
+<li>常用参数:</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>ip hash</code></p>
+</li>
+<li><ul>
+<li>源地址hash,把来自同一个IP地址的请求始终发往同一个backend server,除非backend server不可用</li>
+</ul>
+</li>
+<li><p><code>least_conn;</code></p>
+</li>
+<li><ul>
+<li>最少连接,当各server权重不同时,即为加权最少连接</li>
+</ul>
+</li>
+<li><p><code>match name {...}</code></p>
+</li>
+<li><ul>
+<li>status code[code…]; : 期望的响应状态码</li>
+<li>header HEADER[oprator value] : 期望存在响应首部,也可对期望的响应首部值基于比较操作符和值进行比较</li>
+<li>body : 期望响应报文的主体部分应该有的内容</li>
+<li>对backend server做健康状态检测时,定义其结果判断机制,只能用于http上下文</li>
+<li>常用参数</li>
+</ul>
+</li>
+<li><p><code>health_check [parameters];</code> (较新版本中的nginx支持)</p>
+</li>
+<li><ul>
+<li>interval=time :检测的时间频率,默认为5秒钟</li>
+<li>fails=number : 判定服务器不可用的失败检测次数,默认为1次</li>
+<li>passes=number : 判定服务器可用的检测次数,默认为1次</li>
+<li>uri=URI; : 应用层的检测,做健康状态检测测试的目标URI,默认为”/“</li>
+<li>match=name : 健康状态检测的结果评估调用(match name {…}参数)指定的match配置块</li>
+<li>健康状态检测机制,应用上下文:location</li>
+<li>常用参数</li>
+</ul>
+</li>
+<li><p><code>hash key[consistent];</code></p>
+</li>
+<li><ul>
+<li>$cookie_name : 将一个用户的请求始终发往同一个backend server,能实现会话绑定的功能,此处的name为cookie中某些参数的名称,此处常用的有:cookie_username.</li>
+<li>$request_method</li>
+<li>$request_uri : 将对同一个uri的请求始终发往同一个backend server,后端为cache server时特别有用</li>
+<li>$uri</li>
+<li>应用于upstream中,指明基于hash方式进行调度时,其hash键, hash $remote_addr 相当于ip_hash;</li>
+<li>常用的hash key:</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Nginx运维常用指令详解&quot;&gt;&lt;a href=&quot;#Nginx运维常用指令详解&quot; class=&quot;headerlink&quot; title=&quot;Nginx运维常用指令详解&quot;&gt;&lt;/a&gt;Nginx运维常用指令详解&lt;/h2&gt;&lt;h4 id=&quot;目录：&quot;&gt;&lt;a href=&quot;#目录：&quot; c
+    
+    </summary>
+    
+      <category term="容器" scheme="https://fantasykai.github.io/categories/%E5%AE%B9%E5%99%A8/"/>
+    
+    
+      <category term="nginx" scheme="https://fantasykai.github.io/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>gradle 环境安装配置</title>
+    <link href="https://fantasykai.github.io/2017/07/19/JAVA/gradle/gradle%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"/>
+    <id>https://fantasykai.github.io/2017/07/19/JAVA/gradle/gradle 环境安装配置/</id>
+    <published>2017-07-19T06:59:56.000Z</published>
+    <updated>2017-07-19T06:59:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><blockquote>
+<p>Gradle是一个基于Apache Ant和Apache Maven概念的项目自动化建构工具。它使用一种基于Groovy的特定领域语言来声明项目设置，而不是传统的XML。[2]<br>当前其支持的语言限于Java、Groovy和Scala[3]，计划未来将支持更多的语言。</p>
+</blockquote>
+<h3 id="特性（优势）"><a href="#特性（优势）" class="headerlink" title="特性（优势）"></a>特性（优势）</h3><ul>
+<li>自动处理包相依关系 - 取自 Maven Repos 的概念</li>
+<li>自动处理布署问题 - 取自 Ant 的概念</li>
+<li><p>条件判断写法直觉 - 使用 Groovy 语言</p>
+<p>Java 开发者常用 Maven 和 Ant 等工具进行封装布署的自动化，或是两者兼用，不过这两个包彼此有优缺点，如果频繁改变相依包版本，使用 Ant 相当麻烦，如果琐碎工作很多，Maven 功能不足，而且两者都使用 XML 描述，相当不利于设计 if、switch 等判段式，即使写了可读性也不佳，而 Gradle 改良了过去 Maven、Ant 带给开发者的问题，至今也成为 Android Studio 内置的封装布署工具。</p>
+<p>Springboot 也在积极拥抱gradle</p>
+</li>
+<li><p><a href="https://gradle.org/" target="_blank" rel="external">gradle官网</a></p>
+</li>
+</ul>
+<h3 id="环境部署（Windows）"><a href="#环境部署（Windows）" class="headerlink" title="环境部署（Windows）"></a>环境部署（Windows）</h3><ol>
+<li><p>下载gradle安装文件 <a href="https://gradle.org/install/" target="_blank" rel="external">官网下载</a> 下载后，解压</p>
+</li>
+<li><p>安装jdk （要求jdk1.7以上）</p>
+</li>
+<li><p>“计算机”–&gt;“属性”–&gt;“高级系统设置” –&gt;“环境变量”。</p>
+</li>
+<li><p>将解压目录\gradle-4.0.1\bin的配置到path中。（或者先配置GRADLE_HOME，再配置%GRADLE_HOME%\bin到path中）</p>
+</li>
+<li><p>检查是否安装成功</p>
+<pre><code>&gt; gradle -v
+
+------------------------------------------------------------
+Gradle 4.0.1
+------------------------------------------------------------
+</code></pre></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;简述&quot;&gt;&lt;a href=&quot;#简述&quot; class=&quot;headerlink&quot; title=&quot;简述&quot;&gt;&lt;/a&gt;简述&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Gradle是一个基于Apache Ant和Apache Maven概念的项目自动化建构工具。它使用一种基于Gro
+    
+    </summary>
+    
+      <category term="技术小栈" scheme="https://fantasykai.github.io/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
+    
+    
+      <category term="java" scheme="https://fantasykai.github.io/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git 常用命令整理</title>
+    <link href="https://fantasykai.github.io/2017/07/18/tools/git/git%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/"/>
+    <id>https://fantasykai.github.io/2017/07/18/tools/git/git 常用命令整理/</id>
+    <published>2017-07-17T16:00:00.000Z</published>
+    <updated>2017-07-20T03:09:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>git常用命令整理，逐步完善自己经常使用的命令，方便查找，总结</p>
+</blockquote>
+<h2 id="先贴一张网上搜集到的git图"><a href="#先贴一张网上搜集到的git图" class="headerlink" title="先贴一张网上搜集到的git图"></a>先贴一张网上搜集到的git图</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fho6hly27sj20uu0k5qkv.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="git命令速查"><a href="#git命令速查" class="headerlink" title="git命令速查"></a>git命令速查</h2><pre><code>git init                                                  # 初始化本地git仓库（创建新仓库）
+git config --global user.name &quot;xxx&quot;                       # 配置用户名
+git config --global user.email &quot;xxx@xxx.com&quot;              # 配置邮件
+git config --global color.ui true                         # git status等命令自动着色
+git config --global color.status auto
+git config --global color.diff auto
+git config --global color.branch auto
+git config --global color.interactive auto
+git config --global --unset http.proxy                    # remove  proxy configuration on git
+git clone git+ssh://git@192.168.53.168/VT.git             # clone远程仓库
+git status                                                # 查看当前版本状态（是否修改）
+git add xyz                                               # 添加xyz文件至index
+git add .                                                 # 增加当前子目录下所有更改过的文件至index
+git commit -m &apos;xxx&apos;                                       # 提交
+git commit --amend -m &apos;xxx&apos;                               # 合并上一次提交（用于反复修改）
+git commit -am &apos;xxx&apos;                                      # 将add和commit合为一步
+git rm xxx                                                # 删除index中的文件
+git rm -r *                                               # 递归删除
+git log                                                   # 显示提交日志
+git log -1                                                # 显示1行日志 -n为n行
+git log -5
+git log --stat                                            # 显示提交日志及相关变动文件
+git log -p -m
+git show dfb02e6e4f2f7b573337763e5c0013802e392818         # 显示某个提交的详细内容
+git show dfb02                                            # 可只用commitid的前几位
+git show HEAD                                             # 显示HEAD提交日志
+git show HEAD^                                            # 显示HEAD的父（上一个版本）的提交日志 ^^为上两个版本 ^5为上5个版本
+git tag                                                   # 显示已存在的tag
+git tag -a v2.0 -m &apos;xxx&apos;                                  # 增加v2.0的tag
+git show v2.0                                             # 显示v2.0的日志及详细内容
+git log v2.0                                              # 显示v2.0的日志
+git diff                                                  # 显示所有未添加至index的变更
+git diff --cached                                         # 显示所有已添加index但还未commit的变更
+git diff HEAD^                                            # 比较与上一个版本的差异
+git diff HEAD -- ./lib                                    # 比较与HEAD版本lib目录的差异
+git diff origin/master..master                            # 比较远程分支master上有本地分支master上没有的
+git diff origin/master..master --stat                     # 只显示差异的文件，不显示具体内容
+git remote add origin git+ssh://git@192.168.53.168/VT.git # 增加远程定义（用于push/pull/fetch）
+git branch                                                # 显示本地分支
+git branch --contains 50089                               # 显示包含提交50089的分支
+git branch -a                                             # 显示所有分支
+git branch -r                                             # 显示所有原创分支
+git branch --merged                                       # 显示所有已合并到当前分支的分支
+git branch --no-merged                                    # 显示所有未合并到当前分支的分支
+git branch -m master master_copy                          # 本地分支改名
+git checkout -b master_copy                               # 从当前分支创建新分支master_copy并检出
+git checkout -b master master_copy                        # 上面的完整版
+git checkout features/performance                         # 检出已存在的features/performance分支
+git checkout --track hotfixes/BJVEP933                    # 检出远程分支hotfixes/BJVEP933并创建本地跟踪分支
+git checkout v2.0                                         # 检出版本v2.0
+git checkout -b devel origin/develop                      # 从远程分支develop创建新本地分支devel并检出
+git checkout -- README                                    # 检出head版本的README文件（可用于修改错误回退）
+git merge origin/master                                   # 合并远程master分支至当前分支
+git cherry-pick ff44785404a8e                             # 合并提交ff44785404a8e的修改
+git push origin master                                    # 将当前分支push到远程master分支
+git push origin :hotfixes/BJVEP933                        # 删除远程仓库的hotfixes/BJVEP933分支
+git push --tags                                           # 把所有tag推送到远程仓库
+git fetch                                                 # 获取所有远程分支（不更新本地分支，另需merge）
+git fetch --prune                                         # 获取所有原创分支并清除服务器上已删掉的分支
+git pull origin master                                    # 获取远程分支master并merge到当前分支
+git mv README README2                                     # 重命名文件README为README2
+git reset --hard HEAD                                     # 将当前版本重置为HEAD（通常用于merge失败回退）
+git rebase
+git branch -d hotfixes/BJVEP933                           # 删除分支hotfixes/BJVEP933（本分支修改已合并到其他分支）
+git branch -D hotfixes/BJVEP933                           # 强制删除分支hotfixes/BJVEP933
+git ls-files                                              # 列出git index包含的文件
+git show-branch                                           # 图示当前分支历史
+git show-branch --all                                     # 图示所有分支历史
+git whatchanged                                           # 显示提交历史对应的文件修改
+git revert dfb02e6e4f2f7b573337763e5c0013802e392818       # 撤销提交dfb02e6e4f2f7b573337763e5c0013802e392818
+git ls-tree HEAD                                          # 内部命令：显示某个git对象
+git rev-parse v2.0                                        # 内部命令：显示某个ref对于的SHA1 HASH
+git reflog                                                # 显示所有提交，包括孤立节点
+git show HEAD@{5}
+git show master@{yesterday}                               # 显示master分支昨天的状态
+git log --pretty=format:&apos;%h %s&apos; --graph                   # 图示提交日志
+git show HEAD~3
+git show -s --pretty=raw 2be7fcb476
+git stash                                                 # 暂存当前修改，将所有至为HEAD状态
+git stash list                                            # 查看所有暂存
+git stash show -p stash@{0}                               # 参考第一次暂存
+git stash apply stash@{0}                                 # 应用第一次暂存
+git grep &quot;delete from&quot;                                    # 文件中搜索文本“delete from”
+git grep -e &apos;#define&apos; --and -e SORT_DIRENT
+git gc
+git fsck
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;git常用命令整理，逐步完善自己经常使用的命令，方便查找，总结&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;先贴一张网上搜集到的git图&quot;&gt;&lt;a href=&quot;#先贴一张网上搜集到的git图&quot; class=&quot;headerlink&quot; title
+    
+    </summary>
+    
+      <category term="工具" scheme="https://fantasykai.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="git" scheme="https://fantasykai.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>半年总结(2017)</title>
+    <link href="https://fantasykai.github.io/2017/07/05/recording/%E5%8D%8A%E5%B9%B4%E6%80%BB%E7%BB%93/"/>
+    <id>https://fantasykai.github.io/2017/07/05/recording/半年总结/</id>
+    <published>2017-07-04T16:00:00.000Z</published>
+    <updated>2017-07-10T02:59:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="半年总结"><a href="#半年总结" class="headerlink" title="半年总结"></a>半年总结</h1><blockquote>
+<p>2017半年过去了，利用思维导图的方式稍微总结了一下，以便回顾总结，发现不足之处，逐步提高。<br>知识技能上，本是后端上半年却有点”不务正业”，APP上半年还在酝酿中，还没有涉及运维，运营时，自己感觉应该提前梳理出来，趁着后端上不忙碌，自己去熟悉总结了系统监控相关内容，集中式日志监控相关，主要熟悉了一下ELK体系，和阿里云的日志监控等，前端web，对angular,vue,react进行调研，现阶段，Vue应该是最容易入门及开展工作的。于是就了解熟悉了一些前端架构及Vue，并搭建了后台及运营管理的WEB平台。</p>
+</blockquote>
+<p>心得及收获:</p>
+<p>1.拥抱开源，真正关注开源</p>
+<p>2.贡献了第一个npm包</p>
+<p>3.技术变更速度真快…,必须不断学习。</p>
+<p>…</p>
+<p>–不足:<br>1.知识深度不够，需要深层次理解一些底层原理</p>
+<p>2.还是有些粗心大意，通过备忘录，checklist，多自我检查。</p>
+<p>3.自我表达能力亟待提高。</p>
+<p>4.生活上，自己的忙碌，让爸妈操心太多，不够关心家人。</p>
+<p>想要总结的还太多，还是要点点滴滴积累，</p>
+<p>希望下半年家人都能健健康康，自己工作，生活上能有更大的突破。</p>
+<hr>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fhelozhx5dj21gs1qktkl.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;半年总结&quot;&gt;&lt;a href=&quot;#半年总结&quot; class=&quot;headerlink&quot; title=&quot;半年总结&quot;&gt;&lt;/a&gt;半年总结&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;2017半年过去了，利用思维导图的方式稍微总结了一下，以便回顾总结，发现不足之处，逐步提高。&lt;br
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://fantasykai.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://fantasykai.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue-oss-upload 上传到阿里云的oss组件包（npm）</title>
+    <link href="https://fantasykai.github.io/2017/06/18/js/vue-oss-upload%20%E4%B8%8A%E4%BC%A0%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84oss%E7%BB%84%E4%BB%B6%E5%8C%85%EF%BC%88npm%EF%BC%89/"/>
+    <id>https://fantasykai.github.io/2017/06/18/js/vue-oss-upload 上传到阿里云的oss组件包（npm）/</id>
+    <published>2017-06-17T16:00:00.000Z</published>
+    <updated>2017-06-30T07:36:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>最近使用vue比较多，项目过程中遇到了，上传图片、视频到阿里云的OSS存储服务，<a id="more"></a>发现目前现成的上传组件，都不太支持，于是自己各种查看阿里云的文档及google，百度，自己写了一套符合自己的业务的上传组件，想到其他小伙伴肯定也会遇到类似的问题，就花了些时间，把组件提取出来，上传到了npm。</p>
+</blockquote>
+<h3 id="基本思路："><a href="#基本思路：" class="headerlink" title="基本思路："></a>基本思路：</h3><p>服务端提供接口，获取阿里云STS临时访问OSS的权限，初始化ossClient，调用oss的sdk进行上传。通过vue2.3重新引入的sync特性返回上传结果</p>
+<p>使用组件时，需要导入Css样式。自己不擅长写样式，写的比较挫，希望可以被改进，哈哈</p>
+<ul>
+<li>TODO: 上传的进度，等尚未实现，只有最终上传结果</li>
+</ul>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://cn.vuejs.org/" alt="Vue 2.3.0+](https://img.shields.io/badge/Vue-2.x-brightgreen.svg)" title="">
+                </div>
+                <div class="image-caption">Vue 2.3.0+](https://img.shields.io/badge/Vue-2.x-brightgreen.svg)</div>
+            </figure></p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://nodei.co/npm/vue-oss-upload/" alt="NPM](https://nodei.co/npm/vue-oss-upload.png?downloads=true&downloadRank=true&stars=true)" title="">
+                </div>
+                <div class="image-caption">NPM](https://nodei.co/npm/vue-oss-upload.png?downloads=true&downloadRank=true&stars=true)</div>
+            </figure></p>
+<ul>
+<li><a href="https://github.com/fantasykai/vue-ossUpload" target="_blank" rel="external">github 地址</a></li>
+</ul>
+<h1 id="vue-oss-upload"><a href="#vue-oss-upload" class="headerlink" title="vue-oss-upload"></a>vue-oss-upload</h1><h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><h3 id="需要依赖阿里云的oss的SDK-可以在index-html中引入"><a href="#需要依赖阿里云的oss的SDK-可以在index-html中引入" class="headerlink" title="需要依赖阿里云的oss的SDK,可以在index.html中引入"></a>需要依赖阿里云的oss的SDK,可以在index.html中引入</h3><p>  <code>&lt;script type=&quot;text/javascript&quot; src=&quot;https://gosspublic.alicdn.com/aliyun-oss-sdk.min.js&quot;&gt;&lt;/script&gt;</code></p>
+<h3 id="组件依赖vue2-3以上的版本"><a href="#组件依赖vue2-3以上的版本" class="headerlink" title="组件依赖vue2.3以上的版本"></a>组件依赖vue2.3以上的版本</h3><p>vue2.3 重新引入了 .sync 修饰符，但是这次它只是作为一个编译时的语法糖存在。它会被扩展为一个自动更新父组件属性的 v-on 侦听器。</p>
+<p><a href="https://cn.vuejs.org/v2/guide/components.html#counter-event-example" target="_blank" rel="external">.sync 修饰符</a></p>
+<h2 id="Use-Setup"><a href="#Use-Setup" class="headerlink" title="Use Setup"></a>Use Setup</h2><h3 id="Install-vue-oss-upload"><a href="#Install-vue-oss-upload" class="headerlink" title="Install vue-oss-upload"></a>Install vue-oss-upload</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install vue-oss-upload --save</div></pre></td></tr></table></figure>
+<h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><pre><code>props: {
+     // 需要引入阿里云OSS的SDK，并初始化ossClient
+     ossClient: {
+       type: Object,
+       toWay: false
+     },
+     // 是非支持多文件上传
+     multiple: {
+       type: Boolean,
+       twoWay: false
+     },
+     // 上传组件id，区别页面中多次使用上传组件
+     id: {
+       type: String,
+       twoWay: false
+     },
+     // 上传成功后的uri
+     url: {
+       type: String,
+       twoWay: true
+     },
+      // 上传结果
+     uploadRes: {
+       type: Boolean,
+       twoWay: true
+     },
+     // 上传按钮的名称
+     inputName: {
+       type: String,
+     },
+     // 上传文件的名称
+     uploadFileName: {
+       type: String,
+     },
+     // 上传到OSS的路径
+     path: {
+       type: String,
+     },
+   },
+</code></pre><h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><pre><code>&lt;template&gt;
+    &lt;div&gt;
+        &lt;upload-ali-oss :url.sync=&quot;uploadForm.content.path&quot; :multiple=&quot;true&quot;
+                        :id=&quot;uploadForm.id&quot;
+                        :ossClient=&quot;this.ossClient&quot;
+                        :inputName=&quot;uploadForm.inputName&quot;
+                        :uploadFileName=&quot;uploadForm.uploadFileName&quot;
+                        :path=&quot;uploadForm.upload.path&quot;
+                        :uploadRes.sync=&quot;uploadForm.uploadRes&quot;
+        &gt;&lt;/upload-ali-oss&gt;
+        &lt;div v-show=&quot;uploadForm.uploadRes&quot;
+             v-text=&quot;uploadForm.content.path&quot;&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;img v-if=&quot;uploadForm.uploadRes&quot;
+                 :src=&quot;this.imgSrc&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+    import VueUploadAliOSS from &apos;vue-oss-upload&apos;;
+    import Css from &apos;vue-oss-upload/dist/vue-alioss-upload.min.css&apos;
+    export default {
+        name: &apos;app&apos;,
+        components: {
+            &apos;upload-ali-oss&apos;: VueUploadAliOSS
+        },
+        data() {
+            return {
+                ossClient: Object,
+                uploadForm: {
+                    id: &apos;imgFile&apos;,
+                    inputName: &apos;上传图片&apos;,// 自定义
+                    uploadFileName: &apos;2017063010192023&apos;,// 上传文件的名称
+                    content: {
+                        path: &apos;&apos;,
+                    },
+                    upload: {
+                        path: &apos;img/test/&apos;,// 自定义路径
+                    },
+                    uploadRes: false,
+                },
+                imgSrc: &apos;&apos;
+            }
+        },
+        methods: {
+            // 需要引入阿里云的ossSDK
+            //初始化OSS 权限, 建议后台提供获取oss临时权限的接口
+            initOSSAuth() {
+
+                let Oss = OSS.Wrapper;
+                this.ossClient = new Oss({
+                    region: &apos;&apos;,
+                    accessKeyId: &apos;&apos;,
+                    accessKeySecret: &apos;&apos;,
+                    stsToken: &apos;&apos;,
+                    bucket: &apos;&apos;,
+                    endpoint: &apos;&apos;,
+                });
+            },
+            // 展示上传的内容（图片）
+            showUploadContent() {
+                if (this.uploadForm.content.path) {
+
+                    let path = this.uploadForm.content.path;
+
+                    var result = this.ossClient.signatureUrl(path, {
+                        response: {
+                            // &apos;content-disposition&apos;: &apos;attachment; filename=&quot;&apos; + filename + &apos;&quot;&apos;
+                            &apos;Content-Type&apos;: &apos;image/jpeg&apos;
+                        }
+                    });
+                    this.imgSrc = result;
+                }
+            }
+        },
+        watch: {
+            &apos;uploadForm.content.path&apos; (val, oldVal) {
+//                console.log(&apos;new: %s, old: %s&apos;, val, oldVal)
+                if (&apos;&apos; !== val) {
+                    this.showUploadContent();
+                }
+            }
+        },
+        mounted() {
+            this.initOSSAuth();
+        }
+    }
+&lt;/script&gt;
+&lt;style&gt;
+&lt;/style&gt;
+</code></pre><h3 id="展示效果"><a href="#展示效果" class="headerlink" title="展示效果"></a>展示效果</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fgqi3miznuj20kj0l4k4f.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h1 id="Author-Blog"><a href="#Author-Blog" class="headerlink" title="Author Blog"></a>Author Blog</h1><p><a href="https://fantasykai.cc" target="_blank" rel="external">kai.fantasy</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;最近使用vue比较多，项目过程中遇到了，上传图片、视频到阿里云的OSS存储服务，
+    
+    </summary>
+    
+      <category term="前端" scheme="https://fantasykai.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="js" scheme="https://fantasykai.github.io/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>axios 总结</title>
+    <link href="https://fantasykai.github.io/2017/06/10/js/axios%20%E6%80%BB%E7%BB%93/"/>
+    <id>https://fantasykai.github.io/2017/06/10/js/axios 总结/</id>
+    <published>2017-06-09T16:00:00.000Z</published>
+    <updated>2017-06-11T04:26:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="axios-总结"><a href="#axios-总结" class="headerlink" title="axios 总结"></a>axios 总结</h2><blockquote>
+<p>公司目前没有web端开发，逐步需要做运维，运营的页面，想要快速开展工作，<br>就去了解了下目前比较火的前端框架，前端框架层出不穷技术栈也是日新月异，react vue angular，在做过一段时间了解和对比之后，认为目前vue是最合适的。</p>
+<p>去官网熟悉了一下基本文档，写了几个demo，就开始设计运营业务的前端架构，借鉴很多github上的优秀作品，今天主要是总结下接口调用的http框架：axios</p>
+<p>之前使用JQuery时，接口调用是通过$.ajax， 在熟悉vue的过程中，去了解到这块的解决方案，虽然vue全家桶中，提供了vue-resource，但是vue2.0版本以后，尤大宣布不再继续维护vue-resource，并推荐使用 axios，通过实践后，发现axios确实好用~</p>
+</blockquote>
+<h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><ul>
+<li>axios 是一个基于Promise 用于浏览器和 nodejs 的 HTTP 客户端</li>
+</ul>
+<h4 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h4><ul>
+<li>从浏览器中创建 XMLHttpRequest</li>
+<li>从 node.js 发出 http 请求</li>
+<li>支持 Promise API</li>
+<li>拦截请求和响应</li>
+<li>转换请求和响应数据</li>
+<li>取消请求</li>
+<li>自动转换JSON数据</li>
+<li>客户端支持防止 CSRF/XSRF</li>
+</ul>
+<h3 id="引入方式："><a href="#引入方式：" class="headerlink" title="引入方式："></a>引入方式：</h3><p>Using npm:</p>
+<pre><code>$ npm install axios
+</code></pre><p>Using bower:</p>
+<pre><code>$ bower install axios
+</code></pre><p>Using cdn:</p>
+<pre><code>&lt;script src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>我的项目使用的是vue-cli脚手架构建，使用的npm的安装方式进行引入</p>
+<pre><code>npm install --save axios
+</code></pre><h3 id="使用举例："><a href="#使用举例：" class="headerlink" title="使用举例："></a>使用举例：</h3><ul>
+<li><p>GET 请求</p>
+<pre><code>// Make a request for a user with a given ID
+axios.get(&apos;/user?ID=12345&apos;)
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+// Optionally the request above could also be done as
+axios.get(&apos;/user&apos;, {
+    params: {
+      ID: 12345
+    }
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+</code></pre></li>
+</ul>
+<ul>
+<li><p>POST 请求</p>
+<pre><code>axios.post(&apos;/user&apos;, {
+    firstName: &apos;Fred&apos;,
+    lastName: &apos;Flintstone&apos;
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+</code></pre></li>
+<li><p>并发请求</p>
+<pre><code>function getUserAccount() {
+  return axios.get(&apos;/user/12345&apos;);
+}
+function getUserPermissions() {
+  return axios.get(&apos;/user/12345/permissions&apos;);
+}
+axios.all([getUserAccount(), getUserPermissions()])
+  .then(axios.spread(function (acct, perms) {
+    //两个请求现已完成
+  }));
+</code></pre></li>
+</ul>
+<h3 id="axios-API"><a href="#axios-API" class="headerlink" title="axios API"></a>axios API</h3><p>可以通过向 axios 传递相关配置来创建请求</p>
+<p>axios(config)</p>
+<pre><code>// 发送 POST 请求
+axios({
+  method: &apos;post&apos;,
+  url: &apos;/user/12345&apos;,
+  data: {
+    firstName: &apos;Fred&apos;,
+    lastName: &apos;Flintstone&apos;
+  }
+});
+</code></pre><p>axios(url[, config])</p>
+<pre><code>// 发送 GET 请求（默认的方法）
+axios(&apos;/user/12345&apos;);
+</code></pre><h4 id="请求方法的别名"><a href="#请求方法的别名" class="headerlink" title="请求方法的别名"></a>请求方法的别名</h4><p>为方便起见，为所有支持的请求方法提供了别名</p>
+<pre><code>axios.request(config)
+axios.get(url[, config])
+axios.delete(url[, config])
+axios.head(url[, config])
+axios.post(url[, data[, config]])
+axios.put(url[, data[, config]])
+axios.patch(url[, data[, config]])
+</code></pre><ul>
+<li>注意：在使用别名方法时， url、method、data 这些属性都不必在配置中指定。</li>
+</ul>
+<p>并发</p>
+<p>处理并发请求的助手函数</p>
+<pre><code>axios.all(iterable)
+axios.spread(callback)
+</code></pre><h4 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h4><p>可以使用自定义配置新建一个 axios 实例</p>
+<p>axios.create([config])</p>
+<pre><code>var instance = axios.create({
+  baseURL: &apos;https://some-domain.com/api/&apos;,
+  timeout: 1000,
+  headers: {&apos;X-Custom-Header&apos;: &apos;foobar&apos;}
+});
+</code></pre><h5 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h5><p>以下是可用的实例方法。指定的配置将与实例的配置合并</p>
+<pre><code>axios#request(config)
+axios#get(url[, config])
+axios#delete(url[, config])
+axios#head(url[, config])
+axios#post(url[, data[, config]])
+axios#put(url[, data[, config]])
+axios#patch(url[, data[, config]])
+</code></pre><h4 id="请求配置"><a href="#请求配置" class="headerlink" title="请求配置"></a>请求配置</h4><p>这些是创建请求时可以用的配置选项。只有 url 是必需的。如果没有指定 method，请求将默认使用 get 方法。</p>
+<pre><code>{
+  // `url` 是用于请求的服务器 URL
+  url: &apos;/user&apos;,
+
+  // `method` 是创建请求时使用的方法
+  method: &apos;get&apos;, // 默认是 get
+
+  // `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL。
+  // 它可以通过设置一个 `baseURL` 便于为 axios 实例的方法传递相对 URL
+  baseURL: &apos;https://some-domain.com/api/&apos;,
+
+  // `transformRequest` 允许在向服务器发送前，修改请求数据
+  // 只能用在 &apos;PUT&apos;, &apos;POST&apos; 和 &apos;PATCH&apos; 这几个请求方法
+  // 后面数组中的函数必须返回一个字符串，或 ArrayBuffer，或 Stream
+  transformRequest: [function (data) {
+    // 对 data 进行任意转换处理
+
+    return data;
+  }],
+
+  // `transformResponse` 在传递给 then/catch 前，允许修改响应数据
+  transformResponse: [function (data) {
+    // 对 data 进行任意转换处理
+
+    return data;
+  }],
+
+  // `headers` 是即将被发送的自定义请求头
+  headers: {&apos;X-Requested-With&apos;: &apos;XMLHttpRequest&apos;},
+
+  // `params` 是即将与请求一起发送的 URL 参数
+  // 必须是一个无格式对象(plain object)或 URLSearchParams 对象
+  params: {
+    ID: 12345
+  },
+
+  // `paramsSerializer` 是一个负责 `params` 序列化的函数
+  // (e.g. https://www.npmjs.com/package/qs, http://api.jquery.com/jquery.param/)
+  paramsSerializer: function(params) {
+    return Qs.stringify(params, {arrayFormat: &apos;brackets&apos;})
+  },
+
+  // `data` 是作为请求主体被发送的数据
+  // 只适用于这些请求方法 &apos;PUT&apos;, &apos;POST&apos;, 和 &apos;PATCH&apos;
+  // 在没有设置 `transformRequest` 时，必须是以下类型之一：
+  // - string, plain object, ArrayBuffer, ArrayBufferView, URLSearchParams
+  // - 浏览器专属：FormData, File, Blob
+  // - Node 专属： Stream
+  data: {
+    firstName: &apos;Fred&apos;
+  },
+
+  // `timeout` 指定请求超时的毫秒数(0 表示无超时时间)
+  // 如果请求话费了超过 `timeout` 的时间，请求将被中断
+  timeout: 1000,
+
+  // `withCredentials` 表示跨域请求时是否需要使用凭证
+  withCredentials: false, // 默认的
+
+  // `adapter` 允许自定义处理请求，以使测试更轻松
+  // 返回一个 promise 并应用一个有效的响应 (查阅 [response docs](#response-api)).
+  adapter: function (config) {
+    /* ... */
+  },
+
+  // `auth` 表示应该使用 HTTP 基础验证，并提供凭据
+  // 这将设置一个 `Authorization` 头，覆写掉现有的任意使用 `headers` 设置的自定义 `Authorization`头
+  auth: {
+    username: &apos;janedoe&apos;,
+    password: &apos;s00pers3cret&apos;
+  },
+
+  // `responseType` 表示服务器响应的数据类型，可以是 &apos;arraybuffer&apos;, &apos;blob&apos;, &apos;document&apos;, &apos;json&apos;, &apos;text&apos;, &apos;stream&apos;
+  responseType: &apos;json&apos;, // 默认的
+
+  // `xsrfCookieName` 是用作 xsrf token 的值的cookie的名称
+  xsrfCookieName: &apos;XSRF-TOKEN&apos;, // default
+
+  // `xsrfHeaderName` 是承载 xsrf token 的值的 HTTP 头的名称
+  xsrfHeaderName: &apos;X-XSRF-TOKEN&apos;, // 默认的
+
+  // `onUploadProgress` 允许为上传处理进度事件
+  onUploadProgress: function (progressEvent) {
+    // 对原生进度事件的处理
+  },
+
+  // `onDownloadProgress` 允许为下载处理进度事件
+  onDownloadProgress: function (progressEvent) {
+    // 对原生进度事件的处理
+  },
+
+  // `maxContentLength` 定义允许的响应内容的最大尺寸
+  maxContentLength: 2000,
+
+  // `validateStatus` 定义对于给定的HTTP 响应状态码是 resolve 或 reject  promise 。如果 `validateStatus` 返回 `true` (或者设置为 `null` 或 `undefined`)，promise 将被 resolve; 否则，promise 将被 rejecte
+  validateStatus: function (status) {
+    return status &gt;= 200 &amp;&amp; status &lt; 300; // 默认的
+  },
+
+  // `maxRedirects` 定义在 node.js 中 follow 的最大重定向数目
+  // 如果设置为0，将不会 follow 任何重定向
+  maxRedirects: 5, // 默认的
+
+  // `httpAgent` 和 `httpsAgent` 分别在 node.js 中用于定义在执行 http 和 https 时使用的自定义代理。允许像这样配置选项：
+  // `keepAlive` 默认没有启用
+  httpAgent: new http.Agent({ keepAlive: true }),
+  httpsAgent: new https.Agent({ keepAlive: true }),
+
+  // &apos;proxy&apos; 定义代理服务器的主机名称和端口
+  // `auth` 表示 HTTP 基础验证应当用于连接代理，并提供凭据
+  // 这将会设置一个 `Proxy-Authorization` 头，覆写掉已有的通过使用 `header` 设置的自定义 `Proxy-Authorization` 头。
+  proxy: {
+    host: &apos;127.0.0.1&apos;,
+    port: 9000,
+    auth: : {
+      username: &apos;mikeymike&apos;,
+      password: &apos;rapunz3l&apos;
+    }
+  },
+
+  // `cancelToken` 指定用于取消请求的 cancel token
+  // （查看后面的 Cancellation 这节了解更多）
+  cancelToken: new CancelToken(function (cancel) {
+  })
+}
+</code></pre><h4 id="响应结构"><a href="#响应结构" class="headerlink" title="响应结构"></a>响应结构</h4><p>某个请求的响应包含以下信息</p>
+<pre><code>{
+  // `data` 由服务器提供的响应
+  data: {},
+
+  // `status` 来自服务器响应的 HTTP 状态码
+  status: 200,
+
+  // `statusText` 来自服务器响应的 HTTP 状态信息
+  statusText: &apos;OK&apos;,
+
+  // `headers` 服务器响应的头
+  headers: {},
+
+  // `config` 是为请求提供的配置信息
+  config: {}
+}
+</code></pre><p>使用 then 时，你将接收下面这样的响应：</p>
+<pre><code>axios.get(&apos;/user/12345&apos;)
+  .then(function(response) {
+    console.log(response.data);
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.headers);
+    console.log(response.config);
+  });
+</code></pre><ul>
+<li>在使用 catch 时，或传递 rejection callback 作为 then 的第二个参数时，响应可以通过 error 对象可被使用，正如在错误处理这一节所讲。</li>
+</ul>
+<h3 id="配置的默认值-defaults"><a href="#配置的默认值-defaults" class="headerlink" title="配置的默认值/defaults"></a>配置的默认值/defaults</h3><p>你可以指定将被用在各个请求的配置默认值</p>
+<h4 id="全局的-axios-默认值"><a href="#全局的-axios-默认值" class="headerlink" title="全局的 axios 默认值"></a>全局的 axios 默认值</h4><pre><code>axios.defaults.baseURL = &apos;https://api.example.com&apos;;
+axios.defaults.headers.common[&apos;Authorization&apos;] = AUTH_TOKEN;
+axios.defaults.headers.post[&apos;Content-Type&apos;] = &apos;application/x-www-form-urlencoded&apos;;
+</code></pre><h4 id="自定义实例默认值"><a href="#自定义实例默认值" class="headerlink" title="自定义实例默认值"></a>自定义实例默认值</h4><pre><code>// 创建实例时设置配置的默认值
+var instance = axios.create({
+  baseURL: &apos;https://api.example.com&apos;
+});
+
+// 在实例已创建后修改默认值
+instance.defaults.headers.common[&apos;Authorization&apos;] = AUTH_TOKEN;
+</code></pre><h4 id="配置的优先顺序"><a href="#配置的优先顺序" class="headerlink" title="配置的优先顺序"></a>配置的优先顺序</h4><p>配置会以一个优先顺序进行合并。这个顺序是：在 lib/defaults.js 找到的库的默认值，然后是实例的 defaults 属性，最后是请求的 config 参数。后者将优先于前者。这里是一个例子：</p>
+<pre><code>// 使用由库提供的配置的默认值来创建实例
+// 此时超时配置的默认值是 `0`
+var instance = axios.create();
+
+// 覆写库的超时默认值
+// 现在，在超时前，所有请求都会等待 2.5 秒
+instance.defaults.timeout = 2500;
+
+// 为已知需要花费很长时间的请求覆写超时设置
+instance.get(&apos;/longRequest&apos;, {
+  timeout: 5000
+});
+</code></pre><h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>在请求或响应被 then 或 catch 处理前拦截它们。</p>
+<pre><code>// 添加请求拦截器
+axios.interceptors.request.use(function (config) {
+    // 在发送请求之前做些什么
+    return config;
+  }, function (error) {
+    // 对请求错误做些什么
+    return Promise.reject(error);
+  });
+
+// 添加响应拦截器
+axios.interceptors.response.use(function (response) {
+    // 对响应数据做点什么
+    return response;
+  }, function (error) {
+    // 对响应错误做点什么
+    return Promise.reject(error);
+  });
+</code></pre><p>如果你想在稍后移除拦截器，可以这样：</p>
+<pre><code>var myInterceptor = axios.interceptors.request.use(function () {/*...*/});
+axios.interceptors.request.eject(myInterceptor);
+</code></pre><p>可以为自定义 axios 实例添加拦截器</p>
+<pre><code>var instance = axios.create();
+instance.interceptors.request.use(function () {/*...*/});
+</code></pre><h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><pre><code>axios.get(&apos;/user/12345&apos;)
+  .catch(function (error) {
+    if (error.response) {
+      // 请求已发出，但服务器响应的状态码不在 2xx 范围内
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log(&apos;Error&apos;, error.message);
+    }
+    console.log(error.config);
+  });
+</code></pre><p>可以使用 validateStatus 配置选项定义一个自定义 HTTP 状态码的错误范围。</p>
+<pre><code>axios.get(&apos;/user/12345&apos;, {
+  validateStatus: function (status) {
+    return status &lt; 500; // 状态码在大于或等于500时才会 reject
+  }
+})
+</code></pre><h3 id="取消"><a href="#取消" class="headerlink" title="取消"></a>取消</h3><p>使用 cancel token 取消请求</p>
+<blockquote>
+<p>Axios 的 cancel token API 基于cancelable promises proposal，它还处于第一阶段。</p>
+</blockquote>
+<p>可以使用 CancelToken.source 工厂方法创建 cancel token，像这样：</p>
+<pre><code>var CancelToken = axios.CancelToken;
+var source = CancelToken.source();
+
+axios.get(&apos;/user/12345&apos;, {
+  cancelToken: source.token
+}).catch(function(thrown) {
+  if (axios.isCancel(thrown)) {
+    console.log(&apos;Request canceled&apos;, thrown.message);
+  } else {
+    // 处理错误
+  }
+});
+
+// 取消请求（message 参数是可选的）
+source.cancel(&apos;Operation canceled by the user.&apos;);
+</code></pre><p>还可以通过传递一个 executor 函数到 CancelToken 的构造函数来创建 cancel token：</p>
+<pre><code>var CancelToken = axios.CancelToken;
+var cancel;
+
+axios.get(&apos;/user/12345&apos;, {
+  cancelToken: new CancelToken(function executor(c) {
+    // executor 函数接收一个 cancel 函数作为参数
+    cancel = c;
+  })
+});
+
+// 取消请求
+cancel();
+</code></pre><ul>
+<li>注意 : 可以使用同一个 cancel token 取消多个请求</li>
+</ul>
+<h3 id="使用application-x-www-form-urlencoded格式"><a href="#使用application-x-www-form-urlencoded格式" class="headerlink" title="使用application / x-www-form-urlencoded格式"></a>使用application / x-www-form-urlencoded格式</h3><pre><code>默认情况下，axios将JavaScript对象序列化为JSON。 要以应用程序/ x-www-form-urlencoded格式发送数据，您可以使用以下选项之一。
+</code></pre><h4 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h4><p>在浏览器中，您可以使用URLSearchParams API，如下所示：</p>
+<pre><code>var params = new URLSearchParams();
+params.append(&apos;param1&apos;, &apos;value1&apos;);
+params.append(&apos;param2&apos;, &apos;value2&apos;);
+axios.post(&apos;/foo&apos;, params);
+</code></pre><ul>
+<li>请注意，所有浏览器都不支持URLSearchParams，但是有一个polyfill可用（确保polyfill全局环境）。</li>
+</ul>
+<p>或者，您可以使用qs库对数据进行编码：</p>
+<pre><code>var qs = require(&apos;qs&apos;);
+axios.post(&apos;/foo&apos;, qs.stringify({ &apos;bar&apos;: 123 });
+</code></pre><h4 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h4><p>在node.js中，可以使用querystring模块，如下所示：</p>
+<pre><code>var querystring = require(&apos;querystring&apos;);
+axios.post(&apos;http://something.com/&apos;, querystring.stringify({ foo: &apos;bar&apos; });
+</code></pre><p>当然也可以使用qs库。</p>
+<h3 id="使用心得"><a href="#使用心得" class="headerlink" title="使用心得"></a>使用心得</h3><p>在vue项目中，新建api/index.js</p>
+<pre><code>import axios from &apos;axios&apos;
+</code></pre><p>将所有的api集中到该文件中，方便管理</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;axios-总结&quot;&gt;&lt;a href=&quot;#axios-总结&quot; class=&quot;headerlink&quot; title=&quot;axios 总结&quot;&gt;&lt;/a&gt;axios 总结&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;公司目前没有web端开发，逐步需要做运维，运营的页面，想要快速开展
+    
+    </summary>
+    
+      <category term="前端" scheme="https://fantasykai.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="js" scheme="https://fantasykai.github.io/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>留意开源项目的变更记录</title>
+    <link href="https://fantasykai.github.io/2017/05/19/js/%E5%8D%87%E7%BA%A7%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%89%88%E6%9C%AC%E5%90%8E%E5%A4%9A%E7%95%99%E6%84%8F%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95/"/>
+    <id>https://fantasykai.github.io/2017/05/19/js/升级开源项目的版本后多留意更新记录/</id>
+    <published>2017-05-19T10:36:26.000Z</published>
+    <updated>2017-05-19T10:36:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>使用开源的东东，其版本更新后一定得多看更新记录</p>
+<p>今天下午打算把vue的一个项目从私有coding上提交到github上（提取一些组件，毕竟来源于开源，也要回馈开源）。以为只是简单的复制粘贴。提交下<br>提交前，验证下。发现所有引用echarts的地方都显示不了了<br>直接报 Can’t get dom width or height<br>仔细对比代码，一毛一样，一个没问题，一个有问题，又各种google了半天。还是看不出问题。后来想新环境我更新了依赖。echarts3只是有小小版本0.3-升级到0.4 感觉应该没啥，查了下github上的记录，引用方式变了。</p>
+</blockquote>
+<pre><code>import IEcharts from &apos;vue-echarts-v3&apos;;
+
+更新为
+
+import IEcharts from &apos;vue-echarts-v3/src/full.vue&apos;;
+</code></pre><p>经常总结工作的方式，方法，经验，不断提高自己</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;使用开源的东东，其版本更新后一定得多看更新记录&lt;/p&gt;
+&lt;p&gt;今天下午打算把vue的一个项目从私有coding上提交到github上（提取一些组件，毕竟来源于开源，也要回馈开源）。以为只是简单的复制粘贴。提交下&lt;br&gt;提交前，验证下。发现所有引用e
+    
+    </summary>
+    
+      <category term="前端" scheme="https://fantasykai.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="js" scheme="https://fantasykai.github.io/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js 指纹信息相关</title>
+    <link href="https://fantasykai.github.io/2017/05/19/js/js%20%E6%8C%87%E7%BA%B9%E7%9B%B8%E5%85%B3/"/>
+    <id>https://fantasykai.github.io/2017/05/19/js/js 指纹相关/</id>
+    <published>2017-05-19T07:17:54.000Z</published>
+    <updated>2017-05-19T07:17:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="js-浏览器指纹信息相关"><a href="#js-浏览器指纹信息相关" class="headerlink" title="js 浏览器指纹信息相关"></a>js 浏览器指纹信息相关</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote>
+<p>近期的一个需求，app做第三方分享时，用微信，或QQ邀请好友，下载app，<a id="more"></a>在被邀请方从分享页面获取app信息及下载app，安装，注册后，希望<br>可以关联到邀请方信息，可用于在后端统计，及被邀请方注册登录后，直接提示用户是否 添加 邀请方为好友。一般做法为生成邀请码，在注册时，用户填写邀请码，但这种方式，大多数用户不用在注册时，填写难记的邀请码信息。</p>
+<p>与同事们讨论后，讨论了一种方案，第三方分享是H5页面，用户在点开分享页面时，记录用户的信息（网络，手机设备等），生成一个唯一标识与分享者uid关联。新用户在注册时，关联用户的机型，网络，关联到分享者信息。</p>
+<p>js一般只能获取到浏览器的信息，浏览器的userAgent中可以获取部分设备信息（手机型号，品牌之类），虽然碰撞率很高，但目前也基本可以满足需求，最终浏览器指纹起到了一些辅助作用，也借此机会了解下相关概念，熟悉下js可以获取哪些用户信息，这里做个简单的记录</p>
+</blockquote>
+<h3 id="js指纹的概念理解"><a href="#js指纹的概念理解" class="headerlink" title="js指纹的概念理解"></a>js指纹的概念理解</h3><blockquote>
+<p>JS浏览器指纹的相关内容。浏览器指纹指的是通过JS采集用户的各种浏览器和设备信息，借此希望能生成相对唯一的uuid，用于区分用户</p>
+</blockquote>
+<h3 id="fingerprintjs2"><a href="#fingerprintjs2" class="headerlink" title="fingerprintjs2"></a>fingerprintjs2</h3><ul>
+<li><a href="https://github.com/Valve/fingerprintjs2" target="_blank" rel="external">fingerprintjs2 github地址</a></li>
+</ul>
+<blockquote>
+<p>Fingerprintjs2是github上开源的设备指纹采集器。最初的fingerprintjs库创建于2012年，但是由于新版本的开发很难保持向后兼容，因此Fingerprintjs2项目中增加了很多的新内容。</p>
+<p>该项目将更多、更有效的来源用于指纹识别，并且可配置，也就是说用户可以选择性地开启其中的选项。该项目还将重点关注IE插件，尤其是在中国流行的QQ、Baidu等。另外，该项目使用了semver（语义化的版本控制系统）。</p>
+<p>Fingerprintjs2的原理是根据所能获取到的设备相关信息：比如系统字体、ua、帆布指纹等数据，筛选计算出一个（94%情况下）近似唯一的24位哈希值，可以作为设备的唯一性标识。它的特点是不依赖cookie，用户无法通过清除缓存来删除。设备指纹现在被很多互联网反欺诈公司拿来作为用户特征识别的方法，也被一些广告公司用来跟踪用户数据。</p>
+</blockquote>
+<h4 id="Fingerprintjs2-源码列出目前可以采集到的信息"><a href="#Fingerprintjs2-源码列出目前可以采集到的信息" class="headerlink" title="Fingerprintjs2 源码列出目前可以采集到的信息"></a>Fingerprintjs2 源码列出目前可以采集到的信息</h4><pre><code>keys = this.userAgentKey(keys);
+keys = this.languageKey(keys);
+keys = this.colorDepthKey(keys);
+keys = this.pixelRatioKey(keys);
+keys = this.hardwareConcurrencyKey(keys);
+keys = this.screenResolutionKey(keys);
+keys = this.availableScreenResolutionKey(keys);
+keys = this.timezoneOffsetKey(keys);
+keys = this.sessionStorageKey(keys);
+keys = this.localStorageKey(keys);
+keys = this.indexedDbKey(keys);
+keys = this.addBehaviorKey(keys);
+keys = this.openDatabaseKey(keys);
+keys = this.cpuClassKey(keys);
+keys = this.platformKey(keys);
+keys = this.doNotTrackKey(keys);
+keys = this.pluginsKey(keys);
+keys = this.canvasKey(keys);
+keys = this.webglKey(keys);
+keys = this.adBlockKey(keys);
+keys = this.hasLiedLanguagesKey(keys);
+keys = this.hasLiedResolutionKey(keys);
+keys = this.hasLiedOsKey(keys);
+keys = this.hasLiedBrowserKey(keys);
+keys = this.touchSupportKey(keys);
+keys = this.customEntropyFunction(keys);
+var that = this;
+</code></pre><p>fingerprintjs的源码已经列出了目前能够收集到的几乎所有API，其中浏览器UA，语言，浏览器所在CPU等级（cpuclass，仅支持IE，chrome和firefox反回undefined），浏览器版本，等都是通过<code>navigator</code>对象获得，还有 <code>window.indexedDB</code> ， <code>window.sessionStorage</code> 和 <code>window.localStorage</code> 这一类h5新增的特性是否存在也被用作区分值</p>
+<p>Fingerprintjs2还考虑到了一些比较特殊的自定义区分值，比如时区，或者是否在浏览器层做了一些UA欺骗，比如 hasLiedLanguagesKey ， HasLiedBrowser ， HasLiedOs 。以 hasliedLanguageKey 为例，通过判断navigator.language和navigator.languages中第一个方法是否相同来实现：</p>
+<pre><code>try {
+      var firstLanguages = navigator.languages[0].substr(0, 2);
+      if(firstLanguages !== navigator.language.substr(0, 2)){
+        return true;
+      }
+    } catch(err){
+      return true;
+    }
+</code></pre><p>其中区分度最高的应该就是浏览器插件检测了，因为它还涉及到了一个插件安装顺序的唯独，也是通过navigator对象获得，需要对IE单独处理，关键代码：</p>
+<pre><code>var plugins = [];
+      for(var i = 0, l = navigator.plugins.length; i &lt; l; i++) {
+        plugins.push(navigator.plugins[i]);
+      }
+      // sorting plugins only for those user agents, that we know randomize the plugins
+      // every time we try to enumerate them
+      if(this.pluginsShouldBeSorted()) {
+        plugins = plugins.sort(function(a, b) {
+          if(a.name &gt; b.name){ return 1; }
+          if(a.name &lt; b.name){ return -1; }
+          return 0;
+        });
+      }
+      return this.map(plugins, function (p) {
+        var mimeTypes = this.map(p, function(mt){
+          return [mt.type, mt.suffixes].join(&quot;~&quot;);
+        }).join(&quot;,&quot;);
+        return [p.name, p.description, mimeTypes].join(&quot;::&quot;);
+      }, this);
+</code></pre><h3 id="其他一些资源获取"><a href="#其他一些资源获取" class="headerlink" title="其他一些资源获取"></a>其他一些资源获取</h3><h4 id="检测字体"><a href="#检测字体" class="headerlink" title="检测字体"></a>检测字体</h4><p>传统的方式是flash读取系统安装的字体，这里面还增加了一个通过css和js检测字体的方法，实现原理非常有趣。<br>以var text = ‘mmmmmmmmmmlli’；举例，不同的字体在同一大小的fontsize情况下，这段字体的长度和宽度是不同的，通过比较css的width和height，既可以判断用户是否有安装了相应的字体。实现的时候，可以在页面中动态插入一个span，讲fontsize设置为较大的值便于比较。这个手段也可以用在平常前端开发中，用以判断某种特定字体用户是否安装</p>
+<h4 id="Canvas-画布指纹"><a href="#Canvas-画布指纹" class="headerlink" title="Canvas 画布指纹"></a>Canvas 画布指纹</h4><p>canvas是Html5中非常重要的一个特性，它同时也可以用语js指纹的一个重要熵值。其中的原因是因为同一个canvas图像在不同的设备上（不同的GPU），由于不同的渲染引擎、压缩比例，输出格式，以及同一系统字体安装不同，导致最后输出也不相同。通过在canvas画布上画字体，最后由toDataURL()方法专为64位格式。这一方法实现成本低，无法被禁用，立刻收到了广泛关注，目前这一方法被认为是浏览器指纹中十分重要的一种方法。不过在我的测试中，我发现还是很容易产生碰撞的，最简单的例子是在移动端上，比如高度统一的iPhone上面，同一代机型由于硬件相同，且ios在不越狱的情况下无法自定义字体，这就导致了的任意两台iphone6s通过safari判断画笔指纹会百分之百的获得同样的64位编码….</p>
+<p>相关：</p>
+<p><a href="https://github.com/Valve/fingerprintjs2/wiki/List-of-options" target="_blank" rel="external">List of options</a></p>
+<p><a href="http://jcarlosnorte.com/security/2016/03/06/advanced-tor-browser-fingerprinting.html" target="_blank" rel="external">Advanced Tor Browser Fingerprinting</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;js-浏览器指纹信息相关&quot;&gt;&lt;a href=&quot;#js-浏览器指纹信息相关&quot; class=&quot;headerlink&quot; title=&quot;js 浏览器指纹信息相关&quot;&gt;&lt;/a&gt;js 浏览器指纹信息相关&lt;/h2&gt;&lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;近期的一个需求，app做第三方分享时，用微信，或QQ邀请好友，下载app，
+    
+    </summary>
+    
+      <category term="前端" scheme="https://fantasykai.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="js" scheme="https://fantasykai.github.io/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>npm 依赖管理(升级)工具 npm-check-updates</title>
+    <link href="https://fantasykai.github.io/2017/05/01/js/npm%20%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86(%E5%8D%87%E7%BA%A7)%E5%B7%A5%E5%85%B7%20npm-check-updates/"/>
+    <id>https://fantasykai.github.io/2017/05/01/js/npm 依赖管理(升级)工具 npm-check-updates/</id>
+    <published>2017-04-30T16:00:00.000Z</published>
+    <updated>2017-05-19T11:10:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>学习vue以来，发现更新版本真快，不愧是版本帝。。项目使用的vue及其他一些依赖版本更新后，想验证下最新的稳定版本，就要对<code>dependencies</code> 中各种包进行升级</p>
+</blockquote>
+<p>node 升级的依赖包的传统方法</p>
+<pre><code>npm update 名称
+</code></pre><p>项目依赖的三方包多了咋办，一个个update不显示，于是继续google，找到了2个工具：</p>
+<ul>
+<li><a href="https://github.com/dylang/npm-check" target="_blank" rel="external">npm-check</a></li>
+</ul>
+<blockquote>
+<p>检查过时的，不正确的和未使用的依赖项</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/tjunnone/npm-check-updates" target="_blank" rel="external">npm-check-updates</a></li>
+</ul>
+<blockquote>
+<p>npm-check-updates是一个命令行工具，允许您将package.json或bower.json依赖关系升级到最新版本，而不管现有的版本约束。</p>
+</blockquote>
+<h3 id="npm-check-updates-安装"><a href="#npm-check-updates-安装" class="headerlink" title="npm-check-updates 安装"></a>npm-check-updates 安装</h3><pre><code>npm install -g npm-check-updates
+</code></pre><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><pre><code>npm-check-updates （或者直接使用别名(alias) ncu）
+
+All dependencies match the latest package versions :)
+</code></pre><p>出现上面这句话就是表示目前的包都是最新的</p>
+<pre><code> express           4.12.x  →   4.13.x
+ multer            ^0.1.8  →   ^1.0.1
+ react-bootstrap  ^0.22.6  →  ^0.24.0
+ react-a11y        ^0.1.1  →   ^0.2.6
+ webpack          ~1.9.10  →  ~1.10.5
+
+Run with -u to upgrade your package.json
+</code></pre><p>以上是目前的版本，及最新的版本差异</p>
+<p>更新dependencies到新版本：</p>
+<pre><code>ncu -u
+</code></pre><p>更新全部dependencies到最新版本(包括当前指定版本范围满足最新版本号的,比如^4.2.0 -&gt; ^4.3.0)：</p>
+<pre><code>ncu -a
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;学习vue以来，发现更新版本真快，不愧是版本帝。。项目使用的vue及其他一些依赖版本更新后，想验证下最新的稳定版本，就要对&lt;code&gt;dependencies&lt;/code&gt; 中各种包进行升级&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;node 升级
+    
+    </summary>
+    
+      <category term="前端" scheme="https://fantasykai.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="js" scheme="https://fantasykai.github.io/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Let&#39;s Encrypt certbot 自动申请https证书</title>
+    <link href="https://fantasykai.github.io/2017/04/20/tools/Let&#39;s%20Encrypt%20certbot%20%E8%87%AA%E5%8A%A8%E7%94%B3%E8%AF%B7https%E8%AF%81%E4%B9%A6/"/>
+    <id>https://fantasykai.github.io/2017/04/20/tools/Let&#39;s Encrypt certbot 自动申请https证书/</id>
+    <published>2017-04-19T16:00:00.000Z</published>
+    <updated>2017-04-21T03:06:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>服务器之前从Let’s Encrypt申请的https证书到期了，没有自动更新证书，上个月有一台web服务是使用了certbot自动申请，更新证书的，没有记录，这次再操作有点生疏了，还是趁这次，把操作过程记下来，加深印象，理解吧</p>
+</blockquote>
+<h2 id="HTTPS简介"><a href="#HTTPS简介" class="headerlink" title="HTTPS简介"></a>HTTPS简介</h2><blockquote>
+<p>超文本传输安全协议（英语：Hypertext Transfer Protocol Secure，缩写：HTTPS）是一种网络安全传输协议。在计算机网络上，HTTPS经由超文本传输协议进行通信，但利用SSL/TLS来对数据包进行加密。HTTPS开发的主要目的，是提供对网络服务器的身份认证，保护交换数据的隐私与完整性</p>
+<p>HTTPS的主要思想是在不安全的网络上创建一安全信道，并可在使用适当的加密包和服务器证书可被验证且可被信任时，对窃听和中间人攻击提供合理的防护。</p>
+</blockquote>
+<h2 id="SSL-TLS-是什么？"><a href="#SSL-TLS-是什么？" class="headerlink" title="SSL/TLS 是什么？"></a>SSL/TLS 是什么？</h2><blockquote>
+<p>“ HTTP over SSL/TLS ”字面意思就是带“安全套接层”的 http 协议，内心纯洁的同学也可以理解为“带安全套的 http ”，因为带了安全套，所以当然会比较安全（/(ㄒoㄒ)/~~）。其中 SSL 是“ Secure Sockets Layer ” 的缩写，是“安全套接层”的意思。 TLS 是 “Transport Layer Security” 的缩写，是 ” 传输层安全协议 ” 的意思。 SSL 和 TLS 是同一个东西的不同阶段，理解为同一个东西也行，都是安全协议就对了。</p>
+</blockquote>
+<h2 id="为什么要部署-https"><a href="#为什么要部署-https" class="headerlink" title="为什么要部署 https"></a>为什么要部署 https</h2><blockquote>
+<p>说到底，就是 https 更安全。甚至为了安全，一个专业可靠的网站， https 是必须的。 Firefox 和 Chrome 都计划将没有配置 SSL 加密的 http 网站标记为不安全（貌似 Firefox 50 已经这么干了），目前它们也正在联合其他相关的基金会与公司推动整个互联网 https 化，现在大家访问的一些主要的网站。如 Google 多年前就已经全部启用 https ，国内的淘宝、搜狗、知乎、百度等等也全面 https 了。甚至 Google 的搜索结果也正在给予 https 的网站更高的排名和优先收录权。</p>
+</blockquote>
+<h2 id="Let’s-Encrypt-简介"><a href="#Let’s-Encrypt-简介" class="headerlink" title="Let’s Encrypt 简介"></a>Let’s Encrypt 简介</h2><blockquote>
+<p>Let’s Encrypt 是 ISRG （Internet Security Research Group） 提供的一个免费、开放、自动化的证书签发服务。ISRG 是一个美国公益组织，总部在加州。由于得到了 Mozilla、Cisco、Akamai、Electronic Frontier Foundation 和 Chrome 等众多公司和机构的支持，发展十分迅速，甚至连老牌的免费 SSL 服务商 StartSSL 也坐不住，推出了类似 Let’s Encrypt 的自动签发和续期工具。</p>
+</blockquote>
+<h2 id="Certbot-简介"><a href="#Certbot-简介" class="headerlink" title="Certbot 简介"></a>Certbot 简介</h2><blockquote>
+<p>Certbot 的官方网站是 <a href="https://certbot.eff.org/" target="_blank" rel="external">https://certbot.eff.org/</a> ，打开这个链接选择自己使用的 web server 和操作系统，EFF 官方会给出详细的使用方法</p>
+</blockquote>
+<h2 id="安装certbot"><a href="#安装certbot" class="headerlink" title="安装certbot"></a>安装certbot</h2><pre><code>#sudo yum install epel-release
+
+#sudo yum install certbot
+</code></pre><h2 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h2><pre><code>certbot certonly --email ff@mail.com --agree-tos --no-eff-email --webroot -w /var/www/html/home -d xx.xx.com
+</code></pre><h2 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h2><pre><code>ssl_certificate /etc/letsencrypt/live/xx.xx.com/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/xx.xx.com/privkey.pem;
+</code></pre><p>下面是一些本地不想在修改配置到新地址时，做个软连接就好</p>
+<h2 id="建立软连接"><a href="#建立软连接" class="headerlink" title="建立软连接"></a>建立软连接</h2><p>ln -sfn /etc/letsencrypt/live/xx.xx.com/fullchain.pem fullchain.pem<br>ln -sfn /etc/letsencrypt/live/xx.xx.com/privkey.pem privkey.pem</p>
+<h2 id="配置定时任务-没有装crontab的话，安装下"><a href="#配置定时任务-没有装crontab的话，安装下" class="headerlink" title="配置定时任务 (没有装crontab的话，安装下)"></a>配置定时任务 (没有装crontab的话，安装下)</h2><pre><code>yum -y install yum-cron
+</code></pre><h2 id="crontab-l"><a href="#crontab-l" class="headerlink" title="crontab -l"></a>crontab -l</h2><pre><code>30 2 15 * * /usr/bin/certbot renew &gt;&gt; /var/log/le-renew.log
+35 2 15 * * /usr/local/openresty/nginx/sbin/nginx -s reload
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;服务器之前从Let’s Encrypt申请的https证书到期了，没有自动更新证书，上个月有一台web服务是使用了certbot自动申请，更新证书的，没有记录，这次再操作有点生疏了，还是趁这次，把操作过程记下来，加深印象，理解吧&lt;/p&gt;
+&lt;/blo
+    
+    </summary>
+    
+      <category term="工具" scheme="https://fantasykai.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="https" scheme="https://fantasykai.github.io/tags/https/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>es6 import的路径问题</title>
+    <link href="https://fantasykai.github.io/2017/04/10/js/es6%20import%E7%9A%84%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/"/>
+    <id>https://fantasykai.github.io/2017/04/10/js/es6 import的路径问题/</id>
+    <published>2017-04-09T16:00:00.000Z</published>
+    <updated>2017-04-20T02:24:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="es6-import的路径问题"><a href="#es6-import的路径问题" class="headerlink" title="es6 import的路径问题"></a>es6 import的路径问题</h2><blockquote>
+<p>在导入</p>
+</blockquote>
+<pre><code>This dependency was not found:
+
+* /src/store/function in ./src/store/modules/checklist/index.js, ./src/store/modules/checklist/mutations.js
+</code></pre><p>问题原因：</p>
+<blockquote>
+<p>export default 的用法</p>
+</blockquote>
+<p>export default命令用于指定模块的默认输出。显然，一个模块只能有一个默认输出，因此export deault命令只能使用一次。所以，import命令后面才不用加大括号，相反其它的export 输出 可以有多个，且import时必须加大括号，示例如下</p>
+<pre><code>// modules.js
+function add(x, y) {
+  return x * y;
+}
+export {add as default};
+// 等同于
+// export default add;
+
+// app.js
+import { default as xxx } from &apos;modules&apos;;
+// 等同于
+// import xxx from &apos;modules&apos;;
+</code></pre><p>正是因为export default命令其实只是输出一个叫做default的变量，所以它后面不能跟变量声明语句，而export需要跟变量声明或者大括号作为输出:</p>
+<pre><code>// 正确
+export var a = 1;
+
+// 正确
+var a = 1;
+export default a;　　// 写法1
+export {a}　　// 写法2
+
+// 错误
+export default var a = 1;
+</code></pre><p>import 时候的路径问题(作为新手，遇到一些坑，刚好记录下)</p>
+<p>开始玩的时候，总是出现 cannot find module 问题，原来 在 import 的时候 如果不使用相对路径或者绝对路径，node默认会去node_modules/文件夹下去找，例如：</p>
+<pre><code>import * as obj from &apos;exports&apos;
+// node 会试着去寻找 node_modules/exports.js 模块
+
+// 正确写法
+ import * as obj from &apos;./exports&apos;
+</code></pre><p>关于 import * as obj from ‘xx’  这种写法是把所有的输出包裹到obj对象里</p>
+<p>对了，还有模块的继承写法：</p>
+<pre><code>// circle.js
+export var a = 1;
+
+// circleplus.js 当前模块继承了 circle 模块的所有输出
+// 此处只是继承了输出，并不能直接使用
+
+export * from &apos;circle&apos;;
+export var e = 2.71828182846;
+export default function(x) {
+  return Math.exp(x);
+}
+
+// 继承之后，circleplus.js 相当于下面代码
+export var a = 1;
+export var e = 2.71828182846;
+export default function(x) {
+  return Math.exp(x);
+}
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;es6-import的路径问题&quot;&gt;&lt;a href=&quot;#es6-import的路径问题&quot; class=&quot;headerlink&quot; title=&quot;es6 import的路径问题&quot;&gt;&lt;/a&gt;es6 import的路径问题&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;在导入&lt;/
+    
+    </summary>
+    
+      <category term="前端" scheme="https://fantasykai.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="js" scheme="https://fantasykai.github.io/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue2简单总结</title>
+    <link href="https://fantasykai.github.io/2017/04/05/js/vue2%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/"/>
+    <id>https://fantasykai.github.io/2017/04/05/js/vue2简单总结/</id>
+    <published>2017-04-04T16:00:00.000Z</published>
+    <updated>2017-04-08T02:59:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="vue2-简单总结"><a href="#vue2-简单总结" class="headerlink" title="vue2 简单总结"></a>vue2 简单总结</h2><blockquote>
+<p>一些自己的简单总结</p>
+</blockquote>
+<h3 id="一、渐进式："><a href="#一、渐进式：" class="headerlink" title="一、渐进式："></a>一、渐进式：</h3><p>从简单的引入js使用指令到构建大型web应用，都可以应付<br>简易的引入过程：<br>1.html中引入js的方式<br>2.构建自定义组件<br>3.使用组件组成网页<br>4.vue-cli(构建项目),vue,vuex（统一管理状态）,vue-route（页面路由）,webpack（自动构建，打包，发布）等 构建大型SPA(单网页应用)</p>
+<h3 id="二、适合我们现在前端发展"><a href="#二、适合我们现在前端发展" class="headerlink" title="二、适合我们现在前端发展"></a>二、适合我们现在前端发展</h3><p>vue更关注视图层，我们现在页面还比较少，随着业务发展，页面的需求会持续增多，vue本身比较小，又支持渐进式发展，后面页面逐步增多，可以抽取做成vue组件，逐步可以通过插拔组件的方式完成页面开发，提高规范及效率</p>
+<h3 id="三、MVVM"><a href="#三、MVVM" class="headerlink" title="三、MVVM"></a>三、MVVM</h3><p>数据模型/页面 双向绑定<br>根据restful的接口，数据上的变动会直接渲染到页面，页面上的文案变化，也会影响到数据模型<br>比较适合我们现在的后端风格，可以考虑客户端mvvm的解决方案。</p>
+<p>假期时，抽空简单总结了下vue常用的指令，就拿之前排行榜的例子重写了下。</p>
+<p><a href="https://github.com/fantasykai/vue2-learn-leaderboard" target="_blank" rel="external">https://github.com/fantasykai/vue2-learn-leaderboard</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;vue2-简单总结&quot;&gt;&lt;a href=&quot;#vue2-简单总结&quot; class=&quot;headerlink&quot; title=&quot;vue2 简单总结&quot;&gt;&lt;/a&gt;vue2 简单总结&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;一些自己的简单总结&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;
+    
+    </summary>
+    
+      <category term="前端" scheme="https://fantasykai.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="js" scheme="https://fantasykai.github.io/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>集中式日志监控系统</title>
+    <link href="https://fantasykai.github.io/2017/03/13/recording/%E9%9B%86%E4%B8%AD%E5%BC%8F%E6%97%A5%E5%BF%97%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F%E9%83%A8%E7%BD%B2/"/>
+    <id>https://fantasykai.github.io/2017/03/13/recording/集中式日志监控系统部署/</id>
+    <published>2017-03-12T16:00:00.000Z</published>
+    <updated>2017-03-13T12:44:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="集中式日志监控系统"><a href="#集中式日志监控系统" class="headerlink" title="集中式日志监控系统"></a>集中式日志监控系统</h1><h2 id="为什么需要日志管理系统"><a href="#为什么需要日志管理系统" class="headerlink" title="为什么需要日志管理系统"></a>为什么需要日志管理系统</h2><p>日志，对于任何系统都是重要的组成，作为程序猿，定位问题，查看系统的健康运载情况，都需要通过查询日志进行分析。</p>
+<p>合理的软件架构往往都不会是单点的，即使在同一台应用服务器上，日志有不同的种类，nginx访问日志，操作系统，应用服务，业务逻辑等等。</p>
+<p>没有日志管理系统时，我们如何分析日志：</p>
+<p>tail，cat，grep，sed ，awk ，wc… 显然不可能登录到每一台应用服务器上敲命令。</p>
+<p>于是建立一套集中式的方法，把不同来源的数据集中整合到一起，方便归纳分析，就成为解决以上痛点的方式方法。</p>
+<h2 id="ELK-简介"><a href="#ELK-简介" class="headerlink" title="ELK 简介"></a>ELK 简介</h2><p>ELK 是 Elasticsearch、Logstash 和 Kibana 三种软件产品的首字母缩写。这三者都是开源软件，通常配合使用，而且又先后归于 Elastic.co 公司名下，所以被简称为 ELK Stack,目前ELK Stack 已经成为最流行的集中式日志解决方案。</p>
+<h3 id="Elasticsearch"><a href="#Elasticsearch" class="headerlink" title="Elasticsearch"></a>Elasticsearch</h3><p>Elasticsearch 是一个实时的分布式搜索和分析引擎，它可以用于全文搜索，结构化搜索以及分析。它是一个建立在全文搜索引擎 Apache Lucene 基础上的搜索引擎，使用 Java 语言编写</p>
+<p>主要特点</p>
+<ul>
+<li>实时分析</li>
+<li>分布式实时文件存储，并将每一个字段都编入索引</li>
+<li>文档导向，所有的对象全部是文档</li>
+<li>高可用性，易扩展，支持集群（Cluster）、分片和复制（Shards 和 Replicas）。</li>
+<li>支持 JSON</li>
+</ul>
+<h3 id="Logstash"><a href="#Logstash" class="headerlink" title="Logstash"></a>Logstash</h3><p>Logstash 是一个具有实时渠道能力的数据收集引擎。使用 JRuby 语言编写</p>
+<p>主要特点</p>
+<ul>
+<li>几乎可以访问任何数据</li>
+<li>可以和多种外部应用结合</li>
+<li>支持弹性扩展</li>
+</ul>
+<p>它由三个主要部分组成</p>
+<ul>
+<li>Shipper－发送日志数据</li>
+<li>Broker－收集数据，缺省内置 Redis</li>
+<li>Indexer－数据写入</li>
+</ul>
+<h3 id="Kibana"><a href="#Kibana" class="headerlink" title="Kibana"></a>Kibana</h3><p>Kibana 是一款基于 Apache 开源协议，为 Elasticsearch 提供分析和可视化的 Web 平台。它可以在 Elasticsearch 的索引中查找，交互数据，并生成各种维度的表图。</p>
+<p>Elastic.co 在2016-10-27 发布了 Elastic Stack 5.0 以后目前更新的步伐还是很快的，并且Elastic.co 对部分好用插件开始收费。</p>
+<h2 id="整体架构图"><a href="#整体架构图" class="headerlink" title="整体架构图"></a>整体架构图</h2><p>我在对ELK有了一定了解探索后，决定先使用 ELK 5 之前比较成熟的方案做一次搭建，尝试及进一步熟悉了解集中式日志监控系统，也方便应用到我们的测试及生成环境中。</p>
+<p>各模块版本</p>
+<ul>
+<li>elasticsearch-2.4.4</li>
+<li>logstash-2.3.4</li>
+<li>kibana-4.6.3</li>
+</ul>
+<p>另外还引入消息队列</p>
+<ul>
+<li>zookeeper-3.4.9</li>
+<li>kafka_2.11-0.10.2.0</li>
+</ul>
+<p>Logstash 作为日志收集端，比较消耗 CPU 和内存资源,从Elastic.co的官网找到了更好的替代方案：Beats组件</p>
+<p>Beats 作为日志shipper</p>
+<ul>
+<li>Packetbeat（网络数据）；</li>
+<li>Metricbeat（从系统和服务收集指标。从CPU到内存，Redis到Nginx等等，Metricbeat是一种轻量级的方式来发送系统和服务统计信息）；</li>
+<li>Filebeat（日志文件）；</li>
+<li>Winlogbeat（搜集 Windows 事件日志数据）。</li>
+<li>Heartbeat （使用主动探测监视服务的可用性。给出一个URL列表，Heartbeat询问一个简单的问题：你活着吗？Heartbeat将此信息和响应时间发送到弹性堆栈的其余部分进行进一步分析）</li>
+</ul>
+<p>Beats 将搜集到的数据发送到 Logstash，经 Logstash 解析、过滤后，将其发送到 Elasticsearch 存储</p>
+<p>相比 Logstash，Beats 所占系统的 CPU 和内存几乎可以忽略不计，这样解决了Logstash 在各服务器节点上占用系统资源高的问题。另外，Beats 和 Logstash 之间支持 SSL/TLS 加密传输，客户端和服务器双向认证，保证了通信安全。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdj6dwfug4j20mo0jswft" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="部署图"><a href="#部署图" class="headerlink" title="部署图"></a>部署图</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdfbfjchczj214g10iwpx" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><p>简单把部署过程及配置文件进行记录，方便后续回顾及优化</p>
+<h3 id="相关环境："><a href="#相关环境：" class="headerlink" title="相关环境："></a>相关环境：</h3><p>部署平台/环境：</p>
+<ul>
+<li>linux centos7.2</li>
+<li>jdk1.8.0_74</li>
+</ul>
+<h3 id="1-部署Elasticsearch集群"><a href="#1-部署Elasticsearch集群" class="headerlink" title="1.部署Elasticsearch集群"></a>1.部署Elasticsearch集群</h3><ul>
+<li><a href="https://www.elastic.co" target="_blank" rel="external">elastic 官网</a></li>
+</ul>
+<p>我从官网下载了 <code>elasticsearch-2.4.4.tar.gz</code></p>
+<h4 id="解压缩tar-tz"><a href="#解压缩tar-tz" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h4><pre><code>cd /usr/local/elasticsearch
+tar -zxvf elasticsearch-2.4.4.tar.gz
+</code></pre><h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><pre><code>cd /usr/local/elasticsearch/elasticsearch-2.4.4/config
+vim elasticsearch.yml
+</code></pre><p>配置文件关键配置说明：</p>
+<p>部分配置已经在部署图中有所说明，这里再补充一些字段说明：</p>
+<pre><code> #配置es的集群名称，不同的集群用名字来区分，es会自动发现在同一网段下的es，配置成相同集群名字的各个节点形成一个集群。如果在同一网段下有多个集群，就可以用这个属性来区分不同的集群。
+cluster.name: blu-es 
+
+  #节点名称，es启动时会自动创建节点名称，自己配置下更方便维护吧
+node.name: es01
+
+ #是否作为主节点
+node.master: true
+
+#是否存储数据 
+node.data: false
+
+# 默认情况下，ElasticSearch使用0.0.0.0地址，并为http传输开启9200-9300端口，为节点到节点的通信开启9300-9400端口，可以自行设置IP地址
+network.host: 我设置为内网的IP了
+
+# 输监听定制端口
+http.port: 9200
+
+# 数据文件存储路径 此路径要创建出来
+path.data: /home/elk/data
+
+# 日志文件存储路径，此路径要创建出来
+path.logs: /var/log/elasticsearch
+</code></pre><h4 id="ES环境启动"><a href="#ES环境启动" class="headerlink" title="ES环境启动"></a>ES环境启动</h4><ul>
+<li><strong>elasticsearch默认是不支持用root用户来启动的。</strong></li>
+</ul>
+<p>解决方案：</p>
+<ul>
+<li>1.新建专门的用户用来管理elasticsearch，线上环境确实也不建议使用root用户</li>
+</ul>
+<ul>
+<li><p>2.启动时，追加 <code>Des.insecure.allow.root=true</code></p>
+<pre><code>在 `/usr/local/elasticsearch/elasticsearch-2.4.4/bin/elasticsearch` 中增加 ES_JAVA_OPTS=&quot;-Des.insecure.allow.root=true&quot;
+</code></pre></li>
+</ul>
+<p>启动ES环境</p>
+<pre><code>cd /usr/local/elasticsearch/elasticsearch-2.4.4/bin
+sh ./elasticsearch -d
+</code></pre><ul>
+<li>-d表示后台启动</li>
+</ul>
+<h4 id="Elasticsearch插件安装"><a href="#Elasticsearch插件安装" class="headerlink" title="Elasticsearch插件安装"></a>Elasticsearch插件安装</h4><p>在熟悉Elasticsearch过程中，了解到有许多不错的插件，这里把简单记录下插件的安装方法</p>
+<ul>
+<li>通过plugin 命令进行安装</li>
+</ul>
+<pre><code>#head 方便对es进行各种操作的客户端，可以查看各个索引的数据量以及分片的状态，
+/usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+#kopf es的管理工具，也提供了对ES集群操作的API。
+/usr/share/elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf
+#bigdesk 监控es状态的插
+/usr/share/elasticsearch/bin/plugin install hlstudio/bigdesk
+</code></pre><ul>
+<li>还可以到github上查找插件的源码进行手动安装，安装细节不再赘述。</li>
+</ul>
+<ul>
+<li><p>访问插件： <code>/_plugin/插件名称</code></p>
+<pre><code>如访问head
+http://ip:9200/_plugin/head/
+</code></pre></li>
+</ul>
+<h4 id="Elasticsearch集群配置"><a href="#Elasticsearch集群配置" class="headerlink" title="Elasticsearch集群配置"></a>Elasticsearch集群配置</h4><p>主要是针对 <code>elasticsearch.yml</code>的配置，上述步骤已经对该文件部分关键字段说明，我在测试环境使用了3台做集群配置，通过head插件可以查看集群的状态：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdl4okw4u7j20o60hrdks" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>ES 集群搭建OK~</p>
+<h3 id="2-部署kafka集群"><a href="#2-部署kafka集群" class="headerlink" title="2.部署kafka集群"></a>2.部署kafka集群</h3><p>Kafka集群是把状态保存在Zookeeper中的，首先要搭建Zookeeper集群。</p>
+<ul>
+<li>Zookeeper通过复制来实现高可用性，只要集群中半数以上的节点处于可用状态，它就能够保证服务继续。所以搭建集群的服务器台数应该为（2*n+1）台。</li>
+</ul>
+<h4 id="1-Zookeeper的安装配置"><a href="#1-Zookeeper的安装配置" class="headerlink" title="1) Zookeeper的安装配置"></a>1) Zookeeper的安装配置</h4><ul>
+<li><a href="https://zookeeper.apache.org" target="_blank" rel="external">zookeeper官网</a></li>
+</ul>
+<p>上述说明zookeeper集群必须保证3台以上的服务器，我这里搭建3台zookeeper服务器</p>
+<h5 id="创建myid文件"><a href="#创建myid文件" class="headerlink" title="创建myid文件"></a>创建myid文件</h5><ul>
+<li>myid 为服务器编号，用于标识服务器，这个值必须和dataDir目录下myid文件中的值保证一致</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>服务IP</th>
+<th>myid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.11.1.11</td>
+<td>11</td>
+<td></td>
+</tr>
+<tr>
+<td>10.11.1.12</td>
+<td>12</td>
+<td></td>
+</tr>
+<tr>
+<td>10.11.1.13</td>
+<td>13</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre><code>为每台机器创建myid文件
+# 10.11.1.11
+echo 11 &gt;/home/zookeeper/data/myid
+# 10.11.1.12
+echo 12 &gt;/home/zookeeper/data/myid
+# 10.11.1.13
+echo 13 &gt;/home/zookeeper/data/myid
+</code></pre><h5 id="我从官网下载了-zookeeper-3-4-9-tar-gz"><a href="#我从官网下载了-zookeeper-3-4-9-tar-gz" class="headerlink" title="我从官网下载了 zookeeper-3.4.9.tar.gz"></a>我从官网下载了 <code>zookeeper-3.4.9.tar.gz</code></h5><h5 id="解压缩tar-tz-1"><a href="#解压缩tar-tz-1" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h5><pre><code>cd /usr/local/zookeeper
+tar -zxvf zookeeper-3.4.9.tar.gz
+</code></pre><h5 id="修改配置文件-1"><a href="#修改配置文件-1" class="headerlink" title="修改配置文件"></a>修改配置文件</h5><pre><code>cd /usr/local/zookeeper/zookeeper-3.4.9/conf
+cp zoo_sample.cfg zoo.cfg
+vim zoo.cfg
+
+
+# 这个时间是作为Zk服务器之间或客户端与服务器之间维持心跳的时间间隔，每隔tickTime时间就会发送一个心跳；最小 的session过期时间为2倍tickTime 
+tickTime=2000
+# 此配置表示，允许follower(相对于Leaderer言的“客户端”)连接并同步到Leader的初始化连接时间，以tickTime为单位。当初始化连接时间超过该值，则表示连接失败。
+initLimit=10
+# 此配置项表示Leader与Follower之间发送消息时，请求和应答时间长度。如果follower在设置时间内不能与leader通信，那么此follower将会被丢弃。
+syncLimit=5
+# 数据的存放路径
+dataDir=/home/zookeeper/data
+# the port at which the clients will connect
+clientPort=2181
+# the maximum number of client connections.
+# 最大的并发连接数限制，设置为0或者不设置该参数，表示不进行连接数的限制。
+#maxClientCnxns=60
+
+# 集群模式的配置参数
+# 第一个端口是master和slave之间的通信端口，默认是2888，第二个端口是leader选举的端口，集群刚启动的时候选举或者leader挂掉之后进行新的选举的端口默认是3888
+server.11=10.11.1.11:2888:3888
+server.12=10.11.1.12:2888:3888
+server.13=10.11.1.13:2888:3888
+
+#
+# Be sure to read the maintenance section of the 
+# administrator guide before turning on autopurge.
+#
+# http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance
+#
+# The number of snapshots to retain in dataDir
+#autopurge.snapRetainCount=3
+# Purge task interval in hours
+# Set to &quot;0&quot; to disable auto purge feature
+#autopurge.purgeInterval=1        
+</code></pre><p>每台的zoo.cfg的配置相同，复制到每一台即可</p>
+<h5 id="启动zookeeper环境"><a href="#启动zookeeper环境" class="headerlink" title="启动zookeeper环境"></a>启动zookeeper环境</h5><pre><code>在bin目录下执行
+nohup ./zkServer.sh start &amp;
+</code></pre><h5 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h5><pre><code>./zkServer.sh status
+Using config: /usr/local/zookeeper/zookeeper-3.4.9/bin/../conf/zoo.cfg
+Mode: follower 
+或者 Mode: leader 
+</code></pre><h4 id="2-kafka的安装配置"><a href="#2-kafka的安装配置" class="headerlink" title="2) kafka的安装配置"></a>2) kafka的安装配置</h4><ul>
+<li><a href="https://kafka.apache.org" target="_blank" rel="external">kafka官网</a></li>
+</ul>
+<h5 id="我从kafka的官网下载了-kafka-2-11-0-10-2-0-tgz"><a href="#我从kafka的官网下载了-kafka-2-11-0-10-2-0-tgz" class="headerlink" title="我从kafka的官网下载了 kafka_2.11-0.10.2.0.tgz"></a>我从kafka的官网下载了 <code>kafka_2.11-0.10.2.0.tgz</code></h5><h5 id="解压缩tar-tz-2"><a href="#解压缩tar-tz-2" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h5><pre><code>cd /usr/local/kafka
+tar -zxvf kafka_2.11-0.10.2.0.tgz
+</code></pre><h5 id="修改配置文件-2"><a href="#修改配置文件-2" class="headerlink" title="修改配置文件"></a>修改配置文件</h5><pre><code>vim /usr/local/kafka/kafka_2.11-0.10.2.0/config/server.properties
+</code></pre><p>配置文件主要参数说明</p>
+<pre><code>#当前机器在集群中的唯一标识，和zookeeper的myid性质一样
+broker.id=1  
+
+#当前kafka对外提供服务的端口默认是9092
+port=9092 #不配置的话，默认为9092
+
+#这个是borker进行网络处理的线程数
+num.network.threads=3 
+
+#这个是borker进行I/O处理的线程数
+num.io.threads=8 
+
+#消息存放的目录，这个目录可以配置为“，”逗号分割的表达式，上面的num.io.threads要大于这个目录的个数这个目录，如果配置多个目录，新创建的topic他把消息持久化的地方是，当前以逗号分割的目录中，那个分区数最少就放那一个
+log.dirs=/usr/local/kafka/kafka_2.11-0.10.2.0/logs 
+
+
+#发送缓冲区buffer大小，数据不是一下子就发送的，先回存储到缓冲区了到达一定的大小后在发送，能提高性能
+socket.send.buffer.bytes=102400 
+
+
+#kafka接收缓冲区大小，当数据到达一定大小后在序列化到磁盘
+socket.receive.buffer.bytes=102400 
+
+#这个参数是向kafka请求消息或者向kafka发送消息的请请求的最大数，这个值不能超过java的堆栈大小
+socket.request.max.bytes=104857600 
+
+#默认的分区数，一个topic默认1个分区数
+num.partitions=6
+
+#默认消息的最大持久化时间（小时）
+log.retention.hours=60 
+
+#这个参数是：因为kafka的消息是以追加的形式落地到文件，当超过这个值的时候，kafka会新起一个文件
+log.segment.bytes=1073741824
+
+#每隔300000毫秒去检查上面配置的log失效时间（log.retention.hours=168 ），到目录查看是否有过期的消息如果有，删除
+log.retention.check.interval.ms=300000 
+
+#设置zookeeper的连接端口
+zookeeper.connect=10.11.1.11:2181,10.11.1.12:2181,10.11.1.13:2181
+
+指定客户端连接zookeeper的最大超时时间
+zookeeper.connection.timeout.ms=6000
+</code></pre><ul>
+<li>另外2台的配置只是需要修改broker.id即可，3台服务器保证broker.id不相同。</li>
+</ul>
+<h5 id="配置主机名对应IP的解析"><a href="#配置主机名对应IP的解析" class="headerlink" title="配置主机名对应IP的解析"></a>配置主机名对应IP的解析</h5><p><strong>3台配置相同</strong></p>
+<pre><code>vim /etc/hosts
+
+10.11.1.11 server1
+10.11.1.12 server2
+10.11.1.13 server3
+</code></pre><h5 id="启动kafka环境"><a href="#启动kafka环境" class="headerlink" title="启动kafka环境"></a>启动kafka环境</h5><pre><code>nohup ./kafka-server-start.sh ../config/server.properties &amp;
+</code></pre><p>kafka集群搭建OK</p>
+<h3 id="3-部署logstash服务"><a href="#3-部署logstash服务" class="headerlink" title="3.部署logstash服务"></a>3.部署logstash服务</h3><p>在此架构中，logstash担任两种角色，也处于不同的层次</p>
+<ul>
+<li>对日志进行格式化等处理，对接转存到kafka集群中。</li>
+<li>作为（消费者）从kafka集群中拉取日志消息。同步到ES集群。</li>
+</ul>
+<h4 id="部署日志处理层的logstash"><a href="#部署日志处理层的logstash" class="headerlink" title="部署日志处理层的logstash"></a>部署日志处理层的logstash</h4><p>这里用到了 <code>GeoLite</code>, 可用于转换IP，变成地理位置信息。</p>
+<ul>
+<li><a href="https://dev.maxmind.com/" target="_blank" rel="external">GeoLite官网</a></li>
+</ul>
+<h5 id="从GeoLite官网下载-GeoLiteCity-dat-gz"><a href="#从GeoLite官网下载-GeoLiteCity-dat-gz" class="headerlink" title="从GeoLite官网下载 GeoLiteCity.dat.gz"></a>从GeoLite官网下载 <code>GeoLiteCity.dat.gz</code></h5><h5 id="从elastic官网下载-logstash-2-3-4-tar-gz"><a href="#从elastic官网下载-logstash-2-3-4-tar-gz" class="headerlink" title="从elastic官网下载 logstash-2.3.4.tar.gz"></a>从elastic官网下载 <code>logstash-2.3.4.tar.gz</code></h5><h5 id="解压logstash-2-3-4-tar-gz"><a href="#解压logstash-2-3-4-tar-gz" class="headerlink" title="解压logstash-2.3.4.tar.gz"></a>解压logstash-2.3.4.tar.gz</h5><pre><code>cd /usr/local/logstash
+tar -zxvf logstash-2.3.4.tar.gz
+</code></pre><h5 id="解压GeoLiteCity-dat-gz"><a href="#解压GeoLiteCity-dat-gz" class="headerlink" title="解压GeoLiteCity.dat.gz"></a>解压GeoLiteCity.dat.gz</h5><pre><code>cd /usr/local/logstash
+tar -zxvf GeoLiteCity.dat.gz
+</code></pre><h5 id="编辑获取日志并输出到kafka的配置文件"><a href="#编辑获取日志并输出到kafka的配置文件" class="headerlink" title="编辑获取日志并输出到kafka的配置文件"></a>编辑获取日志并输出到kafka的配置文件</h5><p><code>vim logstash_in_kafka.conf</code></p>
+<pre><code># 用于接收Beats组件传送的日志信息
+input {
+    beats {
+    port =&gt; 5044
+    codec =&gt; &quot;json&quot;
+}
+}
+
+# 过滤日志内容，这里判断nginx日志时，增加ip转换的内容  
+filter {
+    if [type] == &quot;nginxacclog&quot; {
+
+    geoip {
+        source =&gt; &quot;clientip&quot;
+        target =&gt; &quot;geoip&quot;
+        database =&gt; &quot;/usr/local/logstash/GeoLiteCity.dat&quot;
+        add_field =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;%{[geoip][longitude]}&quot; ]
+        add_field =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;%{[geoip][latitude]}&quot; ]
+}
+
+    mutate {
+        convert =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;float&quot; ]
+
+}
+}
+}
+
+# 输出到kafka中
+output {
+  kafka {
+    workers =&gt; 2
+    bootstrap_servers =&gt; &quot;10.11.1.11:9092,10.11.1.12:9092,10.11.1.13:9092&quot;
+    topic_id =&gt; &quot;peiyinlog&quot;
+}
+}
+</code></pre><ul>
+<li>workers：用于写入时的工作线程</li>
+<li>bootstrap_servers：指定可用的kafka broker实例列表</li>
+<li>topic_id：指定topic名称，可以在写入前手动在broker创建定义好分片数和副本数，也可以不提前创建，那么在logstash写入时会自动创建</li>
+<li>topic，分片数和副本数则默认为broker配置文件中设置的。</li>
+</ul>
+<h5 id="启动logstash"><a href="#启动logstash" class="headerlink" title="启动logstash"></a>启动logstash</h5><pre><code>nohup ./logstash agent -f logstash_in_kafka.conf &amp;
+</code></pre><h4 id="部署作为consumer的logstash"><a href="#部署作为consumer的logstash" class="headerlink" title="部署作为consumer的logstash"></a>部署作为consumer的logstash</h4><p>同样解压logstash-2.3.4.tar.gz，只是这里的配置文件不同</p>
+<h5 id="编辑从kafka获取日志内容，传输到ES集群的配置文件"><a href="#编辑从kafka获取日志内容，传输到ES集群的配置文件" class="headerlink" title="编辑从kafka获取日志内容，传输到ES集群的配置文件"></a>编辑从kafka获取日志内容，传输到ES集群的配置文件</h5><p><code>vim kafka_to_es.conf</code></p>
+<pre><code># 从kafka获取日志内容
+input{
+    kafka {
+        zk_connect =&gt; &quot;10.11.1.11:2181,10.11.1.12:2181,10.11.1.13:2181&quot;
+        group_id =&gt; &quot;logstash&quot;
+        topic_id =&gt; &quot;peiyinlog&quot;
+        reset_beginning =&gt; false
+        consumer_threads =&gt; 50
+        decorate_events =&gt; true
+
+}
+
+}
+
+# 删除一些不需要的字段  
+filter {
+  if [type] == &quot;nginxacclog&quot; {
+
+     mutate {
+     remove_field =&gt; [&quot;slbip&quot;,&quot;kafka&quot;,&quot;domain&quot;,&quot;serverip&quot;,&quot;url&quot;,&quot;@version&quot;,&quot;offset&quot;,&quot;input_type&quot;,&quot;count&quot;,&quot;source&quot;,&quot;fields&quot;,&quot;beat.hostname&quot;,&quot;host&quot;,&quot;tags&quot;]
+    }
+}
+
+}
+
+# 输出日志到ES集群
+output {
+    if [type] == &quot;nginxacclog&quot; {
+       # stdout {codec =&gt; rubydebug }
+        elasticsearch {
+            hosts =&gt; [&quot;x.x.x.x:9200&quot;,&quot;x.x.x.x:9200&quot;]
+            index =&gt; &quot;logstash-nginxacclog-%{+YYYY.MM.dd}&quot;
+            manage_template =&gt; true
+            flush_size =&gt; 50000
+            idle_flush_time =&gt; 10
+            workers =&gt; 2
+}
+
+}
+    if [type] == &quot;messages&quot; {
+        elasticsearch {
+            hosts =&gt; [&quot;x.x.x.x:9200&quot;,&quot;x.x.x.x:9200&quot;]
+            index =&gt; &quot;logstash-messages-%{+YYYY.MM.dd}&quot;
+            manage_template =&gt; true
+            flush_size =&gt; 50000
+            idle_flush_time =&gt; 30
+            workers =&gt; 1
+}
+
+}
+
+}
+</code></pre><h5 id="启动logstash-1"><a href="#启动logstash-1" class="headerlink" title="启动logstash"></a>启动logstash</h5><pre><code>nohup ./logstash agent -f kafka_to_es.conf &amp;
+</code></pre><h3 id="4-部署日志采集程序Filebeat"><a href="#4-部署日志采集程序Filebeat" class="headerlink" title="4.部署日志采集程序Filebeat"></a>4.部署日志采集程序Filebeat</h3><p>上述已说明使用beats组件作为日志采集程序，这里只使用了<code>filebeat</code>组件收集我们测试环境上的nginx日志centos操作系统日志，并传输到logstash中。</p>
+<h4 id="从elastic官网下载-filebeat-1-2-3-x86-64-tar-gz"><a href="#从elastic官网下载-filebeat-1-2-3-x86-64-tar-gz" class="headerlink" title="从elastic官网下载 filebeat-1.2.3-x86_64.tar.gz"></a>从elastic官网下载 <code>filebeat-1.2.3-x86_64.tar.gz</code></h4><h4 id="解压logstash-2-3-4-tar-gz-1"><a href="#解压logstash-2-3-4-tar-gz-1" class="headerlink" title="解压logstash-2.3.4.tar.gz"></a>解压logstash-2.3.4.tar.gz</h4><pre><code>cd /usr/local/filebeat
+tar -zxvf ogstash-2.3.4.tar.gz
+</code></pre><h4 id="配置filebeat-yml-文件"><a href="#配置filebeat-yml-文件" class="headerlink" title="配置filebeat.yml 文件"></a>配置filebeat.yml 文件</h4><pre><code>################### Filebeat Configuration Example #########################
+
+############################# Filebeat ######################################
+
+filebeat:
+  prospectors:
+    -
+      paths:
+        - /var/log/messages
+
+      input_type: log
+
+      document_type: messages
+
+    -
+      paths:
+        - /var/log/nginx/access.log
+
+      input_type: log
+
+      document_type: nginxacclog
+
+
+      multiline: 
+          pattern: &apos;^[[:space:]]&apos;
+          negate: true
+          match: after
+
+  registry_file: /var/lib/filebeat/registry
+
+
+############################# Output ##########################################
+
+output:
+  logstash: 
+    hosts: [&quot;x.x.x.x:5044&quot;,&quot;x.x.x.x:5044&quot;]
+
+
+############################# Shipper #########################################
+
+shipper: 
+  name: &quot;blu_test&quot;
+
+
+############################# Logging ######################################### 
+
+logging:  
+  files:
+    rotateeverybytes: 10485760 # = 10MB
+</code></pre><h4 id="这里把nginx的access日志源改为json格式，方便后续处理"><a href="#这里把nginx的access日志源改为json格式，方便后续处理" class="headerlink" title="这里把nginx的access日志源改为json格式，方便后续处理"></a>这里把nginx的access日志源改为json格式，方便后续处理</h4><pre><code>log_format json &apos;{ &quot;@timestamp&quot;:&quot;$time_local&quot;,&apos;
+         &apos;&quot;clientip&quot;:&quot;$remote_addr&quot;,&apos;
+         &apos;&quot;remote_user&quot;: &quot;$remote_user&quot;, &apos;
+         &apos;&quot;http_x_forwarded_for&quot;:&quot;$http_x_forwarded_for&quot;,&apos;
+         &apos;&quot;serverip&quot;:&quot;$server_addr&quot;,&apos;
+         &apos;&quot;size&quot;:$body_bytes_sent,&apos;
+         &apos;&quot;request_time&quot;:$request_time,&apos;
+         &apos;&quot;domain&quot;:&quot;$host&quot;,&apos;
+         &apos;&quot;request&quot;: &quot;$request&quot;, &apos;
+         &apos;&quot;method&quot;:&quot;$request_method&quot;,&apos;
+         &apos;&quot;requesturi&quot;:&quot;$request_uri&quot;,&apos;
+         &apos;&quot;url&quot;:&quot;$uri&quot;,&apos;
+         &apos;&quot;appversion&quot;:&quot;$HTTP_APP_VERSION&quot;,&apos;
+         &apos;&quot;referer&quot;:&quot;$http_referer&quot;,&apos;
+         &apos;&quot;agent&quot;:&quot;$http_user_agent&quot;,&apos;
+         &apos;&quot;status&quot;:&quot;$status&quot;}&apos;;
+</code></pre><h4 id="重启nginx服务"><a href="#重启nginx服务" class="headerlink" title="重启nginx服务"></a>重启nginx服务</h4><pre><code>nginx -s reload
+</code></pre><h4 id="启动-filebeat"><a href="#启动-filebeat" class="headerlink" title="启动 filebeat"></a>启动 filebeat</h4><pre><code>cd /usr/local/filebeat/filebeat-1.2.3-x86_64
+nohup ./filebeat start &amp;
+</code></pre><h3 id="5-安装配置kibana"><a href="#5-安装配置kibana" class="headerlink" title="5.安装配置kibana"></a>5.安装配置kibana</h3><h4 id="安装kibana"><a href="#安装kibana" class="headerlink" title="安装kibana"></a>安装kibana</h4><p>kibana最早是为了代替logstash-web 用来查看 ES 中的数据，用PHP编写的web</p>
+<p>k2 是k1作者使用ruby重写</p>
+<p>K3 是纯前端框架搭建，使用angularjs 编写</p>
+<p>K4 是使用node.js编写</p>
+<p>目前最新的版本已经是K5 </p>
+<p>本次部署依然选用了比较成熟的k4,安装也相对比较简单</p>
+<h5 id="从elastic官网下载-kibana-4-6-3-linux-x86-64-tar-gz"><a href="#从elastic官网下载-kibana-4-6-3-linux-x86-64-tar-gz" class="headerlink" title="从elastic官网下载 kibana-4.6.3-linux-x86_64.tar.gz"></a>从elastic官网下载 <code>kibana-4.6.3-linux-x86_64.tar.gz</code></h5><h5 id="解压kibana-4-6-3-linux-x86-64-tar-gz"><a href="#解压kibana-4-6-3-linux-x86-64-tar-gz" class="headerlink" title="解压kibana-4.6.3-linux-x86_64.tar.gz"></a>解压kibana-4.6.3-linux-x86_64.tar.gz</h5><pre><code>cd /usr/local/kibana
+tar -zxvf kibana-4.6.3-linux-x86_64.tar.gz
+</code></pre><h5 id="配置kibana-yml-文件"><a href="#配置kibana-yml-文件" class="headerlink" title="配置kibana.yml 文件"></a>配置kibana.yml 文件</h5><pre><code>cd /usr/local/kibana/kibana-4.6.3-linux-x86_64/config
+vim kibana.yml
+</code></pre><p>一堆参数，只需修改这3个，即可启动</p>
+<pre><code># Kibana is served by a back end server. This controls which port to use.
+server.port: 5601
+
+# The host to bind the server to.
+server.host: &quot;0.0.0.0&quot;
+
+# The Elasticsearch instance to use for all your queries.
+elasticsearch.url: &quot;http://IP:9200&quot;
+</code></pre><h5 id="启动kibana"><a href="#启动kibana" class="headerlink" title="启动kibana"></a>启动kibana</h5><pre><code>nohup ./kibana &amp;
+</code></pre><h4 id="访问kibana，配置日志索引"><a href="#访问kibana，配置日志索引" class="headerlink" title="访问kibana，配置日志索引"></a>访问kibana，配置日志索引</h4><ul>
+<li>访问地址： <code>http://IP:5601</code></li>
+</ul>
+<p>默认情况下，Kibana 认为你要访问的是通过 Logstash 导入 Elasticsearch 的数据。这时候你可以用默认的 logstash-<em> 作为你的 index pattern。通配符(</em>) 匹配索引名中零到多个字符。如果你的 Elasticsearch 索引有其他命名约定，输入合适的 pattern。pattern 也开始是最简单的单个索引的名字。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/mw690/7108d6c2ly1fdlec8xlpfj210z0hbtae" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如果一个新索引是定期生成，而且索引名中带有时间戳，选择 <code>Use event times to create index names</code> 选项，然后再选择 <code>Index pattern interval</code>。这可以提高搜索性能，Kibana 会至搜索你指定的时间范围内的索引。在你用 Logstash 输出数据给 Elasticsearch 的情况下尤其有效。</p>
+<p>点击 <code>Create</code> 添加 <code>index pattern</code>。第一个被添加的 pattern 会自动被设置为默认值。如果你有多个 index pattern 的时候，你可以在 Settings &gt; Indices 里设置具体哪个是默认值。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/mw690/7108d6c2ly1fdleezdoyrj21070pgq78" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h4 id="kibana简单介绍"><a href="#kibana简单介绍" class="headerlink" title="kibana简单介绍"></a>kibana简单介绍</h4><p>简单介绍下kibana的三个模块</p>
+<h5 id="Discover"><a href="#Discover" class="headerlink" title="Discover"></a>Discover</h5><p>可以从 <strong><code>Discover</code></strong> 页面以交互方式探索日志数据，可以过滤搜索结果以及查看文档数据。 还可以查看与搜索查询匹配的文档数，并获取字段值统计信息，可以配置时间字段，则日志随时间的分布将显示在页面顶部的直方图中。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlh5o8arrj218m0ekwgf" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="Visualize"><a href="#Visualize" class="headerlink" title="Visualize"></a>Visualize</h5><p><strong><code>Visualize</code></strong> 用来构建显示相关可视化的仪表板.Kibana可视化基于Elasticsearch查询。 通过使用一系列Elasticsearch聚合来提取和处理数据</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlh5z4x7ej210p0k6tb6" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="Dashboard"><a href="#Dashboard" class="headerlink" title="Dashboard"></a>Dashboard</h5><p>Kibana仪表板显示已保存的可视化对象的集合。 可以根据需要安排和调整可视化对象，并保存仪表板，以便重新加载和共享。</p>
+<p>我在Visualize中制作了一些简单的统计，绘制了一个Dashboard</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlhexd03kj21f30qzqfa" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>目前对Kibana及ES尚未深入了解，后续有一定掌握之后再做总结分享。</p>
+<h3 id="后续优化："><a href="#后续优化：" class="headerlink" title="后续优化："></a>后续优化：</h3><ul>
+<li>部署的的相关应用统一管理等</li>
+<li>ES 调优</li>
+<li>kafka集群调优</li>
+<li>kibana扩展</li>
+<li>kibana接入到nginx中</li>
+<li>等等</li>
+</ul>
+<p>参考资料：</p>
+<ul>
+<li><p><a href="https://www.gitbook.com/book/chenryn/elk-stack-guide-cn/details" target="_blank" rel="external">elk-stack-guide-cn</a></p>
+</li>
+<li><p><a href="https://www.elastic.co" target="_blank" rel="external">elastic.co</a></p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;集中式日志监控系统&quot;&gt;&lt;a href=&quot;#集中式日志监控系统&quot; class=&quot;headerlink&quot; title=&quot;集中式日志监控系统&quot;&gt;&lt;/a&gt;集中式日志监控系统&lt;/h1&gt;&lt;h2 id=&quot;为什么需要日志管理系统&quot;&gt;&lt;a href=&quot;#为什么需要日志管理系统&quot; c
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://fantasykai.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="日志" scheme="https://fantasykai.github.io/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多说评论一篇文章被评论后，其他文章都添加了相同的评论</title>
+    <link href="https://fantasykai.github.io/2017/03/10/tools/%E5%A4%9A%E8%AF%B4%E8%AF%84%E8%AE%BA%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E8%A2%AB%E8%AF%84%E8%AE%BA%E5%90%8E%EF%BC%8C%E5%85%B6%E4%BB%96%E6%96%87%E7%AB%A0%E9%83%BD%E6%B7%BB%E5%8A%A0%E4%BA%86%E7%9B%B8%E5%90%8C%E7%9A%84%E8%AF%84%E8%AE%BA/"/>
+    <id>https://fantasykai.github.io/2017/03/10/tools/多说评论一篇文章被评论后，其他文章都添加了相同的评论/</id>
+    <published>2017-03-10T07:44:10.000Z</published>
+    <updated>2017-03-10T07:44:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>前端时间开博客开通了评论功能，使用的是<code>多说评论</code>duoshuo.com，今天在查找一些资料时，发现每一篇博客都有相同的评论，<a id="more"></a><br>自己当时没有测试该功能，居然有出现这种问题，看来还是凡事都得马虎不得，不能轻易想当然！</p>
+</blockquote>
+<p>简单梳理了下解决的思路，希望对遇到相同问题的朋友有所帮助</p>
+<h3 id="思考过程"><a href="#思考过程" class="headerlink" title="思考过程"></a>思考过程</h3><ul>
+<li>查找原因</li>
+</ul>
+<p>每一篇文章都是相同的回复，测试了一下，回复一篇文章，其他文章都出现了自己的回复，<strong>认为是同一篇文章？</strong></p>
+<p>先登录多说的管理后台，看到评论的文章名称都是乱码。</p>
+<p>再查看自己的配置，检查哪里是否配置错，</p>
+<p>评论模块的配置：comment.ejs</p>
+<p>这里是copy的多说提供的通用配置</p>
+<pre><code>&lt;!-- 多说评论框 start --&gt;
+    &lt;div class=&quot;ds-thread&quot; data-thread-key=&quot;请将此处替换成文章在你的站点中的ID&quot; data-title=&quot;请替换成文章的标题&quot; data-url=&quot;请替换成文章的网址&quot;&gt;&lt;/div&gt;
+&lt;!-- 多说评论框 end --&gt;
+&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+ 。。。
+&lt;!-- 多说公共JS代码 end --&gt;
+</code></pre><p>这里可以看出<code>data-thread-key</code> 是个关键字段，是用来区分文章的唯一ID，这里居然居然没改，问题肯定在这里，马上检查生成的html，果然<code>&lt;section id=&quot;comments&quot; class=&quot;comment&quot;&gt;</code>模块部分生成的代码data-thread-key=内容都是乱码了，打开几篇文章查看，果然都是相同的乱码。因为comment.ejs默认的编码不是UTF-8。所以嵌入到文章里只有这部分是乱码</p>
+<ul>
+<li><p>问题解决</p>
+<p>把comment.ejs中的中文注释全部删除，COPY 最新的 多说通用代码，修改data-thread-key， data-title，data-url的配置</p>
+<pre><code>&lt;section id=&quot;comments&quot; class=&quot;comment&quot;&gt;
+    &lt;div class=&quot;ds-thread&quot; data-thread-key=&quot;&lt;%- page.path %&gt;&quot; data-title=&quot;&lt;%- page.title %&gt;&quot; data-url=&quot;&lt;%- page.permalink %&gt;&quot;&gt;&lt;/div&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;
+   var duoshuoQuery = {short_name:&quot;zijide&quot;};
+    (function() {
+        var ds = document.createElement(&apos;script&apos;);
+        ds.type = &apos;text/javascript&apos;;ds.async = true;
+        ds.src = (document.location.protocol == &apos;https:&apos; ? &apos;https:&apos; : &apos;http:&apos;) + &apos;//static.duoshuo.com/embed.js&apos;;
+        ds.charset = &apos;UTF-8&apos;;
+        (document.getElementsByTagName(&apos;head&apos;)[0] 
+         || document.getElementsByTagName(&apos;body&apos;)[0]).appendChild(ds);
+    })();
+    &lt;/script&gt;
+&lt;/section&gt;
+</code></pre></li>
+</ul>
+<p>再次发布，测试评论模块及回评，OK了。</p>
+<ul>
+<li><a href="https://dev.duoshuo.com/docs/5003ecd94cab3e7250000008" target="_blank" rel="external">评论框调用代码参数说明</a></li>
+</ul>
+<blockquote>
+<p>凡事须再细心，认真</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;前端时间开博客开通了评论功能，使用的是&lt;code&gt;多说评论&lt;/code&gt;duoshuo.com，今天在查找一些资料时，发现每一篇博客都有相同的评论，
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://fantasykai.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://fantasykai.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IDEA 15 Tomcat JRebel 6.4 实现热部署</title>
+    <link href="https://fantasykai.github.io/2017/03/08/tools/IDE/idea%E5%AE%9E%E7%8E%B0%E7%83%AD%E9%83%A8%E7%BD%B2/"/>
+    <id>https://fantasykai.github.io/2017/03/08/tools/IDE/idea实现热部署/</id>
+    <published>2017-03-08T10:09:54.000Z</published>
+    <updated>2017-03-08T10:09:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="idea-是个好东东"><a href="#idea-是个好东东" class="headerlink" title="idea 是个好东东"></a><strong>idea 是个好东东</strong></h3><blockquote>
+<p>使用Intellij IDEA 一个月了，期间了解及感受到了其许多美妙之处，使用过程中遇到许多问题，既然博客已经搭建起来了，后面多记录，<a id="more"></a>多总结吧~</p>
+</blockquote>
+<h3 id="关于热部署"><a href="#关于热部署" class="headerlink" title="关于热部署"></a><strong>关于热部署</strong></h3><blockquote>
+<p>刚开始玩idea，项目从eclipse导过来的，使用的maven构建，tomcat作为容器，每次修改类，文件等都需要使用maven重新编译，打包，重启tomcat，刚开始使用idea，不太熟络，而且编译打包速度也挺快，就当是熟悉过程，这样编译，重启，编译重启一段时间后，果然还是觉得影响效率，于是尝开始思考，尝试如何热部署环境。</p>
+</blockquote>
+<h3 id="关于JRebel"><a href="#关于JRebel" class="headerlink" title="关于JRebel"></a><strong>关于JRebel</strong></h3><blockquote>
+<p>Jrebel 可快速实现热部署，节省了大量重启时间，提高了个人开发效率,JRebel是收费软件 ! 好东西果然收费</p>
+<p>JRebel是一款JAVA虚拟机插件，它使得JAVA程序员能在不进行重部署的情况下，即时看到代码的改变对一个应用程序带来的影响。JRebel使你能即时分别看到代码、类和资源的变化，你可以一个个地上传而不是一次性全部部署。当程序员在开发环境中对任何一个类或者资源作出修改的时候，这个<br>变化会直接反应在部署好的应用程序上，从而跳过了构建和部署的过程，每年可以省去部署用的时间花费高达5.25个星期。<br>-百度百科</p>
+</blockquote>
+<p> <strong>下载JRebel for Intellij插件</strong><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://i.imgur.com/7RwOoRE.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h4 id="破解JRebel"><a href="#破解JRebel" class="headerlink" title="破解JRebel"></a><strong>破解JRebel</strong></h4><blockquote>
+<p>好东西都收费，我只是本地使用，非商业用途，就不打算破费了，请大家支持正版，呼呼，我下载的JRebel版本是6.4.8 百度到了6.4左右的破解文件，可以通用，这里大概记录下破解过程，比较简单也</p>
+<ul>
+<li><a href="http://pan.baidu.com/s/1qYJ7Kfy" target="_blank" rel="external">破解文件下载地址</a></li>
+</ul>
+</blockquote>
+<h4 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h4><blockquote>
+<p>时间原因，这次没有描述部署tomcat的方法，后面有空的话再补上吧，今天只记录下jrebel的破解，及配置部署的，其实也很简单，有个重点的提示就是在部署工程的war时，要选 <strong>exploded</strong> 这样在<strong>Server页</strong>的”On Update action “才可以选择 <strong>update classes and resources</strong></p>
+</blockquote>
+<h5 id="1-关闭idea"><a href="#1-关闭idea" class="headerlink" title="1. 关闭idea"></a>1. 关闭idea</h5><h5 id="2-破解补丁"><a href="#2-破解补丁" class="headerlink" title="2. 破解补丁"></a>2. 破解补丁</h5><pre><code> 解压缩破解补丁，替换对应idea的JRebel插件的俩个jar包及放置jrebel.lic文件
+~\用户名\.IntelliJIdea15\config\plugins\jr-ide-idea\lib\jrebel6\jrebel.jar
+~\用户名\.IntelliJIdea15\config\plugins\jr-ide-idea\lib\jrebel\jrebel.jar
+~\用户名\.jrebel\jrebel.lic
+</code></pre><h5 id="3-替换后好，重启idea"><a href="#3-替换后好，重启idea" class="headerlink" title="3. 替换后好，重启idea"></a>3. 替换后好，重启idea</h5><h5 id="4-选择热部署的项目"><a href="#4-选择热部署的项目" class="headerlink" title="4. 选择热部署的项目"></a>4. 选择热部署的项目</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdfle6iltzj208c0edglr" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="5-TOMCAT-配置-这里有重点"><a href="#5-TOMCAT-配置-这里有重点" class="headerlink" title="5. TOMCAT 配置 这里有重点"></a>5. <strong>TOMCAT 配置</strong> 这里有重点</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://i.imgur.com/WgyWr8U.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://i.imgur.com/VSrk60c.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://i.imgur.com/wGFqdjS.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<blockquote>
+<p>本地试玩后，果然酸爽，后续使用过程遇到问题，或使用一段时间后，再做记录，及总结感受~</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;idea-是个好东东&quot;&gt;&lt;a href=&quot;#idea-是个好东东&quot; class=&quot;headerlink&quot; title=&quot;idea 是个好东东&quot;&gt;&lt;/a&gt;&lt;strong&gt;idea 是个好东东&lt;/strong&gt;&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;使用Intellij IDEA 一个月了，期间了解及感受到了其许多美妙之处，使用过程中遇到许多问题，既然博客已经搭建起来了，后面多记录，
+    
+    </summary>
+    
+      <category term="工具" scheme="https://fantasykai.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="idea" scheme="https://fantasykai.github.io/tags/idea/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ngxtop-nginx监控</title>
+    <link href="https://fantasykai.github.io/2017/02/27/nginx/ngxtop-nginx%E7%9B%91%E6%8E%A7/"/>
+    <id>https://fantasykai.github.io/2017/02/27/nginx/ngxtop-nginx监控/</id>
+    <published>2017-02-27T12:50:26.000Z</published>
+    <updated>2017-02-27T12:50:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>nginx的接入日志，是一份巨大的宝库，通过监控，分析日志，可以掌握系统的运载情况，甚至可以分析用户行为。</p>
+</blockquote>
+<p>想到日志的监控，分析，最容易想到tail，awk这样的命令，但实际操作中，刷刷流过的日志信息，似乎也不会让你有什么头绪。</p>
+<h2 id="ngxtop-简介"><a href="#ngxtop-简介" class="headerlink" title="ngxtop 简介"></a>ngxtop 简介</h2><p>ngxtop 类似于linux的 top 命令，设计为在短时间内运行，作为服务器的故障排除和监控使用</p>
+<p>ngxtop 使用python2编写和测试，但也可以支持python3，使用sqlite 数据库</p>
+<h2 id="ngxtop-安装"><a href="#ngxtop-安装" class="headerlink" title="ngxtop 安装"></a>ngxtop 安装</h2><p>ngxtop使用python编写， 所以可以使用pip命令进行安装，确保机器上已经安装好了python环境和pip</p>
+<pre><code>sudo pip install ngxtop
+</code></pre><ul>
+<li>注意：</li>
+</ul>
+<p>安装成功，但执行<code>ngxtop</code>时，报这种错误：</p>
+<pre><code>ImportError: No module named _curses
+</code></pre><p>是因为 <code>ngxtop</code> 可执行命令未安装到 /usr/bin/下，而是/usr/local/bin/，所以建议安装时，加上 sudo</p>
+<h2 id="ngxtop-命令简介"><a href="#ngxtop-命令简介" class="headerlink" title="ngxtop 命令简介"></a>ngxtop 命令简介</h2><pre><code>用法:
+    ngxtop [options]
+    ngxtop [options] (print|top|avg|sum) &lt;var&gt; ...
+    ngxtop info
+    ngxtop [options] query &lt;query&gt; ...
+</code></pre><h3 id="参数选项说明"><a href="#参数选项说明" class="headerlink" title="参数选项说明"></a>参数选项说明</h3><ul>
+<li>-l <file>或–access-log <file> 日志的路径</file></file></li>
+<li>-f <format>或–log-format <format> 设置日志格式，默认格式combined，另外一种较常用格式为common</format></format></li>
+<li>–no-follow 处理历史的日志</li>
+<li>-t <seconds> 或 –interval <seconds> 刷新频率，默认2秒</seconds></seconds></li>
+<li>-g <var>或 –group-by <var> 按变量分组，默认显示 request_path</var></var></li>
+<li>-w <var>或 –having <expr> 筛选 [default: 1]</expr></var></li>
+<li>-o <var>或 –order-by <var> 输出的排序方式，默认: 访问数</var></var></li>
+<li>-n <number>或 –limit <number> 显示top多条，默认前top 10条</number></number></li>
+<li>-a <exp> …或 –a <exp> … 对输出字段做处理，可选 sum, avg, min, max</exp></exp></li>
+<li>-v或 –verbose 详细输出</li>
+<li>-d或 –debug debug模式，输出每行及记录</li>
+<li>-h或 –help 显示帮助详细</li>
+<li>–version 显示版本信息</li>
+</ul>
+<p><strong>高级选项</strong></p>
+<ul>
+<li>-c <file>或 –config <file> 指定nginx配置文件，自动分析日志格式</file></file></li>
+<li>-i <filter-expression>或 –filter <filter-expression> 只处理符合规则的记录</filter-expression></filter-expression></li>
+<li>-p <filter-expression>或 –pre-filter <filter-expression> in-filter expression to check in pre-parsing phase.<br>另外一些变量可以在分析时用到，名字含义同日志格式里的设置：remote_addr、remote_user、time_local、request、request_path、status、body_bytes_sent、http_referer、http_user_agent。</filter-expression></filter-expression></li>
+</ul>
+<p>使用示例：</p>
+<ul>
+<li><p>列出10个nginx服务器，按请求数量排序</p>
+<pre><code>ngxtop
+</code></pre></li>
+<li><p>显示前20个最频繁的请求</p>
+<pre><code>ngxtop -n 20 
+</code></pre></li>
+<li><p>获取nginx基本信息    </p>
+<pre><code>ngxtop info
+</code></pre></li>
+<li><p>以自定义显示的变量，简单列出需要显示的变量。使用 “print” 命令显示自定义请求。        </p>
+<pre><code>ngxtop print request http_user_agent remote_addr
+</code></pre></li>
+<li><p>显示请求最多的客户端IP地址        </p>
+<pre><code>ngxtop top remote_addr
+</code></pre></li>
+<li><p>显示状态码是404的请求    </p>
+<pre><code>ngxtop -i &apos;status == 404&apos; print request status
+</code></pre></li>
+<li><p>统计访问次数最多的请求</p>
+<pre><code>ngxtop -l access.log --no-follow
+</code></pre></li>
+<li><p>自定义排序的字段</p>
+<pre><code>ngxtop -l access.log --no-follow -o avg_bytes_sent
+</code></pre></li>
+<li><p>自定义过滤条件</p>
+<pre><code>只统计成功
+ngxtop -l access.log --no-follow -i &apos;status!=200&apos;
+</code></pre></li>
+<li><p>输出400以上状态吗的请求以及请求来源</p>
+<p>  ngxtop -i ‘status &gt;= 400’ print request status http_referer</p>
+</li>
+<li><p>搜索客户端为 iPhone 的 log</p>
+<pre><code>ngxtop -l access.log --no-follow -i &apos;http_user_agent.find(&apos;iPhone&apos;)&apos;
+条件里是可以嵌 python 语句的，这些语句被 eval() 动态翻译并执行。需要注意的是这些语句如果抛出异常会导致 ngxtop 异常退出。
+</code></pre></li>
+<li><p>分组过滤</p>
+<pre><code>-g 相当于 group by,
+-a 相当于 having。
+ngxtop 已经默认提供了 avg_bytes_sent, 2xx, 3xx, 4xx, 5xx 这些聚合字段，一般这些字段已经足够了。
+如果业务复杂了，想做出更多的查询，可以利用这两个参数自己组合条件。
+
+访问量前十的ip地址
+   ngxtop --group-by remote_addr
+</code></pre></li>
+</ul>
+<ul>
+<li>除了Nginx，ngtop 还可以处理其他的日志文件，比如还可以监控apache日志，如：</li>
+</ul>
+<p>使用普通格式从远程服务器解析apache日志</p>
+<pre><code>ssh user@remote_server tail -f /var/log/apache2/access.log | ngxtop -f common
+</code></pre><p>更多内容请参见 ： </p>
+<ul>
+<li><a href="https://github.com/lebinh/ngxtop" target="_blank" rel="external">ngxtop</a></li>
+</ul>
+<p>另外再推荐一个可以生成统计报表，输出为html，cvs等文件的分析统计 : </p>
+<ul>
+<li><a href="https://github.com/allinurl/goaccess/" target="_blank" rel="external">goaccess</a></li>
+</ul>
+<blockquote>
+<p>让人过于舒服的路，都是下坡路；最不费力气的行走，都是顺风走。然而，动物园里养不出千里马，水井里也生不出腾飞的巨龙。你最终变成什么样，很大程度上取决于你在人生道路上，是选择迎风奔跑，还是就坡下驴。努力这个词太平凡，但努力将使你的人生不平庸。</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;nginx的接入日志，是一份巨大的宝库，通过监控，分析日志，可以掌握系统的运载情况，甚至可以分析用户行为。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;想到日志的监控，分析，最容易想到tail，awk这样的命令，但实际操作中，刷刷流过的日志信息，似乎
+    
+    </summary>
+    
+      <category term="容器" scheme="https://fantasykai.github.io/categories/%E5%AE%B9%E5%99%A8/"/>
+    
+    
+      <category term="nginx" scheme="https://fantasykai.github.io/tags/nginx/"/>
+    
+  </entry>
+  
+</feed>
