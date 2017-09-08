@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/">
+    
+    
+    <title>ssh 设置别名的方式访问服务器 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="Linux">
+    <meta name="description" content="在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ssh 设置别名的方式访问服务器">
+<meta property="og:url" content="https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-08T10:10:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ssh 设置别名的方式访问服务器">
+<meta name="twitter:description" content="在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.13">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ssh 设置别名的方式访问服务器</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ssh 设置别名的方式访问服务器</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-07T12:16:05.000Z" itemprop="datePublished" class="page-time">
+  2017-09-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux/">linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#远程登录服务器命令-ssh"><span class="post-toc-number">1.</span> <span class="post-toc-text">远程登录服务器命令 ssh</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#给服务器起个别名"><span class="post-toc-number">2.</span> <span class="post-toc-text">给服务器起个别名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ssh-别名-走起"><span class="post-toc-number">3.</span> <span class="post-toc-text">ssh 别名 走起</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Linux/ssh 设置别名访问服务器"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ssh 设置别名的方式访问服务器</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-07 20:16:05" datetime="2017-09-07T12:16:05.000Z"  itemprop="datePublished">2017-09-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux/">linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。<a id="more"></a> 一般在终端上通过 ssh 命令进行远程服务器登录。</p>
+</blockquote>
+<h3 id="远程登录服务器命令-ssh"><a href="#远程登录服务器命令-ssh" class="headerlink" title="远程登录服务器命令 ssh"></a>远程登录服务器命令 ssh</h3><ul>
+<li>ssh username@ip地址</li>
+</ul>
+<p>例如： ssh root@192.168.11.2</p>
+<p>but 服务端一般多台服务器，好几个ip地址，记住这么多ip地址好难，但是根据不同服务器的用途给他们起个别名，就方便多了，能想到自然能实现，这里简述下具体玩法~</p>
+<h3 id="给服务器起个别名"><a href="#给服务器起个别名" class="headerlink" title="给服务器起个别名"></a>给服务器起个别名</h3><ol>
+<li><p>在 <code>~/.ssh/</code> 目录下，新建一个config（有的话，就不用建了噻）</p>
+</li>
+<li><p>vim config 文件，进行编辑</p>
+<pre><code>Host dev
+HostName xxx.xx.xx.xx
+User root
+IdentitiesOnly yes
+</code></pre></li>
+</ol>
+<ul>
+<li>Host 别名 起一个自己记得住的，比如开发环境 dev 测试环境 test  ..</li>
+<li>HostName 服务器的ip address    </li>
+<li>User 远程登录的用户名</li>
+<li>IdentitiesOnly yes 反正这个就配置yes</li>
+</ul>
+<h3 id="ssh-别名-走起"><a href="#ssh-别名-走起" class="headerlink" title="ssh 别名 走起"></a>ssh 别名 走起</h3><p>配置好文件后，直接 键入 ssh dev 就玩起来了</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-09-08T10:10:20.000Z" itemprop="dateUpdated">2017-09-08 18:10:20</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2017/09/07/Linux/ssh 设置别名访问服务器/" target="_blank" rel="external">https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/&title=《ssh 设置别名的方式访问服务器》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/&title=《ssh 设置别名的方式访问服务器》 — kai.fantasy 's 文栖小筑&source=
+在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ssh 设置别名的方式访问服务器》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/07/Linux/Web 开发常用的终端命令/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">web 开发常用的终端命令</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/&title=《ssh 设置别名的方式访问服务器》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/&title=《ssh 设置别名的方式访问服务器》 — kai.fantasy 's 文栖小筑&source=
+在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ssh 设置别名的方式访问服务器》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsElEQVR42u3aQZLCQAgFUO9/aecAlskHGieLl5U1auzXqWoY4PWKr/fl9fnJz9fJXz5fX9/t2IWHh4e3sPRrTLLoa0bvW8l24+Hh4e3xvp2oyaE8P9B7+Ov74OHh4T2Hd/35/G55gp5vGR4eHt4zedUku1dQ6N0HDw8P75e8pBiRp9eTA71a4DhWa8HDw8OLefkx/ZzXK/09PDw8vHFXPW+GVUsJp4LNzWrx8PDwFnjVBtXZwm6yWb1GGh4eHt4eL//3PvlkTu0NIuS/iIeHh7fH6xUgqmn0JJzkbbZj9RU8PDy8VuUzT3lz0iQw5KHlBoyHh4c35iWl2F5ynCN7yXFUpMDDw8Nb4M1HpnrxJ0+XewHp5nni4eHhjXm9NHpC6pUV8lCEh4eHt8frFQ56BdxyXSQYWYieGx4eHt5R3iQJnhQv8k3MhwluggceHh7eIV516Ko6EJAsuhpmCiUSPDw8vDVeEjeqYaDXbJsEj0I+joeHhzfmnRqu2htHqA4o4OHh4W3z8pvm5dQkYDSrJjkYDw8P7ye8vFgwSdPz9livgIuHh4e3x5u38KvliVObmPwKHh4e3m94SeLba25NmmfVsYbMjYeHhzfl9Q7lZLn5u9WxrWgj8PDw8BZ4hfR00L7qBYY5Hg8PD2+D1xxpaqXRvaZaYVwgiV14eHh4h3jNLwcLrTaukgCTrwQPDw9vj5cnvmcP9KREW8DkGTceHh5ei/cuXr1ibrXQkBc1bt7Fw8PDW+BNGl3Vsm+vGXZ2yAAPDw/vFK83GpUXZ3tXUraIHgAeHh7eGq963Oc/0xvMmpSPv1ap8fDw8P6Vly89HzWoFoULKTUeHh7eA3i9g7u3cb1RAzw8PLxtXj4alR/r1TGpapoePSo8PDy8BV7vcK8GgHmb/0AfDw8PD2/K+wMZCjXKVCXskgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.13"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.13" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

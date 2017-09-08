@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-09-08T03:03:45.000Z</updated>
+  <updated>2017-09-08T10:10:20.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -16,135 +16,115 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ssh 设置别名的方式访问服务器</title>
+    <link href="https://fantasykai.cc/2017/09/07/Linux/ssh%20%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/</id>
+    <published>2017-09-07T12:16:05.000Z</published>
+    <updated>2017-09-08T10:10:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。<a id="more"></a> 一般在终端上通过 ssh 命令进行远程服务器登录。</p>
+</blockquote>
+<h3 id="远程登录服务器命令-ssh"><a href="#远程登录服务器命令-ssh" class="headerlink" title="远程登录服务器命令 ssh"></a>远程登录服务器命令 ssh</h3><ul>
+<li>ssh username@ip地址</li>
+</ul>
+<p>例如： ssh root@192.168.11.2</p>
+<p>but 服务端一般多台服务器，好几个ip地址，记住这么多ip地址好难，但是根据不同服务器的用途给他们起个别名，就方便多了，能想到自然能实现，这里简述下具体玩法~</p>
+<h3 id="给服务器起个别名"><a href="#给服务器起个别名" class="headerlink" title="给服务器起个别名"></a>给服务器起个别名</h3><ol>
+<li><p>在 <code>~/.ssh/</code> 目录下，新建一个config（有的话，就不用建了噻）</p>
+</li>
+<li><p>vim config 文件，进行编辑</p>
+<pre><code>Host dev
+HostName xxx.xx.xx.xx
+User root
+IdentitiesOnly yes
+</code></pre></li>
+</ol>
+<ul>
+<li>Host 别名 起一个自己记得住的，比如开发环境 dev 测试环境 test  ..</li>
+<li>HostName 服务器的ip address    </li>
+<li>User 远程登录的用户名</li>
+<li>IdentitiesOnly yes 反正这个就配置yes</li>
+</ul>
+<h3 id="ssh-别名-走起"><a href="#ssh-别名-走起" class="headerlink" title="ssh 别名 走起"></a>ssh 别名 走起</h3><p>配置好文件后，直接 键入 ssh dev 就玩起来了</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。
+    
+    </summary>
+    
+      <category term="linux" scheme="https://fantasykai.cc/categories/linux/"/>
+    
+    
+      <category term="Linux" scheme="https://fantasykai.cc/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>web 开发常用的终端命令</title>
     <link href="https://fantasykai.cc/2017/09/07/Linux/Web%20%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%9A%84%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4/"/>
     <id>https://fantasykai.cc/2017/09/07/Linux/Web 开发常用的终端命令/</id>
     <published>2017-09-07T12:16:05.000Z</published>
-    <updated>2017-09-08T03:03:45.000Z</updated>
+    <updated>2017-09-08T12:18:54.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Web-开发常用的终端命令"><a href="#Web-开发常用的终端命令" class="headerlink" title="Web 开发常用的终端命令"></a>Web 开发常用的终端命令</h2><p>终端是开发人员的军火库中最重要的生产力工具之一。把它掌握好了可以对你的工作产生非常积极的影响。</p>
 <p>这里记录一些常用到的命令</p>
-<h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a><strong>curl</strong></h3><p><a href="https://curl.haxx.se/" target="_blank" rel="external">https://curl.haxx.se/</a></p>
-<p>curl 是一个命令行工具，用来通过 HTTP（s），FTP 等其它几十种你可能尚未听说过的协议来发起网络请求。它可以下载文件，检查响应消息头以及方便地访问远程数据。</p>
+<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a><a href="https://curl.haxx.se/" target="_blank" rel="external">curl</a></h2><p>curl 是一个命令行工具，用来通过 HTTP（s），FTP 等其它几十种你可能尚未听说过的协议来发起网络请求。它可以下载文件，检查响应消息头以及方便地访问远程数据。</p>
 <p>在 Web 开发中， curl 经常被用来测试连接，还有调用 REST 风格的 API。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZ5hhcRs3dvwZnkGXMuVa07fuRnbFfEaqkm2GN1ER3TRia6Dwfkty5scA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<p>curl 的用法还可以比这更复杂。它有许多选项可以用来控制消息头，Cookie，身份验证等等这些要素。你可以通过 Everything curl 这本优秀的电子书来了解更多。</p>
-<h3 id="tree"><a href="#tree" class="headerlink" title="tree"></a><strong>tree</strong></h3><p><a href="https://www.computerhope.com/unix/tree.htm" target="_blank" rel="external">https://www.computerhope.com/unix/tree.htm</a></p>
-<p>tree 是一个小巧的命令行工具程序，它可以用可视化的效果向你展示一个目录下的文件。它的运行是递归的，会以树的形式遍历每个级别的嵌套关系，并显示出每一级目录。 如此你就可以快速地进行浏览并找到自己想要的文件。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZNSicN7Tt3m2xJzGcGhe7QHQiacNTmoWAJiaYdYnf3YSOaia2Lr5HTviaicCQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># Fetch the headers of a URL.</div><div class="line">curl -I http://google.com</div><div class="line">HTTP/1.1 302 Found</div><div class="line">Cache-Control: private</div><div class="line">Content-Type: text/html; charset=UTF-8</div><div class="line">Referrer-Policy: no-referrer</div><div class="line">Location: http://www.google.com/?gfe_rd=cr&amp;ei=0fCKWe6HCZTd8AfCoIWYBQ</div><div class="line">Content-Length: 258</div><div class="line">Date: Wed, 09 Aug 2017 11:24:01 GMT</div><div class="line"></div><div class="line"># Make a GET request to a remote API.</div><div class="line">curl http://numbersapi.com/random/trivia</div><div class="line">29 is the number of days it takes Saturn to orbit the Sun.</div></pre></td></tr></table></figure>
+<p>curl 的用法还可以比这更复杂。它有许多选项可以用来控制消息头，Cookie，身份验证等等这些要素。你可以通过 <a href="https://ec.haxx.se/" target="_blank" rel="external">Everything curl</a> 这本优秀的电子书来了解更多。</p>
+<h2 id="tree"><a href="#tree" class="headerlink" title="tree"></a><a href="https://www.computerhope.com/unix/tree.htm" target="_blank" rel="external">tree</a></h2><p>tree 是一个小巧的命令行工具程序，它可以用可视化的效果向你展示一个目录下的文件。它的运行是递归的，会以树的形式遍历每个级别的嵌套关系，并显示出每一级目录。 如此你就可以快速地进行浏览并找到自己想要的文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">tree</div><div class="line">.</div><div class="line">├── css</div><div class="line">│   ├── bootstrap.css</div><div class="line">│   ├── bootstrap.min.css</div><div class="line">├── fonts</div><div class="line">│   ├── glyphicons-halflings-regular.eot</div><div class="line">│   ├── glyphicons-halflings-regular.svg</div><div class="line">│   ├── glyphicons-halflings-regular.ttf</div><div class="line">│   ├── glyphicons-halflings-regular.woff</div><div class="line">│   └── glyphicons-halflings-regular.woff2</div><div class="line">└── js</div><div class="line">    ├── bootstrap.js</div><div class="line">    └── bootstrap.min.js</div></pre></td></tr></table></figure>
 <p>它还拥有使用一种类正则表达式的模式来对结果集进行过滤的选项。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">tree -P &apos;*.min.*&apos;</div><div class="line">.</div><div class="line">├── css</div><div class="line">│   ├── bootstrap.min.css</div><div class="line">├── fonts</div><div class="line">└── js</div><div class="line">    └── bootstrap.min.js</div></pre></td></tr></table></figure>
+<h2 id="tmux"><a href="#tmux" class="headerlink" title="tmux"></a><a href="https://tmux.github.io/" target="_blank" rel="external">tmux</a></h2><p>根据维基的描述，tmux 是一个终端复用器，说人话就是，它是一个可以将多个终端连接到单个终端会话的工具。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                    <img src="https://static.oschina.net/uploads/space/2017/0906/104206_TcXC_2903254.jpg" alt="img" title="">
                 </div>
-                <div class="image-caption"></div>
-            </figure>
-<h3 id="tmux"><a href="#tmux" class="headerlink" title="tmux"></a><strong>tmux</strong></h3><p><a href="https://tmux.github.io/" target="_blank" rel="external">https://tmux.github.io/</a></p>
-<p>根据维基的描述，tmux 是一个终端复用器，说人话就是，它是一个可以将多个终端连接到单个终端会话的工具。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
+                <div class="image-caption">img</div>
             </figure>
 <p>一个 tmux 终端带有三个分屏的效果</p>
 <p>它让你可以在一个终端中进行程序之间的切换，添加分屏窗格，还有就是将多个终端连接到同一个会话，使它们保持同步。 当你在远程服务器上工作时，tmux 特别有用，因为它可以让你创建新的选项卡，然后在选项卡之间切换，而无需反反复复的退出然后登录。</p>
-<h3 id="disk-usage-du"><a href="#disk-usage-du" class="headerlink" title="disk usage - du"></a><strong>disk usage - du</strong></h3><p><a href="https://www.computerhope.com/unix/udu.htm" target="_blank" rel="external">https://www.computerhope.com/unix/udu.htm</a></p>
-<h2 id="运行-du-命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。"><a href="#运行-du-命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。" class="headerlink" title="运行 du 命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。"></a>运行 du 命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。</h2><p>du 通常在你发现某个驱动器的空间不足，但不知道是因为什么造成的时候使用。使用此命令可以快速查看每个文件夹所占用的存储空间，从而把耗费存储的大户给找出来。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<p>还有一个用途类似的命令 df（Disk Free），它会返回关于可用磁盘空间的各种信息（与 du 正好相反）。</p>
-<h3 id="git"><a href="#git" class="headerlink" title="git"></a><strong>git</strong></h3><p><a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a></p>
-<p>git 是迄今为止最流行的版本控制系统。它是现代 Web 开发的指定工具之一，我们根本没办法把它从列表中给删掉。</p>
+<h2 id="disk-usage-du"><a href="#disk-usage-du" class="headerlink" title="disk usage - du"></a><a href="https://www.computerhope.com/unix/udu.htm" target="_blank" rel="external">disk usage - du</a></h2><p>运行 du 命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。<br>du 通常在你发现某个驱动器的空间不足，但不知道是因为什么造成的时候使用。使用此命令可以快速查看每个文件夹所占用的存储空间，从而把耗费存储的大户给找出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># Running this will show the space usage of each folder in the current directory.</div><div class="line"># The -h option makes the report easier to read.</div><div class="line"># -s prevents recursiveness and shows the total size of a folder.</div><div class="line"># The star wildcard (*) will run du on each file/folder in current directory.</div><div class="line"></div><div class="line">du -sh *</div><div class="line"></div><div class="line">1.2G    Desktop</div><div class="line">4.0K    Documents</div><div class="line">40G     Downloads</div><div class="line">4.0K    Music</div><div class="line">4.9M    Pictures</div><div class="line">844K    Public</div><div class="line">4.0K    Templates</div><div class="line">6.9M    Videos</div></pre></td></tr></table></figure>
+<p>还有一个用途类似的命令 <a href="https://www.computerhope.com/unix/udf.htm" target="_blank" rel="external">df</a>（Disk Free），它会返回关于可用磁盘空间的各种信息（与 du 正好相反）。</p>
+<h2 id="git"><a href="#git" class="headerlink" title="git"></a><a href="https://git-scm.com/" target="_blank" rel="external">git</a></h2><p>git 是迄今为止最流行的版本控制系统。它是现代 Web 开发的指定工具之一，我们根本没办法把它从列表中给删掉。</p>
 <p>尽管有很多的第三方应用和工具可用，但是大多数人还是喜欢通过终端对 git 来进行本地访问。git CLI 真的很强大，可以用来处理那些盘根错节的项目历史。</p>
-<p>如果想了解更多的关于 git 的信息，建议你看看我们的教程“30 分钟学会用 git”。</p>
-<h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a><strong>tar</strong></h3><p><a href="https://www.computerhope.com/unix/utar.htm" target="_blank" rel="external">https://www.computerhope.com/unix/utar.htm</a></p>
-<p>tar 是用来处理文件压缩的默认 Unix 工具。它能让你快速的将多个文件打成一个包，这样在后续就更加容易存储和移动它们了。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
+<p>如果想了解更多的关于 git 的信息，建议你看看我们的教程“<a href="https://tutorialzine.com/2016/06/learn-git-in-30-minutes" target="_blank" rel="external">30 分钟学会用 Git</a>”。</p>
+<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a><a href="https://www.computerhope.com/unix/utar.htm" target="_blank" rel="external">tar</a></h2><p>tar 是用来处理文件压缩的默认 Unix 工具。它能让你快速的将多个文件打成一个包，这样在后续就更加容易存储和移动它们了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -cf archive.tar file1 file2 file3</div></pre></td></tr></table></figure>
 <p>使用 -x 选项可以对现有的 .tar 压缩包进行解压缩操作。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<p>注意大多数其它的格式，像 .zip 和 .rar 这些，都不能使用 tar 来打开，而是需要用其它的像 unzip 这样的工具来进行操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -xf archive.tar</div></pre></td></tr></table></figure>
+<p>注意大多数其它的格式，像 .zip 和 .rar 这些，都不能使用 tar 来打开，而是需要用其它的像 <a href="https://www.computerhope.com/unix/unzip.htm" target="_blank" rel="external">unzip</a> 这样的工具来进行操作。</p>
 <p>如今许多的 Unix 系统都运行着一个 tar 的扩展版本 (GNU tar) ，它也还可以执行限定文件大小的压缩操作。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<p>如果你的操作系统并不支持该版本的 tar，还可以使用 gzip, zcat 或者 compress 来限制文件压缩包的大小。</p>
-<h3 id="md5sum"><a href="#md5sum" class="headerlink" title="md5sum"></a><strong>md5sum</strong></h3><p><a href="https://en.wikipedia.org/wiki/Md5sum" target="_blank" rel="external">https://en.wikipedia.org/wiki/Md5sum</a></p>
-<p>Unix 内置了一些像 md5sum、sha1sum 这样的命令行工具，它们在编程中有各自的作用，但最重要的是它们可以用来检查文件的完整性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># Create compressed gzip archive.</div><div class="line">tar -czf file.tar.gz inputfile1 inputfile2</div><div class="line"></div><div class="line"># Extract .gz archive.</div><div class="line">tar -xzf file.tar.gz</div></pre></td></tr></table></figure>
+<p>如果你的操作系统并不支持该版本的 tar，还可以使用 <a href="http://www.gzip.org/" target="_blank" rel="external">gzip</a>, <a href="https://linux.die.net/man/1/zcat" target="_blank" rel="external">zcat</a> 或者 <a href="https://www.computerhope.com/unix/ucompres.htm" target="_blank" rel="external">compress</a> 来限制文件压缩包的大小。</p>
+<h3 id="md5sum"><a href="#md5sum" class="headerlink" title="md5sum"></a><a href="https://en.wikipedia.org/wiki/Md5sum" target="_blank" rel="external">md5sum</a></h3><p>Unix 内置了一些像 <a href="https://www.computerhope.com/unix/md5sum.htm" target="_blank" rel="external">md5sum</a>、<a href="https://en.wikipedia.org/wiki/Sha1sum" target="_blank" rel="external">sha1sum</a> 这样的命令行工具，它们在编程中有各自的作用，但最重要的是它们可以用来检查文件的完整性。</p>
 <p>譬如，如果你从不受信的网络下载了一个 .iso 文件，这个文件中存在恶意脚本的风险。为了确认这个 .iso 是安全的，你可以生成它的 md5 或者其它摘要信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">md5sum ubuntu-16.04.3-desktop-amd64.iso </div><div class="line"></div><div class="line">0d9fe8e1ea408a5895cbbe3431989295  ubuntu-16.04.3-desktop-amd64.iso</div></pre></td></tr></table></figure>
+<p>然后将生成的字符串与原作者提供的（比如 <a href="https://help.ubuntu.com/community/UbuntuHashes" target="_blank" rel="external">UbuntuHashes</a>）进行比较。</p>
+<h3 id="htop"><a href="#htop" class="headerlink" title="htop"></a><a href="http://hisham.hm/htop/" target="_blank" rel="external">htop</a></h3><p>Htop 是个比内置的 top 任务管理更强大的工具。它提供了带有诸多选项的高级接口用于监控系统进程。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
+                    <img src="https://static.oschina.net/uploads/space/2017/0906/104427_IuFg_2903254.jpg" alt="img" title="">
                 </div>
-                <div class="image-caption"></div>
+                <div class="image-caption">img</div>
             </figure>
-<p>然后将生成的字符串与原作者提供的（比如 UbuntuHashes）进行比较。</p>
-<h3 id="htop"><a href="#htop" class="headerlink" title="htop"></a><strong>htop</strong></h3><p><a href="http://hisham.hm/htop/" target="_blank" rel="external">http://hisham.hm/htop/</a></p>
-<p>htop 是个比内置的 top 任务管理更强大的工具。它提供了带有诸多选项的高级接口用于监控系统进程。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<p>运行中的 htop 任务管理器</p>
+<p><em>运行中的 htop 任务管理器</em></p>
 <p>虽然 htop 在终端中运行，但它对鼠标操作支持良好。所以使用 htop 的菜单导航、选择进程，以及通过排序和过滤来管理任务都很容易。</p>
-<h3 id="ln"><a href="#ln" class="headerlink" title="ln"></a><strong>ln</strong></h3><p><a href="https://www.computerhope.com/unix/uln.htm" target="_blank" rel="external">https://www.computerhope.com/unix/uln.htm</a></p>
-<p>Unix 里面的链接同 Windows 中的快捷方式类似，允许你快速地访问到一个特定的文件。链接可以通过 ln 命令创建出来，而且可以有两种类型 : 硬的（hard） 或者符号的（symbolic）。每种类型都有不同的属性而且各有其用途 (了解更多)。</p>
-<p>这里有一个示例，展示了使用链接的最常见方式。假如说我们在桌面上有一个目录叫做 Scripts，里面整齐的摆放着我们最常用的 bash 脚本。每次我们想要调用其中的一个脚本的时候，我们会这样做:</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<p>显然，这样做并不方便，每次我们都得写绝对路径。其实我们可以创建一个 symlink，将 Scripts  文件夹链接到 /usr/local/bin，这样就能让脚本在所有的目录下面都可以执行。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
+<h3 id="ln"><a href="#ln" class="headerlink" title="ln"></a><a href="https://www.computerhope.com/unix/uln.htm" target="_blank" rel="external">ln</a></h3><p>Unix 里面的链接同 Windows 中的快捷方式类似，允许你快速地访问到一个特定的文件。链接可以通过 ln 命令创建出来，而且可以有两种类型 : 硬的（hard） 或者符号的（symbolic）。每种类型都有不同的属性而且各有其用途 (<a href="https://www.computerhope.com/unix/uln.htm" target="_blank" rel="external">了解更多</a>)。</p>
+<p>这里有一个示例，展示了使用链接的最常见方式。假如说我们在桌面上有一个目录叫做 <em>Scripts</em>，里面整齐的摆放着我们最常用的 bash 脚本。每次我们想要调用其中的一个脚本的时候，我们会这样做:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/Desktop/Scripts/git-scripts/git-cleanup</div></pre></td></tr></table></figure>
+<p>显然，这样做并不方便，每次我们都得写绝对路径。其实我们可以创建一个 symlink，将 <em>Scripts</em>  文件夹链接到 <em>/usr/local/bin</em>，这样就能让脚本在所有的目录下面都可以执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ln -s ~/Desktop/Scripts/git-scripts/git-cleanup /usr/local/bin/</div></pre></td></tr></table></figure>
 <p>有了这个创建好的 symlink，我们现在就可以简单地通过其名称在任意一个打开的终端中执行脚本了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git-cleanup</div></pre></td></tr></table></figure>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -152,45 +132,18 @@
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<h3 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a><strong>ssh</strong></h3><p><a href="https://www.ssh.com/ssh/command/" target="_blank" rel="external">https://www.ssh.com/ssh/command/</a></p>
-<p>使用 ssh 命令，用户可以快速地连接到一个远程主机，然后登录进入其 Unix shell。这就使得通过自己本地机器的终端在服务器上提交指令成为了可能。</p>
+<h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a><a href="https://www.ssh.com/ssh/command/" target="_blank" rel="external">ssh</a></h2><p>使用 ssh 命令，用户可以快速地连接到一个远程主机，然后登录进入其 Unix shell。这就使得通过自己本地机器的终端在服务器上提交指令成为了可能。</p>
 <p>要定位一个连接，你只需要指定正确的 IP 地址或者 url 就行了。在你第一次连接到一台新的服务器的时候，会需要某种形式的认证。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh username@remote_host</div></pre></td></tr></table></figure>
 <p>如果你需要快速地在服务器上面执行一条命令，但又不想登录，在 url 之后加上一条命令就可以了。命令将会在服务器上执行，而执行结果也会从它那里返回。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<p>你还可以用 SHH 做更多事情，像创建代理或者隧道，用私钥来保护你的连接，传输文件等。在这里的一个指南中你可以了解到更多信息。</p>
-<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a><strong>grep</strong></h3><p><a href="https://www.computerhope.com/unix/ugrep.htm" target="_blank" rel="external">https://www.computerhope.com/unix/ugrep.htm</a></p>
-<p>Grep 是一个用来在文本中查找字符串的标准 Unix 工具。它可以从一个文件或者直接就是流的形式获取到输入, 通过一个正则表达式来分析内容，然后返回匹配的行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ssh username@remote_host ls /var/www</div><div class="line"></div><div class="line">some-website.com</div><div class="line">some-other-website.com</div></pre></td></tr></table></figure>
+<p>你还可以用 SHH 做更多事情，像创建代理或者隧道，用私钥来保护你的连接，传输文件等。在<a href="https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys" target="_blank" rel="external">这里的一个指南</a>中你可以了解到更多信息。</p>
+<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a><a href="https://www.computerhope.com/unix/ugrep.htm" target="_blank" rel="external">grep</a></h2><p>grep 是一个用来在文本中查找字符串的标准 Unix 工具。它可以从一个文件或者直接就是流的形式获取到输入, 通过一个正则表达式来分析内容，然后返回匹配的行。</p>
 <p>该命令在需要对大型文件进行内容过滤的时候非常趁手。下面我们利用 grep 结合 date 命令，来在一个大型的日志文件中进行查找，然后生成一个只包含当天错误日志的新文件。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZqVzjfdGiarpmMPDvKFI8DuQibTS2CKXgJyV0oZVddOJdAAtOfle03VFw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<p>另外一个用来操作字符串的强大工具就是 sed。它比起 grep 更加强大 (当然也更加复杂)，可以执行几乎所有的字符串相关的操作任务，包括添加、删除还有替换字符串的内容。</p>
-<h3 id="alias"><a href="#alias" class="headerlink" title="alias"></a><strong>alias</strong></h3><p><a href="https://www.computerhope.com/unix/ualias.htm" target="_blank" rel="external">https://www.computerhope.com/unix/ualias.htm</a></p>
-<p>许多的 Unix 命令，包括本文中提到的一些，在你加上许多选项之后，看起来都相当的长了。为了能更加容易记忆，你可以使用 alias 这个 bash 内置的命令来为它们创建一个短别名：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibZPvWdsXgAXcicl7YCAKvWZeI8ic2etia9QFG6rhPssIoWQXb3hQ1hzGMMicIH6XSgH1pmkqicBb9QB1g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// Search for today&apos;s date (in format yyyy-mm-dd) and write the results to a new file. </div><div class="line">grep &quot;$(date +&quot;%Y-%m-%d&quot;)&quot; all-errors-ever.log &gt; today-errors.log</div></pre></td></tr></table></figure>
+<p>另外一个用来操作字符串的强大工具就是 <a href="https://www.computerhope.com/unix/used.htm" target="_blank" rel="external">sed</a>。它比起 grep 更加强大 (当然也更加复杂)，可以执行几乎所有的字符串相关的操作任务，包括添加、删除还有替换字符串的内容。</p>
+<h2 id="alias"><a href="#alias" class="headerlink" title="alias"></a><a href="https://www.computerhope.com/unix/ualias.htm" target="_blank" rel="external">alias</a></h2><p>许多的 Unix 命令，包括本文中提到的一些，在你加上许多选项之后，看起来都相当的长了。为了能更加容易记忆，你可以使用 alias 这个 bash 内置的命令来为它们创建一个短别名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># Create an alias for starting a local web server.</div><div class="line">alias server=&quot;python -m SimpleHTTPServer 9000&quot;</div><div class="line"></div><div class="line"># Instead of typing the whole command simply use the alias.</div><div class="line">server </div><div class="line"></div><div class="line">Serving HTTP on 0.0.0.0 port 9000 ...</div></pre></td></tr></table></figure>
 <p>只要你保持终端一直是打开的状态， 别名就一直会是可用的。如果想永久使用的话，你可以将 alias  命令操作写到你的 .bashrc 文件中去。</p>
 ]]></content>
     
@@ -3340,134 +3293,6 @@ elasticsearch.url: &quot;http://IP:9200&quot;
     
     
       <category term="idea" scheme="https://fantasykai.cc/tags/idea/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ngxtop-nginx监控</title>
-    <link href="https://fantasykai.cc/2017/02/27/nginx/ngxtop-nginx%E7%9B%91%E6%8E%A7/"/>
-    <id>https://fantasykai.cc/2017/02/27/nginx/ngxtop-nginx监控/</id>
-    <published>2017-02-27T12:50:26.000Z</published>
-    <updated>2017-02-27T12:50:26.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>nginx的接入日志，是一份巨大的宝库，通过监控，分析日志，可以掌握系统的运载情况，甚至可以分析用户行为。</p>
-</blockquote>
-<p>想到日志的监控，分析，最容易想到tail，awk这样的命令，但实际操作中，刷刷流过的日志信息，似乎也不会让你有什么头绪。</p>
-<h2 id="ngxtop-简介"><a href="#ngxtop-简介" class="headerlink" title="ngxtop 简介"></a>ngxtop 简介</h2><p>ngxtop 类似于linux的 top 命令，设计为在短时间内运行，作为服务器的故障排除和监控使用</p>
-<p>ngxtop 使用python2编写和测试，但也可以支持python3，使用sqlite 数据库</p>
-<h2 id="ngxtop-安装"><a href="#ngxtop-安装" class="headerlink" title="ngxtop 安装"></a>ngxtop 安装</h2><p>ngxtop使用python编写， 所以可以使用pip命令进行安装，确保机器上已经安装好了python环境和pip</p>
-<pre><code>sudo pip install ngxtop
-</code></pre><ul>
-<li>注意：</li>
-</ul>
-<p>安装成功，但执行<code>ngxtop</code>时，报这种错误：</p>
-<pre><code>ImportError: No module named _curses
-</code></pre><p>是因为 <code>ngxtop</code> 可执行命令未安装到 /usr/bin/下，而是/usr/local/bin/，所以建议安装时，加上 sudo</p>
-<h2 id="ngxtop-命令简介"><a href="#ngxtop-命令简介" class="headerlink" title="ngxtop 命令简介"></a>ngxtop 命令简介</h2><pre><code>用法:
-    ngxtop [options]
-    ngxtop [options] (print|top|avg|sum) &lt;var&gt; ...
-    ngxtop info
-    ngxtop [options] query &lt;query&gt; ...
-</code></pre><h3 id="参数选项说明"><a href="#参数选项说明" class="headerlink" title="参数选项说明"></a>参数选项说明</h3><ul>
-<li>-l <file>或–access-log <file> 日志的路径</file></file></li>
-<li>-f <format>或–log-format <format> 设置日志格式，默认格式combined，另外一种较常用格式为common</format></format></li>
-<li>–no-follow 处理历史的日志</li>
-<li>-t <seconds> 或 –interval <seconds> 刷新频率，默认2秒</seconds></seconds></li>
-<li>-g <var>或 –group-by <var> 按变量分组，默认显示 request_path</var></var></li>
-<li>-w <var>或 –having <expr> 筛选 [default: 1]</expr></var></li>
-<li>-o <var>或 –order-by <var> 输出的排序方式，默认: 访问数</var></var></li>
-<li>-n <number>或 –limit <number> 显示top多条，默认前top 10条</number></number></li>
-<li>-a <exp> …或 –a <exp> … 对输出字段做处理，可选 sum, avg, min, max</exp></exp></li>
-<li>-v或 –verbose 详细输出</li>
-<li>-d或 –debug debug模式，输出每行及记录</li>
-<li>-h或 –help 显示帮助详细</li>
-<li>–version 显示版本信息</li>
-</ul>
-<p><strong>高级选项</strong></p>
-<ul>
-<li>-c <file>或 –config <file> 指定nginx配置文件，自动分析日志格式</file></file></li>
-<li>-i <filter-expression>或 –filter <filter-expression> 只处理符合规则的记录</filter-expression></filter-expression></li>
-<li>-p <filter-expression>或 –pre-filter <filter-expression> in-filter expression to check in pre-parsing phase.<br>另外一些变量可以在分析时用到，名字含义同日志格式里的设置：remote_addr、remote_user、time_local、request、request_path、status、body_bytes_sent、http_referer、http_user_agent。</filter-expression></filter-expression></li>
-</ul>
-<p>使用示例：</p>
-<ul>
-<li><p>列出10个nginx服务器，按请求数量排序</p>
-<pre><code>ngxtop
-</code></pre></li>
-<li><p>显示前20个最频繁的请求</p>
-<pre><code>ngxtop -n 20 
-</code></pre></li>
-<li><p>获取nginx基本信息    </p>
-<pre><code>ngxtop info
-</code></pre></li>
-<li><p>以自定义显示的变量，简单列出需要显示的变量。使用 “print” 命令显示自定义请求。        </p>
-<pre><code>ngxtop print request http_user_agent remote_addr
-</code></pre></li>
-<li><p>显示请求最多的客户端IP地址        </p>
-<pre><code>ngxtop top remote_addr
-</code></pre></li>
-<li><p>显示状态码是404的请求    </p>
-<pre><code>ngxtop -i &apos;status == 404&apos; print request status
-</code></pre></li>
-<li><p>统计访问次数最多的请求</p>
-<pre><code>ngxtop -l access.log --no-follow
-</code></pre></li>
-<li><p>自定义排序的字段</p>
-<pre><code>ngxtop -l access.log --no-follow -o avg_bytes_sent
-</code></pre></li>
-<li><p>自定义过滤条件</p>
-<pre><code>只统计成功
-ngxtop -l access.log --no-follow -i &apos;status!=200&apos;
-</code></pre></li>
-<li><p>输出400以上状态吗的请求以及请求来源</p>
-<p>  ngxtop -i ‘status &gt;= 400’ print request status http_referer</p>
-</li>
-<li><p>搜索客户端为 iPhone 的 log</p>
-<pre><code>ngxtop -l access.log --no-follow -i &apos;http_user_agent.find(&apos;iPhone&apos;)&apos;
-条件里是可以嵌 python 语句的，这些语句被 eval() 动态翻译并执行。需要注意的是这些语句如果抛出异常会导致 ngxtop 异常退出。
-</code></pre></li>
-<li><p>分组过滤</p>
-<pre><code>-g 相当于 group by,
--a 相当于 having。
-ngxtop 已经默认提供了 avg_bytes_sent, 2xx, 3xx, 4xx, 5xx 这些聚合字段，一般这些字段已经足够了。
-如果业务复杂了，想做出更多的查询，可以利用这两个参数自己组合条件。
-
-访问量前十的ip地址
-   ngxtop --group-by remote_addr
-</code></pre></li>
-</ul>
-<ul>
-<li>除了Nginx，ngtop 还可以处理其他的日志文件，比如还可以监控apache日志，如：</li>
-</ul>
-<p>使用普通格式从远程服务器解析apache日志</p>
-<pre><code>ssh user@remote_server tail -f /var/log/apache2/access.log | ngxtop -f common
-</code></pre><p>更多内容请参见 ： </p>
-<ul>
-<li><a href="https://github.com/lebinh/ngxtop" target="_blank" rel="external">ngxtop</a></li>
-</ul>
-<p>另外再推荐一个可以生成统计报表，输出为html，cvs等文件的分析统计 : </p>
-<ul>
-<li><a href="https://github.com/allinurl/goaccess/" target="_blank" rel="external">goaccess</a></li>
-</ul>
-<blockquote>
-<p>让人过于舒服的路，都是下坡路；最不费力气的行走，都是顺风走。然而，动物园里养不出千里马，水井里也生不出腾飞的巨龙。你最终变成什么样，很大程度上取决于你在人生道路上，是选择迎风奔跑，还是就坡下驴。努力这个词太平凡，但努力将使你的人生不平庸。</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;nginx的接入日志，是一份巨大的宝库，通过监控，分析日志，可以掌握系统的运载情况，甚至可以分析用户行为。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;想到日志的监控，分析，最容易想到tail，awk这样的命令，但实际操作中，刷刷流过的日志信息，似乎
-    
-    </summary>
-    
-      <category term="容器" scheme="https://fantasykai.cc/categories/%E5%AE%B9%E5%99%A8/"/>
-    
-    
-      <category term="nginx" scheme="https://fantasykai.cc/tags/nginx/"/>
     
   </entry>
   
