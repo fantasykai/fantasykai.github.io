@@ -68,7 +68,7 @@ IdentitiesOnly yes
     <link href="https://fantasykai.cc/2017/09/07/Linux/Web%20%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%9A%84%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4/"/>
     <id>https://fantasykai.cc/2017/09/07/Linux/Web 开发常用的终端命令/</id>
     <published>2017-09-07T12:16:05.000Z</published>
-    <updated>2017-09-08T12:18:54.000Z</updated>
+    <updated>2017-09-08T12:28:34.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Web-开发常用的终端命令"><a href="#Web-开发常用的终端命令" class="headerlink" title="Web 开发常用的终端命令"></a>Web 开发常用的终端命令</h2><p>终端是开发人员的军火库中最重要的生产力工具之一。把它掌握好了可以对你的工作产生非常积极的影响。</p>
 <p>这里记录一些常用到的命令</p>
@@ -104,11 +104,11 @@ IdentitiesOnly yes
 <p>如今许多的 Unix 系统都运行着一个 tar 的扩展版本 (GNU tar) ，它也还可以执行限定文件大小的压缩操作。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># Create compressed gzip archive.</div><div class="line">tar -czf file.tar.gz inputfile1 inputfile2</div><div class="line"></div><div class="line"># Extract .gz archive.</div><div class="line">tar -xzf file.tar.gz</div></pre></td></tr></table></figure>
 <p>如果你的操作系统并不支持该版本的 tar，还可以使用 <a href="http://www.gzip.org/" target="_blank" rel="external">gzip</a>, <a href="https://linux.die.net/man/1/zcat" target="_blank" rel="external">zcat</a> 或者 <a href="https://www.computerhope.com/unix/ucompres.htm" target="_blank" rel="external">compress</a> 来限制文件压缩包的大小。</p>
-<h3 id="md5sum"><a href="#md5sum" class="headerlink" title="md5sum"></a><a href="https://en.wikipedia.org/wiki/Md5sum" target="_blank" rel="external">md5sum</a></h3><p>Unix 内置了一些像 <a href="https://www.computerhope.com/unix/md5sum.htm" target="_blank" rel="external">md5sum</a>、<a href="https://en.wikipedia.org/wiki/Sha1sum" target="_blank" rel="external">sha1sum</a> 这样的命令行工具，它们在编程中有各自的作用，但最重要的是它们可以用来检查文件的完整性。</p>
+<h2 id="md5sum"><a href="#md5sum" class="headerlink" title="md5sum"></a><a href="https://en.wikipedia.org/wiki/Md5sum" target="_blank" rel="external">md5sum</a></h2><p>Unix 内置了一些像 <a href="https://www.computerhope.com/unix/md5sum.htm" target="_blank" rel="external">md5sum</a>、<a href="https://en.wikipedia.org/wiki/Sha1sum" target="_blank" rel="external">sha1sum</a> 这样的命令行工具，它们在编程中有各自的作用，但最重要的是它们可以用来检查文件的完整性。</p>
 <p>譬如，如果你从不受信的网络下载了一个 .iso 文件，这个文件中存在恶意脚本的风险。为了确认这个 .iso 是安全的，你可以生成它的 md5 或者其它摘要信息。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">md5sum ubuntu-16.04.3-desktop-amd64.iso </div><div class="line"></div><div class="line">0d9fe8e1ea408a5895cbbe3431989295  ubuntu-16.04.3-desktop-amd64.iso</div></pre></td></tr></table></figure>
 <p>然后将生成的字符串与原作者提供的（比如 <a href="https://help.ubuntu.com/community/UbuntuHashes" target="_blank" rel="external">UbuntuHashes</a>）进行比较。</p>
-<h3 id="htop"><a href="#htop" class="headerlink" title="htop"></a><a href="http://hisham.hm/htop/" target="_blank" rel="external">htop</a></h3><p>Htop 是个比内置的 top 任务管理更强大的工具。它提供了带有诸多选项的高级接口用于监控系统进程。</p>
+<h2 id="htop"><a href="#htop" class="headerlink" title="htop"></a><a href="http://hisham.hm/htop/" target="_blank" rel="external">htop</a></h2><p>Htop 是个比内置的 top 任务管理更强大的工具。它提供了带有诸多选项的高级接口用于监控系统进程。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -118,7 +118,7 @@ IdentitiesOnly yes
             </figure>
 <p><em>运行中的 htop 任务管理器</em></p>
 <p>虽然 htop 在终端中运行，但它对鼠标操作支持良好。所以使用 htop 的菜单导航、选择进程，以及通过排序和过滤来管理任务都很容易。</p>
-<h3 id="ln"><a href="#ln" class="headerlink" title="ln"></a><a href="https://www.computerhope.com/unix/uln.htm" target="_blank" rel="external">ln</a></h3><p>Unix 里面的链接同 Windows 中的快捷方式类似，允许你快速地访问到一个特定的文件。链接可以通过 ln 命令创建出来，而且可以有两种类型 : 硬的（hard） 或者符号的（symbolic）。每种类型都有不同的属性而且各有其用途 (<a href="https://www.computerhope.com/unix/uln.htm" target="_blank" rel="external">了解更多</a>)。</p>
+<h2 id="ln"><a href="#ln" class="headerlink" title="ln"></a><a href="https://www.computerhope.com/unix/uln.htm" target="_blank" rel="external">ln</a></h2><p>Unix 里面的链接同 Windows 中的快捷方式类似，允许你快速地访问到一个特定的文件。链接可以通过 ln 命令创建出来，而且可以有两种类型 : 硬的（hard） 或者符号的（symbolic）。每种类型都有不同的属性而且各有其用途 (<a href="https://www.computerhope.com/unix/uln.htm" target="_blank" rel="external">了解更多</a>)。</p>
 <p>这里有一个示例，展示了使用链接的最常见方式。假如说我们在桌面上有一个目录叫做 <em>Scripts</em>，里面整齐的摆放着我们最常用的 bash 脚本。每次我们想要调用其中的一个脚本的时候，我们会这样做:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/Desktop/Scripts/git-scripts/git-cleanup</div></pre></td></tr></table></figure>
 <p>显然，这样做并不方便，每次我们都得写绝对路径。其实我们可以创建一个 symlink，将 <em>Scripts</em>  文件夹链接到 <em>/usr/local/bin</em>，这样就能让脚本在所有的目录下面都可以执行。</p>
