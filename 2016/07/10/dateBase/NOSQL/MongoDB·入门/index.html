@@ -48,6 +48,9 @@
 
     <!-- custom head -->
     
+  <!-- highlight.js css -->
+  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!-- highlight.js css -->
 
 </head>
 
@@ -212,18 +215,18 @@
 <ul>
 <li>为什么使用NoSQL 强项：</li>
 </ul>
-<pre><code>1.对数据库高并发读写。
+<pre><code>    1.对数据库高并发读写。
 
-2.对海量数据的高效率存储和访问。
+    2.对海量数据的高效率存储和访问。
 
-3.对数据库的高可扩展性和高可用性。
+    3.对数据库的高可扩展性和高可用性。
 </code></pre><ul>
 <li><p>弱项：</p>
-<pre><code>1.数据库事务一致性需求
+<pre><code>  1.数据库事务一致性需求
 
-2.数据库的写实时性和读实时性需求
+  2.数据库的写实时性和读实时性需求
 
-3.对复杂的SQL查询，特别是多表关联查询的需求
+  3.对复杂的SQL查询，特别是多表关联查询的需求
 </code></pre></li>
 </ul>
 <h2 id="NoSQL四大类"><a href="#NoSQL四大类" class="headerlink" title="NoSQL四大类"></a>NoSQL四大类</h2><h3 id="1-key-value存储"><a href="#1-key-value存储" class="headerlink" title="1.key-value存储"></a>1.key-value存储</h3><blockquote>
@@ -538,18 +541,28 @@ NoSQL(NoSQL = Not Only SQL )" data-title=" QQ">
 
 
 
+
+
+
+
+
+
 <section class="comments" id="comments">
-    <!-- UY BEGIN -->
-    <div id="uyan_frame"></div>
-    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
-    <!-- UY END -->
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'fantasykai',
+            repo: 'gitment-blog',
+            oauth: {
+                client_id: '3017a3c5a8b84de247ad',
+                client_secret: '94297e8b1dfb9df0faca3d3488943cca289630ac',
+            },
+        })
+        gitment.render('comments')
+    </script>
 </section>
-
-
-
-
-
-
 
 
 
@@ -728,5 +741,9 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 
+<!-- highlight.js script -->
+<script src="/plugins/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- highlight.js script -->
 </body>
 </html>

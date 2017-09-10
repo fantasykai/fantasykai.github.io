@@ -48,6 +48,9 @@
 
     <!-- custom head -->
     
+  <!-- highlight.js css -->
+  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!-- highlight.js css -->
 
 </head>
 
@@ -434,15 +437,15 @@
 <li>采用延迟关联</li>
 </ul>
 <h4 id="如何正确的使用分页？"><a href="#如何正确的使用分页？" class="headerlink" title="如何正确的使用分页？"></a>如何正确的使用分页？</h4><p>假如有类似下面分页语句：SELECT * FROM table  ORDER BY id LIMIT 10000, 10<br>由于MySQL里对LIMIT OFFSET的处理方式是取出OFFSET+LIMIT的所有数据，然后去掉OFFSET，返回底部的LIMIT。所以，在OFFSET数值较大时，MySQL的查询性能会非常低。可以使用id &gt; n 的方式进行解决：<br>使用id &gt; n 的方式有局限性，对于id不连续的问题，可以通过翻页的时候同时传入最后一个id方式来解决。</p>
-<pre><code>//输出时，找出当前结果集中的最大最小id   
-//下一页   
-http://example.com/page.php?last=100   
-select * from table where id&lt;100 order by id desc limit 10   
-//上一页   
-http://example.com/page.php?first=110   
-select * from table where id&gt;110 order by id desc limit 10
+<pre><code>    //输出时，找出当前结果集中的最大最小id   
+    //下一页   
+    http://example.com/page.php?last=100   
+    select * from table where id&lt;100 order by id desc limit 10   
+    //上一页   
+    http://example.com/page.php?first=110   
+    select * from table where id&gt;110 order by id desc limit 10
 </code></pre><p>这种方式比较大的缺点是，如果在浏览中有插入/删除操作，翻页不会更新，而总页数可能仍然是根据新的count(*) 来计算，最终可能会产生某些记录访问不到。为了修补这个问题，可以继续引入当前页码以及在上次翻页以后是否有插入/删除等影响总记录数的操作并进行缓存</p>
-<pre><code>select * from table where id &gt;= (select id from table order by id limit #offset#, 1)
+<pre><code>    select * from table where id &gt;= (select id from table order by id limit #offset#, 1)
 </code></pre><p>9、拒绝大SQL，拆分成小SQL</p>
 <ul>
 <li>充分利用QUERY CACHE</li>
@@ -455,13 +458,13 @@ select * from table where id&gt;110 order by id desc limit 10
 <p>13、用union all而不是union</p>
 <h4 id="union-all与-union有什么区别？"><a href="#union-all与-union有什么区别？" class="headerlink" title="union all与 union有什么区别？"></a>union all与 union有什么区别？</h4><p>union和union all关键字都是将两个结果集合并为一个，但这两者从使用和效率上来说都有所不同。</p>
 <p>union在进行表链接后会筛选掉重复的记录，所以在表链接后会对所产生的结果集进行排序运算，删除重复的记录再返回结果。如：</p>
-<pre><code>select * from test_union1    
-union    
-select * from test_union2
+<pre><code>    select * from test_union1    
+    union    
+    select * from test_union2
 </code></pre><p>这个SQL在运行时先取出两个表的结果，再用排序空间进行排序删除重复的记录，最后返回结果集，如果表数据量大的话可能会导致用磁盘进行排序。<br>而union all只是简单的将两个结果合并后就返回。这样，如果返回的两个结果集中有重复的数据，那么返回的结果集就会包含重复的数据了。<br>从效率上说，union all要比union快很多，所以，如果可以确认合并的两个结果集中不包含重复的数据的话，那么就使用union all，如下：</p>
-<pre><code>select * from test_union1    
-union all    
-select * from test_union2
+<pre><code>    select * from test_union1    
+    union all    
+    select * from test_union2
 </code></pre><p>14、程序应有捕获SQL异常的处理机制</p>
 <p>15、禁止单条SQL语句同时更新多个表</p>
 <p>16、不使用select * ，SELECT语句只获取需要的字段</p>
@@ -608,18 +611,28 @@ select * from test_union2
 
 
 
+
+
+
+
+
+
 <section class="comments" id="comments">
-    <!-- UY BEGIN -->
-    <div id="uyan_frame"></div>
-    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
-    <!-- UY END -->
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'fantasykai',
+            repo: 'gitment-blog',
+            oauth: {
+                client_id: '3017a3c5a8b84de247ad',
+                client_secret: '94297e8b1dfb9df0faca3d3488943cca289630ac',
+            },
+        })
+        gitment.render('comments')
+    </script>
 </section>
-
-
-
-
-
-
 
 
 
@@ -797,5 +810,9 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 
+<!-- highlight.js script -->
+<script src="/plugins/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- highlight.js script -->
 </body>
 </html>

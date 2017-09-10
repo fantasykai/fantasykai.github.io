@@ -35,7 +35,7 @@
 <meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
 <meta property="og:description" content="es6 import的路径问题 在导入  This dependency was not found:  * /src/store/function in ./src/store/modules/checklist/index.js, ./src/store/modules/checklist/mutations.js 问题原因：  export default 的用法  export defau">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-04-20T02:24:12.000Z">
+<meta property="og:updated_time" content="2017-09-09T03:31:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="es6 import的路径问题">
 <meta name="twitter:description" content="es6 import的路径问题 在导入  This dependency was not found:  * /src/store/function in ./src/store/modules/checklist/index.js, ./src/store/modules/checklist/mutations.js 问题原因：  export default 的用法  export defau">
@@ -48,6 +48,9 @@
 
     <!-- custom head -->
     
+  <!-- highlight.js css -->
+  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!-- highlight.js css -->
 
 </head>
 
@@ -216,64 +219,68 @@
 <p>export default 的用法</p>
 </blockquote>
 <p>export default命令用于指定模块的默认输出。显然，一个模块只能有一个默认输出，因此export deault命令只能使用一次。所以，import命令后面才不用加大括号，相反其它的export 输出 可以有多个，且import时必须加大括号，示例如下</p>
-<pre><code>// modules.js
-function add(x, y) {
-  return x * y;
-}
-export {add as default};
-// 等同于
-// export default add;
+<pre><code class="javascript">    // modules.js
+    function add(x, y) {
+      return x * y;
+    }
+    export {add as default};
+    // 等同于
+    // export default add;
 
-// app.js
-import { default as xxx } from &apos;modules&apos;;
-// 等同于
-// import xxx from &apos;modules&apos;;
-</code></pre><p>正是因为export default命令其实只是输出一个叫做default的变量，所以它后面不能跟变量声明语句，而export需要跟变量声明或者大括号作为输出:</p>
-<pre><code>// 正确
-export var a = 1;
+    // app.js
+    import { default as xxx } from &#39;modules&#39;;
+    // 等同于
+    // import xxx from &#39;modules&#39;;
+</code></pre>
+<p>正是因为export default命令其实只是输出一个叫做default的变量，所以它后面不能跟变量声明语句，而export需要跟变量声明或者大括号作为输出:</p>
+<pre><code class="javascript">    // 正确
+    export var a = 1;
 
-// 正确
-var a = 1;
-export default a;　　// 写法1
-export {a}　　// 写法2
+    // 正确
+    var a = 1;
+    export default a;　　// 写法1
+    export {a}　　// 写法2
 
-// 错误
-export default var a = 1;
-</code></pre><p>import 时候的路径问题(作为新手，遇到一些坑，刚好记录下)</p>
+    // 错误
+    export default var a = 1;
+</code></pre>
+<p>import 时候的路径问题(作为新手，遇到一些坑，刚好记录下)</p>
 <p>开始玩的时候，总是出现 cannot find module 问题，原来 在 import 的时候 如果不使用相对路径或者绝对路径，node默认会去node_modules/文件夹下去找，例如：</p>
-<pre><code>import * as obj from &apos;exports&apos;
+<pre><code>import * as obj from &#39;exports&#39;
 // node 会试着去寻找 node_modules/exports.js 模块
 
 // 正确写法
- import * as obj from &apos;./exports&apos;
+ import * as obj from &#39;./exports&#39;
 </code></pre><p>关于 import * as obj from ‘xx’  这种写法是把所有的输出包裹到obj对象里</p>
 <p>对了，还有模块的继承写法：</p>
-<pre><code>// circle.js
-export var a = 1;
+<pre><code class="javascript">
+    // circle.js
+    export var a = 1;
 
-// circleplus.js 当前模块继承了 circle 模块的所有输出
-// 此处只是继承了输出，并不能直接使用
+    // circleplus.js 当前模块继承了 circle 模块的所有输出
+    // 此处只是继承了输出，并不能直接使用
 
-export * from &apos;circle&apos;;
-export var e = 2.71828182846;
-export default function(x) {
-  return Math.exp(x);
-}
+    export * from &#39;circle&#39;;
+    export var e = 2.71828182846;
+    export default function(x) {
+      return Math.exp(x);
+    }
 
-// 继承之后，circleplus.js 相当于下面代码
-export var a = 1;
-export var e = 2.71828182846;
-export default function(x) {
-  return Math.exp(x);
-}
+    // 继承之后，circleplus.js 相当于下面代码
+    export var a = 1;
+    export var e = 2.71828182846;
+    export default function(x) {
+      return Math.exp(x);
+    }
 </code></pre>
+
         </div>
 
         <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-04-20T02:24:12.000Z" itemprop="dateUpdated">2017-04-20 10:24:12</time>
+    最后更新时间：<time datetime="2017-09-09T03:31:39.000Z" itemprop="dateUpdated">2017-09-09 11:31:39</time>
 </span><br>
 
 
@@ -381,18 +388,28 @@ export default function(x) {
 
 
 
+
+
+
+
+
+
 <section class="comments" id="comments">
-    <!-- UY BEGIN -->
-    <div id="uyan_frame"></div>
-    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
-    <!-- UY END -->
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'fantasykai',
+            repo: 'gitment-blog',
+            oauth: {
+                client_id: '3017a3c5a8b84de247ad',
+                client_secret: '94297e8b1dfb9df0faca3d3488943cca289630ac',
+            },
+        })
+        gitment.render('comments')
+    </script>
 </section>
-
-
-
-
-
-
 
 
 
@@ -569,5 +586,9 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 
+<!-- highlight.js script -->
+<script src="/plugins/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- highlight.js script -->
 </body>
 </html>

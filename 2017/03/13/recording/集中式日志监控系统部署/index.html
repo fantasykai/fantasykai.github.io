@@ -57,6 +57,9 @@
 
     <!-- custom head -->
     
+  <!-- highlight.js css -->
+  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!-- highlight.js css -->
 
 </head>
 
@@ -291,35 +294,35 @@
 <li><a href="https://www.elastic.co" target="_blank" rel="external">elastic 官网</a></li>
 </ul>
 <p>我从官网下载了 <code>elasticsearch-2.4.4.tar.gz</code></p>
-<h4 id="解压缩tar-tz"><a href="#解压缩tar-tz" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h4><pre><code>cd /usr/local/elasticsearch
-tar -zxvf elasticsearch-2.4.4.tar.gz
-</code></pre><h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><pre><code>cd /usr/local/elasticsearch/elasticsearch-2.4.4/config
-vim elasticsearch.yml
+<h4 id="解压缩tar-tz"><a href="#解压缩tar-tz" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h4><pre><code>    cd /usr/local/elasticsearch
+    tar -zxvf elasticsearch-2.4.4.tar.gz
+</code></pre><h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><pre><code>    cd /usr/local/elasticsearch/elasticsearch-2.4.4/config
+    vim elasticsearch.yml
 </code></pre><p>配置文件关键配置说明：</p>
 <p>部分配置已经在部署图中有所说明，这里再补充一些字段说明：</p>
-<pre><code> #配置es的集群名称，不同的集群用名字来区分，es会自动发现在同一网段下的es，配置成相同集群名字的各个节点形成一个集群。如果在同一网段下有多个集群，就可以用这个属性来区分不同的集群。
-cluster.name: blu-es 
+<pre><code>     #配置es的集群名称，不同的集群用名字来区分，es会自动发现在同一网段下的es，配置成相同集群名字的各个节点形成一个集群。如果在同一网段下有多个集群，就可以用这个属性来区分不同的集群。
+    cluster.name: blu-es 
 
-  #节点名称，es启动时会自动创建节点名称，自己配置下更方便维护吧
-node.name: es01
+      #节点名称，es启动时会自动创建节点名称，自己配置下更方便维护吧
+    node.name: es01
 
- #是否作为主节点
-node.master: true
+     #是否作为主节点
+    node.master: true
 
-#是否存储数据 
-node.data: false
+    #是否存储数据 
+    node.data: false
 
-# 默认情况下，ElasticSearch使用0.0.0.0地址，并为http传输开启9200-9300端口，为节点到节点的通信开启9300-9400端口，可以自行设置IP地址
-network.host: 我设置为内网的IP了
+    # 默认情况下，ElasticSearch使用0.0.0.0地址，并为http传输开启9200-9300端口，为节点到节点的通信开启9300-9400端口，可以自行设置IP地址
+    network.host: 我设置为内网的IP了
 
-# 输监听定制端口
-http.port: 9200
+    # 输监听定制端口
+    http.port: 9200
 
-# 数据文件存储路径 此路径要创建出来
-path.data: /home/elk/data
+    # 数据文件存储路径 此路径要创建出来
+    path.data: /home/elk/data
 
-# 日志文件存储路径，此路径要创建出来
-path.logs: /var/log/elasticsearch
+    # 日志文件存储路径，此路径要创建出来
+    path.logs: /var/log/elasticsearch
 </code></pre><h4 id="ES环境启动"><a href="#ES环境启动" class="headerlink" title="ES环境启动"></a>ES环境启动</h4><ul>
 <li><strong>elasticsearch默认是不支持用root用户来启动的。</strong></li>
 </ul>
@@ -329,12 +332,12 @@ path.logs: /var/log/elasticsearch
 </ul>
 <ul>
 <li><p>2.启动时，追加 <code>Des.insecure.allow.root=true</code></p>
-<pre><code>在 `/usr/local/elasticsearch/elasticsearch-2.4.4/bin/elasticsearch` 中增加 ES_JAVA_OPTS=&quot;-Des.insecure.allow.root=true&quot;
+<pre><code>  在 `/usr/local/elasticsearch/elasticsearch-2.4.4/bin/elasticsearch` 中增加 ES_JAVA_OPTS=&quot;-Des.insecure.allow.root=true&quot;
 </code></pre></li>
 </ul>
 <p>启动ES环境</p>
-<pre><code>cd /usr/local/elasticsearch/elasticsearch-2.4.4/bin
-sh ./elasticsearch -d
+<pre><code>    cd /usr/local/elasticsearch/elasticsearch-2.4.4/bin
+    sh ./elasticsearch -d
 </code></pre><ul>
 <li>-d表示后台启动</li>
 </ul>
@@ -342,19 +345,19 @@ sh ./elasticsearch -d
 <ul>
 <li>通过plugin 命令进行安装</li>
 </ul>
-<pre><code>#head 方便对es进行各种操作的客户端，可以查看各个索引的数据量以及分片的状态，
-/usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
-#kopf es的管理工具，也提供了对ES集群操作的API。
-/usr/share/elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf
-#bigdesk 监控es状态的插
-/usr/share/elasticsearch/bin/plugin install hlstudio/bigdesk
+<pre><code>    #head 方便对es进行各种操作的客户端，可以查看各个索引的数据量以及分片的状态，
+    /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+    #kopf es的管理工具，也提供了对ES集群操作的API。
+    /usr/share/elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf
+    #bigdesk 监控es状态的插
+    /usr/share/elasticsearch/bin/plugin install hlstudio/bigdesk
 </code></pre><ul>
 <li>还可以到github上查找插件的源码进行手动安装，安装细节不再赘述。</li>
 </ul>
 <ul>
 <li><p>访问插件： <code>/_plugin/插件名称</code></p>
-<pre><code>如访问head
-http://ip:9200/_plugin/head/
+<pre><code>  如访问head
+  http://ip:9200/_plugin/head/
 </code></pre></li>
 </ul>
 <h4 id="Elasticsearch集群配置"><a href="#Elasticsearch集群配置" class="headerlink" title="Elasticsearch集群配置"></a>Elasticsearch集群配置</h4><p>主要是针对 <code>elasticsearch.yml</code>的配置，上述步骤已经对该文件部分关键字段说明，我在测试环境使用了3台做集群配置，通过head插件可以查看集群的状态：</p>
@@ -409,44 +412,44 @@ echo 11 &gt;/home/zookeeper/data/myid
 echo 12 &gt;/home/zookeeper/data/myid
 # 10.11.1.13
 echo 13 &gt;/home/zookeeper/data/myid
-</code></pre><h5 id="我从官网下载了-zookeeper-3-4-9-tar-gz"><a href="#我从官网下载了-zookeeper-3-4-9-tar-gz" class="headerlink" title="我从官网下载了 zookeeper-3.4.9.tar.gz"></a>我从官网下载了 <code>zookeeper-3.4.9.tar.gz</code></h5><h5 id="解压缩tar-tz-1"><a href="#解压缩tar-tz-1" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h5><pre><code>cd /usr/local/zookeeper
-tar -zxvf zookeeper-3.4.9.tar.gz
-</code></pre><h5 id="修改配置文件-1"><a href="#修改配置文件-1" class="headerlink" title="修改配置文件"></a>修改配置文件</h5><pre><code>cd /usr/local/zookeeper/zookeeper-3.4.9/conf
-cp zoo_sample.cfg zoo.cfg
-vim zoo.cfg
+</code></pre><h5 id="我从官网下载了-zookeeper-3-4-9-tar-gz"><a href="#我从官网下载了-zookeeper-3-4-9-tar-gz" class="headerlink" title="我从官网下载了 zookeeper-3.4.9.tar.gz"></a>我从官网下载了 <code>zookeeper-3.4.9.tar.gz</code></h5><h5 id="解压缩tar-tz-1"><a href="#解压缩tar-tz-1" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h5><pre><code>    cd /usr/local/zookeeper
+    tar -zxvf zookeeper-3.4.9.tar.gz
+</code></pre><h5 id="修改配置文件-1"><a href="#修改配置文件-1" class="headerlink" title="修改配置文件"></a>修改配置文件</h5><pre><code>    cd /usr/local/zookeeper/zookeeper-3.4.9/conf
+    cp zoo_sample.cfg zoo.cfg
+    vim zoo.cfg
 
 
-# 这个时间是作为Zk服务器之间或客户端与服务器之间维持心跳的时间间隔，每隔tickTime时间就会发送一个心跳；最小 的session过期时间为2倍tickTime 
-tickTime=2000
-# 此配置表示，允许follower(相对于Leaderer言的“客户端”)连接并同步到Leader的初始化连接时间，以tickTime为单位。当初始化连接时间超过该值，则表示连接失败。
-initLimit=10
-# 此配置项表示Leader与Follower之间发送消息时，请求和应答时间长度。如果follower在设置时间内不能与leader通信，那么此follower将会被丢弃。
-syncLimit=5
-# 数据的存放路径
-dataDir=/home/zookeeper/data
-# the port at which the clients will connect
-clientPort=2181
-# the maximum number of client connections.
-# 最大的并发连接数限制，设置为0或者不设置该参数，表示不进行连接数的限制。
-#maxClientCnxns=60
+    # 这个时间是作为Zk服务器之间或客户端与服务器之间维持心跳的时间间隔，每隔tickTime时间就会发送一个心跳；最小 的session过期时间为2倍tickTime 
+    tickTime=2000
+    # 此配置表示，允许follower(相对于Leaderer言的“客户端”)连接并同步到Leader的初始化连接时间，以tickTime为单位。当初始化连接时间超过该值，则表示连接失败。
+    initLimit=10
+    # 此配置项表示Leader与Follower之间发送消息时，请求和应答时间长度。如果follower在设置时间内不能与leader通信，那么此follower将会被丢弃。
+    syncLimit=5
+    # 数据的存放路径
+    dataDir=/home/zookeeper/data
+    # the port at which the clients will connect
+    clientPort=2181
+    # the maximum number of client connections.
+    # 最大的并发连接数限制，设置为0或者不设置该参数，表示不进行连接数的限制。
+    #maxClientCnxns=60
 
-# 集群模式的配置参数
-# 第一个端口是master和slave之间的通信端口，默认是2888，第二个端口是leader选举的端口，集群刚启动的时候选举或者leader挂掉之后进行新的选举的端口默认是3888
-server.11=10.11.1.11:2888:3888
-server.12=10.11.1.12:2888:3888
-server.13=10.11.1.13:2888:3888
+    # 集群模式的配置参数
+    # 第一个端口是master和slave之间的通信端口，默认是2888，第二个端口是leader选举的端口，集群刚启动的时候选举或者leader挂掉之后进行新的选举的端口默认是3888
+    server.11=10.11.1.11:2888:3888
+    server.12=10.11.1.12:2888:3888
+    server.13=10.11.1.13:2888:3888
 
-#
-# Be sure to read the maintenance section of the 
-# administrator guide before turning on autopurge.
-#
-# http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance
-#
-# The number of snapshots to retain in dataDir
-#autopurge.snapRetainCount=3
-# Purge task interval in hours
-# Set to &quot;0&quot; to disable auto purge feature
-#autopurge.purgeInterval=1        
+    #
+    # Be sure to read the maintenance section of the 
+    # administrator guide before turning on autopurge.
+    #
+    # http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance
+    #
+    # The number of snapshots to retain in dataDir
+    #autopurge.snapRetainCount=3
+    # Purge task interval in hours
+    # Set to &quot;0&quot; to disable auto purge feature
+    #autopurge.purgeInterval=1        
 </code></pre><p>每台的zoo.cfg的配置相同，复制到每一台即可</p>
 <h5 id="启动zookeeper环境"><a href="#启动zookeeper环境" class="headerlink" title="启动zookeeper环境"></a>启动zookeeper环境</h5><pre><code>在bin目录下执行
 nohup ./zkServer.sh start &amp;
@@ -457,63 +460,63 @@ Mode: follower
 </code></pre><h4 id="2-kafka的安装配置"><a href="#2-kafka的安装配置" class="headerlink" title="2) kafka的安装配置"></a>2) kafka的安装配置</h4><ul>
 <li><a href="https://kafka.apache.org" target="_blank" rel="external">kafka官网</a></li>
 </ul>
-<h5 id="我从kafka的官网下载了-kafka-2-11-0-10-2-0-tgz"><a href="#我从kafka的官网下载了-kafka-2-11-0-10-2-0-tgz" class="headerlink" title="我从kafka的官网下载了 kafka_2.11-0.10.2.0.tgz"></a>我从kafka的官网下载了 <code>kafka_2.11-0.10.2.0.tgz</code></h5><h5 id="解压缩tar-tz-2"><a href="#解压缩tar-tz-2" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h5><pre><code>cd /usr/local/kafka
-tar -zxvf kafka_2.11-0.10.2.0.tgz
-</code></pre><h5 id="修改配置文件-2"><a href="#修改配置文件-2" class="headerlink" title="修改配置文件"></a>修改配置文件</h5><pre><code>vim /usr/local/kafka/kafka_2.11-0.10.2.0/config/server.properties
+<h5 id="我从kafka的官网下载了-kafka-2-11-0-10-2-0-tgz"><a href="#我从kafka的官网下载了-kafka-2-11-0-10-2-0-tgz" class="headerlink" title="我从kafka的官网下载了 kafka_2.11-0.10.2.0.tgz"></a>我从kafka的官网下载了 <code>kafka_2.11-0.10.2.0.tgz</code></h5><h5 id="解压缩tar-tz-2"><a href="#解压缩tar-tz-2" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h5><pre><code>    cd /usr/local/kafka
+    tar -zxvf kafka_2.11-0.10.2.0.tgz
+</code></pre><h5 id="修改配置文件-2"><a href="#修改配置文件-2" class="headerlink" title="修改配置文件"></a>修改配置文件</h5><pre><code>    vim /usr/local/kafka/kafka_2.11-0.10.2.0/config/server.properties
 </code></pre><p>配置文件主要参数说明</p>
-<pre><code>#当前机器在集群中的唯一标识，和zookeeper的myid性质一样
-broker.id=1  
+<pre><code>    #当前机器在集群中的唯一标识，和zookeeper的myid性质一样
+    broker.id=1  
 
-#当前kafka对外提供服务的端口默认是9092
-port=9092 #不配置的话，默认为9092
+    #当前kafka对外提供服务的端口默认是9092
+    port=9092 #不配置的话，默认为9092
 
-#这个是borker进行网络处理的线程数
-num.network.threads=3 
+    #这个是borker进行网络处理的线程数
+    num.network.threads=3 
 
-#这个是borker进行I/O处理的线程数
-num.io.threads=8 
+    #这个是borker进行I/O处理的线程数
+    num.io.threads=8 
 
-#消息存放的目录，这个目录可以配置为“，”逗号分割的表达式，上面的num.io.threads要大于这个目录的个数这个目录，如果配置多个目录，新创建的topic他把消息持久化的地方是，当前以逗号分割的目录中，那个分区数最少就放那一个
-log.dirs=/usr/local/kafka/kafka_2.11-0.10.2.0/logs 
-
-
-#发送缓冲区buffer大小，数据不是一下子就发送的，先回存储到缓冲区了到达一定的大小后在发送，能提高性能
-socket.send.buffer.bytes=102400 
+    #消息存放的目录，这个目录可以配置为“，”逗号分割的表达式，上面的num.io.threads要大于这个目录的个数这个目录，如果配置多个目录，新创建的topic他把消息持久化的地方是，当前以逗号分割的目录中，那个分区数最少就放那一个
+    log.dirs=/usr/local/kafka/kafka_2.11-0.10.2.0/logs 
 
 
-#kafka接收缓冲区大小，当数据到达一定大小后在序列化到磁盘
-socket.receive.buffer.bytes=102400 
+    #发送缓冲区buffer大小，数据不是一下子就发送的，先回存储到缓冲区了到达一定的大小后在发送，能提高性能
+    socket.send.buffer.bytes=102400 
 
-#这个参数是向kafka请求消息或者向kafka发送消息的请请求的最大数，这个值不能超过java的堆栈大小
-socket.request.max.bytes=104857600 
 
-#默认的分区数，一个topic默认1个分区数
-num.partitions=6
+    #kafka接收缓冲区大小，当数据到达一定大小后在序列化到磁盘
+    socket.receive.buffer.bytes=102400 
 
-#默认消息的最大持久化时间（小时）
-log.retention.hours=60 
+    #这个参数是向kafka请求消息或者向kafka发送消息的请请求的最大数，这个值不能超过java的堆栈大小
+    socket.request.max.bytes=104857600 
 
-#这个参数是：因为kafka的消息是以追加的形式落地到文件，当超过这个值的时候，kafka会新起一个文件
-log.segment.bytes=1073741824
+    #默认的分区数，一个topic默认1个分区数
+    num.partitions=6
 
-#每隔300000毫秒去检查上面配置的log失效时间（log.retention.hours=168 ），到目录查看是否有过期的消息如果有，删除
-log.retention.check.interval.ms=300000 
+    #默认消息的最大持久化时间（小时）
+    log.retention.hours=60 
 
-#设置zookeeper的连接端口
-zookeeper.connect=10.11.1.11:2181,10.11.1.12:2181,10.11.1.13:2181
+    #这个参数是：因为kafka的消息是以追加的形式落地到文件，当超过这个值的时候，kafka会新起一个文件
+    log.segment.bytes=1073741824
 
-指定客户端连接zookeeper的最大超时时间
-zookeeper.connection.timeout.ms=6000
+    #每隔300000毫秒去检查上面配置的log失效时间（log.retention.hours=168 ），到目录查看是否有过期的消息如果有，删除
+    log.retention.check.interval.ms=300000 
+
+    #设置zookeeper的连接端口
+    zookeeper.connect=10.11.1.11:2181,10.11.1.12:2181,10.11.1.13:2181
+
+    指定客户端连接zookeeper的最大超时时间
+    zookeeper.connection.timeout.ms=6000
 </code></pre><ul>
 <li>另外2台的配置只是需要修改broker.id即可，3台服务器保证broker.id不相同。</li>
 </ul>
 <h5 id="配置主机名对应IP的解析"><a href="#配置主机名对应IP的解析" class="headerlink" title="配置主机名对应IP的解析"></a>配置主机名对应IP的解析</h5><p><strong>3台配置相同</strong></p>
-<pre><code>vim /etc/hosts
+<pre><code>    vim /etc/hosts
 
-10.11.1.11 server1
-10.11.1.12 server2
-10.11.1.13 server3
-</code></pre><h5 id="启动kafka环境"><a href="#启动kafka环境" class="headerlink" title="启动kafka环境"></a>启动kafka环境</h5><pre><code>nohup ./kafka-server-start.sh ../config/server.properties &amp;
+    10.11.1.11 server1
+    10.11.1.12 server2
+    10.11.1.13 server3
+</code></pre><h5 id="启动kafka环境"><a href="#启动kafka环境" class="headerlink" title="启动kafka环境"></a>启动kafka环境</h5><pre><code>    nohup ./kafka-server-start.sh ../config/server.properties &amp;
 </code></pre><p>kafka集群搭建OK</p>
 <h3 id="3-部署logstash服务"><a href="#3-部署logstash服务" class="headerlink" title="3.部署logstash服务"></a>3.部署logstash服务</h3><p>在此架构中，logstash担任两种角色，也处于不同的层次</p>
 <ul>
@@ -524,199 +527,199 @@ zookeeper.connection.timeout.ms=6000
 <ul>
 <li><a href="https://dev.maxmind.com/" target="_blank" rel="external">GeoLite官网</a></li>
 </ul>
-<h5 id="从GeoLite官网下载-GeoLiteCity-dat-gz"><a href="#从GeoLite官网下载-GeoLiteCity-dat-gz" class="headerlink" title="从GeoLite官网下载 GeoLiteCity.dat.gz"></a>从GeoLite官网下载 <code>GeoLiteCity.dat.gz</code></h5><h5 id="从elastic官网下载-logstash-2-3-4-tar-gz"><a href="#从elastic官网下载-logstash-2-3-4-tar-gz" class="headerlink" title="从elastic官网下载 logstash-2.3.4.tar.gz"></a>从elastic官网下载 <code>logstash-2.3.4.tar.gz</code></h5><h5 id="解压logstash-2-3-4-tar-gz"><a href="#解压logstash-2-3-4-tar-gz" class="headerlink" title="解压logstash-2.3.4.tar.gz"></a>解压logstash-2.3.4.tar.gz</h5><pre><code>cd /usr/local/logstash
-tar -zxvf logstash-2.3.4.tar.gz
-</code></pre><h5 id="解压GeoLiteCity-dat-gz"><a href="#解压GeoLiteCity-dat-gz" class="headerlink" title="解压GeoLiteCity.dat.gz"></a>解压GeoLiteCity.dat.gz</h5><pre><code>cd /usr/local/logstash
-tar -zxvf GeoLiteCity.dat.gz
+<h5 id="从GeoLite官网下载-GeoLiteCity-dat-gz"><a href="#从GeoLite官网下载-GeoLiteCity-dat-gz" class="headerlink" title="从GeoLite官网下载 GeoLiteCity.dat.gz"></a>从GeoLite官网下载 <code>GeoLiteCity.dat.gz</code></h5><h5 id="从elastic官网下载-logstash-2-3-4-tar-gz"><a href="#从elastic官网下载-logstash-2-3-4-tar-gz" class="headerlink" title="从elastic官网下载 logstash-2.3.4.tar.gz"></a>从elastic官网下载 <code>logstash-2.3.4.tar.gz</code></h5><h5 id="解压logstash-2-3-4-tar-gz"><a href="#解压logstash-2-3-4-tar-gz" class="headerlink" title="解压logstash-2.3.4.tar.gz"></a>解压logstash-2.3.4.tar.gz</h5><pre><code>    cd /usr/local/logstash
+    tar -zxvf logstash-2.3.4.tar.gz
+</code></pre><h5 id="解压GeoLiteCity-dat-gz"><a href="#解压GeoLiteCity-dat-gz" class="headerlink" title="解压GeoLiteCity.dat.gz"></a>解压GeoLiteCity.dat.gz</h5><pre><code>    cd /usr/local/logstash
+    tar -zxvf GeoLiteCity.dat.gz
 </code></pre><h5 id="编辑获取日志并输出到kafka的配置文件"><a href="#编辑获取日志并输出到kafka的配置文件" class="headerlink" title="编辑获取日志并输出到kafka的配置文件"></a>编辑获取日志并输出到kafka的配置文件</h5><p><code>vim logstash_in_kafka.conf</code></p>
-<pre><code># 用于接收Beats组件传送的日志信息
-input {
-    beats {
-    port =&gt; 5044
-    codec =&gt; &quot;json&quot;
-}
-}
+<pre><code>    # 用于接收Beats组件传送的日志信息
+    input {
+        beats {
+        port =&gt; 5044
+        codec =&gt; &quot;json&quot;
+    }
+    }
 
-# 过滤日志内容，这里判断nginx日志时，增加ip转换的内容  
-filter {
-    if [type] == &quot;nginxacclog&quot; {
+    # 过滤日志内容，这里判断nginx日志时，增加ip转换的内容  
+    filter {
+        if [type] == &quot;nginxacclog&quot; {
 
-    geoip {
-        source =&gt; &quot;clientip&quot;
-        target =&gt; &quot;geoip&quot;
-        database =&gt; &quot;/usr/local/logstash/GeoLiteCity.dat&quot;
-        add_field =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;%{[geoip][longitude]}&quot; ]
-        add_field =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;%{[geoip][latitude]}&quot; ]
-}
+        geoip {
+            source =&gt; &quot;clientip&quot;
+            target =&gt; &quot;geoip&quot;
+            database =&gt; &quot;/usr/local/logstash/GeoLiteCity.dat&quot;
+            add_field =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;%{[geoip][longitude]}&quot; ]
+            add_field =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;%{[geoip][latitude]}&quot; ]
+    }
 
-    mutate {
-        convert =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;float&quot; ]
+        mutate {
+            convert =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;float&quot; ]
 
-}
-}
-}
+    }
+    }
+    }
 
-# 输出到kafka中
-output {
-  kafka {
-    workers =&gt; 2
-    bootstrap_servers =&gt; &quot;10.11.1.11:9092,10.11.1.12:9092,10.11.1.13:9092&quot;
-    topic_id =&gt; &quot;peiyinlog&quot;
-}
-}
+    # 输出到kafka中
+    output {
+      kafka {
+        workers =&gt; 2
+        bootstrap_servers =&gt; &quot;10.11.1.11:9092,10.11.1.12:9092,10.11.1.13:9092&quot;
+        topic_id =&gt; &quot;peiyinlog&quot;
+    }
+    }
 </code></pre><ul>
 <li>workers：用于写入时的工作线程</li>
 <li>bootstrap_servers：指定可用的kafka broker实例列表</li>
 <li>topic_id：指定topic名称，可以在写入前手动在broker创建定义好分片数和副本数，也可以不提前创建，那么在logstash写入时会自动创建</li>
 <li>topic，分片数和副本数则默认为broker配置文件中设置的。</li>
 </ul>
-<h5 id="启动logstash"><a href="#启动logstash" class="headerlink" title="启动logstash"></a>启动logstash</h5><pre><code>nohup ./logstash agent -f logstash_in_kafka.conf &amp;
+<h5 id="启动logstash"><a href="#启动logstash" class="headerlink" title="启动logstash"></a>启动logstash</h5><pre><code>    nohup ./logstash agent -f logstash_in_kafka.conf &amp;
 </code></pre><h4 id="部署作为consumer的logstash"><a href="#部署作为consumer的logstash" class="headerlink" title="部署作为consumer的logstash"></a>部署作为consumer的logstash</h4><p>同样解压logstash-2.3.4.tar.gz，只是这里的配置文件不同</p>
 <h5 id="编辑从kafka获取日志内容，传输到ES集群的配置文件"><a href="#编辑从kafka获取日志内容，传输到ES集群的配置文件" class="headerlink" title="编辑从kafka获取日志内容，传输到ES集群的配置文件"></a>编辑从kafka获取日志内容，传输到ES集群的配置文件</h5><p><code>vim kafka_to_es.conf</code></p>
-<pre><code># 从kafka获取日志内容
-input{
-    kafka {
-        zk_connect =&gt; &quot;10.11.1.11:2181,10.11.1.12:2181,10.11.1.13:2181&quot;
-        group_id =&gt; &quot;logstash&quot;
-        topic_id =&gt; &quot;peiyinlog&quot;
-        reset_beginning =&gt; false
-        consumer_threads =&gt; 50
-        decorate_events =&gt; true
+<pre><code>    # 从kafka获取日志内容
+    input{
+        kafka {
+            zk_connect =&gt; &quot;10.11.1.11:2181,10.11.1.12:2181,10.11.1.13:2181&quot;
+            group_id =&gt; &quot;logstash&quot;
+            topic_id =&gt; &quot;peiyinlog&quot;
+            reset_beginning =&gt; false
+            consumer_threads =&gt; 50
+            decorate_events =&gt; true
 
-}
-
-}
-
-# 删除一些不需要的字段  
-filter {
-  if [type] == &quot;nginxacclog&quot; {
-
-     mutate {
-     remove_field =&gt; [&quot;slbip&quot;,&quot;kafka&quot;,&quot;domain&quot;,&quot;serverip&quot;,&quot;url&quot;,&quot;@version&quot;,&quot;offset&quot;,&quot;input_type&quot;,&quot;count&quot;,&quot;source&quot;,&quot;fields&quot;,&quot;beat.hostname&quot;,&quot;host&quot;,&quot;tags&quot;]
     }
-}
 
-}
+    }
 
-# 输出日志到ES集群
-output {
-    if [type] == &quot;nginxacclog&quot; {
-       # stdout {codec =&gt; rubydebug }
-        elasticsearch {
-            hosts =&gt; [&quot;x.x.x.x:9200&quot;,&quot;x.x.x.x:9200&quot;]
-            index =&gt; &quot;logstash-nginxacclog-%{+YYYY.MM.dd}&quot;
-            manage_template =&gt; true
-            flush_size =&gt; 50000
-            idle_flush_time =&gt; 10
-            workers =&gt; 2
-}
+    # 删除一些不需要的字段  
+    filter {
+      if [type] == &quot;nginxacclog&quot; {
 
-}
-    if [type] == &quot;messages&quot; {
-        elasticsearch {
-            hosts =&gt; [&quot;x.x.x.x:9200&quot;,&quot;x.x.x.x:9200&quot;]
-            index =&gt; &quot;logstash-messages-%{+YYYY.MM.dd}&quot;
-            manage_template =&gt; true
-            flush_size =&gt; 50000
-            idle_flush_time =&gt; 30
-            workers =&gt; 1
-}
+         mutate {
+         remove_field =&gt; [&quot;slbip&quot;,&quot;kafka&quot;,&quot;domain&quot;,&quot;serverip&quot;,&quot;url&quot;,&quot;@version&quot;,&quot;offset&quot;,&quot;input_type&quot;,&quot;count&quot;,&quot;source&quot;,&quot;fields&quot;,&quot;beat.hostname&quot;,&quot;host&quot;,&quot;tags&quot;]
+        }
+    }
 
-}
+    }
 
-}
-</code></pre><h5 id="启动logstash-1"><a href="#启动logstash-1" class="headerlink" title="启动logstash"></a>启动logstash</h5><pre><code>nohup ./logstash agent -f kafka_to_es.conf &amp;
+    # 输出日志到ES集群
+    output {
+        if [type] == &quot;nginxacclog&quot; {
+           # stdout {codec =&gt; rubydebug }
+            elasticsearch {
+                hosts =&gt; [&quot;x.x.x.x:9200&quot;,&quot;x.x.x.x:9200&quot;]
+                index =&gt; &quot;logstash-nginxacclog-%{+YYYY.MM.dd}&quot;
+                manage_template =&gt; true
+                flush_size =&gt; 50000
+                idle_flush_time =&gt; 10
+                workers =&gt; 2
+    }
+
+    }
+        if [type] == &quot;messages&quot; {
+            elasticsearch {
+                hosts =&gt; [&quot;x.x.x.x:9200&quot;,&quot;x.x.x.x:9200&quot;]
+                index =&gt; &quot;logstash-messages-%{+YYYY.MM.dd}&quot;
+                manage_template =&gt; true
+                flush_size =&gt; 50000
+                idle_flush_time =&gt; 30
+                workers =&gt; 1
+    }
+
+    }
+
+    }
+</code></pre><h5 id="启动logstash-1"><a href="#启动logstash-1" class="headerlink" title="启动logstash"></a>启动logstash</h5><pre><code>    nohup ./logstash agent -f kafka_to_es.conf &amp;
 </code></pre><h3 id="4-部署日志采集程序Filebeat"><a href="#4-部署日志采集程序Filebeat" class="headerlink" title="4.部署日志采集程序Filebeat"></a>4.部署日志采集程序Filebeat</h3><p>上述已说明使用beats组件作为日志采集程序，这里只使用了<code>filebeat</code>组件收集我们测试环境上的nginx日志centos操作系统日志，并传输到logstash中。</p>
-<h4 id="从elastic官网下载-filebeat-1-2-3-x86-64-tar-gz"><a href="#从elastic官网下载-filebeat-1-2-3-x86-64-tar-gz" class="headerlink" title="从elastic官网下载 filebeat-1.2.3-x86_64.tar.gz"></a>从elastic官网下载 <code>filebeat-1.2.3-x86_64.tar.gz</code></h4><h4 id="解压logstash-2-3-4-tar-gz-1"><a href="#解压logstash-2-3-4-tar-gz-1" class="headerlink" title="解压logstash-2.3.4.tar.gz"></a>解压logstash-2.3.4.tar.gz</h4><pre><code>cd /usr/local/filebeat
-tar -zxvf ogstash-2.3.4.tar.gz
-</code></pre><h4 id="配置filebeat-yml-文件"><a href="#配置filebeat-yml-文件" class="headerlink" title="配置filebeat.yml 文件"></a>配置filebeat.yml 文件</h4><pre><code>################### Filebeat Configuration Example #########################
+<h4 id="从elastic官网下载-filebeat-1-2-3-x86-64-tar-gz"><a href="#从elastic官网下载-filebeat-1-2-3-x86-64-tar-gz" class="headerlink" title="从elastic官网下载 filebeat-1.2.3-x86_64.tar.gz"></a>从elastic官网下载 <code>filebeat-1.2.3-x86_64.tar.gz</code></h4><h4 id="解压logstash-2-3-4-tar-gz-1"><a href="#解压logstash-2-3-4-tar-gz-1" class="headerlink" title="解压logstash-2.3.4.tar.gz"></a>解压logstash-2.3.4.tar.gz</h4><pre><code>    cd /usr/local/filebeat
+    tar -zxvf ogstash-2.3.4.tar.gz
+</code></pre><h4 id="配置filebeat-yml-文件"><a href="#配置filebeat-yml-文件" class="headerlink" title="配置filebeat.yml 文件"></a>配置filebeat.yml 文件</h4><pre><code>    ################### Filebeat Configuration Example #########################
 
-############################# Filebeat ######################################
+    ############################# Filebeat ######################################
 
-filebeat:
-  prospectors:
-    -
-      paths:
-        - /var/log/messages
+    filebeat:
+      prospectors:
+        -
+          paths:
+            - /var/log/messages
 
-      input_type: log
+          input_type: log
 
-      document_type: messages
+          document_type: messages
 
-    -
-      paths:
-        - /var/log/nginx/access.log
+        -
+          paths:
+            - /var/log/nginx/access.log
 
-      input_type: log
+          input_type: log
 
-      document_type: nginxacclog
-
-
-      multiline: 
-          pattern: &apos;^[[:space:]]&apos;
-          negate: true
-          match: after
-
-  registry_file: /var/lib/filebeat/registry
+          document_type: nginxacclog
 
 
-############################# Output ##########################################
+          multiline: 
+              pattern: &#39;^[[:space:]]&#39;
+              negate: true
+              match: after
 
-output:
-  logstash: 
-    hosts: [&quot;x.x.x.x:5044&quot;,&quot;x.x.x.x:5044&quot;]
-
-
-############################# Shipper #########################################
-
-shipper: 
-  name: &quot;blu_test&quot;
+      registry_file: /var/lib/filebeat/registry
 
 
-############################# Logging ######################################### 
+    ############################# Output ##########################################
 
-logging:  
-  files:
-    rotateeverybytes: 10485760 # = 10MB
-</code></pre><h4 id="这里把nginx的access日志源改为json格式，方便后续处理"><a href="#这里把nginx的access日志源改为json格式，方便后续处理" class="headerlink" title="这里把nginx的access日志源改为json格式，方便后续处理"></a>这里把nginx的access日志源改为json格式，方便后续处理</h4><pre><code>log_format json &apos;{ &quot;@timestamp&quot;:&quot;$time_local&quot;,&apos;
-         &apos;&quot;clientip&quot;:&quot;$remote_addr&quot;,&apos;
-         &apos;&quot;remote_user&quot;: &quot;$remote_user&quot;, &apos;
-         &apos;&quot;http_x_forwarded_for&quot;:&quot;$http_x_forwarded_for&quot;,&apos;
-         &apos;&quot;serverip&quot;:&quot;$server_addr&quot;,&apos;
-         &apos;&quot;size&quot;:$body_bytes_sent,&apos;
-         &apos;&quot;request_time&quot;:$request_time,&apos;
-         &apos;&quot;domain&quot;:&quot;$host&quot;,&apos;
-         &apos;&quot;request&quot;: &quot;$request&quot;, &apos;
-         &apos;&quot;method&quot;:&quot;$request_method&quot;,&apos;
-         &apos;&quot;requesturi&quot;:&quot;$request_uri&quot;,&apos;
-         &apos;&quot;url&quot;:&quot;$uri&quot;,&apos;
-         &apos;&quot;appversion&quot;:&quot;$HTTP_APP_VERSION&quot;,&apos;
-         &apos;&quot;referer&quot;:&quot;$http_referer&quot;,&apos;
-         &apos;&quot;agent&quot;:&quot;$http_user_agent&quot;,&apos;
-         &apos;&quot;status&quot;:&quot;$status&quot;}&apos;;
-</code></pre><h4 id="重启nginx服务"><a href="#重启nginx服务" class="headerlink" title="重启nginx服务"></a>重启nginx服务</h4><pre><code>nginx -s reload
-</code></pre><h4 id="启动-filebeat"><a href="#启动-filebeat" class="headerlink" title="启动 filebeat"></a>启动 filebeat</h4><pre><code>cd /usr/local/filebeat/filebeat-1.2.3-x86_64
-nohup ./filebeat start &amp;
+    output:
+      logstash: 
+        hosts: [&quot;x.x.x.x:5044&quot;,&quot;x.x.x.x:5044&quot;]
+
+
+    ############################# Shipper #########################################
+
+    shipper: 
+      name: &quot;blu_test&quot;
+
+
+    ############################# Logging ######################################### 
+
+    logging:  
+      files:
+        rotateeverybytes: 10485760 # = 10MB
+</code></pre><h4 id="这里把nginx的access日志源改为json格式，方便后续处理"><a href="#这里把nginx的access日志源改为json格式，方便后续处理" class="headerlink" title="这里把nginx的access日志源改为json格式，方便后续处理"></a>这里把nginx的access日志源改为json格式，方便后续处理</h4><pre><code>    log_format json &#39;{ &quot;@timestamp&quot;:&quot;$time_local&quot;,&#39;
+             &#39;&quot;clientip&quot;:&quot;$remote_addr&quot;,&#39;
+             &#39;&quot;remote_user&quot;: &quot;$remote_user&quot;, &#39;
+             &#39;&quot;http_x_forwarded_for&quot;:&quot;$http_x_forwarded_for&quot;,&#39;
+             &#39;&quot;serverip&quot;:&quot;$server_addr&quot;,&#39;
+             &#39;&quot;size&quot;:$body_bytes_sent,&#39;
+             &#39;&quot;request_time&quot;:$request_time,&#39;
+             &#39;&quot;domain&quot;:&quot;$host&quot;,&#39;
+             &#39;&quot;request&quot;: &quot;$request&quot;, &#39;
+             &#39;&quot;method&quot;:&quot;$request_method&quot;,&#39;
+             &#39;&quot;requesturi&quot;:&quot;$request_uri&quot;,&#39;
+             &#39;&quot;url&quot;:&quot;$uri&quot;,&#39;
+             &#39;&quot;appversion&quot;:&quot;$HTTP_APP_VERSION&quot;,&#39;
+             &#39;&quot;referer&quot;:&quot;$http_referer&quot;,&#39;
+             &#39;&quot;agent&quot;:&quot;$http_user_agent&quot;,&#39;
+             &#39;&quot;status&quot;:&quot;$status&quot;}&#39;;
+</code></pre><h4 id="重启nginx服务"><a href="#重启nginx服务" class="headerlink" title="重启nginx服务"></a>重启nginx服务</h4><pre><code>    nginx -s reload
+</code></pre><h4 id="启动-filebeat"><a href="#启动-filebeat" class="headerlink" title="启动 filebeat"></a>启动 filebeat</h4><pre><code>    cd /usr/local/filebeat/filebeat-1.2.3-x86_64
+    nohup ./filebeat start &amp;
 </code></pre><h3 id="5-安装配置kibana"><a href="#5-安装配置kibana" class="headerlink" title="5.安装配置kibana"></a>5.安装配置kibana</h3><h4 id="安装kibana"><a href="#安装kibana" class="headerlink" title="安装kibana"></a>安装kibana</h4><p>kibana最早是为了代替logstash-web 用来查看 ES 中的数据，用PHP编写的web</p>
 <p>k2 是k1作者使用ruby重写</p>
 <p>K3 是纯前端框架搭建，使用angularjs 编写</p>
 <p>K4 是使用node.js编写</p>
 <p>目前最新的版本已经是K5 </p>
 <p>本次部署依然选用了比较成熟的k4,安装也相对比较简单</p>
-<h5 id="从elastic官网下载-kibana-4-6-3-linux-x86-64-tar-gz"><a href="#从elastic官网下载-kibana-4-6-3-linux-x86-64-tar-gz" class="headerlink" title="从elastic官网下载 kibana-4.6.3-linux-x86_64.tar.gz"></a>从elastic官网下载 <code>kibana-4.6.3-linux-x86_64.tar.gz</code></h5><h5 id="解压kibana-4-6-3-linux-x86-64-tar-gz"><a href="#解压kibana-4-6-3-linux-x86-64-tar-gz" class="headerlink" title="解压kibana-4.6.3-linux-x86_64.tar.gz"></a>解压kibana-4.6.3-linux-x86_64.tar.gz</h5><pre><code>cd /usr/local/kibana
-tar -zxvf kibana-4.6.3-linux-x86_64.tar.gz
-</code></pre><h5 id="配置kibana-yml-文件"><a href="#配置kibana-yml-文件" class="headerlink" title="配置kibana.yml 文件"></a>配置kibana.yml 文件</h5><pre><code>cd /usr/local/kibana/kibana-4.6.3-linux-x86_64/config
-vim kibana.yml
+<h5 id="从elastic官网下载-kibana-4-6-3-linux-x86-64-tar-gz"><a href="#从elastic官网下载-kibana-4-6-3-linux-x86-64-tar-gz" class="headerlink" title="从elastic官网下载 kibana-4.6.3-linux-x86_64.tar.gz"></a>从elastic官网下载 <code>kibana-4.6.3-linux-x86_64.tar.gz</code></h5><h5 id="解压kibana-4-6-3-linux-x86-64-tar-gz"><a href="#解压kibana-4-6-3-linux-x86-64-tar-gz" class="headerlink" title="解压kibana-4.6.3-linux-x86_64.tar.gz"></a>解压kibana-4.6.3-linux-x86_64.tar.gz</h5><pre><code>    cd /usr/local/kibana
+    tar -zxvf kibana-4.6.3-linux-x86_64.tar.gz
+</code></pre><h5 id="配置kibana-yml-文件"><a href="#配置kibana-yml-文件" class="headerlink" title="配置kibana.yml 文件"></a>配置kibana.yml 文件</h5><pre><code>    cd /usr/local/kibana/kibana-4.6.3-linux-x86_64/config
+    vim kibana.yml
 </code></pre><p>一堆参数，只需修改这3个，即可启动</p>
-<pre><code># Kibana is served by a back end server. This controls which port to use.
-server.port: 5601
+<pre><code>    # Kibana is served by a back end server. This controls which port to use.
+    server.port: 5601
 
-# The host to bind the server to.
-server.host: &quot;0.0.0.0&quot;
+    # The host to bind the server to.
+    server.host: &quot;0.0.0.0&quot;
 
-# The Elasticsearch instance to use for all your queries.
-elasticsearch.url: &quot;http://IP:9200&quot;
-</code></pre><h5 id="启动kibana"><a href="#启动kibana" class="headerlink" title="启动kibana"></a>启动kibana</h5><pre><code>nohup ./kibana &amp;
+    # The Elasticsearch instance to use for all your queries.
+    elasticsearch.url: &quot;http://IP:9200&quot;
+</code></pre><h5 id="启动kibana"><a href="#启动kibana" class="headerlink" title="启动kibana"></a>启动kibana</h5><pre><code>    nohup ./kibana &amp;
 </code></pre><h4 id="访问kibana，配置日志索引"><a href="#访问kibana，配置日志索引" class="headerlink" title="访问kibana，配置日志索引"></a>访问kibana，配置日志索引</h4><ul>
 <li>访问地址： <code>http://IP:5601</code></li>
 </ul>
@@ -894,18 +897,28 @@ elasticsearch.url: &quot;http://IP:9200&quot;
 
 
 
+
+
+
+
+
+
 <section class="comments" id="comments">
-    <!-- UY BEGIN -->
-    <div id="uyan_frame"></div>
-    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
-    <!-- UY END -->
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'fantasykai',
+            repo: 'gitment-blog',
+            oauth: {
+                client_id: '3017a3c5a8b84de247ad',
+                client_secret: '94297e8b1dfb9df0faca3d3488943cca289630ac',
+            },
+        })
+        gitment.render('comments')
+    </script>
 </section>
-
-
-
-
-
-
 
 
 
@@ -1082,5 +1095,9 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 
+<!-- highlight.js script -->
+<script src="/plugins/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- highlight.js script -->
 </body>
 </html>

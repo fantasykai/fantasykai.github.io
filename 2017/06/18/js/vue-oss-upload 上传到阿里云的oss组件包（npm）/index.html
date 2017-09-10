@@ -52,6 +52,9 @@
 
     <!-- custom head -->
     
+  <!-- highlight.js css -->
+  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!-- highlight.js css -->
 
 </head>
 
@@ -237,46 +240,47 @@
 <h1 id="vue-oss-upload"><a href="#vue-oss-upload" class="headerlink" title="vue-oss-upload"></a>vue-oss-upload</h1><h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><h3 id="需要依赖阿里云的oss的SDK-可以在index-html中引入"><a href="#需要依赖阿里云的oss的SDK-可以在index-html中引入" class="headerlink" title="需要依赖阿里云的oss的SDK,可以在index.html中引入"></a>需要依赖阿里云的oss的SDK,可以在index.html中引入</h3><p>  <code>&lt;script type=&quot;text/javascript&quot; src=&quot;https://gosspublic.alicdn.com/aliyun-oss-sdk.min.js&quot;&gt;&lt;/script&gt;</code></p>
 <h3 id="组件依赖vue2-3以上的版本"><a href="#组件依赖vue2-3以上的版本" class="headerlink" title="组件依赖vue2.3以上的版本"></a>组件依赖vue2.3以上的版本</h3><p>vue2.3 重新引入了 .sync 修饰符，但是这次它只是作为一个编译时的语法糖存在。它会被扩展为一个自动更新父组件属性的 v-on 侦听器。</p>
 <p><a href="https://cn.vuejs.org/v2/guide/components.html#counter-event-example" target="_blank" rel="external">.sync 修饰符</a></p>
-<h2 id="Use-Setup"><a href="#Use-Setup" class="headerlink" title="Use Setup"></a>Use Setup</h2><h3 id="Install-vue-oss-upload"><a href="#Install-vue-oss-upload" class="headerlink" title="Install vue-oss-upload"></a>Install vue-oss-upload</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install vue-oss-upload --save</div></pre></td></tr></table></figure>
-<h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><pre><code>props: {
-     // 需要引入阿里云OSS的SDK，并初始化ossClient
-     ossClient: {
-       type: Object,
-       toWay: false
-     },
-     // 是非支持多文件上传
-     multiple: {
-       type: Boolean,
-       twoWay: false
-     },
-     // 上传组件id，区别页面中多次使用上传组件
-     id: {
-       type: String,
-       twoWay: false
-     },
-     // 上传成功后的uri
-     url: {
-       type: String,
-       twoWay: true
-     },
-      // 上传结果
-     uploadRes: {
-       type: Boolean,
-       twoWay: true
-     },
-     // 上传按钮的名称
-     inputName: {
-       type: String,
-     },
-     // 上传文件的名称
-     uploadFileName: {
-       type: String,
-     },
-     // 上传到OSS的路径
-     path: {
-       type: String,
-     },
-   },
+<h2 id="Use-Setup"><a href="#Use-Setup" class="headerlink" title="Use Setup"></a>Use Setup</h2><h3 id="Install-vue-oss-upload"><a href="#Install-vue-oss-upload" class="headerlink" title="Install vue-oss-upload"></a>Install vue-oss-upload</h3><pre><code class="bash">npm install vue-oss-upload --save
+</code></pre>
+<h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><pre><code> props: {
+      // 需要引入阿里云OSS的SDK，并初始化ossClient
+      ossClient: {
+        type: Object,
+        toWay: false
+      },
+      // 是非支持多文件上传
+      multiple: {
+        type: Boolean,
+        twoWay: false
+      },
+      // 上传组件id，区别页面中多次使用上传组件
+      id: {
+        type: String,
+        twoWay: false
+      },
+      // 上传成功后的uri
+      url: {
+        type: String,
+        twoWay: true
+      },
+       // 上传结果
+      uploadRes: {
+        type: Boolean,
+        twoWay: true
+      },
+      // 上传按钮的名称
+      inputName: {
+        type: String,
+      },
+      // 上传文件的名称
+      uploadFileName: {
+        type: String,
+      },
+      // 上传到OSS的路径
+      path: {
+        type: String,
+      },
+    },
 </code></pre><h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><pre><code>&lt;template&gt;
     &lt;div&gt;
         &lt;upload-ali-oss :url.sync=&quot;uploadForm.content.path&quot; :multiple=&quot;true&quot;
@@ -298,29 +302,29 @@
 &lt;/template&gt;
 
 &lt;script&gt;
-    import VueUploadAliOSS from &apos;vue-oss-upload&apos;;
-    import Css from &apos;vue-oss-upload/dist/vue-alioss-upload.min.css&apos;
+    import VueUploadAliOSS from &#39;vue-oss-upload&#39;;
+    import Css from &#39;vue-oss-upload/dist/vue-alioss-upload.min.css&#39;
     export default {
-        name: &apos;app&apos;,
+        name: &#39;app&#39;,
         components: {
-            &apos;upload-ali-oss&apos;: VueUploadAliOSS
+            &#39;upload-ali-oss&#39;: VueUploadAliOSS
         },
         data() {
             return {
                 ossClient: Object,
                 uploadForm: {
-                    id: &apos;imgFile&apos;,
-                    inputName: &apos;上传图片&apos;,// 自定义
-                    uploadFileName: &apos;2017063010192023&apos;,// 上传文件的名称
+                    id: &#39;imgFile&#39;,
+                    inputName: &#39;上传图片&#39;,// 自定义
+                    uploadFileName: &#39;2017063010192023&#39;,// 上传文件的名称
                     content: {
-                        path: &apos;&apos;,
+                        path: &#39;&#39;,
                     },
                     upload: {
-                        path: &apos;img/test/&apos;,// 自定义路径
+                        path: &#39;img/test/&#39;,// 自定义路径
                     },
                     uploadRes: false,
                 },
-                imgSrc: &apos;&apos;
+                imgSrc: &#39;&#39;
             }
         },
         methods: {
@@ -330,12 +334,12 @@
 
                 let Oss = OSS.Wrapper;
                 this.ossClient = new Oss({
-                    region: &apos;&apos;,
-                    accessKeyId: &apos;&apos;,
-                    accessKeySecret: &apos;&apos;,
-                    stsToken: &apos;&apos;,
-                    bucket: &apos;&apos;,
-                    endpoint: &apos;&apos;,
+                    region: &#39;&#39;,
+                    accessKeyId: &#39;&#39;,
+                    accessKeySecret: &#39;&#39;,
+                    stsToken: &#39;&#39;,
+                    bucket: &#39;&#39;,
+                    endpoint: &#39;&#39;,
                 });
             },
             // 展示上传的内容（图片）
@@ -346,8 +350,8 @@
 
                     var result = this.ossClient.signatureUrl(path, {
                         response: {
-                            // &apos;content-disposition&apos;: &apos;attachment; filename=&quot;&apos; + filename + &apos;&quot;&apos;
-                            &apos;Content-Type&apos;: &apos;image/jpeg&apos;
+                            // &#39;content-disposition&#39;: &#39;attachment; filename=&quot;&#39; + filename + &#39;&quot;&#39;
+                            &#39;Content-Type&#39;: &#39;image/jpeg&#39;
                         }
                     });
                     this.imgSrc = result;
@@ -355,9 +359,9 @@
             }
         },
         watch: {
-            &apos;uploadForm.content.path&apos; (val, oldVal) {
-//                console.log(&apos;new: %s, old: %s&apos;, val, oldVal)
-                if (&apos;&apos; !== val) {
+            &#39;uploadForm.content.path&#39; (val, oldVal) {
+//                console.log(&#39;new: %s, old: %s&#39;, val, oldVal)
+                if (&#39;&#39; !== val) {
                     this.showUploadContent();
                 }
             }
@@ -493,18 +497,28 @@
 
 
 
+
+
+
+
+
+
 <section class="comments" id="comments">
-    <!-- UY BEGIN -->
-    <div id="uyan_frame"></div>
-    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
-    <!-- UY END -->
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'fantasykai',
+            repo: 'gitment-blog',
+            oauth: {
+                client_id: '3017a3c5a8b84de247ad',
+                client_secret: '94297e8b1dfb9df0faca3d3488943cca289630ac',
+            },
+        })
+        gitment.render('comments')
+    </script>
 </section>
-
-
-
-
-
-
 
 
 
@@ -682,5 +696,9 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 
+<!-- highlight.js script -->
+<script src="/plugins/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- highlight.js script -->
 </body>
 </html>

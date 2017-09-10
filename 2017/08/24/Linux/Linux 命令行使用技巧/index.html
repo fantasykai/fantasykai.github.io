@@ -63,6 +63,9 @@
 
     <!-- custom head -->
     
+  <!-- highlight.js css -->
+  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!-- highlight.js css -->
 
 </head>
 
@@ -224,8 +227,8 @@
 <hr>
 <p>我们可能每天都会要使用到很多的 <a href="https://likegeeks.com/main-linux-commands-easy-guide/" target="_blank" rel="external">Linux 命令行</a>。 我们也会网络上知晓一些使用它们的小技巧，但是如果我们没有时常来进行练习，就有可能会忘掉怎么去使用它们。 所以我就决定把那些你可能会忘记的小提示和小技巧，或者对你而言可能是全新的东西都列表来。</p>
 <h2 id="将输出内容以表格的形式显示出来"><a href="#将输出内容以表格的形式显示出来" class="headerlink" title="将输出内容以表格的形式显示出来"></a>将输出内容以表格的形式显示出来</h2><p>有时，在你看到命令行执行的输出时，因为字符串过度拥挤（比如说 mount 命令的输出）导致输出内容难以识别。如果我们看到的内容是一张表格会如何呢？其实这是很容易做到的！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount | column –t:</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
+<pre><code>mount | column –t:
+</code></pre><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://static.oschina.net/uploads/space/2017/0823/091303_TBUa_2903254.png" alt="img" title="">
@@ -234,8 +237,8 @@
             </figure>
 <p>在此例中，由于内容中留了空格，所以输出的形式就美观了起来。 那如果想要的分隔符是别的什么符号，比如说冒号，又该怎么去做呢？ （例如，在 cat/etc/passwd 的输出内容中使用）</p>
 <p>这时候只需要使用 -s 参数指定分隔符就行了，像下面这样。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/passwd | column -t -s:</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
+<pre><code>cat /etc/passwd | column -t -s:
+</code></pre><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://static.oschina.net/uploads/space/2017/0823/091553_PTLs_2903254.png" alt="img" title="">
@@ -253,16 +256,16 @@
             </figure>
 <p>在上面这个示例中，&gt;/dev/null 2&gt;＆1 会让程序的输出重定向到 /dev/ null。标准错误和标准输出都会被包含进去。</p>
 <p>这是我认为最酷的Linux命令行技巧之一。</p>
-<h2 id="按内存资源的使用量对进程进行排序"><a href="#按内存资源的使用量对进程进行排序" class="headerlink" title="按内存资源的使用量对进程进行排序"></a>按内存资源的使用量对进程进行排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps aux | sort -rnk 4:</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
+<h2 id="按内存资源的使用量对进程进行排序"><a href="#按内存资源的使用量对进程进行排序" class="headerlink" title="按内存资源的使用量对进程进行排序"></a>按内存资源的使用量对进程进行排序</h2><pre><code>ps aux | sort -rnk 4:
+</code></pre><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://static.oschina.net/uploads/space/2017/0823/091735_Hqk6_2903254.png" alt="img" title="">
                 </div>
                 <div class="image-caption">img</div>
             </figure>
-<h2 id="按-CPU-资源的使用量对进程进行排序"><a href="#按-CPU-资源的使用量对进程进行排序" class="headerlink" title="按 CPU 资源的使用量对进程进行排序"></a>按 CPU 资源的使用量对进程进行排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps aux | sort -nk 3:</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
+<h2 id="按-CPU-资源的使用量对进程进行排序"><a href="#按-CPU-资源的使用量对进程进行排序" class="headerlink" title="按 CPU 资源的使用量对进程进行排序"></a>按 CPU 资源的使用量对进程进行排序</h2><pre><code>ps aux | sort -nk 3:
+</code></pre><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://static.oschina.net/uploads/space/2017/0823/091900_QTKd_2903254.png" alt="img" title="">
@@ -285,8 +288,8 @@
 <p>通过利用 watch 命令来操作会变化的数据，你可以尽情想象自己能拿这个来做些什么哦。</p>
 <h2 id="在会话关掉以后继续运行程序"><a href="#在会话关掉以后继续运行程序" class="headerlink" title="在会话关掉以后继续运行程序"></a>在会话关掉以后继续运行程序</h2><p>如果你在后台运行了什么程序，然后你关掉了的 shell 会话，那么这个后台运行的程序就会被你的 shell 杀掉。关闭 shell 以后怎么让程序继续运行下去呢？</p>
 <p>这个可以用 nohup 命令做到 - 该指令表示不做挂断操作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup wget site.com/file.zip</div></pre></td></tr></table></figure>
-<p>此命令是最容易被遗忘的 Linux 命令行技巧之一，因为我们许多人都会使用另外一个类命令的 screen 环境：</p>
+<pre><code>nohup wget site.com/file.zip
+</code></pre><p>此命令是最容易被遗忘的 Linux 命令行技巧之一，因为我们许多人都会使用另外一个类命令的 screen 环境：</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -341,10 +344,10 @@
             </figure>
 <h2 id="将文件内容转换为大写或者小写"><a href="#将文件内容转换为大写或者小写" class="headerlink" title="将文件内容转换为大写或者小写"></a>将文件内容转换为大写或者小写</h2><p>可以这样实现：cat myfile | tr a-z A-Z&gt; output.txt。</p>
 <h2 id="强大的-Xargs-命令"><a href="#强大的-Xargs-命令" class="headerlink" title="强大的 Xargs 命令"></a>强大的 Xargs 命令</h2><p>xargs 命令是最重要的 Linux 命令行技巧之一。你可以使用这个命令将命令的输出作为参数传递给另一个命令。例如，搜索 png 文件然后对其进行压缩或者其它操作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find. -name *.png -type f -print | xargs tar -cvzf images.tar.gz</div></pre></td></tr></table></figure>
-<p>又或者你的文件中有一个 URL 的列表，而你想要做的是以不同的方式下载或者处理这些 URL，可以这样做：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat urls.txt | xargs wget</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
+<pre><code>find. -name *.png -type f -print | xargs tar -cvzf images.tar.gz
+</code></pre><p>又或者你的文件中有一个 URL 的列表，而你想要做的是以不同的方式下载或者处理这些 URL，可以这样做：</p>
+<pre><code>cat urls.txt | xargs wget
+</code></pre><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://static.oschina.net/uploads/space/2017/0823/092303_cq15_2903254.png" alt="img" title="">
@@ -361,8 +364,8 @@
 <p>请你要记得，第一个命令的输出会在 xargs 命令结尾处传递。</p>
 <p>那如果命令需要中间过程的输出，该怎么办呢？这个简单！</p>
 <p>只需要使用 {} 并结合 -i 参数就行了。如下所示，替换在第一个命令的输出应该去的地方的参数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls /etc/*.conf | xargs -i cp &#123;&#125; /home/likegeeks/Desktop/out</div></pre></td></tr></table></figure>
-<p>这只是 Linux 命令行技巧其中的几个而已。你可以使用其他命令来做一些更 HAPPY 的事情，比如 awk 命令和 sed 命令！</p>
+<pre><code>ls /etc/*.conf | xargs -i cp {} /home/likegeeks/Desktop/out
+</code></pre><p>这只是 Linux 命令行技巧其中的几个而已。你可以使用其他命令来做一些更 HAPPY 的事情，比如 awk 命令和 sed 命令！</p>
 
         </div>
 
@@ -478,18 +481,28 @@
 
 
 
+
+
+
+
+
+
 <section class="comments" id="comments">
-    <!-- UY BEGIN -->
-    <div id="uyan_frame"></div>
-    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
-    <!-- UY END -->
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'fantasykai',
+            repo: 'gitment-blog',
+            oauth: {
+                client_id: '3017a3c5a8b84de247ad',
+                client_secret: '94297e8b1dfb9df0faca3d3488943cca289630ac',
+            },
+        })
+        gitment.render('comments')
+    </script>
 </section>
-
-
-
-
-
-
 
 
 
@@ -666,5 +679,9 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 
+<!-- highlight.js script -->
+<script src="/plugins/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- highlight.js script -->
 </body>
 </html>

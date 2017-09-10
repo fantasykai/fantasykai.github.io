@@ -52,6 +52,9 @@
 
     <!-- custom head -->
     
+  <!-- highlight.js css -->
+  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!-- highlight.js css -->
 
 </head>
 
@@ -184,7 +187,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题引入"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题引入</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#通常做法"><span class="post-toc-number">2.</span> <span class="post-toc-text">通常做法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用Guava库来解决"><span class="post-toc-number">3.</span> <span class="post-toc-text">使用Guava库来解决</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装Intellij-IDEA插件"><span class="post-toc-number">4.</span> <span class="post-toc-text">安装Intellij IDEA插件</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题引入"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题引入</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用Guava库来解决"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用Guava库来解决</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装Intellij-IDEA插件"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装Intellij IDEA插件</span></a></li></ol>
         </nav>
     </aside>
     
@@ -212,29 +215,126 @@
             <h1 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h1><blockquote>
 <p>POJO 类需要编写equals, hashCode 和 toString方法，通常只需要一个模板就能完成，目前我们已经可以让IDE使用插件来帮我们完成这些工作。但是<a id="more"></a>通常由IDE自动生成的这些代码都非常难看：</p>
 </blockquote>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserAddrInfo</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1900570942803605101L</span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 用户uid</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">private</span> Integer uid;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 省</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">private</span> String province;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 市</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">private</span> String city;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 区</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">private</span> String area;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 详细地址( 领地一 / 领地二 )</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">private</span> String addrDetail;</div><div class="line"></div><div class="line"><span class="comment">// constructor</span></div><div class="line"><span class="comment">// getters, setters if needed</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</code></pre><h1 id="通常做法"><a href="#通常做法" class="headerlink" title="通常做法"></a>通常做法</h1><p>目前的主流IDE都能够生成符合需求的方法的代码，但是生成的equals、hashCode和toString方法代码通常看起来就像下面这样：</p>
-<ol>
-<li><p><strong>equals</strong></p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == o) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">if</span> (o == <span class="keyword">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line"></div><div class="line">    UserAddrInfo that = (UserAddrInfo) o;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (uid != <span class="keyword">null</span> ? !uid.equals(that.uid) : that.uid != <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">if</span> (province != <span class="keyword">null</span> ? !province.equals(that.province) : that.province != <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">if</span> (city != <span class="keyword">null</span> ? !city.equals(that.city) : that.city != <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">if</span> (area != <span class="keyword">null</span> ? !area.equals(that.area) : that.area != <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">return</span> addrDetail != <span class="keyword">null</span> ? addrDetail.equals(that.addrDetail) : that.addrDetail == <span class="keyword">null</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</code></pre></li>
+<pre><code>```java
+
+public class UserAddrInfo implements Serializable {
+
+    private static final long serialVersionUID = 1900570942803605101L;
+
+    /**
+     * 用户uid
+     */
+    private Integer uid;
+
+    /**
+     * 省
+     */
+    private String province;
+
+    /**
+     * 市
+     */
+    private String city;
+
+    /**
+     * 区
+     */
+    private String area;
+
+    /**
+     * 详细地址( 领地一 / 领地二 )
+     */
+    private String addrDetail;
+
+// constructor
+// getters, setters if needed
+}
+</code></pre><pre><code># 通常做法
+目前的主流IDE都能够生成符合需求的方法的代码，但是生成的equals、hashCode和toString方法代码通常看起来就像下面这样：
+
+1. **equals**
+
+            ```java
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserAddrInfo that = (UserAddrInfo) o;
+
+        if (uid != null ? !uid.equals(that.uid) : that.uid != null) return false;
+        if (province != null ? !province.equals(that.province) : that.province != null) return false;
+        if (city != null ? !city.equals(that.city) : that.city != null) return false;
+        if (area != null ? !area.equals(that.area) : that.area != null) return false;
+        return addrDetail != null ? addrDetail.equals(that.addrDetail) : that.addrDetail == null;
+
+    }
+</code></pre><ol>
 <li><p><strong>hashCode</strong></p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> result = uid != <span class="keyword">null</span> ? uid.hashCode() : <span class="number">0</span>;</div><div class="line">    result = <span class="number">31</span> * result + (province != <span class="keyword">null</span> ? province.hashCode() : <span class="number">0</span>);</div><div class="line">    result = <span class="number">31</span> * result + (city != <span class="keyword">null</span> ? city.hashCode() : <span class="number">0</span>);</div><div class="line">    result = <span class="number">31</span> * result + (area != <span class="keyword">null</span> ? area.hashCode() : <span class="number">0</span>);</div><div class="line">    result = <span class="number">31</span> * result + (addrDetail != <span class="keyword">null</span> ? addrDetail.hashCode() : <span class="number">0</span>);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>     ```java
+</code></pre><p> @Override<br> public int hashCode() {</p>
+<pre><code> int result = uid != null ? uid.hashCode() : 0;
+ result = 31 * result + (province != null ? province.hashCode() : 0);
+ result = 31 * result + (city != null ? city.hashCode() : 0);
+ result = 31 * result + (area != null ? area.hashCode() : 0);
+ result = 31 * result + (addrDetail != null ? addrDetail.hashCode() : 0);
+ return result;
+</code></pre><p> }</p>
+<pre><code>     ```
 </code></pre></li>
 <li><p><strong>toString</strong></p>
 </li>
 </ol>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"UserAddrInfo&#123;"</span> +</div><div class="line">                <span class="string">"uid="</span> + uid +</div><div class="line">                <span class="string">", province='"</span> + province + <span class="string">'\''</span> +</div><div class="line">                <span class="string">", city='"</span> + city + <span class="string">'\''</span> +</div><div class="line">                <span class="string">", area='"</span> + area + <span class="string">'\''</span> +</div><div class="line">                <span class="string">", addrDetail='"</span> + addrDetail + <span class="string">'\''</span> +</div><div class="line">                <span class="string">'&#125;'</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<pre><code>        ```java
+        @Override
+            public String toString() {
+                return &quot;UserAddrInfo{&quot; +
+                        &quot;uid=&quot; + uid +
+                        &quot;, province=&#39;&quot; + province + &#39;\&#39;&#39; +
+                        &quot;, city=&#39;&quot; + city + &#39;\&#39;&#39; +
+                        &quot;, area=&#39;&quot; + area + &#39;\&#39;&#39; +
+                        &quot;, addrDetail=&#39;&quot; + addrDetail + &#39;\&#39;&#39; +
+                        &#39;}&#39;;
+            }
+        ```
 </code></pre><h1 id="使用Guava库来解决"><a href="#使用Guava库来解决" class="headerlink" title="使用Guava库来解决"></a>使用Guava库来解决</h1><p>Google Guava是一个提供了很多非常使用Java工具的精巧的库。我们可以使用Google Guava来重写上面的三个方法来使得代码显得更好看：</p>
 <ol>
 <li><p><strong>equals</strong></p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == o) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">if</span> (o == <span class="keyword">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    UserAddrInfo that = (UserAddrInfo) o;</div><div class="line">    <span class="keyword">return</span> Objects.equal(uid, that.uid) &amp;&amp;</div><div class="line">            Objects.equal(province, that.province) &amp;&amp;</div><div class="line">            Objects.equal(city, that.city) &amp;&amp;</div><div class="line">            Objects.equal(area, that.area) &amp;&amp;</div><div class="line">            Objects.equal(addrDetail, that.addrDetail);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code> ```java
+ @Override
+ public boolean equals(Object o) {
+     if (this == o) return true;
+     if (o == null || getClass() != o.getClass()) return false;
+     UserAddrInfo that = (UserAddrInfo) o;
+     return Objects.equal(uid, that.uid) &amp;&amp;
+             Objects.equal(province, that.province) &amp;&amp;
+             Objects.equal(city, that.city) &amp;&amp;
+             Objects.equal(area, that.area) &amp;&amp;
+             Objects.equal(addrDetail, that.addrDetail);
+ }
+ ```
 </code></pre></li>
 <li><p><strong>hashCode – 只需要一行</strong></p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> Objects.hashCode(uid, province, city, area, addrDetail);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code> ```java
+ @Override
+ public int hashCode() {
+     return Objects.hashCode(uid, province, city, area, addrDetail);
+ }
+ ```
 </code></pre></li>
 <li><p><strong>toString</strong></p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> Objects.toStringHelper(<span class="keyword">this</span>)</div><div class="line">            .add(<span class="string">"uid"</span>, uid)</div><div class="line">            .add(<span class="string">"province"</span>, province)</div><div class="line">            .add(<span class="string">"city"</span>, city)</div><div class="line">            .add(<span class="string">"area"</span>, area)</div><div class="line">            .add(<span class="string">"addrDetail"</span>, addrDetail)</div><div class="line">            .toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code> ```java
+ @Override
+ public String toString() {
+     return Objects.toStringHelper(this)
+             .add(&quot;uid&quot;, uid)
+             .add(&quot;province&quot;, province)
+             .add(&quot;city&quot;, city)
+             .add(&quot;area&quot;, area)
+             .add(&quot;addrDetail&quot;, addrDetail)
+             .toString();
+ }
+ ```
 </code></pre></li>
 </ol>
 <h1 id="安装Intellij-IDEA插件"><a href="#安装Intellij-IDEA插件" class="headerlink" title="安装Intellij IDEA插件"></a>安装Intellij IDEA插件</h1><p>使用idea不久，边已经非常喜欢这款智能，友善的帮手了，下面总结下使用idea安装guava equals，hashCode，和 toString 自动生成代码的插件</p>
@@ -378,18 +478,28 @@ POJO 类需要编写equals, hashCode 和 toString方法，通常只需要一个�
 
 
 
+
+
+
+
+
+
 <section class="comments" id="comments">
-    <!-- UY BEGIN -->
-    <div id="uyan_frame"></div>
-    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
-    <!-- UY END -->
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'fantasykai',
+            repo: 'gitment-blog',
+            oauth: {
+                client_id: '3017a3c5a8b84de247ad',
+                client_secret: '94297e8b1dfb9df0faca3d3488943cca289630ac',
+            },
+        })
+        gitment.render('comments')
+    </script>
 </section>
-
-
-
-
-
-
 
 
 
@@ -567,5 +677,9 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 
+<!-- highlight.js script -->
+<script src="/plugins/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- highlight.js script -->
 </body>
 </html>

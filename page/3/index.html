@@ -47,6 +47,9 @@
 
     <!-- custom head -->
     
+  <!-- highlight.js css -->
+  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!-- highlight.js css -->
 
 </head>
 
@@ -315,7 +318,7 @@ name:格式名称
 string:定义的格式
 
 举例：
-log_format acce...
+    log_format ...
     
 
         <a href="/2017/02/23/nginx/nginx配置访问日志/" class="post-more waves-effect waves-button">
@@ -424,11 +427,11 @@ idea启动通过maven，启动tomcat时，执行clean命令也报错
 
 
 报错信息：
-Failed to clean project Failed to delete ... tomcat / log
+  Failed to clean project Failed to delete ... tomcat / log
 
 
 
-无法删除，想到tomcat可能没有关闭。想到昨天idea被我强杀的进程。tomcat没杀掉，查看进程，果然tomcat进程还在，杀掉进程后，重新执行maven 命令，正常了...
+无法删除，想到tomcat可能没有关闭。想到昨天idea被我强杀的进程。tomcat没杀掉，查看进程，果然tomcat进程还在，杀掉进程后，重新执行maven 命令，正...
     
 
         <a href="/2017/02/10/JAVA/maven/maven 执行错误 Failed to clean project Failed to delete/" class="post-more waves-effect waves-button">
@@ -477,14 +480,14 @@ Failed to clean project Failed to delete ... tomcat / log
     
         问题一：sudo: unable to resolve host dev
 处理方式：
-编辑 /etc/hosts
-127.0.0.1       localhost 设备的hostname
-# 或改成下面这两行 
-#127.0.0.1       localhost 
-#127.0.0.1       设备的hostname
+  编辑 /etc/hosts
+  127.0.0.1       localhost 设备的hostname
+  # 或改成下面这两行 
+  #127.0.0.1       localhost 
+  #127.0.0.1       设备的hostname
 
 
-问题二： sudo: no tty present and n...
+问题二： sudo: no tty pre...
     
 
         <a href="/2017/02/08/Linux/sudo执行失败的2个问题解决方法/" class="post-more waves-effect waves-button">
@@ -632,15 +635,13 @@ Failed to clean project Failed to delete ... tomcat / log
 
 方法一：
 命令行执行
-db.material.find().forEach(function(x){
-db.unityassets.insert(x);
-})
+  db.material.find().forEach(function(x){
+  db.unityassets.insert(x);
+  })
 
 
 方法二：
-Mongo Express 中直接改名
-
-
+Mongo Express ...
     
 
         <a href="/2017/01/06/dateBase/NOSQL/collections 数据复制/" class="post-more waves-effect waves-button">
@@ -864,5 +865,9 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 
+<!-- highlight.js script -->
+<script src="/plugins/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- highlight.js script -->
 </body>
 </html>

@@ -48,6 +48,9 @@
 
     <!-- custom head -->
     
+  <!-- highlight.js css -->
+  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!-- highlight.js css -->
 
 </head>
 
@@ -365,8 +368,8 @@
 <li><p>(4) 正则表达式匹配,例如:~^.*.zhenping.me$</p>
 </li>
 <li><p>default_server</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx默认工作法则: 先将域的匹配规则,先做hash计算,把计算的结果放置进内存,下次访问请求过来时, 直接做对比</div></pre></td></tr></table></figure>
-</li>
+<pre><code>nginx默认工作法则: 先将域的匹配规则,先做hash计算,把计算的结果放置进内存,下次访问请求过来时, 直接做对比
+</code></pre></li>
 <li><p>servername后可跟一个或多个主机名, 名称还可以使用通配符和正则表达式(~),域名匹配顺序</p>
 </li>
 </ul>
@@ -550,8 +553,15 @@
 </li>
 <li><ul>
 <li><p>应用上下文件:http,server,location,limit_except</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">示例:</div><div class="line">  location / &#123;</div><div class="line">      deny 192.168.1.1;</div><div class="line">      allow 192.16.1.0/24;</div><div class="line">      allow 10.1.1.0/16;</div><div class="line">      allow 2001:0db8::32;</div><div class="line">      deny all;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-</li>
+<pre><code>示例:
+  location / {
+      deny 192.168.1.1;
+      allow 192.16.1.0/24;
+      allow 10.1.1.0/16;
+      allow 2001:0db8::32;
+      deny all;
+  }
+</code></pre></li>
 </ul>
 </li>
 </ul>
@@ -590,8 +600,11 @@
 <li><p><code>open_log_file_cache off;</code></p>
 </li>
 </ul>
-<h2 id="五、ngx-http-stub-status-module模块"><a href="#五、ngx-http-stub-status-module模块" class="headerlink" title="五、ngx_http_stub_status_module模块"></a><span id="ngx_http_stub_status_module">五、ngx_http_stub_status_module模块</span></h2><h4 id="1、nginx自身status的信息配置"><a href="#1、nginx自身status的信息配置" class="headerlink" title="1、nginx自身status的信息配置"></a>1、nginx自身status的信息配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Active connections: 1 </div><div class="line">server accepts handled requests</div><div class="line"> 2 2 18 </div><div class="line">Reading: 0 Writing: 1 Waiting: 0</div></pre></td></tr></table></figure>
-<h6 id="各参数说明"><a href="#各参数说明" class="headerlink" title="各参数说明"></a>各参数说明</h6><ul>
+<h2 id="五、ngx-http-stub-status-module模块"><a href="#五、ngx-http-stub-status-module模块" class="headerlink" title="五、ngx_http_stub_status_module模块"></a><span id="ngx_http_stub_status_module">五、ngx_http_stub_status_module模块</span></h2><h4 id="1、nginx自身status的信息配置"><a href="#1、nginx自身status的信息配置" class="headerlink" title="1、nginx自身status的信息配置"></a>1、nginx自身status的信息配置</h4><pre><code>Active connections: 1 
+server accepts handled requests
+ 2 2 18 
+Reading: 0 Writing: 1 Waiting: 0
+</code></pre><h6 id="各参数说明"><a href="#各参数说明" class="headerlink" title="各参数说明"></a>各参数说明</h6><ul>
 <li>active connections : 当前活动的客户端连接数,包括等待的.</li>
 <li>accepts : 已接受的客户端的连接总数量</li>
 <li>handled : 已处理完成的客户端连接请求总数量</li>
@@ -833,8 +846,13 @@
 <p>fastcgi_module只能对后端的一台应用服务器进行反代,如果需要给多台应用服务器进行反代实现负载,需借助upstream模块定义一组服务器,由fastcgi功能引用来完成, lnmp的架构中, ningx只支持fastcgi的模式连接后端php服务器,不能将应用服务运行为一个子模块的方式.nginx不支持动态加载模块机制(DSO),所以需要编译php工作为fpm机制时,将ngnx_http_fastcgi_module编译到nginx程序中,在php编译时需使用 —enable-fpm,将Php设置为fpm模式.</p>
 </blockquote>
 <p>LNMP架构仅支持一种nginx+php的结合方式,实现方式如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    ...</div><div class="line">    location ~* \.php$ &#123; </div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="1、fastcgi模块指令"><a href="#1、fastcgi模块指令" class="headerlink" title="1、fastcgi模块指令"></a>1、fastcgi模块指令</h4><ul>
+<pre><code>  server {
+      ...
+      location ~* \.php$ { 
+          ...
+      }
+  }
+</code></pre><h4 id="1、fastcgi模块指令"><a href="#1、fastcgi模块指令" class="headerlink" title="1、fastcgi模块指令"></a>1、fastcgi模块指令</h4><ul>
 <li><p><code>fastcgi_pass address;</code></p>
 </li>
 <li><ul>
@@ -1003,8 +1021,8 @@
 </li>
 <li><ul>
 <li><p>向响应报文添加自定义首部,并为其赋值,应用上下文为:http,server,location, if in location</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">add_header Via $server_addr;</div></pre></td></tr></table></figure>
-</li>
+<pre><code>add_header Via $server_addr;
+</code></pre></li>
 </ul>
 </li>
 <li><p><code>expires [modified] time;</code></p>
@@ -1201,18 +1219,28 @@
 
 
 
+
+
+
+
+
+
 <section class="comments" id="comments">
-    <!-- UY BEGIN -->
-    <div id="uyan_frame"></div>
-    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
-    <!-- UY END -->
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'fantasykai',
+            repo: 'gitment-blog',
+            oauth: {
+                client_id: '3017a3c5a8b84de247ad',
+                client_secret: '94297e8b1dfb9df0faca3d3488943cca289630ac',
+            },
+        })
+        gitment.render('comments')
+    </script>
 </section>
-
-
-
-
-
-
 
 
 
@@ -1389,5 +1417,9 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 
+<!-- highlight.js script -->
+<script src="/plugins/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- highlight.js script -->
 </body>
 </html>
