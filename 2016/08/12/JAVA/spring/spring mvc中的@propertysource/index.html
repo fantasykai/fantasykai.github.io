@@ -27,20 +27,20 @@
     
     
     <meta name="keywords" content="spring">
-    <meta name="description" content="简述 今天在整合定时任务时，想要把所有的定时任务的执行时间放到配置文件properties文件中，方便管理及修改      在spring mvc中，在配置文件中的东西，可以在java代码中通过注解进行读取了：  @PropertySource  在spring 3.1中开始引入  新建一个jobs.properties 文件">
+    <meta name="description" content="简述 今天在整合定时任务时，想要把所有的定时任务的执行时间放到配置文件properties文件中，方便管理及修改  在spring mvc中，在配置文件中的东西，可以在java代码中通过注解进行读取了：  @PropertySource  在spring 3.1中开始引入  新建一个jobs.properties 文件">
 <meta name="keywords" content="spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL 中按照in中的条件进行排序">
 <meta property="og:url" content="https://fantasykai.cc/2016/08/12/JAVA/spring/spring mvc中的@propertysource/index.html">
 <meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
-<meta property="og:description" content="简述 今天在整合定时任务时，想要把所有的定时任务的执行时间放到配置文件properties文件中，方便管理及修改      在spring mvc中，在配置文件中的东西，可以在java代码中通过注解进行读取了：  @PropertySource  在spring 3.1中开始引入  新建一个jobs.properties 文件">
+<meta property="og:description" content="简述 今天在整合定时任务时，想要把所有的定时任务的执行时间放到配置文件properties文件中，方便管理及修改  在spring mvc中，在配置文件中的东西，可以在java代码中通过注解进行读取了：  @PropertySource  在spring 3.1中开始引入  新建一个jobs.properties 文件">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://i.imgur.com/tvc9ry9.png">
 <meta property="og:image" content="http://i.imgur.com/XCMhVz1.png">
 <meta property="og:updated_time" content="2017-01-10T08:18:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL 中按照in中的条件进行排序">
-<meta name="twitter:description" content="简述 今天在整合定时任务时，想要把所有的定时任务的执行时间放到配置文件properties文件中，方便管理及修改      在spring mvc中，在配置文件中的东西，可以在java代码中通过注解进行读取了：  @PropertySource  在spring 3.1中开始引入  新建一个jobs.properties 文件">
+<meta name="twitter:description" content="简述 今天在整合定时任务时，想要把所有的定时任务的执行时间放到配置文件properties文件中，方便管理及修改  在spring mvc中，在配置文件中的东西，可以在java代码中通过注解进行读取了：  @PropertySource  在spring 3.1中开始引入  新建一个jobs.properties 文件">
 <meta name="twitter:image" content="http://i.imgur.com/tvc9ry9.png">
     
         <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
@@ -52,7 +52,7 @@
     <!-- custom head -->
     
   <!-- highlight.js css -->
-  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
   <!-- highlight.js css -->
 
 </head>
@@ -214,7 +214,7 @@
             <h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><blockquote>
 <p>今天在整合定时任务时，想要把所有的定时任务的执行时间放到配置文件properties文件中，方便管理及修改</p>
 </blockquote>
-<pre><code>    在spring mvc中，在配置文件中的东西，可以在java代码中通过注解进行读取了：
+<pre><code>在spring mvc中，在配置文件中的东西，可以在java代码中通过注解进行读取了：
 </code></pre><ul>
 <li>@PropertySource  在spring 3.1中开始引入</li>
 </ul>
@@ -234,10 +234,10 @@
             </figure>
 <ul>
 <li><p>要注意的是，要使用 </p>
-<pre><code>  @Bean 
-  public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() { 
-  return new PropertySourcesPlaceholderConfigurer(); 
-  } 
+<pre><code>@Bean 
+public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() { 
+return new PropertySourcesPlaceholderConfigurer(); 
+} 
 </code></pre></li>
 </ul>
 <p>才能让spring正确解析出${} 中的值;</p>
@@ -587,8 +587,8 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 <!-- highlight.js script -->
-<script src="/plugins/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
 <!-- highlight.js script -->
 </body>
 </html>

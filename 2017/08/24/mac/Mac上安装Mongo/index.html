@@ -49,7 +49,7 @@
     <!-- custom head -->
     
   <!-- highlight.js css -->
-  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
   <!-- highlight.js css -->
 
 </head>
@@ -222,7 +222,7 @@
 ==&gt; Caveats
 To have launchd start mongodb now and restart at login:
   brew services start mongodb
-Or, if you don&#39;t want/need a background service you can just run:
+Or, if you don&apos;t want/need a background service you can just run:
   mongod --config /usr/local/etc/mongod.conf
 ==&gt; Summary
 🍺  /usr/local/Cellar/mongodb/3.4.7: 19 files, 281.9MB
@@ -236,12 +236,11 @@ db.shutdownServer()
 </code></pre><p>对于启用 <a href="http://docs.mongoing.com/manual-zh/reference/configuration-options.html#security.authorization" target="_blank" rel="external"><code>authorization</code></a> 的系统，通过验证登陆到 <code>admin</code> 数据库，或者在为开启验证的情况下经由本地主机的系统接口登陆到 <code>admin</code> 数据库时，用户可以仅仅通过发送 <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer" target="_blank" rel="external"><code>db.shutdownServer()</code></a> 来关闭实例。</p>
 <p>For systems with <a href="http://docs.mongoing.com/manual-zh/reference/configuration-options.html#security.authorization" target="_blank" rel="external"><code>authorization</code></a> enabled, users may only issue <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer" target="_blank" rel="external"><code>db.shutdownServer()</code></a> when authenticated to the <code>admin</code> database or via the localhost interface on systems without authentication enabled.</p>
 <h3 id="使用-shutdown"><a href="#使用-shutdown" class="headerlink" title="使用 --shutdown"></a>使用 <code>--shutdown</code></h3><p>从Linux命令行关闭 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod" target="_blank" rel="external"><code>mongod</code></a> ，可以使用 <em>–shutdown</em> 选项 如下所示：</p>
-<pre><code>mongod --shutdown
-</code></pre><h3 id="使用-CTRL-C"><a href="#使用-CTRL-C" class="headerlink" title="使用 CTRL-C"></a>使用 <code>CTRL-C</code></h3><p>当正在运行一个交互模式 (i.e. without <em>–fork</em>) 的 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod" target="_blank" rel="external"><code>mongod</code></a> 实例时，发送 <code>Control-C</code> 来进行正常关闭。</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongod <span class="comment">--shutdown</span></div></pre></td></tr></table></figure>
+<h3 id="使用-CTRL-C"><a href="#使用-CTRL-C" class="headerlink" title="使用 CTRL-C"></a>使用 <code>CTRL-C</code></h3><p>当正在运行一个交互模式 (i.e. without <em>–fork</em>) 的 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod" target="_blank" rel="external"><code>mongod</code></a> 实例时，发送 <code>Control-C</code> 来进行正常关闭。</p>
 <h3 id="使用-kill"><a href="#使用-kill" class="headerlink" title="使用 kill"></a>使用 <code>kill</code></h3><p>From the Linux command line, shut down a specific <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod" target="_blank" rel="external"><code>mongod</code></a> instance using one of the following commands:</p>
-<pre><code>kill &lt;mongod process ID&gt;
-kill -2 &lt;mongod process ID&gt;
-</code></pre><h2 id="连接到MongoDb-直接在命令行使用mongo连接："><a href="#连接到MongoDb-直接在命令行使用mongo连接：" class="headerlink" title="连接到MongoDb,直接在命令行使用mongo连接："></a>连接到MongoDb,直接在命令行使用mongo连接：</h2><p>$ mongo</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">kill</span> &lt;mongod <span class="built_in">process</span> ID&gt;</div><div class="line"><span class="built_in">kill</span> <span class="number">-2</span> &lt;mongod <span class="built_in">process</span> ID&gt;</div></pre></td></tr></table></figure>
+<h2 id="连接到MongoDb-直接在命令行使用mongo连接："><a href="#连接到MongoDb-直接在命令行使用mongo连接：" class="headerlink" title="连接到MongoDb,直接在命令行使用mongo连接："></a>连接到MongoDb,直接在命令行使用mongo连接：</h2><p>$ mongo</p>
 <pre><code>MongoDB shell version v3.4.7
 connecting to: mongodb://127.0.0.1:27017
 MongoDB server version: 3.4.7
@@ -565,8 +564,8 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 <!-- highlight.js script -->
-<script src="/plugins/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
 <!-- highlight.js script -->
 </body>
 </html>

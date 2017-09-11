@@ -51,7 +51,7 @@
     <!-- custom head -->
     
   <!-- highlight.js css -->
-  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
   <!-- highlight.js css -->
 
 </head>
@@ -229,31 +229,31 @@
 </ul>
 <h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><ul>
 <li><p><code>#</code> + 空格 后面的文字即表示为标题</p>
-<pre><code>  # 表示一级标题，## 表示二级标题，依次表示 1-6 级标题
+<pre><code># 表示一级标题，## 表示二级标题，依次表示 1-6 级标题
 </code></pre></li>
 <li><p>注意： 符号后面要加一个 <strong>空格</strong> 和文本内容隔开</p>
 </li>
 <li><p>还可以在文字下行加= 表示大标题 - 表示小标题 慎用吧</p>
-<pre><code>  例如：
-  大标题
-  =
-  小标题
-  -
+<pre><code>例如：
+大标题
+=
+小标题
+-
 </code></pre><h3 id="字体：斜体-加粗"><a href="#字体：斜体-加粗" class="headerlink" title="字体：斜体 / 加粗"></a>字体：斜体 / 加粗</h3></li>
 </ul>
-<pre><code>    *文本* 表示文本内容为斜体， **文本** 表示文本内容为加粗
+<pre><code>*文本* 表示文本内容为斜体， **文本** 表示文本内容为加粗
 </code></pre><ul>
 <li>效果： <em>斜体文本</em>  <strong>加粗文本</strong><h3 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h3></li>
 <li>段落间加一个 <strong>空白行</strong> 分割 同html中的 <code>&lt;p&gt;</code></li>
 <li>连续两个空格即为换行 同html中的 <code>&lt;br&gt;</code><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3></li>
 <li>使用*,+,-加上一个空格来表示</li>
 <li><p>可以支持嵌套,如</p>
-<pre><code>  *,+,-效果一样的
-  - 外层列表项目
-        + 内层列表项目
-       + 内层无序列表项目
+<pre><code>*,+,-效果一样的
+- 外层列表项目
       + 内层列表项目
-  - 外层列表项目
+     + 内层无序列表项目
+    + 内层列表项目
+- 外层列表项目
 </code></pre></li>
 <li>效果         </li>
 </ul>
@@ -270,7 +270,7 @@
 <hr>
 <ul>
 <li><p>有序列表用 数字+英文点+空格来表示</p>
-<pre><code>  - 1. 这样会展示序号 
+<pre><code>- 1. 这样会展示序号 
 </code></pre></li>
 <li>效果：</li>
 <li><ol>
@@ -279,24 +279,24 @@
 </li>
 <li>注意：列表内容很长的，不需要手工输入换行符，css控制段落的宽度，会自动的缩放的<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3></li>
 <li><p>这其实是我第一个接触的markdown语法，第一篇资料收集时就用到了</p>
-<pre><code>   直接使用 [文本](链接)
+<pre><code>直接使用 [文本](链接)
 </code></pre></li>
 <li><p>效果：<a href="https://www.baidu.com/" target="_blank" rel="external">百度</a></p>
-<pre><code>   如果很多地方需要相同的url呢，可以预先定义url 这样玩：[ref_name]:URL  
-   ref_name 一般使用数字表示，显得专业 然后在需要使用链接的地方 使用[文本][ref_name] 这种方式即可,酷炫
+<pre><code>如果很多地方需要相同的url呢，可以预先定义url 这样玩：[ref_name]:URL  
+ref_name 一般使用数字表示，显得专业 然后在需要使用链接的地方 使用[文本][ref_name] 这种方式即可,酷炫
 </code></pre></li>
 <li><p>效果 </p>
 </li>
 </ul>
-<pre><code>      [ref_name]：url 如： [1]:https://www.baidu.com/ 
+<pre><code>[ref_name]：url 如： [1]:https://www.baidu.com/ 
 </code></pre><ul>
 <li>引用上面定义的url <a href="https://www.baidu.com/" target="_blank" rel="external">百度</a></li>
 <li><p>如果想把URL展示出来，并可以作为链接使用  这样玩：<code>&lt;URL&gt;</code></p>
-<pre><code>    &lt;url&gt; 如： &lt;https://www.baidu.com/&gt; 
+<pre><code>&lt;url&gt; 如： &lt;https://www.baidu.com/&gt; 
 </code></pre></li>
 <li>效果：<a href="https://www.baidu.com/" target="_blank" rel="external">https://www.baidu.com/</a><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3></li>
 <li><p>图片语法与链接类似</p>
-<pre><code>  ![](图片地址) 如： ![](http://i.imgur.com/P7ACmyM.png)
+<pre><code>![](图片地址) 如： ![](http://i.imgur.com/P7ACmyM.png)
 </code></pre><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -305,23 +305,23 @@
                 <div class="image-caption"></div>
             </figure></li>
 <li><p>同样可以使用引用的方式使用图片</p>
-<pre><code>  这样定义：[id]:图片url  这样引用定义 ![][id]
+<pre><code>这样定义：[id]:图片url  这样引用定义 ![][id]
 </code></pre></li>
 <li>定义图片的大小或比例</li>
 <li>方法一：嵌入HTML代码</li>
 </ul>
-<pre><code>        &lt;img src=&quot;./xxx.png&quot; width = &quot;300&quot; height = &quot;200&quot; alt=&quot;图片名称&quot; align=center /&gt; 注意：要居中展示，外围加&lt;div&gt;即可
+<pre><code>&lt;img src=&quot;./xxx.png&quot; width = &quot;300&quot; height = &quot;200&quot; alt=&quot;图片名称&quot; align=center /&gt; 注意：要居中展示，外围加&lt;div&gt;即可
 </code></pre><ul>
 <li>方法二：使用支持图片大小更改操作的 Mou 编辑器 （mac可以玩）</li>
 </ul>
-<pre><code>         ![](url =100x100) 注意: =前有个空格，可以只写宽度。         
+<pre><code>![](url =100x100) 注意: =前有个空格，可以只写宽度。         
 </code></pre><ul>
 <li>方法三： 阿里云的OSS，七牛云的图片服务器时，url上加上相关操字段即可实现图片大小，比例修改，具体见各自的产品文档~</li>
 </ul>
 <h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><ul>
 <li>开篇关于Markdown的简介和特点就是引用的百度， 只要在第一行加上 “&gt;”和一个空格，表示代码引用，还可以嵌套<h3 id="转义"><a href="#转义" class="headerlink" title="转义"></a>转义</h3></li>
 <li><p>使用 \ 来转义，表示文本中的markdown符号</p>
-<pre><code>  如： \[百度](https://www.baidu.com/)
+<pre><code>如： \[百度](https://www.baidu.com/)
 </code></pre></li>
 <li>效果：[百度](<a href="https://www.baidu.com/" target="_blank" rel="external">https://www.baidu.com/</a>) <h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3></li>
 <li><p>表格代码</p>
@@ -366,14 +366,7 @@
 <li><p>下面是一小段代码举例：</p>
 </li>
 </ul>
-<pre><code>```java
-//这里显示一些代码，使用```java```，进行代码染色，这是一段使用JAVA代码
-public class Blog{
-      public int Id 
-      public string Subject
-  省略 get() set() toString() ...
-}
-```
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里显示一些代码，使用```java```，进行代码染色，这是一段使用JAVA代码</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Blog</span></span>&#123;</div><div class="line">	  <span class="keyword">public</span> <span class="keyword">int</span> Id </div><div class="line">	  <span class="keyword">public</span> string Subject</div><div class="line">  省略 get() set() toString() ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </code></pre><p>这样基本就可以玩起来了，还是需要多实践，多谢，多总结。</p>
 <blockquote>
 <p>我们活在各自的的心灵世界，我们有什么样的心，就决定我们看到什么样的世界</p>
@@ -692,8 +685,8 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 <!-- highlight.js script -->
-<script src="/plugins/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
 <!-- highlight.js script -->
 </body>
 </html>

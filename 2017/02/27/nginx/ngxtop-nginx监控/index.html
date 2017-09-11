@@ -49,7 +49,7 @@
     <!-- custom head -->
     
   <!-- highlight.js css -->
-  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
   <!-- highlight.js css -->
 
 </head>
@@ -215,7 +215,7 @@
 <h2 id="ngxtop-简介"><a href="#ngxtop-简介" class="headerlink" title="ngxtop 简介"></a>ngxtop 简介</h2><p>ngxtop 类似于linux的 top 命令，设计为在短时间内运行，作为服务器的故障排除和监控使用</p>
 <p>ngxtop 使用python2编写和测试，但也可以支持python3，使用sqlite 数据库</p>
 <h2 id="ngxtop-安装"><a href="#ngxtop-安装" class="headerlink" title="ngxtop 安装"></a>ngxtop 安装</h2><p>ngxtop使用python编写， 所以可以使用pip命令进行安装，确保机器上已经安装好了python环境和pip</p>
-<pre><code>    sudo pip install ngxtop
+<pre><code>sudo pip install ngxtop
 </code></pre><ul>
 <li>注意：</li>
 </ul>
@@ -251,48 +251,48 @@
 <p>使用示例：</p>
 <ul>
 <li><p>列出10个nginx服务器，按请求数量排序</p>
-<pre><code>  ngxtop
+<pre><code>ngxtop
 </code></pre></li>
 <li><p>显示前20个最频繁的请求</p>
-<pre><code>  ngxtop -n 20 
+<pre><code>ngxtop -n 20 
 </code></pre></li>
 <li><p>获取nginx基本信息    </p>
-<pre><code>  ngxtop info
+<pre><code>ngxtop info
 </code></pre></li>
 <li><p>以自定义显示的变量，简单列出需要显示的变量。使用 “print” 命令显示自定义请求。        </p>
-<pre><code>  ngxtop print request http_user_agent remote_addr
+<pre><code>ngxtop print request http_user_agent remote_addr
 </code></pre></li>
 <li><p>显示请求最多的客户端IP地址        </p>
-<pre><code>  ngxtop top remote_addr
+<pre><code>ngxtop top remote_addr
 </code></pre></li>
 <li><p>显示状态码是404的请求    </p>
-<pre><code>  ngxtop -i &#39;status == 404&#39; print request status
+<pre><code>ngxtop -i &apos;status == 404&apos; print request status
 </code></pre></li>
 <li><p>统计访问次数最多的请求</p>
-<pre><code>  ngxtop -l access.log --no-follow
+<pre><code>ngxtop -l access.log --no-follow
 </code></pre></li>
 <li><p>自定义排序的字段</p>
-<pre><code>  ngxtop -l access.log --no-follow -o avg_bytes_sent
+<pre><code>ngxtop -l access.log --no-follow -o avg_bytes_sent
 </code></pre></li>
 <li><p>自定义过滤条件</p>
-<pre><code>  只统计成功
-  ngxtop -l access.log --no-follow -i &#39;status!=200&#39;
+<pre><code>只统计成功
+ngxtop -l access.log --no-follow -i &apos;status!=200&apos;
 </code></pre></li>
 <li><p>输出400以上状态吗的请求以及请求来源</p>
 <p>  ngxtop -i ‘status &gt;= 400’ print request status http_referer</p>
 </li>
 <li><p>搜索客户端为 iPhone 的 log</p>
-<pre><code>   ngxtop -l access.log --no-follow -i &#39;http_user_agent.find(&#39;iPhone&#39;)&#39;
-   条件里是可以嵌 python 语句的，这些语句被 eval() 动态翻译并执行。需要注意的是这些语句如果抛出异常会导致 ngxtop 异常退出。
+<pre><code>ngxtop -l access.log --no-follow -i &apos;http_user_agent.find(&apos;iPhone&apos;)&apos;
+条件里是可以嵌 python 语句的，这些语句被 eval() 动态翻译并执行。需要注意的是这些语句如果抛出异常会导致 ngxtop 异常退出。
 </code></pre></li>
 <li><p>分组过滤</p>
-<pre><code>   -g 相当于 group by,
-   -a 相当于 having。
-   ngxtop 已经默认提供了 avg_bytes_sent, 2xx, 3xx, 4xx, 5xx 这些聚合字段，一般这些字段已经足够了。
-   如果业务复杂了，想做出更多的查询，可以利用这两个参数自己组合条件。
+<pre><code>-g 相当于 group by,
+-a 相当于 having。
+ngxtop 已经默认提供了 avg_bytes_sent, 2xx, 3xx, 4xx, 5xx 这些聚合字段，一般这些字段已经足够了。
+如果业务复杂了，想做出更多的查询，可以利用这两个参数自己组合条件。
 
-   访问量前十的ip地址
-      ngxtop --group-by remote_addr
+访问量前十的ip地址
+   ngxtop --group-by remote_addr
 </code></pre></li>
 </ul>
 <ul>
@@ -625,8 +625,8 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 <!-- highlight.js script -->
-<script src="/plugins/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
 <!-- highlight.js script -->
 </body>
 </html>

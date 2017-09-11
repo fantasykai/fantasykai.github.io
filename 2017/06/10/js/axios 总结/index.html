@@ -49,7 +49,7 @@
     <!-- custom head -->
     
   <!-- highlight.js css -->
-  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
   <!-- highlight.js css -->
 
 </head>
@@ -236,69 +236,69 @@
 <pre><code>npm install --save axios
 </code></pre><h3 id="使用举例："><a href="#使用举例：" class="headerlink" title="使用举例："></a>使用举例：</h3><ul>
 <li><p>GET 请求</p>
-<pre><code>  // Make a request for a user with a given ID
-  axios.get(&#39;/user?ID=12345&#39;)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+<pre><code>// Make a request for a user with a given ID
+axios.get(&apos;/user?ID=12345&apos;)
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
-  // Optionally the request above could also be done as
-  axios.get(&#39;/user&#39;, {
-      params: {
-        ID: 12345
-      }
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+// Optionally the request above could also be done as
+axios.get(&apos;/user&apos;, {
+    params: {
+      ID: 12345
+    }
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 </code></pre></li>
 </ul>
 <ul>
 <li><p>POST 请求</p>
-<pre><code>  axios.post(&#39;/user&#39;, {
-      firstName: &#39;Fred&#39;,
-      lastName: &#39;Flintstone&#39;
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+<pre><code>axios.post(&apos;/user&apos;, {
+    firstName: &apos;Fred&apos;,
+    lastName: &apos;Flintstone&apos;
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 </code></pre></li>
 <li><p>并发请求</p>
-<pre><code>  function getUserAccount() {
-    return axios.get(&#39;/user/12345&#39;);
-  }
-  function getUserPermissions() {
-    return axios.get(&#39;/user/12345/permissions&#39;);
-  }
-  axios.all([getUserAccount(), getUserPermissions()])
-    .then(axios.spread(function (acct, perms) {
-      //两个请求现已完成
-    }));
+<pre><code>function getUserAccount() {
+  return axios.get(&apos;/user/12345&apos;);
+}
+function getUserPermissions() {
+  return axios.get(&apos;/user/12345/permissions&apos;);
+}
+axios.all([getUserAccount(), getUserPermissions()])
+  .then(axios.spread(function (acct, perms) {
+    //两个请求现已完成
+  }));
 </code></pre></li>
 </ul>
 <h3 id="axios-API"><a href="#axios-API" class="headerlink" title="axios API"></a>axios API</h3><p>可以通过向 axios 传递相关配置来创建请求</p>
 <p>axios(config)</p>
 <pre><code>// 发送 POST 请求
 axios({
-  method: &#39;post&#39;,
-  url: &#39;/user/12345&#39;,
+  method: &apos;post&apos;,
+  url: &apos;/user/12345&apos;,
   data: {
-    firstName: &#39;Fred&#39;,
-    lastName: &#39;Flintstone&#39;
+    firstName: &apos;Fred&apos;,
+    lastName: &apos;Flintstone&apos;
   }
 });
 </code></pre><p>axios(url[, config])</p>
 <pre><code>// 发送 GET 请求（默认的方法）
-axios(&#39;/user/12345&#39;);
+axios(&apos;/user/12345&apos;);
 </code></pre><h4 id="请求方法的别名"><a href="#请求方法的别名" class="headerlink" title="请求方法的别名"></a>请求方法的别名</h4><p>为方便起见，为所有支持的请求方法提供了别名</p>
 <pre><code>axios.request(config)
 axios.get(url[, config])
@@ -317,9 +317,9 @@ axios.spread(callback)
 </code></pre><h4 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h4><p>可以使用自定义配置新建一个 axios 实例</p>
 <p>axios.create([config])</p>
 <pre><code>var instance = axios.create({
-  baseURL: &#39;https://some-domain.com/api/&#39;,
+  baseURL: &apos;https://some-domain.com/api/&apos;,
   timeout: 1000,
-  headers: {&#39;X-Custom-Header&#39;: &#39;foobar&#39;}
+  headers: {&apos;X-Custom-Header&apos;: &apos;foobar&apos;}
 });
 </code></pre><h5 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h5><p>以下是可用的实例方法。指定的配置将与实例的配置合并</p>
 <pre><code>axios#request(config)
@@ -332,17 +332,17 @@ axios#patch(url[, data[, config]])
 </code></pre><h4 id="请求配置"><a href="#请求配置" class="headerlink" title="请求配置"></a>请求配置</h4><p>这些是创建请求时可以用的配置选项。只有 url 是必需的。如果没有指定 method，请求将默认使用 get 方法。</p>
 <pre><code>{
   // `url` 是用于请求的服务器 URL
-  url: &#39;/user&#39;,
+  url: &apos;/user&apos;,
 
   // `method` 是创建请求时使用的方法
-  method: &#39;get&#39;, // 默认是 get
+  method: &apos;get&apos;, // 默认是 get
 
   // `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL。
   // 它可以通过设置一个 `baseURL` 便于为 axios 实例的方法传递相对 URL
-  baseURL: &#39;https://some-domain.com/api/&#39;,
+  baseURL: &apos;https://some-domain.com/api/&apos;,
 
   // `transformRequest` 允许在向服务器发送前，修改请求数据
-  // 只能用在 &#39;PUT&#39;, &#39;POST&#39; 和 &#39;PATCH&#39; 这几个请求方法
+  // 只能用在 &apos;PUT&apos;, &apos;POST&apos; 和 &apos;PATCH&apos; 这几个请求方法
   // 后面数组中的函数必须返回一个字符串，或 ArrayBuffer，或 Stream
   transformRequest: [function (data) {
     // 对 data 进行任意转换处理
@@ -358,7 +358,7 @@ axios#patch(url[, data[, config]])
   }],
 
   // `headers` 是即将被发送的自定义请求头
-  headers: {&#39;X-Requested-With&#39;: &#39;XMLHttpRequest&#39;},
+  headers: {&apos;X-Requested-With&apos;: &apos;XMLHttpRequest&apos;},
 
   // `params` 是即将与请求一起发送的 URL 参数
   // 必须是一个无格式对象(plain object)或 URLSearchParams 对象
@@ -369,17 +369,17 @@ axios#patch(url[, data[, config]])
   // `paramsSerializer` 是一个负责 `params` 序列化的函数
   // (e.g. https://www.npmjs.com/package/qs, http://api.jquery.com/jquery.param/)
   paramsSerializer: function(params) {
-    return Qs.stringify(params, {arrayFormat: &#39;brackets&#39;})
+    return Qs.stringify(params, {arrayFormat: &apos;brackets&apos;})
   },
 
   // `data` 是作为请求主体被发送的数据
-  // 只适用于这些请求方法 &#39;PUT&#39;, &#39;POST&#39;, 和 &#39;PATCH&#39;
+  // 只适用于这些请求方法 &apos;PUT&apos;, &apos;POST&apos;, 和 &apos;PATCH&apos;
   // 在没有设置 `transformRequest` 时，必须是以下类型之一：
   // - string, plain object, ArrayBuffer, ArrayBufferView, URLSearchParams
   // - 浏览器专属：FormData, File, Blob
   // - Node 专属： Stream
   data: {
-    firstName: &#39;Fred&#39;
+    firstName: &apos;Fred&apos;
   },
 
   // `timeout` 指定请求超时的毫秒数(0 表示无超时时间)
@@ -398,18 +398,18 @@ axios#patch(url[, data[, config]])
   // `auth` 表示应该使用 HTTP 基础验证，并提供凭据
   // 这将设置一个 `Authorization` 头，覆写掉现有的任意使用 `headers` 设置的自定义 `Authorization`头
   auth: {
-    username: &#39;janedoe&#39;,
-    password: &#39;s00pers3cret&#39;
+    username: &apos;janedoe&apos;,
+    password: &apos;s00pers3cret&apos;
   },
 
-  // `responseType` 表示服务器响应的数据类型，可以是 &#39;arraybuffer&#39;, &#39;blob&#39;, &#39;document&#39;, &#39;json&#39;, &#39;text&#39;, &#39;stream&#39;
-  responseType: &#39;json&#39;, // 默认的
+  // `responseType` 表示服务器响应的数据类型，可以是 &apos;arraybuffer&apos;, &apos;blob&apos;, &apos;document&apos;, &apos;json&apos;, &apos;text&apos;, &apos;stream&apos;
+  responseType: &apos;json&apos;, // 默认的
 
   // `xsrfCookieName` 是用作 xsrf token 的值的cookie的名称
-  xsrfCookieName: &#39;XSRF-TOKEN&#39;, // default
+  xsrfCookieName: &apos;XSRF-TOKEN&apos;, // default
 
   // `xsrfHeaderName` 是承载 xsrf token 的值的 HTTP 头的名称
-  xsrfHeaderName: &#39;X-XSRF-TOKEN&#39;, // 默认的
+  xsrfHeaderName: &apos;X-XSRF-TOKEN&apos;, // 默认的
 
   // `onUploadProgress` 允许为上传处理进度事件
   onUploadProgress: function (progressEvent) {
@@ -438,15 +438,15 @@ axios#patch(url[, data[, config]])
   httpAgent: new http.Agent({ keepAlive: true }),
   httpsAgent: new https.Agent({ keepAlive: true }),
 
-  // &#39;proxy&#39; 定义代理服务器的主机名称和端口
+  // &apos;proxy&apos; 定义代理服务器的主机名称和端口
   // `auth` 表示 HTTP 基础验证应当用于连接代理，并提供凭据
   // 这将会设置一个 `Proxy-Authorization` 头，覆写掉已有的通过使用 `header` 设置的自定义 `Proxy-Authorization` 头。
   proxy: {
-    host: &#39;127.0.0.1&#39;,
+    host: &apos;127.0.0.1&apos;,
     port: 9000,
     auth: : {
-      username: &#39;mikeymike&#39;,
-      password: &#39;rapunz3l&#39;
+      username: &apos;mikeymike&apos;,
+      password: &apos;rapunz3l&apos;
     }
   },
 
@@ -464,7 +464,7 @@ axios#patch(url[, data[, config]])
   status: 200,
 
   // `statusText` 来自服务器响应的 HTTP 状态信息
-  statusText: &#39;OK&#39;,
+  statusText: &apos;OK&apos;,
 
   // `headers` 服务器响应的头
   headers: {},
@@ -473,7 +473,7 @@ axios#patch(url[, data[, config]])
   config: {}
 }
 </code></pre><p>使用 then 时，你将接收下面这样的响应：</p>
-<pre><code>axios.get(&#39;/user/12345&#39;)
+<pre><code>axios.get(&apos;/user/12345&apos;)
   .then(function(response) {
     console.log(response.data);
     console.log(response.status);
@@ -485,16 +485,16 @@ axios#patch(url[, data[, config]])
 <li>在使用 catch 时，或传递 rejection callback 作为 then 的第二个参数时，响应可以通过 error 对象可被使用，正如在错误处理这一节所讲。</li>
 </ul>
 <h3 id="配置的默认值-defaults"><a href="#配置的默认值-defaults" class="headerlink" title="配置的默认值/defaults"></a>配置的默认值/defaults</h3><p>你可以指定将被用在各个请求的配置默认值</p>
-<h4 id="全局的-axios-默认值"><a href="#全局的-axios-默认值" class="headerlink" title="全局的 axios 默认值"></a>全局的 axios 默认值</h4><pre><code>axios.defaults.baseURL = &#39;https://api.example.com&#39;;
-axios.defaults.headers.common[&#39;Authorization&#39;] = AUTH_TOKEN;
-axios.defaults.headers.post[&#39;Content-Type&#39;] = &#39;application/x-www-form-urlencoded&#39;;
+<h4 id="全局的-axios-默认值"><a href="#全局的-axios-默认值" class="headerlink" title="全局的 axios 默认值"></a>全局的 axios 默认值</h4><pre><code>axios.defaults.baseURL = &apos;https://api.example.com&apos;;
+axios.defaults.headers.common[&apos;Authorization&apos;] = AUTH_TOKEN;
+axios.defaults.headers.post[&apos;Content-Type&apos;] = &apos;application/x-www-form-urlencoded&apos;;
 </code></pre><h4 id="自定义实例默认值"><a href="#自定义实例默认值" class="headerlink" title="自定义实例默认值"></a>自定义实例默认值</h4><pre><code>// 创建实例时设置配置的默认值
 var instance = axios.create({
-  baseURL: &#39;https://api.example.com&#39;
+  baseURL: &apos;https://api.example.com&apos;
 });
 
 // 在实例已创建后修改默认值
-instance.defaults.headers.common[&#39;Authorization&#39;] = AUTH_TOKEN;
+instance.defaults.headers.common[&apos;Authorization&apos;] = AUTH_TOKEN;
 </code></pre><h4 id="配置的优先顺序"><a href="#配置的优先顺序" class="headerlink" title="配置的优先顺序"></a>配置的优先顺序</h4><p>配置会以一个优先顺序进行合并。这个顺序是：在 lib/defaults.js 找到的库的默认值，然后是实例的 defaults 属性，最后是请求的 config 参数。后者将优先于前者。这里是一个例子：</p>
 <pre><code>// 使用由库提供的配置的默认值来创建实例
 // 此时超时配置的默认值是 `0`
@@ -505,7 +505,7 @@ var instance = axios.create();
 instance.defaults.timeout = 2500;
 
 // 为已知需要花费很长时间的请求覆写超时设置
-instance.get(&#39;/longRequest&#39;, {
+instance.get(&apos;/longRequest&apos;, {
   timeout: 5000
 });
 </code></pre><h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>在请求或响应被 then 或 catch 处理前拦截它们。</p>
@@ -532,7 +532,7 @@ axios.interceptors.request.eject(myInterceptor);
 </code></pre><p>可以为自定义 axios 实例添加拦截器</p>
 <pre><code>var instance = axios.create();
 instance.interceptors.request.use(function () {/*...*/});
-</code></pre><h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><pre><code>axios.get(&#39;/user/12345&#39;)
+</code></pre><h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><pre><code>axios.get(&apos;/user/12345&apos;)
   .catch(function (error) {
     if (error.response) {
       // 请求已发出，但服务器响应的状态码不在 2xx 范围内
@@ -541,12 +541,12 @@ instance.interceptors.request.use(function () {/*...*/});
       console.log(error.response.headers);
     } else {
       // Something happened in setting up the request that triggered an Error
-      console.log(&#39;Error&#39;, error.message);
+      console.log(&apos;Error&apos;, error.message);
     }
     console.log(error.config);
   });
 </code></pre><p>可以使用 validateStatus 配置选项定义一个自定义 HTTP 状态码的错误范围。</p>
-<pre><code>axios.get(&#39;/user/12345&#39;, {
+<pre><code>axios.get(&apos;/user/12345&apos;, {
   validateStatus: function (status) {
     return status &lt; 500; // 状态码在大于或等于500时才会 reject
   }
@@ -559,23 +559,23 @@ instance.interceptors.request.use(function () {/*...*/});
 <pre><code>var CancelToken = axios.CancelToken;
 var source = CancelToken.source();
 
-axios.get(&#39;/user/12345&#39;, {
+axios.get(&apos;/user/12345&apos;, {
   cancelToken: source.token
 }).catch(function(thrown) {
   if (axios.isCancel(thrown)) {
-    console.log(&#39;Request canceled&#39;, thrown.message);
+    console.log(&apos;Request canceled&apos;, thrown.message);
   } else {
     // 处理错误
   }
 });
 
 // 取消请求（message 参数是可选的）
-source.cancel(&#39;Operation canceled by the user.&#39;);
+source.cancel(&apos;Operation canceled by the user.&apos;);
 </code></pre><p>还可以通过传递一个 executor 函数到 CancelToken 的构造函数来创建 cancel token：</p>
 <pre><code>var CancelToken = axios.CancelToken;
 var cancel;
 
-axios.get(&#39;/user/12345&#39;, {
+axios.get(&apos;/user/12345&apos;, {
   cancelToken: new CancelToken(function executor(c) {
     // executor 函数接收一个 cancel 函数作为参数
     cancel = c;
@@ -587,24 +587,24 @@ cancel();
 </code></pre><ul>
 <li>注意 : 可以使用同一个 cancel token 取消多个请求</li>
 </ul>
-<h3 id="使用application-x-www-form-urlencoded格式"><a href="#使用application-x-www-form-urlencoded格式" class="headerlink" title="使用application / x-www-form-urlencoded格式"></a>使用application / x-www-form-urlencoded格式</h3><pre><code> 默认情况下，axios将JavaScript对象序列化为JSON。 要以应用程序/ x-www-form-urlencoded格式发送数据，您可以使用以下选项之一。
+<h3 id="使用application-x-www-form-urlencoded格式"><a href="#使用application-x-www-form-urlencoded格式" class="headerlink" title="使用application / x-www-form-urlencoded格式"></a>使用application / x-www-form-urlencoded格式</h3><pre><code>默认情况下，axios将JavaScript对象序列化为JSON。 要以应用程序/ x-www-form-urlencoded格式发送数据，您可以使用以下选项之一。
 </code></pre><h4 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h4><p>在浏览器中，您可以使用URLSearchParams API，如下所示：</p>
 <pre><code>var params = new URLSearchParams();
-params.append(&#39;param1&#39;, &#39;value1&#39;);
-params.append(&#39;param2&#39;, &#39;value2&#39;);
-axios.post(&#39;/foo&#39;, params);
+params.append(&apos;param1&apos;, &apos;value1&apos;);
+params.append(&apos;param2&apos;, &apos;value2&apos;);
+axios.post(&apos;/foo&apos;, params);
 </code></pre><ul>
 <li>请注意，所有浏览器都不支持URLSearchParams，但是有一个polyfill可用（确保polyfill全局环境）。</li>
 </ul>
 <p>或者，您可以使用qs库对数据进行编码：</p>
-<pre><code>var qs = require(&#39;qs&#39;);
-axios.post(&#39;/foo&#39;, qs.stringify({ &#39;bar&#39;: 123 });
+<pre><code>var qs = require(&apos;qs&apos;);
+axios.post(&apos;/foo&apos;, qs.stringify({ &apos;bar&apos;: 123 });
 </code></pre><h4 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h4><p>在node.js中，可以使用querystring模块，如下所示：</p>
-<pre><code>var querystring = require(&#39;querystring&#39;);
-axios.post(&#39;http://something.com/&#39;, querystring.stringify({ foo: &#39;bar&#39; });
+<pre><code>var querystring = require(&apos;querystring&apos;);
+axios.post(&apos;http://something.com/&apos;, querystring.stringify({ foo: &apos;bar&apos; });
 </code></pre><p>当然也可以使用qs库。</p>
 <h3 id="使用心得"><a href="#使用心得" class="headerlink" title="使用心得"></a>使用心得</h3><p>在vue项目中，新建api/index.js</p>
-<pre><code>import axios from &#39;axios&#39;
+<pre><code>import axios from &apos;axios&apos;
 </code></pre><p>将所有的api集中到该文件中，方便管理</p>
 
         </div>
@@ -920,8 +920,8 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 <!-- highlight.js script -->
-<script src="/plugins/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
 <!-- highlight.js script -->
 </body>
 </html>

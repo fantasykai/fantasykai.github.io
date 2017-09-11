@@ -49,7 +49,7 @@
     <!-- custom head -->
     
   <!-- highlight.js css -->
-  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
   <!-- highlight.js css -->
 
 </head>
@@ -224,33 +224,33 @@
 <p>该项目将更多、更有效的来源用于指纹识别，并且可配置，也就是说用户可以选择性地开启其中的选项。该项目还将重点关注IE插件，尤其是在中国流行的QQ、Baidu等。另外，该项目使用了semver（语义化的版本控制系统）。</p>
 <p>Fingerprintjs2的原理是根据所能获取到的设备相关信息：比如系统字体、ua、帆布指纹等数据，筛选计算出一个（94%情况下）近似唯一的24位哈希值，可以作为设备的唯一性标识。它的特点是不依赖cookie，用户无法通过清除缓存来删除。设备指纹现在被很多互联网反欺诈公司拿来作为用户特征识别的方法，也被一些广告公司用来跟踪用户数据。</p>
 </blockquote>
-<h4 id="Fingerprintjs2-源码列出目前可以采集到的信息"><a href="#Fingerprintjs2-源码列出目前可以采集到的信息" class="headerlink" title="Fingerprintjs2 源码列出目前可以采集到的信息"></a>Fingerprintjs2 源码列出目前可以采集到的信息</h4><pre><code>    keys = this.userAgentKey(keys);
-    keys = this.languageKey(keys);
-    keys = this.colorDepthKey(keys);
-    keys = this.pixelRatioKey(keys);
-    keys = this.hardwareConcurrencyKey(keys);
-    keys = this.screenResolutionKey(keys);
-    keys = this.availableScreenResolutionKey(keys);
-    keys = this.timezoneOffsetKey(keys);
-    keys = this.sessionStorageKey(keys);
-    keys = this.localStorageKey(keys);
-    keys = this.indexedDbKey(keys);
-    keys = this.addBehaviorKey(keys);
-    keys = this.openDatabaseKey(keys);
-    keys = this.cpuClassKey(keys);
-    keys = this.platformKey(keys);
-    keys = this.doNotTrackKey(keys);
-    keys = this.pluginsKey(keys);
-    keys = this.canvasKey(keys);
-    keys = this.webglKey(keys);
-    keys = this.adBlockKey(keys);
-    keys = this.hasLiedLanguagesKey(keys);
-    keys = this.hasLiedResolutionKey(keys);
-    keys = this.hasLiedOsKey(keys);
-    keys = this.hasLiedBrowserKey(keys);
-    keys = this.touchSupportKey(keys);
-    keys = this.customEntropyFunction(keys);
-    var that = this;
+<h4 id="Fingerprintjs2-源码列出目前可以采集到的信息"><a href="#Fingerprintjs2-源码列出目前可以采集到的信息" class="headerlink" title="Fingerprintjs2 源码列出目前可以采集到的信息"></a>Fingerprintjs2 源码列出目前可以采集到的信息</h4><pre><code>keys = this.userAgentKey(keys);
+keys = this.languageKey(keys);
+keys = this.colorDepthKey(keys);
+keys = this.pixelRatioKey(keys);
+keys = this.hardwareConcurrencyKey(keys);
+keys = this.screenResolutionKey(keys);
+keys = this.availableScreenResolutionKey(keys);
+keys = this.timezoneOffsetKey(keys);
+keys = this.sessionStorageKey(keys);
+keys = this.localStorageKey(keys);
+keys = this.indexedDbKey(keys);
+keys = this.addBehaviorKey(keys);
+keys = this.openDatabaseKey(keys);
+keys = this.cpuClassKey(keys);
+keys = this.platformKey(keys);
+keys = this.doNotTrackKey(keys);
+keys = this.pluginsKey(keys);
+keys = this.canvasKey(keys);
+keys = this.webglKey(keys);
+keys = this.adBlockKey(keys);
+keys = this.hasLiedLanguagesKey(keys);
+keys = this.hasLiedResolutionKey(keys);
+keys = this.hasLiedOsKey(keys);
+keys = this.hasLiedBrowserKey(keys);
+keys = this.touchSupportKey(keys);
+keys = this.customEntropyFunction(keys);
+var that = this;
 </code></pre><p>fingerprintjs的源码已经列出了目前能够收集到的几乎所有API，其中浏览器UA，语言，浏览器所在CPU等级（cpuclass，仅支持IE，chrome和firefox反回undefined），浏览器版本，等都是通过<code>navigator</code>对象获得，还有 <code>window.indexedDB</code> ， <code>window.sessionStorage</code> 和 <code>window.localStorage</code> 这一类h5新增的特性是否存在也被用作区分值</p>
 <p>Fingerprintjs2还考虑到了一些比较特殊的自定义区分值，比如时区，或者是否在浏览器层做了一些UA欺骗，比如 hasLiedLanguagesKey ， HasLiedBrowser ， HasLiedOs 。以 hasliedLanguageKey 为例，通过判断navigator.language和navigator.languages中第一个方法是否相同来实现：</p>
 <pre><code>try {
@@ -602,8 +602,8 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 <!-- highlight.js script -->
-<script src="/plugins/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
 <!-- highlight.js script -->
 </body>
 </html>

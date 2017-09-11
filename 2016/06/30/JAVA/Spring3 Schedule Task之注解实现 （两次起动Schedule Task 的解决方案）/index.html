@@ -51,7 +51,7 @@
     <!-- custom head -->
     
   <!-- highlight.js css -->
-  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
   <!-- highlight.js css -->
 
 </head>
@@ -254,20 +254,20 @@
 </ul>
 <ul>
 <li><p>（1）fixedRate：每隔多少毫秒执行一次该方法。如：</p>
-<pre><code>    @Scheduled(fixedRate=2000)  // 每隔2秒执行一次
-    public void scheduleMethod(){  
-              System.out.println(&quot;Hello world...&quot;);  
-    }  
+<pre><code>@Scheduled(fixedRate=2000)  // 每隔2秒执行一次
+public void scheduleMethod(){  
+          System.out.println(&quot;Hello world...&quot;);  
+}  
 </code></pre><p>　 </p>
 </li>
 <li>（2）fixedDelay：当一次方法执行完毕之后，延迟多少毫秒再执行该方法。
 　
 　　</li>
 <li><p>（3）cron：详细配置了该方法在什么时候执行。cron值是一个cron表达式。如：</p>
-<pre><code>          @Scheduled(cron=&quot;0 0 0 * * SAT&quot;)  
-          public voidarchiveOldSpittles() {  
-           // ...  
-          }
+<pre><code>@Scheduled(cron=&quot;0 0 0 * * SAT&quot;)  
+public voidarchiveOldSpittles() {  
+ // ...  
+}
 </code></pre></li>
 </ul>
 <p>到指定时间后，任务总是执行2次的解决方案：<br>这是因为我们很容易在一个基于Spring的Web工程中启动2个定时线程：</p>
@@ -323,11 +323,11 @@ public class TestTask {
 ? 表示不指定值。使用的场景为不需要关心当前设置这个字段的值。例如:要在每月的10号触发一个操作，但不关心是周几，所以需要周位置的那个字段设置为&quot;?&quot; 具体设置为 0 0 0 10 * ?
 - 表示区间。例如在小时上设置 &quot;10-12&quot;,表示 10,11,12点都会触发。
 , 表示指定多个值，例如在周字段上设置 &quot;MON,WED,FRI&quot; 表示周一，周三和周五触发
-/ 用于递增触发。如在秒上面设置&quot;5/15&quot; 表示从5秒开始，每增15秒触发(5,20,35,50)。 在月字段上设置&#39;1/3&#39;所示每月1号开始，每隔三天触发一次。
+/ 用于递增触发。如在秒上面设置&quot;5/15&quot; 表示从5秒开始，每增15秒触发(5,20,35,50)。 在月字段上设置&apos;1/3&apos;所示每月1号开始，每隔三天触发一次。
 L 表示最后的意思。在日字段设置上，表示当月的最后一天(依据当前月份，如果是二月还会依据是否是润年[leap]), 在周字段上表示星期六，相当于&quot;7&quot;或&quot;SAT&quot;。如果在&quot;L&quot;前加上数字，则表示该数据的最后一个。例如在周字段上设置&quot;6L&quot;这样的格式,则表示“本 月最后一个星期五&quot;
 W 表示离指定日期的最近那个工作日(周一至周五). 例如在日字段上设置&quot;15W&quot;，表示离每月15号最近的那个工作日触发。如果15号正好是周六，则找最近的周五(14号)触发, 如果15号是周未，则找最近的下周一(16号)触发.如果15号正好在工作日(周一至周五)，则就在该天触发。如果指定格式为 &quot;1W&quot;,它则表示每月1号往后最近的工作日触发。如果1号正是周六，则将在3号下周一触发。(注，&quot;W&quot;前只能设置具体的数字,不允许区间&quot;-&quot;).
 小提示
-&#39;L&#39;和 &#39;W&#39;可以一组合使用。如果在日字段上设置&quot;LW&quot;,则表示在本月的最后一个工作日触发(一般指发工资 )
+&apos;L&apos;和 &apos;W&apos;可以一组合使用。如果在日字段上设置&quot;LW&quot;,则表示在本月的最后一个工作日触发(一般指发工资 )
 # 序号(表示每月的第几个周几)，例如在周字段上设置&quot;6#3&quot;表示在每月的第三个周六.注意如果指定&quot;#5&quot;,正好第五周没有周六，则不会触发该配置(用 在母亲节和父亲节再合适不过了)
 小提示
 周字段的设置，若使用英文字母是不区分大小写的 MON 与mon相同.
@@ -665,8 +665,8 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 <!-- highlight.js script -->
-<script src="/plugins/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
 <!-- highlight.js script -->
 </body>
 </html>

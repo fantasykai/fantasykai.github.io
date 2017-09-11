@@ -49,7 +49,7 @@
     <!-- custom head -->
     
   <!-- highlight.js css -->
-  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
   <!-- highlight.js css -->
 
 </head>
@@ -223,7 +223,7 @@
 <p>​    brew install git</p>
 <p><strong>安装 hexo</strong></p>
 <p>用 node 的 npm 安装 hexo：</p>
-<pre><code>    npm install hexo-cli -g
+<pre><code>npm install hexo-cli -g
 </code></pre><ul>
 <li><p>每个版本安装方式可能不一样，这一步需要异步到 官网 </p>
 </li>
@@ -233,17 +233,15 @@
 <p><strong>初始化 hexo</strong></p>
 <p>hexo init blog<br>cd blog<br>npm install<br>hexo server</p>
 <p>启动成功</p>
-<pre><code>    INFO  Start processing
-    INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.        
+<pre><code>INFO  Start processing
+INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.        
 </code></pre><p><strong>生成 SSH key</strong><br>先检查一下本机的 SSH key：<code>cd ~/.ssh</code>；<br>生成 SSH key：<code>ssh-keygen -t rsa -C &quot;xxxx@xxxx.com&quot;</code>，xxxx@xxxx.com 为自己注册 github 的邮箱；</p>
 <p><strong>添加 SSH key 至 github</strong><br>进入.ssh文件夹： <code>cd ~/.ssh</code>，然后打开里面的 id_rsa.pub文件，里面的内容就是 SSH key，复制全部内容；</p>
 <p>网页打开 github 的设置：<em>Settings -&gt; SSH and GPG keys</em>，点击绿色的按钮 <em>New SSH key</em>，然后在输入框中输入刚才复制的内容；</p>
 <p>使用coding的，同理</p>
 <p>测试一下是否成功：<code>ssh git@github.com</code>，<br>看到以下即成功：</p>
-<pre><code>PTY allocation request failed on channel 0
-Hi gjincai! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
-Connection to github.com closed.
-</code></pre><p><strong>文件配置转移</strong><br>windows 下的博客根目录 hexo，复制该目录下的：_config.yml, scaffolds, source, themes；<br>把这几个文件复制到mac的目录下，直接覆盖替换相同的文件文件夹。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">PTY allocation request failed <span class="keyword">on</span> channel <span class="number">0</span></div><div class="line">Hi gjincai! You've successfully authenticated, <span class="keyword">but</span> GitHub <span class="keyword">does</span> <span class="keyword">not</span> provide shell access.</div><div class="line">Connection <span class="keyword">to</span> github.com closed.</div></pre></td></tr></table></figure>
+<p><strong>文件配置转移</strong><br>windows 下的博客根目录 hexo，复制该目录下的：_config.yml, scaffolds, source, themes；<br>把这几个文件复制到mac的目录下，直接覆盖替换相同的文件文件夹。</p>
 <p>哦了！在mac上愉快的玩耍 <code>hexo</code> 吧！</p>
 <ul>
 <li>注意： 如果在 <code>hexo d</code> 部署不成功，有可能是缺少了模块，</li>
@@ -339,9 +337,9 @@ Connection to github.com closed.
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2017/09/07/Linux/ssh 设置别名访问服务器/" id="post-prev" class="post-nav-link">
+      <a href="/2017/09/07/Linux/Web 开发常用的终端命令/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">ssh 设置别名的方式访问服务器</h4>
+        <h4 class="title">web 开发常用的终端命令</h4>
       </a>
     </div>
   
@@ -563,8 +561,8 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 <!-- highlight.js script -->
-<script src="/plugins/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
 <!-- highlight.js script -->
 </body>
 </html>

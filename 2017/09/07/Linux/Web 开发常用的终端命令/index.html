@@ -53,7 +53,7 @@
     <!-- custom head -->
     
   <!-- highlight.js css -->
-  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
   <!-- highlight.js css -->
 
 </head>
@@ -216,46 +216,12 @@
 <p>这里记录一些常用到的命令</p>
 <h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a><a href="https://curl.haxx.se/" target="_blank" rel="external">curl</a></h2><p>curl 是一个命令行工具，用来通过 HTTP（s），FTP 等其它几十种你可能尚未听说过的协议来发起网络请求。它可以下载文件，检查响应消息头以及方便地访问远程数据。</p>
 <p>在 Web 开发中， curl 经常被用来测试连接，还有调用 REST 风格的 API。</p>
-<pre><code class="bash"># Fetch the headers of a URL.
-curl -I http://google.com
-HTTP/1.1 302 Found
-Cache-Control: private
-Content-Type: text/html; charset=UTF-8
-Referrer-Policy: no-referrer
-Location: http://www.google.com/?gfe_rd=cr&amp;ei=0fCKWe6HCZTd8AfCoIWYBQ
-Content-Length: 258
-Date: Wed, 09 Aug 2017 11:24:01 GMT
-
-# Make a GET request to a remote API.
-curl http://numbersapi.com/random/trivia
-29 is the number of days it takes Saturn to orbit the Sun.
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Fetch the headers of a URL.</span></div><div class="line">curl -I http://google.com</div><div class="line">HTTP/1.1 302 Found</div><div class="line">Cache-Control: private</div><div class="line">Content-Type: text/html; charset=UTF-8</div><div class="line">Referrer-Policy: no-referrer</div><div class="line">Location: http://www.google.com/?gfe_rd=cr&amp;ei=0fCKWe6HCZTd8AfCoIWYBQ</div><div class="line">Content-Length: 258</div><div class="line">Date: Wed, 09 Aug 2017 11:24:01 GMT</div><div class="line"></div><div class="line"><span class="comment"># Make a GET request to a remote API.</span></div><div class="line">curl http://numbersapi.com/random/trivia</div><div class="line">29 is the number of days it takes Saturn to orbit the Sun.</div></pre></td></tr></table></figure>
 <p>curl 的用法还可以比这更复杂。它有许多选项可以用来控制消息头，Cookie，身份验证等等这些要素。你可以通过 <a href="https://ec.haxx.se/" target="_blank" rel="external">Everything curl</a> 这本优秀的电子书来了解更多。</p>
 <h2 id="tree"><a href="#tree" class="headerlink" title="tree"></a><a href="https://www.computerhope.com/unix/tree.htm" target="_blank" rel="external">tree</a></h2><p>tree 是一个小巧的命令行工具程序，它可以用可视化的效果向你展示一个目录下的文件。它的运行是递归的，会以树的形式遍历每个级别的嵌套关系，并显示出每一级目录。 如此你就可以快速地进行浏览并找到自己想要的文件。</p>
-<pre><code class="bash">tree
-.
-├── css
-│   ├── bootstrap.css
-│   ├── bootstrap.min.css
-├── fonts
-│   ├── glyphicons-halflings-regular.eot
-│   ├── glyphicons-halflings-regular.svg
-│   ├── glyphicons-halflings-regular.ttf
-│   ├── glyphicons-halflings-regular.woff
-│   └── glyphicons-halflings-regular.woff2
-└── js
-    ├── bootstrap.js
-    └── bootstrap.min.js
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">tree</div><div class="line">.</div><div class="line">├── css</div><div class="line">│   ├── bootstrap.css</div><div class="line">│   ├── bootstrap.min.css</div><div class="line">├── fonts</div><div class="line">│   ├── glyphicons-halflings-regular.eot</div><div class="line">│   ├── glyphicons-halflings-regular.svg</div><div class="line">│   ├── glyphicons-halflings-regular.ttf</div><div class="line">│   ├── glyphicons-halflings-regular.woff</div><div class="line">│   └── glyphicons-halflings-regular.woff2</div><div class="line">└── js</div><div class="line">    ├── bootstrap.js</div><div class="line">    └── bootstrap.min.js</div></pre></td></tr></table></figure>
 <p>它还拥有使用一种类正则表达式的模式来对结果集进行过滤的选项。</p>
-<pre><code class="bash">tree -P &#39;*.min.*&#39;
-.
-├── css
-│   ├── bootstrap.min.css
-├── fonts
-└── js
-    └── bootstrap.min.js
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">tree -P <span class="string">'*.min.*'</span></div><div class="line">.</div><div class="line">├── css</div><div class="line">│   ├── bootstrap.min.css</div><div class="line">├── fonts</div><div class="line">└── js</div><div class="line">    └── bootstrap.min.js</div></pre></td></tr></table></figure>
 <h2 id="tmux"><a href="#tmux" class="headerlink" title="tmux"></a><a href="https://tmux.github.io/" target="_blank" rel="external">tmux</a></h2><p>根据维基的描述，tmux 是一个终端复用器，说人话就是，它是一个可以将多个终端连接到单个终端会话的工具。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -267,47 +233,22 @@ curl http://numbersapi.com/random/trivia
 <p>一个 tmux 终端带有三个分屏的效果</p>
 <p>它让你可以在一个终端中进行程序之间的切换，添加分屏窗格，还有就是将多个终端连接到同一个会话，使它们保持同步。 当你在远程服务器上工作时，tmux 特别有用，因为它可以让你创建新的选项卡，然后在选项卡之间切换，而无需反反复复的退出然后登录。</p>
 <h2 id="disk-usage-du"><a href="#disk-usage-du" class="headerlink" title="disk usage - du"></a><a href="https://www.computerhope.com/unix/udu.htm" target="_blank" rel="external">disk usage - du</a></h2><p>运行 du 命令会生成相关文件和有关目录的空间使用情况的报告。它很容易使用，也可以递归地运行，会遍历每个子目录并且返回每个文件的单个大小。<br>du 通常在你发现某个驱动器的空间不足，但不知道是因为什么造成的时候使用。使用此命令可以快速查看每个文件夹所占用的存储空间，从而把耗费存储的大户给找出来。</p>
-<pre><code class="bash"># Running this will show the space usage of each folder in the current directory.
-# The -h option makes the report easier to read.
-# -s prevents recursiveness and shows the total size of a folder.
-# The star wildcard (*) will run du on each file/folder in current directory.
-
-du -sh *
-
-1.2G    Desktop
-4.0K    Documents
-40G     Downloads
-4.0K    Music
-4.9M    Pictures
-844K    Public
-4.0K    Templates
-6.9M    Videos
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Running this will show the space usage of each folder in the current directory.</span></div><div class="line"><span class="comment"># The -h option makes the report easier to read.</span></div><div class="line"><span class="comment"># -s prevents recursiveness and shows the total size of a folder.</span></div><div class="line"><span class="comment"># The star wildcard (*) will run du on each file/folder in current directory.</span></div><div class="line"></div><div class="line">du -sh *</div><div class="line"></div><div class="line">1.2G    Desktop</div><div class="line">4.0K    Documents</div><div class="line">40G     Downloads</div><div class="line">4.0K    Music</div><div class="line">4.9M    Pictures</div><div class="line">844K    Public</div><div class="line">4.0K    Templates</div><div class="line">6.9M    Videos</div></pre></td></tr></table></figure>
 <p>还有一个用途类似的命令 <a href="https://www.computerhope.com/unix/udf.htm" target="_blank" rel="external">df</a>（Disk Free），它会返回关于可用磁盘空间的各种信息（与 du 正好相反）。</p>
 <h2 id="git"><a href="#git" class="headerlink" title="git"></a><a href="https://git-scm.com/" target="_blank" rel="external">git</a></h2><p>git 是迄今为止最流行的版本控制系统。它是现代 Web 开发的指定工具之一，我们根本没办法把它从列表中给删掉。</p>
 <p>尽管有很多的第三方应用和工具可用，但是大多数人还是喜欢通过终端对 git 来进行本地访问。git CLI 真的很强大，可以用来处理那些盘根错节的项目历史。</p>
 <p>如果想了解更多的关于 git 的信息，建议你看看我们的教程“<a href="https://tutorialzine.com/2016/06/learn-git-in-30-minutes" target="_blank" rel="external">30 分钟学会用 Git</a>”。</p>
 <h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a><a href="https://www.computerhope.com/unix/utar.htm" target="_blank" rel="external">tar</a></h2><p>tar 是用来处理文件压缩的默认 Unix 工具。它能让你快速的将多个文件打成一个包，这样在后续就更加容易存储和移动它们了。</p>
-<pre><code class="bash">tar -cf archive.tar file1 file2 file3
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -cf archive.tar file1 file2 file3</div></pre></td></tr></table></figure>
 <p>使用 -x 选项可以对现有的 .tar 压缩包进行解压缩操作。</p>
-<pre><code class="bash">tar -xf archive.tar
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -xf archive.tar</div></pre></td></tr></table></figure>
 <p>注意大多数其它的格式，像 .zip 和 .rar 这些，都不能使用 tar 来打开，而是需要用其它的像 <a href="https://www.computerhope.com/unix/unzip.htm" target="_blank" rel="external">unzip</a> 这样的工具来进行操作。</p>
 <p>如今许多的 Unix 系统都运行着一个 tar 的扩展版本 (GNU tar) ，它也还可以执行限定文件大小的压缩操作。</p>
-<pre><code class="bash"># Create compressed gzip archive.
-tar -czf file.tar.gz inputfile1 inputfile2
-
-# Extract .gz archive.
-tar -xzf file.tar.gz
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Create compressed gzip archive.</span></div><div class="line">tar -czf file.tar.gz inputfile1 inputfile2</div><div class="line"></div><div class="line"><span class="comment"># Extract .gz archive.</span></div><div class="line">tar -xzf file.tar.gz</div></pre></td></tr></table></figure>
 <p>如果你的操作系统并不支持该版本的 tar，还可以使用 <a href="http://www.gzip.org/" target="_blank" rel="external">gzip</a>, <a href="https://linux.die.net/man/1/zcat" target="_blank" rel="external">zcat</a> 或者 <a href="https://www.computerhope.com/unix/ucompres.htm" target="_blank" rel="external">compress</a> 来限制文件压缩包的大小。</p>
 <h2 id="md5sum"><a href="#md5sum" class="headerlink" title="md5sum"></a><a href="https://en.wikipedia.org/wiki/Md5sum" target="_blank" rel="external">md5sum</a></h2><p>Unix 内置了一些像 <a href="https://www.computerhope.com/unix/md5sum.htm" target="_blank" rel="external">md5sum</a>、<a href="https://en.wikipedia.org/wiki/Sha1sum" target="_blank" rel="external">sha1sum</a> 这样的命令行工具，它们在编程中有各自的作用，但最重要的是它们可以用来检查文件的完整性。</p>
 <p>譬如，如果你从不受信的网络下载了一个 .iso 文件，这个文件中存在恶意脚本的风险。为了确认这个 .iso 是安全的，你可以生成它的 md5 或者其它摘要信息。</p>
-<pre><code class="bash">md5sum ubuntu-16.04.3-desktop-amd64.iso 
-
-0d9fe8e1ea408a5895cbbe3431989295  ubuntu-16.04.3-desktop-amd64.iso
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">md5sum ubuntu-16.04.3-desktop-amd64.iso </div><div class="line"></div><div class="line">0d9fe8e1ea408a5895cbbe3431989295  ubuntu-16.04.3-desktop-amd64.iso</div></pre></td></tr></table></figure>
 <p>然后将生成的字符串与原作者提供的（比如 <a href="https://help.ubuntu.com/community/UbuntuHashes" target="_blank" rel="external">UbuntuHashes</a>）进行比较。</p>
 <h2 id="htop"><a href="#htop" class="headerlink" title="htop"></a><a href="http://hisham.hm/htop/" target="_blank" rel="external">htop</a></h2><p>Htop 是个比内置的 top 任务管理更强大的工具。它提供了带有诸多选项的高级接口用于监控系统进程。</p>
 <figure class="image-bubble">
@@ -321,14 +262,11 @@ tar -xzf file.tar.gz
 <p>虽然 htop 在终端中运行，但它对鼠标操作支持良好。所以使用 htop 的菜单导航、选择进程，以及通过排序和过滤来管理任务都很容易。</p>
 <h2 id="ln"><a href="#ln" class="headerlink" title="ln"></a><a href="https://www.computerhope.com/unix/uln.htm" target="_blank" rel="external">ln</a></h2><p>Unix 里面的链接同 Windows 中的快捷方式类似，允许你快速地访问到一个特定的文件。链接可以通过 ln 命令创建出来，而且可以有两种类型 : 硬的（hard） 或者符号的（symbolic）。每种类型都有不同的属性而且各有其用途 (<a href="https://www.computerhope.com/unix/uln.htm" target="_blank" rel="external">了解更多</a>)。</p>
 <p>这里有一个示例，展示了使用链接的最常见方式。假如说我们在桌面上有一个目录叫做 <em>Scripts</em>，里面整齐的摆放着我们最常用的 bash 脚本。每次我们想要调用其中的一个脚本的时候，我们会这样做:</p>
-<pre><code class="bash">~/Desktop/Scripts/git-scripts/git-cleanup
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/Desktop/Scripts/git-scripts/git-cleanup</div></pre></td></tr></table></figure>
 <p>显然，这样做并不方便，每次我们都得写绝对路径。其实我们可以创建一个 symlink，将 <em>Scripts</em>  文件夹链接到 <em>/usr/local/bin</em>，这样就能让脚本在所有的目录下面都可以执行。</p>
-<pre><code class="bash">sudo ln -s ~/Desktop/Scripts/git-scripts/git-cleanup /usr/local/bin/
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ln -s ~/Desktop/Scripts/git-scripts/git-cleanup /usr/<span class="built_in">local</span>/bin/</div></pre></td></tr></table></figure>
 <p>有了这个创建好的 symlink，我们现在就可以简单地通过其名称在任意一个打开的终端中执行脚本了。</p>
-<pre><code class="bash">git-cleanup
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git-cleanup</div></pre></td></tr></table></figure>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -338,30 +276,16 @@ tar -xzf file.tar.gz
             </figure>
 <h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a><a href="https://www.ssh.com/ssh/command/" target="_blank" rel="external">ssh</a></h2><p>使用 ssh 命令，用户可以快速地连接到一个远程主机，然后登录进入其 Unix shell。这就使得通过自己本地机器的终端在服务器上提交指令成为了可能。</p>
 <p>要定位一个连接，你只需要指定正确的 IP 地址或者 url 就行了。在你第一次连接到一台新的服务器的时候，会需要某种形式的认证。</p>
-<pre><code class="bash">ssh username@remote_host
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh username@remote_host</div></pre></td></tr></table></figure>
 <p>如果你需要快速地在服务器上面执行一条命令，但又不想登录，在 url 之后加上一条命令就可以了。命令将会在服务器上执行，而执行结果也会从它那里返回。</p>
-<pre><code class="bash">ssh username@remote_host ls /var/www
-
-some-website.com
-some-other-website.com
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ssh username@remote_host ls /var/www</div><div class="line"></div><div class="line">some-website.com</div><div class="line">some-other-website.com</div></pre></td></tr></table></figure>
 <p>你还可以用 SHH 做更多事情，像创建代理或者隧道，用私钥来保护你的连接，传输文件等。在<a href="https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys" target="_blank" rel="external">这里的一个指南</a>中你可以了解到更多信息。</p>
 <h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a><a href="https://www.computerhope.com/unix/ugrep.htm" target="_blank" rel="external">grep</a></h2><p>grep 是一个用来在文本中查找字符串的标准 Unix 工具。它可以从一个文件或者直接就是流的形式获取到输入, 通过一个正则表达式来分析内容，然后返回匹配的行。</p>
 <p>该命令在需要对大型文件进行内容过滤的时候非常趁手。下面我们利用 grep 结合 date 命令，来在一个大型的日志文件中进行查找，然后生成一个只包含当天错误日志的新文件。</p>
-<pre><code class="bash">// Search for today&#39;s date (in format yyyy-mm-dd) and write the results to a new file. 
-grep &quot;$(date +&quot;%Y-%m-%d&quot;)&quot; all-errors-ever.log &gt; today-errors.log
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// Search <span class="keyword">for</span> today<span class="string">'s date (in format yyyy-mm-dd) and write the results to a new file. </span></div><div class="line"><span class="string">grep "$(date +"%Y-%m-%d")" all-errors-ever.log &gt; today-errors.log</span></div></pre></td></tr></table></figure>
 <p>另外一个用来操作字符串的强大工具就是 <a href="https://www.computerhope.com/unix/used.htm" target="_blank" rel="external">sed</a>。它比起 grep 更加强大 (当然也更加复杂)，可以执行几乎所有的字符串相关的操作任务，包括添加、删除还有替换字符串的内容。</p>
 <h2 id="alias"><a href="#alias" class="headerlink" title="alias"></a><a href="https://www.computerhope.com/unix/ualias.htm" target="_blank" rel="external">alias</a></h2><p>许多的 Unix 命令，包括本文中提到的一些，在你加上许多选项之后，看起来都相当的长了。为了能更加容易记忆，你可以使用 alias 这个 bash 内置的命令来为它们创建一个短别名：</p>
-<pre><code class="bash"># Create an alias for starting a local web server.
-alias server=&quot;python -m SimpleHTTPServer 9000&quot;
-
-# Instead of typing the whole command simply use the alias.
-server 
-
-Serving HTTP on 0.0.0.0 port 9000 ...
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Create an alias for starting a local web server.</span></div><div class="line"><span class="built_in">alias</span> server=<span class="string">"python -m SimpleHTTPServer 9000"</span></div><div class="line"></div><div class="line"><span class="comment"># Instead of typing the whole command simply use the alias.</span></div><div class="line">server </div><div class="line"></div><div class="line">Serving HTTP on 0.0.0.0 port 9000 ...</div></pre></td></tr></table></figure>
 <p>只要你保持终端一直是打开的状态， 别名就一直会是可用的。如果想永久使用的话，你可以将 alias  命令操作写到你的 .bashrc 文件中去。</p>
 
         </div>
@@ -450,14 +374,21 @@ Serving HTTP on 0.0.0.0 port 9000 ...
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/07/Linux/ssh 设置别名访问服务器/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ssh 设置别名的方式访问服务器</h4>
+      </a>
+    </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2017/09/07/Linux/ssh 设置别名访问服务器/" id="post-next" class="post-nav-link">
+      <a href="/2017/08/25/mac/hexo 从Windows 迁移到到mac/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">ssh 设置别名的方式访问服务器</h4>
+        <h4 class="title">hexo 从Windows 迁移到Mac 上继续玩耍</h4>
       </a>
     </div>
   
@@ -670,8 +601,8 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 <!-- highlight.js script -->
-<script src="/plugins/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
 <!-- highlight.js script -->
 </body>
 </html>

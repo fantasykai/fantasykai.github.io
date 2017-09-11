@@ -49,7 +49,7 @@
     <!-- custom head -->
     
   <!-- highlight.js css -->
-  <link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
   <!-- highlight.js css -->
 
 </head>
@@ -211,17 +211,17 @@
             <h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><blockquote>
 <p>在阿里的<a href="http://mirrors.aliyun.com/centos/" target="_blank" rel="external">镜像库</a>上下载了centos7.2的iso文件，制作好U盘引导盘，在PC上安装时，<a id="more"></a> 报错</p>
 </blockquote>
-<pre><code>    No Caching mode page found Assuming drive cache:write through
-    省略一大堆。。。
-    /dev/root does not exist
+<pre><code>No Caching mode page found Assuming drive cache:write through
+省略一大堆。。。
+/dev/root does not exist
 </code></pre><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><ul>
 <li><p>重启后，在进入安装界面时，按 <code>e</code> 键</p>
-<pre><code>  修改
-  vmlinuz initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 rd.live.check quiet
+<pre><code>修改
+vmlinuz initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 rd.live.check quiet
 </code></pre></li>
 <li><p>将hd:后面的内容替换为挂在的U盘路径即可</p>
-<pre><code>  如：
-  vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb1:/ quiet
+<pre><code>如：
+vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb1:/ quiet
 </code></pre></li>
 <li><p>注意： sdb1 即为U盘的挂在名称。硬盘一般是sda</p>
 </li>
@@ -544,8 +544,8 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
 
 
 <!-- highlight.js script -->
-<script src="/plugins/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
 <!-- highlight.js script -->
 </body>
 </html>
