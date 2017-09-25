@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-09-25T18:39:05.000Z</updated>
+  <updated>2017-09-25T19:05:49.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -14,6 +14,191 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>springmvc总结</title>
+    <link href="https://fantasykai.cc/2017/09/26/JAVA/spring/springmvc%E6%80%BB%E7%BB%93/"/>
+    <id>https://fantasykai.cc/2017/09/26/JAVA/spring/springmvc总结/</id>
+    <published>2017-09-25T19:04:20.000Z</published>
+    <updated>2017-09-25T19:05:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>温故而知新，今天一起来复习一下spring mvc的内容吧。</p>
+<blockquote>
+<p>spring mvc简介与运行原理</p>
+</blockquote>
+<p>Spring的模型-视图-控制器（MVC）框架是围绕一个DispatcherServlet来设计的，这个Servlet会把请求分发给各个处理器，并支持可配置的处理器映射、视图渲染、本地化、时区与主题渲染等，甚至还能支持文件上传。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/4120002-9409cf62de5e6d39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="原理.png" title="">
+                </div>
+                <div class="image-caption">原理.png</div>
+            </figure>
+<ul>
+<li>(1) Http请求：客户端请求提交到DispatcherServlet。</li>
+<li>(2) 寻找处理器：由DispatcherServlet控制器查询一个或多个HandlerMapping，找到处理请求的Controller。</li>
+<li>(3) 调用处理器：DispatcherServlet将请求提交到Controller。</li>
+<li>(4)(5)调用业务处理和返回结果：Controller调用业务逻辑处理后，返回ModelAndView。</li>
+<li>(6)(7)处理视图映射并返回模型： DispatcherServlet查询一个或多个ViewResoler视图解析器，找到ModelAndView指定的视图。</li>
+<li>(8) Http响应：视图负责将结果显示到客户端。</li>
+</ul>
+<blockquote>
+<p>主要注解</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/4120002-59a5ee861a98c9e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="spring mvc注解.png" title="">
+                </div>
+                <div class="image-caption">spring mvc注解.png</div>
+            </figure>
+<blockquote>
+<p>ContextLoaderListener</p>
+</blockquote>
+<p><em>在讲ContextLoaderListener之前，首先来了解一下web.xml的作用。</em></p>
+<ul>
+<li>一个web中可以没有web.xml文件，也就是说，web.xml文件并不是web工程必须的。web.xml文件是用来初始化配置信息：比如Welcome页面、servlet、servlet-mapping、filter、listener、启动加载级别等。当你的web工程没用到这些时，你可以不用web.xml文件来配置你的Application。</li>
+<li>当要启动某个web项目时，服务器软件或容器如（tomcat）会第一步加载项目中的web.xml文件，通过其中的各种配置来启动项目，只有其中配置的各项均无误时，项目才能正确启动。web.xml有多项标签，在其加载的过程中顺序依次为：context-param &gt;&gt; listener &gt;&gt; fileter &gt;&gt; servlet。（同类多个节点以出现顺序依次加载）</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/4120002-746980d0ad376d75.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="web.xml加载过程.png" title="">
+                </div>
+                <div class="image-caption">web.xml加载过程.png</div>
+            </figure>
+<p><em>而spring mvc启动过程大致分为两个过程：</em></p>
+<ul>
+<li>ContextLoaderListener初始化，实例化IoC容器，并将此容器实例注册到ServletContext中。</li>
+<li>DispatcherServlet初始化。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/4120002-110e7ed9ccd22461.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="web.xml配置.png" title="">
+                </div>
+                <div class="image-caption">web.xml配置.png</div>
+            </figure>
+<p>其中ContextLoaderListener监听器它实现了ServletContextListener这个接口，在web.xml配置这个监听器，启动容器时，就会默认执行它实现的方法。在ContextLoaderListener中关联了ContextLoader这个类，所以整个加载配置过程由ContextLoader来完成。</p>
+<ul>
+<li><em>ContextLoaderListener在web.xml中的配置</em></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 配置contextConfigLocation初始化参数 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>/WEB-INF/applicationContext.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 配置ContextLoaderListerner --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>ServletContextListener 接口有两个方法:contextInitialized,contextDestroyed</p>
+<blockquote>
+<p>DispatcherServlet</p>
+</blockquote>
+<p>Spring MVC框架，与其他很多web的MVC框架一样：请求驱动；所有设计都围绕着一个中央Servlet来展开，它负责把所有请求分发到控制器；同时提供其他web应用开发所需要的功能。不过Spring的中央处理器，DispatcherServlet，能做的比这更多。</p>
+<p>下图展示了Spring Web MVC的DispatcherServlet处理请求的工作流。熟悉设计模式的朋友会发现，DispatcherServlet应用的其实就是一个“前端控制器”的设计模式（其他很多优秀的web框架也都使用了这个设计模式）。</p>
+<ul>
+<li><em>流程图</em></li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/4120002-635b0216e6e74921.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="spring mvc处理请求的流程.jpg" title="">
+                </div>
+                <div class="image-caption">spring mvc处理请求的流程.jpg</div>
+            </figure>
+<ul>
+<li><em>在web.xml中的配置</em></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- servlet定义 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcher<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></div><div class="line">	</div><div class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcher<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>其中</p>
+<ul>
+<li>load-on-startup：表示启动容器时初始化该Servlet；</li>
+<li>url-pattern：表示哪些请求交给Spring Web MVC处理， “/” 是用来定义默认servlet映射的。也可以如“*.html”表示拦截所有以html为扩展名的请求。</li>
+</ul>
+<p>在Spring MVC中，每个DispatcherServlet都持有一个自己的上下文对象WebApplicationContext，它又继承了根（root）WebApplicationContext对象中已经定义的所有bean。这些继承的bean可以在具体的Servlet实例中被重载，在每个Servlet实例中你也可以定义其scope下的新bean。</p>
+<p>WebApplicationContext继承自ApplicationContext，它提供了一些web应用经常需要用到的特性。它与普通的ApplicationContext不同的地方在于，它支持主题的解析，并且知道它关联到的是哪个servlet（它持有一个该ServletContext的引用）</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://linesh.gitbooks.io/spring-mvc-documentation-linesh-translation/content/publish/21-2/figures/figure-21-2-typical-context-hierarchy-in-spring-web-mvc.png" alt="DispatcherServlet继承结构" title="">
+                </div>
+                <div class="image-caption">DispatcherServlet继承结构</div>
+            </figure>
+<p>spring mvc同时提供了很多特殊的注解，用于处理请求和渲染视图等。DispatcherServlet初始化的过程中会默认使用这些特殊bean进行配置。如果你想指定使用哪个特定的bean，你可以在web应用上下文WebApplicationContext中简单地配置它们。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/4120002-d2cafcce5381cd66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="特殊bean.png" title="">
+                </div>
+                <div class="image-caption">特殊bean.png</div>
+            </figure>
+<p>其中，常用的ViewResolver的配置。以jsp作为视图为例</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 对模型视图名称的解析,即在模型视图名称添加前后缀 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span> /&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>配置上传文件限制MultipartResolver</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 上传限制 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"multipartResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.multipart.commons.CommonsMultipartResolver"</span>&gt;</span></div><div class="line">     <span class="comment">&lt;!-- 上传文件大小限制为31M，31*1024*1024 --&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxUploadSize"</span> <span class="attr">value</span>=<span class="string">"32505856"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>applicationContext.xml中的标签</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/4120002-7022162217045a6d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="applicationContext.xml配置文件标签.png" title="">
+                </div>
+                <div class="image-caption">applicationContext.xml配置文件标签.png</div>
+            </figure>
+<blockquote>
+<p>文件上传</p>
+</blockquote>
+<p>前面说到DispatcherServlet中有个特殊的Bean叫MultipartResolver，可用于限制文件的上传大小等。当解析器MultipartResolver完成处理时，请求便会像其他请求一样被正常流程处理。</p>
+<ul>
+<li><em>表单</em></li>
+</ul>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">form</span> method=<span class="string">"post"</span> action=<span class="string">"/form"</span> enctype=<span class="string">"multipart/form-data"</span>&gt;</div><div class="line">     &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"text"</span> name=<span class="string">"name"</span>/&gt;</div><div class="line">     &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"file"</span> name=<span class="string">"file"</span>/&gt;</div><div class="line">     &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"submit"</span>/&gt;</div><div class="line">&lt;/<span class="keyword">form</span>&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li><em>控制器</em></li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping(path = <span class="meta-string">"/form"</span>, method = RequestMethod.POST)</span></div><div class="line"> <span class="keyword">public</span> String handleFormUpload(<span class="meta">@RequestParam(<span class="meta-string">"name"</span>)</span> String name, </div><div class="line">            <span class="meta">@RequestParam(<span class="meta-string">"file"</span>)</span> MultipartFile file) &#123;</div><div class="line"></div><div class="line">   <span class="keyword">if</span> (!file.isEmpty()) &#123;</div><div class="line">          byte[] bytes = file.getBytes();</div><div class="line">          <span class="comment">// store the bytes somewhere</span></div><div class="line">          <span class="keyword">return</span> <span class="string">"redirect:uploadSuccess"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="string">"redirect:uploadFailure"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>异常处理</p>
+</blockquote>
+<p>先来说下常见的异常处理有几种方式，如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/4120002-e9a87d75a1e94c5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="异常处理方式.png" title="">
+                </div>
+                <div class="image-caption">异常处理方式.png</div>
+            </figure>
+<p>Spring的处理器异常解析器HandlerExceptionResolver接口的实现负责处理各类控制器执行过程中出现的异常。也是上面提到的，是DispatcherServlet中的特殊bean，可以自定义配置处理。</p>
+<p>某种程度上讲，HandlerExceptionResolver与你在web应用描述符web.xml文件中能定义的异常映射（exception mapping）很相像，不过它比后者提供了更灵活的方式。比如它能提供异常被抛出时正在执行的是哪个处理器这样的信息。</p>
+<ul>
+<li><em>HandlerExceptionResolver 提供resolveException接口</em></li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public<span class="built_in"> interface </span>HandlerExceptionResolver &#123;  </div><div class="line">    ModelAndView resolveException(  </div><div class="line">            HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex);  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><em>在BaseController中使用 @ExceptionHandler注解处理异常</em></li>
+</ul>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">@ExceptionHandler(Exception.<span class="keyword">class</span>)</div><div class="line">public Object exceptionHandler(Exception <span class="keyword">ex</span>, HttpServletResponse response, </div><div class="line">             HttpServletRequest request) throws IOException &#123;</div><div class="line">	String url = <span class="string">""</span>;</div><div class="line">	String msg = <span class="keyword">ex</span>.getMessage();</div><div class="line">	Object resultModel = null;</div><div class="line">	try &#123;</div><div class="line">		<span class="keyword">if</span> (<span class="keyword">ex</span>.getClass() == HttpRequestMethodNotSupportedException.<span class="keyword">class</span>) &#123;</div><div class="line">			url = <span class="string">"admin/common/500"</span>;</div><div class="line">			System.<span class="keyword">out</span>.println(<span class="string">"--------毛有找到对应方法---------"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">ex</span>.getClass() == ParameterException.<span class="keyword">class</span>) &#123;<span class="comment">//自定义的异常</span></div><div class="line">                               </div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">ex</span>.getClass() == UnauthorizedException.<span class="keyword">class</span>) &#123;</div><div class="line">			url = <span class="string">"admin/common/unauth"</span>;</div><div class="line">			System.<span class="keyword">out</span>.println(<span class="string">"--------毛有权限---------"</span>);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		String header = req.getHeader(<span class="string">"X-Requested-With"</span>);</div><div class="line">		boolean isAjax = <span class="string">"XMLHttpRequest"</span>.equalsIgnoreCase(header);</div><div class="line">		String method = req.getMethod();</div><div class="line">		boolean isPost = <span class="string">"POST"</span>.equalsIgnoreCase(method);</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (isAjax || isPost) &#123;</div><div class="line">			<span class="keyword">return</span> Message.<span class="keyword">error</span>(msg);</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			ModelAndView <span class="keyword">view</span> = new ModelAndView(url);</div><div class="line">			<span class="keyword">view</span>.addObject(<span class="string">"error"</span>, msg);</div><div class="line">			<span class="keyword">view</span>.addObject(<span class="string">"class"</span>, <span class="keyword">ex</span>.getClass());</div><div class="line">			<span class="keyword">view</span>.addObject(<span class="string">"method"</span>, request.getRequestURI());</div><div class="line">			<span class="keyword">return</span> <span class="keyword">view</span>;</div><div class="line">		&#125;</div><div class="line">	&#125; catch (Exception exception) &#123;</div><div class="line">		logger.<span class="keyword">error</span>(exception.getMessage(), exception);</div><div class="line">		<span class="keyword">return</span> resultModel;</div><div class="line">	&#125; finally &#123;</div><div class="line">		logger.<span class="keyword">error</span>(msg, <span class="keyword">ex</span>);</div><div class="line">		<span class="keyword">ex</span>.printStackTrace();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><em>在web.xml中处理异常 </em></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 默认的错误处理页面 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">error-page</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">error-code</span>&gt;</span>403<span class="tag">&lt;/<span class="name">error-code</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">location</span>&gt;</span>/403.html<span class="tag">&lt;/<span class="name">location</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">error-page</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">error-page</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">error-code</span>&gt;</span>404<span class="tag">&lt;/<span class="name">error-code</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">location</span>&gt;</span>/404.html<span class="tag">&lt;/<span class="name">location</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">error-page</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 仅仅在调试的时候注视掉,在正式部署的时候不能注释 --&gt;</span></div><div class="line"><span class="comment">&lt;!-- 这样配置也是可以的，表示发生500错误的时候，转到500.jsp页面处理。 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">error-page</span>&gt;</span> </div><div class="line">	<span class="tag">&lt;<span class="name">error-code</span>&gt;</span>500<span class="tag">&lt;/<span class="name">error-code</span>&gt;</span> </div><div class="line">	<span class="tag">&lt;<span class="name">location</span>&gt;</span>/500.html<span class="tag">&lt;/<span class="name">location</span>&gt;</span> </div><div class="line"><span class="tag">&lt;/<span class="name">error-page</span>&gt;</span> </div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 这样的配置表示如果jsp页面或者servlet发生java.lang.Exception类型（当然包含子类）的异常就会转到500.jsp页面处理。 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">error-page</span>&gt;</span> </div><div class="line">	<span class="tag">&lt;<span class="name">exception-type</span>&gt;</span>java.lang.Exception<span class="tag">&lt;/<span class="name">exception-type</span>&gt;</span> </div><div class="line">	<span class="tag">&lt;<span class="name">location</span>&gt;</span>/500.jsp<span class="tag">&lt;/<span class="name">location</span>&gt;</span> </div><div class="line"><span class="tag">&lt;/<span class="name">error-page</span>&gt;</span> </div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">error-page</span>&gt;</span> </div><div class="line">	<span class="tag">&lt;<span class="name">exception-type</span>&gt;</span>java.lang.Throwable<span class="tag">&lt;/<span class="name">exception-type</span>&gt;</span> </div><div class="line">	<span class="tag">&lt;<span class="name">location</span>&gt;</span>/500.jsp<span class="tag">&lt;/<span class="name">location</span>&gt;</span> </div><div class="line"><span class="tag">&lt;/<span class="name">error-page</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 当error-code和exception-type都配置时，exception-type配置的页面优先级高及出现500错误，发生异常Exception时会跳转到500.jsp--&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>来一个问题：HandlerExceptionResolver和web.xml中配置的error-page会有冲突吗？</li>
+</ul>
+<p><em>解答</em>：如果resolveException返回了ModelAndView，会优先根据返回值中的页面来显示。不过，resolveException可以返回null，此时则展示web.xml中的error-page的500状态码配置的页面。 当web.xml中有相应的error-page配置，则可以在实现resolveException方法时返回null。 API文档中对返回值的解释： <strong> return a corresponding ModelAndView to forward to, or null for default processing.</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;温故而知新，今天一起来复习一下spring mvc的内容吧。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;spring mvc简介与运行原理&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Spring的模型-视图-控制器（MVC）框架是围绕一个DispatcherServlet来设
+    
+    </summary>
+    
+      <category term="技术小栈" scheme="https://fantasykai.cc/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
+    
+    
+      <category term="spring" scheme="https://fantasykai.cc/tags/spring/"/>
+    
+  </entry>
   
   <entry>
     <title>Kubernetes概览</title>
@@ -2726,593 +2911,6 @@ ssl_certificate_key /etc/letsencrypt/live/xx.xx.com/privkey.pem;
     
     
       <category term="js" scheme="https://fantasykai.cc/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>集中式日志监控系统</title>
-    <link href="https://fantasykai.cc/2017/03/13/recording/%E9%9B%86%E4%B8%AD%E5%BC%8F%E6%97%A5%E5%BF%97%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F%E9%83%A8%E7%BD%B2/"/>
-    <id>https://fantasykai.cc/2017/03/13/recording/集中式日志监控系统部署/</id>
-    <published>2017-03-12T16:00:00.000Z</published>
-    <updated>2017-03-13T12:44:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="集中式日志监控系统"><a href="#集中式日志监控系统" class="headerlink" title="集中式日志监控系统"></a>集中式日志监控系统</h1><h2 id="为什么需要日志管理系统"><a href="#为什么需要日志管理系统" class="headerlink" title="为什么需要日志管理系统"></a>为什么需要日志管理系统</h2><p>日志，对于任何系统都是重要的组成，作为程序猿，定位问题，查看系统的健康运载情况，都需要通过查询日志进行分析。</p>
-<p>合理的软件架构往往都不会是单点的，即使在同一台应用服务器上，日志有不同的种类，nginx访问日志，操作系统，应用服务，业务逻辑等等。</p>
-<p>没有日志管理系统时，我们如何分析日志：</p>
-<p>tail，cat，grep，sed ，awk ，wc… 显然不可能登录到每一台应用服务器上敲命令。</p>
-<p>于是建立一套集中式的方法，把不同来源的数据集中整合到一起，方便归纳分析，就成为解决以上痛点的方式方法。</p>
-<h2 id="ELK-简介"><a href="#ELK-简介" class="headerlink" title="ELK 简介"></a>ELK 简介</h2><p>ELK 是 Elasticsearch、Logstash 和 Kibana 三种软件产品的首字母缩写。这三者都是开源软件，通常配合使用，而且又先后归于 Elastic.co 公司名下，所以被简称为 ELK Stack,目前ELK Stack 已经成为最流行的集中式日志解决方案。</p>
-<h3 id="Elasticsearch"><a href="#Elasticsearch" class="headerlink" title="Elasticsearch"></a>Elasticsearch</h3><p>Elasticsearch 是一个实时的分布式搜索和分析引擎，它可以用于全文搜索，结构化搜索以及分析。它是一个建立在全文搜索引擎 Apache Lucene 基础上的搜索引擎，使用 Java 语言编写</p>
-<p>主要特点</p>
-<ul>
-<li>实时分析</li>
-<li>分布式实时文件存储，并将每一个字段都编入索引</li>
-<li>文档导向，所有的对象全部是文档</li>
-<li>高可用性，易扩展，支持集群（Cluster）、分片和复制（Shards 和 Replicas）。</li>
-<li>支持 JSON</li>
-</ul>
-<h3 id="Logstash"><a href="#Logstash" class="headerlink" title="Logstash"></a>Logstash</h3><p>Logstash 是一个具有实时渠道能力的数据收集引擎。使用 JRuby 语言编写</p>
-<p>主要特点</p>
-<ul>
-<li>几乎可以访问任何数据</li>
-<li>可以和多种外部应用结合</li>
-<li>支持弹性扩展</li>
-</ul>
-<p>它由三个主要部分组成</p>
-<ul>
-<li>Shipper－发送日志数据</li>
-<li>Broker－收集数据，缺省内置 Redis</li>
-<li>Indexer－数据写入</li>
-</ul>
-<h3 id="Kibana"><a href="#Kibana" class="headerlink" title="Kibana"></a>Kibana</h3><p>Kibana 是一款基于 Apache 开源协议，为 Elasticsearch 提供分析和可视化的 Web 平台。它可以在 Elasticsearch 的索引中查找，交互数据，并生成各种维度的表图。</p>
-<p>Elastic.co 在2016-10-27 发布了 Elastic Stack 5.0 以后目前更新的步伐还是很快的，并且Elastic.co 对部分好用插件开始收费。</p>
-<h2 id="整体架构图"><a href="#整体架构图" class="headerlink" title="整体架构图"></a>整体架构图</h2><p>我在对ELK有了一定了解探索后，决定先使用 ELK 5 之前比较成熟的方案做一次搭建，尝试及进一步熟悉了解集中式日志监控系统，也方便应用到我们的测试及生成环境中。</p>
-<p>各模块版本</p>
-<ul>
-<li>elasticsearch-2.4.4</li>
-<li>logstash-2.3.4</li>
-<li>kibana-4.6.3</li>
-</ul>
-<p>另外还引入消息队列</p>
-<ul>
-<li>zookeeper-3.4.9</li>
-<li>kafka_2.11-0.10.2.0</li>
-</ul>
-<p>Logstash 作为日志收集端，比较消耗 CPU 和内存资源,从Elastic.co的官网找到了更好的替代方案：Beats组件</p>
-<p>Beats 作为日志shipper</p>
-<ul>
-<li>Packetbeat（网络数据）；</li>
-<li>Metricbeat（从系统和服务收集指标。从CPU到内存，Redis到Nginx等等，Metricbeat是一种轻量级的方式来发送系统和服务统计信息）；</li>
-<li>Filebeat（日志文件）；</li>
-<li>Winlogbeat（搜集 Windows 事件日志数据）。</li>
-<li>Heartbeat （使用主动探测监视服务的可用性。给出一个URL列表，Heartbeat询问一个简单的问题：你活着吗？Heartbeat将此信息和响应时间发送到弹性堆栈的其余部分进行进一步分析）</li>
-</ul>
-<p>Beats 将搜集到的数据发送到 Logstash，经 Logstash 解析、过滤后，将其发送到 Elasticsearch 存储</p>
-<p>相比 Logstash，Beats 所占系统的 CPU 和内存几乎可以忽略不计，这样解决了Logstash 在各服务器节点上占用系统资源高的问题。另外，Beats 和 Logstash 之间支持 SSL/TLS 加密传输，客户端和服务器双向认证，保证了通信安全。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdj6dwfug4j20mo0jswft" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<h2 id="部署图"><a href="#部署图" class="headerlink" title="部署图"></a>部署图</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdfbfjchczj214g10iwpx" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><p>简单把部署过程及配置文件进行记录，方便后续回顾及优化</p>
-<h3 id="相关环境："><a href="#相关环境：" class="headerlink" title="相关环境："></a>相关环境：</h3><p>部署平台/环境：</p>
-<ul>
-<li>linux centos7.2</li>
-<li>jdk1.8.0_74</li>
-</ul>
-<h3 id="1-部署Elasticsearch集群"><a href="#1-部署Elasticsearch集群" class="headerlink" title="1.部署Elasticsearch集群"></a>1.部署Elasticsearch集群</h3><ul>
-<li><a href="https://www.elastic.co" target="_blank" rel="external">elastic 官网</a></li>
-</ul>
-<p>我从官网下载了 <code>elasticsearch-2.4.4.tar.gz</code></p>
-<h4 id="解压缩tar-tz"><a href="#解压缩tar-tz" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h4><pre><code>cd /usr/local/elasticsearch
-tar -zxvf elasticsearch-2.4.4.tar.gz
-</code></pre><h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><pre><code>cd /usr/local/elasticsearch/elasticsearch-2.4.4/config
-vim elasticsearch.yml
-</code></pre><p>配置文件关键配置说明：</p>
-<p>部分配置已经在部署图中有所说明，这里再补充一些字段说明：</p>
-<pre><code> #配置es的集群名称，不同的集群用名字来区分，es会自动发现在同一网段下的es，配置成相同集群名字的各个节点形成一个集群。如果在同一网段下有多个集群，就可以用这个属性来区分不同的集群。
-cluster.name: blu-es 
-
-  #节点名称，es启动时会自动创建节点名称，自己配置下更方便维护吧
-node.name: es01
-
- #是否作为主节点
-node.master: true
-
-#是否存储数据 
-node.data: false
-
-# 默认情况下，ElasticSearch使用0.0.0.0地址，并为http传输开启9200-9300端口，为节点到节点的通信开启9300-9400端口，可以自行设置IP地址
-network.host: 我设置为内网的IP了
-
-# 输监听定制端口
-http.port: 9200
-
-# 数据文件存储路径 此路径要创建出来
-path.data: /home/elk/data
-
-# 日志文件存储路径，此路径要创建出来
-path.logs: /var/log/elasticsearch
-</code></pre><h4 id="ES环境启动"><a href="#ES环境启动" class="headerlink" title="ES环境启动"></a>ES环境启动</h4><ul>
-<li><strong>elasticsearch默认是不支持用root用户来启动的。</strong></li>
-</ul>
-<p>解决方案：</p>
-<ul>
-<li>1.新建专门的用户用来管理elasticsearch，线上环境确实也不建议使用root用户</li>
-</ul>
-<ul>
-<li><p>2.启动时，追加 <code>Des.insecure.allow.root=true</code></p>
-<pre><code>在 `/usr/local/elasticsearch/elasticsearch-2.4.4/bin/elasticsearch` 中增加 ES_JAVA_OPTS=&quot;-Des.insecure.allow.root=true&quot;
-</code></pre></li>
-</ul>
-<p>启动ES环境</p>
-<pre><code>cd /usr/local/elasticsearch/elasticsearch-2.4.4/bin
-sh ./elasticsearch -d
-</code></pre><ul>
-<li>-d表示后台启动</li>
-</ul>
-<h4 id="Elasticsearch插件安装"><a href="#Elasticsearch插件安装" class="headerlink" title="Elasticsearch插件安装"></a>Elasticsearch插件安装</h4><p>在熟悉Elasticsearch过程中，了解到有许多不错的插件，这里把简单记录下插件的安装方法</p>
-<ul>
-<li>通过plugin 命令进行安装</li>
-</ul>
-<pre><code>#head 方便对es进行各种操作的客户端，可以查看各个索引的数据量以及分片的状态，
-/usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
-#kopf es的管理工具，也提供了对ES集群操作的API。
-/usr/share/elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf
-#bigdesk 监控es状态的插
-/usr/share/elasticsearch/bin/plugin install hlstudio/bigdesk
-</code></pre><ul>
-<li>还可以到github上查找插件的源码进行手动安装，安装细节不再赘述。</li>
-</ul>
-<ul>
-<li><p>访问插件： <code>/_plugin/插件名称</code></p>
-<pre><code>如访问head
-http://ip:9200/_plugin/head/
-</code></pre></li>
-</ul>
-<h4 id="Elasticsearch集群配置"><a href="#Elasticsearch集群配置" class="headerlink" title="Elasticsearch集群配置"></a>Elasticsearch集群配置</h4><p>主要是针对 <code>elasticsearch.yml</code>的配置，上述步骤已经对该文件部分关键字段说明，我在测试环境使用了3台做集群配置，通过head插件可以查看集群的状态：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdl4okw4u7j20o60hrdks" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<p>ES 集群搭建OK~</p>
-<h3 id="2-部署kafka集群"><a href="#2-部署kafka集群" class="headerlink" title="2.部署kafka集群"></a>2.部署kafka集群</h3><p>Kafka集群是把状态保存在Zookeeper中的，首先要搭建Zookeeper集群。</p>
-<ul>
-<li>Zookeeper通过复制来实现高可用性，只要集群中半数以上的节点处于可用状态，它就能够保证服务继续。所以搭建集群的服务器台数应该为（2*n+1）台。</li>
-</ul>
-<h4 id="1-Zookeeper的安装配置"><a href="#1-Zookeeper的安装配置" class="headerlink" title="1) Zookeeper的安装配置"></a>1) Zookeeper的安装配置</h4><ul>
-<li><a href="https://zookeeper.apache.org" target="_blank" rel="external">zookeeper官网</a></li>
-</ul>
-<p>上述说明zookeeper集群必须保证3台以上的服务器，我这里搭建3台zookeeper服务器</p>
-<h5 id="创建myid文件"><a href="#创建myid文件" class="headerlink" title="创建myid文件"></a>创建myid文件</h5><ul>
-<li>myid 为服务器编号，用于标识服务器，这个值必须和dataDir目录下myid文件中的值保证一致</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>服务IP</th>
-<th>myid</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10.11.1.11</td>
-<td>11</td>
-<td></td>
-</tr>
-<tr>
-<td>10.11.1.12</td>
-<td>12</td>
-<td></td>
-</tr>
-<tr>
-<td>10.11.1.13</td>
-<td>13</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<pre><code>为每台机器创建myid文件
-# 10.11.1.11
-echo 11 &gt;/home/zookeeper/data/myid
-# 10.11.1.12
-echo 12 &gt;/home/zookeeper/data/myid
-# 10.11.1.13
-echo 13 &gt;/home/zookeeper/data/myid
-</code></pre><h5 id="我从官网下载了-zookeeper-3-4-9-tar-gz"><a href="#我从官网下载了-zookeeper-3-4-9-tar-gz" class="headerlink" title="我从官网下载了 zookeeper-3.4.9.tar.gz"></a>我从官网下载了 <code>zookeeper-3.4.9.tar.gz</code></h5><h5 id="解压缩tar-tz-1"><a href="#解压缩tar-tz-1" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h5><pre><code>cd /usr/local/zookeeper
-tar -zxvf zookeeper-3.4.9.tar.gz
-</code></pre><h5 id="修改配置文件-1"><a href="#修改配置文件-1" class="headerlink" title="修改配置文件"></a>修改配置文件</h5><pre><code>cd /usr/local/zookeeper/zookeeper-3.4.9/conf
-cp zoo_sample.cfg zoo.cfg
-vim zoo.cfg
-
-
-# 这个时间是作为Zk服务器之间或客户端与服务器之间维持心跳的时间间隔，每隔tickTime时间就会发送一个心跳；最小 的session过期时间为2倍tickTime 
-tickTime=2000
-# 此配置表示，允许follower(相对于Leaderer言的“客户端”)连接并同步到Leader的初始化连接时间，以tickTime为单位。当初始化连接时间超过该值，则表示连接失败。
-initLimit=10
-# 此配置项表示Leader与Follower之间发送消息时，请求和应答时间长度。如果follower在设置时间内不能与leader通信，那么此follower将会被丢弃。
-syncLimit=5
-# 数据的存放路径
-dataDir=/home/zookeeper/data
-# the port at which the clients will connect
-clientPort=2181
-# the maximum number of client connections.
-# 最大的并发连接数限制，设置为0或者不设置该参数，表示不进行连接数的限制。
-#maxClientCnxns=60
-
-# 集群模式的配置参数
-# 第一个端口是master和slave之间的通信端口，默认是2888，第二个端口是leader选举的端口，集群刚启动的时候选举或者leader挂掉之后进行新的选举的端口默认是3888
-server.11=10.11.1.11:2888:3888
-server.12=10.11.1.12:2888:3888
-server.13=10.11.1.13:2888:3888
-
-#
-# Be sure to read the maintenance section of the 
-# administrator guide before turning on autopurge.
-#
-# http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance
-#
-# The number of snapshots to retain in dataDir
-#autopurge.snapRetainCount=3
-# Purge task interval in hours
-# Set to &quot;0&quot; to disable auto purge feature
-#autopurge.purgeInterval=1        
-</code></pre><p>每台的zoo.cfg的配置相同，复制到每一台即可</p>
-<h5 id="启动zookeeper环境"><a href="#启动zookeeper环境" class="headerlink" title="启动zookeeper环境"></a>启动zookeeper环境</h5><pre><code>在bin目录下执行
-nohup ./zkServer.sh start &amp;
-</code></pre><h5 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h5><pre><code>./zkServer.sh status
-Using config: /usr/local/zookeeper/zookeeper-3.4.9/bin/../conf/zoo.cfg
-Mode: follower 
-或者 Mode: leader 
-</code></pre><h4 id="2-kafka的安装配置"><a href="#2-kafka的安装配置" class="headerlink" title="2) kafka的安装配置"></a>2) kafka的安装配置</h4><ul>
-<li><a href="https://kafka.apache.org" target="_blank" rel="external">kafka官网</a></li>
-</ul>
-<h5 id="我从kafka的官网下载了-kafka-2-11-0-10-2-0-tgz"><a href="#我从kafka的官网下载了-kafka-2-11-0-10-2-0-tgz" class="headerlink" title="我从kafka的官网下载了 kafka_2.11-0.10.2.0.tgz"></a>我从kafka的官网下载了 <code>kafka_2.11-0.10.2.0.tgz</code></h5><h5 id="解压缩tar-tz-2"><a href="#解压缩tar-tz-2" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h5><pre><code>cd /usr/local/kafka
-tar -zxvf kafka_2.11-0.10.2.0.tgz
-</code></pre><h5 id="修改配置文件-2"><a href="#修改配置文件-2" class="headerlink" title="修改配置文件"></a>修改配置文件</h5><pre><code>vim /usr/local/kafka/kafka_2.11-0.10.2.0/config/server.properties
-</code></pre><p>配置文件主要参数说明</p>
-<pre><code>#当前机器在集群中的唯一标识，和zookeeper的myid性质一样
-broker.id=1  
-
-#当前kafka对外提供服务的端口默认是9092
-port=9092 #不配置的话，默认为9092
-
-#这个是borker进行网络处理的线程数
-num.network.threads=3 
-
-#这个是borker进行I/O处理的线程数
-num.io.threads=8 
-
-#消息存放的目录，这个目录可以配置为“，”逗号分割的表达式，上面的num.io.threads要大于这个目录的个数这个目录，如果配置多个目录，新创建的topic他把消息持久化的地方是，当前以逗号分割的目录中，那个分区数最少就放那一个
-log.dirs=/usr/local/kafka/kafka_2.11-0.10.2.0/logs 
-
-
-#发送缓冲区buffer大小，数据不是一下子就发送的，先回存储到缓冲区了到达一定的大小后在发送，能提高性能
-socket.send.buffer.bytes=102400 
-
-
-#kafka接收缓冲区大小，当数据到达一定大小后在序列化到磁盘
-socket.receive.buffer.bytes=102400 
-
-#这个参数是向kafka请求消息或者向kafka发送消息的请请求的最大数，这个值不能超过java的堆栈大小
-socket.request.max.bytes=104857600 
-
-#默认的分区数，一个topic默认1个分区数
-num.partitions=6
-
-#默认消息的最大持久化时间（小时）
-log.retention.hours=60 
-
-#这个参数是：因为kafka的消息是以追加的形式落地到文件，当超过这个值的时候，kafka会新起一个文件
-log.segment.bytes=1073741824
-
-#每隔300000毫秒去检查上面配置的log失效时间（log.retention.hours=168 ），到目录查看是否有过期的消息如果有，删除
-log.retention.check.interval.ms=300000 
-
-#设置zookeeper的连接端口
-zookeeper.connect=10.11.1.11:2181,10.11.1.12:2181,10.11.1.13:2181
-
-指定客户端连接zookeeper的最大超时时间
-zookeeper.connection.timeout.ms=6000
-</code></pre><ul>
-<li>另外2台的配置只是需要修改broker.id即可，3台服务器保证broker.id不相同。</li>
-</ul>
-<h5 id="配置主机名对应IP的解析"><a href="#配置主机名对应IP的解析" class="headerlink" title="配置主机名对应IP的解析"></a>配置主机名对应IP的解析</h5><p><strong>3台配置相同</strong></p>
-<pre><code>vim /etc/hosts
-
-10.11.1.11 server1
-10.11.1.12 server2
-10.11.1.13 server3
-</code></pre><h5 id="启动kafka环境"><a href="#启动kafka环境" class="headerlink" title="启动kafka环境"></a>启动kafka环境</h5><pre><code>nohup ./kafka-server-start.sh ../config/server.properties &amp;
-</code></pre><p>kafka集群搭建OK</p>
-<h3 id="3-部署logstash服务"><a href="#3-部署logstash服务" class="headerlink" title="3.部署logstash服务"></a>3.部署logstash服务</h3><p>在此架构中，logstash担任两种角色，也处于不同的层次</p>
-<ul>
-<li>对日志进行格式化等处理，对接转存到kafka集群中。</li>
-<li>作为（消费者）从kafka集群中拉取日志消息。同步到ES集群。</li>
-</ul>
-<h4 id="部署日志处理层的logstash"><a href="#部署日志处理层的logstash" class="headerlink" title="部署日志处理层的logstash"></a>部署日志处理层的logstash</h4><p>这里用到了 <code>GeoLite</code>, 可用于转换IP，变成地理位置信息。</p>
-<ul>
-<li><a href="https://dev.maxmind.com/" target="_blank" rel="external">GeoLite官网</a></li>
-</ul>
-<h5 id="从GeoLite官网下载-GeoLiteCity-dat-gz"><a href="#从GeoLite官网下载-GeoLiteCity-dat-gz" class="headerlink" title="从GeoLite官网下载 GeoLiteCity.dat.gz"></a>从GeoLite官网下载 <code>GeoLiteCity.dat.gz</code></h5><h5 id="从elastic官网下载-logstash-2-3-4-tar-gz"><a href="#从elastic官网下载-logstash-2-3-4-tar-gz" class="headerlink" title="从elastic官网下载 logstash-2.3.4.tar.gz"></a>从elastic官网下载 <code>logstash-2.3.4.tar.gz</code></h5><h5 id="解压logstash-2-3-4-tar-gz"><a href="#解压logstash-2-3-4-tar-gz" class="headerlink" title="解压logstash-2.3.4.tar.gz"></a>解压logstash-2.3.4.tar.gz</h5><pre><code>cd /usr/local/logstash
-tar -zxvf logstash-2.3.4.tar.gz
-</code></pre><h5 id="解压GeoLiteCity-dat-gz"><a href="#解压GeoLiteCity-dat-gz" class="headerlink" title="解压GeoLiteCity.dat.gz"></a>解压GeoLiteCity.dat.gz</h5><pre><code>cd /usr/local/logstash
-tar -zxvf GeoLiteCity.dat.gz
-</code></pre><h5 id="编辑获取日志并输出到kafka的配置文件"><a href="#编辑获取日志并输出到kafka的配置文件" class="headerlink" title="编辑获取日志并输出到kafka的配置文件"></a>编辑获取日志并输出到kafka的配置文件</h5><p><code>vim logstash_in_kafka.conf</code></p>
-<pre><code># 用于接收Beats组件传送的日志信息
-input {
-    beats {
-    port =&gt; 5044
-    codec =&gt; &quot;json&quot;
-}
-}
-
-# 过滤日志内容，这里判断nginx日志时，增加ip转换的内容  
-filter {
-    if [type] == &quot;nginxacclog&quot; {
-
-    geoip {
-        source =&gt; &quot;clientip&quot;
-        target =&gt; &quot;geoip&quot;
-        database =&gt; &quot;/usr/local/logstash/GeoLiteCity.dat&quot;
-        add_field =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;%{[geoip][longitude]}&quot; ]
-        add_field =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;%{[geoip][latitude]}&quot; ]
-}
-
-    mutate {
-        convert =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;float&quot; ]
-
-}
-}
-}
-
-# 输出到kafka中
-output {
-  kafka {
-    workers =&gt; 2
-    bootstrap_servers =&gt; &quot;10.11.1.11:9092,10.11.1.12:9092,10.11.1.13:9092&quot;
-    topic_id =&gt; &quot;peiyinlog&quot;
-}
-}
-</code></pre><ul>
-<li>workers：用于写入时的工作线程</li>
-<li>bootstrap_servers：指定可用的kafka broker实例列表</li>
-<li>topic_id：指定topic名称，可以在写入前手动在broker创建定义好分片数和副本数，也可以不提前创建，那么在logstash写入时会自动创建</li>
-<li>topic，分片数和副本数则默认为broker配置文件中设置的。</li>
-</ul>
-<h5 id="启动logstash"><a href="#启动logstash" class="headerlink" title="启动logstash"></a>启动logstash</h5><pre><code>nohup ./logstash agent -f logstash_in_kafka.conf &amp;
-</code></pre><h4 id="部署作为consumer的logstash"><a href="#部署作为consumer的logstash" class="headerlink" title="部署作为consumer的logstash"></a>部署作为consumer的logstash</h4><p>同样解压logstash-2.3.4.tar.gz，只是这里的配置文件不同</p>
-<h5 id="编辑从kafka获取日志内容，传输到ES集群的配置文件"><a href="#编辑从kafka获取日志内容，传输到ES集群的配置文件" class="headerlink" title="编辑从kafka获取日志内容，传输到ES集群的配置文件"></a>编辑从kafka获取日志内容，传输到ES集群的配置文件</h5><p><code>vim kafka_to_es.conf</code></p>
-<pre><code># 从kafka获取日志内容
-input{
-    kafka {
-        zk_connect =&gt; &quot;10.11.1.11:2181,10.11.1.12:2181,10.11.1.13:2181&quot;
-        group_id =&gt; &quot;logstash&quot;
-        topic_id =&gt; &quot;peiyinlog&quot;
-        reset_beginning =&gt; false
-        consumer_threads =&gt; 50
-        decorate_events =&gt; true
-
-}
-
-}
-
-# 删除一些不需要的字段  
-filter {
-  if [type] == &quot;nginxacclog&quot; {
-
-     mutate {
-     remove_field =&gt; [&quot;slbip&quot;,&quot;kafka&quot;,&quot;domain&quot;,&quot;serverip&quot;,&quot;url&quot;,&quot;@version&quot;,&quot;offset&quot;,&quot;input_type&quot;,&quot;count&quot;,&quot;source&quot;,&quot;fields&quot;,&quot;beat.hostname&quot;,&quot;host&quot;,&quot;tags&quot;]
-    }
-}
-
-}
-
-# 输出日志到ES集群
-output {
-    if [type] == &quot;nginxacclog&quot; {
-       # stdout {codec =&gt; rubydebug }
-        elasticsearch {
-            hosts =&gt; [&quot;x.x.x.x:9200&quot;,&quot;x.x.x.x:9200&quot;]
-            index =&gt; &quot;logstash-nginxacclog-%{+YYYY.MM.dd}&quot;
-            manage_template =&gt; true
-            flush_size =&gt; 50000
-            idle_flush_time =&gt; 10
-            workers =&gt; 2
-}
-
-}
-    if [type] == &quot;messages&quot; {
-        elasticsearch {
-            hosts =&gt; [&quot;x.x.x.x:9200&quot;,&quot;x.x.x.x:9200&quot;]
-            index =&gt; &quot;logstash-messages-%{+YYYY.MM.dd}&quot;
-            manage_template =&gt; true
-            flush_size =&gt; 50000
-            idle_flush_time =&gt; 30
-            workers =&gt; 1
-}
-
-}
-
-}
-</code></pre><h5 id="启动logstash-1"><a href="#启动logstash-1" class="headerlink" title="启动logstash"></a>启动logstash</h5><pre><code>nohup ./logstash agent -f kafka_to_es.conf &amp;
-</code></pre><h3 id="4-部署日志采集程序Filebeat"><a href="#4-部署日志采集程序Filebeat" class="headerlink" title="4.部署日志采集程序Filebeat"></a>4.部署日志采集程序Filebeat</h3><p>上述已说明使用beats组件作为日志采集程序，这里只使用了<code>filebeat</code>组件收集我们测试环境上的nginx日志centos操作系统日志，并传输到logstash中。</p>
-<h4 id="从elastic官网下载-filebeat-1-2-3-x86-64-tar-gz"><a href="#从elastic官网下载-filebeat-1-2-3-x86-64-tar-gz" class="headerlink" title="从elastic官网下载 filebeat-1.2.3-x86_64.tar.gz"></a>从elastic官网下载 <code>filebeat-1.2.3-x86_64.tar.gz</code></h4><h4 id="解压logstash-2-3-4-tar-gz-1"><a href="#解压logstash-2-3-4-tar-gz-1" class="headerlink" title="解压logstash-2.3.4.tar.gz"></a>解压logstash-2.3.4.tar.gz</h4><pre><code>cd /usr/local/filebeat
-tar -zxvf ogstash-2.3.4.tar.gz
-</code></pre><h4 id="配置filebeat-yml-文件"><a href="#配置filebeat-yml-文件" class="headerlink" title="配置filebeat.yml 文件"></a>配置filebeat.yml 文件</h4><pre><code>################### Filebeat Configuration Example #########################
-
-############################# Filebeat ######################################
-
-filebeat:
-  prospectors:
-    -
-      paths:
-        - /var/log/messages
-
-      input_type: log
-
-      document_type: messages
-
-    -
-      paths:
-        - /var/log/nginx/access.log
-
-      input_type: log
-
-      document_type: nginxacclog
-
-
-      multiline: 
-          pattern: &apos;^[[:space:]]&apos;
-          negate: true
-          match: after
-
-  registry_file: /var/lib/filebeat/registry
-
-
-############################# Output ##########################################
-
-output:
-  logstash: 
-    hosts: [&quot;x.x.x.x:5044&quot;,&quot;x.x.x.x:5044&quot;]
-
-
-############################# Shipper #########################################
-
-shipper: 
-  name: &quot;blu_test&quot;
-
-
-############################# Logging ######################################### 
-
-logging:  
-  files:
-    rotateeverybytes: 10485760 # = 10MB
-</code></pre><h4 id="这里把nginx的access日志源改为json格式，方便后续处理"><a href="#这里把nginx的access日志源改为json格式，方便后续处理" class="headerlink" title="这里把nginx的access日志源改为json格式，方便后续处理"></a>这里把nginx的access日志源改为json格式，方便后续处理</h4><pre><code>log_format json &apos;{ &quot;@timestamp&quot;:&quot;$time_local&quot;,&apos;
-         &apos;&quot;clientip&quot;:&quot;$remote_addr&quot;,&apos;
-         &apos;&quot;remote_user&quot;: &quot;$remote_user&quot;, &apos;
-         &apos;&quot;http_x_forwarded_for&quot;:&quot;$http_x_forwarded_for&quot;,&apos;
-         &apos;&quot;serverip&quot;:&quot;$server_addr&quot;,&apos;
-         &apos;&quot;size&quot;:$body_bytes_sent,&apos;
-         &apos;&quot;request_time&quot;:$request_time,&apos;
-         &apos;&quot;domain&quot;:&quot;$host&quot;,&apos;
-         &apos;&quot;request&quot;: &quot;$request&quot;, &apos;
-         &apos;&quot;method&quot;:&quot;$request_method&quot;,&apos;
-         &apos;&quot;requesturi&quot;:&quot;$request_uri&quot;,&apos;
-         &apos;&quot;url&quot;:&quot;$uri&quot;,&apos;
-         &apos;&quot;appversion&quot;:&quot;$HTTP_APP_VERSION&quot;,&apos;
-         &apos;&quot;referer&quot;:&quot;$http_referer&quot;,&apos;
-         &apos;&quot;agent&quot;:&quot;$http_user_agent&quot;,&apos;
-         &apos;&quot;status&quot;:&quot;$status&quot;}&apos;;
-</code></pre><h4 id="重启nginx服务"><a href="#重启nginx服务" class="headerlink" title="重启nginx服务"></a>重启nginx服务</h4><pre><code>nginx -s reload
-</code></pre><h4 id="启动-filebeat"><a href="#启动-filebeat" class="headerlink" title="启动 filebeat"></a>启动 filebeat</h4><pre><code>cd /usr/local/filebeat/filebeat-1.2.3-x86_64
-nohup ./filebeat start &amp;
-</code></pre><h3 id="5-安装配置kibana"><a href="#5-安装配置kibana" class="headerlink" title="5.安装配置kibana"></a>5.安装配置kibana</h3><h4 id="安装kibana"><a href="#安装kibana" class="headerlink" title="安装kibana"></a>安装kibana</h4><p>kibana最早是为了代替logstash-web 用来查看 ES 中的数据，用PHP编写的web</p>
-<p>k2 是k1作者使用ruby重写</p>
-<p>K3 是纯前端框架搭建，使用angularjs 编写</p>
-<p>K4 是使用node.js编写</p>
-<p>目前最新的版本已经是K5 </p>
-<p>本次部署依然选用了比较成熟的k4,安装也相对比较简单</p>
-<h5 id="从elastic官网下载-kibana-4-6-3-linux-x86-64-tar-gz"><a href="#从elastic官网下载-kibana-4-6-3-linux-x86-64-tar-gz" class="headerlink" title="从elastic官网下载 kibana-4.6.3-linux-x86_64.tar.gz"></a>从elastic官网下载 <code>kibana-4.6.3-linux-x86_64.tar.gz</code></h5><h5 id="解压kibana-4-6-3-linux-x86-64-tar-gz"><a href="#解压kibana-4-6-3-linux-x86-64-tar-gz" class="headerlink" title="解压kibana-4.6.3-linux-x86_64.tar.gz"></a>解压kibana-4.6.3-linux-x86_64.tar.gz</h5><pre><code>cd /usr/local/kibana
-tar -zxvf kibana-4.6.3-linux-x86_64.tar.gz
-</code></pre><h5 id="配置kibana-yml-文件"><a href="#配置kibana-yml-文件" class="headerlink" title="配置kibana.yml 文件"></a>配置kibana.yml 文件</h5><pre><code>cd /usr/local/kibana/kibana-4.6.3-linux-x86_64/config
-vim kibana.yml
-</code></pre><p>一堆参数，只需修改这3个，即可启动</p>
-<pre><code># Kibana is served by a back end server. This controls which port to use.
-server.port: 5601
-
-# The host to bind the server to.
-server.host: &quot;0.0.0.0&quot;
-
-# The Elasticsearch instance to use for all your queries.
-elasticsearch.url: &quot;http://IP:9200&quot;
-</code></pre><h5 id="启动kibana"><a href="#启动kibana" class="headerlink" title="启动kibana"></a>启动kibana</h5><pre><code>nohup ./kibana &amp;
-</code></pre><h4 id="访问kibana，配置日志索引"><a href="#访问kibana，配置日志索引" class="headerlink" title="访问kibana，配置日志索引"></a>访问kibana，配置日志索引</h4><ul>
-<li>访问地址： <code>http://IP:5601</code></li>
-</ul>
-<p>默认情况下，Kibana 认为你要访问的是通过 Logstash 导入 Elasticsearch 的数据。这时候你可以用默认的 logstash-<em> 作为你的 index pattern。通配符(</em>) 匹配索引名中零到多个字符。如果你的 Elasticsearch 索引有其他命名约定，输入合适的 pattern。pattern 也开始是最简单的单个索引的名字。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://ws1.sinaimg.cn/mw690/7108d6c2ly1fdlec8xlpfj210z0hbtae" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<p>如果一个新索引是定期生成，而且索引名中带有时间戳，选择 <code>Use event times to create index names</code> 选项，然后再选择 <code>Index pattern interval</code>。这可以提高搜索性能，Kibana 会至搜索你指定的时间范围内的索引。在你用 Logstash 输出数据给 Elasticsearch 的情况下尤其有效。</p>
-<p>点击 <code>Create</code> 添加 <code>index pattern</code>。第一个被添加的 pattern 会自动被设置为默认值。如果你有多个 index pattern 的时候，你可以在 Settings &gt; Indices 里设置具体哪个是默认值。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://ws1.sinaimg.cn/mw690/7108d6c2ly1fdleezdoyrj21070pgq78" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<h4 id="kibana简单介绍"><a href="#kibana简单介绍" class="headerlink" title="kibana简单介绍"></a>kibana简单介绍</h4><p>简单介绍下kibana的三个模块</p>
-<h5 id="Discover"><a href="#Discover" class="headerlink" title="Discover"></a>Discover</h5><p>可以从 <strong><code>Discover</code></strong> 页面以交互方式探索日志数据，可以过滤搜索结果以及查看文档数据。 还可以查看与搜索查询匹配的文档数，并获取字段值统计信息，可以配置时间字段，则日志随时间的分布将显示在页面顶部的直方图中。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlh5o8arrj218m0ekwgf" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<h5 id="Visualize"><a href="#Visualize" class="headerlink" title="Visualize"></a>Visualize</h5><p><strong><code>Visualize</code></strong> 用来构建显示相关可视化的仪表板.Kibana可视化基于Elasticsearch查询。 通过使用一系列Elasticsearch聚合来提取和处理数据</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlh5z4x7ej210p0k6tb6" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<h5 id="Dashboard"><a href="#Dashboard" class="headerlink" title="Dashboard"></a>Dashboard</h5><p>Kibana仪表板显示已保存的可视化对象的集合。 可以根据需要安排和调整可视化对象，并保存仪表板，以便重新加载和共享。</p>
-<p>我在Visualize中制作了一些简单的统计，绘制了一个Dashboard</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlhexd03kj21f30qzqfa" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<p>目前对Kibana及ES尚未深入了解，后续有一定掌握之后再做总结分享。</p>
-<h3 id="后续优化："><a href="#后续优化：" class="headerlink" title="后续优化："></a>后续优化：</h3><ul>
-<li>部署的的相关应用统一管理等</li>
-<li>ES 调优</li>
-<li>kafka集群调优</li>
-<li>kibana扩展</li>
-<li>kibana接入到nginx中</li>
-<li>等等</li>
-</ul>
-<p>参考资料：</p>
-<ul>
-<li><p><a href="https://www.gitbook.com/book/chenryn/elk-stack-guide-cn/details" target="_blank" rel="external">elk-stack-guide-cn</a></p>
-</li>
-<li><p><a href="https://www.elastic.co" target="_blank" rel="external">elastic.co</a></p>
-</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;集中式日志监控系统&quot;&gt;&lt;a href=&quot;#集中式日志监控系统&quot; class=&quot;headerlink&quot; title=&quot;集中式日志监控系统&quot;&gt;&lt;/a&gt;集中式日志监控系统&lt;/h1&gt;&lt;h2 id=&quot;为什么需要日志管理系统&quot;&gt;&lt;a href=&quot;#为什么需要日志管理系统&quot; c
-    
-    </summary>
-    
-      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
-    
-    
-      <category term="日志" scheme="https://fantasykai.cc/tags/%E6%97%A5%E5%BF%97/"/>
     
   </entry>
   
