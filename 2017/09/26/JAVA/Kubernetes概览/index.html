@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2017/09/26/JAVA/Kubernetes概览/">
+    
+    
+    <title>Kubernetes概览 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="容器">
+    <meta name="description" content="这是一篇 Kubernetes 的概览。 Kubernetes 是一个自动化部署、伸缩和操作应用程序容器的开源平台。 使用 Kubernetes，你可以快速、高效地满足用户以下的需求：  快速精准地部署应用程序 即时伸缩你的应用程序 无缝展现新特征 限制硬件用量仅为所需资源  我们的目标是培育一个工具和组件的生态系统，以减缓在公有云或私有云中运行的程序的压力。 Kubernetes 的优势 可移动">
+<meta name="keywords" content="容器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kubernetes概览">
+<meta property="og:url" content="https://fantasykai.cc/2017/09/26/JAVA/Kubernetes概览/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="这是一篇 Kubernetes 的概览。 Kubernetes 是一个自动化部署、伸缩和操作应用程序容器的开源平台。 使用 Kubernetes，你可以快速、高效地满足用户以下的需求：  快速精准地部署应用程序 即时伸缩你的应用程序 无缝展现新特征 限制硬件用量仅为所需资源  我们的目标是培育一个工具和组件的生态系统，以减缓在公有云或私有云中运行的程序的压力。 Kubernetes 的优势 可移动">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201708/22/115217h7sbftbcbb8fby6u.jpg">
+<meta property="og:updated_time" content="2017-09-25T18:39:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kubernetes概览">
+<meta name="twitter:description" content="这是一篇 Kubernetes 的概览。 Kubernetes 是一个自动化部署、伸缩和操作应用程序容器的开源平台。 使用 Kubernetes，你可以快速、高效地满足用户以下的需求：  快速精准地部署应用程序 即时伸缩你的应用程序 无缝展现新特征 限制硬件用量仅为所需资源  我们的目标是培育一个工具和组件的生态系统，以减缓在公有云或私有云中运行的程序的压力。 Kubernetes 的优势 可移动">
+<meta name="twitter:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201708/22/115217h7sbftbcbb8fby6u.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Kubernetes概览</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Kubernetes概览</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-25T18:36:04.000Z" itemprop="datePublished" class="page-time">
+  2017-09-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Kubernetes-的优势"><span class="post-toc-number">1.</span> <span class="post-toc-text">Kubernetes 的优势</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#为什么选择容器"><span class="post-toc-number"></span> <span class="post-toc-text">为什么选择容器?</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#为什么我需要-Kubernetes，它能做什么"><span class="post-toc-number">1.</span> <span class="post-toc-text">为什么我需要 Kubernetes，它能做什么?</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Kubernetes-是一个什么样的平台"><span class="post-toc-number">2.</span> <span class="post-toc-text">Kubernetes 是一个什么样的平台?</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Kubernetes-不是什么？"><span class="post-toc-number">3.</span> <span class="post-toc-text">Kubernetes 不是什么？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Kubernetes-这个单词的含义？k8s？"><span class="post-toc-number">4.</span> <span class="post-toc-text">Kubernetes 这个单词的含义？k8s？</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-JAVA/Kubernetes概览"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Kubernetes概览</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-26 02:36:04" datetime="2017-09-25T18:36:04.000Z"  itemprop="datePublished">2017-09-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>这是一篇 Kubernetes 的概览。</p>
+<p>Kubernetes 是一个<a href="http://www.slideshare.net/BrianGrant11/wso2con-us-2015-kubernetes-a-platform-for-automating-deployment-scaling-and-operations" target="_blank" rel="external">自动化部署、伸缩和操作应用程序容器的开源平台</a>。</p>
+<p>使用 Kubernetes，你可以快速、高效地满足用户以下的需求：</p>
+<ul>
+<li>快速精准地部署应用程序</li>
+<li>即时伸缩你的应用程序</li>
+<li>无缝展现新特征</li>
+<li>限制硬件用量仅为所需资源</li>
+</ul>
+<p>我们的目标是培育一个工具和组件的生态系统，以减缓在公有云或私有云中运行的程序的压力。</p>
+<h4 id="Kubernetes-的优势"><a href="#Kubernetes-的优势" class="headerlink" title="Kubernetes 的优势"></a>Kubernetes 的优势</h4><ul>
+<li><strong>可移动</strong>: 公有云、私有云、混合云、多态云</li>
+<li><strong>可扩展</strong>: 模块化、插件化、可挂载、可组合</li>
+<li><strong>自修复</strong>: 自动部署、自动重启、自动复制、自动伸缩</li>
+</ul>
+<p>Google 公司于 2014 年启动了 Kubernetes 项目。Kubernetes 是在 <a href="https://research.google.com/pubs/pub43438.html" target="_blank" rel="external">Google 的长达 15 年的成规模的产品级任务的经验下</a>构建的，结合了来自社区的最佳创意和实践经验。</p>
+<h3 id="为什么选择容器"><a href="#为什么选择容器" class="headerlink" title="为什么选择容器?"></a>为什么选择容器?</h3><p>想要知道你为什么要选择使用 <a href="https://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-and-more/" target="_blank" rel="external">容器</a>?</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201708/22/115217h7sbftbcbb8fby6u.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>程序部署的<em>传统方法</em>是指通过操作系统包管理器在主机上安装程序。这样做的缺点是，容易混淆程序之间以及程序和主机系统之间的可执行文件、配置文件、库、生命周期。为了达到精准展现和精准回撤，你可以搭建一台不可变的虚拟机镜像。但是虚拟机体量往往过于庞大而且不可转移。</p>
+<p>容器部署的<em>新的方式</em>是基于操作系统级别的虚拟化，而非硬件虚拟化。容器彼此是隔离的，与宿主机也是隔离的：它们有自己的文件系统，彼此之间不能看到对方的进程，分配到的计算资源都是有限制的。它们比虚拟机更容易搭建。并且由于和基础架构、宿主机文件系统是解耦的，它们可以在不同类型的云上或操作系统上转移。</p>
+<p>正因为容器又小又快，每一个容器镜像都可以打包装载一个程序。这种一对一的“程序 - 镜像”联系带给了容器诸多便捷。有了容器，静态容器镜像可以在编译/发布时期创建，而非部署时期。因此，每个应用不必再等待和整个应用栈其它部分进行整合，也不必和产品基础架构环境之间进行妥协。在编译/发布时期生成容器镜像建立了一个持续地把开发转化为产品的环境。相似地，容器远比虚拟机更加透明，尤其在设备监控和管理上。这一点，在容器的进程生命周期被基础架构管理而非被容器内的进程监督器隐藏掉时，尤为显著。最终，随着每个容器内都装载了单一的程序，管理容器就等于管理或部署整个应用。</p>
+<p>容器优势总结：</p>
+<ul>
+<li><strong>敏捷的应用创建与部署</strong>：相比虚拟机镜像，容器镜像的创建更简便、更高效。</li>
+<li><strong>持续的开发、集成，以及部署</strong>：在快速回滚下提供可靠、高频的容器镜像编译和部署（基于镜像的不可变性）。</li>
+<li><strong>开发与运营的关注点分离</strong>：由于容器镜像是在编译/发布期创建的，因此整个过程与基础架构解耦。</li>
+<li><strong>跨开发、测试、产品阶段的环境稳定性</strong>：在笔记本电脑上的运行结果和在云上完全一致。</li>
+<li><strong>在云平台与 OS 上分发的可转移性</strong>：可以在 Ubuntu、RHEL、CoreOS、预置系统、Google 容器引擎，乃至其它各类平台上运行。</li>
+<li><strong>以应用为核心的管理</strong>: 从在虚拟硬件上运行系统，到在利用逻辑资源的系统上运行程序，从而提升了系统的抽象层级。</li>
+<li><strong>松散耦联、分布式、弹性、无拘束的微服务</strong>：整个应用被分散为更小、更独立的模块，并且这些模块可以被动态地部署和管理，而不再是存储在大型的单用途机器上的臃肿的单一应用栈。</li>
+<li><strong>资源隔离</strong>：增加程序表现的可预见性。</li>
+<li><strong>资源利用率</strong>：高效且密集。</li>
+</ul>
+<h4 id="为什么我需要-Kubernetes，它能做什么"><a href="#为什么我需要-Kubernetes，它能做什么" class="headerlink" title="为什么我需要 Kubernetes，它能做什么?"></a>为什么我需要 Kubernetes，它能做什么?</h4><p>至少，Kubernetes 能在实体机或虚拟机集群上调度和运行程序容器。而且，Kubernetes 也能让开发者斩断联系着实体机或虚拟机的“锁链”，从<strong>以主机为中心</strong>的架构跃至<strong>以容器为中心</strong>的架构。该架构最终提供给开发者诸多内在的优势和便利。Kubernetes 提供给基础架构以真正的<strong>以容器为中心</strong>的开发环境。</p>
+<p>Kubernetes 满足了一系列产品内运行程序的普通需求，诸如：</p>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/pods/pod/" target="_blank" rel="external">协调辅助进程</a>，协助应用程序整合，维护一对一“程序 - 镜像”模型。</li>
+<li><a href="https://kubernetes.io/docs/concepts/storage/volumes/" target="_blank" rel="external">挂载存储系统</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/secret/" target="_blank" rel="external">分布式机密信息</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/" target="_blank" rel="external">检查程序状态</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/" target="_blank" rel="external">复制应用实例</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/" target="_blank" rel="external">使用横向荚式自动缩放</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/" target="_blank" rel="external">命名与发现</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/service/" target="_blank" rel="external">负载均衡</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/run-application/rolling-update-replication-controller/" target="_blank" rel="external">滚动更新</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/debug-application-cluster/resource-usage-monitoring/" target="_blank" rel="external">资源监控</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/cluster-administration/logging/" target="_blank" rel="external">访问并读取日志</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application-introspection/" target="_blank" rel="external">程序调试</a></li>
+<li><a href="https://kubernetes.io/docs/admin/authorization/" target="_blank" rel="external">提供验证与授权</a></li>
+</ul>
+<p>以上兼具平台即服务（PaaS）的简化和基础架构即服务（IaaS）的灵活，并促进了在平台服务提供商之间的迁移。</p>
+<h4 id="Kubernetes-是一个什么样的平台"><a href="#Kubernetes-是一个什么样的平台" class="headerlink" title="Kubernetes 是一个什么样的平台?"></a>Kubernetes 是一个什么样的平台?</h4><p>虽然 Kubernetes 提供了非常多的功能，总会有更多受益于新特性的新场景出现。针对特定应用的工作流程，能被流水线化以加速开发速度。特别的编排起初是可接受的，这往往需要拥有健壮的大规模自动化机制。这也是为什么 Kubernetes 也被设计为一个构建组件和工具的生态系统的平台，使其更容易地部署、缩放、管理应用程序。</p>
+<p><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/" target="_blank" rel="external">标签</a>label可以让用户按照自己的喜好组织资源。 <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/" target="_blank" rel="external">注释</a>annotation让用户在资源里添加客户信息，以优化工作流程，为管理工具提供一个标示调试状态的简单方法。</p>
+<p>此外，<a href="https://kubernetes.io/docs/concepts/overview/components/" target="_blank" rel="external">Kubernetes 控制面板</a>是由开发者和用户均可使用的同样的 <a href="https://kubernetes.io/docs/reference/api-overview/" target="_blank" rel="external">API</a> 构建的。用户可以编写自己的控制器，比如 <a href="https://git.k8s.io/community/contributors/devel/scheduler.md" target="_blank" rel="external">调度器</a>scheduler，使用可以被通用的<a href="https://kubernetes.io/docs/user-guide/kubectl-overview/" target="_blank" rel="external">命令行工具</a>识别的<a href="https://git.k8s.io/community/contributors/design-proposals/extending-api.md" target="_blank" rel="external">他们自己的 API</a>。</p>
+<p>这种<a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/principles.md" target="_blank" rel="external">设计</a>让大量的其它系统也能构建于 Kubernetes 之上。</p>
+<h4 id="Kubernetes-不是什么？"><a href="#Kubernetes-不是什么？" class="headerlink" title="Kubernetes 不是什么？"></a>Kubernetes 不是什么？</h4><p>Kubernetes 不是传统的、全包容的平台即服务（Paas）系统。它尊重用户的选择，这很重要。</p>
+<p>Kubernetes：</p>
+<ul>
+<li>并不限制支持的程序类型。它并不检测程序的框架 (例如，<a href="http://wildfly.org/" target="_blank" rel="external">Wildfly</a>)，也不限制运行时支持的语言集合 (比如， Java、Python、Ruby)，也不仅仅迎合 <a href="https://12factor.net/" target="_blank" rel="external">12 因子应用程序</a>，也不区分 <em>应用</em> 与 <em>服务</em> 。Kubernetes 旨在支持尽可能多种类的工作负载，包括无状态的、有状态的和处理数据的工作负载。如果某程序在容器内运行良好，它在 Kubernetes 上只可能运行地更好。</li>
+<li>不提供中间件（例如消息总线）、数据处理框架（例如 Spark）、数据库（例如 mysql），也不把集群存储系统（例如 Ceph）作为内置服务。但是以上程序都可以在 Kubernetes 上运行。</li>
+<li>没有“点击即部署”这类的服务市场存在。</li>
+<li>不部署源代码，也不编译程序。持续集成 (CI) 工作流程是不同的用户和项目拥有其各自不同的需求和表现的地方。所以，Kubernetes 支持分层 CI 工作流程，却并不监听每层的工作状态。</li>
+<li>允许用户自行选择日志、监控、预警系统。（ Kubernetes 提供一些集成工具以保证这一概念得到执行）</li>
+<li>不提供也不管理一套完整的应用程序配置语言/系统（例如 <a href="https://github.com/google/jsonnet" target="_blank" rel="external">jsonnet</a>）。</li>
+<li>不提供也不配合任何完整的机器配置、维护、管理、自我修复系统。</li>
+</ul>
+<p>另一方面，大量的 PaaS 系统运行<em>在</em> Kubernetes 上，诸如 <a href="https://www.openshift.org/" target="_blank" rel="external">Openshift</a>、<a href="http://deis.io/" target="_blank" rel="external">Deis</a>，以及 <a href="http://eldarion.cloud/" target="_blank" rel="external">Eldarion</a>。你也可以开发你的自定义 PaaS，整合上你自选的 CI 系统，或者只在 Kubernetes 上部署容器镜像。</p>
+<p>因为 Kubernetes 运营在应用程序层面而不是在硬件层面，它提供了一些 PaaS 所通常提供的常见的适用功能，比如部署、伸缩、负载平衡、日志和监控。然而，Kubernetes 并非铁板一块，这些默认的解决方案是可供选择，可自行增加或删除的。</p>
+<p>而且， Kubernetes 不只是一个<em>编排系统</em> 。事实上，它满足了编排的需求。 <em>编排</em> 的技术定义是，一个定义好的工作流程的执行：先做 A，再做 B，最后做 C。相反地， Kubernetes 囊括了一系列独立、可组合的控制流程，它们持续驱动当前状态向需求的状态发展。从 A 到 C 的具体过程并不唯一。集中化控制也并不是必须的；这种方式更像是<em>编舞</em>。这将使系统更易用、更高效、更健壮、复用性、扩展性更强。</p>
+<h4 id="Kubernetes-这个单词的含义？k8s？"><a href="#Kubernetes-这个单词的含义？k8s？" class="headerlink" title="Kubernetes 这个单词的含义？k8s？"></a>Kubernetes 这个单词的含义？k8s？</h4><p><strong>Kubernetes</strong> 这个单词来自于希腊语，含义是 <em>舵手</em> 或 <em>领航员</em> 。其词根是 <em>governor</em> 和 <a href="http://www.etymonline.com/index.php?term=cybernetics" target="_blank" rel="external">cybernetic</a>。 <em>K8s</em> 是它的缩写，用 8 字替代了“ubernete”。</p>
+<hr>
+<p>via: <a href="https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/" target="_blank" rel="external">https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/</a></p>
+<p>作者：<a href="https://kubernetes.io/" target="_blank" rel="external">kubernetes.io</a> 译者：<a href="https://github.com/songsuhang00" target="_blank" rel="external">songshuang00</a> 校对：<a href="https://github.com/wxy" target="_blank" rel="external">wxy</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-09-25T18:39:05.000Z" itemprop="dateUpdated">2017-09-26 02:39:05</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2017/09/26/JAVA/Kubernetes概览/" target="_blank" rel="external">https://fantasykai.cc/2017/09/26/JAVA/Kubernetes概览/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/容器/">容器</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2017/09/26/JAVA/Kubernetes概览/&title=《Kubernetes概览》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2017/09/26/JAVA/Kubernetes概览/&title=《Kubernetes概览》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2017/09/26/JAVA/Kubernetes概览/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Kubernetes概览》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2017/09/26/JAVA/Kubernetes概览/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2017/09/26/JAVA/Kubernetes概览/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/26/JAVA/java9new/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Java 9新特性解读</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2017/09/26/JAVA/Kubernetes概览/&title=《Kubernetes概览》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2017/09/26/JAVA/Kubernetes概览/&title=《Kubernetes概览》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2017/09/26/JAVA/Kubernetes概览/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Kubernetes概览》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2017/09/26/JAVA/Kubernetes概览/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2017/09/26/JAVA/Kubernetes概览/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3aQY6EMAwFUe5/aeYESde3YSScYoVomuRlYcV2rgtf9+Ii76ze3I9yvXHJkCHjswwy/P45mQT/dT/u8jsyZMg4gLH69H66PLCu7tM3l89lyJAhA2zvng3cMmTIkPEUo5Zw8u2jDBkyZKSBkgP4F2pvypAh4zRGGiL/8/6V/oYMGTI+xbjDqzMtEi7v0iVDhozZDB7g+IastnEkKe6PL8iQIWM0gx99qO3W+pMrFvtkyJAxglH7G0fWCv3xEQ0ZMmQcxuDpK3nCj4vxBQ1WS4YMGSMYtS1aZ8jaAhXbBjJkyBjK2IdLvh3kZTV++CxIqmXIkDGOUYvKfHvXpyK2DBkyjmGkZfo0pHYWq9iJlSFDxscZ5CBXWlbjrYL+iCjflSFDxghGbXPGk8+0eZm2H2TIkDGbUUtBO4lrZ6I/wDJkyBjNIH/mCW08ZKm2j07gypAhYwQjDbJ8SIIP0tT9OzJkyBjN4BPqJ7R93g+kDBkyDmB02oqdgEtaBST4ypAh4xxGp5VI7p8qxqFPyJAhYzSjllKmm7zawdm4HytDhoyPM+7wSnm1tkFMlSFDxmhGGtr48VMOe7stKkOGjBmMNMh2jkrwIlpQaJMhQ8YxjNq0+K9kO1gL/TJkyJCRti150a1WsLvStZQhQ8aRjDRc8oNiZDkeC7gyZMj4ICMtqPHCWVqMSxNdGTJknMCo7bs6xyPSUlrruJgMGTK+zfgDlMgXpVGo4u4AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>
