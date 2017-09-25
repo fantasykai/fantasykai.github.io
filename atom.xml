@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-09-10T05:12:43.000Z</updated>
+  <updated>2017-09-25T16:24:05.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -16,47 +16,72 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>ssh 设置别名的方式访问服务器</title>
-    <link href="https://fantasykai.cc/2017/09/07/Linux/ssh%20%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/</id>
-    <published>2017-09-07T12:16:05.000Z</published>
-    <updated>2017-09-10T05:12:43.000Z</updated>
+    <title>Java 9新特性解读</title>
+    <link href="https://fantasykai.cc/2017/09/26/JAVA/java9new/"/>
+    <id>https://fantasykai.cc/2017/09/26/JAVA/java9new/</id>
+    <published>2017-09-25T16:09:33.000Z</published>
+    <updated>2017-09-25T16:24:05.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p>在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。<a id="more"></a> 一般在终端上通过 ssh 命令进行远程服务器登录。</p>
+<p>转载：<em>杨晓峰</em> <a href="http://mp.weixin.qq.com/s/Onj9ZJYbV5pLTAPcYBJREA##" target="_blank" rel="external">InfoQ</a></p>
 </blockquote>
-<h3 id="远程登录服务器命令-ssh"><a href="#远程登录服务器命令-ssh" class="headerlink" title="远程登录服务器命令 ssh"></a>远程登录服务器命令 ssh</h3><ul>
-<li>ssh username@ip地址</li>
-</ul>
-<p>例如： ssh root@192.168.11.2</p>
-<p>but 服务端一般多台服务器，好几个ip地址，记住这么多ip地址好难，但是根据不同服务器的用途给他们起个别名，就方便多了，能想到自然能实现，这里简述下具体玩法~</p>
-<h3 id="给服务器起个别名"><a href="#给服务器起个别名" class="headerlink" title="给服务器起个别名"></a>给服务器起个别名</h3><ol>
-<li><p>在 <code>~/.ssh/</code> 目录下，新建一个config（有的话，就不用建了噻）</p>
-</li>
-<li><p>vim config 文件，进行编辑</p>
-</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Host dev</div><div class="line">HostName xxx.xx.xx.xx</div><div class="line">User root</div><div class="line">IdentitiesOnly yes</div></pre></td></tr></table></figure>
+<p>在历经多次跳票之后，Java 9 终于在千呼万唤中正式发布。从这个版本开始，Java 将每半年发布一个版本。作为霸占编程语言排行榜鳌头多年的老牌语言，Java 9 中有哪些不得不说的新特性？Java 语言的未来又将如何？</p>
+<blockquote>
+<p>针对 Java 9 新特性的介绍已经非常多了，我这里不想再做一个百科全书一样的列表，希望从不同角度简要点评部分特性。</p>
+</blockquote>
+<p>Jigsaw</p>
+<p>首先，谈到 Java 9 大家往往第一个想到的就是 Jigsaw 项目，这是一个雄心勃勃的项目。</p>
+<p>大家知道，Java 已经发展超过 20 年（95 年最初发布），Java 和相关生态在不断丰富的同时也越来越暴露出一些问题，比如 Java 运行环境的膨胀和臃肿，各种类库和工具在提供强大功能的同时，也越来越复杂，不同版本的类库交叉依赖导致 Jar Hell 等让人头疼的问题，这些都阻碍了 Java 开发和运行效率的提升。</p>
+<p>但是由于兼容性等各方面的掣肘，对 Java 进行大刀阔斧的革新越来越困难，Jigsaw 从 Java 7 阶段就开始筹备，Java 8 阶段进行了大量工作，终于在 Java 9 里落地，有种千呼万唤始出来的意味。</p>
+<p>Jigsaw 项目的目标是改进 Java SE 平台，使其可以适应不同大小的计算设备；改进其安全性，可维护性，提高性能；简化各种类库和大型应用的开发和维护。</p>
+<p>这个项目的工作量和难度大大超出了初始规划。JSR 376 Java 平台模块化系统（JPMS, Java Platform Module System）作为 Jigsaw 项目的核心, 其主体部分被分解成 6 个 JEP(JDK Enhancement Proposals)</p>
 <ul>
-<li>Host 别名 起一个自己记得住的，比如开发环境 dev 测试环境 test  ..</li>
-<li>HostName 服务器的ip address    </li>
-<li>User 远程登录的用户名</li>
-<li>IdentitiesOnly yes 反正这个就配置yes</li>
+<li>200: The Modular JDK</li>
+<li>201: Modular Source Code</li>
+<li>220: Modular Run-Time Images</li>
+<li>260: Encapsulate Most Internal APIs</li>
+<li>261: Module System</li>
+<li>282: jlink: The Java Linker</li>
 </ul>
-<h3 id="ssh-别名-走起"><a href="#ssh-别名-走起" class="headerlink" title="ssh 别名 走起"></a>ssh 别名 走起</h3><p>配置好文件后，直接 键入 ssh dev 就玩起来了</p>
+<p>可以看到这是一个庞大的系统工程，Java 的方方面面，包括 JDK 编译工具，运行时，Java 公共 API 和私有代码等等，完全是一个整体性的改变。</p>
+<p>随着 Java 平台模块化系统的落地，开发人员无需再为不断膨胀的 Java 平台苦恼，例如，您可以使用 jlink 工具，根据需要定制运行时环境。这对于拥有大量镜像的容器应用场景或复杂依赖关系的大型应用等，都具有非常重要的意义。</p>
+<p>从软件开发实践的角度，Java 语言层面提供对模块的支持，可以鼓励（当然在某种程度上也可以看作强制）更加规范的开发实践，利用业界在开发领域几十年的经验、教训总结出的最佳实践，促进 Java 生态的健康发展。比如，更加完善的隐藏实现细节，这不仅可以促进面向接口、约定的编程，也可以避免可能的安全风险等。</p>
+<p>不过，换个角度来说，天下没有免费的午餐，由于 JPMS 是语言平台层面的支持，它并不是完全透明的，也就是说不管用户是否真的需要或从中收益，都会或多或少的受其影响。</p>
+<p>对此，我们可以从 JPMS 评审中针对类似深度反射限制之类的激烈争吵中，深刻体会到。比如，针对反射访问控制，最终 Java 9 开发团队，采取了相对折中的办法，在反射领域默认保持 Java 8 的默认行为。Java 9 在兼容性方面，相比于过往的版本，采取了更大的容忍度。</p>
+<p>不过，Java 9 的相当一部分特性仍然是对用户透明的。只要升级到 Java 9，不需要或者很少需要用户参与动作就能获益。比如，更加紧凑的字符串实现；改进的竞争锁机制；改进安全应用性能 ；利用特定 CPU 指令优化 GHASH 和 RSA 等等，这些都是开箱即用、触手可得的改进。</p>
+<p>Java 9 值得关注的新特性</p>
+<p>对于部分开发者来说，探究 Java 内部 API 或者平台底层能力是一件非常酷的事情，但这往往并不是非常容易，比如部分能力可能并没有在历史版本的公共 API 中暴露出来（比如 Unsafe 相关），或者需要特定领域的知识。在 Java 9 中，不要错过 JEP 193: Variable Handles 和 JEP 274: Enhanced Method Handles，JEP 259: Stack-Walking API，JEP 285: Spin-Wait Hints 等特性。</p>
+<p>另外，Java 9 中还有很多承上启下的特性，为未来创新打下基础或者整合、规范现有碎片化的功能，我会介绍一些有代表性的新特性。</p>
+<p>在 Java 虚拟机领域，JEP 271: Unified GC Logging 和 JEP 158：Unified JVM Logging，对各种 JVM 日志进行了统一，大家终于不用为各种碎片化的日志选项苦恼了。</p>
+<p>Oracle 一直在努力提高 Java 启动和运行时性能，希望其能够在更广泛的场景达到或接近本地语言的性能。但是，直到今天，谈到 Java，很多 C/C++ 开发者还是会不屑地评价为启动慢，吃内存。</p>
+<p>简单说，这主要是因为 Java 编译产生的类文件是 Java 虚拟机可以理解的二进制代码，而不是真正的可执行的本地代码，需要 Java 虚拟机进行解释和编译，这带来了额外的开销。</p>
+<p>JIT（Just-in-time）编译器可以在运行时将热点编译成本地代码，但是实际应用可能非常庞大，大型 Java 应用的预热往往非常耗时，而且非热点代码可能根本没有机会被 JIT 编译。</p>
+<p>在 JDK 9 中， AOT（JEP 295: Ahead-of-Time Compilation）作为实验特性被引入进来，开发者可以利用新的 jaotc 工具将重点代码转换成类似类库一样的文件，这样会大大降低启动开销。</p>
+<p>另外 JVMCI （JEP 243: Java-Level JVM Compiler Interface）等特性，对于整个编程语言的发展，可能都具有非常重要的意义，虽然未必引起了广泛关注。目前 Graal Core API 已经被集成进入 Java 9，虽然还只是初始一小步，但是完全用 Java 语言来实现的可靠的、高性能的动态编译器，似乎不再是遥不可及，这是 Java 虚拟机开发工程师的福音。</p>
+<p>与此同时，随着 Truffle 框架和 Substrate VM 的发展，已经让个别信心满满的工程师高呼“One VM to Rule Them All!”， 也许就在不远的将来 Ploygot 以一种另类的方式成为现实。</p>
+<p>谈谈 Java 的未来</p>
+<p>前面简短地谈了谈 Java 9 中的一些令人激动的特性，Java 9 在取得这些进步的同时，那么在其的研发过程中有哪些教训，当前和未来遇到了那些挑战呢？</p>
+<p>首先，就是如何更加快速、敏捷地进行创新。在 Java 9 的开发过程中, 非常突出的一点就是，由于 Jigsaw 项目的延期，导致 Java 9 的发布一再推迟，这带来了很多负面影响。大批特性已经完成多时，却无法及时被实际应用采纳，开发者无法及时地从中获益，也很难尽早发现和反馈可能存在的问题或改进。这不禁让人反思 Java 传统的研发模式的局限性。</p>
+<p>针对这些情况，Java 首席架构师 Mark Reinhold 已经发出倡议，建议从传统的以特性驱动的发布周期，转变为以时间驱动的（6 个月为周期）发布模式，并逐步的将 Oracle JDK 原有商业特性进行开源，Java Flight Recorder 等杀手级工具和特性，一定会大受开发者的欢迎。针对企业客户的需求，Oracle 将以三年为周期发布长期支持版本（long term support）。</p>
+<p>第二，随着云计算和 AI 等技术浪潮，当前的计算模式和场景正在发生翻天覆地的变化，不仅对 Java 的发展速度提出了更高要求，也深刻影响着 Java 技术的发展方向。传统的大型企业或互联网应用，正在被云端，容器化应用、模块化的微服务甚至是函数（FaaS， Function-as-a-Service）所替代。</p>
+<p>Java 需要在新的计算场景下，改进开发效率。这话说的有点笼统，我谈一些自己的体会，Java 代码虽然进行了一些类型推断等改进，更易用的集合 API 等，但仍然给开发者留下了过于刻板、形式主义的印象，这是一个长期的改进方向，例如，JEP 286: Local-Variable Type Inference；持续改进并发计算框架，Java 的并发特性非常强大和系统，但某种程度上过于复杂，在今年的 JVMLS 上，阿里巴巴 AJDK 组介绍了利用协程改进并发的实践，这是一个令人眼前一亮的创新；Java 非常需要更加友好的本地代码支持，相关的特性有很多好的想法和尝试，比如 Panama 项目；Value Types 和改进的泛型，有兴趣可以参考 Valhalla 项目。</p>
+<p>最后，进一步改进启动和运行性能、优化计算资源使用。目前，相当一部分的 Java 类库和虚拟机特性都是针对长时间、大数据量、高并发等复杂任务进行的优化，但是在部分云计算场景中，比如越来越引起大家关注的 FaaS 应用，短时间、无状态的函数正在成为常见的计算单元。那么在这种场景下，Java 必须进行相应的改进和创新，才能保持和强化目前在软件开发领域的竞争力。比如，提高 Java 运行时启动速度，尤其是在容器环境的初始化表现；保证 CPU 等计算资源调度能力能够适应容器环境的新情况，最直接的就是 Java 平台需要支持基于 cgroup 等技术的资源管理；针对新场景下的 GC 优化；如何提高数据密度和计算效率等等。</p>
+<p>以上很多方面往往不是孤立的，也不是非常简单就可以完成的，很多改进都是依赖于相关语言基础技术的进步和突破，Java 的进步需要持之以恒的耐心和持续的努力与投入。</p>
+<p>最后，欢迎大家能够参与到 OpenJDK 社区，Java 是大家的，欢迎您向 OpenJDK 提供建议、意见或者直接提交自己的改进，在社区中听见越来越多的来自中国的声音是非常令人高兴的事情，让我们携手促进 Java 的创新和发展。</p>
 ]]></content>
     
     <summary type="html">
     
       &lt;blockquote&gt;
-&lt;p&gt;在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。
+&lt;p&gt;转载：&lt;em&gt;杨晓峰&lt;/em&gt; &lt;a href=&quot;http://mp.weixin.qq.com/s/Onj9ZJYbV5pLTAPcYBJREA##&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;InfoQ&lt;/a&gt;&lt;/p&gt;
+&lt;/
     
     </summary>
     
-      <category term="linux" scheme="https://fantasykai.cc/categories/linux/"/>
+      <category term="技术小栈" scheme="https://fantasykai.cc/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
     
     
-      <category term="Linux" scheme="https://fantasykai.cc/tags/Linux/"/>
+      <category term="java" scheme="https://fantasykai.cc/tags/java/"/>
     
   </entry>
   
@@ -147,6 +172,51 @@
     <summary type="html">
     
       &lt;h2 id=&quot;Web-开发常用的终端命令&quot;&gt;&lt;a href=&quot;#Web-开发常用的终端命令&quot; class=&quot;headerlink&quot; title=&quot;Web 开发常用的终端命令&quot;&gt;&lt;/a&gt;Web 开发常用的终端命令&lt;/h2&gt;&lt;p&gt;终端是开发人员的军火库中最重要的生产力工具之一。把它
+    
+    </summary>
+    
+      <category term="linux" scheme="https://fantasykai.cc/categories/linux/"/>
+    
+    
+      <category term="Linux" scheme="https://fantasykai.cc/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ssh 设置别名的方式访问服务器</title>
+    <link href="https://fantasykai.cc/2017/09/07/Linux/ssh%20%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/</id>
+    <published>2017-09-07T12:16:05.000Z</published>
+    <updated>2017-09-10T05:12:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。<a id="more"></a> 一般在终端上通过 ssh 命令进行远程服务器登录。</p>
+</blockquote>
+<h3 id="远程登录服务器命令-ssh"><a href="#远程登录服务器命令-ssh" class="headerlink" title="远程登录服务器命令 ssh"></a>远程登录服务器命令 ssh</h3><ul>
+<li>ssh username@ip地址</li>
+</ul>
+<p>例如： ssh root@192.168.11.2</p>
+<p>but 服务端一般多台服务器，好几个ip地址，记住这么多ip地址好难，但是根据不同服务器的用途给他们起个别名，就方便多了，能想到自然能实现，这里简述下具体玩法~</p>
+<h3 id="给服务器起个别名"><a href="#给服务器起个别名" class="headerlink" title="给服务器起个别名"></a>给服务器起个别名</h3><ol>
+<li><p>在 <code>~/.ssh/</code> 目录下，新建一个config（有的话，就不用建了噻）</p>
+</li>
+<li><p>vim config 文件，进行编辑</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Host dev</div><div class="line">HostName xxx.xx.xx.xx</div><div class="line">User root</div><div class="line">IdentitiesOnly yes</div></pre></td></tr></table></figure>
+<ul>
+<li>Host 别名 起一个自己记得住的，比如开发环境 dev 测试环境 test  ..</li>
+<li>HostName 服务器的ip address    </li>
+<li>User 远程登录的用户名</li>
+<li>IdentitiesOnly yes 反正这个就配置yes</li>
+</ul>
+<h3 id="ssh-别名-走起"><a href="#ssh-别名-走起" class="headerlink" title="ssh 别名 走起"></a>ssh 别名 走起</h3><p>配置好文件后，直接 键入 ssh dev 就玩起来了</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。
     
     </summary>
     
@@ -3210,90 +3280,6 @@ elasticsearch.url: &quot;http://IP:9200&quot;
     
     
       <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IDEA 15 Tomcat JRebel 6.4 实现热部署</title>
-    <link href="https://fantasykai.cc/2017/03/08/tools/IDE/idea%E5%AE%9E%E7%8E%B0%E7%83%AD%E9%83%A8%E7%BD%B2/"/>
-    <id>https://fantasykai.cc/2017/03/08/tools/IDE/idea实现热部署/</id>
-    <published>2017-03-08T10:09:54.000Z</published>
-    <updated>2017-03-08T10:09:54.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="idea-是个好东东"><a href="#idea-是个好东东" class="headerlink" title="idea 是个好东东"></a><strong>idea 是个好东东</strong></h3><blockquote>
-<p>使用Intellij IDEA 一个月了，期间了解及感受到了其许多美妙之处，使用过程中遇到许多问题，既然博客已经搭建起来了，后面多记录，<a id="more"></a>多总结吧~</p>
-</blockquote>
-<h3 id="关于热部署"><a href="#关于热部署" class="headerlink" title="关于热部署"></a><strong>关于热部署</strong></h3><blockquote>
-<p>刚开始玩idea，项目从eclipse导过来的，使用的maven构建，tomcat作为容器，每次修改类，文件等都需要使用maven重新编译，打包，重启tomcat，刚开始使用idea，不太熟络，而且编译打包速度也挺快，就当是熟悉过程，这样编译，重启，编译重启一段时间后，果然还是觉得影响效率，于是尝开始思考，尝试如何热部署环境。</p>
-</blockquote>
-<h3 id="关于JRebel"><a href="#关于JRebel" class="headerlink" title="关于JRebel"></a><strong>关于JRebel</strong></h3><blockquote>
-<p>Jrebel 可快速实现热部署，节省了大量重启时间，提高了个人开发效率,JRebel是收费软件 ! 好东西果然收费</p>
-<p>JRebel是一款JAVA虚拟机插件，它使得JAVA程序员能在不进行重部署的情况下，即时看到代码的改变对一个应用程序带来的影响。JRebel使你能即时分别看到代码、类和资源的变化，你可以一个个地上传而不是一次性全部部署。当程序员在开发环境中对任何一个类或者资源作出修改的时候，这个<br>变化会直接反应在部署好的应用程序上，从而跳过了构建和部署的过程，每年可以省去部署用的时间花费高达5.25个星期。<br>-百度百科</p>
-</blockquote>
-<p> <strong>下载JRebel for Intellij插件</strong><br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://i.imgur.com/7RwOoRE.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure></p>
-<h4 id="破解JRebel"><a href="#破解JRebel" class="headerlink" title="破解JRebel"></a><strong>破解JRebel</strong></h4><blockquote>
-<p>好东西都收费，我只是本地使用，非商业用途，就不打算破费了，请大家支持正版，呼呼，我下载的JRebel版本是6.4.8 百度到了6.4左右的破解文件，可以通用，这里大概记录下破解过程，比较简单也</p>
-<ul>
-<li><a href="http://pan.baidu.com/s/1qYJ7Kfy" target="_blank" rel="external">破解文件下载地址</a></li>
-</ul>
-</blockquote>
-<h4 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h4><blockquote>
-<p>时间原因，这次没有描述部署tomcat的方法，后面有空的话再补上吧，今天只记录下jrebel的破解，及配置部署的，其实也很简单，有个重点的提示就是在部署工程的war时，要选 <strong>exploded</strong> 这样在<strong>Server页</strong>的”On Update action “才可以选择 <strong>update classes and resources</strong></p>
-</blockquote>
-<h5 id="1-关闭idea"><a href="#1-关闭idea" class="headerlink" title="1. 关闭idea"></a>1. 关闭idea</h5><h5 id="2-破解补丁"><a href="#2-破解补丁" class="headerlink" title="2. 破解补丁"></a>2. 破解补丁</h5><pre><code> 解压缩破解补丁，替换对应idea的JRebel插件的俩个jar包及放置jrebel.lic文件
-~\用户名\.IntelliJIdea15\config\plugins\jr-ide-idea\lib\jrebel6\jrebel.jar
-~\用户名\.IntelliJIdea15\config\plugins\jr-ide-idea\lib\jrebel\jrebel.jar
-~\用户名\.jrebel\jrebel.lic
-</code></pre><h5 id="3-替换后好，重启idea"><a href="#3-替换后好，重启idea" class="headerlink" title="3. 替换后好，重启idea"></a>3. 替换后好，重启idea</h5><h5 id="4-选择热部署的项目"><a href="#4-选择热部署的项目" class="headerlink" title="4. 选择热部署的项目"></a>4. 选择热部署的项目</h5><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdfle6iltzj208c0edglr" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<h5 id="5-TOMCAT-配置-这里有重点"><a href="#5-TOMCAT-配置-这里有重点" class="headerlink" title="5. TOMCAT 配置 这里有重点"></a>5. <strong>TOMCAT 配置</strong> 这里有重点</h5><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://i.imgur.com/WgyWr8U.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://i.imgur.com/VSrk60c.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://i.imgur.com/wGFqdjS.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<blockquote>
-<p>本地试玩后，果然酸爽，后续使用过程遇到问题，或使用一段时间后，再做记录，及总结感受~</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;idea-是个好东东&quot;&gt;&lt;a href=&quot;#idea-是个好东东&quot; class=&quot;headerlink&quot; title=&quot;idea 是个好东东&quot;&gt;&lt;/a&gt;&lt;strong&gt;idea 是个好东东&lt;/strong&gt;&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;使用Intellij IDEA 一个月了，期间了解及感受到了其许多美妙之处，使用过程中遇到许多问题，既然博客已经搭建起来了，后面多记录，
-    
-    </summary>
-    
-      <category term="工具" scheme="https://fantasykai.cc/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="idea" scheme="https://fantasykai.cc/tags/idea/"/>
     
   </entry>
   
