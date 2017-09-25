@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-09-09T04:02:18.000Z</updated>
+  <updated>2017-09-10T05:12:43.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -14,6 +14,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ssh 设置别名的方式访问服务器</title>
+    <link href="https://fantasykai.cc/2017/09/07/Linux/ssh%20%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/</id>
+    <published>2017-09-07T12:16:05.000Z</published>
+    <updated>2017-09-10T05:12:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。<a id="more"></a> 一般在终端上通过 ssh 命令进行远程服务器登录。</p>
+</blockquote>
+<h3 id="远程登录服务器命令-ssh"><a href="#远程登录服务器命令-ssh" class="headerlink" title="远程登录服务器命令 ssh"></a>远程登录服务器命令 ssh</h3><ul>
+<li>ssh username@ip地址</li>
+</ul>
+<p>例如： ssh root@192.168.11.2</p>
+<p>but 服务端一般多台服务器，好几个ip地址，记住这么多ip地址好难，但是根据不同服务器的用途给他们起个别名，就方便多了，能想到自然能实现，这里简述下具体玩法~</p>
+<h3 id="给服务器起个别名"><a href="#给服务器起个别名" class="headerlink" title="给服务器起个别名"></a>给服务器起个别名</h3><ol>
+<li><p>在 <code>~/.ssh/</code> 目录下，新建一个config（有的话，就不用建了噻）</p>
+</li>
+<li><p>vim config 文件，进行编辑</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Host dev</div><div class="line">HostName xxx.xx.xx.xx</div><div class="line">User root</div><div class="line">IdentitiesOnly yes</div></pre></td></tr></table></figure>
+<ul>
+<li>Host 别名 起一个自己记得住的，比如开发环境 dev 测试环境 test  ..</li>
+<li>HostName 服务器的ip address    </li>
+<li>User 远程登录的用户名</li>
+<li>IdentitiesOnly yes 反正这个就配置yes</li>
+</ul>
+<h3 id="ssh-别名-走起"><a href="#ssh-别名-走起" class="headerlink" title="ssh 别名 走起"></a>ssh 别名 走起</h3><p>配置好文件后，直接 键入 ssh dev 就玩起来了</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。
+    
+    </summary>
+    
+      <category term="linux" scheme="https://fantasykai.cc/categories/linux/"/>
+    
+    
+      <category term="Linux" scheme="https://fantasykai.cc/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>web 开发常用的终端命令</title>
@@ -102,51 +147,6 @@
     <summary type="html">
     
       &lt;h2 id=&quot;Web-开发常用的终端命令&quot;&gt;&lt;a href=&quot;#Web-开发常用的终端命令&quot; class=&quot;headerlink&quot; title=&quot;Web 开发常用的终端命令&quot;&gt;&lt;/a&gt;Web 开发常用的终端命令&lt;/h2&gt;&lt;p&gt;终端是开发人员的军火库中最重要的生产力工具之一。把它
-    
-    </summary>
-    
-      <category term="linux" scheme="https://fantasykai.cc/categories/linux/"/>
-    
-    
-      <category term="Linux" scheme="https://fantasykai.cc/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ssh 设置别名的方式访问服务器</title>
-    <link href="https://fantasykai.cc/2017/09/07/Linux/ssh%20%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>https://fantasykai.cc/2017/09/07/Linux/ssh 设置别名访问服务器/</id>
-    <published>2017-09-07T12:16:05.000Z</published>
-    <updated>2017-09-10T05:12:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。<a id="more"></a> 一般在终端上通过 ssh 命令进行远程服务器登录。</p>
-</blockquote>
-<h3 id="远程登录服务器命令-ssh"><a href="#远程登录服务器命令-ssh" class="headerlink" title="远程登录服务器命令 ssh"></a>远程登录服务器命令 ssh</h3><ul>
-<li>ssh username@ip地址</li>
-</ul>
-<p>例如： ssh root@192.168.11.2</p>
-<p>but 服务端一般多台服务器，好几个ip地址，记住这么多ip地址好难，但是根据不同服务器的用途给他们起个别名，就方便多了，能想到自然能实现，这里简述下具体玩法~</p>
-<h3 id="给服务器起个别名"><a href="#给服务器起个别名" class="headerlink" title="给服务器起个别名"></a>给服务器起个别名</h3><ol>
-<li><p>在 <code>~/.ssh/</code> 目录下，新建一个config（有的话，就不用建了噻）</p>
-</li>
-<li><p>vim config 文件，进行编辑</p>
-</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Host dev</div><div class="line">HostName xxx.xx.xx.xx</div><div class="line">User root</div><div class="line">IdentitiesOnly yes</div></pre></td></tr></table></figure>
-<ul>
-<li>Host 别名 起一个自己记得住的，比如开发环境 dev 测试环境 test  ..</li>
-<li>HostName 服务器的ip address    </li>
-<li>User 远程登录的用户名</li>
-<li>IdentitiesOnly yes 反正这个就配置yes</li>
-</ul>
-<h3 id="ssh-别名-走起"><a href="#ssh-别名-走起" class="headerlink" title="ssh 别名 走起"></a>ssh 别名 走起</h3><p>配置好文件后，直接 键入 ssh dev 就玩起来了</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。
     
     </summary>
     
