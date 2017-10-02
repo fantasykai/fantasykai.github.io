@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-09-25T18:39:05.000Z</updated>
+  <updated>2017-10-02T15:45:05.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -14,6 +14,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>国庆节闲记一</title>
+    <link href="https://fantasykai.cc/2017/10/02/recording/%E5%9B%BD%E5%BA%86%E8%8A%82%E9%97%B2%E8%AE%B0%E4%B8%80/"/>
+    <id>https://fantasykai.cc/2017/10/02/recording/国庆节闲记一/</id>
+    <published>2017-10-01T16:00:00.000Z</published>
+    <updated>2017-10-02T15:45:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>国庆节了，也感觉有忙不完的事情，拿了本书回来，还没有怎么读，虽然是很早计划读完的书，到今天第一章还未读完。200多页，希望国庆内读完吧。</p>
+</blockquote>
+<p>晓说这个节目应该是洗澡节目吧，洗澡时，必听。。。今天在笔记本上看到三季的最新一期，于是书单里又要新增2本书了：</p>
+<ul>
+<li>《三体》 好吧，虽然是很早就想看的书，比重排名更往前了；</li>
+</ul>
+<blockquote>
+<p><a href="https://www.amazon.cn/%E4%B8%89%E4%BD%93-%E5%88%98%E6%85%88%E6%AC%A3/dp/B00OB3SNMY/ref=sr_1_1?ie=UTF8&amp;qid=1506958531&amp;sr=8-1&amp;keywords=%E4%B8%89%E4%BD%93" target="_blank" rel="external">三体</a></p>
+</blockquote>
+<ul>
+<li>《Story》 </li>
+</ul>
+<blockquote>
+<p><a href="https://www.amazon.cn/Story-Style-Structure-Substance-and-the-Principles-of-Screenwriting-Mckee-Robert/dp/0060391685/ref=sr_1_2?ie=UTF8&amp;qid=1506958398&amp;sr=8-2&amp;keywords=robert+mckee" target="_blank" rel="external">Story: Substance, Structure, Style and the Principles of Screenwriting</a>  </p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;国庆节了，也感觉有忙不完的事情，拿了本书回来，还没有怎么读，虽然是很早计划读完的书，到今天第一章还未读完。200多页，希望国庆内读完吧。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;晓说这个节目应该是洗澡节目吧，洗澡时，必听。。。今天在笔记本上看到三
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>Kubernetes概览</title>
@@ -2871,39 +2912,6 @@ ssl_certificate_key /etc/letsencrypt/live/xx.xx.com/privkey.pem;
     
       &lt;h2 id=&quot;es6-import的路径问题&quot;&gt;&lt;a href=&quot;#es6-import的路径问题&quot; class=&quot;headerlink&quot; title=&quot;es6 import的路径问题&quot;&gt;&lt;/a&gt;es6 import的路径问题&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;在导入&lt;/
-    
-    </summary>
-    
-      <category term="前端" scheme="https://fantasykai.cc/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="js" scheme="https://fantasykai.cc/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue2简单总结</title>
-    <link href="https://fantasykai.cc/2017/04/05/js/vue2%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/"/>
-    <id>https://fantasykai.cc/2017/04/05/js/vue2简单总结/</id>
-    <published>2017-04-04T16:00:00.000Z</published>
-    <updated>2017-04-08T02:59:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="vue2-简单总结"><a href="#vue2-简单总结" class="headerlink" title="vue2 简单总结"></a>vue2 简单总结</h2><blockquote>
-<p>一些自己的简单总结</p>
-</blockquote>
-<h3 id="一、渐进式："><a href="#一、渐进式：" class="headerlink" title="一、渐进式："></a>一、渐进式：</h3><p>从简单的引入js使用指令到构建大型web应用，都可以应付<br>简易的引入过程：<br>1.html中引入js的方式<br>2.构建自定义组件<br>3.使用组件组成网页<br>4.vue-cli(构建项目),vue,vuex（统一管理状态）,vue-route（页面路由）,webpack（自动构建，打包，发布）等 构建大型SPA(单网页应用)</p>
-<h3 id="二、适合我们现在前端发展"><a href="#二、适合我们现在前端发展" class="headerlink" title="二、适合我们现在前端发展"></a>二、适合我们现在前端发展</h3><p>vue更关注视图层，我们现在页面还比较少，随着业务发展，页面的需求会持续增多，vue本身比较小，又支持渐进式发展，后面页面逐步增多，可以抽取做成vue组件，逐步可以通过插拔组件的方式完成页面开发，提高规范及效率</p>
-<h3 id="三、MVVM"><a href="#三、MVVM" class="headerlink" title="三、MVVM"></a>三、MVVM</h3><p>数据模型/页面 双向绑定<br>根据restful的接口，数据上的变动会直接渲染到页面，页面上的文案变化，也会影响到数据模型<br>比较适合我们现在的后端风格，可以考虑客户端mvvm的解决方案。</p>
-<p>假期时，抽空简单总结了下vue常用的指令，就拿之前排行榜的例子重写了下。</p>
-<p><a href="https://github.com/fantasykai/vue2-learn-leaderboard" target="_blank" rel="external">https://github.com/fantasykai/vue2-learn-leaderboard</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;vue2-简单总结&quot;&gt;&lt;a href=&quot;#vue2-简单总结&quot; class=&quot;headerlink&quot; title=&quot;vue2 简单总结&quot;&gt;&lt;/a&gt;vue2 简单总结&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;一些自己的简单总结&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;
     
     </summary>
     
