@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-10-02T15:45:05.000Z</updated>
+  <updated>2017-10-03T15:08:32.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -14,6 +14,57 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>国庆节闲记一</title>
+    <link href="https://fantasykai.cc/2017/10/03/recording/%E5%9B%BD%E5%BA%86%E8%8A%82%E9%97%B2%E8%AE%B0%E4%BA%8C/"/>
+    <id>https://fantasykai.cc/2017/10/03/recording/国庆节闲记二/</id>
+    <published>2017-10-02T16:00:00.000Z</published>
+    <updated>2017-10-03T15:08:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>之前各种环境都装在阿里云上，乘着国庆假期，各种环境安装到mac上，记录一笔先，后续有坑，填坑</p>
+</blockquote>
+<p>之前安装好的</p>
+<ul>
+<li><p>[x] mongo</p>
+</li>
+<li><p>[x] nginx</p>
+</li>
+<li><p>[x] mysql</p>
+<ul>
+<li><p>tomcat </p>
+</li>
+<li><p>ActiveMQ</p>
+</li>
+<li><p>zookeeper</p>
+</li>
+<li><p>kafka</p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;之前各种环境都装在阿里云上，乘着国庆假期，各种环境安装到mac上，记录一笔先，后续有坑，填坑&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;之前安装好的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;[x] mongo&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;[x] ng
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>国庆节闲记一</title>
@@ -2831,94 +2882,6 @@ ssl_certificate_key /etc/letsencrypt/live/xx.xx.com/privkey.pem;
     
     
       <category term="https" scheme="https://fantasykai.cc/tags/https/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>es6 import的路径问题</title>
-    <link href="https://fantasykai.cc/2017/04/10/js/es6%20import%E7%9A%84%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/"/>
-    <id>https://fantasykai.cc/2017/04/10/js/es6 import的路径问题/</id>
-    <published>2017-04-09T16:00:00.000Z</published>
-    <updated>2017-09-09T03:31:39.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="es6-import的路径问题"><a href="#es6-import的路径问题" class="headerlink" title="es6 import的路径问题"></a>es6 import的路径问题</h2><blockquote>
-<p>在导入</p>
-</blockquote>
-<pre><code>This dependency was not found:
-
-* /src/store/function in ./src/store/modules/checklist/index.js, ./src/store/modules/checklist/mutations.js
-</code></pre><p>问题原因：</p>
-<blockquote>
-<p>export default 的用法</p>
-</blockquote>
-<p>export default命令用于指定模块的默认输出。显然，一个模块只能有一个默认输出，因此export deault命令只能使用一次。所以，import命令后面才不用加大括号，相反其它的export 输出 可以有多个，且import时必须加大括号，示例如下</p>
-<pre><code class="javascript"><span class="comment">// modules.js</span>
-<span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>{
-  <span class="keyword">return</span> x * y;
-}
-<span class="keyword">export</span> {add <span class="keyword">as</span> <span class="keyword">default</span>};
-<span class="comment">// 等同于</span>
-<span class="comment">// export default add;</span>
-
-<span class="comment">// app.js</span>
-<span class="keyword">import</span> { <span class="keyword">default</span> <span class="keyword">as</span> xxx } <span class="keyword">from</span> <span class="string">'modules'</span>;
-<span class="comment">// 等同于</span>
-<span class="comment">// import xxx from 'modules';</span>
-</code></pre>
-<p>正是因为export default命令其实只是输出一个叫做default的变量，所以它后面不能跟变量声明语句，而export需要跟变量声明或者大括号作为输出:</p>
-<pre><code class="javascript"><span class="comment">// 正确</span>
-<span class="keyword">export</span> <span class="keyword">var</span> a = <span class="number">1</span>;
-
-<span class="comment">// 正确</span>
-<span class="keyword">var</span> a = <span class="number">1</span>;
-<span class="keyword">export</span> <span class="keyword">default</span> a;　　<span class="comment">// 写法1</span>
-<span class="keyword">export</span> {a}　　<span class="comment">// 写法2</span>
-
-<span class="comment">// 错误</span>
-<span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">var</span> a = <span class="number">1</span>;
-</code></pre>
-<p>import 时候的路径问题(作为新手，遇到一些坑，刚好记录下)</p>
-<p>开始玩的时候，总是出现 cannot find module 问题，原来 在 import 的时候 如果不使用相对路径或者绝对路径，node默认会去node_modules/文件夹下去找，例如：</p>
-<pre><code>import * as obj from &apos;exports&apos;
-// node 会试着去寻找 node_modules/exports.js 模块
-
-// 正确写法
- import * as obj from &apos;./exports&apos;
-</code></pre><p>关于 import * as obj from ‘xx’  这种写法是把所有的输出包裹到obj对象里</p>
-<p>对了，还有模块的继承写法：</p>
-<pre><code class="javascript">
-<span class="comment">// circle.js</span>
-<span class="keyword">export</span> <span class="keyword">var</span> a = <span class="number">1</span>;
-
-<span class="comment">// circleplus.js 当前模块继承了 circle 模块的所有输出</span>
-<span class="comment">// 此处只是继承了输出，并不能直接使用</span>
-
-<span class="keyword">export</span> * <span class="keyword">from</span> <span class="string">'circle'</span>;
-<span class="keyword">export</span> <span class="keyword">var</span> e = <span class="number">2.71828182846</span>;
-<span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>{
-  <span class="keyword">return</span> <span class="built_in">Math</span>.exp(x);
-}
-
-<span class="comment">// 继承之后，circleplus.js 相当于下面代码</span>
-<span class="keyword">export</span> <span class="keyword">var</span> a = <span class="number">1</span>;
-<span class="keyword">export</span> <span class="keyword">var</span> e = <span class="number">2.71828182846</span>;
-<span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>{
-  <span class="keyword">return</span> <span class="built_in">Math</span>.exp(x);
-}
-</code></pre>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;es6-import的路径问题&quot;&gt;&lt;a href=&quot;#es6-import的路径问题&quot; class=&quot;headerlink&quot; title=&quot;es6 import的路径问题&quot;&gt;&lt;/a&gt;es6 import的路径问题&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;在导入&lt;/
-    
-    </summary>
-    
-      <category term="前端" scheme="https://fantasykai.cc/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="js" scheme="https://fantasykai.cc/tags/js/"/>
     
   </entry>
   
