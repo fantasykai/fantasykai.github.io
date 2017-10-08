@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-10-03T15:11:10.000Z</updated>
+  <updated>2017-10-08T11:34:49.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://fantasykai.cc/2017/10/03/recording/%E5%9B%BD%E5%BA%86%E8%8A%82%E9%97%B2%E8%AE%B0%E4%BA%8C/"/>
     <id>https://fantasykai.cc/2017/10/03/recording/国庆节闲记二/</id>
     <published>2017-10-02T16:00:00.000Z</published>
-    <updated>2017-10-03T15:11:10.000Z</updated>
+    <updated>2017-10-08T11:34:49.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>之前各种环境都装在阿里云上，乘着国庆假期，各种环境安装到mac上，记录一笔先，后续有坑，填坑</p>
@@ -33,16 +33,34 @@
 </li>
 <li><p>[x] mysql</p>
 <ul>
-<li><p>tomcat </p>
-</li>
-<li><p>ActiveMQ</p>
-</li>
-<li><p>zookeeper</p>
-</li>
-<li><p>kafka</p>
-</li>
+<li>tomcat</li>
 </ul>
 </li>
+</ul>
+<p>查看帮助</p>
+<pre><code>catalina -h 
+</code></pre><p>启动tomcat</p>
+<pre><code>catalina run / start
+</code></pre><p>关闭tomcat</p>
+<pre><code>catalina stop
+</code></pre><ul>
+<li>ActiveMQ</li>
+</ul>
+<p>启动</p>
+<pre><code>acivemq start
+</code></pre><p>关闭</p>
+<pre><code>activemq stop        
+</code></pre><ul>
+<li>zookeeper</li>
+</ul>
+<p>启动</p>
+<pre><code>zkServer start
+</code></pre><p>停止</p>
+<pre><code>zkServer stop
+</code></pre><p>查询状态</p>
+<pre><code>zkServer status
+</code></pre><ul>
+<li>kafka</li>
 </ul>
 ]]></content>
     
