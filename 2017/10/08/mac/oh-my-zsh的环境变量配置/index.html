@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2017/10/08/mac/oh-my-zsh的环境变量配置/">
+    
+    
+    <title>oh-my-zsh的环境变量配置 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="mac">
+    <meta name="description" content="配置环境变量的常用文件全局公用配置 profile 一般不建议直接配置该文件/etc/profile 全局公用配置 bashrc  bash shell 系统级别的环境配置/etc/bashrc 用户级别的的配置~/.bash_profile zsh 现在mac一般都会安装zsh，oh-my-zsh.oh-my-zsh 目录： 它是zsh的安装文件夹.zshrc ： zsh默认配置，可以用于设置环">
+<meta name="keywords" content="mac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="oh-my-zsh的环境变量配置">
+<meta property="og:url" content="https://fantasykai.cc/2017/10/08/mac/oh-my-zsh的环境变量配置/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="配置环境变量的常用文件全局公用配置 profile 一般不建议直接配置该文件/etc/profile 全局公用配置 bashrc  bash shell 系统级别的环境配置/etc/bashrc 用户级别的的配置~/.bash_profile zsh 现在mac一般都会安装zsh，oh-my-zsh.oh-my-zsh 目录： 它是zsh的安装文件夹.zshrc ： zsh默认配置，可以用于设置环">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-10T11:27:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="oh-my-zsh的环境变量配置">
+<meta name="twitter:description" content="配置环境变量的常用文件全局公用配置 profile 一般不建议直接配置该文件/etc/profile 全局公用配置 bashrc  bash shell 系统级别的环境配置/etc/bashrc 用户级别的的配置~/.bash_profile zsh 现在mac一般都会安装zsh，oh-my-zsh.oh-my-zsh 目录： 它是zsh的安装文件夹.zshrc ： zsh默认配置，可以用于设置环">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">oh-my-zsh的环境变量配置</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">oh-my-zsh的环境变量配置</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-07T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-10-08
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/工具/">工具</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置环境变量的常用文件"><span class="post-toc-number">1.</span> <span class="post-toc-text">配置环境变量的常用文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#全局公用配置-profile-一般不建议直接配置该文件"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">全局公用配置 profile 一般不建议直接配置该文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#全局公用配置-bashrc-bash-shell-系统级别的环境配置"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">全局公用配置 bashrc  bash shell 系统级别的环境配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用户级别的的配置"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">用户级别的的配置</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#zsh-现在mac一般都会安装zsh，oh-my-zsh"><span class="post-toc-number">2.</span> <span class="post-toc-text">zsh 现在mac一般都会安装zsh，oh-my-zsh</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#oh-my-zsh-目录：-它是zsh的安装文件夹"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">.oh-my-zsh 目录： 它是zsh的安装文件夹</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#zshrc-：-zsh默认配置，可以用于设置环境变量，alias命令别名，设置主题等"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">.zshrc ： zsh默认配置，可以用于设置环境变量，alias命令别名，设置主题等</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#oh-my-zsh-custom-my-custom-zsh-用户设置自定义系统变量、自定义命令等等"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">./oh-my-zsh/custom/my_custom.zsh:用户设置自定义系统变量、自定义命令等等</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-mac/oh-my-zsh的环境变量配置"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">oh-my-zsh的环境变量配置</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-08 00:00:00" datetime="2017-10-07T16:00:00.000Z"  itemprop="datePublished">2017-10-08</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/工具/">工具</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="配置环境变量的常用文件"><a href="#配置环境变量的常用文件" class="headerlink" title="配置环境变量的常用文件"></a>配置环境变量的常用文件</h2><h3 id="全局公用配置-profile-一般不建议直接配置该文件"><a href="#全局公用配置-profile-一般不建议直接配置该文件" class="headerlink" title="全局公用配置 profile 一般不建议直接配置该文件"></a>全局公用配置 profile 一般不建议直接配置该文件</h3><pre><code>/etc/profile
+</code></pre><h3 id="全局公用配置-bashrc-bash-shell-系统级别的环境配置"><a href="#全局公用配置-bashrc-bash-shell-系统级别的环境配置" class="headerlink" title="全局公用配置 bashrc  bash shell 系统级别的环境配置"></a>全局公用配置 bashrc  bash shell 系统级别的环境配置</h3><pre><code>/etc/bashrc
+</code></pre><h3 id="用户级别的的配置"><a href="#用户级别的的配置" class="headerlink" title="用户级别的的配置"></a>用户级别的的配置</h3><pre><code>~/.bash_profile
+</code></pre><h2 id="zsh-现在mac一般都会安装zsh，oh-my-zsh"><a href="#zsh-现在mac一般都会安装zsh，oh-my-zsh" class="headerlink" title="zsh 现在mac一般都会安装zsh，oh-my-zsh"></a>zsh 现在mac一般都会安装zsh，oh-my-zsh</h2><h3 id="oh-my-zsh-目录：-它是zsh的安装文件夹"><a href="#oh-my-zsh-目录：-它是zsh的安装文件夹" class="headerlink" title=".oh-my-zsh 目录： 它是zsh的安装文件夹"></a><code>.oh-my-zsh</code> 目录： 它是zsh的安装文件夹</h3><h3 id="zshrc-：-zsh默认配置，可以用于设置环境变量，alias命令别名，设置主题等"><a href="#zshrc-：-zsh默认配置，可以用于设置环境变量，alias命令别名，设置主题等" class="headerlink" title=".zshrc ： zsh默认配置，可以用于设置环境变量，alias命令别名，设置主题等"></a><code>.zshrc</code> ： zsh默认配置，可以用于设置环境变量，alias命令别名，设置主题等</h3><h3 id="oh-my-zsh-custom-my-custom-zsh-用户设置自定义系统变量、自定义命令等等"><a href="#oh-my-zsh-custom-my-custom-zsh-用户设置自定义系统变量、自定义命令等等" class="headerlink" title="./oh-my-zsh/custom/my_custom.zsh:用户设置自定义系统变量、自定义命令等等"></a>./oh-my-zsh/custom/my_custom.zsh:用户设置自定义系统变量、自定义命令等等</h3><blockquote>
+<p>zsh不建议直接操作这个默认配置，如果用户需要自定义配置，推荐./oh-my-zsh/custom/custom.zsh修改。注意：custom文件夹里的所有配置都会被zsh自动读取并配置。</p>
+</blockquote>
+<ul>
+<li><p>小贴士：可以配置一个快捷方式用于编辑<code>my_custom.zsh</code></p>
+<pre><code>alias zshconfig=&quot;subl ~/.oh-my-zsh/custom/my_custom.zsh&quot;
+</code></pre></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-10T11:27:45.000Z" itemprop="dateUpdated">2017-10-10 19:27:45</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2017/10/08/mac/oh-my-zsh的环境变量配置/" target="_blank" rel="external">https://fantasykai.cc/2017/10/08/mac/oh-my-zsh的环境变量配置/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">mac</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2017/10/08/mac/oh-my-zsh的环境变量配置/&title=《oh-my-zsh的环境变量配置》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2017/10/08/mac/oh-my-zsh的环境变量配置/&title=《oh-my-zsh的环境变量配置》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2017/10/08/mac/oh-my-zsh的环境变量配置/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《oh-my-zsh的环境变量配置》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2017/10/08/mac/oh-my-zsh的环境变量配置/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2017/10/08/mac/oh-my-zsh的环境变量配置/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/03/recording/国庆节闲记二/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">国庆节闲记二</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2017/10/08/mac/oh-my-zsh的环境变量配置/&title=《oh-my-zsh的环境变量配置》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2017/10/08/mac/oh-my-zsh的环境变量配置/&title=《oh-my-zsh的环境变量配置》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2017/10/08/mac/oh-my-zsh的环境变量配置/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《oh-my-zsh的环境变量配置》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2017/10/08/mac/oh-my-zsh的环境变量配置/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2017/10/08/mac/oh-my-zsh的环境变量配置/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACv0lEQVR42u3aQXLjMAwEwPz/07sP8FqeAcisD61TqiJTbLmKgAH8/MTXn5fr9b+vdyYrvN75bp13dx648PDw8NZbf7d0gkw++8xInpjsGQ8PD+82792JmhzK7ePzYNAGCTw8PLzv5z3f0x7lpxJxPDw8vG/jPZcekgCwCTZ4eHh438ObHdn7F9EWgi/WWvDw8PC6OkDURfqev6/09/Dw8PDWXfXNgdt+Kk+vi93i4eHhXeDlB+5z0aG9c1bOmO0TDw8P7wZv9oN/Q30OCZuRrw8vAg8PD+9XeG2am6TLyevI1yzSfTw8PLxDvOclNs37doygTb6jp+Dh4eFd4+VJ86aw25YbiuGqWQ0YDw8Pr+QlIeHs4Z4c5XnJ48MT8fDw8C7w2sAwGxE41dwahgo8PDy8o7zNQZ80otpGWlsQ+ZDu4+Hh4V3m5Wluvum8bJGHpWKIAQ8PD+8CL2nGt0WBNmWfNdLyJB4PDw/vLK9t0rePf064i+Q4ri0MvzE8PDy8ktemsO3D2mDQlnSL1hceHh7eBV5enG3b/LOywmaeCg8PD+8eL0mvZ02pdnOzwvHbPePh4eFd5iUHep7snhpEaNf/yacY8PDw8Ea8dit5qSI/7vNEebYmHh4e3j1ekhbnafSposNshSIG4uHh4R3iraa3yleW7CFP94txVTw8PLwFbzYgtXkRbcm4/q7y+goeHh7eUd6sMLHB51edTOPh4eFd47VDA/tDf9P0itbBw8PDO8qbHcez0m0La8PMP/6Lh4eHd4E3O3w3gaRtkrUhZxhm8PDw8ErebOlZiWETHvKyCB4eHt7v8GbpcvuaZkMDq8/i4eHhfQHvVIvrOe2uG13PKTUeHh7ef+W1gWHTPHteJwoeeHh4eNd4+eZaxmzlvBwcBQY8PDy8o7z2B/+s2DobTWiLwqu5LTw8PLzPvL90JSvwpIswqgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>

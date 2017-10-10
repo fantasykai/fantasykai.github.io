@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-10-08T11:34:49.000Z</updated>
+  <updated>2017-10-10T11:27:45.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -16,11 +16,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>oh-my-zsh的环境变量配置</title>
+    <link href="https://fantasykai.cc/2017/10/08/mac/oh-my-zsh%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/"/>
+    <id>https://fantasykai.cc/2017/10/08/mac/oh-my-zsh的环境变量配置/</id>
+    <published>2017-10-07T16:00:00.000Z</published>
+    <updated>2017-10-10T11:27:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="配置环境变量的常用文件"><a href="#配置环境变量的常用文件" class="headerlink" title="配置环境变量的常用文件"></a>配置环境变量的常用文件</h2><h3 id="全局公用配置-profile-一般不建议直接配置该文件"><a href="#全局公用配置-profile-一般不建议直接配置该文件" class="headerlink" title="全局公用配置 profile 一般不建议直接配置该文件"></a>全局公用配置 profile 一般不建议直接配置该文件</h3><pre><code>/etc/profile
+</code></pre><h3 id="全局公用配置-bashrc-bash-shell-系统级别的环境配置"><a href="#全局公用配置-bashrc-bash-shell-系统级别的环境配置" class="headerlink" title="全局公用配置 bashrc  bash shell 系统级别的环境配置"></a>全局公用配置 bashrc  bash shell 系统级别的环境配置</h3><pre><code>/etc/bashrc
+</code></pre><h3 id="用户级别的的配置"><a href="#用户级别的的配置" class="headerlink" title="用户级别的的配置"></a>用户级别的的配置</h3><pre><code>~/.bash_profile
+</code></pre><h2 id="zsh-现在mac一般都会安装zsh，oh-my-zsh"><a href="#zsh-现在mac一般都会安装zsh，oh-my-zsh" class="headerlink" title="zsh 现在mac一般都会安装zsh，oh-my-zsh"></a>zsh 现在mac一般都会安装zsh，oh-my-zsh</h2><h3 id="oh-my-zsh-目录：-它是zsh的安装文件夹"><a href="#oh-my-zsh-目录：-它是zsh的安装文件夹" class="headerlink" title=".oh-my-zsh 目录： 它是zsh的安装文件夹"></a><code>.oh-my-zsh</code> 目录： 它是zsh的安装文件夹</h3><h3 id="zshrc-：-zsh默认配置，可以用于设置环境变量，alias命令别名，设置主题等"><a href="#zshrc-：-zsh默认配置，可以用于设置环境变量，alias命令别名，设置主题等" class="headerlink" title=".zshrc ： zsh默认配置，可以用于设置环境变量，alias命令别名，设置主题等"></a><code>.zshrc</code> ： zsh默认配置，可以用于设置环境变量，alias命令别名，设置主题等</h3><h3 id="oh-my-zsh-custom-my-custom-zsh-用户设置自定义系统变量、自定义命令等等"><a href="#oh-my-zsh-custom-my-custom-zsh-用户设置自定义系统变量、自定义命令等等" class="headerlink" title="./oh-my-zsh/custom/my_custom.zsh:用户设置自定义系统变量、自定义命令等等"></a>./oh-my-zsh/custom/my_custom.zsh:用户设置自定义系统变量、自定义命令等等</h3><blockquote>
+<p>zsh不建议直接操作这个默认配置，如果用户需要自定义配置，推荐./oh-my-zsh/custom/custom.zsh修改。注意：custom文件夹里的所有配置都会被zsh自动读取并配置。</p>
+</blockquote>
+<ul>
+<li><p>小贴士：可以配置一个快捷方式用于编辑<code>my_custom.zsh</code></p>
+<pre><code>alias zshconfig=&quot;subl ~/.oh-my-zsh/custom/my_custom.zsh&quot;
+</code></pre></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;配置环境变量的常用文件&quot;&gt;&lt;a href=&quot;#配置环境变量的常用文件&quot; class=&quot;headerlink&quot; title=&quot;配置环境变量的常用文件&quot;&gt;&lt;/a&gt;配置环境变量的常用文件&lt;/h2&gt;&lt;h3 id=&quot;全局公用配置-profile-一般不建议直接配置该文件&quot;&gt;
+    
+    </summary>
+    
+      <category term="工具" scheme="https://fantasykai.cc/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="mac" scheme="https://fantasykai.cc/tags/mac/"/>
+    
+  </entry>
+  
+  <entry>
     <title>国庆节闲记二</title>
     <link href="https://fantasykai.cc/2017/10/03/recording/%E5%9B%BD%E5%BA%86%E8%8A%82%E9%97%B2%E8%AE%B0%E4%BA%8C/"/>
     <id>https://fantasykai.cc/2017/10/03/recording/国庆节闲记二/</id>
     <published>2017-10-02T16:00:00.000Z</published>
-    <updated>2017-10-08T11:34:49.000Z</updated>
+    <updated>2017-10-10T07:28:28.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>之前各种环境都装在阿里云上，乘着国庆假期，各种环境安装到mac上，记录一笔先，后续有坑，填坑</p>
@@ -2846,60 +2879,6 @@ Run with -u to upgrade your package.json
     
     
       <category term="js" scheme="https://fantasykai.cc/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Let&#39;s Encrypt certbot 自动申请https证书</title>
-    <link href="https://fantasykai.cc/2017/04/20/tools/Let&#39;s%20Encrypt%20certbot%20%E8%87%AA%E5%8A%A8%E7%94%B3%E8%AF%B7https%E8%AF%81%E4%B9%A6/"/>
-    <id>https://fantasykai.cc/2017/04/20/tools/Let&#39;s Encrypt certbot 自动申请https证书/</id>
-    <published>2017-04-19T16:00:00.000Z</published>
-    <updated>2017-04-21T03:06:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>服务器之前从Let’s Encrypt申请的https证书到期了，没有自动更新证书，上个月有一台web服务是使用了certbot自动申请，更新证书的，没有记录，这次再操作有点生疏了，还是趁这次，把操作过程记下来，加深印象，理解吧</p>
-</blockquote>
-<h2 id="HTTPS简介"><a href="#HTTPS简介" class="headerlink" title="HTTPS简介"></a>HTTPS简介</h2><blockquote>
-<p>超文本传输安全协议（英语：Hypertext Transfer Protocol Secure，缩写：HTTPS）是一种网络安全传输协议。在计算机网络上，HTTPS经由超文本传输协议进行通信，但利用SSL/TLS来对数据包进行加密。HTTPS开发的主要目的，是提供对网络服务器的身份认证，保护交换数据的隐私与完整性</p>
-<p>HTTPS的主要思想是在不安全的网络上创建一安全信道，并可在使用适当的加密包和服务器证书可被验证且可被信任时，对窃听和中间人攻击提供合理的防护。</p>
-</blockquote>
-<h2 id="SSL-TLS-是什么？"><a href="#SSL-TLS-是什么？" class="headerlink" title="SSL/TLS 是什么？"></a>SSL/TLS 是什么？</h2><blockquote>
-<p>“ HTTP over SSL/TLS ”字面意思就是带“安全套接层”的 http 协议，内心纯洁的同学也可以理解为“带安全套的 http ”，因为带了安全套，所以当然会比较安全（/(ㄒoㄒ)/~~）。其中 SSL 是“ Secure Sockets Layer ” 的缩写，是“安全套接层”的意思。 TLS 是 “Transport Layer Security” 的缩写，是 ” 传输层安全协议 ” 的意思。 SSL 和 TLS 是同一个东西的不同阶段，理解为同一个东西也行，都是安全协议就对了。</p>
-</blockquote>
-<h2 id="为什么要部署-https"><a href="#为什么要部署-https" class="headerlink" title="为什么要部署 https"></a>为什么要部署 https</h2><blockquote>
-<p>说到底，就是 https 更安全。甚至为了安全，一个专业可靠的网站， https 是必须的。 Firefox 和 Chrome 都计划将没有配置 SSL 加密的 http 网站标记为不安全（貌似 Firefox 50 已经这么干了），目前它们也正在联合其他相关的基金会与公司推动整个互联网 https 化，现在大家访问的一些主要的网站。如 Google 多年前就已经全部启用 https ，国内的淘宝、搜狗、知乎、百度等等也全面 https 了。甚至 Google 的搜索结果也正在给予 https 的网站更高的排名和优先收录权。</p>
-</blockquote>
-<h2 id="Let’s-Encrypt-简介"><a href="#Let’s-Encrypt-简介" class="headerlink" title="Let’s Encrypt 简介"></a>Let’s Encrypt 简介</h2><blockquote>
-<p>Let’s Encrypt 是 ISRG （Internet Security Research Group） 提供的一个免费、开放、自动化的证书签发服务。ISRG 是一个美国公益组织，总部在加州。由于得到了 Mozilla、Cisco、Akamai、Electronic Frontier Foundation 和 Chrome 等众多公司和机构的支持，发展十分迅速，甚至连老牌的免费 SSL 服务商 StartSSL 也坐不住，推出了类似 Let’s Encrypt 的自动签发和续期工具。</p>
-</blockquote>
-<h2 id="Certbot-简介"><a href="#Certbot-简介" class="headerlink" title="Certbot 简介"></a>Certbot 简介</h2><blockquote>
-<p>Certbot 的官方网站是 <a href="https://certbot.eff.org/" target="_blank" rel="external">https://certbot.eff.org/</a> ，打开这个链接选择自己使用的 web server 和操作系统，EFF 官方会给出详细的使用方法</p>
-</blockquote>
-<h2 id="安装certbot"><a href="#安装certbot" class="headerlink" title="安装certbot"></a>安装certbot</h2><pre><code>#sudo yum install epel-release
-
-#sudo yum install certbot
-</code></pre><h2 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h2><pre><code>certbot certonly --email ff@mail.com --agree-tos --no-eff-email --webroot -w /var/www/html/home -d xx.xx.com
-</code></pre><h2 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h2><pre><code>ssl_certificate /etc/letsencrypt/live/xx.xx.com/fullchain.pem;
-ssl_certificate_key /etc/letsencrypt/live/xx.xx.com/privkey.pem;
-</code></pre><p>下面是一些本地不想在修改配置到新地址时，做个软连接就好</p>
-<h2 id="建立软连接"><a href="#建立软连接" class="headerlink" title="建立软连接"></a>建立软连接</h2><p>ln -sfn /etc/letsencrypt/live/xx.xx.com/fullchain.pem fullchain.pem<br>ln -sfn /etc/letsencrypt/live/xx.xx.com/privkey.pem privkey.pem</p>
-<h2 id="配置定时任务-没有装crontab的话，安装下"><a href="#配置定时任务-没有装crontab的话，安装下" class="headerlink" title="配置定时任务 (没有装crontab的话，安装下)"></a>配置定时任务 (没有装crontab的话，安装下)</h2><pre><code>yum -y install yum-cron
-</code></pre><h2 id="crontab-l"><a href="#crontab-l" class="headerlink" title="crontab -l"></a>crontab -l</h2><pre><code>30 2 15 * * /usr/bin/certbot renew &gt;&gt; /var/log/le-renew.log
-35 2 15 * * /usr/local/openresty/nginx/sbin/nginx -s reload
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;服务器之前从Let’s Encrypt申请的https证书到期了，没有自动更新证书，上个月有一台web服务是使用了certbot自动申请，更新证书的，没有记录，这次再操作有点生疏了，还是趁这次，把操作过程记下来，加深印象，理解吧&lt;/p&gt;
-&lt;/blo
-    
-    </summary>
-    
-      <category term="工具" scheme="https://fantasykai.cc/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="https" scheme="https://fantasykai.cc/tags/https/"/>
     
   </entry>
   
