@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-10-10T11:27:45.000Z</updated>
+  <updated>2017-10-12T01:42:35.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -14,6 +14,70 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>grep命令的实践例子</title>
+    <link href="https://fantasykai.cc/2017/10/10/Linux/grep%E5%91%BD%E4%BB%A4%E7%9A%84%E5%AE%9E%E8%B7%B5%E4%BE%8B%E5%AD%90/"/>
+    <id>https://fantasykai.cc/2017/10/10/Linux/grep命令的实践例子/</id>
+    <published>2017-10-09T16:00:00.000Z</published>
+    <updated>2017-10-12T01:42:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>grep</strong> 应该是必备到命令了，看到一篇不错到总结，记录之</p>
+<p><strong>grep</strong>是每个<strong>Linux</strong>发行版都预装的一个强有力的文件模式搜索工具。无论何种原因，如果你的系统没有预装它的话，你可以很容易的通过系统的包管理器来安装它（<strong>Debian/Ubuntu</strong>系中的<strong>apt-get</strong>和<strong>RHEl/CentOS/Fedora</strong>系中的<strong>yum</strong>）。</p>
+<figure class="highlight smalltalk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">$ </span>sudo apt-get install grep <span class="symbol">#Debian</span>/<span class="type">Ubuntu</span> <span class="string">$ </span>sudo yum install grep <span class="symbol">#RHEL</span>/<span class="type">CentOS</span>/<span class="type">Fedora</span></div></pre></td></tr></table></figure>
+<p>我发现使用现实世界中的真实例子让你投身其中是让你接触<strong>grep</strong>命令的最容易方式。</p>
+<h3 id="1-搜索和寻找文件"><a href="#1-搜索和寻找文件" class="headerlink" title="1.搜索和寻找文件"></a>1.搜索和寻找文件</h3><p>假设你已经在你的电脑上安装了一个全新的<strong>Ubuntu</strong>，然后你打算卸载<strong>Python</strong>。你浏览网页寻找教程，但是你发现存在两个不同版本的<strong>Python</strong>在使用，而你不知道你的<strong>Ubuntu</strong>安装器到底在你的系统中安装了哪个版本的Python，也不知道它安装了哪些模块。解决这个烦恼只需简单的运行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo dpkg -l | grep -i python</span></div></pre></td></tr></table></figure>
+<h4 id="输出例子"><a href="#输出例子" class="headerlink" title="输出例子"></a>输出例子</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ii  python2<span class="number">.7</span>         <span class="number">2.7</span><span class="number">.3</span><span class="number">-0</span>ubuntu3<span class="number">.4</span> Interactive high-level object-oriented language (version <span class="number">2.7</span>)</div><div class="line">ii  python2<span class="number">.7</span>-minimal <span class="number">2.7</span><span class="number">.3</span><span class="number">-0</span>ubuntu3<span class="number">.4</span> Minimal subset of the Python language (version <span class="number">2.7</span>)</div><div class="line">ii  python-openssl    <span class="number">0.12</span><span class="number">-1</span>ubuntu2<span class="number">.1</span>  Python wrapper around the OpenSSL library</div><div class="line">ii  python-pam        <span class="number">0.4</span><span class="number">.2</span><span class="number">-12.2</span>ubuntu4 A Python interface to the PAM library</div></pre></td></tr></table></figure>
+<p>首先，我们运行<strong>dpkg -l</strong>列出你系统上安装的<strong>.deb</strong>包。接着，我们使用管道将输出结果传输给命令<strong>grep -i</strong>python，这一步可以简单解释为把结果传输给grep然后过滤出所有含有python的项，并返回结果。–i选项用于忽略大小写,因为 grep 是大小写敏感的。使用选项<strong>-i</strong>是个好习惯，除非你打算进行更细节的搜索。</p>
+<h3 id="2-搜索和过滤文件"><a href="#2-搜索和过滤文件" class="headerlink" title="2.搜索和过滤文件"></a>2.搜索和过滤文件</h3><p>grep还可以在一个或多个文件里用于搜索和过滤。让我们来看一个这样的情景：</p>
+<p>你的<strong>Apache网页服务器</strong>出现了问题，你不得不从许多专业网站里找一个发帖询问。好心回复你的人让你粘贴上来你的<strong>/etc/apache2/sites-available/default-ssl</strong>文件内容。假如你能移除掉所有的注释行，那么对你，对帮你的人，以及所有阅读该文件的人，不是更容易发现问题吗？你当然可以很容易的做到！只需这样做就可以了：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo <span class="keyword">grep</span> -v <span class="string">"#"</span> <span class="regexp">/etc/</span>apache2<span class="regexp">/sites-available/</span><span class="keyword">default</span>-ssl</div></pre></td></tr></table></figure>
+<p>选项<strong>-v</strong>是告诉<strong>grep</strong>命令反转它的输出结果，意思就是不输出匹配的项，做相反的事，打印出所有不匹配的项。这个例子中，有<strong>#</strong>的是注释行（译注：其实这个命令并不准确，包含“#”的行不全是注释行。关于如何精确匹配注释行，可以了解更多的关于正则表达式的内容。）。</p>
+<h3 id="3-找出所有的mp3文件"><a href="#3-找出所有的mp3文件" class="headerlink" title="3.找出所有的mp3文件"></a>3.找出所有的mp3文件</h3><p><strong>grep</strong>命令对于过滤来自于<strong>标准输出</strong>的结果非常有用。例如，假设你的一个文件夹里面全是各种格式的音乐文件。你要找出艺术家<strong>jayZ</strong>的所有<strong>mp3</strong>格式的音乐文件，里面也不要有任何混合音轨。使用<strong>find命令</strong>再结合管道使用<strong>grep</strong>就可以完成这个魔法：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo <span class="keyword">find</span> . -name <span class="string">".mp3"</span> | <span class="keyword">grep</span> -i JayZ | <span class="keyword">grep</span> -<span class="keyword">vi</span> <span class="string">"remix"</span><span class="comment">"</span></div></pre></td></tr></table></figure>
+<p>在这个例子中，我们使用find命令打印出所有以<strong>.mp3</strong>为后缀名的文件，接着将其使用管道传递给<strong>grep -i</strong>过滤和打印出名字为“<strong>JayZ</strong>”的文件,再使用管道传送给<strong>grep -vi</strong>以便过滤掉含有“<strong>remix</strong>”的项。</p>
+<ul>
+<li><a href="http://www.tecmint.com/35-practical-examples-of-linux-find-command/" target="_blank" rel="external">35个Linux中find命令的实践例子</a></li>
+</ul>
+<h3 id="4-在搜索字符串前面或者后面显示行号"><a href="#4-在搜索字符串前面或者后面显示行号" class="headerlink" title="4.在搜索字符串前面或者后面显示行号"></a>4.在搜索字符串前面或者后面显示行号</h3><p>另外两个选项是-A和-B之间的切换，是用以显示匹配的行以及行号，分别控制在字符串前或字符串后显示的行数。Man页给出了更加详细的解释，我发现一个记忆的小窍门：-A=after、-B=before。</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ifconfig | <span class="type">grep</span> -A <span class="number">4</span> etho $ sudo ifconfig | <span class="type">grep</span> -B <span class="number">2</span> UP</div></pre></td></tr></table></figure>
+<h3 id="5-在匹配字符串周围打印出行号"><a href="#5-在匹配字符串周围打印出行号" class="headerlink" title="5.在匹配字符串周围打印出行号"></a>5.在匹配字符串周围打印出行号</h3><p>grep命令的<strong>-C</strong>选项和例4中的很相似，不过打印的并不是在匹配字符串的前面或后面的行，而是打印出两个方向都匹配的行（译注：同上面的记忆窍门一样：-C=center，以此为中心）： $ sudo ifconfig | grep -C 2 lo</p>
+<h3 id="6-计算匹配项的数目"><a href="#6-计算匹配项的数目" class="headerlink" title="6.计算匹配项的数目"></a>6.计算匹配项的数目</h3><p>这个功能类似于将<strong>grep</strong>输出的结果用管道传送给计数器（<strong>wc</strong>程序），grep内建的选项可以达到同样的目的：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo ifconfig | grep -c inet6</span></div></pre></td></tr></table></figure>
+<h3 id="7-按给定字符串搜索文件中匹配的行号"><a href="#7-按给定字符串搜索文件中匹配的行号" class="headerlink" title="7.按给定字符串搜索文件中匹配的行号"></a>7.按给定字符串搜索文件中匹配的行号</h3><p>当你在编译出错时需要调试时，<strong>grep</strong>命令的<strong>-n</strong>选项是个非常有用的功能。它能告诉你所搜索的内容在文件的哪一行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo grep -n <span class="string">"main"</span> setup.py</span></div></pre></td></tr></table></figure>
+<h3 id="8-在所有目录里递归的搜索"><a href="#8-在所有目录里递归的搜索" class="headerlink" title="8.在所有目录里递归的搜索"></a>8.在所有目录里递归的搜索</h3><p>假若你要在当前文件夹里搜索一个字符串，而当前文件夹里又有很多子目录，你可以指定一个<strong>-r</strong>选项以便于递归的搜索： $ sudo grep -r “function” *</p>
+<h3 id="9-进行精确匹配搜索"><a href="#9-进行精确匹配搜索" class="headerlink" title="9.进行精确匹配搜索"></a>9.进行精确匹配搜索</h3><p>传递<strong>-w</strong>选项给grep命令可以在字符串中进行精确匹配搜索（译注：包含要搜索的单词，而不是通配）。例如，像下面这样输入：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo ifconfig | grep -w “RUNNING”</span></div></pre></td></tr></table></figure>
+<p>将打印出含有引号内匹配项的行。另外，你还可以试一下这个：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ifconfig | grep -w “<span class="keyword">RUN</span><span class="bash">”</span></div></pre></td></tr></table></figure>
+<p>搜索这个匹配项时，若搜索的东西里面没有这样的一个单独的单词，将什么也不会返回。</p>
+<h3 id="10-在Gzip压缩文件中搜索"><a href="#10-在Gzip压缩文件中搜索" class="headerlink" title="10.在Gzip压缩文件中搜索"></a>10.在Gzip压缩文件中搜索</h3><p>我们还要关注一下grep的衍生应用。第一个是<strong>zgrep</strong>，这个与<strong>zcat</strong>很相似，可以用于<strong>gzip</strong>压缩过的文件。它有与<strong>grep</strong>相似的命令选项，使用方式也一样：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo zgrep -i <span class="built_in">error</span> /<span class="built_in">var</span>/<span class="built_in">log</span>/syslog.2.gz</div></pre></td></tr></table></figure>
+<h3 id="11-在文件中匹配正则表达式"><a href="#11-在文件中匹配正则表达式" class="headerlink" title="11.在文件中匹配正则表达式"></a>11.在文件中匹配正则表达式</h3><p><strong>egrep</strong>是另一个衍生应用，代表着“<strong>扩展全局正则表达式</strong>”。它可以识别更多的正则表达式元字符，例如<strong>at + ?</strong> | 和<strong>（）</strong>。在搜索源代码文件时，egrep是一个非常有用的工具，还有其他的一些零碎代码文件的搜索需要，使得这样的搜索能力成为必需。可以在grep命令中使用选项<strong>-E</strong>来启用它。</p>
+<p>$ sudo grep -E</p>
+<h3 id="12-搜索一个固定匹配字符串"><a href="#12-搜索一个固定匹配字符串" class="headerlink" title="12.搜索一个固定匹配字符串"></a>12.搜索一个固定匹配字符串</h3><p><strong>fgrep</strong>用于在一个文件或文件列表中搜索固定样式的字符串。功能与<strong>grep -F</strong>同。<strong>fgrep</strong>的一个通常用法为传递一个含有样式的文件给它：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo fgrep -f file_full_of_patterns.txt file_to_search.txt</span></div></pre></td></tr></table></figure>
+<p>这仅仅是<strong>grep</strong>命令的开始，你可能已经注意到，它对于实现各种各样的需求简直是太有用了。除了这种我们运行的这种只有一行的命令，<strong>grep</strong>还可以写成<strong>cron</strong>任务或者自动的<strong>shell脚本</strong>去执行。保持好奇心，试验一下<strong>man页</strong>的各个选项，为实现你的目的写出一些<strong>grep表达式</strong>吧。</p>
+<hr>
+<p>via: <a href="http://www.tecmint.com/12-practical-examples-of-linux-grep-command/" target="_blank" rel="external">http://www.tecmint.com/12-practical-examples-of-linux-grep-command/</a></p>
+<p>译者：<a href="https://github.com/Linux-pdz" target="_blank" rel="external">Linux-pdz</a> 校对：<a href="https://github.com/jasminepeng" target="_blank" rel="external">jasminepeng</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;grep&lt;/strong&gt; 应该是必备到命令了，看到一篇不错到总结，记录之&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;grep&lt;/strong&gt;是每个&lt;strong&gt;Linux&lt;/strong&gt;发行版都预装的一个强有力的文件模式搜索工具。无论何种原因，如果你的系统没有预
+    
+    </summary>
+    
+      <category term="linux" scheme="https://fantasykai.cc/categories/linux/"/>
+    
+    
+      <category term="Linux" scheme="https://fantasykai.cc/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>oh-my-zsh的环境变量配置</title>
@@ -2812,66 +2876,6 @@ var that = this;
     
       &lt;h2 id=&quot;js-浏览器指纹信息相关&quot;&gt;&lt;a href=&quot;#js-浏览器指纹信息相关&quot; class=&quot;headerlink&quot; title=&quot;js 浏览器指纹信息相关&quot;&gt;&lt;/a&gt;js 浏览器指纹信息相关&lt;/h2&gt;&lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;近期的一个需求，app做第三方分享时，用微信，或QQ邀请好友，下载app，
-    
-    </summary>
-    
-      <category term="前端" scheme="https://fantasykai.cc/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="js" scheme="https://fantasykai.cc/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>npm 依赖管理(升级)工具 npm-check-updates</title>
-    <link href="https://fantasykai.cc/2017/05/01/js/npm%20%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86(%E5%8D%87%E7%BA%A7)%E5%B7%A5%E5%85%B7%20npm-check-updates/"/>
-    <id>https://fantasykai.cc/2017/05/01/js/npm 依赖管理(升级)工具 npm-check-updates/</id>
-    <published>2017-04-30T16:00:00.000Z</published>
-    <updated>2017-05-19T11:10:06.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>学习vue以来，发现更新版本真快，不愧是版本帝。。项目使用的vue及其他一些依赖版本更新后，想验证下最新的稳定版本，就要对<code>dependencies</code> 中各种包进行升级</p>
-</blockquote>
-<p>node 升级的依赖包的传统方法</p>
-<pre><code>npm update 名称
-</code></pre><p>项目依赖的三方包多了咋办，一个个update不显示，于是继续google，找到了2个工具：</p>
-<ul>
-<li><a href="https://github.com/dylang/npm-check" target="_blank" rel="external">npm-check</a></li>
-</ul>
-<blockquote>
-<p>检查过时的，不正确的和未使用的依赖项</p>
-</blockquote>
-<ul>
-<li><a href="https://github.com/tjunnone/npm-check-updates" target="_blank" rel="external">npm-check-updates</a></li>
-</ul>
-<blockquote>
-<p>npm-check-updates是一个命令行工具，允许您将package.json或bower.json依赖关系升级到最新版本，而不管现有的版本约束。</p>
-</blockquote>
-<h3 id="npm-check-updates-安装"><a href="#npm-check-updates-安装" class="headerlink" title="npm-check-updates 安装"></a>npm-check-updates 安装</h3><pre><code>npm install -g npm-check-updates
-</code></pre><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><pre><code>npm-check-updates （或者直接使用别名(alias) ncu）
-
-All dependencies match the latest package versions :)
-</code></pre><p>出现上面这句话就是表示目前的包都是最新的</p>
-<pre><code> express           4.12.x  →   4.13.x
- multer            ^0.1.8  →   ^1.0.1
- react-bootstrap  ^0.22.6  →  ^0.24.0
- react-a11y        ^0.1.1  →   ^0.2.6
- webpack          ~1.9.10  →  ~1.10.5
-
-Run with -u to upgrade your package.json
-</code></pre><p>以上是目前的版本，及最新的版本差异</p>
-<p>更新dependencies到新版本：</p>
-<pre><code>ncu -u
-</code></pre><p>更新全部dependencies到最新版本(包括当前指定版本范围满足最新版本号的,比如^4.2.0 -&gt; ^4.3.0)：</p>
-<pre><code>ncu -a
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;学习vue以来，发现更新版本真快，不愧是版本帝。。项目使用的vue及其他一些依赖版本更新后，想验证下最新的稳定版本，就要对&lt;code&gt;dependencies&lt;/code&gt; 中各种包进行升级&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;node 升级
     
     </summary>
     

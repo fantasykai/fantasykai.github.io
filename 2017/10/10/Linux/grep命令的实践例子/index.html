@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2017/10/10/Linux/grep命令的实践例子/">
+    
+    
+    <title>grep命令的实践例子 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="Linux">
+    <meta name="description" content="grep 应该是必备到命令了，看到一篇不错到总结，记录之 grep是每个Linux发行版都预装的一个强有力的文件模式搜索工具。无论何种原因，如果你的系统没有预装它的话，你可以很容易的通过系统的包管理器来安装它（Debian/Ubuntu系中的apt-get和RHEl/CentOS/Fedora系中的yum）。 1$ sudo apt-get install grep #Debian/Ubuntu">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="grep命令的实践例子">
+<meta property="og:url" content="https://fantasykai.cc/2017/10/10/Linux/grep命令的实践例子/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="grep 应该是必备到命令了，看到一篇不错到总结，记录之 grep是每个Linux发行版都预装的一个强有力的文件模式搜索工具。无论何种原因，如果你的系统没有预装它的话，你可以很容易的通过系统的包管理器来安装它（Debian/Ubuntu系中的apt-get和RHEl/CentOS/Fedora系中的yum）。 1$ sudo apt-get install grep #Debian/Ubuntu">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-12T01:42:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="grep命令的实践例子">
+<meta name="twitter:description" content="grep 应该是必备到命令了，看到一篇不错到总结，记录之 grep是每个Linux发行版都预装的一个强有力的文件模式搜索工具。无论何种原因，如果你的系统没有预装它的话，你可以很容易的通过系统的包管理器来安装它（Debian/Ubuntu系中的apt-get和RHEl/CentOS/Fedora系中的yum）。 1$ sudo apt-get install grep #Debian/Ubuntu">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">grep命令的实践例子</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">grep命令的实践例子</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-09T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-10-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux/">linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-搜索和寻找文件"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.搜索和寻找文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输出例子"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">输出例子</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-搜索和过滤文件"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.搜索和过滤文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-找出所有的mp3文件"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.找出所有的mp3文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-在搜索字符串前面或者后面显示行号"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.在搜索字符串前面或者后面显示行号</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-在匹配字符串周围打印出行号"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.在匹配字符串周围打印出行号</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-计算匹配项的数目"><span class="post-toc-number">6.</span> <span class="post-toc-text">6.计算匹配项的数目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-按给定字符串搜索文件中匹配的行号"><span class="post-toc-number">7.</span> <span class="post-toc-text">7.按给定字符串搜索文件中匹配的行号</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-在所有目录里递归的搜索"><span class="post-toc-number">8.</span> <span class="post-toc-text">8.在所有目录里递归的搜索</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-进行精确匹配搜索"><span class="post-toc-number">9.</span> <span class="post-toc-text">9.进行精确匹配搜索</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-在Gzip压缩文件中搜索"><span class="post-toc-number">10.</span> <span class="post-toc-text">10.在Gzip压缩文件中搜索</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-在文件中匹配正则表达式"><span class="post-toc-number">11.</span> <span class="post-toc-text">11.在文件中匹配正则表达式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-搜索一个固定匹配字符串"><span class="post-toc-number">12.</span> <span class="post-toc-text">12.搜索一个固定匹配字符串</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Linux/grep命令的实践例子"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">grep命令的实践例子</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-10 00:00:00" datetime="2017-10-09T16:00:00.000Z"  itemprop="datePublished">2017-10-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux/">linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>grep</strong> 应该是必备到命令了，看到一篇不错到总结，记录之</p>
+<p><strong>grep</strong>是每个<strong>Linux</strong>发行版都预装的一个强有力的文件模式搜索工具。无论何种原因，如果你的系统没有预装它的话，你可以很容易的通过系统的包管理器来安装它（<strong>Debian/Ubuntu</strong>系中的<strong>apt-get</strong>和<strong>RHEl/CentOS/Fedora</strong>系中的<strong>yum</strong>）。</p>
+<figure class="highlight smalltalk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">$ </span>sudo apt-get install grep <span class="symbol">#Debian</span>/<span class="type">Ubuntu</span> <span class="string">$ </span>sudo yum install grep <span class="symbol">#RHEL</span>/<span class="type">CentOS</span>/<span class="type">Fedora</span></div></pre></td></tr></table></figure>
+<p>我发现使用现实世界中的真实例子让你投身其中是让你接触<strong>grep</strong>命令的最容易方式。</p>
+<h3 id="1-搜索和寻找文件"><a href="#1-搜索和寻找文件" class="headerlink" title="1.搜索和寻找文件"></a>1.搜索和寻找文件</h3><p>假设你已经在你的电脑上安装了一个全新的<strong>Ubuntu</strong>，然后你打算卸载<strong>Python</strong>。你浏览网页寻找教程，但是你发现存在两个不同版本的<strong>Python</strong>在使用，而你不知道你的<strong>Ubuntu</strong>安装器到底在你的系统中安装了哪个版本的Python，也不知道它安装了哪些模块。解决这个烦恼只需简单的运行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo dpkg -l | grep -i python</span></div></pre></td></tr></table></figure>
+<h4 id="输出例子"><a href="#输出例子" class="headerlink" title="输出例子"></a>输出例子</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ii  python2<span class="number">.7</span>         <span class="number">2.7</span><span class="number">.3</span><span class="number">-0</span>ubuntu3<span class="number">.4</span> Interactive high-level object-oriented language (version <span class="number">2.7</span>)</div><div class="line">ii  python2<span class="number">.7</span>-minimal <span class="number">2.7</span><span class="number">.3</span><span class="number">-0</span>ubuntu3<span class="number">.4</span> Minimal subset of the Python language (version <span class="number">2.7</span>)</div><div class="line">ii  python-openssl    <span class="number">0.12</span><span class="number">-1</span>ubuntu2<span class="number">.1</span>  Python wrapper around the OpenSSL library</div><div class="line">ii  python-pam        <span class="number">0.4</span><span class="number">.2</span><span class="number">-12.2</span>ubuntu4 A Python interface to the PAM library</div></pre></td></tr></table></figure>
+<p>首先，我们运行<strong>dpkg -l</strong>列出你系统上安装的<strong>.deb</strong>包。接着，我们使用管道将输出结果传输给命令<strong>grep -i</strong>python，这一步可以简单解释为把结果传输给grep然后过滤出所有含有python的项，并返回结果。–i选项用于忽略大小写,因为 grep 是大小写敏感的。使用选项<strong>-i</strong>是个好习惯，除非你打算进行更细节的搜索。</p>
+<h3 id="2-搜索和过滤文件"><a href="#2-搜索和过滤文件" class="headerlink" title="2.搜索和过滤文件"></a>2.搜索和过滤文件</h3><p>grep还可以在一个或多个文件里用于搜索和过滤。让我们来看一个这样的情景：</p>
+<p>你的<strong>Apache网页服务器</strong>出现了问题，你不得不从许多专业网站里找一个发帖询问。好心回复你的人让你粘贴上来你的<strong>/etc/apache2/sites-available/default-ssl</strong>文件内容。假如你能移除掉所有的注释行，那么对你，对帮你的人，以及所有阅读该文件的人，不是更容易发现问题吗？你当然可以很容易的做到！只需这样做就可以了：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo <span class="keyword">grep</span> -v <span class="string">"#"</span> <span class="regexp">/etc/</span>apache2<span class="regexp">/sites-available/</span><span class="keyword">default</span>-ssl</div></pre></td></tr></table></figure>
+<p>选项<strong>-v</strong>是告诉<strong>grep</strong>命令反转它的输出结果，意思就是不输出匹配的项，做相反的事，打印出所有不匹配的项。这个例子中，有<strong>#</strong>的是注释行（译注：其实这个命令并不准确，包含“#”的行不全是注释行。关于如何精确匹配注释行，可以了解更多的关于正则表达式的内容。）。</p>
+<h3 id="3-找出所有的mp3文件"><a href="#3-找出所有的mp3文件" class="headerlink" title="3.找出所有的mp3文件"></a>3.找出所有的mp3文件</h3><p><strong>grep</strong>命令对于过滤来自于<strong>标准输出</strong>的结果非常有用。例如，假设你的一个文件夹里面全是各种格式的音乐文件。你要找出艺术家<strong>jayZ</strong>的所有<strong>mp3</strong>格式的音乐文件，里面也不要有任何混合音轨。使用<strong>find命令</strong>再结合管道使用<strong>grep</strong>就可以完成这个魔法：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo <span class="keyword">find</span> . -name <span class="string">".mp3"</span> | <span class="keyword">grep</span> -i JayZ | <span class="keyword">grep</span> -<span class="keyword">vi</span> <span class="string">"remix"</span><span class="comment">"</span></div></pre></td></tr></table></figure>
+<p>在这个例子中，我们使用find命令打印出所有以<strong>.mp3</strong>为后缀名的文件，接着将其使用管道传递给<strong>grep -i</strong>过滤和打印出名字为“<strong>JayZ</strong>”的文件,再使用管道传送给<strong>grep -vi</strong>以便过滤掉含有“<strong>remix</strong>”的项。</p>
+<ul>
+<li><a href="http://www.tecmint.com/35-practical-examples-of-linux-find-command/" target="_blank" rel="external">35个Linux中find命令的实践例子</a></li>
+</ul>
+<h3 id="4-在搜索字符串前面或者后面显示行号"><a href="#4-在搜索字符串前面或者后面显示行号" class="headerlink" title="4.在搜索字符串前面或者后面显示行号"></a>4.在搜索字符串前面或者后面显示行号</h3><p>另外两个选项是-A和-B之间的切换，是用以显示匹配的行以及行号，分别控制在字符串前或字符串后显示的行数。Man页给出了更加详细的解释，我发现一个记忆的小窍门：-A=after、-B=before。</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ifconfig | <span class="type">grep</span> -A <span class="number">4</span> etho $ sudo ifconfig | <span class="type">grep</span> -B <span class="number">2</span> UP</div></pre></td></tr></table></figure>
+<h3 id="5-在匹配字符串周围打印出行号"><a href="#5-在匹配字符串周围打印出行号" class="headerlink" title="5.在匹配字符串周围打印出行号"></a>5.在匹配字符串周围打印出行号</h3><p>grep命令的<strong>-C</strong>选项和例4中的很相似，不过打印的并不是在匹配字符串的前面或后面的行，而是打印出两个方向都匹配的行（译注：同上面的记忆窍门一样：-C=center，以此为中心）： $ sudo ifconfig | grep -C 2 lo</p>
+<h3 id="6-计算匹配项的数目"><a href="#6-计算匹配项的数目" class="headerlink" title="6.计算匹配项的数目"></a>6.计算匹配项的数目</h3><p>这个功能类似于将<strong>grep</strong>输出的结果用管道传送给计数器（<strong>wc</strong>程序），grep内建的选项可以达到同样的目的：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo ifconfig | grep -c inet6</span></div></pre></td></tr></table></figure>
+<h3 id="7-按给定字符串搜索文件中匹配的行号"><a href="#7-按给定字符串搜索文件中匹配的行号" class="headerlink" title="7.按给定字符串搜索文件中匹配的行号"></a>7.按给定字符串搜索文件中匹配的行号</h3><p>当你在编译出错时需要调试时，<strong>grep</strong>命令的<strong>-n</strong>选项是个非常有用的功能。它能告诉你所搜索的内容在文件的哪一行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo grep -n <span class="string">"main"</span> setup.py</span></div></pre></td></tr></table></figure>
+<h3 id="8-在所有目录里递归的搜索"><a href="#8-在所有目录里递归的搜索" class="headerlink" title="8.在所有目录里递归的搜索"></a>8.在所有目录里递归的搜索</h3><p>假若你要在当前文件夹里搜索一个字符串，而当前文件夹里又有很多子目录，你可以指定一个<strong>-r</strong>选项以便于递归的搜索： $ sudo grep -r “function” *</p>
+<h3 id="9-进行精确匹配搜索"><a href="#9-进行精确匹配搜索" class="headerlink" title="9.进行精确匹配搜索"></a>9.进行精确匹配搜索</h3><p>传递<strong>-w</strong>选项给grep命令可以在字符串中进行精确匹配搜索（译注：包含要搜索的单词，而不是通配）。例如，像下面这样输入：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo ifconfig | grep -w “RUNNING”</span></div></pre></td></tr></table></figure>
+<p>将打印出含有引号内匹配项的行。另外，你还可以试一下这个：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ifconfig | grep -w “<span class="keyword">RUN</span><span class="bash">”</span></div></pre></td></tr></table></figure>
+<p>搜索这个匹配项时，若搜索的东西里面没有这样的一个单独的单词，将什么也不会返回。</p>
+<h3 id="10-在Gzip压缩文件中搜索"><a href="#10-在Gzip压缩文件中搜索" class="headerlink" title="10.在Gzip压缩文件中搜索"></a>10.在Gzip压缩文件中搜索</h3><p>我们还要关注一下grep的衍生应用。第一个是<strong>zgrep</strong>，这个与<strong>zcat</strong>很相似，可以用于<strong>gzip</strong>压缩过的文件。它有与<strong>grep</strong>相似的命令选项，使用方式也一样：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo zgrep -i <span class="built_in">error</span> /<span class="built_in">var</span>/<span class="built_in">log</span>/syslog.2.gz</div></pre></td></tr></table></figure>
+<h3 id="11-在文件中匹配正则表达式"><a href="#11-在文件中匹配正则表达式" class="headerlink" title="11.在文件中匹配正则表达式"></a>11.在文件中匹配正则表达式</h3><p><strong>egrep</strong>是另一个衍生应用，代表着“<strong>扩展全局正则表达式</strong>”。它可以识别更多的正则表达式元字符，例如<strong>at + ?</strong> | 和<strong>（）</strong>。在搜索源代码文件时，egrep是一个非常有用的工具，还有其他的一些零碎代码文件的搜索需要，使得这样的搜索能力成为必需。可以在grep命令中使用选项<strong>-E</strong>来启用它。</p>
+<p>$ sudo grep -E</p>
+<h3 id="12-搜索一个固定匹配字符串"><a href="#12-搜索一个固定匹配字符串" class="headerlink" title="12.搜索一个固定匹配字符串"></a>12.搜索一个固定匹配字符串</h3><p><strong>fgrep</strong>用于在一个文件或文件列表中搜索固定样式的字符串。功能与<strong>grep -F</strong>同。<strong>fgrep</strong>的一个通常用法为传递一个含有样式的文件给它：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo fgrep -f file_full_of_patterns.txt file_to_search.txt</span></div></pre></td></tr></table></figure>
+<p>这仅仅是<strong>grep</strong>命令的开始，你可能已经注意到，它对于实现各种各样的需求简直是太有用了。除了这种我们运行的这种只有一行的命令，<strong>grep</strong>还可以写成<strong>cron</strong>任务或者自动的<strong>shell脚本</strong>去执行。保持好奇心，试验一下<strong>man页</strong>的各个选项，为实现你的目的写出一些<strong>grep表达式</strong>吧。</p>
+<hr>
+<p>via: <a href="http://www.tecmint.com/12-practical-examples-of-linux-grep-command/" target="_blank" rel="external">http://www.tecmint.com/12-practical-examples-of-linux-grep-command/</a></p>
+<p>译者：<a href="https://github.com/Linux-pdz" target="_blank" rel="external">Linux-pdz</a> 校对：<a href="https://github.com/jasminepeng" target="_blank" rel="external">jasminepeng</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-12T01:42:35.000Z" itemprop="dateUpdated">2017-10-12 09:42:35</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2017/10/10/Linux/grep命令的实践例子/" target="_blank" rel="external">https://fantasykai.cc/2017/10/10/Linux/grep命令的实践例子/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2017/10/10/Linux/grep命令的实践例子/&title=《grep命令的实践例子》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2017/10/10/Linux/grep命令的实践例子/&title=《grep命令的实践例子》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2017/10/10/Linux/grep命令的实践例子/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《grep命令的实践例子》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2017/10/10/Linux/grep命令的实践例子/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2017/10/10/Linux/grep命令的实践例子/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/08/mac/oh-my-zsh的环境变量配置/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">oh-my-zsh的环境变量配置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2017/10/10/Linux/grep命令的实践例子/&title=《grep命令的实践例子》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2017/10/10/Linux/grep命令的实践例子/&title=《grep命令的实践例子》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2017/10/10/Linux/grep命令的实践例子/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《grep命令的实践例子》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2017/10/10/Linux/grep命令的实践例子/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2017/10/10/Linux/grep命令的实践例子/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuElEQVR42u3aMZLjMAwEwP3/p33pXnklz4CkykEzctmWyFZAQgB+fuLx+jXev7//fPX/++/fZ7y6dsPAw8PDW1j6+7j6T468X2gyY3LV1drw8PDwzvHuN+v7DfoVjGT3nq3ngwUPDw/va3jJ4bFhWy/Dazw8PLxv5t3/M7k2wWxIduDh4eEd461v6224vLL0I7kWPDw8vHlmYPMST3w+Ut/Dw8PDW66qt6Ftm8xti2r1avHw8PAO8PINN0+kJks/13SFh4eH9wwviULbX9vkbNvslTd+4eHh4Z3grSRAZ+0FswJYXnJrzgo8PDy8jjfbrGeh8HpzVb0ePDw8vMO89dTD7JHNSlz1+wEeHh7eMd59qDpLN8wWl8z+YUY8PDy8Y7z89T5vCJgdGOttYX90RuDh4eEd482aBvKgvMWspDC29UTg4eHh3b6zt+Fscp9Zw8G2yh4eHh7eYd6uiWetUXn43s6Ch4eHd5qXbPF58J1v6K94DENqPDw8vE28epONI9VZijZJDRfrx8PDwzvGm5Wv2hRt29rV3u2Pq/Dw8PCO8fJpklTCelKjDbs/tA7g4eHhPcJLSlxtu8DsobRNV/99xsPDwzvAa6vteajdpmh3pY+jh4KHh4e3zJsxZmnZdrvPg+nL++Ph4eEd480SqUmxauUwSNbzIcWMh4eH9zivnbJtnGofYvuY8PDw8J7kzW7XFq7aklsdoOPh4eEd481e+NsUbZvgWC/L4eHh4e3lvcqRF+nzBoI2zVE0KODh4eEd4M1KUAlgZdH5gbRSVMPDw8Nb4a23Q+Vls9ljbQ8GPDw8vGd4s/TuDLxU0GoTFnh4eHhfwGths7nW74OHh4f3Pbw8XdumdNsGgih8x8PDwzvGywv/+QTJ9CsNB8XBgIeHh7eVN0unrrQIFNv68lV4eHh4W3n/AKc9nHFLANc0AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>
