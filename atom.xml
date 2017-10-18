@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-10-12T01:42:35.000Z</updated>
+  <updated>2017-10-18T01:59:18.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -14,6 +14,111 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>阿里Java开发规约idea插件</title>
+    <link href="https://fantasykai.cc/2017/10/16/JAVA/%E9%98%BF%E9%87%8CJava%E5%BC%80%E5%8F%91%E8%A7%84%E7%BA%A6idea%E6%8F%92%E4%BB%B6/"/>
+    <id>https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/</id>
+    <published>2017-10-15T16:00:00.000Z</published>
+    <updated>2017-10-18T01:59:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>周六日看了阿里云的云栖大会，周日场（10月15日）研发效能峰会上，阿里正式发布了《阿里巴巴Java开发手册》，并提供了代码规范插件，目前主要使用idea开发，这里简单记录下使用方法</p>
+</blockquote>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>编码规约扫描</li>
+</ul>
+<p>扫描结果将以 <code>Blocker</code>/ <code>Critical</code>/ <code>Major</code> 三种级别显示</p>
+<ul>
+<li>实时检测</li>
+</ul>
+<p>基于Inspection机制提供了实时检测功能，编写代码的同时也能快速发现问题所在。对于历史代码，部分规则实现了批量一键修复的功能</p>
+<h3 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式"></a>安装方式</h3><blockquote>
+<p>安装很简单，在idea的Plugins，–&gt; Browse repositories 里直接搜索alibaba 就可以找到</p>
+</blockquote>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/install_2.png" alt="Switch language](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/install_2.png)" title="">
+                </div>
+                <div class="image-caption">Switch language](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/install_2.png)</div>
+            </figure></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>使用也很简单 idea —&gt; tools —&gt; 阿里编码规约</p>
+<ol>
+<li><p>Switch language</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/switch_language.png" alt="Switch language](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/switch_language.png)" title="">
+                </div>
+                <div class="image-caption">Switch language](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/switch_language.png)</div>
+            </figure></p>
+</li>
+<li><p>Inspections</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection.png" alt="Real time](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection.png)" title="">
+                </div>
+                <div class="image-caption">Real time](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection.png)</div>
+            </figure></p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection_setting.png" alt="Settings](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection_setting.png)" title="">
+                </div>
+                <div class="image-caption">Settings](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection_setting.png)</div>
+            </figure></p>
+</li>
+<li><p>Code Analyze</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/analyze.png" alt="Settings](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/analyze.png)" title="">
+                </div>
+                <div class="image-caption">Settings](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/analyze.png)</div>
+            </figure></p>
+<p>We use the idea standard Inspection Results to show our violations.</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection_result.png" alt="Result](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection_result.png)" title="">
+                </div>
+                <div class="image-caption">Result](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection_result.png)</div>
+            </figure></p>
+<p>We can also analyze file which is modified before vcs checkin.</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/analyze_before_checkin.png" alt="Before Checkin](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/analyze_before_checkin.png)" title="">
+                </div>
+                <div class="image-caption">Before Checkin](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/analyze_before_checkin.png)</div>
+            </figure></p>
+</li>
+</ol>
+<blockquote>
+<p>《阿里巴巴Java开发手册（终极版）.pdf》已发 安排时间仔细阅读再~</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/alibaba/p3c" target="_blank" rel="external">github 地址</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;周六日看了阿里云的云栖大会，周日场（10月15日）研发效能峰会上，阿里正式发布了《阿里巴巴Java开发手册》，并提供了代码规范插件，目前主要使用idea开发，这里简单记录下使用方法&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;特点&quot;&gt;&lt;a 
+    
+    </summary>
+    
+      <category term="技术小栈" scheme="https://fantasykai.cc/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
+    
+    
+      <category term="idea" scheme="https://fantasykai.cc/tags/idea/"/>
+    
+  </entry>
   
   <entry>
     <title>grep命令的实践例子</title>
@@ -2775,107 +2880,6 @@ import IEcharts from &apos;vue-echarts-v3/src/full.vue&apos;;
       &lt;blockquote&gt;
 &lt;p&gt;使用开源的东东，其版本更新后一定得多看更新记录&lt;/p&gt;
 &lt;p&gt;今天下午打算把vue的一个项目从私有coding上提交到github上（提取一些组件，毕竟来源于开源，也要回馈开源）。以为只是简单的复制粘贴。提交下&lt;br&gt;提交前，验证下。发现所有引用e
-    
-    </summary>
-    
-      <category term="前端" scheme="https://fantasykai.cc/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="js" scheme="https://fantasykai.cc/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js 指纹信息相关</title>
-    <link href="https://fantasykai.cc/2017/05/19/js/js%20%E6%8C%87%E7%BA%B9%E7%9B%B8%E5%85%B3/"/>
-    <id>https://fantasykai.cc/2017/05/19/js/js 指纹相关/</id>
-    <published>2017-05-19T07:17:54.000Z</published>
-    <updated>2017-05-19T07:17:54.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="js-浏览器指纹信息相关"><a href="#js-浏览器指纹信息相关" class="headerlink" title="js 浏览器指纹信息相关"></a>js 浏览器指纹信息相关</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote>
-<p>近期的一个需求，app做第三方分享时，用微信，或QQ邀请好友，下载app，<a id="more"></a>在被邀请方从分享页面获取app信息及下载app，安装，注册后，希望<br>可以关联到邀请方信息，可用于在后端统计，及被邀请方注册登录后，直接提示用户是否 添加 邀请方为好友。一般做法为生成邀请码，在注册时，用户填写邀请码，但这种方式，大多数用户不用在注册时，填写难记的邀请码信息。</p>
-<p>与同事们讨论后，讨论了一种方案，第三方分享是H5页面，用户在点开分享页面时，记录用户的信息（网络，手机设备等），生成一个唯一标识与分享者uid关联。新用户在注册时，关联用户的机型，网络，关联到分享者信息。</p>
-<p>js一般只能获取到浏览器的信息，浏览器的userAgent中可以获取部分设备信息（手机型号，品牌之类），虽然碰撞率很高，但目前也基本可以满足需求，最终浏览器指纹起到了一些辅助作用，也借此机会了解下相关概念，熟悉下js可以获取哪些用户信息，这里做个简单的记录</p>
-</blockquote>
-<h3 id="js指纹的概念理解"><a href="#js指纹的概念理解" class="headerlink" title="js指纹的概念理解"></a>js指纹的概念理解</h3><blockquote>
-<p>JS浏览器指纹的相关内容。浏览器指纹指的是通过JS采集用户的各种浏览器和设备信息，借此希望能生成相对唯一的uuid，用于区分用户</p>
-</blockquote>
-<h3 id="fingerprintjs2"><a href="#fingerprintjs2" class="headerlink" title="fingerprintjs2"></a>fingerprintjs2</h3><ul>
-<li><a href="https://github.com/Valve/fingerprintjs2" target="_blank" rel="external">fingerprintjs2 github地址</a></li>
-</ul>
-<blockquote>
-<p>Fingerprintjs2是github上开源的设备指纹采集器。最初的fingerprintjs库创建于2012年，但是由于新版本的开发很难保持向后兼容，因此Fingerprintjs2项目中增加了很多的新内容。</p>
-<p>该项目将更多、更有效的来源用于指纹识别，并且可配置，也就是说用户可以选择性地开启其中的选项。该项目还将重点关注IE插件，尤其是在中国流行的QQ、Baidu等。另外，该项目使用了semver（语义化的版本控制系统）。</p>
-<p>Fingerprintjs2的原理是根据所能获取到的设备相关信息：比如系统字体、ua、帆布指纹等数据，筛选计算出一个（94%情况下）近似唯一的24位哈希值，可以作为设备的唯一性标识。它的特点是不依赖cookie，用户无法通过清除缓存来删除。设备指纹现在被很多互联网反欺诈公司拿来作为用户特征识别的方法，也被一些广告公司用来跟踪用户数据。</p>
-</blockquote>
-<h4 id="Fingerprintjs2-源码列出目前可以采集到的信息"><a href="#Fingerprintjs2-源码列出目前可以采集到的信息" class="headerlink" title="Fingerprintjs2 源码列出目前可以采集到的信息"></a>Fingerprintjs2 源码列出目前可以采集到的信息</h4><pre><code>keys = this.userAgentKey(keys);
-keys = this.languageKey(keys);
-keys = this.colorDepthKey(keys);
-keys = this.pixelRatioKey(keys);
-keys = this.hardwareConcurrencyKey(keys);
-keys = this.screenResolutionKey(keys);
-keys = this.availableScreenResolutionKey(keys);
-keys = this.timezoneOffsetKey(keys);
-keys = this.sessionStorageKey(keys);
-keys = this.localStorageKey(keys);
-keys = this.indexedDbKey(keys);
-keys = this.addBehaviorKey(keys);
-keys = this.openDatabaseKey(keys);
-keys = this.cpuClassKey(keys);
-keys = this.platformKey(keys);
-keys = this.doNotTrackKey(keys);
-keys = this.pluginsKey(keys);
-keys = this.canvasKey(keys);
-keys = this.webglKey(keys);
-keys = this.adBlockKey(keys);
-keys = this.hasLiedLanguagesKey(keys);
-keys = this.hasLiedResolutionKey(keys);
-keys = this.hasLiedOsKey(keys);
-keys = this.hasLiedBrowserKey(keys);
-keys = this.touchSupportKey(keys);
-keys = this.customEntropyFunction(keys);
-var that = this;
-</code></pre><p>fingerprintjs的源码已经列出了目前能够收集到的几乎所有API，其中浏览器UA，语言，浏览器所在CPU等级（cpuclass，仅支持IE，chrome和firefox反回undefined），浏览器版本，等都是通过<code>navigator</code>对象获得，还有 <code>window.indexedDB</code> ， <code>window.sessionStorage</code> 和 <code>window.localStorage</code> 这一类h5新增的特性是否存在也被用作区分值</p>
-<p>Fingerprintjs2还考虑到了一些比较特殊的自定义区分值，比如时区，或者是否在浏览器层做了一些UA欺骗，比如 hasLiedLanguagesKey ， HasLiedBrowser ， HasLiedOs 。以 hasliedLanguageKey 为例，通过判断navigator.language和navigator.languages中第一个方法是否相同来实现：</p>
-<pre><code>try {
-      var firstLanguages = navigator.languages[0].substr(0, 2);
-      if(firstLanguages !== navigator.language.substr(0, 2)){
-        return true;
-      }
-    } catch(err){
-      return true;
-    }
-</code></pre><p>其中区分度最高的应该就是浏览器插件检测了，因为它还涉及到了一个插件安装顺序的唯独，也是通过navigator对象获得，需要对IE单独处理，关键代码：</p>
-<pre><code>var plugins = [];
-      for(var i = 0, l = navigator.plugins.length; i &lt; l; i++) {
-        plugins.push(navigator.plugins[i]);
-      }
-      // sorting plugins only for those user agents, that we know randomize the plugins
-      // every time we try to enumerate them
-      if(this.pluginsShouldBeSorted()) {
-        plugins = plugins.sort(function(a, b) {
-          if(a.name &gt; b.name){ return 1; }
-          if(a.name &lt; b.name){ return -1; }
-          return 0;
-        });
-      }
-      return this.map(plugins, function (p) {
-        var mimeTypes = this.map(p, function(mt){
-          return [mt.type, mt.suffixes].join(&quot;~&quot;);
-        }).join(&quot;,&quot;);
-        return [p.name, p.description, mimeTypes].join(&quot;::&quot;);
-      }, this);
-</code></pre><h3 id="其他一些资源获取"><a href="#其他一些资源获取" class="headerlink" title="其他一些资源获取"></a>其他一些资源获取</h3><h4 id="检测字体"><a href="#检测字体" class="headerlink" title="检测字体"></a>检测字体</h4><p>传统的方式是flash读取系统安装的字体，这里面还增加了一个通过css和js检测字体的方法，实现原理非常有趣。<br>以var text = ‘mmmmmmmmmmlli’；举例，不同的字体在同一大小的fontsize情况下，这段字体的长度和宽度是不同的，通过比较css的width和height，既可以判断用户是否有安装了相应的字体。实现的时候，可以在页面中动态插入一个span，讲fontsize设置为较大的值便于比较。这个手段也可以用在平常前端开发中，用以判断某种特定字体用户是否安装</p>
-<h4 id="Canvas-画布指纹"><a href="#Canvas-画布指纹" class="headerlink" title="Canvas 画布指纹"></a>Canvas 画布指纹</h4><p>canvas是Html5中非常重要的一个特性，它同时也可以用语js指纹的一个重要熵值。其中的原因是因为同一个canvas图像在不同的设备上（不同的GPU），由于不同的渲染引擎、压缩比例，输出格式，以及同一系统字体安装不同，导致最后输出也不相同。通过在canvas画布上画字体，最后由toDataURL()方法专为64位格式。这一方法实现成本低，无法被禁用，立刻收到了广泛关注，目前这一方法被认为是浏览器指纹中十分重要的一种方法。不过在我的测试中，我发现还是很容易产生碰撞的，最简单的例子是在移动端上，比如高度统一的iPhone上面，同一代机型由于硬件相同，且ios在不越狱的情况下无法自定义字体，这就导致了的任意两台iphone6s通过safari判断画笔指纹会百分之百的获得同样的64位编码….</p>
-<p>相关：</p>
-<p><a href="https://github.com/Valve/fingerprintjs2/wiki/List-of-options" target="_blank" rel="external">List of options</a></p>
-<p><a href="http://jcarlosnorte.com/security/2016/03/06/advanced-tor-browser-fingerprinting.html" target="_blank" rel="external">Advanced Tor Browser Fingerprinting</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;js-浏览器指纹信息相关&quot;&gt;&lt;a href=&quot;#js-浏览器指纹信息相关&quot; class=&quot;headerlink&quot; title=&quot;js 浏览器指纹信息相关&quot;&gt;&lt;/a&gt;js 浏览器指纹信息相关&lt;/h2&gt;&lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;近期的一个需求，app做第三方分享时，用微信，或QQ邀请好友，下载app，
     
     </summary>
     

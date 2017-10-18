@@ -175,6 +175,65 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-python/MySQL-Python_mysql_config_error"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2016-11-23 15:19:12" datetime="2016-11-23T07:19:12.000Z"  itemprop="datePublished">2016-11-23</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2016/11/23/python/MySQL-Python_mysql_config_error/">配置MySQL-Python报错问题</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+学习python时，配置MySQL-Python的时候系统报错，提示：
+
+EnvironmentError: mysql_config not found
+
+Google后得知mysql_config是属于MySQL开发用的文件，而使用apt-get安装的MySQL是没有这个文件的，于是在包安装器里面寻找
+
+libmysqld-dev
+
+libmysqlclient-dev
+
+
+这两个包安...
+    
+
+        <a href="/2016/11/23/python/MySQL-Python_mysql_config_error/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-network/IPv6 相关"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -640,58 +699,6 @@ web.xml配置
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-tools/tomcat/daemon模式启动tomcat"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2016-09-08 22:37:46" datetime="2016-09-08T14:37:46.000Z"  itemprop="datePublished">2016-09-08</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/工具/">工具</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/09/08/tools/tomcat/daemon模式启动tomcat/">daemon模式启动tomcat</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        下载tomcat，过程略安装Daemon 自启动cd /usr/local/apache-tomcat-8.0.32/bin
-tar -zxvf commons-daemon-native.tar.gz
-cd /usr/local/apache-tomcat-8.0.32/bin/commons-daemon-1.0.15-native-src/unix
-./configure
-make
-c...
-    
-
-        <a href="/2016/09/08/tools/tomcat/daemon模式启动tomcat/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/idea/">idea</a></li></ul>
 
     </div>
     

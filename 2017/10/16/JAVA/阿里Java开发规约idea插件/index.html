@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/">
+    
+    
+    <title>阿里Java开发规约idea插件 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="idea">
+    <meta name="description" content="周六日看了阿里云的云栖大会，周日场（10月15日）研发效能峰会上，阿里正式发布了《阿里巴巴Java开发手册》，并提供了代码规范插件，目前主要使用idea开发，这里简单记录下使用方法  特点 编码规约扫描  扫描结果将以 Blocker/ Critical/ Major 三种级别显示  实时检测  基于Inspection机制提供了实时检测功能，编写代码的同时也能快速发现问题所在。对于历史代码，部">
+<meta name="keywords" content="idea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里Java开发规约idea插件">
+<meta property="og:url" content="https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="周六日看了阿里云的云栖大会，周日场（10月15日）研发效能峰会上，阿里正式发布了《阿里巴巴Java开发手册》，并提供了代码规范插件，目前主要使用idea开发，这里简单记录下使用方法  特点 编码规约扫描  扫描结果将以 Blocker/ Critical/ Major 三种级别显示  实时检测  基于Inspection机制提供了实时检测功能，编写代码的同时也能快速发现问题所在。对于历史代码，部">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/install_2.png">
+<meta property="og:image" content="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/switch_language.png">
+<meta property="og:image" content="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection.png">
+<meta property="og:image" content="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection_setting.png">
+<meta property="og:image" content="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/analyze.png">
+<meta property="og:image" content="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection_result.png">
+<meta property="og:image" content="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/analyze_before_checkin.png">
+<meta property="og:updated_time" content="2017-10-18T01:59:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="阿里Java开发规约idea插件">
+<meta name="twitter:description" content="周六日看了阿里云的云栖大会，周日场（10月15日）研发效能峰会上，阿里正式发布了《阿里巴巴Java开发手册》，并提供了代码规范插件，目前主要使用idea开发，这里简单记录下使用方法  特点 编码规约扫描  扫描结果将以 Blocker/ Critical/ Major 三种级别显示  实时检测  基于Inspection机制提供了实时检测功能，编写代码的同时也能快速发现问题所在。对于历史代码，部">
+<meta name="twitter:image" content="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/install_2.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">阿里Java开发规约idea插件</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">阿里Java开发规约idea插件</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-15T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-10-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特点"><span class="post-toc-number">1.</span> <span class="post-toc-text">特点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装方式"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用"><span class="post-toc-number">3.</span> <span class="post-toc-text">使用</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-JAVA/阿里Java开发规约idea插件"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">阿里Java开发规约idea插件</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-16 00:00:00" datetime="2017-10-15T16:00:00.000Z"  itemprop="datePublished">2017-10-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>周六日看了阿里云的云栖大会，周日场（10月15日）研发效能峰会上，阿里正式发布了《阿里巴巴Java开发手册》，并提供了代码规范插件，目前主要使用idea开发，这里简单记录下使用方法</p>
+</blockquote>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>编码规约扫描</li>
+</ul>
+<p>扫描结果将以 <code>Blocker</code>/ <code>Critical</code>/ <code>Major</code> 三种级别显示</p>
+<ul>
+<li>实时检测</li>
+</ul>
+<p>基于Inspection机制提供了实时检测功能，编写代码的同时也能快速发现问题所在。对于历史代码，部分规则实现了批量一键修复的功能</p>
+<h3 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式"></a>安装方式</h3><blockquote>
+<p>安装很简单，在idea的Plugins，–&gt; Browse repositories 里直接搜索alibaba 就可以找到</p>
+</blockquote>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/install_2.png" alt="Switch language](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/install_2.png)" title="">
+                </div>
+                <div class="image-caption">Switch language](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/install_2.png)</div>
+            </figure></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>使用也很简单 idea —&gt; tools —&gt; 阿里编码规约</p>
+<ol>
+<li><p>Switch language</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/switch_language.png" alt="Switch language](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/switch_language.png)" title="">
+                </div>
+                <div class="image-caption">Switch language](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/switch_language.png)</div>
+            </figure></p>
+</li>
+<li><p>Inspections</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection.png" alt="Real time](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection.png)" title="">
+                </div>
+                <div class="image-caption">Real time](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection.png)</div>
+            </figure></p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection_setting.png" alt="Settings](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection_setting.png)" title="">
+                </div>
+                <div class="image-caption">Settings](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection_setting.png)</div>
+            </figure></p>
+</li>
+<li><p>Code Analyze</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/analyze.png" alt="Settings](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/analyze.png)" title="">
+                </div>
+                <div class="image-caption">Settings](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/analyze.png)</div>
+            </figure></p>
+<p>We use the idea standard Inspection Results to show our violations.</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection_result.png" alt="Result](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection_result.png)" title="">
+                </div>
+                <div class="image-caption">Result](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection_result.png)</div>
+            </figure></p>
+<p>We can also analyze file which is modified before vcs checkin.</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/analyze_before_checkin.png" alt="Before Checkin](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/analyze_before_checkin.png)" title="">
+                </div>
+                <div class="image-caption">Before Checkin](https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/analyze_before_checkin.png)</div>
+            </figure></p>
+</li>
+</ol>
+<blockquote>
+<p>《阿里巴巴Java开发手册（终极版）.pdf》已发 安排时间仔细阅读再~</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/alibaba/p3c" target="_blank" rel="external">github 地址</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-18T01:59:18.000Z" itemprop="dateUpdated">2017-10-18 09:59:18</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2017/10/16/JAVA/阿里Java开发规约idea插件/" target="_blank" rel="external">https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/idea/">idea</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/&title=《阿里Java开发规约idea插件》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/&title=《阿里Java开发规约idea插件》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《阿里Java开发规约idea插件》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/10/Linux/grep命令的实践例子/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">grep命令的实践例子</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/&title=《阿里Java开发规约idea插件》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/&title=《阿里Java开发规约idea插件》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《阿里Java开发规约idea插件》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwElEQVR42u3a0U7sMAwEUP7/p7mvSGi7M3YCXOnsEypVNqdIjRn74yP+fH75fL/y/bdf78mvvPrtq/WPffDw8PAWW3+13Oz68zc+3/m8ZrJnPDw8vNu82Sae75+90J9J+Z7x8PDw/j4vKYvr13pwSODh4eH9v7x9qd2W1Hh4eHi/y0vCiLbw3WwrWedw1oKHh4fXVa2HA4LbP1/p7+Hh4eGtu+pJ0+vVlSTMzccOPkcfPDw8vBu8NmjIS+02nJ0NdSURBh4eHt5Z3r5ZlWwivyd5lEWgjIeHh/fjvCRa3Rwk+YNI/gz1FAMeHh7egvd8Ux6kPjNmw1WzVBYPDw/vNi9fehbOtgFx25Crp8Dw8PDw1rzkhZ4vvYkb2jCiPvfw8PDw1rz2jZrECpsD49RYGB4eHt5tXn48HAtYHzfU4t/ciYeHh3eZlzeu9oXvBlA06vDw8PAu8PbDT3l53Y4RJOsUjTo8PDy8NW8Woc6Cg7bZtjmc6pkyPDw8vFFvqH1953FDOxCw+ZbixMPDw8Nb8PaRa976yuPaJJ6I9oCHh4d3lJcsNyt8hzFrPL6QRCR4eHh493inmlizQKENF4rHjYeHh3eB184mnQpbi3o/bpW9OeTw8PDwjvLyRduwYIZpX/pR6wsPDw/vAi9ZNC+jZ3FtPqxQlON4eHh4P8jbt7uS42RTLkc7x8PDw7vG24cOs8bVbIV8b3h4eHg/z8vL7vxhRS2r8tAaHgx4eHh4C1gbPWxK3nbNPJ54eSTg4eHhHeKdfcc+v9DbIYOkcN801fDw8PA2vNlo1LGYtYw/6gECPDw8vGu8JDhoy+L2SNhkDm8OBjw8PLw/wEte/XmpXTS02seNh4eH9wd4m3C2JeWDCMdKajw8PLyYl4QRs6ZU/lA2D+jlt+Dh4eFd4LX/8J9qWW2Grg7MmuHh4eFNeP8AmG+7YIAANoIAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>
