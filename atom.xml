@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-10-25T06:56:17.000Z</updated>
+  <updated>2017-10-25T10:44:12.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>web 开发常用的终端命令</title>
+    <title>CentOS内核参数优化参考</title>
     <link href="https://fantasykai.cc/2017/10/24/Linux/CentOS%E5%86%85%E6%A0%B8%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96%E5%8F%82%E8%80%83/"/>
     <id>https://fantasykai.cc/2017/10/24/Linux/CentOS内核参数优化参考/</id>
     <published>2017-10-23T16:00:00.000Z</published>
-    <updated>2017-10-25T06:56:17.000Z</updated>
+    <updated>2017-10-25T10:44:12.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="CentOS内核参数优化参考"><a href="#CentOS内核参数优化参考" class="headerlink" title="CentOS内核参数优化参考"></a>CentOS内核参数优化参考</h1><blockquote>
 <p>最近在做性能调优，把centos相关的配置也调整了下，找到一份不错的总结，这里记录下~</p>
