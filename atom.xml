@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-10-25T10:44:12.000Z</updated>
+  <updated>2017-10-31T10:45:08.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -14,6 +14,79 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>同步github上fork的分支</title>
+    <link href="https://fantasykai.cc/2017/10/28/tools/git/%E5%90%8C%E6%AD%A5github%E4%B8%8Afork%E7%9A%84%E5%88%86%E6%94%AF/"/>
+    <id>https://fantasykai.cc/2017/10/28/tools/git/同步github上fork的分支/</id>
+    <published>2017-10-27T16:00:00.000Z</published>
+    <updated>2017-10-31T10:45:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>github 上fork 大牛的持续更新的项目，一段时间后，想把大牛提交的部分，更新到自己fork出来的项目上，为此google一把，了然于心，在此记录下~</p>
+</blockquote>
+<p>实现这个需求，发现有2种玩法：</p>
+<ul>
+<li>Github 上点点就行</li>
+<li>使用命令行的方式同步</li>
+</ul>
+<h3 id="在Github-页面上点击完成"><a href="#在Github-页面上点击完成" class="headerlink" title="在Github 页面上点击完成"></a>在Github 页面上点击完成</h3><p> 看图有真相！</p>
+<p> <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fl1lm22286j21ly0q6jz3.jpg" alt=""></p>
+<p> <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fl1ln40g4nj21li0l4tdm.jpg" alt=""></p>
+<p> <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fl1lncoxarj21r40smtfg.jpg" alt=""></p>
+<p> <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fl1lnkj5wrj21cm0yqagu.jpg" alt=""></p>
+<p> <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fl1lnqrersj21a20a2gnp.jpg" alt=""></p>
+<h3 id="使用命令行方式同步"><a href="#使用命令行方式同步" class="headerlink" title="使用命令行方式同步"></a>使用命令行方式同步</h3><blockquote>
+<p>怎么不了解命令行到方式呢～</p>
+</blockquote>
+<h4 id="1-配置源项目的地址"><a href="#1-配置源项目的地址" class="headerlink" title="1.配置源项目的地址"></a>1.配置源项目的地址</h4><blockquote>
+<p>讲fork源的项目地址配置到自己的项目上。</p>
+</blockquote>
+<p>举个栗子</p>
+<p>我fork了一个项目：pyeve/eve，我的项目地址就是 fantasykai/eve</p>
+<p>项目名称上会显示 <code>forked from pyeve/eve</code></p>
+<p>git clone 自己fork的项目后，添加一个远程仓库，即 源项目地址</p>
+<pre><code>git remote add upstream https://github.com/pyeve/eve.git
+</code></pre><p>执行命令行后，查看下是否配置进来    </p>
+<pre><code>git remote -v
+
+origin    git@github.com:fantasykai/eve.git (fetch)
+origin    git@github.com:fantasykai/eve.git (push)
+upstream    https://github.com/pyeve/eve.git (fetch)
+upstream    https://github.com/pyeve/eve.git (push)
+</code></pre><h4 id="2-获取源项目更新内容。"><a href="#2-获取源项目更新内容。" class="headerlink" title="2.获取源项目更新内容。"></a>2.获取源项目更新内容。</h4><blockquote>
+<p>使用 <code>fetch</code> 命令更新，fetch 后会更新到本地分支 <code>upstream/master</code></p>
+</blockquote>
+<pre><code>git fetch upstream
+</code></pre><h4 id="3-合并本地分支。"><a href="#3-合并本地分支。" class="headerlink" title="3.合并本地分支。"></a>3.合并本地分支。</h4><blockquote>
+<p>切换到 <code>master</code> 分支，合并<code>upstream/master</code> 分支</p>
+</blockquote>
+<pre><code>git merge upstream/master
+</code></pre><h4 id="4-提交推送"><a href="#4-提交推送" class="headerlink" title="4.提交推送"></a>4.提交推送</h4><blockquote>
+<p>解决本地冲突的代码，然后推送之</p>
+</blockquote>
+<pre><code>git push origin master
+</code></pre><blockquote>
+<p>这样以来，之后想同步源项目的commits，就执行2，3，4 步骤</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;github 上fork 大牛的持续更新的项目，一段时间后，想把大牛提交的部分，更新到自己fork出来的项目上，为此google一把，了然于心，在此记录下~&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;实现这个需求，发现有2种玩法：&lt;/p&gt;
+&lt;ul&gt;
+    
+    </summary>
+    
+      <category term="工具" scheme="https://fantasykai.cc/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="git" scheme="https://fantasykai.cc/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>CentOS内核参数优化参考</title>
@@ -2828,51 +2901,6 @@ git fsck
     
     
       <category term="git" scheme="https://fantasykai.cc/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>半年总结(2017)</title>
-    <link href="https://fantasykai.cc/2017/07/05/recording/%E5%8D%8A%E5%B9%B4%E6%80%BB%E7%BB%93/"/>
-    <id>https://fantasykai.cc/2017/07/05/recording/半年总结/</id>
-    <published>2017-07-04T16:00:00.000Z</published>
-    <updated>2017-07-10T02:59:06.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="半年总结"><a href="#半年总结" class="headerlink" title="半年总结"></a>半年总结</h1><blockquote>
-<p>2017半年过去了，利用思维导图的方式稍微总结了一下，以便回顾总结，发现不足之处，逐步提高。<br>知识技能上，本是后端上半年却有点”不务正业”，APP上半年还在酝酿中，还没有涉及运维，运营时，自己感觉应该提前梳理出来，趁着后端上不忙碌，自己去熟悉总结了系统监控相关内容，集中式日志监控相关，主要熟悉了一下ELK体系，和阿里云的日志监控等，前端web，对angular,vue,react进行调研，现阶段，Vue应该是最容易入门及开展工作的。于是就了解熟悉了一些前端架构及Vue，并搭建了后台及运营管理的WEB平台。</p>
-</blockquote>
-<p>心得及收获:</p>
-<p>1.拥抱开源，真正关注开源</p>
-<p>2.贡献了第一个npm包</p>
-<p>3.技术变更速度真快…,必须不断学习。</p>
-<p>…</p>
-<p>–不足:<br>1.知识深度不够，需要深层次理解一些底层原理</p>
-<p>2.还是有些粗心大意，通过备忘录，checklist，多自我检查。</p>
-<p>3.自我表达能力亟待提高。</p>
-<p>4.生活上，自己的忙碌，让爸妈操心太多，不够关心家人。</p>
-<p>想要总结的还太多，还是要点点滴滴积累，</p>
-<p>希望下半年家人都能健健康康，自己工作，生活上能有更大的突破。</p>
-<hr>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fhelozhx5dj21gs1qktkl.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;半年总结&quot;&gt;&lt;a href=&quot;#半年总结&quot; class=&quot;headerlink&quot; title=&quot;半年总结&quot;&gt;&lt;/a&gt;半年总结&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;2017半年过去了，利用思维导图的方式稍微总结了一下，以便回顾总结，发现不足之处，逐步提高。&lt;br
-    
-    </summary>
-    
-      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
-    
-    
-      <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
     
   </entry>
   
