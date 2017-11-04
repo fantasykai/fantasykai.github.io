@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-10-31T10:45:08.000Z</updated>
+  <updated>2017-11-03T10:21:34.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -14,6 +14,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS安装docker启动失败</title>
+    <link href="https://fantasykai.cc/2017/11/03/Linux/CentOS%E5%AE%89%E8%A3%85docker%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/"/>
+    <id>https://fantasykai.cc/2017/11/03/Linux/CentOS安装docker启动失败/</id>
+    <published>2017-11-02T16:00:00.000Z</published>
+    <updated>2017-11-03T10:21:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>在自己的测试服务器装起了docker，安装成功，but，启动失败了，解决后，在此记录下～</p>
+</blockquote>
+<h3 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h3><pre><code>[root@fantasykai ~]# uname -r
+3.10.0-514.26.2.el7.x86_64
+[root@fantasykai ~]# lsb_release -a
+LSB Version:    :core-4.1-amd64:core-4.1-noarch
+Distributor ID:    CentOS
+Description:    CentOS Linux release 7.3.1611 (Core)
+Release:    7.3.1611
+Codename:    Core
+</code></pre><h3 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h3><pre><code>yum -y install docker
+</code></pre><h3 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h3><blockquote>
+<p>启动报错：</p>
+</blockquote>
+<pre><code>[root@fantasykai ~]# service docder start
+Redirecting to /bin/systemctl start  docder.service
+Failed to start docder.service: Unit not found.
+</code></pre><h3 id="解决方式："><a href="#解决方式：" class="headerlink" title="解决方式："></a>解决方式：</h3><p>新建一个docker.socket 文件</p>
+<p>vim /usr/lib/systemd/system/docker.socket</p>
+<pre><code>[Unit]
+Description=Docker Socket for the API
+PartOf=docker.service
+
+[Socket]
+ListenStream=/var/run/docker.sock
+SocketMode=0660
+SocketUser=root
+SocketGroup=docker
+
+[Install]
+WantedBy=sockets.target
+</code></pre><p>然后运行</p>
+<pre><code>systemctl daemon-reload
+systemctl start docker.socket
+systemctl start docker
+</code></pre><p> OK，启动好了，可以在愉快的玩耍了～</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;在自己的测试服务器装起了docker，安装成功，but，启动失败了，解决后，在此记录下～&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;安装环境&quot;&gt;&lt;a href=&quot;#安装环境&quot; class=&quot;headerlink&quot; title=&quot;安装环境&quot;
+    
+    </summary>
+    
+      <category term="docker" scheme="https://fantasykai.cc/categories/docker/"/>
+    
+    
+      <category term="Linux" scheme="https://fantasykai.cc/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>同步github上fork的分支</title>
@@ -2780,127 +2842,6 @@ Gradle 4.0.1
     
     
       <category term="java" scheme="https://fantasykai.cc/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git 常用命令整理</title>
-    <link href="https://fantasykai.cc/2017/07/18/tools/git/git%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/"/>
-    <id>https://fantasykai.cc/2017/07/18/tools/git/git 常用命令整理/</id>
-    <published>2017-07-17T16:00:00.000Z</published>
-    <updated>2017-07-20T03:09:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>git常用命令整理，逐步完善自己经常使用的命令，方便查找，总结</p>
-</blockquote>
-<h2 id="先贴一张网上搜集到的git图"><a href="#先贴一张网上搜集到的git图" class="headerlink" title="先贴一张网上搜集到的git图"></a>先贴一张网上搜集到的git图</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fho6hly27sj20uu0k5qkv.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<h2 id="git命令速查"><a href="#git命令速查" class="headerlink" title="git命令速查"></a>git命令速查</h2><pre><code>git init                                                  # 初始化本地git仓库（创建新仓库）
-git config --global user.name &quot;xxx&quot;                       # 配置用户名
-git config --global user.email &quot;xxx@xxx.com&quot;              # 配置邮件
-git config --global color.ui true                         # git status等命令自动着色
-git config --global color.status auto
-git config --global color.diff auto
-git config --global color.branch auto
-git config --global color.interactive auto
-git config --global --unset http.proxy                    # remove  proxy configuration on git
-git clone git+ssh://git@192.168.53.168/VT.git             # clone远程仓库
-git status                                                # 查看当前版本状态（是否修改）
-git add xyz                                               # 添加xyz文件至index
-git add .                                                 # 增加当前子目录下所有更改过的文件至index
-git commit -m &apos;xxx&apos;                                       # 提交
-git commit --amend -m &apos;xxx&apos;                               # 合并上一次提交（用于反复修改）
-git commit -am &apos;xxx&apos;                                      # 将add和commit合为一步
-git rm xxx                                                # 删除index中的文件
-git rm -r *                                               # 递归删除
-git log                                                   # 显示提交日志
-git log -1                                                # 显示1行日志 -n为n行
-git log -5
-git log --stat                                            # 显示提交日志及相关变动文件
-git log -p -m
-git show dfb02e6e4f2f7b573337763e5c0013802e392818         # 显示某个提交的详细内容
-git show dfb02                                            # 可只用commitid的前几位
-git show HEAD                                             # 显示HEAD提交日志
-git show HEAD^                                            # 显示HEAD的父（上一个版本）的提交日志 ^^为上两个版本 ^5为上5个版本
-git tag                                                   # 显示已存在的tag
-git tag -a v2.0 -m &apos;xxx&apos;                                  # 增加v2.0的tag
-git show v2.0                                             # 显示v2.0的日志及详细内容
-git log v2.0                                              # 显示v2.0的日志
-git diff                                                  # 显示所有未添加至index的变更
-git diff --cached                                         # 显示所有已添加index但还未commit的变更
-git diff HEAD^                                            # 比较与上一个版本的差异
-git diff HEAD -- ./lib                                    # 比较与HEAD版本lib目录的差异
-git diff origin/master..master                            # 比较远程分支master上有本地分支master上没有的
-git diff origin/master..master --stat                     # 只显示差异的文件，不显示具体内容
-git remote add origin git+ssh://git@192.168.53.168/VT.git # 增加远程定义（用于push/pull/fetch）
-git branch                                                # 显示本地分支
-git branch --contains 50089                               # 显示包含提交50089的分支
-git branch -a                                             # 显示所有分支
-git branch -r                                             # 显示所有原创分支
-git branch --merged                                       # 显示所有已合并到当前分支的分支
-git branch --no-merged                                    # 显示所有未合并到当前分支的分支
-git branch -m master master_copy                          # 本地分支改名
-git checkout -b master_copy                               # 从当前分支创建新分支master_copy并检出
-git checkout -b master master_copy                        # 上面的完整版
-git checkout features/performance                         # 检出已存在的features/performance分支
-git checkout --track hotfixes/BJVEP933                    # 检出远程分支hotfixes/BJVEP933并创建本地跟踪分支
-git checkout v2.0                                         # 检出版本v2.0
-git checkout -b devel origin/develop                      # 从远程分支develop创建新本地分支devel并检出
-git checkout -- README                                    # 检出head版本的README文件（可用于修改错误回退）
-git merge origin/master                                   # 合并远程master分支至当前分支
-git cherry-pick ff44785404a8e                             # 合并提交ff44785404a8e的修改
-git push origin master                                    # 将当前分支push到远程master分支
-git push origin :hotfixes/BJVEP933                        # 删除远程仓库的hotfixes/BJVEP933分支
-git push --tags                                           # 把所有tag推送到远程仓库
-git fetch                                                 # 获取所有远程分支（不更新本地分支，另需merge）
-git fetch --prune                                         # 获取所有原创分支并清除服务器上已删掉的分支
-git pull origin master                                    # 获取远程分支master并merge到当前分支
-git mv README README2                                     # 重命名文件README为README2
-git reset --hard HEAD                                     # 将当前版本重置为HEAD（通常用于merge失败回退）
-git rebase
-git branch -d hotfixes/BJVEP933                           # 删除分支hotfixes/BJVEP933（本分支修改已合并到其他分支）
-git branch -D hotfixes/BJVEP933                           # 强制删除分支hotfixes/BJVEP933
-git ls-files                                              # 列出git index包含的文件
-git show-branch                                           # 图示当前分支历史
-git show-branch --all                                     # 图示所有分支历史
-git whatchanged                                           # 显示提交历史对应的文件修改
-git revert dfb02e6e4f2f7b573337763e5c0013802e392818       # 撤销提交dfb02e6e4f2f7b573337763e5c0013802e392818
-git ls-tree HEAD                                          # 内部命令：显示某个git对象
-git rev-parse v2.0                                        # 内部命令：显示某个ref对于的SHA1 HASH
-git reflog                                                # 显示所有提交，包括孤立节点
-git show HEAD@{5}
-git show master@{yesterday}                               # 显示master分支昨天的状态
-git log --pretty=format:&apos;%h %s&apos; --graph                   # 图示提交日志
-git show HEAD~3
-git show -s --pretty=raw 2be7fcb476
-git stash                                                 # 暂存当前修改，将所有至为HEAD状态
-git stash list                                            # 查看所有暂存
-git stash show -p stash@{0}                               # 参考第一次暂存
-git stash apply stash@{0}                                 # 应用第一次暂存
-git grep &quot;delete from&quot;                                    # 文件中搜索文本“delete from”
-git grep -e &apos;#define&apos; --and -e SORT_DIRENT
-git gc
-git fsck
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;git常用命令整理，逐步完善自己经常使用的命令，方便查找，总结&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;先贴一张网上搜集到的git图&quot;&gt;&lt;a href=&quot;#先贴一张网上搜集到的git图&quot; class=&quot;headerlink&quot; title
-    
-    </summary>
-    
-      <category term="工具" scheme="https://fantasykai.cc/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="git" scheme="https://fantasykai.cc/tags/git/"/>
     
   </entry>
   
