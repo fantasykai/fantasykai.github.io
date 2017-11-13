@@ -35,7 +35,7 @@
 <meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
 <meta property="og:description" content="MongoDB 笔记常用命令1 查询所有存在的数据库 show dbs 2 进入数据库 use admin 3 查看所有的collection集合 show collections     4 增加或修改密码 db.addUser(&amp;apos;userTest&amp;apos;,&amp;apos;123456&amp;apos;)  db.addUser(&amp;quot;userTest&amp;quot;,&amp;quot;1234">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-25T09:15:34.000Z">
+<meta property="og:updated_time" content="2017-11-13T05:45:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB·常用命令记录">
 <meta name="twitter:description" content="MongoDB 笔记常用命令1 查询所有存在的数据库 show dbs 2 进入数据库 use admin 3 查看所有的collection集合 show collections     4 增加或修改密码 db.addUser(&amp;apos;userTest&amp;apos;,&amp;apos;123456&amp;apos;)  db.addUser(&amp;quot;userTest&amp;quot;,&amp;quot;1234">
@@ -464,6 +464,14 @@ db.array_test.find({ &quot;num.3&quot;: {$exists:1} })
 -q:指明导出数据的过滤条件
 </code></pre></li>
 </ul>
+<p>demo </p>
+<pre><code>本地
+        mongoexport -d bludb -c resources -o resources.json --type json
+
+
+远程
+mongoexport -h IP --port 端口 -u 用户名 -p 密码 -d 数据库名 -c collections名称 -o resources.json --type json
+</code></pre><p>远程<br>mongoexport -h IP –port 端口 -u 用户名 -p 密码 -d 数据库名 -c collections名称 -o resources.json –type json</p>
 <h4 id="Mongodb中的mongoimport工具可以把一个特定格式文件中的内容导入到指定的collection中。该工具可以导入JSON格式数据，也可以导入CSV格式数据"><a href="#Mongodb中的mongoimport工具可以把一个特定格式文件中的内容导入到指定的collection中。该工具可以导入JSON格式数据，也可以导入CSV格式数据" class="headerlink" title="Mongodb中的mongoimport工具可以把一个特定格式文件中的内容导入到指定的collection中。该工具可以导入JSON格式数据，也可以导入CSV格式数据"></a>Mongodb中的mongoimport工具可以把一个特定格式文件中的内容导入到指定的collection中。该工具可以导入JSON格式数据，也可以导入CSV格式数据</h4><pre><code>　
 导入命令选项说明:　  
     -h:指明数据库宿主机的IP
@@ -472,6 +480,8 @@ db.array_test.find({ &quot;num.3&quot;: {$exists:1} })
     -d:指明数据库的名字
     -c:指明collection的名字
     -f:指明要导入那些列
+</code></pre><p>demo</p>
+<pre><code>mongoimport -h IP --port 端口 -u 用户名 -p 密码 -d 数据库名 -c colelctions名称  resources.json --type json
 </code></pre><h5 id="如果要导入CSV格式文件中的内容，则需要通过–type参数指定导入格式-CSV-格式良好，主流数据库都支持导出为CSV-的格式，所以这种格式非常利于异构数据迁移"><a href="#如果要导入CSV格式文件中的内容，则需要通过–type参数指定导入格式-CSV-格式良好，主流数据库都支持导出为CSV-的格式，所以这种格式非常利于异构数据迁移" class="headerlink" title="如果要导入CSV格式文件中的内容，则需要通过–type参数指定导入格式(CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移)"></a>如果要导入CSV格式文件中的内容，则需要通过–type参数指定导入格式(CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移)</h5><ul>
 <li><p>参数说明：</p>
 <pre><code>-type:指明要导入的文件格式
@@ -514,7 +524,7 @@ db.array_test.find({ &quot;num.3&quot;: {$exists:1} })
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-07-25T09:15:34.000Z" itemprop="dateUpdated">2017-07-25 17:15:34</time>
+    最后更新时间：<time datetime="2017-11-13T05:45:22.000Z" itemprop="dateUpdated">2017-11-13 13:45:22</time>
 </span><br>
 
 
