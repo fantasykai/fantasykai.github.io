@@ -35,7 +35,7 @@
 <meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
 <meta property="og:description" content="MongoDB 笔记常用命令1 查询所有存在的数据库 show dbs 2 进入数据库 use admin 3 查看所有的collection集合 show collections     4 增加或修改密码 db.addUser(&amp;apos;userTest&amp;apos;,&amp;apos;123456&amp;apos;)  db.addUser(&amp;quot;userTest&amp;quot;,&amp;quot;1234">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-11-13T05:45:22.000Z">
+<meta property="og:updated_time" content="2017-11-17T07:28:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB·常用命令记录">
 <meta name="twitter:description" content="MongoDB 笔记常用命令1 查询所有存在的数据库 show dbs 2 进入数据库 use admin 3 查看所有的collection集合 show collections     4 增加或修改密码 db.addUser(&amp;apos;userTest&amp;apos;,&amp;apos;123456&amp;apos;)  db.addUser(&amp;quot;userTest&amp;quot;,&amp;quot;1234">
@@ -261,13 +261,13 @@ db.collection.save({&apos;age&apos;:18})
 <pre><code>db.foo.remove()
 </code></pre><h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>1 增加索引:1 asc -1 desc</p>
 <pre><code>db.foo.ensureIndex({firstname:1,lastname:-1},{unieap:true})
-</code></pre><p>2 索引子对象(不懂)</p>
+</code></pre><p>2 索引子对象</p>
 <pre><code>db.foo.ensureIndex({&apos;Al.Em&apos;:!})
 </code></pre><p>3 查看索引信息</p>
 <pre><code>db.foo.getIndexes()
 
 db.foo.getIndexKeys()
-</code></pre><p>4 根据索引名删除索引(不懂)</p>
+</code></pre><p>4 根据索引名删除索引</p>
 <pre><code>db.foo.dropIndex(&apos;Al.Em_1&apos;)
 </code></pre><h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><pre><code>$gt ---- &gt;
 $lt ---- &lt;
@@ -524,7 +524,7 @@ mongoexport -h IP --port 端口 -u 用户名 -p 密码 -d 数据库名 -c collec
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-11-13T05:45:22.000Z" itemprop="dateUpdated">2017-11-13 13:45:22</time>
+    最后更新时间：<time datetime="2017-11-17T07:28:30.000Z" itemprop="dateUpdated">2017-11-17 15:28:30</time>
 </span><br>
 
 
