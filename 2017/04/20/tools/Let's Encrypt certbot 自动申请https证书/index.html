@@ -35,7 +35,7 @@
 <meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
 <meta property="og:description" content="服务器之前从Let’s Encrypt申请的https证书到期了，没有自动更新证书，上个月有一台web服务是使用了certbot自动申请，更新证书的，没有记录，这次再操作有点生疏了，还是趁这次，把操作过程记下来，加深印象，理解吧  HTTPS简介 超文本传输安全协议（英语：Hypertext Transfer Protocol Secure，缩写：HTTPS）是一种网络安全传输协议。在计算机网络">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-04-21T03:06:46.000Z">
+<meta property="og:updated_time" content="2017-11-21T12:03:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Let&#39;s Encrypt certbot 自动申请https证书">
 <meta name="twitter:description" content="服务器之前从Let’s Encrypt申请的https证书到期了，没有自动更新证书，上个月有一台web服务是使用了certbot自动申请，更新证书的，没有记录，这次再操作有点生疏了，还是趁这次，把操作过程记下来，加深印象，理解吧  HTTPS简介 超文本传输安全协议（英语：Hypertext Transfer Protocol Secure，缩写：HTTPS）是一种网络安全传输协议。在计算机网络">
@@ -230,8 +230,17 @@
 <h2 id="安装certbot"><a href="#安装certbot" class="headerlink" title="安装certbot"></a>安装certbot</h2><pre><code>#sudo yum install epel-release
 
 #sudo yum install certbot
+</code></pre><blockquote>
+<p>安装过程中可能会报错，建议安装前，更新下pip</p>
+</blockquote>
+<pre><code>pip install --upgrade pip
+</code></pre><p>至少这些包要更新下</p>
+<pre><code>pip install requests urllib3 pyOpenSSL --force --upgrade
+</code></pre><p>还有个错误，需要安装下pyOpenSSL 0.14及以上的版本，我是下载了pyOpenSSL-0.15.1-1.el7.noarch.rpm解决的</p>
+<pre><code>sudo rpm -Uvh pyOpenSSL-0.15.1-1.el7.noarch.rpm
 </code></pre><h2 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h2><pre><code>certbot certonly --email ff@mail.com --agree-tos --no-eff-email --webroot -w /var/www/html/home -d xx.xx.com
-</code></pre><h2 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h2><pre><code>ssl_certificate /etc/letsencrypt/live/xx.xx.com/fullchain.pem;
+</code></pre><p>证书信息会生成在 <code>/etc/letsencrypt/live</code> 目录</p>
+<h2 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h2><pre><code>ssl_certificate /etc/letsencrypt/live/xx.xx.com/fullchain.pem;
 ssl_certificate_key /etc/letsencrypt/live/xx.xx.com/privkey.pem;
 </code></pre><p>下面是一些本地不想在修改配置到新地址时，做个软连接就好</p>
 <h2 id="建立软连接"><a href="#建立软连接" class="headerlink" title="建立软连接"></a>建立软连接</h2><p>ln -sfn /etc/letsencrypt/live/xx.xx.com/fullchain.pem fullchain.pem<br>ln -sfn /etc/letsencrypt/live/xx.xx.com/privkey.pem privkey.pem</p>
@@ -245,7 +254,7 @@ ssl_certificate_key /etc/letsencrypt/live/xx.xx.com/privkey.pem;
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-04-21T03:06:46.000Z" itemprop="dateUpdated">2017-04-21 11:06:46</time>
+    最后更新时间：<time datetime="2017-11-21T12:03:37.000Z" itemprop="dateUpdated">2017-11-21 20:03:37</time>
 </span><br>
 
 
