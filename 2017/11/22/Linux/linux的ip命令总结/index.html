@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2017/11/22/Linux/linux的ip命令总结/">
+    
+    
+    <title>linux的ip命令总结 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="Linux">
+    <meta name="description" content="转载：Linux中国 https://linux.cn/article-3144-1.html地址：https://linux.cn/article-3144-1.html linux的ip命令和ifconfig类似，但前者功能更强大，并旨在取代后者。使用ip命令，只需一个命令，你就能很轻松地执行一些网络管理任务。ifconfig是net-tools中已被废弃使用的一个命令，许多年前就已经没有维护">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux的ip命令总结">
+<meta property="og:url" content="https://fantasykai.cc/2017/11/22/Linux/linux的ip命令总结/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="转载：Linux中国 https://linux.cn/article-3144-1.html地址：https://linux.cn/article-3144-1.html linux的ip命令和ifconfig类似，但前者功能更强大，并旨在取代后者。使用ip命令，只需一个命令，你就能很轻松地执行一些网络管理任务。ifconfig是net-tools中已被废弃使用的一个命令，许多年前就已经没有维护">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003404uy9l1t5zayzllylm.png">
+<meta property="og:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003410tpix2804k660lwu4.png">
+<meta property="og:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003411qp4xsem5491ee49t.png">
+<meta property="og:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003412dottfn0jnidyykd2.png">
+<meta property="og:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003413mnehm4uinhziu287.png">
+<meta property="og:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003414h53e34qwjfo34emm.png">
+<meta property="og:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003415i8d82ulsa4c4jcd4.png">
+<meta property="og:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003417l1jc4h5537m050wy.png">
+<meta property="og:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003418acoo0krhjellollu.png">
+<meta property="og:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003419uzm96tbvujb5bvqe.png">
+<meta property="og:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003420ap2j3jjvjk3jvvoo.png">
+<meta property="og:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003421mdudvkazcgkl6g8d.png">
+<meta property="og:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003422xh9xm2wihecdjhif.png">
+<meta property="og:updated_time" content="2017-11-22T01:56:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux的ip命令总结">
+<meta name="twitter:description" content="转载：Linux中国 https://linux.cn/article-3144-1.html地址：https://linux.cn/article-3144-1.html linux的ip命令和ifconfig类似，但前者功能更强大，并旨在取代后者。使用ip命令，只需一个命令，你就能很轻松地执行一些网络管理任务。ifconfig是net-tools中已被废弃使用的一个命令，许多年前就已经没有维护">
+<meta name="twitter:image" content="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003404uy9l1t5zayzllylm.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">linux的ip命令总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">linux的ip命令总结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-21T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-11-22
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux/">linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置和删除Ip地址"><span class="post-toc-number">1.</span> <span class="post-toc-text">设置和删除Ip地址</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#列出路由表条目"><span class="post-toc-number">2.</span> <span class="post-toc-text">列出路由表条目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#更改默认路由"><span class="post-toc-number">3.</span> <span class="post-toc-text">更改默认路由</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#显示网络统计数据"><span class="post-toc-number">4.</span> <span class="post-toc-text">显示网络统计数据</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ARP条目"><span class="post-toc-number">5.</span> <span class="post-toc-text">ARP条目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#监控netlink消息"><span class="post-toc-number">6.</span> <span class="post-toc-text">监控netlink消息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#激活和停止网络接口"><span class="post-toc-number">7.</span> <span class="post-toc-text">激活和停止网络接口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#获取帮助"><span class="post-toc-number">8.</span> <span class="post-toc-text">获取帮助</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#小结"><span class="post-toc-number">9.</span> <span class="post-toc-text">小结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#译者：KayGuoWhu-校对：wxy"><span class="post-toc-number"></span> <span class="post-toc-text">译者：KayGuoWhu 校对：wxy</span></a>
+        </nav>
+    </aside>
+    
+<article id="post-Linux/linux的ip命令总结"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">linux的ip命令总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-22 00:00:00" datetime="2017-11-21T16:00:00.000Z"  itemprop="datePublished">2017-11-22</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux/">linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>转载：<a href="https://linux.cn/" target="_blank" rel="external">Linux中国</a> <a href="https://linux.cn/article-3144-1.html" target="_blank" rel="external">https://linux.cn/article-3144-1.html</a><br>地址：<a href="https://linux.cn/article-3144-1.html" target="_blank" rel="external">https://linux.cn/article-3144-1.html</a></p>
+<p>linux的<strong>ip</strong>命令和<strong>ifconfig</strong>类似，但前者功能更强大，并旨在取代后者。使用ip命令，只需一个命令，你就能很轻松地执行一些网络管理任务。ifconfig是net-tools中已被废弃使用的一个命令，许多年前就已经没有维护了。iproute2套件里提供了许多增强功能的命令，ip命令即是其中之一。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003404uy9l1t5zayzllylm.png" alt="Net tools vs Iproute2" title="">
+                </div>
+                <div class="image-caption">Net tools vs Iproute2</div>
+            </figure>
+<p><em>Net tools vs Iproute2</em></p>
+<p>要安装ip，请<a href="http://www.linuxgrill.com/anonymous/iproute2/NEW-OSDL/" target="_blank" rel="external">点击这里</a>下载<strong>iproute2套装工具</strong> 。不过，大多数Linux发行版已经预装了iproute2工具。</p>
+<p>你也可以使用git命令来下载最新源代码来编译：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git clone <span class="symbol">https:</span>/<span class="regexp">/kernel.googlesource.com/pub</span><span class="regexp">/scm/linux</span><span class="regexp">/kernel/git</span><span class="regexp">/shemminger/iproute</span>2.git</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003410tpix2804k660lwu4.png" alt="iproute2 git clone" title="">
+                </div>
+                <div class="image-caption">iproute2 git clone</div>
+            </figure>
+<p><em>iproute2 git clone</em></p>
+<h3 id="设置和删除Ip地址"><a href="#设置和删除Ip地址" class="headerlink" title="设置和删除Ip地址"></a>设置和删除Ip地址</h3><p>要给你的机器设置一个IP地址，可以使用下列ip命令：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo<span class="built_in"> ip </span>addr <span class="builtin-name">add</span> 192.168.0.193/24 dev wlan0</div></pre></td></tr></table></figure>
+<p>请注意IP地址要有一个后缀，比如/24。这种用法用于在无类域内路由选择（CIDR）中来显示所用的子网掩码。在这个例子中，子网掩码是255.255.255.0。</p>
+<p>在你按照上述方式设置好IP地址后，需要查看是否已经生效。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$<span class="built_in"> ip </span>addr show wlan0</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003411qp4xsem5491ee49t.png" alt="set ip address" title="">
+                </div>
+                <div class="image-caption">set ip address</div>
+            </figure>
+<p><em>set ip address</em></p>
+<p>你也可以使用相同的方式来删除IP地址，只需用del代替add。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo<span class="built_in"> ip </span>addr del 192.168.0.193/24 dev wlan0</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003412dottfn0jnidyykd2.png" alt="delete ip address" title="">
+                </div>
+                <div class="image-caption">delete ip address</div>
+            </figure>
+<p><em>delete ip address</em></p>
+<h3 id="列出路由表条目"><a href="#列出路由表条目" class="headerlink" title="列出路由表条目"></a>列出路由表条目</h3><p>ip命令的路由对象的参数还可以帮助你查看网络中的路由数据，并设置你的路由表。第一个条目是默认的路由条目，你可以随意改动它。</p>
+<p>在这个例子中，有几个路由条目。这个结果显示有几个设备通过不同的网络接口连接起来。它们包括WIFI、以太网和一个点对点连接。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$<span class="built_in"> ip route </span>show</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003413mnehm4uinhziu287.png" alt="ip route show" title="">
+                </div>
+                <div class="image-caption">ip route show</div>
+            </figure>
+<p><em>ip route show</em></p>
+<p>假设现在你有一个IP地址，你需要知道路由包从哪里来。可以使用下面的路由选项（译注：列出了路由所使用的接口等）：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$<span class="built_in"> ip route </span><span class="builtin-name">get</span> 10.42.0.47</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003414h53e34qwjfo34emm.png" alt="ip route get" title="">
+                </div>
+                <div class="image-caption">ip route get</div>
+            </figure>
+<p><em>ip route get</em></p>
+<h3 id="更改默认路由"><a href="#更改默认路由" class="headerlink" title="更改默认路由"></a>更改默认路由</h3><p>要更改默认路由，使用下面ip命令：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo<span class="built_in"> ip route </span><span class="builtin-name">add</span><span class="built_in"> default </span>via 192.168.0.196</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003415i8d82ulsa4c4jcd4.png" alt="default route" title="">
+                </div>
+                <div class="image-caption">default route</div>
+            </figure>
+<p><em>default route</em></p>
+<h3 id="显示网络统计数据"><a href="#显示网络统计数据" class="headerlink" title="显示网络统计数据"></a>显示网络统计数据</h3><p>使用ip命令还可以显示不同网络接口的统计数据。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003417l1jc4h5537m050wy.png" alt="ip statistics all interfaces" title="">
+                </div>
+                <div class="image-caption">ip statistics all interfaces</div>
+            </figure>
+<p><em>ip statistics all interfaces</em></p>
+<p>当你需要获取一个特定网络接口的信息时，在网络接口名字后面添加选项<strong>ls</strong>即可。使用多个选项<strong>-s</strong>会给你这个特定接口更详细的信息。特别是在排除网络连接故障时，这会非常有用。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$<span class="built_in"> ip </span>-s -s link ls p2p1</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003418acoo0krhjellollu.png" alt="ip link statistics" title="">
+                </div>
+                <div class="image-caption">ip link statistics</div>
+            </figure>
+<p><em>ip link statistics</em></p>
+<h3 id="ARP条目"><a href="#ARP条目" class="headerlink" title="ARP条目"></a>ARP条目</h3><p>地址解析协议（ARP）用于将一个IP地址转换成它对应的物理地址，也就是通常所说的MAC地址。使用ip命令的neigh或者neighbour选项，你可以查看接入你所在的局域网的设备的MAC地址。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$<span class="built_in"> ip </span>neighbour</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003419uzm96tbvujb5bvqe.png" alt="ip neighbour" title="">
+                </div>
+                <div class="image-caption">ip neighbour</div>
+            </figure>
+<p><em>ip neighbour</em></p>
+<h3 id="监控netlink消息"><a href="#监控netlink消息" class="headerlink" title="监控netlink消息"></a>监控netlink消息</h3><p>也可以使用ip命令查看netlink消息。monitor选项允许你查看网络设备的状态。比如，所在局域网的一台电脑根据它的状态可以被分类成REACHABLE或者STALE。使用下面的命令：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$<span class="built_in"> ip </span>monitor all</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003420ap2j3jjvjk3jvvoo.png" alt="ip monitor all" title="">
+                </div>
+                <div class="image-caption">ip monitor all</div>
+            </figure>
+<p><em>ip monitor all</em></p>
+<h3 id="激活和停止网络接口"><a href="#激活和停止网络接口" class="headerlink" title="激活和停止网络接口"></a>激活和停止网络接口</h3><p>你可以使用ip命令的up和down选项来激某个特定的接口，就像ifconfig的用法一样。</p>
+<p>在这个例子中，当ppp0接口被激活和在它被停止和再次激活之后，你可以看到相应的路由表条目。这个接口可能是wlan0或者eth0。将ppp0更改为你可用的任意接口即可。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo<span class="built_in"> ip </span>link <span class="builtin-name">set</span> ppp0 down $ sudo<span class="built_in"> ip </span>link <span class="builtin-name">set</span> ppp0 up</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003421mdudvkazcgkl6g8d.png" alt="ip link set up and down" title="">
+                </div>
+                <div class="image-caption">ip link set up and down</div>
+            </figure>
+<p><em>ip link set up and down</em></p>
+<h3 id="获取帮助"><a href="#获取帮助" class="headerlink" title="获取帮助"></a>获取帮助</h3><p>当你陷入困境，不知道某一个特定的选项怎么用的时候，你可以使用help选项。man页面并不会提供许多关于如何使用ip选项的信息，因此这里就是获取帮助的地方。</p>
+<p>比如，想知道关于route选项更多的信息：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$<span class="built_in"> ip route </span>help</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003422xh9xm2wihecdjhif.png" alt="ip route help" title="">
+                </div>
+                <div class="image-caption">ip route help</div>
+            </figure>
+<p><em>ip route help</em></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>对于网络管理员们和所有的Linux使用者们，ip命令是必备工具。是时候抛弃ifconfig命令了，特别是当你写脚本时。</p>
+<hr>
+<p>via: <a href="http://linoxide.com/linux-command/use-ip-command-linux/" target="_blank" rel="external">http://linoxide.com/linux-command/use-ip-command-linux/</a></p>
+<h2 id="译者：KayGuoWhu-校对：wxy"><a href="#译者：KayGuoWhu-校对：wxy" class="headerlink" title="译者：KayGuoWhu 校对：wxy"></a>译者：<a href="https://github.com/KayGuoWhu" target="_blank" rel="external">KayGuoWhu</a> 校对：<a href="https://github.com/wxy" target="_blank" rel="external">wxy</a></h2><p>本文由 <a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="external">LCTT</a> 原创翻译，<a href="https://linux.cn/article-3144-1.html" target="_blank" rel="external">Linux中国</a> 荣誉推出</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-11-22T01:56:43.000Z" itemprop="dateUpdated">2017-11-22 09:56:43</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2017/11/22/Linux/linux的ip命令总结/" target="_blank" rel="external">https://fantasykai.cc/2017/11/22/Linux/linux的ip命令总结/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2017/11/22/Linux/linux的ip命令总结/&title=《linux的ip命令总结》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2017/11/22/Linux/linux的ip命令总结/&title=《linux的ip命令总结》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2017/11/22/Linux/linux的ip命令总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《linux的ip命令总结》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2017/11/22/Linux/linux的ip命令总结/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2017/11/22/Linux/linux的ip命令总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/12/python/python中list的排序/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python中list的排序</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2017/11/22/Linux/linux的ip命令总结/&title=《linux的ip命令总结》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2017/11/22/Linux/linux的ip命令总结/&title=《linux的ip命令总结》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2017/11/22/Linux/linux的ip命令总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《linux的ip命令总结》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2017/11/22/Linux/linux的ip命令总结/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2017/11/22/Linux/linux的ip命令总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHklEQVR42u3a0WoEIQwF0P3/n55C3ys3yU5BPT4t7Xb0TOGiJp9PPJ7f8cbPnz/G542BgYGxLeNZjnxZ68/rp63njagYGBgXMHpLfDsVC4GOgYGBsYzC9XJ7AY2BgYExCdw8dvON5mRLioGBcQ8j2a5VL8Xy7ycH4K+dxTEwMDZkVAsD//n5xfoGBgbGJoxnPPKjb14qKK8BAwPjaEZycVZtpFhTq6+jEMQYGBiHMnoXbb3Jqm0ZeaxjYGBgJOXM3t/2iqDNwMXAwNiWUT2CVn87CeURCQMD4wLGZNHJ9L3vFwqZGBgYBzHyhq11dCbT58+vvlAMDIyzGZOr/zwie0WFfNuKgYFxNqO3oHyJvaaKPMoL/yYMDIxtGZOLrWqYJsXRfN7CWRwDA+MgRh55yc/npc3qK8DAwDiVMWpoaF2f5U/IW9MwMDBuYMw3dvmU1VJo8jQMDIyzGfPDZK9hIt+M5ptFDAyMGxiTAM23ntU4zsMaAwPjBsak2WK+QZx/EwMD4wZG0tbQbCSNiwHVtjAMDIx7GNVSQb6By+O7+iK+0DOCgYGxCeMpjvlCq9dwSdxjYGCczZg0VVRLkpPt46SAgYGBcQajWjicNF4koZkfaDEwMG5jVK+3cnCv/Fk+9GJgYGC0onOyrHIRAgMDAyOYLCHN4xgDA+NmRl4MSJaSlwSqxYbylBgYGEcwepf1eQmztyn8bosGBgbGtowfPTnuzThXbEMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>
