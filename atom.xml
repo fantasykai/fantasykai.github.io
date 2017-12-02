@@ -1979,6 +1979,101 @@ wd list             //查看所有标记
   </entry>
   
   <entry>
+    <title>iTerm2 快捷操作</title>
+    <link href="https://fantasykai.cc/2017/08/26/mac/iterm2%20%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C/"/>
+    <id>https://fantasykai.cc/2017/08/26/mac/iterm2 快捷操作/</id>
+    <published>2017-08-25T16:00:00.000Z</published>
+    <updated>2017-12-02T07:39:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>记录一些 iTerm2 的常用快捷操作，方便提高效率</p>
+</blockquote>
+<h2 id="光标控制"><a href="#光标控制" class="headerlink" title="光标控制"></a>光标控制</h2><ul>
+<li>ctrl + a: 到行首</li>
+<li>ctrl + e: 行末</li>
+<li>ctrl + f/b: 前进后退，相当于左右方向键，但是显然比移开手按方向键更快</li>
+<li>ctrl + p: 上一条命令，相当于方向键上</li>
+<li>ctrl + r: 搜索命令历史，这个大家都应该很熟悉了</li>
+<li>ctrl + d: 删除当前字符</li>
+<li>ctrl + h: 删除之前的字符</li>
+<li>ctrl + w: 删除光标前的单词</li>
+<li>ctrl + k: 删除到文本末尾</li>
+<li>ctrl + t: 交换光标处文本</li>
+<li>ctrl + u: 删除一行</li>
+<li>⌘ + —/+/0: 调整字体大小</li>
+<li>⌘ + r:清屏，其实是滚到新的一屏，并没有清空。ctrl + l 也可以做到。</li>
+</ul>
+<h2 id="窗口操作"><a href="#窗口操作" class="headerlink" title="窗口操作"></a>窗口操作</h2><ul>
+<li>新建窗口：shift + command + d（横向）command + d（竖向）</li>
+<li>关闭窗口：shift + command + w</li>
+<li>前一个窗口：command + `</li>
+<li>后一个窗口：command + ~</li>
+<li>进入窗口 1,2,3：option + command + 编号</li>
+</ul>
+<h2 id="标签页操作"><a href="#标签页操作" class="headerlink" title="标签页操作"></a>标签页操作</h2><ul>
+<li>新建标签页: Command + T</li>
+<li>关闭标签页: Command + W</li>
+<li>前一个标签页: Command + 左方向键，Shift + Command + [</li>
+<li>后一个标签页: Command + 右方向键，Shitf + Command + ]</li>
+<li>进入标签页1，2，3…: Command + 标签页编号</li>
+<li>Expose 标签页: Option + Command + E（将标签页打撒到全屏，并可以全局搜索所有的标签页）</li>
+</ul>
+<h2 id="面板操作"><a href="#面板操作" class="headerlink" title="面板操作"></a>面板操作</h2><ul>
+<li>垂直分割: Command + D</li>
+<li>水平分割: Shift + Command + D</li>
+<li>前一个面板: Command + [</li>
+<li>后一个面板: Command + ]</li>
+<li>切换到上/下/左/右面板: Option + Command + 上下左右方向键</li>
+</ul>
+<h2 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h2><ul>
+<li>支持自定义全局快捷键用于显示和隐藏iTerm2 Preference -&gt; Keys －&gt; Show/hide iTerm2 with a system-wide hotkey 打上勾之后</li>
+<li>进入和退出全屏: Command + Enter</li>
+<li>查看当前终端中光标的位置: Command + /</li>
+<li>命令自动补全: Command + ;（很少用这个，还是感觉Zsh的补全更好用）</li>
+<li>开启和关闭背景半透明: Command + u</li>
+<li>清屏（重置当前终端）: Command + r</li>
+</ul>
+<h2 id="文本选取"><a href="#文本选取" class="headerlink" title="文本选取"></a>文本选取</h2><p>文本选取有使用鼠标和不使用鼠标两种方式。</p>
+<p>使用鼠标</p>
+<p>默认情况下，选取的文字会自动复制到剪切板，可以使用以下方式进行文本选取：</p>
+<ul>
+<li>常见的点击并拖拽方式</li>
+<li>双击选取整个单词</li>
+<li>三击选取整行</li>
+<li>选取某一部分，按住Shift，再点击某处，可以选取整个矩形内的文本（类似Windows下按住Shift可以批量选取图标）</li>
+<li>按住Command + Option，可以用鼠标画出一个矩形，用类似截图的方式选取文本 另外，还可以使用鼠标完成以下操作： 按住Command然后点击某个URL，会在浏览器中打开这个URL，点击某个文件夹，会在Finder里打开这个文件夹（再也不用open . 啦），点击某个文件名，会打开这个文件（文本文件支持MacVim，TextMate和BBEdit，如果后面跟随一个冒号和行号，文件会在行号处打开，其它格式的文件似乎不能调用默认程序打开） 选取文本之后，按住Command 同时拖动文本，可以将文本粘贴到目标位置（Drag and Drop） 鼠标中键粘贴（这个太感人了，一下子找回Linux的感觉了）</li>
+</ul>
+<p>不使用鼠标</p>
+<p>(这种方式最多只能选取一行文本) 使用 Command + f，会呼出一个搜索框，可以在当前面板中进行搜索，输入想要选取的部分内容，输入过程中，按Tab可以将选取部分向右扩展，按Shift + Tab向左扩展，按回车转到下一个匹配位置。使用Tab或Shift+Tab扩展得到想要的内容之后，选取内容会自动复制到剪切板，再次按Command + f隐藏搜索框。</p>
+<h2 id="位置书签"><a href="#位置书签" class="headerlink" title="位置书签"></a>位置书签</h2><p>在当前会话中按Command + Shift + m可以保存当前位置，之后可以按Command + Shift + j跳回这个位置。</p>
+<h2 id="粘贴历史"><a href="#粘贴历史" class="headerlink" title="粘贴历史"></a>粘贴历史</h2><p>使用Command + Shift + h 可以呼出粘贴历史，支持模糊检索。还可以设置将粘贴历史保存在磁盘上（Preferences -&gt; General）</p>
+<h2 id="即时回放"><a href="#即时回放" class="headerlink" title="即时回放"></a>即时回放</h2><p>使用Command + Opt + b 打开即时回放，按Esc退出。即时回放可以记录终端输出的状态，让你“穿越时间”查看终端内容。默认每个会话最多储存4MB的内容，可以在设置中更改（Preferences -&gt; Genernal -&gt; Instant Replay）。</p>
+<h2 id="窗口状态"><a href="#窗口状态" class="headerlink" title="窗口状态"></a>窗口状态</h2><p>通过 Window -&gt; Save Window Arrangement 可以保存当前窗口状态的快照，包括打开的窗口，标签页和面板。通过 Window -&gt; Restore Window Arrangement 还原。还可以在 Preferences -&gt; General -&gt; Open saved window arrangement 中设置在启动iTerm2时自动恢复窗口状态</p>
+<h2 id="特色功能"><a href="#特色功能" class="headerlink" title="特色功能"></a>特色功能</h2><ul>
+<li>command+; 根据上下文呼出自动完成窗口，上下键选择</li>
+<li>全屏 command+enter</li>
+<li>光标去哪了？command+/</li>
+<li>用鼠标选中某个路径或者某个词汇就自动复制</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;记录一些 iTerm2 的常用快捷操作，方便提高效率&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;光标控制&quot;&gt;&lt;a href=&quot;#光标控制&quot; class=&quot;headerlink&quot; title=&quot;光标控制&quot;&gt;&lt;/a&gt;光标控制&lt;/h2&gt;&lt;ul&gt;
+    
+    </summary>
+    
+      <category term="工具" scheme="https://fantasykai.cc/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="mac" scheme="https://fantasykai.cc/tags/mac/"/>
+    
+  </entry>
+  
+  <entry>
     <title>hexo 从Windows 迁移到Mac 上继续玩耍</title>
     <link href="https://fantasykai.cc/2017/08/25/mac/hexo%20%E4%BB%8EWindows%20%E8%BF%81%E7%A7%BB%E5%88%B0%E5%88%B0mac/"/>
     <id>https://fantasykai.cc/2017/08/25/mac/hexo 从Windows 迁移到到mac/</id>
@@ -2040,171 +2135,6 @@ INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.
     
     
       <category term="mac" scheme="https://fantasykai.cc/tags/mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux 命令行使用技巧</title>
-    <link href="https://fantasykai.cc/2017/08/24/Linux/Linux%20%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
-    <id>https://fantasykai.cc/2017/08/24/Linux/Linux 命令行使用技巧/</id>
-    <published>2017-08-24T03:01:06.000Z</published>
-    <updated>2017-08-24T03:01:06.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="最实用的-Linux-命令行使用技巧-【已翻译100-】"><a href="#最实用的-Linux-命令行使用技巧-【已翻译100-】" class="headerlink" title="最实用的 Linux 命令行使用技巧 【已翻译100%】"></a>最实用的 Linux 命令行使用技巧 【已翻译100%】</h1><p>英文原文：<a href="https://dzone.com/articles/most-useful-linux-command-line-tricks" target="_blank" rel="external">Most Useful Linux Command Line Tricks</a></p>
-<hr>
-<p>我们可能每天都会要使用到很多的 <a href="https://likegeeks.com/main-linux-commands-easy-guide/" target="_blank" rel="external">Linux 命令行</a>。 我们也会网络上知晓一些使用它们的小技巧，但是如果我们没有时常来进行练习，就有可能会忘掉怎么去使用它们。 所以我就决定把那些你可能会忘记的小提示和小技巧，或者对你而言可能是全新的东西都列表来。</p>
-<h2 id="将输出内容以表格的形式显示出来"><a href="#将输出内容以表格的形式显示出来" class="headerlink" title="将输出内容以表格的形式显示出来"></a>将输出内容以表格的形式显示出来</h2><p>有时，在你看到命令行执行的输出时，因为字符串过度拥挤（比如说 mount 命令的输出）导致输出内容难以识别。如果我们看到的内容是一张表格会如何呢？其实这是很容易做到的！</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount <span class="string">| column –t:</span></div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0823/091303_TBUa_2903254.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>在此例中，由于内容中留了空格，所以输出的形式就美观了起来。 那如果想要的分隔符是别的什么符号，比如说冒号，又该怎么去做呢？ （例如，在 cat/etc/passwd 的输出内容中使用）</p>
-<p>这时候只需要使用 -s 参数指定分隔符就行了，像下面这样。</p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/passwd | <span class="built_in">column</span> -<span class="built_in">t</span> -<span class="symbol">s:</span></div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0823/091553_PTLs_2903254.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<h2 id="重复执行一个命令，直到它运行成功"><a href="#重复执行一个命令，直到它运行成功" class="headerlink" title="重复执行一个命令，直到它运行成功"></a>重复执行一个命令，直到它运行成功</h2><p>如果在 Google 上搜索这个功能，你会发现很多人都问到了如何重复执行命令，直到这个命令成功返回并且运行正常。 Google上的建议里就包括 ping 服务器，直到它变得空闲为止，还有就是检查是否有向特定的目录上传了具有特定扩展名的文件，还有就是检查特定的URL是否已经存在，诸如此类的办法。</p>
-<p>其实你还可以使用 while true 的循环来实现来实现这个功能：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0823/091607_Z6PD_2903254.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>在上面这个示例中，&gt;/dev/null 2&gt;＆1 会让程序的输出重定向到 /dev/ null。标准错误和标准输出都会被包含进去。</p>
-<p>这是我认为最酷的Linux命令行技巧之一。</p>
-<h2 id="按内存资源的使用量对进程进行排序"><a href="#按内存资源的使用量对进程进行排序" class="headerlink" title="按内存资源的使用量对进程进行排序"></a>按内存资源的使用量对进程进行排序</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ps</span> aux | <span class="keyword">sort</span> -rnk <span class="number">4</span>:</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0823/091735_Hqk6_2903254.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<h2 id="按-CPU-资源的使用量对进程进行排序"><a href="#按-CPU-资源的使用量对进程进行排序" class="headerlink" title="按 CPU 资源的使用量对进程进行排序"></a>按 CPU 资源的使用量对进程进行排序</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ps</span> aux | <span class="keyword">sort</span> -nk <span class="number">3</span>:</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0823/091900_QTKd_2903254.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>如果想要检查你的机器架构，那就执行 getconf LONG_BIT。</p>
-<h2 id="可以同时查看多个日志文件"><a href="#可以同时查看多个日志文件" class="headerlink" title="可以同时查看多个日志文件"></a>可以同时查看多个日志文件</h2><p>毫无疑问，你可能已经会使用 tail  命令来查看日志文件了，但可能有时候你还想着能同时查看多个日志文件。 使用 multi-tail 命令就支持支持文本的高亮显示，内容过滤以及更多你可能需要的功能：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0823/091937_H48w_2903254.png" alt="img](https://static.oschina.net/uploads/space/2017/0823/091924_12e3_2903254.png)![img" title="">
-                </div>
-                <div class="image-caption">img](https://static.oschina.net/uploads/space/2017/0823/091924_12e3_2903254.png)![img</div>
-            </figure>
-<p>如果系统里还没有这个命令，运行 apt-get install multitail 命令就可以把它给装上。</p>
-<h2 id="回到你操作过的上一个目录去"><a href="#回到你操作过的上一个目录去" class="headerlink" title="回到你操作过的上一个目录去"></a>回到你操作过的上一个目录去</h2><p>只需敲入 cd - 就会返回到你操作过的上一个目录中去。</p>
-<h2 id="让非交互式-Shell-会话可进行交互"><a href="#让非交互式-Shell-会话可进行交互" class="headerlink" title="让非交互式 Shell 会话可进行交互"></a>让非交互式 Shell 会话可进行交互</h2><p>想要这样做，那就把设置从 ~/.bashrc 改成 ~/.bash_profile 吧。</p>
-<h2 id="定时的监视性命令输出"><a href="#定时的监视性命令输出" class="headerlink" title="定时的监视性命令输出"></a>定时的监视性命令输出</h2><p>使用 watch 命令（watch df -h），你就可以查看到任何命令的任何输出。例如，你可以查看可用空间以及它的使用量增长情况。</p>
-<p>通过利用 watch 命令来操作会变化的数据，你可以尽情想象自己能拿这个来做些什么哦。</p>
-<h2 id="在会话关掉以后继续运行程序"><a href="#在会话关掉以后继续运行程序" class="headerlink" title="在会话关掉以后继续运行程序"></a>在会话关掉以后继续运行程序</h2><p>如果你在后台运行了什么程序，然后你关掉了的 shell 会话，那么这个后台运行的程序就会被你的 shell 杀掉。关闭 shell 以后怎么让程序继续运行下去呢？</p>
-<p>这个可以用 nohup 命令做到 - 该指令表示不做挂断操作：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup wget site.com/<span class="keyword">file</span>.<span class="keyword">zip</span></div></pre></td></tr></table></figure>
-<p>此命令是最容易被遗忘的 Linux 命令行技巧之一，因为我们许多人都会使用另外一个类命令的 screen 环境：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0823/092000_PnE3_2903254.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>这样会在同一个目录下生成一个名称为 nohup.out 的文件，其中包含了正在运行的程序的输出内容：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0823/092013_Bvae_2903254.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>命令很酷，对吧？</p>
-<h2 id="自动对任何命令回答-Yes-或者-No"><a href="#自动对任何命令回答-Yes-或者-No" class="headerlink" title="自动对任何命令回答 Yes 或者 No"></a>自动对任何命令回答 Yes 或者 No</h2><p>如果你想自动化需要向用户说的 Yes 的过程，可以使用 yes 命令来实现：yes | apt-get update。</p>
-<p>也许你想做的是自动地说“No”。这个可以使用 yes no | 命令来实现。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0823/092025_pFb6_2903254.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<h2 id="创建具有指定大小的文件"><a href="#创建具有指定大小的文件" class="headerlink" title="创建具有指定大小的文件"></a>创建具有指定大小的文件</h2><p>可以使用 dd 命令来创建出具有指定大小的文件：dd if=/dev/zero of=out.txt bs=1M count=10。</p>
-<p>这样就会创建出一个 10 MB 的文件，填充零作为内容：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0823/092151_LtpJ_2903254.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<h2 id="以根目录用户来运行最后一个命令"><a href="#以根目录用户来运行最后一个命令" class="headerlink" title="以根目录用户来运行最后一个命令"></a>以根目录用户来运行最后一个命令</h2><p>有时，你会忘记在需要 root 权限的命令之前敲入 sudo。这时候你没必要去重写命令; 只要输入 sudo 就行了！</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0823/092206_tCmM_2903254.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<h2 id="对命令行会话进行记录"><a href="#对命令行会话进行记录" class="headerlink" title="对命令行会话进行记录"></a>对命令行会话进行记录</h2><p>如果想要把自己在 shell 屏幕上敲的内容记录下来，可以使用 script 命令将所有敲写的内容保存到一个名为 typescriptscript 的文件中去。</p>
-<p>等你敲入 exit 命令以后，所有命令就都会被写入该文件，以便你事后再回过头去查看。</p>
-<h2 id="用标签符号替换空格符"><a href="#用标签符号替换空格符" class="headerlink" title="用标签符号替换空格符"></a>用标签符号替换空格符</h2><p>可以使用 tr 命令替换任何字符，这个用起来非常方便：cat geeks.txt | tr ‘:[space]:’ ‘\t’ &gt; out.txt.</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0823/092230_Phyw_2903254.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<h2 id="将文件内容转换为大写或者小写"><a href="#将文件内容转换为大写或者小写" class="headerlink" title="将文件内容转换为大写或者小写"></a>将文件内容转换为大写或者小写</h2><p>可以这样实现：cat myfile | tr a-z A-Z&gt; output.txt。</p>
-<h2 id="强大的-Xargs-命令"><a href="#强大的-Xargs-命令" class="headerlink" title="强大的 Xargs 命令"></a>强大的 Xargs 命令</h2><p>xargs 命令是最重要的 Linux 命令行技巧之一。你可以使用这个命令将命令的输出作为参数传递给另一个命令。例如，搜索 png 文件然后对其进行压缩或者其它操作：</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">find</span>. -name *.png -<span class="built_in">type</span> f -<span class="built_in">print</span> | xargs tar -cvzf images.tar.gz</div></pre></td></tr></table></figure>
-<p>又或者你的文件中有一个 URL 的列表，而你想要做的是以不同的方式下载或者处理这些 URL，可以这样做：</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat urls.txt <span class="string">| xargs wget</span></div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0823/092303_cq15_2903254.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/img/201708/23092445_75a4.png" alt="xargs command" title="">
-                </div>
-                <div class="image-caption">xargs command</div>
-            </figure>
-<p>请你要记得，第一个命令的输出会在 xargs 命令结尾处传递。</p>
-<p>那如果命令需要中间过程的输出，该怎么办呢？这个简单！</p>
-<p>只需要使用 {} 并结合 -i 参数就行了。如下所示，替换在第一个命令的输出应该去的地方的参数：</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ls</span> <span class="string">/etc/</span>*<span class="string">.conf</span> | xargs -i cp &#123;&#125; <span class="string">/home/likegeeks/Desktop/out</span></div></pre></td></tr></table></figure>
-<p>这只是 Linux 命令行技巧其中的几个而已。你可以使用其他命令来做一些更 HAPPY 的事情，比如 awk 命令和 sed 命令！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;最实用的-Linux-命令行使用技巧-【已翻译100-】&quot;&gt;&lt;a href=&quot;#最实用的-Linux-命令行使用技巧-【已翻译100-】&quot; class=&quot;headerlink&quot; title=&quot;最实用的 Linux 命令行使用技巧 【已翻译100%】&quot;&gt;&lt;/a&gt;最实
-    
-    </summary>
-    
-      <category term="技术小栈" scheme="https://fantasykai.cc/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
-    
-    
-      <category term="Linux" scheme="https://fantasykai.cc/tags/Linux/"/>
     
   </entry>
   
