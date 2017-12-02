@@ -1166,7 +1166,7 @@ upstream    https://github.com/pyeve/eve.git (push)
     <link href="https://fantasykai.cc/2017/10/14/mac/%E6%94%B6%E8%97%8F%E9%AB%98%E6%95%88%E7%9A%84%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
     <id>https://fantasykai.cc/2017/10/14/mac/收藏高效的小工具/</id>
     <published>2017-10-13T16:00:00.000Z</published>
-    <updated>2017-10-24T05:02:17.000Z</updated>
+    <updated>2017-12-02T03:18:54.000Z</updated>
     
     <content type="html"><![CDATA[<p>此篇讲持续更新，把用着不错的工具整理出来～，提高效率的同时，也方便学习和分享～</p>
 <h4 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h4><p><a href="https://brew.sh/" target="_blank" rel="external">Homebrew — The missing package manager for macOS</a>，Mac上非常好用的包管理工具，很多常见的安装都可以通过<code>brew install app</code>或者<code>brew cask install app</code>直接安装，类似apt-get，yum等，之前已经有篇幅记载。</p>
@@ -1224,7 +1224,39 @@ upstream    https://github.com/pyeve/eve.git (push)
     &quot;total&quot;: 0
 }
 }
-</code></pre>]]></content>
+</code></pre><h4 id="dict-cli"><a href="#dict-cli" class="headerlink" title="dict-cli"></a>dict-cli</h4><p>python的翻译工具，使用pip 安装即可</p>
+<pre><code>sudo pip install dict-cli
+</code></pre><p>直接使用 dict 单词</p>
+<pre><code>dict desktop
+###################################
+#  desktop 桌面
+#  (U: &apos;dɛsk&apos;tɑp E: &apos;desktɒp)
+#
+#  n. 桌面；台式机
+#
+#  desktop : 桌面
+#             台式机
+#             桌上型的
+#  Google Desktop : Google桌面
+#                    Google桌面
+#                    桌面搜索
+#  Desktop search : 桌面搜索
+#                    桌面搜索
+#                    桌面搜寻
+###################################
+</code></pre><h4 id="终端跳快速跳转到指定目录的oh-my-zsh插件：z与wd"><a href="#终端跳快速跳转到指定目录的oh-my-zsh插件：z与wd" class="headerlink" title="终端跳快速跳转到指定目录的oh-my-zsh插件：z与wd"></a>终端跳快速跳转到指定目录的oh-my-zsh插件：z与wd</h4><blockquote>
+<p>zsh的z插件可以随意跳转最近经常打开的文件夹<br>zsh的wd插件可以任意跳转你标记过的文件夹</p>
+</blockquote>
+<h5 id="安装-z-和-wd-插件"><a href="#安装-z-和-wd-插件" class="headerlink" title="安装 z 和 wd 插件"></a>安装 <code>z</code> 和 <code>wd</code> 插件</h5><p>打开.zshrc 文件添加插件即可</p>
+<pre><code>subl ~/.zshrc 
+plugins=(git z wd)
+</code></pre><h5 id="使用-z-可查看最近访问最频繁的目录"><a href="#使用-z-可查看最近访问最频繁的目录" class="headerlink" title="使用 z 可查看最近访问最频繁的目录"></a>使用 <code>z</code> 可查看最近访问最频繁的目录</h5><p>z + 目录名部分内容即可跳转到目录</p>
+<h5 id="使用wd插件"><a href="#使用wd插件" class="headerlink" title="使用wd插件"></a>使用wd插件</h5><pre><code>wd                  //查看所有可用命令
+wd add (label_name) //标记目录
+wd rm (label_name)  //去除目录标记
+wd list             //查看所有标记
+</code></pre><p>在需要添加快捷方式的目录，直接执行 wd add 标签名称即可</p>
+]]></content>
     
     <summary type="html">
     
