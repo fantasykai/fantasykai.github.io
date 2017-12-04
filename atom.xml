@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-12-04T08:44:17.000Z</updated>
+  <updated>2017-12-04T09:13:53.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://fantasykai.cc/2017/12/03/tools/chrome%20tools/Chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/"/>
     <id>https://fantasykai.cc/2017/12/03/tools/chrome tools/Chrome浏览器技巧总结/</id>
     <published>2017-12-02T16:00:00.000Z</published>
-    <updated>2017-12-04T08:44:17.000Z</updated>
+    <updated>2017-12-04T09:13:53.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>简单介绍一些chrome浏览器的小技巧</p>
@@ -142,7 +142,7 @@
 </tbody>
 </table>
 <h3 id="区域截屏"><a href="#区域截屏" class="headerlink" title="区域截屏"></a>区域截屏</h3><p>选取页面中的一部分，保存为图片<br>1、打开开发者工具<br>使用 快捷键 F12 (Windows) 或 Cmd+Opt+I (Mac) </p>
-<p><img src="http://segmentfault.com/img/remote/1460000012143181?w=787&amp;h=429" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4uq956h4j20lv0bxt9p.jpg" alt=""></p>
 <p>2、选择左上角的元素选择按钮，图标颜色变为蓝色即表示选中了 </p>
 <p><img src="http://segmentfault.com/img/remote/1460000012143182?w=269&amp;h=165" alt=""></p>
 <p>3、Windows 下按住 Ctrl，Mac 就按住 Command，然后点击鼠标左键在页面选择区域即可，松开鼠标后，截图自动下载。</p>
