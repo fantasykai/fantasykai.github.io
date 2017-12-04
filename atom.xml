@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2017-12-04T08:08:00.000Z</updated>
+  <updated>2017-12-04T08:12:09.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://fantasykai.cc/2017/12/03/tools/chrome%20tools/Chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93%20/"/>
     <id>https://fantasykai.cc/2017/12/03/tools/chrome tools/Chrome浏览器技巧总结 /</id>
     <published>2017-12-02T16:00:00.000Z</published>
-    <updated>2017-12-04T08:08:00.000Z</updated>
+    <updated>2017-12-04T08:12:09.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>简单介绍一些chrome浏览器的小技巧</p>
@@ -144,128 +144,128 @@
 <h3 id="区域截屏"><a href="#区域截屏" class="headerlink" title="区域截屏"></a>区域截屏</h3><p>选取页面中的一部分，保存为图片<br>1、打开开发者工具<br>使用 快捷键 F12 (Windows) 或 Cmd+Opt+I (Mac)<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143181?w=787&h=429" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143181?w=787&h=429" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <p>2、选择左上角的元素选择按钮，图标颜色变为蓝色即表示选中了<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143182?w=269&h=165" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143182?w=269&h=165" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure><br>3、Windows 下按住 Ctrl，Mac 就按住 Command，然后点击鼠标左键在页面选择区域即可，松开鼠标后，截图自动下载。</p>
 <p>4、图片自动下载好后，点击图片后面的箭头，可以在文件夹中显示<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143183?w=417&h=328" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143183?w=417&h=328" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <h3 id="节点截图"><a href="#节点截图" class="headerlink" title="节点截图"></a>节点截图</h3><p>选中页面中某一元素，保存为图片<br>1、打开开发者工具<br>使用 快捷键 F12 (Windows) 或 Cmd+Opt+I (Mac)<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143181?w=787&h=429" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143181?w=787&h=429" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <p>2、选中任意元素节点<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143184?w=551&h=175" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143184?w=551&h=175" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <p>3、打开命令工具<br>使用快捷键 Ctrl + Shift + p (Windows) 或 Cmd + Shift + p (Mac)<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143185?w=568&h=327" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143185?w=568&h=327" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <p>4、点击Capture node screenshot，或者输入这行中任意的关键字，比如输入node，也会出来这个选项，然后点击这个选项，图片会自动下载。<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143186?w=531&h=159" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143186?w=531&h=159" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <p>5、图片自动下载好后，点击图片后面的箭头，可以在文件夹中显示<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143187?w=417&h=328" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143187?w=417&h=328" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <h3 id="截全屏"><a href="#截全屏" class="headerlink" title="截全屏"></a>截全屏</h3><p>保存完整网页为图片<br><strong>第一种方式</strong><br>1、打开开发者工具<br>使用 快捷键 F12 (Windows) 或 Cmd+Opt+I (Mac)<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143181?w=787&h=429" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143181?w=787&h=429" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <p>2、打开命令工具<br>使用快捷键 Ctrl + Shift + p (Windows) 或 Cmd + Shift + p (Mac)<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143185?w=568&h=327" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143185?w=568&h=327" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <p>3、点击Capture full size screenshot，或者输入这行中任意的关键字，比如输入full，也会出来这个选项<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143188?w=523&h=110" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143188?w=523&h=110" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <p>4、图片自动下载好后，点击图片后面的箭头，可以在文件夹中显示<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143187?w=417&h=328" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143187?w=417&h=328" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <p><strong>第二种方式</strong><br>1、打开开发者工具<br>使用 快捷键 F12 (Windows) 或 Cmd+Opt+I (Mac)</p>
 <p>2、选中 切换开发模式按钮，图标颜色变为蓝色即表示选中了<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143189?w=235&h=140" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143189?w=235&h=140" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <p>3、点右上方的三个 小点，点击Capture full size screenshot，图片会自动下载<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143190?w=755&h=315" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143190?w=755&h=315" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <h3 id="拾色器"><a href="#拾色器" class="headerlink" title="拾色器"></a>拾色器</h3><p>在Styles边栏 点击任意颜色的小色块，就可以弹出颜色选择器<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143191?w=280&h=261" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143191?w=280&h=261" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure><br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://static.segmentfault.com/v-5a24f96b/global/img/squares.svg" alt="img" title="">
+                    <img src="https://static.segmentfault.com/v-5a24f96b/global/img/squares.svg" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure><br>1、颜色选择区域。<br>2、吸管。<br>3、复制到剪贴板。将显示值复制到剪贴板。<br>4、显示值。颜色的RGBA，HSLA或十六进制表示。<br>5、调色板。单击其中一个方块将颜色更改为该方块。<br>6、色相。<br>7、透明度。<br>8、显示值切换器。在当前颜色的RGBA，HSLA和Hex表示之间切换。<br>9、调色板切换器。</p>
 <h3 id="快速添加样式规则"><a href="#快速添加样式规则" class="headerlink" title="快速添加样式规则"></a>快速添加样式规则</h3><p>1、在Styles 边栏，鼠标放在每一小块样式规则上，右下方都会有三个小点<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143193?w=471&h=295" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143193?w=471&h=295" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <p>2、鼠标放在这三个小点上，会出现5个小图标，每个小图标都有作用<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143194?w=444&h=139" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143194?w=444&h=139" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <p>3、他们从左到右分别代表</p>
 <ul>
@@ -279,24 +279,24 @@
 <p>2、点击右上方的三个小点，然后选择Settings<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143195?w=812&h=261" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143195?w=812&h=261" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <p>3、选择Devices，然后在需要添加的设备前面打上勾就可以了<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143196?w=505&h=343" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143196?w=505&h=343" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这些小技巧，很简单，希望对大家有所帮助，不过对于有办法，有时间的朋友还是建议去官网看看吧，毕竟那里才更加全面。<br><a href="https://developers.google.com/web/tools/chrome-devtools/?hl=zh-cn" target="_blank" rel="external">Chrome 开发者工具</a></p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://segmentfault.com/img/remote/1460000012143197?w=662&h=4635" alt="img" title="">
+                    <img src="https://segmentfault.com/img/remote/1460000012143197?w=662&h=4635" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure>
 <p><a href="http://img.blog.csdn.net/20171122155304242" target="_blank" rel="external">点击查看原图</a></p>
 ]]></content>
