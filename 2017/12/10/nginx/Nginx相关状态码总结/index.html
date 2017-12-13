@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2017/12/10/nginx/Nginx相关状态码总结/">
+    
+    
+    <title>Nginx相关状态码总结 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="nginx">
+    <meta name="description" content="本文目的旨在对http状态码含义做一个基本解释，不会太深入讨论每个状态码  http状态码分类 消息类（1字头） 成功类（2字头） 重定向类（3字头） 请求错误类（4字头） 服务器错误类（5、6字头）  中途可能会穿插nginx自定义的http状态码，nginx状态码本身不属于http状态码了，只是在nginx内部自己定义的一套状态码，但是在nginx日志中，却经常出现 请求错误类（客户端错误）">
+<meta name="keywords" content="nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx相关状态码总结">
+<meta property="og:url" content="https://fantasykai.cc/2017/12/10/nginx/Nginx相关状态码总结/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="本文目的旨在对http状态码含义做一个基本解释，不会太深入讨论每个状态码  http状态码分类 消息类（1字头） 成功类（2字头） 重定向类（3字头） 请求错误类（4字头） 服务器错误类（5、6字头）  中途可能会穿插nginx自定义的http状态码，nginx状态码本身不属于http状态码了，只是在nginx内部自己定义的一套状态码，但是在nginx日志中，却经常出现 请求错误类（客户端错误）">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c696edab64413c8b000739">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c74371ab64413b37000dae">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c743b6ab64413c8b000e2a">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c74731ab64413c8b000e39">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c748b5ab64413c8b000e40">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56ca69f9ab64413b37001d8a">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c74c92ab64413b37000dd9">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c89aa1ab64413b3700152d">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c89ca0ab64413b37001539">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c9b087ab64413b37001a89">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c9b174ab64413c8b001a58">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c9a0f1ab64413c8b0019f2">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c9a272ab64413c8b0019fe">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c9a4a0ab64413c8b001a0b">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56cd6045ab64413c8b003002">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c9c05eab64413b37001afc">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c9bd30ab64413b37001aee">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56c9bdb0ab64413b37001af0">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56cad79dab64413b37002183">
+<meta property="og:image" content="http://leanote.com/api/file/getImage?fileId=56cadf78ab64413b370021b4">
+<meta property="og:updated_time" content="2017-12-13T11:47:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nginx相关状态码总结">
+<meta name="twitter:description" content="本文目的旨在对http状态码含义做一个基本解释，不会太深入讨论每个状态码  http状态码分类 消息类（1字头） 成功类（2字头） 重定向类（3字头） 请求错误类（4字头） 服务器错误类（5、6字头）  中途可能会穿插nginx自定义的http状态码，nginx状态码本身不属于http状态码了，只是在nginx内部自己定义的一套状态码，但是在nginx日志中，却经常出现 请求错误类（客户端错误）">
+<meta name="twitter:image" content="http://leanote.com/api/file/getImage?fileId=56c696edab64413c8b000739">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Nginx相关状态码总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Nginx相关状态码总结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-09T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-12-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/容器/">容器</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#http状态码分类"><span class="post-toc-number">1.</span> <span class="post-toc-text">http状态码分类</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#请求错误类（客户端错误）"><span class="post-toc-number">2.</span> <span class="post-toc-text">请求错误类（客户端错误）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#400"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">400</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#401"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">401</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#403"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">403</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#404"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">404</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#405"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">405</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#413"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">413</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#414"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">414</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#499-nginx-status"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">499(nginx status)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#服务端错误"><span class="post-toc-number">3.</span> <span class="post-toc-text">服务端错误</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#500"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">500</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#502"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">502</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#503"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">503</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#504"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">504</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#重定向和缓存"><span class="post-toc-number">4.</span> <span class="post-toc-text">重定向和缓存</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#301和302"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">301和302</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#304"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">304</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-nginx/Nginx相关状态码总结"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Nginx相关状态码总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-10 00:00:00" datetime="2017-12-09T16:00:00.000Z"  itemprop="datePublished">2017-12-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/容器/">容器</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>本文目的旨在对http状态码含义做一个基本解释，不会太深入讨论每个状态码</p>
+</blockquote>
+<h1 id="http状态码分类"><a href="#http状态码分类" class="headerlink" title="http状态码分类"></a>http状态码分类</h1><ol>
+<li>消息类（1字头）</li>
+<li>成功类（2字头）</li>
+<li>重定向类（3字头）</li>
+<li>请求错误类（4字头）</li>
+<li>服务器错误类（5、6字头）</li>
+</ol>
+<p>中途可能会穿插nginx自定义的http状态码，nginx状态码本身不属于http状态码了，只是在nginx内部自己定义的一套状态码，但是在nginx日志中，却经常出现</p>
+<h1 id="请求错误类（客户端错误）"><a href="#请求错误类（客户端错误）" class="headerlink" title="请求错误类（客户端错误）"></a>请求错误类（客户端错误）</h1><h2 id="400"><a href="#400" class="headerlink" title="400"></a>400</h2><p>400的英文含义<code>400 Request Header Or Cookie Too Large</code>，顾名思义，头信息或者Cookie信息太多了<br>复现这个状态码只需要添加够长的头信息或者Cookie信息即可，构造一个curl请求：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl --<span class="selector-tag">header</span> <span class="string">"Cookie:sidisisidisidisisidisidisisidisidisisidisidisisidisidisisidisidisidisisidisisidisidisisidisidisisidisidisisidisidisisidisidisisidisidissidisisidisidisisidisidisisidisidisisidisidisisidisidisisidisidissidisisidisidisisidisidisisidisidisisidisidisisidisidisisidisidissidisisidisidisisidisidisisidisidisisidisidisisidisidisisidisidissidisisidisidisisidisidisisidisidisisidisidisisidisidisisi....."</span> http:<span class="comment">//localhost:80</span></div></pre></td></tr></table></figure>
+<p>执行这个curl命令可以看到提示：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c696edab64413c8b000739" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<h2 id="401"><a href="#401" class="headerlink" title="401"></a>401</h2><p>401的含义是<code>401 Authorization Required</code>,顾名思义，就是需要权限认证，但是客户端又没有通过认证。复现这个状态码必须对nginx调整成认证模式。现在，将nginx调成认证模式，nginx的server模块配置如下</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">location</span> <span class="title">/ &#123;    auth_basic</span> <span class="string">"secret"</span>;<span class="comment">#认证模式    auth_basic_user_file /usr/local/nginx/passwd.db;#密码文件    root   html2;    index  index.html index.htm;&#125;</span></div></pre></td></tr></table></figure>
+<p>接下来生成密码文件</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh-3.2# htpasswd -c /usr/local/nginx/passwd.db yongxiongzhongNew password: Re-type new password: Adding password <span class="keyword">for</span><span class="built_in"> user </span>yongxiongzhong</div></pre></td></tr></table></figure>
+<p>更改权限</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod <span class="number">400</span> <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>passwd.db</div></pre></td></tr></table></figure>
+<p>平滑重启nginx之后，再次访问网页可以看到认证界面<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c74371ab64413b37000dae" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure><br>点击取消按钮，则可以看到以下这个页面<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c743b6ab64413c8b000e2a" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<h2 id="403"><a href="#403" class="headerlink" title="403"></a>403</h2><p>403的出现，大部分是没有对文件进行授权。<code>403 Forbidden</code>顾名思义就是禁止访问，重现这个状态码只需要修改访问文件的权限，比如给nginx网站根目录中的index文件减少权限</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod <span class="number">0</span> <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>html<span class="regexp">/index.html</span></div></pre></td></tr></table></figure>
+<p>当我们再次访问这个文件是，就会出现403错误<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c74731ab64413c8b000e39" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<h2 id="404"><a href="#404" class="headerlink" title="404"></a>404</h2><p>404算是我们经常碰到的状态码，<code>404 Not Found</code>当我们访问一个不存在的文件时，就会出现这个错误<br>在URL地址栏上随便访问一个不存在的文件，就会出现<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c748b5ab64413c8b000e40" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure><br>在实际生产环境中，这样的404页面并不好看，所以可以通过在server中配置自定义404页面：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">error_page  <span class="number">404</span>              /my_404.html<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>其中在网站根目录新建my_404.html然后写入自定义内容。平滑重启nginx之后，再次访问一些不存在的页面时会提示如下：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56ca69f9ab64413b37001d8a" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<h2 id="405"><a href="#405" class="headerlink" title="405"></a>405</h2><p>405状态码并不算常见，它表示<code>405 Not Allowed</code>。http请求可以支持GET，POST，PUT，DELETE方式。默认情况下，如果你对一个html静态文件进行post请求的话，就会出现405错误<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c74c92ab64413b37000dd9" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<h2 id="413"><a href="#413" class="headerlink" title="413"></a>413</h2><p>413也是比较容易出现的一种状态码，413的出现常常伴随着<code>413 Request Entity Too Large</code>表示请求实体过大导致。用户上传的Content-Length大于nginx设定的最大值时。比如上传一张很大的图片，就会出现413错误码<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c89aa1ab64413b3700152d" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure><br>这个是由参数client_max_body_size控制的，默认是1M。有点小，所以一般线上环境调成以下配置即可消除上面的问题</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">client_max_body_size <span class="number">8</span>m<span class="comment">;</span></div></pre></td></tr></table></figure>
+<h2 id="414"><a href="#414" class="headerlink" title="414"></a>414</h2><p>一般出现这个错误的时候，也伴随着一段英文提示<code>414 Request-URI Too Large</code>，也就是说我们请求的url太长了，如果我们把一个很长的url放在浏览器地址栏上，浏览器的保护措施，并不会出现414报错。所以要重现这个414错误码，只能通过curl命令。申请如下一个很长的url,篇幅问题，最后用…代替：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl <span class="string">http:</span><span class="comment">//localhost:8080/?key=abcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefg....</span></div></pre></td></tr></table></figure>
+<p>运行这个curl命令，就可以看到414错误<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c89ca0ab64413b37001539" alt="图片标题" title="">
+                </div>
+                <div class="image-caption">图片标题</div>
+            </figure><br>在nginx中，以下两个参数共同决定这个问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">client_header_buffer_sizelarge_client_header_buffers</div></pre></td></tr></table></figure>
+<h2 id="499-nginx-status"><a href="#499-nginx-status" class="headerlink" title="499(nginx status)"></a>499(nginx status)</h2><p>499这个状态码并不是http协议中定义的status code，而是nginx自己定义的一个状态码。<br>当客户端主动断开连接的时候，nginx就会返回499的状态码。按照这个状态码的定义，复现这个状态码很容易，只要在nginx返回结果之前断开客户端连接。所以，下一个data.php文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?php</span>sleep(<span class="number">10</span>);<span class="comment">//睡觉10秒钟</span></span></div></pre></td></tr></table></figure>
+<p>然后在浏览器访问<a href="http://localhost:8000/data.php" target="_blank" rel="external">http://localhost:8000/data.php</a>,注意，在10秒之内关闭浏览器以断开客户端连接。然后在查看nginx访问日志就能看到499错误<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c9b087ab64413b37001a89" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure><br>值得一提的是，在线上环境中，如果并发量大的话，nginx未能及时处理完请求，导致客户端“不干了”，这是会大量爆发499错误。这种情况可以用ab工具测试，ab工具中，-n为请求次数，-c为并发量：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ab -n <span class="number">100</span> -c <span class="number">100</span> <span class="string">http:</span><span class="comment">//127.0.0.1:8000/data.php</span></div></pre></td></tr></table></figure>
+<p>再观察我们的nginx访问日志，会发现大量的499<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c9b174ab64413c8b001a58" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<h1 id="服务端错误"><a href="#服务端错误" class="headerlink" title="服务端错误"></a>服务端错误</h1><h2 id="500"><a href="#500" class="headerlink" title="500"></a>500</h2><p>http状态码500表示内部服务器错误，这个错误一般是php代码出现error导致，如果你没有关闭php错误提示，当写一个错误的php脚本时，网页上会出现以下错误提示<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c9a0f1ab64413c8b0019f2" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure><br>但是一般情况下这些错误我们并不希望就这样暴露给客户端，因为将这些错误信息暴露是一件很危险的事情，别人可以通过你的错误猜测系统漏洞。所以在线上一般是关闭错误显示，关闭方式为：编辑php-fpm.conf关闭错误信息，保存php-fpm以下设置项</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">php_flag[display_errors]</span> = <span class="literal">off</span></div></pre></td></tr></table></figure>
+<p>平滑重启php-fpm进程之后，再次访问一个包含错误语法的php错误的时候，会报500错误。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c9a272ab64413c8b0019fe" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<h2 id="502"><a href="#502" class="headerlink" title="502"></a>502</h2><p>当出现502这个错误的时候，也伴随着一句英文<code>502 bad geteway</code>，很醒目的一段问题，出现这个错误的时候，因为这是服务端错误，可以定位<code>挂掉了</code>。Nginx 502错误的原因比较多，是因为在代理模式下后端服务器出现问题引起的。这些错误一般都不是nginx本身的问题，一定要从后端找原因。比如这里复现一种后端php-fpm进程挂掉的情况，关闭php-fpm</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kill -<span class="number">9</span> `<span class="keyword">ps</span> aux | <span class="keyword">grep</span> php-fpm | <span class="keyword">grep</span> -v <span class="keyword">grep</span> | awk -F <span class="string">' '</span> <span class="string">'&#123;print $2&#125;'</span>`</div></pre></td></tr></table></figure>
+<p>再次访问我们的php文件时候，然后就可以看到网站挂掉的情况<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c9a4a0ab64413c8b001a0b" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<h2 id="503"><a href="#503" class="headerlink" title="503"></a>503</h2><p>注意，出现503的时候服务没挂，出现503的时候伴随着<code>503 Service Temporarily Unavailable</code>,这句话告诉我们服务是暂时性不可用，nginx官方文档上有说明这一点，</p>
+<blockquote>
+<p>Sets the shared memory zone and the maximum allowed number of connections for a given key value. When this limit is exceeded, the server will return the 503 (Service Temporarily Unavailable) error in reply to a request.</p>
+</blockquote>
+<p>简单的说，就是在控制请求频率和并发数，详细配置可以参考nginx官方文档：<a href="http://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn" target="_blank" rel="external">http://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn</a><br>这里只复现一种可能的情况，将nginx配置如下(两个核心配置，省去了很多)：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http &#123;    limit_conn_zone <span class="variable">$binary_remote_addr</span> <span class="attribute">zone</span>=addr:10m;   <span class="built_in"> server </span>&#123;        limit_conn addr 1;#并发数为1，好测试</div></pre></td></tr></table></figure>
+<p>注意测试的时候，不是所有的连接都算进去，也就是并发数为1，并不代表只能并发1，nginx说明：</p>
+<blockquote>
+<p>Not all connections are counted. A connection is counted only if it has a request processed by the server and the whole request header has already been read.</p>
+</blockquote>
+<p>然后采用ab测试工具，运行如下命令</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ab -n <span class="number">2</span> -c <span class="number">2</span> <span class="string">http:</span><span class="comment">//127.0.0.1:8000/data.php</span></div></pre></td></tr></table></figure>
+<p>查看nginx访问日志，可以看到503报错信息<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56cd6045ab64413c8b003002" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<h2 id="504"><a href="#504" class="headerlink" title="504"></a>504</h2><p>当出现504的时候也伴随着一段英文，<code>504 Gateway Time-out</code>，顾名思义，就是超时了，复现这个错误码也很简单。让你的php程序模拟耗时请求，比如把php脚本里添加以下内容</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;?phpsleep<span class="params">(70)</span>;<span class="string">//</span>模拟耗时，睡70秒<span class="keyword">echo</span> <span class="string">"睡醒了"</span>;</div></pre></td></tr></table></figure>
+<p>然后通过域名访问这个脚本文件，就会出现超时的界面<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c9c05eab64413b37001afc" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<h1 id="重定向和缓存"><a href="#重定向和缓存" class="headerlink" title="重定向和缓存"></a>重定向和缓存</h1><h2 id="301和302"><a href="#301和302" class="headerlink" title="301和302"></a>301和302</h2><p>之所以将这两个状态码放到一起，因为他们都是重定向，其中，<code>301永久重定向</code>，<code>302暂时重定向</code>。不管是暂时还是临时，对用户而言，这两者没什么区别，都是在访问A网站的时候跳转到了B网站，并看到浏览器上的地址栏变成了B网站的地址。有区别的是搜索引擎，搜索引擎是要建立索引规则和权重的，如果网站A被设定为永久重定向到B，那搜索引擎可以确定A的地址永久改变了，就会把B当做唯一有效的目标地址，这是搜索引擎会把老地址的PageRank等信息带到新地址，同时在搜索引擎索引库中彻底废弃掉原先的老地址。所以，所以只要网站不是临时性迁移，都会做301重定向。<br>在nginx的rewrite语法中有两个关键字<br><code>permanent——永久重定向 redirect——临时重定向</code><br>如果我们想要将.asp文件永久重定向到index页面</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">location</span> <span class="regexp">~ \.asp$</span> &#123;    <span class="attribute">rewrite</span><span class="regexp"> ^(.*)$</span> /index.html <span class="literal">permanent</span>;&#125;</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c9bd30ab64413b37001aee" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure> 
+<p>如果只想临时重定向到index页面。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">location</span> <span class="regexp">~ \.asp$</span> &#123;    <span class="attribute">rewrite</span><span class="regexp"> ^(.*)$</span> /index.html <span class="literal">redirect</span>;&#125;</div></pre></td></tr></table></figure>
+<p>再次访问页面是可以看到302冲重定向了,同样，浏览器地址栏上的地址变成了重定向后的地址<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56c9bdb0ab64413b37001af0" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<h2 id="304"><a href="#304" class="headerlink" title="304"></a>304</h2><p><code>304 Not Modified</code>,默认情况下，nginx会对静态文件进行缓存。为了节省网络宽带，nginx和浏览器会产生如下交互</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> 浏览器客户端想请求一个文档，如果浏览器本地已经有缓存了，发送If-Modified-Since给Web服务器<span class="number">2.</span> 服务器将文件最后修改时间将服务器的文档修改时间Last-Modified和浏览器发送过来的If-Modified-Since比较，如果两者一致，返回<span class="number">304</span>给浏览器，告诉浏览器用本地缓存就好了，如果两者不一致，返回<span class="number">200</span>给浏览器，告诉浏览器使用最新的文档</div></pre></td></tr></table></figure>
+<p>在默认情况下，在浏览器中输入<code>http://localhost:8000/test.css</code>请求css文件<strong>两次</strong>就会出现304<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56cad79dab64413b37002183" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<p>如果在服务器端编辑<code>test.css</code>文件，由于这个时间文件最后修改时间发生了变更，这时服务器不会返回304状态码了。这时返回200状态码,两个的时间不一样了，浏览器采用最新的。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://leanote.com/api/file/getImage?fileId=56cadf78ab64413b370021b4" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>有关于各种缓存策略这里不做讨论。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-12-13T11:47:15.000Z" itemprop="dateUpdated">2017-12-13 19:47:15</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2017/12/10/nginx/Nginx相关状态码总结/" target="_blank" rel="external">https://fantasykai.cc/2017/12/10/nginx/Nginx相关状态码总结/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2017/12/10/nginx/Nginx相关状态码总结/&title=《Nginx相关状态码总结》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2017/12/10/nginx/Nginx相关状态码总结/&title=《Nginx相关状态码总结》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2017/12/10/nginx/Nginx相关状态码总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Nginx相关状态码总结》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2017/12/10/nginx/Nginx相关状态码总结/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2017/12/10/nginx/Nginx相关状态码总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/12/09/Linux/Awk总结/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">AWK总结</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2017/12/10/nginx/Nginx相关状态码总结/&title=《Nginx相关状态码总结》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2017/12/10/nginx/Nginx相关状态码总结/&title=《Nginx相关状态码总结》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2017/12/10/nginx/Nginx相关状态码总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Nginx相关状态码总结》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2017/12/10/nginx/Nginx相关状态码总结/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2017/12/10/nginx/Nginx相关状态码总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsElEQVR42u3aQXLjMAwEwPz/084DNnJmADLlrWqdXI4jsXkAIIBfX/H1enu9//3THZLvn+52+MLDw8O7sPQEk3z+9w7JBiWb8rhCPDw8vGu8fNHvQ3+eBpJ0kjzrFwseHh7ex/CSAN2G8rZAx8PDw/u/eG1K2HQP2u3Gw8PD+xteHrI3D87L5WRDD/da8PDw8LqJVRSsP+fzlfkeHh4e3nqqvkkSbZh+/8vX6MLDw8O7wcsD7uzQVTsqyxsTyTrx8PDwbvA2L/yztkK7HavmCB4eHt41XhumZ+G7LcTbZBAlQTw8PLxDvFnzdBbi23q/TTOP7wp4eHh4F3ibkdgsGucFd5tm8PDw8O7x2n/OS+ckfCdNjSuFOB4eHt6Ct3n5z4P7qZTQNjvw8PDw7vFmjYnZgGqWYGaJBA8PD+8Gr23Utq/9+6MDm63Ew8PDu8F7v9AZpi3E86ZGW3zj4eHh3ePVI/lF0Twru2eHGPDw8PBu8NrwvRmA5c3ifHPrtIGHh4d3iDcbR7XHAjYthvZo1w+9Fjw8PLyjvLzUbh9zqm0xa+bi4eHh3eNtljg7brVp79ZbhoeHh3eUN3tkMYIqh2p5kzdZLR4eHt4NXl1rr9sQ7UgsWeEv3+Dh4eFd4OX15yxk5wmjHcsViQcPDw/vKK89epWMtWYtj9nmRr0WPDw8vD/k5bdO7pAX67P714kBDw8Pb8EbTs+OBv399fiugIeHh3eI9yqvvHnRFuKbNvHjX/Hw8PAu8DZlbt6MaIvyY20IPDw8vGu8JBnko6xk6bP00A7b8PDw8G7z2hbD7IhVm3jaBkTRxsXDw8P7AF57cGp2XKBNGHh4eHifw2vf/fMGRH5cINpcPDw8vGu8TaF8g5QMw4qTEXh4eHhHebOzWrMDVbNyfNXGxcPDwzvJ+wbWJ5xxaA6xCgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>
