@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2016/07/16/JAVA/JDK1.7新特性/">
+    
+    
+    <title>JDK1.7新特性详解 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="java">
+    <meta name="description" content="JDK1.7新特性详解Java 7 发行版    2011 年 7 月 28 日 JDK7对Java语法有少量更新，重点是在易用性和便捷性的改进。 1.二进制字面量JDK7开始，终于可以用二进制来表示整数（byte,short,int和long）。使用二进制字面量的好处是，可以是代码更容易被理解。语法非常简单，只要在二进制数值前面加 0b或者0B 1234byte nByte = (byte)0b">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JDK1.7新特性详解">
+<meta property="og:url" content="https://fantasykai.cc/2016/07/16/JAVA/JDK1.7新特性/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="JDK1.7新特性详解Java 7 发行版    2011 年 7 月 28 日 JDK7对Java语法有少量更新，重点是在易用性和便捷性的改进。 1.二进制字面量JDK7开始，终于可以用二进制来表示整数（byte,short,int和long）。使用二进制字面量的好处是，可以是代码更容易被理解。语法非常简单，只要在二进制数值前面加 0b或者0B 1234byte nByte = (byte)0b">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-20T08:40:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JDK1.7新特性详解">
+<meta name="twitter:description" content="JDK1.7新特性详解Java 7 发行版    2011 年 7 月 28 日 JDK7对Java语法有少量更新，重点是在易用性和便捷性的改进。 1.二进制字面量JDK7开始，终于可以用二进制来表示整数（byte,short,int和long）。使用二进制字面量的好处是，可以是代码更容易被理解。语法非常简单，只要在二进制数值前面加 0b或者0B 1234byte nByte = (byte)0b">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JDK1.7新特性详解</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JDK1.7新特性详解</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-07-15T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-07-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JDK1-7新特性详解"><span class="post-toc-number">1.</span> <span class="post-toc-text">JDK1.7新特性详解</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-二进制字面量"><span class="post-toc-number">2.</span> <span class="post-toc-text">1.二进制字面量</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-数字字面量可以出现下划线"><span class="post-toc-number">3.</span> <span class="post-toc-text">2.数字字面量可以出现下划线</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-switch-语句可以用字符串了"><span class="post-toc-number">4.</span> <span class="post-toc-text">3.switch 语句可以用字符串了</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-泛型实例的创建可以通过类型推断来简化"><span class="post-toc-number">5.</span> <span class="post-toc-text">4.泛型实例的创建可以通过类型推断来简化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-在可变参数方法中传递非具体化参数（Non-Reifiable-Formal-Parameters）-改进编译警告和错误"><span class="post-toc-number">6.</span> <span class="post-toc-text">5.在可变参数方法中传递非具体化参数（Non-Reifiable Formal Parameters）,改进编译警告和错误</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-try-with-resources-语句"><span class="post-toc-number">7.</span> <span class="post-toc-text">6.try-with-resources 语句</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-Catch多个Exception，rethrow-exception-改进了类型检测"><span class="post-toc-number">8.</span> <span class="post-toc-text">7.Catch多个Exception，rethrow exception 改进了类型检测</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-JAVA/JDK1.7新特性"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JDK1.7新特性详解</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-07-16 00:00:00" datetime="2016-07-15T16:00:00.000Z"  itemprop="datePublished">2016-07-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="JDK1-7新特性详解"><a href="#JDK1-7新特性详解" class="headerlink" title="JDK1.7新特性详解"></a>JDK1.7新特性详解</h2><p>Java 7 发行版    2011 年 7 月 28 日</p>
+<p>JDK7对Java语法有少量更新，重点是在易用性和便捷性的改进。</p>
+<h2 id="1-二进制字面量"><a href="#1-二进制字面量" class="headerlink" title="1.二进制字面量"></a>1.二进制字面量</h2><p>JDK7开始，终于可以用二进制来表示整数（byte,short,int和long）。使用二进制字面量的好处是，可以是代码更容易被理解。语法非常简单，只要在二进制数值前面加 0b或者0B</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">byte nByte = (byte)<span class="number">0b0001</span>;  </div><div class="line">short nShort = (short)<span class="number">0B0010</span>;  </div><div class="line">int nInt = <span class="number">0b0011</span>;  </div><div class="line">long nLong = <span class="number">0b0100L</span>;</div></pre></td></tr></table></figure>
+<h2 id="2-数字字面量可以出现下划线"><a href="#2-数字字面量可以出现下划线" class="headerlink" title="2.数字字面量可以出现下划线"></a>2.数字字面量可以出现下划线</h2><p>对于一些比较大的数字，我们定义起来总是不方面，经常缺少或者增加位数。JDK7为我们提供了一种解决方案，下划线可以出现在数字字面量。</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">int a</span> = 10_0000_0000;  </div><div class="line"><span class="attribute">long b</span> = 0xffff_ffff_ffff_ffffl;  </div><div class="line"><span class="attribute">byte c</span> = 0b0001_1000;</div></pre></td></tr></table></figure>
+<p>注意：你只能将下划线置于数字之间，以下使用方法是错误的，</p>
+<ol>
+<li>数字的开头或者结尾</li>
+<li>小数点的前后</li>
+<li>‘F’或者‘f’的后缀</li>
+<li>只能用数字的位置</li>
+</ol>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nt err1 = _11,err2=<span class="number">11</span>_;  </div><div class="line"><span class="type">float</span> err3=<span class="number">3.</span>_4,err4=<span class="number">3</span>_<span class="number">.4</span>;  </div><div class="line">long err5=<span class="number">0x888</span>_f;</div></pre></td></tr></table></figure>
+<h2 id="3-switch-语句可以用字符串了"><a href="#3-switch-语句可以用字符串了" class="headerlink" title="3.switch 语句可以用字符串了"></a>3.switch 语句可以用字符串了</h2><p>这个功能千呼万唤，终于出来了</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> switchString(<span class="keyword">String</span> <span class="built_in">str</span>)&#123;  </div><div class="line">        <span class="keyword">switch</span>(<span class="built_in">str</span>)&#123;  </div><div class="line">            <span class="keyword">case</span> <span class="string">"one"</span>:  </div><div class="line">                System.err.<span class="built_in">println</span>(<span class="string">"1"</span>);  </div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">            <span class="keyword">case</span> <span class="string">"two"</span>:  </div><div class="line">                System.out.<span class="built_in">println</span>(<span class="string">"2"</span>);  </div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">            <span class="keyword">default</span> :  </div><div class="line">                System.out.<span class="built_in">println</span>(<span class="string">"err"</span>);  </div><div class="line">        &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="4-泛型实例的创建可以通过类型推断来简化"><a href="#4-泛型实例的创建可以通过类型推断来简化" class="headerlink" title="4.泛型实例的创建可以通过类型推断来简化"></a>4.泛型实例的创建可以通过类型推断来简化</h2><p>以后你创建一个泛型实例，不需要再详细说明类型，只需用&lt;&gt;,编译器会自动帮你匹配</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//例如   </span></div><div class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt;&gt; myMap = <span class="keyword">new</span> HashMap&lt;<span class="built_in">String</span>, <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt;&gt;();  </div><div class="line"><span class="comment">//可以简化为  </span></div><div class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt;&gt; myMap = <span class="keyword">new</span> HashMap&lt;&gt;();</div></pre></td></tr></table></figure>
+<h2 id="5-在可变参数方法中传递非具体化参数（Non-Reifiable-Formal-Parameters）-改进编译警告和错误"><a href="#5-在可变参数方法中传递非具体化参数（Non-Reifiable-Formal-Parameters）-改进编译警告和错误" class="headerlink" title="5.在可变参数方法中传递非具体化参数（Non-Reifiable Formal Parameters）,改进编译警告和错误"></a>5.在可变参数方法中传递非具体化参数（Non-Reifiable Formal Parameters）,改进编译警告和错误</h2><p>有些参数类型，例如ArrayList 和 List,是非具体化的（non-reifiable）.在编译阶段，编译器会擦除该类型信息。</p>
+<p>Heappollution 指一个变量被指向另外一个不是相同类型的变量。例如</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">List</span> l = <span class="keyword">new</span> ArrayList&lt;Number&gt;();  </div><div class="line"><span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; ls = l;       <span class="comment">// unchecked warning  </span></div><div class="line">l.add(<span class="number">0</span>, <span class="keyword">new</span> Integer(<span class="number">42</span>)); <span class="comment">// another unchecked warning  </span></div><div class="line"><span class="built_in">String</span> s = ls.<span class="keyword">get</span>(<span class="number">0</span>);      <span class="comment">// ClassCastException is thrown</span></div></pre></td></tr></table></figure>
+<p>回到我们的主题，在jdk7中，当你定义下面的函数时</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">addToList</span> (<span class="params">List&lt;T&gt; listArg, T... elements</span>) </span>&#123;  </div><div class="line">    <span class="keyword">for</span> (T x : elements) &#123;  </div><div class="line">      listArg.<span class="keyword">add</span>(x);  </div><div class="line">    &#125;  </div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>你会得到一个warning</p>
+<p><code>warning: [varargs] Possible heap pollution from parameterized vararg type</code></p>
+<p>在jdk7之前，当你调用一个含有非具体化参数的可变参数方法，你必须自行保证不会发生<code>heappollution</code>。这有一个问题，如果调用者对方法不熟悉，他根本无法判断。JDK7对此做了改进，在该方法被定义时久发出警告</p>
+<p>要消除警告，可以有三种方式</p>
+<ol>
+<li>加 annotation @SafeVarargs</li>
+<li>加 annotation @SuppressWarnings({“unchecked”, “varargs”})</li>
+<li>使用编译器参数 –Xlint:varargs;</li>
+</ol>
+<h2 id="6-try-with-resources-语句"><a href="#6-try-with-resources-语句" class="headerlink" title="6.try-with-resources 语句"></a>6.try-with-resources 语句</h2><p>jdk7提供了try-with-resources,可以自动关闭相关的资源（只要该资源实现了AutoCloseable接口，jdk7为绝大部分资源对象都实现了这个接口）</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">String</span> readFirstLineFromFile(<span class="keyword">String</span> path) <span class="keyword">throws</span> IOException &#123;  </div><div class="line">  <span class="keyword">try</span> (<span class="keyword">BufferedReader</span> br = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> FileReader(path))) &#123;  </div><div class="line">    <span class="keyword">return</span> br.readLine();  </div><div class="line">  &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>try 语句块中还可以同时处理多个资源,可以跟普通的try语句一样catch异常，有finally语句块</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> (  </div><div class="line">      java.util.zip.ZipFile zf = <span class="keyword">new</span> <span class="type">java</span>.util.zip.ZipFile(zipFileName);  </div><div class="line">      java.io.BufferedWriter writer = java.nio.file.Files.<span class="keyword">new</span><span class="type">BufferedWriter</span>(outputFilePath, charset)  </div><div class="line">    ) &#123;  </div><div class="line">&#125;<span class="keyword">catch</span>(…)&#123;  </div><div class="line">&#125;finally&#123;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="7-Catch多个Exception，rethrow-exception-改进了类型检测"><a href="#7-Catch多个Exception，rethrow-exception-改进了类型检测" class="headerlink" title="7.Catch多个Exception，rethrow exception 改进了类型检测"></a>7.Catch多个Exception，rethrow exception 改进了类型检测</h2><p>很多时候，我们捕获了多个异常，却做了相同的事情，比如记日志，包装成新的异常，然后rethrow。这时，代码就不那么优雅了，例如</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">catch (IOException <span class="keyword">ex</span>) &#123;  </div><div class="line">     logger.<span class="built_in">log</span>(<span class="keyword">ex</span>);  </div><div class="line">     throw <span class="keyword">ex</span>;  </div><div class="line">catch (SQLException <span class="keyword">ex</span>) &#123;  </div><div class="line">     logger.<span class="built_in">log</span>(<span class="keyword">ex</span>);  </div><div class="line">     throw <span class="keyword">ex</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Jdk7允许捕获多个异常</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">catch (IOException|SQLException <span class="keyword">ex</span>) &#123;  </div><div class="line">    logger.<span class="built_in">log</span>(<span class="keyword">ex</span>);  </div><div class="line">    throw <span class="keyword">ex</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意，catch后面的异常参数是final的，不能重新再复制</p>
+<p><code>RethrowException</code>更具包容性的类型检测</p>
+<p>当你重新抛出多个异常时，不再需要详细定义异常类型了，编译器已经知道你具体抛出的是哪个异常了。你只需在方法定义的时候声明需要抛出的异常即可</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> ReflectiveOperationException, IOException </span>&#123;  </div><div class="line">    <span class="keyword">try</span> &#123;  </div><div class="line">      callWithReflection(arg);  </div><div class="line">    &#125; <span class="keyword">catch</span> (<span class="keyword">final</span> Exception e) &#123;  </div><div class="line">      logger.trace(<span class="string">"Exception in reflection"</span>, e);  </div><div class="line">      <span class="keyword">throw</span> e;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考</p>
+<ul>
+<li>Jdk7官网 <a href="http://openjdk.java.net/projects/jdk7/" target="_blank" rel="external">http://openjdk.java.net/projects/jdk7/</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-12-20T08:40:29.000Z" itemprop="dateUpdated">2017-12-20 16:40:29</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2016/07/16/JAVA/JDK1.7新特性/" target="_blank" rel="external">https://fantasykai.cc/2016/07/16/JAVA/JDK1.7新特性/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2016/07/16/JAVA/JDK1.7新特性/&title=《JDK1.7新特性详解》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2016/07/16/JAVA/JDK1.7新特性/&title=《JDK1.7新特性详解》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2016/07/16/JAVA/JDK1.7新特性/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JDK1.7新特性详解》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2016/07/16/JAVA/JDK1.7新特性/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2016/07/16/JAVA/JDK1.7新特性/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/07/17/JAVA/JDK1.8新特性/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JDK1.8新特性详解</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/07/12/dateBase/NOSQL/mongodb 安装与配置(win) /" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">MongoDB·安装与配置(win)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2016/07/16/JAVA/JDK1.7新特性/&title=《JDK1.7新特性详解》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2016/07/16/JAVA/JDK1.7新特性/&title=《JDK1.7新特性详解》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2016/07/16/JAVA/JDK1.7新特性/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JDK1.7新特性详解》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2016/07/16/JAVA/JDK1.7新特性/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2016/07/16/JAVA/JDK1.7新特性/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3aQY7DIAwF0N7/0pltpemk3zYdqfBYVWkUeCwsG/N4xON6Gr+f3D9//vf5nWSWxQMDA+NrGdftSBY92YjepryYFwMD4wDGXxPfT1kNzUlQTrYJAwMDI2HkU/aQGBgYGGsZCxYRfA0DAwMjT9eq5WuvZP1gLY6BgfGFjN4i/uf3R/obGBgYX8W4iiOn9sLl1RoYGBh7M3rHZMlS8u+sOrbDwMDYlZGUqdXgWD04S2Z8szYMDIytGfmhfN48mLcQ8jVgYGCcwEgSviSY5kVsXqwWjt4wMDCOYUwK0VUtyWbbAAMDY2vGJFAmhW5+zaK3TRgYGKcx7sNuNSDmzYPJmy/6GxgYGFszkgXN25O96xrlTiwGBsZGjOpRV743edp3H16jfzEwMA5g5Edjqy5+VdPEN08wMDAOYOSpWznrbB3h5QH3RWqIgYGxKSP5XOHYKy5c8xD/ZisxMDC2ZlSP6ScF56TxuaCUxcDA2Igxbw/0ksV5iMfAwDiN0Uv48nI0b0vkVzEwMDBOYEwamdXW5qR5+SbgYmBgHMmYNAbmbxZaFBgYGJsyruKoJojJFxZc8sDAwNiaUQ1tvUbmPSA/+u81MDAwMPZgrAqR1dZC9QJZM8PFwMDYiFENfMmy8qX02qIYGBgYVcYnEsRCDouBgYExuNpVDbjJ1xYEXAwMjC9kVC9pzYvYtU1QDAyMvRm9vGtt4dordDEwMA5g/ABxkpNh6A/4zQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>
