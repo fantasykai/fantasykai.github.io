@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2016/08/14/recording/CAP相关总结/">
+    
+    
+    <title>CAP相关总结 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="CAP">
+    <meta name="description" content="CAP理论概述一个分布式系统最多只能同时满足一致性（Consistency）、可用性（Availability）和分区容错性（Partition tolerance）这三项中的两项。 [                                                                                             cap](http://ww">
+<meta name="keywords" content="CAP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CAP相关总结">
+<meta property="og:url" content="https://fantasykai.cc/2016/08/14/recording/CAP相关总结/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="CAP理论概述一个分布式系统最多只能同时满足一致性（Consistency）、可用性（Availability）和分区容错性（Partition tolerance）这三项中的两项。 [                                                                                             cap](http://ww">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.hollischuang.com/wp-content/uploads/2015/12/cap.jpg">
+<meta property="og:image" content="http://www.hollischuang.com/wp-content/uploads/2016/03/intro_thumb.png">
+<meta property="og:image" content="http://www.hollischuang.com/wp-content/uploads/2016/03/scenario1_thumb.png">
+<meta property="og:image" content="http://www.hollischuang.com/wp-content/uploads/2016/03/scenario2_thumb.png">
+<meta property="og:updated_time" content="2017-12-27T02:44:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CAP相关总结">
+<meta name="twitter:description" content="CAP理论概述一个分布式系统最多只能同时满足一致性（Consistency）、可用性（Availability）和分区容错性（Partition tolerance）这三项中的两项。 [                                                                                             cap](http://ww">
+<meta name="twitter:image" content="http://www.hollischuang.com/wp-content/uploads/2015/12/cap.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CAP相关总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CAP相关总结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-08-13T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-08-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CAP理论概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">CAP理论概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CAP的定义"><span class="post-toc-number">2.</span> <span class="post-toc-text">CAP的定义</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Consistency-一致性"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Consistency 一致性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Availability-可用性"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Availability 可用性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Partition-Tolerance分区容错性"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Partition Tolerance分区容错性</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CAP的证明"><span class="post-toc-number">3.</span> <span class="post-toc-text">CAP的证明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CAP权衡"><span class="post-toc-number">4.</span> <span class="post-toc-text">CAP权衡</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#BASE理论"><span class="post-toc-number"></span> <span class="post-toc-text">BASE理论</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本可用（Basically-Available）"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本可用（Basically Available）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#软状态（-Soft-State）"><span class="post-toc-number">2.</span> <span class="post-toc-text">软状态（ Soft State）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最终一致性（-Eventual-Consistency）"><span class="post-toc-number">3.</span> <span class="post-toc-text">最终一致性（ Eventual Consistency）</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ACID和BASE的区别与联系"><span class="post-toc-number"></span> <span class="post-toc-text">ACID和BASE的区别与联系</span></a>
+        </nav>
+    </aside>
+    
+<article id="post-recording/CAP相关总结"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CAP相关总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-08-14 00:00:00" datetime="2016-08-13T16:00:00.000Z"  itemprop="datePublished">2016-08-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="CAP理论概述"><a href="#CAP理论概述" class="headerlink" title="CAP理论概述"></a>CAP理论概述</h2><p>一个分布式系统最多只能同时满足一致性（Consistency）、可用性（Availability）和分区容错性（Partition tolerance）这三项中的两项。</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.hollischuang.com/wp-content/uploads/2015/12/cap.jpg" alt="cap](http://www.hollischuang.com/wp-content/uploads/2015/12/cap.jpg)" title="">
+                </div>
+                <div class="image-caption">cap](http://www.hollischuang.com/wp-content/uploads/2015/12/cap.jpg)</div>
+            </figure></p>
+<h2 id="CAP的定义"><a href="#CAP的定义" class="headerlink" title="CAP的定义"></a>CAP的定义</h2><h3 id="Consistency-一致性"><a href="#Consistency-一致性" class="headerlink" title="Consistency 一致性"></a>Consistency 一致性</h3><p>一致性指“<code>all nodes see the same data at the same time</code>”，即更新操作成功并返回客户端完成后，所有节点在同一时间的数据完全一致。<a href="http://www.hollischuang.com/archives/663" target="_blank" rel="external">分布式的一致性</a></p>
+<p>对于一致性，可以分为从客户端和服务端两个不同的视角。从客户端来看，一致性主要指的是多并发访问时更新过的数据如何获取的问题。从服务端来看，则是更新如何复制分布到整个系统，以保证数据最终一致。一致性是因为有并发读写才有的问题，因此在理解一致性的问题时，一定要注意结合考虑并发读写的场景。</p>
+<p>从客户端角度，多进程并发访问时，更新过的数据在不同进程如何获取的不同策略，决定了不同的一致性。对于关系型数据库，要求更新过的数据能被后续的访问都能看到，这是强一致性。如果能容忍后续的部分或者全部访问不到，则是弱一致性。如果经过一段时间后要求能访问到更新后的数据，则是最终一致性。</p>
+<h3 id="Availability-可用性"><a href="#Availability-可用性" class="headerlink" title="Availability 可用性"></a>Availability 可用性</h3><p>可用性指“<code>Reads and writes always succeed</code>”，即服务一直可用，而且是正常响应时间。</p>
+<p>对于一个可用性的分布式系统，每一个非故障的节点必须对每一个请求作出响应。也就是，该系统使用的任何算法必须最终终止。当同时要求分区容忍性时，这是一个很强的定义：即使是严重的网络错误，每个请求必须终止。</p>
+<p>好的可用性主要是指系统能够很好的为用户服务，不出现用户操作失败或者访问超时等用户体验不好的情况。可用性通常情况下可用性和分布式数据冗余，负载均衡等有着很大的关联。</p>
+<h3 id="Partition-Tolerance分区容错性"><a href="#Partition-Tolerance分区容错性" class="headerlink" title="Partition Tolerance分区容错性"></a>Partition Tolerance分区容错性</h3><p>分区容错性指“<code>the system continues to operate despite arbitrary message loss or failure of part of the system</code>”，即分布式系统在遇到某节点或网络分区故障的时候，仍然能够对外提供满足一致性和可用性的服务。</p>
+<p>分区容错性和扩展性紧密相关。在分布式应用中，可能因为一些分布式的原因导致系统无法正常运转。好的分区容错性要求能够使应用虽然是一个分布式系统，而看上去却好像是在一个可以运转正常的整体。比如现在的分布式系统中有某一个或者几个机器宕掉了，其他剩下的机器还能够正常运转满足系统需求，或者是机器之间有网络异常，将分布式系统分隔未独立的几个部分，各个部分还能维持分布式系统的运作，这样就具有好的分区容错性。</p>
+<h2 id="CAP的证明"><a href="#CAP的证明" class="headerlink" title="CAP的证明"></a>CAP的证明</h2><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.hollischuang.com/wp-content/uploads/2016/03/intro_thumb.png" alt="intro_thumb](http://www.hollischuang.com/wp-content/uploads/2016/03/intro_thumb.png)" title="">
+                </div>
+                <div class="image-caption">intro_thumb](http://www.hollischuang.com/wp-content/uploads/2016/03/intro_thumb.png)</div>
+            </figure></p>
+<p>如上图，是我们证明CAP的基本场景，网络中有两个节点N1和N2，可以简单的理解N1和N2分别是两台计算机，他们之间网络可以连通，N1中有一个应用程序A，和一个数据库V，N2也有一个应用程序B2和一个数据库V。现在，A和B是分布式系统的两个部分，V是分布式系统的数据存储的两个子数据库。</p>
+<p>在满足一致性的时候，N1和N2中的数据是一样的，V0=V0。在满足可用性的时候，用户不管是请求N1或者N2，都会得到立即响应。在满足分区容错性的情况下，N1和N2有任何一方宕机，或者网络不通的时候，都不会影响N1和N2彼此之间的正常运作。</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.hollischuang.com/wp-content/uploads/2016/03/scenario1_thumb.png" alt="scenario1_thumb](http://www.hollischuang.com/wp-content/uploads/2016/03/scenario1_thumb.png)" title="">
+                </div>
+                <div class="image-caption">scenario1_thumb](http://www.hollischuang.com/wp-content/uploads/2016/03/scenario1_thumb.png)</div>
+            </figure></p>
+<p>如上图，是分布式系统正常运转的流程，用户向N1机器请求数据更新，程序A更新数据库Vo为V1，分布式系统将数据进行同步操作M，将V1同步的N2中V0，使得N2中的数据V0也更新为V1，N2中的数据再响应N2的请求。</p>
+<p>这里，可以定义N1和N2的数据库V之间的数据是否一样为一致性；外部对N1和N2的请求响应为可用行；N1和N2之间的网络环境为分区容错性。这是正常运作的场景，也是理想的场景，然而现实是残酷的，当错误发生的时候，一致性和可用性还有分区容错性，是否能同时满足，还是说要进行取舍呢？</p>
+<p>作为一个分布式系统，它和单机系统的最大区别，就在于网络，现在假设一种极端情况，N1和N2之间的网络断开了，我们要支持这种网络异常，相当于要满足分区容错性，能不能同时满足一致性和响应性呢？还是说要对他们进行取舍。</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.hollischuang.com/wp-content/uploads/2016/03/scenario2_thumb.png" alt="scenario2_thumb](http://www.hollischuang.com/wp-content/uploads/2016/03/scenario2_thumb.png)" title="">
+                </div>
+                <div class="image-caption">scenario2_thumb](http://www.hollischuang.com/wp-content/uploads/2016/03/scenario2_thumb.png)</div>
+            </figure></p>
+<p>假设在N1和N2之间网络断开的时候，有用户向N1发送数据更新请求，那N1中的数据V0将被更新为V1，由于网络是断开的，所以分布式系统同步操作M，所以N2中的数据依旧是V0；这个时候，有用户向N2发送数据读取请求，由于数据还没有进行同步，应用程序没办法立即给用户返回最新的数据V1，怎么办呢？有二种选择，第一，牺牲数据一致性，响应旧的数据V0给用户；第二，牺牲可用性，阻塞等待，直到网络连接恢复，数据更新操作M完成之后，再给用户响应最新的数据V1。</p>
+<p>这个过程，证明了要满足分区容错性的分布式系统，只能在一致性和可用性两者中，选择其中一个。</p>
+<h2 id="CAP权衡"><a href="#CAP权衡" class="headerlink" title="CAP权衡"></a>CAP权衡</h2><p>通过CAP理论，我们知道无法同时满足一致性、可用性和分区容错性这三个特性，那要舍弃哪个呢？</p>
+<blockquote>
+<p>CA without P：如果不要求P（不允许分区），则C（强一致性）和A（可用性）是可以保证的。但其实分区不是你想不想的问题，而是始终会存在，因此CA的系统更多的是允许分区后各子系统依然保持CA。</p>
+<p>CP without A：如果不要求A（可用），相当于每个请求都需要在Server之间强一致，而P（分区）会导致同步时间无限延长，如此CP也是可以保证的。很多传统的数据库分布式事务都属于这种模式。</p>
+<p>AP wihtout C：要高可用并允许分区，则需放弃一致性。一旦分区发生，节点之间可能会失去联系，为了高可用，每个节点只能用本地数据提供服务，而这样会导致全局数据的不一致性。现在众多的NoSQL都属于此类。</p>
+</blockquote>
+<p>对于多数大型互联网应用的场景，主机众多、部署分散，而且现在的集群规模越来越大，所以节点故障、网络故障是常态，而且要保证服务可用性达到N个9，即保证P和A，舍弃C（退而求其次保证最终一致性）。虽然某些地方会影响客户体验，但没达到造成用户流程的严重程度。</p>
+<p>对于涉及到钱财这样不能有一丝让步的场景，C必须保证。网络发生故障宁可停止服务，这是保证CA，舍弃P。貌似这几年国内银行业发生了不下10起事故，但影响面不大，报到也不多，广大群众知道的少。还有一种是保证CP，舍弃A。例如网络故障事只读不写。</p>
+<p>孰优孰略，没有定论，只能根据场景定夺，适合的才是最好的。</p>
+<h1 id="BASE理论"><a href="#BASE理论" class="headerlink" title="BASE理论"></a>BASE理论</h1><p>eBay的架构师Dan Pritchett源于对大规模分布式系统的实践总结，在ACM上发表文章提出BASE理论，BASE理论是对CAP理论的延伸，核心思想是即使无法做到强一致性（Strong Consistency，CAP的一致性就是强一致性），但应用可以采用适合的方式达到最终一致性（Eventual Consitency）。</p>
+<p>BASE是指基本可用（Basically Available）、软状态（ Soft State）、最终一致性（ Eventual Consistency）。</p>
+<h2 id="基本可用（Basically-Available）"><a href="#基本可用（Basically-Available）" class="headerlink" title="基本可用（Basically Available）"></a>基本可用（Basically Available）</h2><p>基本可用是指分布式系统在出现故障的时候，允许损失部分可用性，即保证核心可用。</p>
+<p>电商大促时，为了应对访问量激增，部分用户可能会被引导到降级页面，服务层也可能只提供降级服务。这就是损失部分可用性的体现。</p>
+<h2 id="软状态（-Soft-State）"><a href="#软状态（-Soft-State）" class="headerlink" title="软状态（ Soft State）"></a>软状态（ Soft State）</h2><p>软状态是指允许系统存在中间状态，而该中间状态不会影响系统整体可用性。分布式存储中一般一份数据至少会有三个副本，允许不同节点间副本同步的延时就是软状态的体现。mysql replication的异步复制也是一种体现。</p>
+<h2 id="最终一致性（-Eventual-Consistency）"><a href="#最终一致性（-Eventual-Consistency）" class="headerlink" title="最终一致性（ Eventual Consistency）"></a>最终一致性（ Eventual Consistency）</h2><p>最终一致性是指系统中的所有数据副本经过一定时间后，最终能够达到一致的状态。弱一致性和强一致性相反，最终一致性是弱一致性的一种特殊情况。</p>
+<h1 id="ACID和BASE的区别与联系"><a href="#ACID和BASE的区别与联系" class="headerlink" title="ACID和BASE的区别与联系"></a>ACID和BASE的区别与联系</h1><p>ACID是传统数据库常用的设计理念，追求强一致性模型。BASE支持的是大型分布式系统，提出通过牺牲强一致性获得高可用性。</p>
+<p>ACID和BASE代表了两种截然相反的设计哲学</p>
+<p>在分布式系统设计的场景中，系统组件对一致性要求是不同的，因此ACID和BASE又会结合使用。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-12-27T02:44:27.000Z" itemprop="dateUpdated">2017-12-27 10:44:27</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2016/08/14/recording/CAP相关总结/" target="_blank" rel="external">https://fantasykai.cc/2016/08/14/recording/CAP相关总结/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CAP/">CAP</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2016/08/14/recording/CAP相关总结/&title=《CAP相关总结》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2016/08/14/recording/CAP相关总结/&title=《CAP相关总结》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2016/08/14/recording/CAP相关总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CAP相关总结》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2016/08/14/recording/CAP相关总结/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2016/08/14/recording/CAP相关总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/08/16/dateBase/MYSQL/MySQL 中按照in中的条件进行排序/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">MySQL 中按照in中的条件进行排序</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/08/12/JAVA/spring/spring mvc中的@propertysource/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">MySQL 中按照in中的条件进行排序</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2016/08/14/recording/CAP相关总结/&title=《CAP相关总结》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2016/08/14/recording/CAP相关总结/&title=《CAP相关总结》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2016/08/14/recording/CAP相关总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CAP相关总结》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2016/08/14/recording/CAP相关总结/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2016/08/14/recording/CAP相关总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACF0lEQVR42u3aQW4CMQwFUO5/abqtRBm+7YBK8rJCMJPksbAS27dbPO6/RvLN43icLVll8cDAwPhaRrJ8b9PXM1zPU/1rMDAwTmA8i2DXG5oE1nytZAYMDAyMfOpq4MbAwMD4DGN+e04OlxgYGBi962ieOMuvr2+/i2NgYHwhIw+In//8lvoGBgbGVzHuxTFPzyUbLe8KAwNja0Ye4JKDYP5kcvQs7wcDA+NgRr7FvIWi+mdFh0UMDIxNGZNS4juSbr13MTAw9mYkL0zaI3ptGc0CAAYGxgGM6pW1Sl3VwPEUhoGBsSkjCXDVLSZtGdUixIvgi4GBcQyj8NrSzo7qin+EaQwMjOMZ+TP5lbj617wI7hgYGMcwqon4yYaqKbwX72JgYBzGqC52XUjIiwSTtB0GBsbejOpEvV+TJxeAMTAwjmHMj4CToFldFwMD4xxGL6RWm7omrWMFKgYGxtaM5Ph1/bnXZrHqWouBgbE3I0+NJSF4UiRIAFHuEAMDY2vGpFWimlYrNH71lsTAwNiU0Xs+Z/d40bESAwNjU8YkcdZLz/V+jZJrGBgYmzLyMV84v6b2EnwYGBh7M+YFyCQ4VtNzy9JtGBgYGzGSUmLelrGqqFC+ymJgYGAUT5e9jTaLBBgYGBiLLp/55TZ5/i0BFwMD4x8zJgm1PPWfFBLyKIqBgXEOIz+o5RMlabL83WVFTQwMjO9j/AD7mLJQcLUaigAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>

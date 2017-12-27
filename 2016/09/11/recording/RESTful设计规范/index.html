@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2016/09/11/recording/RESTful设计规范/">
+    
+    
+    <title>RESTful设计规范 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="restful">
+    <meta name="description" content="RESTful设计规范一、 摘要（Abstract）RESTful API 已经非常成熟，也得到了大家的认可。我们按照 Richardson Maturity Model 对 REST 评价的模型，规范基于 level2 来设计 二、版本（Versioning）API的版本号放入URL。例如： 12https://api.jiuyescm.com/v1/https://api.jiuyescm.c">
+<meta name="keywords" content="restful">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RESTful设计规范">
+<meta property="og:url" content="https://fantasykai.cc/2016/09/11/recording/RESTful设计规范/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="RESTful设计规范一、 摘要（Abstract）RESTful API 已经非常成熟，也得到了大家的认可。我们按照 Richardson Maturity Model 对 REST 评价的模型，规范基于 level2 来设计 二、版本（Versioning）API的版本号放入URL。例如： 12https://api.jiuyescm.com/v1/https://api.jiuyescm.c">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-20T09:28:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RESTful设计规范">
+<meta name="twitter:description" content="RESTful设计规范一、 摘要（Abstract）RESTful API 已经非常成熟，也得到了大家的认可。我们按照 Richardson Maturity Model 对 REST 评价的模型，规范基于 level2 来设计 二、版本（Versioning）API的版本号放入URL。例如： 12https://api.jiuyescm.com/v1/https://api.jiuyescm.c">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">RESTful设计规范</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">RESTful设计规范</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-09-10T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-09-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RESTful设计规范"><span class="post-toc-number">1.</span> <span class="post-toc-text">RESTful设计规范</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、-摘要（Abstract）"><span class="post-toc-number"></span> <span class="post-toc-text">一、 摘要（Abstract）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、版本（Versioning）"><span class="post-toc-number"></span> <span class="post-toc-text">二、版本（Versioning）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#三、资源、路径（Endpoint）"><span class="post-toc-number"></span> <span class="post-toc-text">三、资源、路径（Endpoint）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#四、操作（HTTP-Actions）"><span class="post-toc-number"></span> <span class="post-toc-text">四、操作（HTTP Actions）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#五、数据（Data-Format）"><span class="post-toc-number"></span> <span class="post-toc-text">五、数据（Data Format）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#六、安全（Security）"><span class="post-toc-number"></span> <span class="post-toc-text">六、安全（Security）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#调用限制"><span class="post-toc-number">1.</span> <span class="post-toc-text">调用限制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#授权校验"><span class="post-toc-number">2.</span> <span class="post-toc-text">授权校验</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#错误"><span class="post-toc-number">3.</span> <span class="post-toc-text">错误</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#七、状态码（Status-Codes）"><span class="post-toc-number"></span> <span class="post-toc-text">七、状态码（Status Codes）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#八、异常规范（Exceptions）"><span class="post-toc-number"></span> <span class="post-toc-text">八、异常规范（Exceptions）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#九、示例（Example）"><span class="post-toc-number"></span> <span class="post-toc-text">九、示例（Example）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#POST-users"><span class="post-toc-number">1.</span> <span class="post-toc-text">POST /users</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DELETE-users-user-id"><span class="post-toc-number">2.</span> <span class="post-toc-text">DELETE /users/{user_id}</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PUT-users"><span class="post-toc-number">3.</span> <span class="post-toc-text">PUT /users</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#GET-users-user-id"><span class="post-toc-number">4.</span> <span class="post-toc-text">GET /users/{user_id}</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#GET-users"><span class="post-toc-number">5.</span> <span class="post-toc-text">GET /users</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-recording/RESTful设计规范"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">RESTful设计规范</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-09-11 00:00:00" datetime="2016-09-10T16:00:00.000Z"  itemprop="datePublished">2016-09-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="RESTful设计规范"><a href="#RESTful设计规范" class="headerlink" title="RESTful设计规范"></a>RESTful设计规范</h2><h1 id="一、-摘要（Abstract）"><a href="#一、-摘要（Abstract）" class="headerlink" title="一、 摘要（Abstract）"></a>一、 摘要（Abstract）</h1><p>RESTful API 已经非常成熟，也得到了大家的认可。我们按照 <a href="https://martinfowler.com/articles/richardsonMaturityModel.html" target="_blank" rel="external">Richardson Maturity Model</a> 对 REST 评价的模型，规范基于 level2 来设计</p>
+<h1 id="二、版本（Versioning）"><a href="#二、版本（Versioning）" class="headerlink" title="二、版本（Versioning）"></a>二、版本（Versioning）</h1><p>API的版本号放入URL。例如：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">https:<span class="regexp">//</span>api.jiuyescm.com<span class="regexp">/v1/</span></div><div class="line">https:<span class="regexp">//</span>api.jiuyescm.com<span class="regexp">/v1.2/</span></div></pre></td></tr></table></figure>
+<h1 id="三、资源、路径（Endpoint）"><a href="#三、资源、路径（Endpoint）" class="headerlink" title="三、资源、路径（Endpoint）"></a>三、资源、路径（Endpoint）</h1><p>路径，API的具体地址。在REST中，每个地址都代表一个具体的资源（<code>Resource</code>）约定如下：</p>
+<ul>
+<li><p>路径仅表示资源的路径（位置），尽量不要有actions操作（一些特殊的<code>actions</code>操作除外）</p>
+</li>
+<li><p>路径以 复数（名词） 进行命名资源，不管返回单个或者多个资源。</p>
+</li>
+<li><p>使用 小写字母、数字以及下划线（“_”） 。（下划线是为了区分多个单词，如user_name）</p>
+</li>
+<li><p>资源的路径从父到子依次如：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml">/</span><span class="template-variable">&#123;resource&#125;</span><span class="xml">/</span><span class="template-variable">&#123;resource_id&#125;</span><span class="xml">/</span><span class="template-variable">&#123;sub_resource&#125;</span><span class="xml">/</span><span class="template-variable">&#123;sub_resource_id&#125;</span><span class="xml">/</span><span class="template-variable">&#123;sub_resource_property&#125;</span><span class="xml"></span></div></pre></td></tr></table></figure>
+</li>
+<li><p>使用 <code>?</code> 来进行资源的过滤、搜索以及分页等</p>
+</li>
+<li><p>使用版本号，且版本号在资源路径之前</p>
+</li>
+<li><p>优先使用内容协商来区分表述格式，而不是使用后缀来区分表述格式</p>
+</li>
+<li><p>应该放在一个专用的域名下，如：<code>http：//api.jiuyescm.com</code></p>
+</li>
+<li><p>使用SSL</p>
+</li>
+</ul>
+<p>综上，一个API路径可能会是</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">https:<span class="regexp">//</span>api.domain.com<span class="regexp">/v1/</span>&#123;resource&#125;<span class="regexp">/&#123;resource_id&#125;/</span>&#123;sub_resource&#125;<span class="regexp">/&#123;sub_resource_id&#125;/</span>&#123;sub_resource_property&#125;</div><div class="line">https:<span class="regexp">//</span>api.domain.com <span class="regexp">/v1/</span>&#123;resource&#125;?page=<span class="number">1</span>&amp;page_size=<span class="number">10</span></div><div class="line">https:<span class="regexp">//</span>api.domain.com <span class="regexp">/v1/</span>&#123;resource&#125;?name=xx&amp;sortby=name&amp;order=asc</div></pre></td></tr></table></figure>
+<h1 id="四、操作（HTTP-Actions）"><a href="#四、操作（HTTP-Actions）" class="headerlink" title="四、操作（HTTP Actions）"></a>四、操作（HTTP Actions）</h1><p>用<code>HTTP</code>动词（方法）表示对资源的具体操作。常用的<code>HTTP</code>动词有：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">GET（<span class="keyword">SELECT</span>）：从服务器取出资源（一项或多项）</div><div class="line">POST（<span class="keyword">CREATE</span>）：在服务器新建一个资源</div><div class="line">PUT（<span class="keyword">UPDATE</span>）：在服务器更新资源（客户端提供改变后的完整资源）  </div><div class="line"><span class="keyword">PATCH</span>（<span class="keyword">UPDATE</span>）：在服务器更新资源（客户端提供改变的属性） </div><div class="line"><span class="keyword">DELETE</span>（<span class="keyword">DELETE</span>）：从服务器删除资源</div><div class="line">还有两个不常用的<span class="keyword">HTTP</span>动词</div><div class="line"><span class="keyword">HEAD</span>：获取资源的元数据</div><div class="line">OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的</div></pre></td></tr></table></figure>
+<p>下面是一些例子</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">GET <span class="string">/users</span>：列出所有用户  </div><div class="line">POST <span class="string">/users</span>：新建一个用户  </div><div class="line">GET <span class="string">/users/</span>&#123;user_id&#125;：获取某个指定用户的信息  </div><div class="line">PUT <span class="string">/users/</span>&#123;user_id&#125;：更新某个指定用户的信息（提供该用户的全部信息）  </div><div class="line">PATCH <span class="string">/users/</span>&#123;user_id&#125;：更新某个指定用户的信息（提供该用户的部分信息）  </div><div class="line">DELETE <span class="string">/users/</span>&#123;user_id&#125;：删除某个用户  </div><div class="line">GET <span class="string">/users/</span>&#123;user_id&#125;<span class="string">/resources</span>：列出某个指定用户的所有权限资源  </div><div class="line">DELETE <span class="string">/users/</span>&#123;user_id&#125;<span class="string">/resources/</span>&#123;resources_id&#125;：删除某个指定用户的指定权限资源</div></pre></td></tr></table></figure>
+<h1 id="五、数据（Data-Format）"><a href="#五、数据（Data-Format）" class="headerlink" title="五、数据（Data Format）"></a>五、数据（Data Format）</h1><p>数据是对资源的具体描述，分为请求数据和返回数据。约定如下：</p>
+<ul>
+<li>查询，过滤条件使用query string，例如user?name=xxx</li>
+<li>Content body 仅仅用来传输数据</li>
+<li>通过Content-Type指定请求与返回的数据格式。其中请求数据还要指定Accept。（我们暂时只使用Json）</li>
+<li>数据应该拿来就能用，不应该还要进行转换操作</li>
+<li>使用字符串（YYYY-MM-dd hh:mm:ss）格式表达时间字段，例如: 2017-02-20 16:00:00</li>
+<li>数据采用UTF-8编码</li>
+<li>返回的数据应该尽量简单，响应状态应该包含在响应头中</li>
+<li>使用 小写字母、数字以及下划线（“_”） 描述字段，不使用大写描述字段（这个由于使用了一些开源的jar所以这个不强求，比如说pageinfo我们无法修改属性名称）</li>
+<li>建议资源中的唯一标识命名为id（这个不强求，有的唯一标识名称确实比较复杂）</li>
+<li>属性和字符串值必须使用双引号””（这个json转换默认规则）</li>
+<li>建议对每个字段设置默认值（数组型可设置为[],字符串型可设置为””，数值可设置为0，对象可设置为{}）,这一条是为了方便前端/客户端进行判断字段存不存在操作（这样json转换会自动转成相应的字符）</li>
+<li>POST操作应该返回新建的资源；PUT/PATCH操作返回更新后的完整的资源；DELETE返回一个空文档；GET返回资源数组或当个资源</li>
+<li>为了方便以后的扩展兼容，如果返回的是数组，强烈建议用一个包含如items属性的对象进行包裹，如：</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="attr">"items"</span>:[&#123;&#125;,&#123;&#125;]&#125;</div></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">POST https:<span class="comment">//api.domain.com/v1/users</span></div><div class="line">Request</div><div class="line"><span class="symbol">    headers:</span></div><div class="line"><span class="symbol">        Accept:</span> application/json</div><div class="line">        Content-Type: application/json;charset=UTF<span class="number">-8</span></div><div class="line"><span class="symbol">    body:</span></div><div class="line">     &#123;</div><div class="line">            <span class="string">"user_name"</span>: <span class="string">"ZhangSan"</span>,</div><div class="line">            <span class="string">"address"</span>: <span class="string">"ujfhysdfsdf"</span>,</div><div class="line">             <span class="string">"nick"</span>: <span class="string">"ZS"</span></div><div class="line">     &#125;</div><div class="line"></div><div class="line">Response</div><div class="line"><span class="symbol">    status:</span> <span class="number">201</span> Created</div><div class="line"><span class="symbol">    headers:</span></div><div class="line">        Content-Type: application/json;charset=UTF<span class="number">-8</span></div><div class="line"><span class="symbol">    body:</span></div><div class="line">        &#123;</div><div class="line">           <span class="string">"requestId"</span>: sdfsdflkjoiusdf,</div><div class="line">           <span class="string">"code"</span>: <span class="string">""</span>,</div><div class="line">            <span class="string">"message"</span>: <span class="string">""</span>,</div><div class="line">            <span class="string">"items"</span>:</div><div class="line">                  &#123;</div><div class="line">                       <span class="string">"id"</span>:<span class="string">"111"</span>,</div><div class="line">                       <span class="string">"user_name"</span>: <span class="string">"HingKwan"</span>,</div><div class="line">                       <span class="string">"address"</span>: <span class="string">"ujfhysdfsdf"</span>,</div><div class="line">                        <span class="string">"nick"</span>: <span class="string">"ZS"</span></div><div class="line">                  &#125;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h1 id="六、安全（Security）"><a href="#六、安全（Security）" class="headerlink" title="六、安全（Security）"></a>六、安全（Security）</h1><h2 id="调用限制"><a href="#调用限制" class="headerlink" title="调用限制"></a>调用限制</h2><p>为了避免请求泛滥，给API设置速度限制很重要。入速度设置之后，可以在HTTP返回头上对返回的信息进行说明，下面是几个必须的返回头（依照twitter的命名规则）</p>
+<figure class="highlight hsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">X-Rate-<span class="keyword">Limit</span>-<span class="keyword">Limit</span> :当前时间段允许的并发请求数</div><div class="line">X-Rate-<span class="keyword">Limit</span>-Remaining:当前时间段保留的请求数</div><div class="line">X-Rate-<span class="keyword">Limit</span>-Reset:当前时间段剩余秒数</div></pre></td></tr></table></figure>
+<p><strong>这个我们一般会在getway中实现</strong></p>
+<h2 id="授权校验"><a href="#授权校验" class="headerlink" title="授权校验"></a>授权校验</h2><p>RESTful API是无状态的也就是说用户请求的鉴权和cookie以及session无关，每一次请求都应该包含鉴权证明。 可以使用http请求头Authorization设置授权码; 必须使用User-Agent设置客户端信息, 无User-Agent请求头的请求应该被拒绝访问。具体的授权可以采用OAuth2，或者自己定义并实现相关的授权验证机制（基于token）。 <strong>这个我们一般会在getway中实现</strong></p>
+<h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><p>当API返回非2XX的HTTP响应时，应该采用统一的响应信息，格式如：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 400 Bad Request</div><div class="line">Content-Type: application/json;<span class="attribute">charset</span>=UTF-8</div><div class="line">&#123;</div><div class="line">    <span class="string">"code"</span>:<span class="string">"INVALID_ARGUMENT"</span>,</div><div class="line">    <span class="string">"message"</span>:<span class="string">"&#123;error message&#125;"</span>,</div><div class="line">    <span class="string">"request_id"</span>:<span class="string">"sdfsdfo8lkjsdf"</span>,</div><div class="line">    <span class="string">"items"</span>:[],</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>HTTP Header Code：符合HTTP响应的状态码。详细见以下的“状态码”节</li>
+<li>code：用来表示某类错误不是具体错误，比如缺少参数等。是对HTTP Header Code的补充，开发团队可以根据自己的需要自己定义</li>
+<li>message：错误信息的摘要，应该是对用户处理错误有用的信息</li>
+<li>request_id：请求的id，方便开发定位发生错误的请求（可选）</li>
+<li>code的定义约定：<ul>
+<li>采用 大写字母命名，字母与字母之间用下划线（”_”） 隔开</li>
+<li>code应该用来定义错误类别，而非定义具体的某个错误。</li>
+<li>缺少参数使用：MISSING_X</li>
+<li>无效参数使用：INVALID_X</li>
+<li>逻辑验证错误使用：VALIDATION_X</li>
+<li>不存在使用：NO_FOUND_X</li>
+</ul>
+</li>
+</ul>
+<h1 id="七、状态码（Status-Codes）"><a href="#七、状态码（Status-Codes）" class="headerlink" title="七、状态码（Status Codes）"></a>七、状态码（Status Codes）</h1><p>服务器向用户返回的状态码和提示信息，常见的有以下一些（方括号中是该状态码对应的HTTP动词）。</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">200 </span>OK - [<span class="keyword">GET</span>/<span class="keyword">PUT</span>/PATCH/<span class="keyword">DELETE</span>]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。  </div><div class="line"><span class="symbol">201 </span>Created - [POST/<span class="keyword">PUT</span>/PATCH]：用户新建或修改数据成功。  </div><div class="line"><span class="symbol">202 </span>Accepted - [*]：表示一个请求已经进入后台排队（异步任务）  </div><div class="line"><span class="symbol">204 </span>No Content - [<span class="keyword">DELETE</span>]：用户删除数据成功。  </div><div class="line"><span class="symbol">304 </span><span class="keyword">Not</span> Modified   - HTTP缓存有效。</div><div class="line"><span class="symbol">400 </span>Invalid Request - [POST/<span class="keyword">PUT</span>/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的。  </div><div class="line"><span class="symbol">401 </span>Unauthorized - [*]：表示用户没有权限（令牌、用户名、密码错误）。  </div><div class="line"><span class="symbol">403 </span>Forbidden - [*] 表示用户得到授权（与<span class="number">401</span>错误相对），但是访问是被禁止的。  </div><div class="line"><span class="symbol">404 </span><span class="keyword">Not</span> Found - [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。</div><div class="line"><span class="symbol">405 </span>Method <span class="keyword">Not</span> Allowed - [*]：该http方法不被允许。  </div><div class="line"><span class="symbol">406 </span><span class="keyword">Not</span> Acceptable - [<span class="keyword">GET</span>]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。  </div><div class="line"><span class="symbol">410 </span>Gone -[<span class="keyword">GET</span>]：用户请求的资源被永久删除，且不会再得到的。  </div><div class="line"><span class="symbol">415 </span>Unsupported Media Type - [*]：请求类型错误。</div><div class="line"><span class="symbol">422 </span>Unprocesable Entity - [POST/<span class="keyword">PUT</span>/PATCH] 当创建一个对象时，发生一个验证错误。  </div><div class="line"><span class="symbol">429 </span>Too Many Request - [*]：请求过多。</div><div class="line"><span class="symbol">500 </span>Internal Server <span class="keyword">Error</span> - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。  </div><div class="line"><span class="symbol">503 </span>Service Unavailable - [*]：服务当前无法处理请求。</div></pre></td></tr></table></figure>
+<h1 id="八、异常规范（Exceptions）"><a href="#八、异常规范（Exceptions）" class="headerlink" title="八、异常规范（Exceptions）"></a>八、异常规范（Exceptions）</h1><ul>
+<li>Controller中try catch住service的异常，再转换为restful中需要抛出的异常</li>
+</ul>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">Long</span> id = userService.save(vo);</div><div class="line">    vo.setId(id);</div><div class="line">&#125; <span class="keyword">catch</span>(BizException e) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> UnprocesableEntityException(ErrorCode.USER_NAME_EXIST.getCode(), ErrorCode.USER_NAME_EXIST.getMessage());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Controller中抛出的异常必须使用spring-mvc-rest包中的异常类，不允许自定义异常，选择需要返回的httpStatus对应的异常</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#403</span> <span class="selector-attr">[*]</span>：表示得到授权（与401错误相对），但是访问是被禁止的。</div><div class="line"><span class="selector-tag">com</span><span class="selector-class">.jiuyescm</span><span class="selector-class">.spring</span><span class="selector-class">.mvc</span><span class="selector-class">.rest</span><span class="selector-class">.exception</span><span class="selector-class">.ForbiddenException</span></div><div class="line"></div><div class="line"><span class="selector-id">#410</span> <span class="selector-attr">[GET]</span>：用户请求的资源被永久删除，且不会再得到的。</div><div class="line"><span class="selector-tag">com</span><span class="selector-class">.jiuyescm</span><span class="selector-class">.spring</span><span class="selector-class">.mvc</span><span class="selector-class">.rest</span><span class="selector-class">.exception</span><span class="selector-class">.GoneException</span></div><div class="line"></div><div class="line"><span class="selector-id">#400</span> <span class="selector-attr">[POST/PUT/PATCH]</span>：用户发出的请求有错误（常用在请求必要的参数错误上），服务器没有进行新建或修改数据的操作，该操作是幂等的。</div><div class="line"><span class="selector-tag">com</span><span class="selector-class">.jiuyescm</span><span class="selector-class">.spring</span><span class="selector-class">.mvc</span><span class="selector-class">.rest</span><span class="selector-class">.exception</span><span class="selector-class">.InvalidRequestException</span></div><div class="line"></div><div class="line"><span class="selector-id">#406</span> <span class="selector-attr">[GET]</span>：用户请求的格式不可得（比如用户请求<span class="selector-tag">JSON</span>格式，但是只有<span class="selector-tag">XML</span>格式）或（请求参数需要数字，用户传入字符串）</div><div class="line"><span class="selector-tag">com</span><span class="selector-class">.jiuyescm</span><span class="selector-class">.spring</span><span class="selector-class">.mvc</span><span class="selector-class">.rest</span><span class="selector-class">.exception</span><span class="selector-class">.NotAcceptableException</span></div><div class="line"></div><div class="line"><span class="selector-id">#404</span> <span class="selector-attr">[*]</span>：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。</div><div class="line"><span class="selector-tag">com</span><span class="selector-class">.jiuyescm</span><span class="selector-class">.spring</span><span class="selector-class">.mvc</span><span class="selector-class">.rest</span><span class="selector-class">.exception</span><span class="selector-class">.NotFoundException</span></div><div class="line"></div><div class="line"><span class="selector-id">#401</span> <span class="selector-attr">[*]</span>：表示没有权限（令牌、用户名、密码错误，或任何资源没有权限）</div><div class="line"><span class="selector-tag">com</span><span class="selector-class">.jiuyescm</span><span class="selector-class">.spring</span><span class="selector-class">.mvc</span><span class="selector-class">.rest</span><span class="selector-class">.exception</span><span class="selector-class">.UnauthorizedException</span></div><div class="line"></div><div class="line"><span class="selector-id">#422</span> <span class="selector-attr">[POST/PUT/PATCH]</span> 当创建一个对象时，发生一个验证错误。</div><div class="line"><span class="selector-tag">com</span><span class="selector-class">.jiuyescm</span><span class="selector-class">.spring</span><span class="selector-class">.mvc</span><span class="selector-class">.rest</span><span class="selector-class">.exception</span><span class="selector-class">.UnprocesableEntityException</span></div></pre></td></tr></table></figure>
+<ul>
+<li>抛出的异常中需要传入异常编码和异常信息，异常编码定义遵循上面 《安全中错误编码规范》</li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="string">"MESSING_ID"</span>, <span class="string">"缺少参数：id"</span></div><div class="line"><span class="string">"MESSING_NAME"</span>, <span class="string">"缺少参数：name"</span></div><div class="line"><span class="string">"MESSING_ADDRESS"</span>, <span class="string">"缺少参数：address"</span></div><div class="line"><span class="string">"USER_NAME_EXIST"</span>, <span class="string">"用户名已存在"</span></div><div class="line"><span class="string">"USER_NOT_FOUND"</span>, <span class="string">"用户名不存在"</span></div></pre></td></tr></table></figure>
+<ul>
+<li>常用的错误编码、异常、httpStatus对应关系</li>
+</ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="string">"MESSING_ID"</span>, <span class="string">"缺少参数：id"</span>、InvalidRequestException、<span class="number">400</span></div><div class="line"><span class="string">"MESSING_NAME"</span>, <span class="string">"缺少参数：name"</span>、InvalidRequestException、<span class="number">400</span></div><div class="line"><span class="string">"MESSING_ADDRESS"</span>, <span class="string">"缺少参数：address"</span>、InvalidRequestException、<span class="number">400</span></div><div class="line"><span class="string">"USER_NAME_EXIST"</span>, <span class="string">"用户名已存在"</span>、UnprocesableEntityException、<span class="number">422</span></div><div class="line"><span class="string">"USER_NOT_FOUND"</span>, <span class="string">"用户名不存在"</span>、NotFoundException、<span class="number">404</span></div></pre></td></tr></table></figure>
+<h1 id="九、示例（Example）"><a href="#九、示例（Example）" class="headerlink" title="九、示例（Example）"></a>九、示例（Example）</h1><p>采用user提供的示例代码</p>
+<h2 id="POST-users"><a href="#POST-users" class="headerlink" title="POST /users"></a>POST /users</h2><p>Resource <code>POST /v1/users</code></p>
+<p>POST Parameters Endpoint requires：</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>用户名称</td>
+</tr>
+<tr>
+<td>address</td>
+<td>String</td>
+<td>用户住址</td>
+</tr>
+</tbody>
+</table>
+<p>and accepts a few other parameters listed below.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>remark</td>
+<td>String</td>
+<td>描述信息</td>
+</tr>
+</tbody>
+</table>
+<p>Example</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"name"</span>:<span class="string">"tuyir"</span>,</div><div class="line">    <span class="attr">"address"</span>:<span class="string">"sdflkjsdf"</span>,</div><div class="line">    <span class="attr">"remark"</span>:<span class="string">"sdfoiu"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Response Status-Code: 201 Created</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"code"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"message"</span>: <span class="literal">null</span>,</div><div class="line">  <span class="attr">"items"</span>: &#123;</div><div class="line">    <span class="attr">"id"</span>: <span class="number">27</span>,</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"tuyir"</span>,</div><div class="line">    <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">    <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>错误编码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>错误描述</td>
+</tr>
+<tr>
+<td>Items</td>
+<td>Objec</td>
+<td>t 返回结果</td>
+</tr>
+<tr>
+<td>id</td>
+<td>Long</td>
+<td>唯一标识</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>用户名称</td>
+</tr>
+<tr>
+<td>address</td>
+<td>String</td>
+<td>家庭住址</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>String</td>
+<td>描述信息</td>
+</tr>
+</tbody>
+</table>
+<p>Error response Status-Code: 400 Bad Request</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"code"</span>: <span class="string">"MESSING_NAME"</span>,</div><div class="line">  <span class="attr">"message"</span>: “缺少参数：name”,</div><div class="line">  <span class="attr">"items"</span>: &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>错误编码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>错误描述</td>
+</tr>
+<tr>
+<td>Items</td>
+<td>Object</td>
+<td>返回结果</td>
+</tr>
+</tbody>
+</table>
+<p>HTTP Error Codes</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Status</th>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td>MESSING_NAME</td>
+<td>缺少参数：name</td>
+</tr>
+<tr>
+<td>400</td>
+<td>MESSING_ADDRESS</td>
+<td>缺少参数：address</td>
+</tr>
+<tr>
+<td>422</td>
+<td>USER_NAME_EXIST</td>
+<td>用户名已存在</td>
+</tr>
+<tr>
+<td>500</td>
+<td>INTERNAL_SERVER_ERROR</td>
+<td>未知的错误</td>
+</tr>
+</tbody>
+</table>
+<h2 id="DELETE-users-user-id"><a href="#DELETE-users-user-id" class="headerlink" title="DELETE /users/{user_id}"></a>DELETE /users/{user_id}</h2><p>Resource <code>DELETE /v1/users/{user_id}</code></p>
+<p>Path Parameters</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_id</td>
+<td>Long</td>
+<td>用户唯一标识</td>
+</tr>
+</tbody>
+</table>
+<p>Query Parameters None</p>
+<p>Example Request</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">curl –H ‘Content-Type: application<span class="regexp">/json’\</span></div><div class="line"><span class="regexp">-X DELETE \</span></div><div class="line"><span class="regexp">‘https:/</span><span class="regexp">/api.jiuyescm.com/</span>v1<span class="regexp">/users/</span><span class="number">111</span>’</div></pre></td></tr></table></figure>
+<p>Response Status-Code: 204 No Content</p>
+<p>HTTP Error Codes</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Status</th>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td>MESSING_ID</td>
+<td>缺少参数：id</td>
+</tr>
+<tr>
+<td>404</td>
+<td>USER_NOT_FOUND</td>
+<td>用户不存在</td>
+</tr>
+</tbody>
+</table>
+<h2 id="PUT-users"><a href="#PUT-users" class="headerlink" title="PUT /users"></a>PUT /users</h2><p>Resource <code>PUT /v1/users</code></p>
+<p>PUT Body Parameters Endpoint requires：</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_id</td>
+<td>Long</td>
+<td>用户唯一标识</td>
+</tr>
+<tr>
+<td>user_name</td>
+<td>String</td>
+<td>用户名称</td>
+</tr>
+<tr>
+<td>address</td>
+<td>String</td>
+<td>用户住址</td>
+</tr>
+</tbody>
+</table>
+<p>and accepts a few other parameters listed below..</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>remark</td>
+<td>String</td>
+<td>描述信息</td>
+</tr>
+</tbody>
+</table>
+<p>Example</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"user_id"</span>: <span class="number">12</span>,</div><div class="line">    <span class="attr">"name"</span>:<span class="string">"tuyir"</span>,</div><div class="line">    <span class="attr">"address"</span>:<span class="string">"sdflkjsdf"</span>,</div><div class="line">    <span class="attr">"remark"</span>:<span class="string">"sdfoiu"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Response Status-Code: 200 OK</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"code"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"message"</span>: <span class="literal">null</span>,</div><div class="line">  <span class="attr">"items"</span>: &#123;</div><div class="line">    <span class="attr">"id"</span>: <span class="number">12</span>,</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"tuyir"</span>,</div><div class="line">    <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">    <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>错误编码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>错误描述</td>
+</tr>
+<tr>
+<td>Items</td>
+<td>Object</td>
+<td>返回结果</td>
+</tr>
+<tr>
+<td>id</td>
+<td>Long</td>
+<td>唯一标识</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>用户名称</td>
+</tr>
+<tr>
+<td>address</td>
+<td>String</td>
+<td>家庭住址</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>String</td>
+<td>描述信息</td>
+</tr>
+</tbody>
+</table>
+<p>Error response Status-Code: 400 Bad Request</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"code"</span>: <span class="string">"MESSING_NAME"</span>,</div><div class="line">  <span class="attr">"message"</span>: “缺少参数：name”,</div><div class="line">  <span class="attr">"items"</span>: &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>错误编码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>错误描述</td>
+</tr>
+</tbody>
+</table>
+<p>HTTP Error Codes</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Status</th>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>错误编码</td>
+</tr>
+<tr>
+<td>400</td>
+<td>MESSING_ID</td>
+<td>缺少参数：id</td>
+</tr>
+<tr>
+<td>400</td>
+<td>MESSING_NAME</td>
+<td>缺少参数：name</td>
+</tr>
+<tr>
+<td>400</td>
+<td>MESSING_ADDRESS</td>
+<td>缺少参数：address</td>
+</tr>
+<tr>
+<td>422</td>
+<td>USER_NAME_EXIST</td>
+<td>用户名已存在</td>
+</tr>
+<tr>
+<td>500</td>
+<td>INTERNAL_SERVER_ERROR</td>
+<td>未知的错误</td>
+</tr>
+</tbody>
+</table>
+<h2 id="GET-users-user-id"><a href="#GET-users-user-id" class="headerlink" title="GET /users/{user_id}"></a>GET /users/{user_id}</h2><p>Resource <code>GET /v1/users/{user_id}</code></p>
+<p>Path Parameters</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_id</td>
+<td>Long</td>
+<td>用户唯一标识</td>
+</tr>
+</tbody>
+</table>
+<p>Example Request</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Curl –H <span class="symbol">'Content</span>-<span class="keyword">Type</span>: application/json' \</div><div class="line"><span class="symbol">'https</span>://api.jiuyescm.com/v1/users/<span class="number">12</span>'</div></pre></td></tr></table></figure>
+<p>Response Status-Code: 200 OK</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"code"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"message"</span>: <span class="literal">null</span>,</div><div class="line">  <span class="attr">"items"</span>: &#123;</div><div class="line">    <span class="attr">"id"</span>: <span class="number">12</span>,</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"tuyir"</span>,</div><div class="line">    <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">    <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>错误编码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>错误描述</td>
+</tr>
+<tr>
+<td>Items</td>
+<td>Object</td>
+<td>返回结果</td>
+</tr>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>唯一标识</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>用户名称</td>
+</tr>
+<tr>
+<td>address</td>
+<td>String</td>
+<td>家庭住址</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>String</td>
+<td>描述信息</td>
+</tr>
+</tbody>
+</table>
+<p>Error response Status-Code: 404 Bad Request</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"code"</span>: <span class="string">" USER_NOT_FOUND"</span>,</div><div class="line">  <span class="attr">"message"</span>: “用户不存在”,</div><div class="line">  <span class="attr">"items"</span>: &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>错误编码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>错误描述</td>
+</tr>
+</tbody>
+</table>
+<p>HTTP Error Codes</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Status</th>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td>MESSING_ID</td>
+<td>缺少参数：id</td>
+</tr>
+<tr>
+<td>404</td>
+<td>USER_NOT_FOUND</td>
+<td>用户不存在</td>
+</tr>
+</tbody>
+</table>
+<h2 id="GET-users"><a href="#GET-users" class="headerlink" title="GET /users"></a>GET /users</h2><p>Resource <code>GET /v1/users</code></p>
+<p>Query Parameters</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>根据用户名称进行查询</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>第几页，不传入默认1</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>int</td>
+<td>每页返回多少条结果，不传入默认20</td>
+</tr>
+</tbody>
+</table>
+<p>Example Request</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Curl –H <span class="symbol">'Content</span>-<span class="keyword">Type</span>: application/json' \</div><div class="line"><span class="symbol">'https</span>://api.jiuyescm.com/v1/users?name=xxx&amp;page=<span class="number">1</span>&amp;page_size=<span class="number">20</span>'</div></pre></td></tr></table></figure>
+<p>Response Status-Code: 200 Success</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"code"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"message"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"items"</span>: &#123;</div><div class="line">    <span class="attr">"pageNum"</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">"pageSize"</span>: <span class="number">20</span>,</div><div class="line">    <span class="attr">"size"</span>: <span class="number">17</span>,</div><div class="line">    <span class="attr">"startRow"</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">"endRow"</span>: <span class="number">17</span>,</div><div class="line">    <span class="attr">"total"</span>: <span class="number">17</span>,</div><div class="line">    <span class="attr">"pages"</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">"list"</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">2</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"ningyu1"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">3</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"ningyu2"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">4</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"ningyu3"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">5</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"ningyu4"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">6</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"ningyu5"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">7</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"8888"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"8888"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"8888"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">8</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"444"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"444"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"444"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">9</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"ningyu7"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">12</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"ningyu9"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">13</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"ningyu10"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">17</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"ningyu"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="literal">null</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">20</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"9999"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="literal">null</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">23</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"888"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">24</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"222"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">25</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"222444"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">26</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"222444sdf"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">27</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"tuyir"</span>,</div><div class="line">        <span class="attr">"address"</span>: <span class="string">"sdflkjsdf"</span>,</div><div class="line">        <span class="attr">"remark"</span>: <span class="string">"sdfoiu"</span></div><div class="line">      &#125;</div><div class="line">    ],</div><div class="line">    <span class="attr">"firstPage"</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">"prePage"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"nextPage"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"lastPage"</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">"isFirstPage"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">"isLastPage"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">"hasPreviousPage"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">"hasNextPage"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">"navigatePages"</span>: <span class="number">8</span>,</div><div class="line">    <span class="attr">"navigatepageNums"</span>: [</div><div class="line">      <span class="number">1</span></div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>错误编码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>错误描述</td>
+</tr>
+<tr>
+<td>Items</td>
+<td>Object</td>
+<td>返回结果</td>
+</tr>
+<tr>
+<td>id</td>
+<td>Long</td>
+<td>唯一标识</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>用户名称</td>
+</tr>
+<tr>
+<td>address</td>
+<td>String</td>
+<td>家庭住址</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>String</td>
+<td>描述信息</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-12-20T09:28:45.000Z" itemprop="dateUpdated">2017-12-20 17:28:45</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2016/09/11/recording/RESTful设计规范/" target="_blank" rel="external">https://fantasykai.cc/2016/09/11/recording/RESTful设计规范/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful/">restful</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2016/09/11/recording/RESTful设计规范/&title=《RESTful设计规范》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2016/09/11/recording/RESTful设计规范/&title=《RESTful设计规范》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2016/09/11/recording/RESTful设计规范/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RESTful设计规范》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2016/09/11/recording/RESTful设计规范/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2016/09/11/recording/RESTful设计规范/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/09/13/tools/IDE/idea 启动时选择项目/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">idea 启动时选择项目</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/09/10/JAVA/spring 获得根目录的配置/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Spring 获得根目录</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2016/09/11/recording/RESTful设计规范/&title=《RESTful设计规范》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2016/09/11/recording/RESTful设计规范/&title=《RESTful设计规范》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2016/09/11/recording/RESTful设计规范/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RESTful设计规范》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2016/09/11/recording/RESTful设计规范/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2016/09/11/recording/RESTful设计规范/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3aQY6DMAwF0N7/0p3tSAj4thPaSo9VRSnkpVIcbL9e8fH+d1yfOX57ff54zfG5x8+LDzw8PLzB0K+Hdc1I7nZ952RqytOEh4eHt42XLMpnt8in43pwvSB0Y8HDw8P7Sl71PmeDTqYDDw8P77d4+Zt+DsDDw8P7XV5vmzsfdDLRD+Va8PDw8GqVpqiK9D2ft9T38PDw8MZV9UmZPw8e84aD0xHi4eHhbeBVF+V8EzwpgPVaCk6fiIeHh7eNt7b5qbdBT55evhIPDw9vKa8XBvLzeZEsT+YWEhN4eHh4G3g5MsEn3+ZTWS2MNd8Y8PDw8Iq8vPyfp03XspPERCF64OHh4S3izTfK+dLfK241t+l4eHh423jVbW5vyc7DSV7cugkPeHh4eBt41Y31quRFjk8aCwr/IR4eHt423pzdCwaTNoWbzgg8PDy8DbxeK1V1c7x2OqLkCB4eHt5SXvQy30oWVO9cTShHrVp4eHh4G3i9BTo/CoOI2w7KyQ48PDy8B3nNgv0gkbHlPB4eHt7S8720aZ5W6C3ueUC62crj4eHhPcKbhIprTDVlXC2JvaqDw8PDw2vxeonaXgFsWXIhbjvAw8PD28FLhl4NANWhTNIWN9OKh4eHt5mX/Kz6mHlKdzKteHh4eDt41TapXhGr146QhKukHQEPDw9vLS/fTE9SCfPNej5ZNz0ReHh4eGNeFDfihoDkt9Xr81Gd/iV4eHh4S3nv4jEpUFXDQJ7APZ0OPDw8vA28/KhufJ/ZiPdCFB4eHt6ctzYYVBf0fJrykhgeHh7eM7z5QpxvypP7zxMleHh4eN/Ay9MK+QRVUxjlwIOHh4f3UV4+BasaCPJyFx4eHt7zvDwZkZNywKR8FXVG4OHh4S3l9V71J9vl6qB7aWU8PDy8Dbw/XwJK33bbKSQAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>
