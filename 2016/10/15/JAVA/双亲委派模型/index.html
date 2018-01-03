@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2016/10/15/JAVA/双亲委派模型/">
+    
+    
+    <title>双亲委派模型 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="java">
+    <meta name="description" content="看过几篇文章后，这篇总结的不错，转载之，方便学习及回顾 原文出处： huachao1001  其实，双亲委派模型并不复杂。自定义类加载器也不难！随便从网上搜一下就能搜出一大把结果，然后copy一下就能用。但是，如果每次想自定义类加载器就必须搜一遍别人的文章，然后复制，这样显然不行。可是自定义类加载器又不经常用，时间久了容易忘记。相信你经常会记不太清loadClass、findClass、defi">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="双亲委派模型">
+<meta property="og:url" content="https://fantasykai.cc/2016/10/15/JAVA/双亲委派模型/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="看过几篇文章后，这篇总结的不错，转载之，方便学习及回顾 原文出处： huachao1001  其实，双亲委派模型并不复杂。自定义类加载器也不难！随便从网上搜一下就能搜出一大把结果，然后copy一下就能用。但是，如果每次想自定义类加载器就必须搜一遍别人的文章，然后复制，这样显然不行。可是自定义类加载器又不经常用，时间久了容易忘记。相信你经常会记不太清loadClass、findClass、defi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2154124-d2f7f6206935de2b?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2154124-d5859f8e79069128?imageMogr2/auto-orient/strip%7CimageView2/2/w/598">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2154124-fcf13f3f446a60f1?imageMogr2/auto-orient/strip%7CimageView2/2/w/602">
+<meta property="og:updated_time" content="2018-01-03T07:04:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="双亲委派模型">
+<meta name="twitter:description" content="看过几篇文章后，这篇总结的不错，转载之，方便学习及回顾 原文出处： huachao1001  其实，双亲委派模型并不复杂。自定义类加载器也不难！随便从网上搜一下就能搜出一大把结果，然后copy一下就能用。但是，如果每次想自定义类加载器就必须搜一遍别人的文章，然后复制，这样显然不行。可是自定义类加载器又不经常用，时间久了容易忘记。相信你经常会记不太清loadClass、findClass、defi">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2154124-d2f7f6206935de2b?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">双亲委派模型</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">双亲委派模型</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-10-14T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-10-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-双亲委派模型"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 双亲委派模型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1-什么是双亲委派模型？"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1 什么是双亲委派模型？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-2-为什么需要双亲委派模型？"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.2 为什么需要双亲委派模型？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-3-如何实现双亲委派模型？"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">1.3 如何实现双亲委派模型？</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-自定义类加载器"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 自定义类加载器</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-1几个重要函数"><span class="post-toc-number">3.</span> <span class="post-toc-text">2. 1几个重要函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-1-loadClass"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">2.1.1 loadClass</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-1-find-Class"><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">2.1.1 find Class</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-1-defineClass"><span class="post-toc-number">3.0.3.</span> <span class="post-toc-text">2.1.1 defineClass</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-函数调用过程"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">2.2 函数调用过程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-3-简单示例"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2.3 简单示例</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-JAVA/双亲委派模型"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">双亲委派模型</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-10-15 00:00:00" datetime="2016-10-14T16:00:00.000Z"  itemprop="datePublished">2016-10-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>看过几篇文章后，这篇总结的不错，转载之，方便学习及回顾</p>
+<p>原文出处： <a href="https://www.jianshu.com/p/acc7595f1b9d" target="_blank" rel="external">huachao1001</a></p>
+</blockquote>
+<p>其实，双亲委派模型并不复杂。自定义类加载器也不难！随便从网上搜一下就能搜出一大把结果，然后<code>copy</code>一下就能用。但是，如果每次想自定义类加载器就必须搜一遍别人的文章，然后复制，这样显然不行。可是自定义类加载器又不经常用，时间久了容易忘记。相信你经常会记不太清<code>loadClass</code>、<code>findClass</code>、<code>defineClass</code>这些函数我到底应该重写哪一个？它们主要是做什么的？本文大致分析了各个函数的流程，目的就是让你看完之后，难以忘记！或者说，延长你对自定义类加载器的记忆时间！随时随地想自定义就自定义！</p>
+<h1 id="1-双亲委派模型"><a href="#1-双亲委派模型" class="headerlink" title="1. 双亲委派模型"></a>1. 双亲委派模型</h1><p>关于双亲委派模型，网上的资料有很多。我这里只简单的描述一下，就当是复习。</p>
+<h2 id="1-1-什么是双亲委派模型？"><a href="#1-1-什么是双亲委派模型？" class="headerlink" title="1.1 什么是双亲委派模型？"></a>1.1 什么是双亲委派模型？</h2><p>首先，先要知道什么是类加载器。简单说，类加载器就是根据指定全限定名称将<code>class</code>文件加载到<code>JVM</code>内存，转为<code>Class</code>对象。如果站在<code>JVM</code>的角度来看，只存在两种类加载器:</p>
+<blockquote>
+<ul>
+<li>启动类加载器（<code>Bootstrap ClassLoader</code>）：由<code>C++</code>语言实现（针对<code>HotSpot</code>）,负责将存放在<code>&lt;JAVA_HOME&gt;\lib</code>目录或<code>-Xbootclasspath</code>参数指定的路径中的类库加载到内存中。</li>
+<li>其他类加载器：由<code>Java</code>语言实现，继承自抽象类<code>ClassLoader</code>。如：</li>
+<li>扩展类加载器（<code>Extension ClassLoader</code>）：负责加载<code>&lt;JAVA_HOME&gt;\lib\ext</code>目录或<code>java.ext.dirs</code>系统变量指定的路径中的所有类库。</li>
+<li>应用程序类加载器（<code>Application ClassLoader</code>）。负责加载用户类路径（<code>classpath</code>）上的指定类库，我们可以直接使用这个类加载器。一般情况，如果我们没有自定义类加载器默认就是用这个加载器。</li>
+</ul>
+</blockquote>
+<p>双亲委派模型工作过程是：如果一个类加载器收到类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器完成。每个类加载器都是如此，只有当父加载器在自己的搜索范围内找不到指定的类时（即<code>ClassNotFoundException</code>），子加载器才会尝试自己去加载。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2154124-d2f7f6206935de2b?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>类加载器的双亲委派模型</p>
+<h2 id="1-2-为什么需要双亲委派模型？"><a href="#1-2-为什么需要双亲委派模型？" class="headerlink" title="1.2 为什么需要双亲委派模型？"></a>1.2 为什么需要双亲委派模型？</h2><p>为什么需要双亲委派模型呢？假设没有双亲委派模型，试想一个场景：</p>
+<blockquote>
+<p>黑客自定义一个<code>java.lang.String</code>类，该<code>String</code>类具有系统的<code>String</code>类一样的功能，只是在某个函数稍作修改。比如<code>equals</code>函数，这个函数经常使用，如果在这这个函数中，黑客加入一些“病毒代码”。并且通过自定义类加载器加入到<code>JVM</code>中。此时，如果没有双亲委派模型，那么<code>JVM</code>就可能误以为黑客自定义的<code>java.lang.String</code>类是系统的<code>String</code>类，导致“病毒代码”被执行。</p>
+</blockquote>
+<p>而有了双亲委派模型，黑客自定义的<code>java.lang.String</code>类永远都不会被加载进内存。因为首先是最顶端的类加载器加载系统的<code>java.lang.String</code>类，最终自定义的类加载器无法加载<code>java.lang.String</code>类。</p>
+<p>或许你会想，我在自定义的类加载器里面强制加载自定义的<code>java.lang.String</code>类，不去通过调用父加载器不就好了吗?确实，这样是可行。但是，在<code>JVM</code>中，判断一个对象是否是某个类型时，如果该对象的实际类型与待比较的类型的类加载器不同，那么会返回false。</p>
+<p>举个简单例子：</p>
+<blockquote>
+<p><code>ClassLoader1</code>、<code>ClassLoader2</code>都加载<code>java.lang.String</code>类，对应Class1、Class2对象。那么<code>Class1</code>对象不属于<code>ClassLoad2</code>对象加载的<code>java.lang.String</code>类型。</p>
+</blockquote>
+<h2 id="1-3-如何实现双亲委派模型？"><a href="#1-3-如何实现双亲委派模型？" class="headerlink" title="1.3 如何实现双亲委派模型？"></a>1.3 如何实现双亲委派模型？</h2><p>双亲委派模型的原理很简单，实现也简单。每次通过先委托父类加载器加载，当父类加载器无法加载时，再自己加载。其实<code>ClassLoader</code>类默认的<code>loadClass</code>方法已经帮我们写好了，我们无需去写。</p>
+<h1 id="2-自定义类加载器"><a href="#2-自定义类加载器" class="headerlink" title="2. 自定义类加载器"></a>2. 自定义类加载器</h1><h1 id="2-1几个重要函数"><a href="#2-1几个重要函数" class="headerlink" title="2. 1几个重要函数"></a>2. 1几个重要函数</h1><h3 id="2-1-1-loadClass"><a href="#2-1-1-loadClass" class="headerlink" title="2.1.1 loadClass"></a>2.1.1 loadClass</h3><p><code>loadClass</code>默认实现如下：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> Class&lt;?&gt; loadClass(String name) <span class="keyword">throws</span> ClassNotFoundException &#123;</div><div class="line">        <span class="function"><span class="keyword">return</span> <span class="title">loadClass</span><span class="params">(name, <span class="keyword">false</span>)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>再看看<code>loadClass(String name, boolean resolve)</code>函数：</p>
+<figure class="highlight monkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">protected <span class="class"><span class="keyword">Class</span>&lt;?&gt; <span class="title">loadClass</span>(<span class="title">String</span> <span class="title">name</span>, <span class="title">boolean</span> <span class="title">resolve</span>)</span></div><div class="line">    throws ClassNotFoundException</div><div class="line">&#123;</div><div class="line">    synchronized (getClassLoadingLock(name)) &#123;</div><div class="line">        // First, check <span class="keyword">if</span> the <span class="class"><span class="keyword">class</span> <span class="title">has</span> <span class="title">already</span> <span class="title">been</span> <span class="title">loaded</span></span></div><div class="line">        <span class="class"><span class="keyword">Class</span> <span class="title">c</span> = <span class="title">findLoadedClass</span>(<span class="title">name</span>);</span></div><div class="line">        <span class="keyword">if</span> (c == <span class="literal">null</span>) &#123;</div><div class="line">            long t0 = System.nanoTime();</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="keyword">if</span> (parent != <span class="literal">null</span>) &#123;</div><div class="line">                    c = parent.loadClass(name, <span class="literal">false</span>);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    c = findBootstrapClassOrNull(name);</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</div><div class="line">                // ClassNotFoundException thrown <span class="keyword">if</span> <span class="class"><span class="keyword">class</span> <span class="title">not</span> <span class="title">found</span></span></div><div class="line">                // from the non-<span class="literal">null</span> parent <span class="class"><span class="keyword">class</span> <span class="title">loader</span></span></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (c == <span class="literal">null</span>) &#123;</div><div class="line">                // <span class="keyword">If</span> still <span class="keyword">not</span> found, <span class="keyword">then</span> invoke findClass in order</div><div class="line">                // <span class="keyword">to</span> find the <span class="class"><span class="keyword">class</span>.</span></div><div class="line">                long t1 = System.nanoTime();</div><div class="line">                c = findClass(name);</div><div class="line"></div><div class="line">                // this is the defining <span class="class"><span class="keyword">class</span> <span class="title">loader</span>; <span class="title">record</span> <span class="title">the</span> <span class="title">stats</span></span></div><div class="line">                sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);</div><div class="line">                sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);</div><div class="line">                sun.misc.PerfCounter.getFindClasses().increment();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (resolve) &#123;</div><div class="line">            resolveClass(c);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> c;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从上面代码可以明显看出，<code>loadClass(String, boolean)</code>函数即实现了双亲委派模型！整个大致过程如下：</p>
+<blockquote>
+<ol>
+<li>首先，检查一下指定名称的类是否已经加载过，如果加载过了，就不需要再加载，直接返回。</li>
+<li>如果此类没有加载过，那么，再判断一下是否有父加载器；如果有父加载器，则由父加载器加载（即调用<code>parent.loadClass(name, false);</code>）.或者是调用<code>bootstrap</code>类加载器来加载。</li>
+<li>如果父加载器及<code>bootstrap</code>类加载器都没有找到指定的类，那么调用当前类加载器的<code>findClass</code>方法来完成类加载。</li>
+</ol>
+</blockquote>
+<p><strong>话句话说，如果自定义类加载器，就必须重写findClass方法！</strong></p>
+<h3 id="2-1-1-find-Class"><a href="#2-1-1-find-Class" class="headerlink" title="2.1.1 find Class"></a>2.1.1 find Class</h3><p><code>findClass</code>的默认实现如下：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">protected</span> <span class="keyword">Class</span>&lt;?&gt; findClass(String name) <span class="keyword">throws</span> ClassNotFoundException &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ClassNotFoundException(name);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看出，抽象类<code>ClassLoader</code>的<code>findClass</code>函数默认是抛出异常的。而前面我们知道，<code>loadClass</code>在父加载器无法加载类的时候，就会调用我们自定义的类加载器中的<code>findeClass</code>函数，因此我们必须要在<code>loadClass</code>这个函数里面实现将一个指定类名称转换为<code>Class</code>对象.</p>
+<p>如果是是读取一个指定的名称的类为字节数组的话，这很好办。但是如何将字节数组转为<code>Class</code>对象呢？很简单，<code>Java</code>提供了<code>defineClass</code>方法，通过这个方法，就可以把一个字节数组转为Class对象啦~</p>
+<h3 id="2-1-1-defineClass"><a href="#2-1-1-defineClass" class="headerlink" title="2.1.1 defineClass"></a>2.1.1 defineClass</h3><p><code>defineClass</code>主要的功能是：</p>
+<blockquote>
+<p>将一个字节数组转为<code>Class</code>对象，这个字节数组是<code>class</code>文件读取后最终的字节数组。如，假设<code>class</code>文件是加密过的，则需要解密后作为形参传入<code>defineClass</code>函数。</p>
+</blockquote>
+<p><code>defineClass</code>默认实现如下：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">protected</span> <span class="keyword">final</span> Class&lt;?&gt; defineClass(String name, <span class="keyword">byte</span>[] b, <span class="keyword">int</span> off, <span class="keyword">int</span> len)</div><div class="line">        <span class="keyword">throws</span> ClassFormatError  &#123;</div><div class="line">        <span class="function"><span class="keyword">return</span> <span class="title">defineClass</span><span class="params">(name, b, off, len, <span class="keyword">null</span>)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-2-函数调用过程"><a href="#2-2-函数调用过程" class="headerlink" title="2.2 函数调用过程"></a>2.2 函数调用过程</h2><p>上一节所提的函数调用过程如下：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2154124-d5859f8e79069128?imageMogr2/auto-orient/strip%7CimageView2/2/w/598" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>自定义函数调用过程</p>
+<h2 id="2-3-简单示例"><a href="#2-3-简单示例" class="headerlink" title="2.3 简单示例"></a>2.3 简单示例</h2><p>首先，我们定义一个待加载的普通<code>Java</code>类:<code>Test.java</code>。放在<code>com.huachao.cl</code>包下:</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">package com.huachao.cl;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test</span> &#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        System.<span class="keyword">out</span>.println(<span class="string">"恩，是的，我是由 "</span> + getClass().getClassLoader().getClass()</div><div class="line">                + <span class="string">" 加载进来的"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意：</p>
+<blockquote>
+<p>如果你是直接在当前项目里面创建，待<code>Test.java</code>编译后，请把<code>Test.class</code>文件拷贝走，再将<code>Test.java</code>删除。因为如果<code>Test.class</code>存放在当前项目中，根据双亲委派模型可知，会通过<code>sun.misc.Launcher$AppClassLoader</code> 类加载器加载。为了让我们自定义的类加载器加载，我们把Test.class文件放入到其他目录。</p>
+</blockquote>
+<p>在本例中，我们Test.class文件存放的目录如下：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/2154124-fcf13f3f446a60f1?imageMogr2/auto-orient/strip%7CimageView2/2/w/602" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>class文件目录</p>
+<p>接下来就是自定义我们的类加载器：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.FileInputStream;</div><div class="line"><span class="keyword">import</span> java.lang.reflect.Method;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> Main &#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">class</span> MyClassLoader <span class="keyword">extends</span> ClassLoader &#123;</div><div class="line">        <span class="keyword">private</span> String <span class="keyword">classPath</span>;</div><div class="line"></div><div class="line">        <span class="keyword">public</span> MyClassLoader(String <span class="keyword">classPath</span>) &#123;</div><div class="line">            <span class="keyword">this</span>.<span class="keyword">classPath</span> = <span class="keyword">classPath</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="keyword">byte</span>[] loadByte(String name) <span class="keyword">throws</span> Exception &#123;</div><div class="line">            name = name.replaceAll(<span class="string">"\\."</span>, <span class="string">"/"</span>);</div><div class="line">            FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="keyword">classPath</span> + <span class="string">"/"</span> + name</div><div class="line">                    + <span class="string">".class"</span>);</div><div class="line">            <span class="keyword">int</span> len = fis.available();</div><div class="line">            <span class="keyword">byte</span>[] data = <span class="keyword">new</span> <span class="keyword">byte</span>[len];</div><div class="line">            fis.<span class="keyword">read</span>(data);</div><div class="line">            fis.close();</div><div class="line">            <span class="keyword">return</span> data;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">protected</span> <span class="keyword">Class</span>&lt;?&gt; findClass(String name) <span class="keyword">throws</span> ClassNotFoundException &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="keyword">byte</span>[] data = loadByte(name);</div><div class="line">                <span class="keyword">return</span> defineClass(name, data, <span class="number">0</span>, data.length);</div><div class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> ClassNotFoundException();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String args[]) <span class="keyword">throws</span> Exception &#123;</div><div class="line">        MyClassLoader classLoader = <span class="keyword">new</span> MyClassLoader(<span class="string">"D:/test"</span>);</div><div class="line">        <span class="keyword">Class</span> clazz = classLoader.loadClass(<span class="string">"com.huachao.cl.Test"</span>);</div><div class="line">        Object obj = clazz.newInstance();</div><div class="line">        Method helloMethod = clazz.getDeclaredMethod(<span class="string">"hello"</span>, <span class="keyword">null</span>);</div><div class="line">        helloMethod.invoke(obj, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后运行结果如下：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">恩，是的，我是由 <span class="class"><span class="keyword">class</span> <span class="title">Main$MyClassLoader</span> 加载进来的</span></div></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-01-03T07:04:34.000Z" itemprop="dateUpdated">2018-01-03 15:04:34</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2016/10/15/JAVA/双亲委派模型/" target="_blank" rel="external">https://fantasykai.cc/2016/10/15/JAVA/双亲委派模型/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2016/10/15/JAVA/双亲委派模型/&title=《双亲委派模型》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2016/10/15/JAVA/双亲委派模型/&title=《双亲委派模型》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2016/10/15/JAVA/双亲委派模型/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《双亲委派模型》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2016/10/15/JAVA/双亲委派模型/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2016/10/15/JAVA/双亲委派模型/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/10/16/tools/postman使用简介/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">postman 使用简介</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/09/13/tools/IDE/idea 启动时选择项目/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">idea 启动时选择项目</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2016/10/15/JAVA/双亲委派模型/&title=《双亲委派模型》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2016/10/15/JAVA/双亲委派模型/&title=《双亲委派模型》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2016/10/15/JAVA/双亲委派模型/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《双亲委派模型》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2016/10/15/JAVA/双亲委派模型/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2016/10/15/JAVA/双亲委派模型/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aS27DMAxFUe9/0y7QaSv1PjIJaupqFDiNreMBy4+uC6/7e60+k7W628/rq29fsGTIkPFYBnk8Z6w2RHjpa5IhQ8ZpjNrtVnfgITW98/K6DBkyZITUWhJZe64MGTJk7MvLNCncp6QyZMiQsWeQIMgxpCfWSRxlyJBxGqM/GHjf54/ON2TIkPEvGXe4+JDgfaPQX3YlQ4aM0YxaW3//q86wk5fEF6lrZciQMY7R2RbP1molLiqbZciQcQCDtNXSJK/WbuPldHA2RIYMGQ9n1GA8veuPPNNSWYYMGZMYtSMUabjkm04DvQwZMk5g8E2kSVt6JKJ2kCI+4yZDhowHMvhIIP22Flhr/wBkyJBxJoOMDHka1zmthp4uQ4aM0QwyJiS3TkNtrQBGd5MhQ8YBjNoAAB3b2g4+ecBF7TYZMmSMY6QHtvbIWkPtBe08GTJkDGV0hpfkCimMiy02nj/KkCFjHCNtutXKzlqYDrqGMmTIGMQg7ft0SJC27WqhNjjjJkOGjIcz0senV/qvoDUMkCFDxiBGJ9UjWydlcGuEKUOGjNGM1260FkDTIvmPDFeGDBnjGHe4OkOFWhGLUk8ZMmSMZrTidHi99pdx71CGDBlDGf1jqfxYBg/l+2AtQ4aMMxlkeJm278lLqR3jiA+HyZAh4xhGJ4HjPMKWIUOGjJRRG4LyChullTJkyDiAkYbCWrlbLFDJb2XIkDGa0RkM1EI2YfNXKUOGjNGML+M2A/GXcOS6AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>
