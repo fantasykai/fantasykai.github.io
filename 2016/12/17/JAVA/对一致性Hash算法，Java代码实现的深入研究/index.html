@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2016/12/17/JAVA/对一致性Hash算法，Java代码实现的深入研究/">
+    
+    
+    <title>对一致性Hash算法，java实现的研究 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="java">
+    <meta name="description" content="转载：http://www.cnblogs.com/xrq730/p/5186728.html  一致性Hash算法 关于一致性Hash算法，在我之前的博文中已经有多次提到了，MemCache超详细解读一文中”一致性Hash算法”部分，对于为什么要使用一致性Hash算法、一致性Hash算法的算法原理做了详细的解读。 算法的具体原理这里再次贴上： 先构造一个长度为232的整数环（这个环被称为一致性">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对一致性Hash算法，java实现的研究">
+<meta property="og:url" content="https://fantasykai.cc/2016/12/17/JAVA/对一致性Hash算法，Java代码实现的深入研究/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="转载：http://www.cnblogs.com/xrq730/p/5186728.html  一致性Hash算法 关于一致性Hash算法，在我之前的博文中已经有多次提到了，MemCache超详细解读一文中”一致性Hash算法”部分，对于为什么要使用一致性Hash算法、一致性Hash算法的算法原理做了详细的解读。 算法的具体原理这里再次贴上： 先构造一个长度为232的整数环（这个环被称为一致性">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/801753/201602/801753-20160212222344573-933837136.jpg">
+<meta property="og:image" content="javascript:void(0);">
+<meta property="og:image" content="javascript:void(0);">
+<meta property="og:image" content="javascript:void(0);">
+<meta property="og:image" content="javascript:void(0);">
+<meta property="og:image" content="javascript:void(0);">
+<meta property="og:image" content="javascript:void(0);">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/801753/201602/801753-20160212234143027-642938706.png">
+<meta property="og:image" content="javascript:void(0);">
+<meta property="og:image" content="javascript:void(0);">
+<meta property="og:image" content="javascript:void(0);">
+<meta property="og:image" content="javascript:void(0);">
+<meta property="og:updated_time" content="2018-01-30T09:55:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对一致性Hash算法，java实现的研究">
+<meta name="twitter:description" content="转载：http://www.cnblogs.com/xrq730/p/5186728.html  一致性Hash算法 关于一致性Hash算法，在我之前的博文中已经有多次提到了，MemCache超详细解读一文中”一致性Hash算法”部分，对于为什么要使用一致性Hash算法、一致性Hash算法的算法原理做了详细的解读。 算法的具体原理这里再次贴上： 先构造一个长度为232的整数环（这个环被称为一致性">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/801753/201602/801753-20160212222344573-933837136.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">对一致性Hash算法，java实现的研究</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">对一致性Hash算法，java实现的研究</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-12-16T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-12-17
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-JAVA/对一致性Hash算法，Java代码实现的深入研究"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">对一致性Hash算法，java实现的研究</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-12-17 00:00:00" datetime="2016-12-16T16:00:00.000Z"  itemprop="datePublished">2016-12-17</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>转载：<a href="http://www.cnblogs.com/xrq730/p/5186728.html" target="_blank" rel="external">http://www.cnblogs.com/xrq730/p/5186728.html</a></p>
+</blockquote>
+<p><strong>一致性Hash算法</strong></p>
+<p>关于一致性Hash算法，在我之前的博文中已经有多次提到了，<a href="http://www.cnblogs.com/xrq730/p/4948707.html" target="_blank" rel="external">MemCache超详细解读</a>一文中”一致性Hash算法”部分，对于为什么要使用一致性Hash算法、一致性Hash算法的算法原理做了详细的解读。</p>
+<p>算法的具体原理这里再次贴上：</p>
+<p><strong>先构造一个长度为232的整数环（这个环被称为一致性Hash环），根据节点名称的Hash值（其分布为[0, 232-1]）将服务器节点放置在这个Hash环上，然后根据数据的Key值计算得到其Hash值（其分布也为[0, 232-1]），接着在Hash环上顺时针查找距离这个Key值的Hash值最近的服务器节点，完成Key到服务器的映射查找。</strong></p>
+<p>这种算法解决了普通余数Hash算法伸缩性差的问题，可以保证在上线、下线服务器的情况下尽量有多的请求命中原来路由到的服务器。</p>
+<p>当然，万事不可能十全十美，一致性Hash算法比普通的余数Hash算法更具有伸缩性，但是同时其算法实现也更为复杂，本文就来研究一下，如何利用Java代码实现一致性Hash算法。在开始之前，先对一致性Hash算法中的几个核心问题进行一些探究。</p>
+<p><strong>数据结构的选取</strong></p>
+<p>一致性Hash算法最先要考虑的一个问题是：构造出一个长度为232的整数环，根据节点名称的Hash值将服务器节点放置在这个Hash环上。</p>
+<p>那么，整数环应该使用何种数据结构，才能使得运行时的时间复杂度最低？首先说明一点，关于时间复杂度，常见的时间复杂度与时间效率的关系有如下的经验规则：</p>
+<p><strong>O(1) &lt; O(log2N) &lt; O(N) &lt; O(N * log2N) &lt; O(N2) &lt; O(N3)  &lt; O(N!)</strong></p>
+<p>一般来说，前四个效率比较高，中间两个差强人意，最后一个后比较差（只要N比较大，这个算法就动不了了）。OK，继续前面的话题，应该如何选取数据结构，我认为有以下几种可行的解决方案。</p>
+<p><strong>1、解决方案一：排序+List</strong></p>
+<p>我想到的第一种思路是：算出所有待加入数据结构的节点名称的Hash值放入一个数组中，然后使用某种排序算法将其从小到大进行排序，最后将排序后的数据放入List中，采用List而不是数组是为了结点的扩展考虑。</p>
+<p><strong>之后，待路由的结点，只需要在List中找到第一个Hash值比它大的服务器节点就可以了</strong>，比如服务器节点的Hash值是[0,2,4,6,8,10]，带路由的结点是7，只需要找到第一个比7大的整数，也就是8，就是我们最终需要路由过去的服务器节点。</p>
+<p>如果暂时不考虑前面的排序，那么这种解决方案的时间复杂度：</p>
+<p>（1）最好的情况是第一次就找到，时间复杂度为O(1)</p>
+<p>（2）最坏的情况是最后一次才找到，时间复杂度为O(N)</p>
+<p>平均下来时间复杂度为O(0.5N+0.5)，忽略首项系数和常数，时间复杂度为O(N)。</p>
+<p>但是如果考虑到之前的排序，我在网上找了张图，提供了各种排序算法的时间复杂度：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/801753/201602/801753-20160212222344573-933837136.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>看得出来，排序算法要么稳定但是时间复杂度高、要么时间复杂度低但不稳定，看起来最好的归并排序法的时间复杂度仍然有O(N * logN)，稍微耗费性能了一些。</p>
+<p><strong>2、解决方案二：遍历+List</strong></p>
+<p>既然排序操作比较耗性能，那么能不能不排序？可以的，所以进一步的，有了第二种解决方案。</p>
+<p>解决方案使用List不变，不过可以采用遍历的方式：</p>
+<p>（1）服务器节点不排序，其Hash值全部直接放入一个List中</p>
+<p>（2）带路由的节点，算出其Hash值，由于指明了”顺时针”，因此遍历List，比待路由的节点Hash值大的算出差值并记录，比待路由节点Hash值小的忽略</p>
+<p>（3）算出所有的差值之后，最小的那个，就是最终需要路由过去的节点</p>
+<p>在这个算法中，看一下时间复杂度：</p>
+<p>1、最好情况是只有一个服务器节点的Hash值大于带路由结点的Hash值，其时间复杂度是O(N)+O(1)=O(N+1)，忽略常数项，即O(N)</p>
+<p>2、最坏情况是所有服务器节点的Hash值都大于带路由结点的Hash值，其时间复杂度是O(N)+O(N)=O(2N)，忽略首项系数，即O(N)</p>
+<p>所以，总的时间复杂度就是O(N)。其实算法还能更改进一些：给一个位置变量X，如果新的差值比原差值小，X替换为新的位置，否则X不变。这样遍历就减少了一轮，不过经过改进后的算法时间复杂度仍为O(N)。</p>
+<p>总而言之，这个解决方案和解决方案一相比，总体来看，似乎更好了一些。</p>
+<p><strong>3、解决方案三：二叉查找树</strong></p>
+<p>抛开List这种数据结构，另一种数据结构则是使用<strong>二叉查找树</strong>。对于树不是很清楚的朋友可以简单看一下这篇文章<a href="http://www.cnblogs.com/xrq730/p/5187032.html" target="_blank" rel="external">树形结构</a>。</p>
+<p>当然我们不能简单地使用二叉查找树，因为可能出现不平衡的情况。平衡二叉查找树有AVL树、红黑树等，这里使用红黑树，选用红黑树的原因有两点：</p>
+<p>1、红黑树主要的作用是用于存储有序的数据，这其实和第一种解决方案的思路又不谋而合了，但是它的效率非常高</p>
+<p>2、JDK里面提供了红黑树的代码实现TreeMap和TreeSet</p>
+<p>另外，以TreeMap为例，TreeMap本身提供了一个tailMap(K fromKey)方法，支持从红黑树中查找比fromKey大的值的集合，但并不需要遍历整个数据结构。</p>
+<p>使用红黑树，可以使得查找的时间复杂度降低为O(logN)，比上面两种解决方案，效率大大提升。</p>
+<p>为了验证这个说法，我做了一次测试，从大量数据中查找第一个大于其中间值的那个数据，比如10000数据就找第一个大于5000的数据（模拟平均的情况）。看一下O(N)时间复杂度和O(logN)时间复杂度运行效率的对比：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>50000</strong></th>
+<th><strong>100000</strong></th>
+<th><strong>500000</strong></th>
+<th><strong>1000000</strong></th>
+<th><strong>4000000</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ArrayList</strong></td>
+<td><strong>1ms</strong></td>
+<td><strong>1ms</strong></td>
+<td><strong>4ms</strong></td>
+<td><strong>4ms</strong></td>
+<td><strong>5ms</strong></td>
+</tr>
+<tr>
+<td><strong>LinkedList</strong></td>
+<td><strong>4ms</strong></td>
+<td><strong>7ms</strong></td>
+<td><strong>11ms</strong></td>
+<td><strong>13ms</strong></td>
+<td><strong>17ms</strong></td>
+</tr>
+<tr>
+<td><strong>TreeMap</strong></td>
+<td><strong>0ms</strong></td>
+<td><strong>0ms</strong></td>
+<td><strong>0ms</strong></td>
+<td><strong>0ms</strong></td>
+<td><strong>0ms</strong></td>
+</tr>
+</tbody>
+</table>
+<p>因为再大就内存溢出了，所以只测试到4000000数据。可以看到，数据查找的效率，TreeMap是完胜的，其实再增大数据测试也是一样的，红黑树的数据结构决定了任何一个大于N的最小数据，它都只需要几次至几十次查找就可以查到。</p>
+<p>当然，明确一点，有利必有弊，根据我另外一次测试得到的结论是，<strong>为了维护红黑树，数据插入效率TreeMap在三种数据结构里面是最差的，且插入要慢上5~10倍</strong>。</p>
+<p><strong>Hash值重新计算</strong></p>
+<p>服务器节点我们肯定用字符串来表示，比如”192.168.1.1”、”192.168.1.2”，根据字符串得到其Hash值，那么另外一个重要的问题就是Hash值要重新计算，这个问题是我在测试String的hashCode()方法的时候发现的，不妨来看一下为什么要重新计算Hash值：</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="javascript:void(0);" alt="复制代码](http://common.cnblogs.com/images/copycode.gif)" title="">
+                </div>
+                <div class="image-caption">复制代码](http://common.cnblogs.com/images/copycode.gif)</div>
+            </figure></p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * String的hashCode()方法运算结果查看</span></div><div class="line"><span class="comment"> * @author 五月的仓颉 http://www.cnblogs.com/xrq730/</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">StringHashCodeTest</span></div><div class="line">&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>)</span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        System.<span class="keyword">out</span>.println(<span class="string">"192.168.0.0:111的哈希值："</span> + <span class="string">"192.168.0.0:1111"</span>.hashCode());</div><div class="line">        System.<span class="keyword">out</span>.println(<span class="string">"192.168.0.1:111的哈希值："</span> + <span class="string">"192.168.0.1:1111"</span>.hashCode());</div><div class="line">        System.<span class="keyword">out</span>.println(<span class="string">"192.168.0.2:111的哈希值："</span> + <span class="string">"192.168.0.2:1111"</span>.hashCode());</div><div class="line">        System.<span class="keyword">out</span>.println(<span class="string">"192.168.0.3:111的哈希值："</span> + <span class="string">"192.168.0.3:1111"</span>.hashCode());</div><div class="line">        System.<span class="keyword">out</span>.println(<span class="string">"192.168.0.4:111的哈希值："</span> + <span class="string">"192.168.0.4:1111"</span>.hashCode());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="javascript:void(0);" alt="复制代码](http://common.cnblogs.com/images/copycode.gif)" title="">
+                </div>
+                <div class="image-caption">复制代码](http://common.cnblogs.com/images/copycode.gif)</div>
+            </figure></p>
+<p>我们在做集群的时候，集群点的IP以这种连续的形式存在是很正常的。看一下运行结果为：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">192<span class="selector-class">.168</span><span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-pseudo">:111</span>的哈希值：1845870087</div><div class="line">192<span class="selector-class">.168</span><span class="selector-class">.0</span><span class="selector-class">.1</span><span class="selector-pseudo">:111</span>的哈希值：1874499238</div><div class="line">192<span class="selector-class">.168</span><span class="selector-class">.0</span><span class="selector-class">.2</span><span class="selector-pseudo">:111</span>的哈希值：1903128389</div><div class="line">192<span class="selector-class">.168</span><span class="selector-class">.0</span><span class="selector-class">.3</span><span class="selector-pseudo">:111</span>的哈希值：1931757540</div><div class="line">192<span class="selector-class">.168</span><span class="selector-class">.0</span><span class="selector-class">.4</span><span class="selector-pseudo">:111</span>的哈希值：1960386691</div></pre></td></tr></table></figure>
+<p>这个就问题大了，[0,232-1]的区间之中，5个HashCode值却只分布在这么小小的一个区间，什么概念？[0,232-1]中有4294967296个数字，而我们的区间只有114516604，从概率学上讲这将导致97%待路由的服务器都被路由到”192.168.0.0”这个集群点上，简直是糟糕透了！</p>
+<p>另外还有一个不好的地方：规定的区间是非负数，String的hashCode()方法却会产生负数（不信用”192.168.1.0:1111”试试看就知道了）。不过这个问题好解决，取绝对值就是一种解决的办法。</p>
+<p>综上，String重写的hashCode()方法在一致性Hash算法中没有任何实用价值，得找个算法重新计算HashCode。这种重新计算Hash值的算法有很多，比如CRC32_HASH、FNV1_32_HASH、KETAMA_HASH等，其中KETAMA_HASH是默认的MemCache推荐的一致性Hash算法，用别的Hash算法也可以，比如FNV1_32_HASH算法的计算效率就会高一些。</p>
+<p><strong>一致性Hash算法实现版本1：不带虚拟节点</strong></p>
+<p>使用一致性Hash算法，尽管增强了系统的伸缩性，但是也有可能导致负载分布不均匀，解决办法就是使用<strong>虚拟节点代替真实节点</strong>，第一个代码版本，先来个简单的，不带虚拟节点。</p>
+<p>下面来看一下不带虚拟节点的一致性Hash算法的Java代码实现：</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="javascript:void(0);" alt="复制代码](http://common.cnblogs.com/images/copycode.gif)" title="">
+                </div>
+                <div class="image-caption">复制代码](http://common.cnblogs.com/images/copycode.gif)</div>
+            </figure></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"> <span class="number">1</span> <span class="comment">/**</span></div><div class="line"><span class="comment"> 2  * 不带虚拟节点的一致性Hash算法</span></div><div class="line"><span class="comment"> 3  * @author 五月的仓颉http://www.cnblogs.com/xrq730/</span></div><div class="line"><span class="comment"> 4  *</span></div><div class="line"><span class="comment"> 5  */</span></div><div class="line"> <span class="number">6</span> public class ConsistentHashingWithoutVirtualNode</div><div class="line"> <span class="number">7</span> &#123;</div><div class="line"> <span class="number">8</span>     <span class="comment">/**</span></div><div class="line"><span class="comment"> 9      * 待添加入Hash环的服务器列表</span></div><div class="line"><span class="comment">10      */</span></div><div class="line"><span class="number">11</span>     private static String[] servers = &#123;<span class="string">"192.168.0.0:111"</span>, <span class="string">"192.168.0.1:111"</span>, <span class="string">"192.168.0.2:111"</span>,</div><div class="line"><span class="number">12</span>             <span class="string">"192.168.0.3:111"</span>, <span class="string">"192.168.0.4:111"</span>&#125;;</div><div class="line"><span class="number">13</span>     </div><div class="line"><span class="number">14</span>     <span class="comment">/**</span></div><div class="line"><span class="comment">15      * key表示服务器的hash值，value表示服务器的名称</span></div><div class="line"><span class="comment">16      */</span></div><div class="line"><span class="number">17</span>     private static SortedMap&lt;Integer, String&gt; sortedMap = </div><div class="line"><span class="number">18</span>             new TreeMap&lt;Integer, String&gt;();</div><div class="line"><span class="number">19</span>     </div><div class="line"><span class="number">20</span>     <span class="comment">/**</span></div><div class="line"><span class="comment">21      * 程序初始化，将所有的服务器放入sortedMap中</span></div><div class="line"><span class="comment">22      */</span></div><div class="line"><span class="number">23</span>     static</div><div class="line"><span class="number">24</span>     &#123;</div><div class="line"><span class="number">25</span>         for (int i = <span class="number">0</span>; i &lt; servers.length; i++)</div><div class="line"><span class="number">26</span>         &#123;</div><div class="line"><span class="number">27</span>             int hash = getHash(servers[i]);</div><div class="line"><span class="number">28</span>             System.out.println(<span class="string">"["</span> + servers[i] + <span class="string">"]加入集合中, 其Hash值为"</span> + hash);</div><div class="line"><span class="number">29</span>             sortedMap.put(hash, servers[i]);</div><div class="line"><span class="number">30</span>         &#125;</div><div class="line"><span class="number">31</span>         System.out.println();</div><div class="line"><span class="number">32</span>     &#125;</div><div class="line"><span class="number">33</span>     </div><div class="line"><span class="number">34</span>     <span class="comment">/**</span></div><div class="line"><span class="comment">35      * 使用FNV1_32_HASH算法计算服务器的Hash值,这里不使用重写hashCode的方法，最终效果没区别 </span></div><div class="line"><span class="comment">36      */</span></div><div class="line"><span class="number">37</span>     private static int getHash(String str)</div><div class="line"><span class="number">38</span>     &#123;</div><div class="line"><span class="number">39</span>         final int p = <span class="number">16777619</span>;</div><div class="line"><span class="number">40</span>         int hash = (int)<span class="number">2166136261</span>L;</div><div class="line"><span class="number">41</span>         for (int i = <span class="number">0</span>; i &lt; str.length(); i++)</div><div class="line"><span class="number">42</span>             hash = (hash ^ str.charAt(i)) * p;</div><div class="line"><span class="number">43</span>         hash += hash &lt;&lt; <span class="number">13</span>;</div><div class="line"><span class="number">44</span>         hash ^= hash &gt;&gt; <span class="number">7</span>;</div><div class="line"><span class="number">45</span>         hash += hash &lt;&lt; <span class="number">3</span>;</div><div class="line"><span class="number">46</span>         hash ^= hash &gt;&gt; <span class="number">17</span>;</div><div class="line"><span class="number">47</span>         hash += hash &lt;&lt; <span class="number">5</span>;</div><div class="line"><span class="number">48</span>         </div><div class="line"><span class="number">49</span>         <span class="comment">// 如果算出来的值为负数则取其绝对值</span></div><div class="line"><span class="number">50</span>         if (hash &lt; <span class="number">0</span>)</div><div class="line"><span class="number">51</span>             hash = Math.abs(hash);</div><div class="line"><span class="number">52</span>         return hash;</div><div class="line"><span class="number">53</span>     &#125;</div><div class="line"><span class="number">54</span>     </div><div class="line"><span class="number">55</span>     <span class="comment">/**</span></div><div class="line"><span class="comment">56      * 得到应当路由到的结点</span></div><div class="line"><span class="comment">57      */</span></div><div class="line"><span class="number">58</span>     private static String getServer(String node)</div><div class="line"><span class="number">59</span>     &#123;</div><div class="line"><span class="number">60</span>         <span class="comment">// 得到带路由的结点的Hash值</span></div><div class="line"><span class="number">61</span>         int hash = getHash(node);</div><div class="line"><span class="number">62</span>         <span class="comment">// 得到大于该Hash值的所有Map</span></div><div class="line"><span class="number">63</span>         SortedMap&lt;Integer, String&gt; subMap = </div><div class="line"><span class="number">64</span>                 sortedMap.tailMap(hash);</div><div class="line"><span class="number">65</span>         <span class="comment">// 第一个Key就是顺时针过去离node最近的那个结点</span></div><div class="line"><span class="number">66</span>         Integer i = subMap.firstKey();</div><div class="line"><span class="number">67</span>         <span class="comment">// 返回对应的服务器名称</span></div><div class="line"><span class="number">68</span>         return subMap.get(i);</div><div class="line"><span class="number">69</span>     &#125;</div><div class="line"><span class="number">70</span>     </div><div class="line"><span class="number">71</span>     public static void main(String[] args)</div><div class="line"><span class="number">72</span>     &#123;</div><div class="line"><span class="number">73</span>         String[] nodes = &#123;<span class="string">"127.0.0.1:1111"</span>, <span class="string">"221.226.0.1:2222"</span>, <span class="string">"10.211.0.1:3333"</span>&#125;;</div><div class="line"><span class="number">74</span>         for (int i = <span class="number">0</span>; i &lt; nodes.length; i++)</div><div class="line"><span class="number">75</span>             System.out.println(<span class="string">"["</span> + nodes[i] + <span class="string">"]的hash值为"</span> + </div><div class="line"><span class="number">76</span>                     getHash(nodes[i]) + <span class="string">", 被路由到结点["</span> + getServer(nodes[i]) + <span class="string">"]"</span>);</div><div class="line"><span class="number">77</span>     &#125;</div><div class="line"><span class="number">78</span> &#125;</div></pre></td></tr></table></figure>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="javascript:void(0);" alt="复制代码](http://common.cnblogs.com/images/copycode.gif)" title="">
+                </div>
+                <div class="image-caption">复制代码](http://common.cnblogs.com/images/copycode.gif)</div>
+            </figure></p>
+<p>可以运行一下看一下结果：</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="javascript:void(0);" alt="复制代码](http://common.cnblogs.com/images/copycode.gif)" title="">
+                </div>
+                <div class="image-caption">复制代码](http://common.cnblogs.com/images/copycode.gif)</div>
+            </figure></p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.0</span>:<span class="number">111</span>]加入集合中, 其Hash值为<span class="number">575774686</span></div><div class="line">[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.1</span>:<span class="number">111</span>]加入集合中, 其Hash值为<span class="number">8518713</span></div><div class="line">[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.2</span>:<span class="number">111</span>]加入集合中, 其Hash值为<span class="number">1361847097</span></div><div class="line">[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.3</span>:<span class="number">111</span>]加入集合中, 其Hash值为<span class="number">1171828661</span></div><div class="line">[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.4</span>:<span class="number">111</span>]加入集合中, 其Hash值为<span class="number">1764547046</span></div><div class="line"></div><div class="line">[<span class="number">127.0</span><span class="meta">.0</span><span class="meta">.1</span>:<span class="number">1111</span>]的hash值为<span class="number">380278925</span>, 被路由到结点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.0</span>:<span class="number">111</span>]</div><div class="line">[<span class="number">221.226</span><span class="meta">.0</span><span class="meta">.1</span>:<span class="number">2222</span>]的hash值为<span class="number">1493545632</span>, 被路由到结点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.4</span>:<span class="number">111</span>]</div><div class="line">[<span class="number">10.211</span><span class="meta">.0</span><span class="meta">.1</span>:<span class="number">3333</span>]的hash值为<span class="number">1393836017</span>, 被路由到结点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.4</span>:<span class="number">111</span>]</div></pre></td></tr></table></figure>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="javascript:void(0);" alt="复制代码](http://common.cnblogs.com/images/copycode.gif)" title="">
+                </div>
+                <div class="image-caption">复制代码](http://common.cnblogs.com/images/copycode.gif)</div>
+            </figure></p>
+<p>看到经过FNV1_32_HASH算法重新计算过后的Hash值，就比原来String的hashCode()方法好多了。从运行结果来看，也没有问题，三个点路由到的都是顺时针离他们Hash值最近的那台服务器上。</p>
+<p><strong>使用虚拟节点来改善一致性Hash算法</strong></p>
+<p>上面的一致性Hash算法实现，可以在很大程度上解决很多分布式环境下不好的路由算法导致系统伸缩性差的问题，但是会带来另外一个问题：负载不均。</p>
+<p>比如说有Hash环上有A、B、C三个服务器节点，分别有100个请求会被路由到相应服务器上。现在在A与B之间增加了一个节点D，这导致了原来会路由到B上的部分节点被路由到了D上，这样A、C上被路由到的请求明显多于B、D上的，原来三个服务器节点上均衡的负载被打破了。<strong>某种程度上来说，这失去了负载均衡的意义，因为负载均衡的目的本身就是为了使得目标服务器均分所有的请求</strong>。</p>
+<p>解决这个问题的办法是引入虚拟节点，其工作原理是：<strong>将一个物理节点拆分为多个虚拟节点，并且同一个物理节点的虚拟节点尽量均匀分布在Hash环上</strong>。采取这样的方式，就可以有效地解决增加或减少节点时候的负载不均衡的问题。</p>
+<p>至于一个物理节点应该拆分为多少虚拟节点，下面可以先看一张图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/801753/201602/801753-20160212234143027-642938706.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>横轴表示需要为每台福利服务器扩展的虚拟节点倍数，纵轴表示的是实际物理服务器数。可以看出，物理服务器很少，需要更大的虚拟节点；反之物理服务器比较多，虚拟节点就可以少一些。比如有10台物理服务器，那么差不多需要为每台服务器增加100~200个虚拟节点才可以达到真正的负载均衡。</p>
+<p><strong>一致性Hash算法实现版本2：带虚拟节点</strong></p>
+<p>在理解了使用虚拟节点来改善一致性Hash算法的理论基础之后，就可以尝试开发代码了。编程方面需要考虑的问题是：</p>
+<p>1、一个真实结点如何对应成为多个虚拟节点？</p>
+<p>2、虚拟节点找到后如何还原为真实结点？</p>
+<p>这两个问题其实有很多解决办法，我这里使用了一种简单的办法，给每个真实结点后面根据虚拟节点加上后缀再取Hash值，比如”192.168.0.0:111”就把它变成”192.168.0.0:111&amp;&amp;VN0”到”192.168.0.0:111&amp;&amp;VN4”，VN就是Virtual Node的缩写，还原的时候只需要从头截取字符串到”&amp;&amp;”的位置就可以了。</p>
+<p>下面来看一下带虚拟节点的一致性Hash算法的Java代码实现：</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="javascript:void(0);" alt="复制代码](http://common.cnblogs.com/images/copycode.gif)" title="">
+                </div>
+                <div class="image-caption">复制代码](http://common.cnblogs.com/images/copycode.gif)</div>
+            </figure></p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line"> <span class="number">1</span> <span class="comment">/**</span></div><div class="line"><span class="comment"> 2  * 带虚拟节点的一致性Hash算法</span></div><div class="line"><span class="comment"> 3  * @author 五月的仓颉 http://www.cnblogs.com/xrq730/</span></div><div class="line"><span class="comment"> 4  */</span></div><div class="line"> <span class="number">5</span> <span class="keyword">public</span> class ConsistentHashingWithVirtualNode</div><div class="line"> <span class="number">6</span> &#123;</div><div class="line"> <span class="number">7</span>     <span class="comment">/**</span></div><div class="line"><span class="comment"> 8      * 待添加入Hash环的服务器列表</span></div><div class="line"><span class="comment"> 9      */</span></div><div class="line"><span class="number">10</span>     <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">String</span>[] servers = &#123;<span class="string">"192.168.0.0:111"</span>, <span class="string">"192.168.0.1:111"</span>, <span class="string">"192.168.0.2:111"</span>,</div><div class="line"><span class="number">11</span>             <span class="string">"192.168.0.3:111"</span>, <span class="string">"192.168.0.4:111"</span>&#125;;</div><div class="line"><span class="number">12</span>     </div><div class="line"><span class="number">13</span>     <span class="comment">/**</span></div><div class="line"><span class="comment">14      * 真实结点列表,考虑到服务器上线、下线的场景，即添加、删除的场景会比较频繁，这里使用LinkedList会更好</span></div><div class="line"><span class="comment">15      */</span></div><div class="line"><span class="number">16</span>     <span class="keyword">private</span> <span class="keyword">static</span> List&lt;<span class="keyword">String</span>&gt; realNodes = <span class="keyword">new</span> LinkedList&lt;<span class="keyword">String</span>&gt;();</div><div class="line"><span class="number">17</span>     </div><div class="line"><span class="number">18</span>     <span class="comment">/**</span></div><div class="line"><span class="comment">19      * 虚拟节点，key表示虚拟节点的hash值，value表示虚拟节点的名称</span></div><div class="line"><span class="comment">20      */</span></div><div class="line"><span class="number">21</span>     <span class="keyword">private</span> <span class="keyword">static</span> SortedMap&lt;Integer, <span class="keyword">String</span>&gt; virtualNodes = </div><div class="line"><span class="number">22</span>             <span class="keyword">new</span> TreeMap&lt;Integer, <span class="keyword">String</span>&gt;();</div><div class="line"><span class="number">23</span>     </div><div class="line"><span class="number">24</span>     <span class="comment">/**</span></div><div class="line"><span class="comment">25      * 虚拟节点的数目，这里写死，为了演示需要，一个真实结点对应5个虚拟节点</span></div><div class="line"><span class="comment">26      */</span></div><div class="line"><span class="number">27</span>     <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">int</span> VIRTUAL_NODES = <span class="number">5</span>;</div><div class="line"><span class="number">28</span>     </div><div class="line"><span class="number">29</span>     <span class="keyword">static</span></div><div class="line"><span class="number">30</span>     &#123;</div><div class="line"><span class="number">31</span>         <span class="comment">// 先把原始的服务器添加到真实结点列表中</span></div><div class="line"><span class="number">32</span>         <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; servers.length; i++)</div><div class="line"><span class="number">33</span>             realNodes.<span class="built_in">add</span>(servers[i]);</div><div class="line"><span class="number">34</span>         </div><div class="line"><span class="number">35</span>         <span class="comment">// 再添加虚拟节点，遍历LinkedList使用foreach循环效率会比较高</span></div><div class="line"><span class="number">36</span>         <span class="keyword">for</span> (<span class="keyword">String</span> <span class="built_in">str</span> : realNodes)</div><div class="line"><span class="number">37</span>         &#123;</div><div class="line"><span class="number">38</span>             <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; VIRTUAL_NODES; i++)</div><div class="line"><span class="number">39</span>             &#123;</div><div class="line"><span class="number">40</span>                 <span class="keyword">String</span> virtualNodeName = <span class="built_in">str</span> + <span class="string">"&amp;&amp;VN"</span> + <span class="keyword">String</span>.valueOf(i);</div><div class="line"><span class="number">41</span>                 <span class="built_in">int</span> hash = getHash(virtualNodeName);</div><div class="line"><span class="number">42</span>                 System.out.<span class="built_in">println</span>(<span class="string">"虚拟节点["</span> + virtualNodeName + <span class="string">"]被添加, hash值为"</span> + hash);</div><div class="line"><span class="number">43</span>                 virtualNodes.put(hash, virtualNodeName);</div><div class="line"><span class="number">44</span>             &#125;</div><div class="line"><span class="number">45</span>         &#125;</div><div class="line"><span class="number">46</span>         System.out.<span class="built_in">println</span>();</div><div class="line"><span class="number">47</span>     &#125;</div><div class="line"><span class="number">48</span>     </div><div class="line"><span class="number">49</span>     <span class="comment">/**</span></div><div class="line"><span class="comment">50      * 使用FNV1_32_HASH算法计算服务器的Hash值,这里不使用重写hashCode的方法，最终效果没区别 </span></div><div class="line"><span class="comment">51      */</span></div><div class="line"><span class="number">52</span>     <span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">int</span> getHash(<span class="keyword">String</span> <span class="built_in">str</span>)</div><div class="line"><span class="number">53</span>     &#123;</div><div class="line"><span class="number">54</span>         <span class="keyword">final</span> <span class="built_in">int</span> p = <span class="number">16777619</span>;</div><div class="line"><span class="number">55</span>         <span class="built_in">int</span> hash = (<span class="built_in">int</span>)<span class="number">2166136261</span>L;</div><div class="line"><span class="number">56</span>         <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">str</span>.length(); i++)</div><div class="line"><span class="number">57</span>             hash = (hash ^ <span class="built_in">str</span>.charAt(i)) * p;</div><div class="line"><span class="number">58</span>         hash += hash &lt;&lt; <span class="number">13</span>;</div><div class="line"><span class="number">59</span>         hash ^= hash &gt;&gt; <span class="number">7</span>;</div><div class="line"><span class="number">60</span>         hash += hash &lt;&lt; <span class="number">3</span>;</div><div class="line"><span class="number">61</span>         hash ^= hash &gt;&gt; <span class="number">17</span>;</div><div class="line"><span class="number">62</span>         hash += hash &lt;&lt; <span class="number">5</span>;</div><div class="line"><span class="number">63</span>         </div><div class="line"><span class="number">64</span>         <span class="comment">// 如果算出来的值为负数则取其绝对值</span></div><div class="line"><span class="number">65</span>         <span class="keyword">if</span> (hash &lt; <span class="number">0</span>)</div><div class="line"><span class="number">66</span>             hash = Math.<span class="built_in">abs</span>(hash);</div><div class="line"><span class="number">67</span>         <span class="keyword">return</span> hash;</div><div class="line"><span class="number">68</span>     &#125;</div><div class="line"><span class="number">69</span>     </div><div class="line"><span class="number">70</span>     <span class="comment">/**</span></div><div class="line"><span class="comment">71      * 得到应当路由到的结点</span></div><div class="line"><span class="comment">72      */</span></div><div class="line"><span class="number">73</span>     <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">String</span> getServer(<span class="keyword">String</span> node)</div><div class="line"><span class="number">74</span>     &#123;</div><div class="line"><span class="number">75</span>         <span class="comment">// 得到带路由的结点的Hash值</span></div><div class="line"><span class="number">76</span>         <span class="built_in">int</span> hash = getHash(node);</div><div class="line"><span class="number">77</span>         <span class="comment">// 得到大于该Hash值的所有Map</span></div><div class="line"><span class="number">78</span>         SortedMap&lt;Integer, <span class="keyword">String</span>&gt; subMap = </div><div class="line"><span class="number">79</span>                 virtualNodes.tailMap(hash);</div><div class="line"><span class="number">80</span>         <span class="comment">// 第一个Key就是顺时针过去离node最近的那个结点</span></div><div class="line"><span class="number">81</span>         Integer i = subMap.firstKey();</div><div class="line"><span class="number">82</span>         <span class="comment">// 返回对应的虚拟节点名称，这里字符串稍微截取一下</span></div><div class="line"><span class="number">83</span>         <span class="keyword">String</span> virtualNode = subMap.<span class="built_in">get</span>(i);</div><div class="line"><span class="number">84</span>         <span class="keyword">return</span> virtualNode.substring(<span class="number">0</span>, virtualNode.indexOf(<span class="string">"&amp;&amp;"</span>));</div><div class="line"><span class="number">85</span>     &#125;</div><div class="line"><span class="number">86</span>     </div><div class="line"><span class="number">87</span>     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args)</div><div class="line"><span class="number">88</span>     &#123;</div><div class="line"><span class="number">89</span>         <span class="keyword">String</span>[] nodes = &#123;<span class="string">"127.0.0.1:1111"</span>, <span class="string">"221.226.0.1:2222"</span>, <span class="string">"10.211.0.1:3333"</span>&#125;;</div><div class="line"><span class="number">90</span>         <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; nodes.length; i++)</div><div class="line"><span class="number">91</span>             System.out.<span class="built_in">println</span>(<span class="string">"["</span> + nodes[i] + <span class="string">"]的hash值为"</span> + </div><div class="line"><span class="number">92</span>                     getHash(nodes[i]) + <span class="string">", 被路由到结点["</span> + getServer(nodes[i]) + <span class="string">"]"</span>);</div><div class="line"><span class="number">93</span>     &#125;</div><div class="line"><span class="number">94</span> &#125;</div></pre></td></tr></table></figure>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="javascript:void(0);" alt="复制代码](http://common.cnblogs.com/images/copycode.gif)" title="">
+                </div>
+                <div class="image-caption">复制代码](http://common.cnblogs.com/images/copycode.gif)</div>
+            </figure></p>
+<p>关注一下运行结果：</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="javascript:void(0);" alt="复制代码](http://common.cnblogs.com/images/copycode.gif)" title="">
+                </div>
+                <div class="image-caption">复制代码](http://common.cnblogs.com/images/copycode.gif)</div>
+            </figure></p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.0</span>:<span class="number">111</span>&amp;&amp;VN0]被添加, hash值为<span class="number">1686427075</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.0</span>:<span class="number">111</span>&amp;&amp;VN1]被添加, hash值为<span class="number">354859081</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.0</span>:<span class="number">111</span>&amp;&amp;VN2]被添加, hash值为<span class="number">1306497370</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.0</span>:<span class="number">111</span>&amp;&amp;VN3]被添加, hash值为<span class="number">817889914</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.0</span>:<span class="number">111</span>&amp;&amp;VN4]被添加, hash值为<span class="number">396663629</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.1</span>:<span class="number">111</span>&amp;&amp;VN0]被添加, hash值为<span class="number">1032739288</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.1</span>:<span class="number">111</span>&amp;&amp;VN1]被添加, hash值为<span class="number">707592309</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.1</span>:<span class="number">111</span>&amp;&amp;VN2]被添加, hash值为<span class="number">302114528</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.1</span>:<span class="number">111</span>&amp;&amp;VN3]被添加, hash值为<span class="number">36526861</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.1</span>:<span class="number">111</span>&amp;&amp;VN4]被添加, hash值为<span class="number">848442551</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.2</span>:<span class="number">111</span>&amp;&amp;VN0]被添加, hash值为<span class="number">1452694222</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.2</span>:<span class="number">111</span>&amp;&amp;VN1]被添加, hash值为<span class="number">2023612840</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.2</span>:<span class="number">111</span>&amp;&amp;VN2]被添加, hash值为<span class="number">697907480</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.2</span>:<span class="number">111</span>&amp;&amp;VN3]被添加, hash值为<span class="number">790847074</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.2</span>:<span class="number">111</span>&amp;&amp;VN4]被添加, hash值为<span class="number">2010506136</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.3</span>:<span class="number">111</span>&amp;&amp;VN0]被添加, hash值为<span class="number">891084251</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.3</span>:<span class="number">111</span>&amp;&amp;VN1]被添加, hash值为<span class="number">1725031739</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.3</span>:<span class="number">111</span>&amp;&amp;VN2]被添加, hash值为<span class="number">1127720370</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.3</span>:<span class="number">111</span>&amp;&amp;VN3]被添加, hash值为<span class="number">676720500</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.3</span>:<span class="number">111</span>&amp;&amp;VN4]被添加, hash值为<span class="number">2050578780</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.4</span>:<span class="number">111</span>&amp;&amp;VN0]被添加, hash值为<span class="number">586921010</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.4</span>:<span class="number">111</span>&amp;&amp;VN1]被添加, hash值为<span class="number">184078390</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.4</span>:<span class="number">111</span>&amp;&amp;VN2]被添加, hash值为<span class="number">1331645117</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.4</span>:<span class="number">111</span>&amp;&amp;VN3]被添加, hash值为<span class="number">918790803</span></div><div class="line">虚拟节点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.4</span>:<span class="number">111</span>&amp;&amp;VN4]被添加, hash值为<span class="number">1232193678</span></div><div class="line"></div><div class="line">[<span class="number">127.0</span><span class="meta">.0</span><span class="meta">.1</span>:<span class="number">1111</span>]的hash值为<span class="number">380278925</span>, 被路由到结点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.0</span>:<span class="number">111</span>]</div><div class="line">[<span class="number">221.226</span><span class="meta">.0</span><span class="meta">.1</span>:<span class="number">2222</span>]的hash值为<span class="number">1493545632</span>, 被路由到结点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.0</span>:<span class="number">111</span>]</div><div class="line">[<span class="number">10.211</span><span class="meta">.0</span><span class="meta">.1</span>:<span class="number">3333</span>]的hash值为<span class="number">1393836017</span>, 被路由到结点[<span class="number">192.168</span><span class="meta">.0</span><span class="meta">.2</span>:<span class="number">111</span>]</div></pre></td></tr></table></figure>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="javascript:void(0);" alt="复制代码](http://common.cnblogs.com/images/copycode.gif)" title="">
+                </div>
+                <div class="image-caption">复制代码](http://common.cnblogs.com/images/copycode.gif)</div>
+            </figure></p>
+<p>从代码运行结果看，每个点路由到的服务器都是Hash值顺时针离它最近的那个服务器节点，没有任何问题。</p>
+<p>通过采取虚拟节点的方法，一个真实结点不再固定在Hash换上的某个点，而是大量地分布在整个Hash环上，这样即使上线、下线服务器，也不会造成整体的负载不均衡。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-01-30T09:55:34.000Z" itemprop="dateUpdated">2018-01-30 17:55:34</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2016/12/17/JAVA/对一致性Hash算法，Java代码实现的深入研究/" target="_blank" rel="external">https://fantasykai.cc/2016/12/17/JAVA/对一致性Hash算法，Java代码实现的深入研究/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2016/12/17/JAVA/对一致性Hash算法，Java代码实现的深入研究/&title=《对一致性Hash算法，java实现的研究》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2016/12/17/JAVA/对一致性Hash算法，Java代码实现的深入研究/&title=《对一致性Hash算法，java实现的研究》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2016/12/17/JAVA/对一致性Hash算法，Java代码实现的深入研究/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《对一致性Hash算法，java实现的研究》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2016/12/17/JAVA/对一致性Hash算法，Java代码实现的深入研究/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2016/12/17/JAVA/对一致性Hash算法，Java代码实现的深入研究/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/01/06/dateBase/NOSQL/collections 数据复制/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">collections 数据复制</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/12/13/nginx/nginx配置反向代理/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">nginx配置反向代理</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2016/12/17/JAVA/对一致性Hash算法，Java代码实现的深入研究/&title=《对一致性Hash算法，java实现的研究》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2016/12/17/JAVA/对一致性Hash算法，Java代码实现的深入研究/&title=《对一致性Hash算法，java实现的研究》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2016/12/17/JAVA/对一致性Hash算法，Java代码实现的深入研究/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《对一致性Hash算法，java实现的研究》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2016/12/17/JAVA/对一致性Hash算法，Java代码实现的深入研究/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2016/12/17/JAVA/对一致性Hash算法，Java代码实现的深入研究/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADM0lEQVR42u3ay26jQBAF0Pz/T2fWowT73ioimdZhZWEMfRoplXp8fcXH94/j6vzVlT+vT878PP/6mpsPbGxs7Iewk0Un5xPe1dNfr+3qTPsasLGxsc9mv35ksricmjwrCV35OrGxsbGxX4eodlPyEDjbMmxsbGzs2e3yYlDyOdksbGxsbOzZYzYJySy9yctVf1JLw8bGxv549ubf/U/7/Cf9bWxsbOwPZn+XR15O2gSqfbryRoGNjY19EHuTZiTpSjJwkwfOpNlQJDbY2NjYR7D3jYH8201pad+i+O9KbGxs7OPYeXM0GbiZpTF5WEraBkU/BBsbG/vh7NlSkgQjuX7f9J29PGxsbOyT2LMi0abA9Dr4tfWw5DUUFTJsbGzsB7Lz9GNWsk/w7Ya2o0XRb7GxsbEfy26zliRczYpBSUtglmkVnW1sbGzsh7PzpKJNNpKNa8H551++xcbGxj6IvQktsyGbPMFok5O82YCNjY19EjtnzBoAs/OzTSxeKjY2NvZB7NmRt3hnG9EuvQ2K2NjY2Gezi6JMvIvtCGabS7XFJmxsbOyT2JuRmllLOG/utkOWdWMAGxsb+wh28uBZ0efeNm0+jlmHQGxsbOwj2O2t8xB177ftVr4RYWNjYx/Ezn82C3t3DdzkKcoNjQFsbGzsh7DbBm3bEpilLptfRcUvbGxs7IPYm9LSLDGYFZI2yCi5wsbGxn4su/1D/xchpy0ztY3hy0ISNjY29hHsNpzMNmLTJGjvkz8dGxsb+wx2UljfjOm0qcss7CXnf0lFsLGxsY9gt2FsVtxp04z221UbGBsbG/sIdpIGvN6sNvzkZaNNiH1zN2xsbOzj2PuhybtaCHeN+BS9EWxsbOyD2PtwlSBn7YHZai/PYGNjYx/B/i6PdtGz4ZvNlVHqgo2NjX0Qe1amyTdo8zkPXZtiFjY2NvYZ7BlgFtjajZ6VkKJ3i42NjX0c+64Hz5KKdnBzE3qxsbGxsfNAlQ/itEOZbXqDjY2NjZ2PReaJTbtls7B6eTdsbGzs49j5QpMg0RaVZo2EvCGxag9gY2Njfzy7XVYSJPLQlQehNpS2iQ02Njb2A9n/AAruPtrR8BKlAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>
