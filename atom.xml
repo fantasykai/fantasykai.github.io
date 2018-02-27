@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2018-02-25T10:02:33.000Z</updated>
+  <updated>2018-02-27T11:43:41.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -14,6 +14,91 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java 9新特性解读</title>
+    <link href="https://fantasykai.cc/2018/02/24/JAVA/java9%20%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/</id>
+    <published>2018-02-23T16:00:00.000Z</published>
+    <updated>2018-02-27T11:43:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1、Java9新特性之—目录结构"><a href="#1、Java9新特性之—目录结构" class="headerlink" title="1、Java9新特性之—目录结构"></a>1、Java9新特性之—目录结构</h1><p>​    包含jdk8及以前的jdk版本，所有目录结构以及目录含义如图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2018/0223/134757_QthE_3209213.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure> 
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2018/0223/134835_7knf_3209213.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>​    jdk9之后，目录结构发生变化如图：</p>
+<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/134936_Br5K_3209213.png" alt="img"></p>
+<p>​     这个新特性只要了解下就可以了，这个目录结构是方便为了接下来新特性做保证</p>
+<h1 id="2、Java9新特性之—JShell工具"><a href="#2、Java9新特性之—JShell工具" class="headerlink" title="2、Java9新特性之—JShell工具"></a>2、Java9新特性之—JShell工具</h1><p>​       怎么理解，怎么用呢？这个只是针对于java9来说，相当于cmd工具，你可以和cmd一样，直接写方法等等，不过我认为只是适用于初学者做一些最简单的运算和写一些方法：</p>
+<p>​        在cmd中打开这个工具：</p>
+<p>​        <img src="https://static.oschina.net/uploads/space/2018/0223/141123_Zanv_3209213.png" alt="img"></p>
+<p>​         进入工具后可以做一些简单的java操作</p>
+<p>​        <img src="https://static.oschina.net/uploads/space/2018/0223/141217_v4Rg_3209213.png" alt="img"></p>
+<p>​        。。。。等等，我认为只适用于初学者学习java不用其他编辑工具就可以学习java</p>
+<h1 id="3、Java9新特性之—模块化"><a href="#3、Java9新特性之—模块化" class="headerlink" title="3、Java9新特性之—模块化"></a>3、Java9新特性之—模块化</h1><p>​        一个大型的项目，比如淘宝商城等，都会包含多个模块，比如订单模块，前台模块，后台管理模块，广告位模块，会员模块…..等等，各个模块之间会相互调用，不过这种情况下会很少，只针对特殊情况，如果一个项目有30个模块系统进行开发，但是只要某个单独模块运行时，都会带动所有的模块，这样对于jvm来说在内存和性能上会很低，所以，java9提供了这一个特性，某一个模块运行的时候，jvm只会启动和它有依赖的模块，并不会加载所有的模块到内存中，这样性能大大的提高了。写法上如下：</p>
+<p>​        <img src="https://static.oschina.net/uploads/space/2018/0223/135741_hQRX_3209213.png" alt="img"></p>
+<p>​        一个项目中的两个模块，模块之间通过module-info.java来关联，在IDEA编辑器右键创建package-info.java</p>
+<p>​        <img src="https://static.oschina.net/uploads/space/2018/0223/135923_DO9V_3209213.png" alt="img"></p>
+<p>​        在这个两个模块java9Demo和java9Test中，java9demo编写一个实体类Person,在java9Test调用这样一个过程</p>
+<p>​        这个是java9Demo 将 java9Test 模块需要的文件导出 exports  把它所在的包导出 </p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">java9Demo</span>&#123;</span></div><div class="line">    exports com.mdxl.layer_cj.entity;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 然后在java9Test模块中创建一个package-info.java,引入java9Demo模块导出包名</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">java9Test</span>&#123;</span></div><div class="line">    requires java9Demo;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样就可以直接在java9Test中引入Person实体类了，这只是一个简单的例子。exports 控制着那些包可以被模块访问，所以不被导出的包不能被其他模块访问</p>
+<h1 id="4、Java9新特性之—多版本兼容Jar包"><a href="#4、Java9新特性之—多版本兼容Jar包" class="headerlink" title="4、Java9新特性之—多版本兼容Jar包"></a>4、Java9新特性之—多版本兼容Jar包</h1><p>​        怎么理解呢？</p>
+<p>​       好多公司用的jdk大部分还是老版本，jdk6,7 都有，他们都不敢升级主要是因为兼容的问题，但是java9做到了这一点，就是不管公司的项目是用的java6,7,8甚至5，他都可以兼容不出错，打个比方，你之前用的是iphone5，现在出现了iPhone6，iphone7，iphon8和iphone9，但是你不敢买9，因为你自己已经适应了iphone5的所有手机的运行流程，6,7,8每个手机的运行流程不一样，但是这个9很强大，它能够识别你现在所用的版本iphone是5，所以当你升级到iphone9的时候，你的这个手机运行流程还是iphone5的流程，只是在原有基础上拥有了更多的iphone9的所有优势。</p>
+<h1 id="5、Java9新特性之—接口Interface的升级"><a href="#5、Java9新特性之—接口Interface的升级" class="headerlink" title="5、Java9新特性之—接口Interface的升级"></a>5、Java9新特性之—接口Interface的升级</h1><p>​        </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">FilterProcess</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//java 7 及以前 特性  全局常量 和抽象方法</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String a =<span class="string">"22"</span>;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">process</span><span class="params">(T t)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">//java 8 特性 静态方法和默认方法</span></div><div class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">love</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"java8 特性默认方法"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">haha</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"java8 特性静态方法"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//java 8 特性 支持私有方法</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">java9</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="6、Java9新特性之—钻石操作符的升级"><a href="#6、Java9新特性之—钻石操作符的升级" class="headerlink" title="6、Java9新特性之—钻石操作符的升级"></a>6、Java9新特性之—钻石操作符的升级</h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//java6及以前</span></div><div class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>,<span class="built_in">String</span>&gt; map7 = <span class="keyword">new</span> HashMap&lt;<span class="built_in">String</span>,<span class="built_in">String</span>&gt;();</div><div class="line"><span class="comment">//java7和8 &lt;&gt;没有了数据类型</span></div><div class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>,<span class="built_in">String</span>&gt; map8 = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line"><span class="comment">//java9 添加了匿名内部类的功能 后面添加了大括号&#123;&#125;  可以做一些细节的操作</span></div><div class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>,<span class="built_in">String</span>&gt; map9 = <span class="keyword">new</span> HashMap&lt;&gt;()&#123;&#125;;</div></pre></td></tr></table></figure>
+<h1 id="7、Java9新特性之—异常处理try升级"><a href="#7、Java9新特性之—异常处理try升级" class="headerlink" title="7、Java9新特性之—异常处理try升级"></a>7、Java9新特性之—异常处理try升级</h1><p>​    首先看下jdk6,7,8,9 的try catch的比较</p>
+<p>​    Java6处理方式：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//java7及以前写法  每一个流打开的时候都要关闭</span></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test7</span><span class="params">()</span></span>&#123;</div><div class="line">    InputStreamReader reader = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">try</span>&#123;</div><div class="line">        reader = <span class="keyword">new</span> InputStreamReader(System.in);</div><div class="line">        reader.read();</div><div class="line">    &#125;<span class="keyword">catch</span> (IOException e)&#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;<span class="keyword">finally</span> &#123;</div><div class="line">        <span class="keyword">if</span> (reader != <span class="keyword">null</span>)&#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                reader.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    java7,8 共同的处理方式：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//java7和8及 每一个流打开的时候都要关闭,但是在try的括号中来进行关闭</span></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test7</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">try</span>(InputStreamReader reader =<span class="keyword">new</span> InputStreamReader(System.in))&#123;</div><div class="line">        reader.read();</div><div class="line">    &#125;<span class="keyword">catch</span> (IOException e)&#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    java9的处理方式：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//java9及 每一个流打开的时候都要关闭,但是在try的括号中来进行关闭，在</span></div><div class="line"><span class="comment">//java8的基础上进一步升级 直接在try括号中直接写入 变量就好，如果有多个流，就用分号隔开</span></div><div class="line"><span class="comment">//try(reader;writer)&#123;&#125;</span></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test7</span><span class="params">()</span></span>&#123;</div><div class="line">    InputStreamReader reader =<span class="keyword">new</span> InputStreamReader(System.in);</div><div class="line">    <span class="keyword">try</span>(reader)&#123;</div><div class="line">        reader.read();</div><div class="line">    &#125;<span class="keyword">catch</span> (IOException e)&#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    这下子应该一幕了然了吧</p>
+<h1 id="8、Java9新特性之—特殊标识符增加限制"><a href="#8、Java9新特性之—特殊标识符增加限制" class="headerlink" title="8、Java9新特性之—特殊标识符增加限制"></a>8、Java9新特性之—特殊标识符增加限制</h1><p>​    java8 之前 String _ =”hello”;  这样的标识符可以用，java9就用不到。</p>
+<h1 id="9、Java9新特性之—String底层存储结构更换"><a href="#9、Java9新特性之—String底层存储结构更换" class="headerlink" title="9、Java9新特性之—String底层存储结构更换"></a>9、Java9新特性之—String底层存储结构更换</h1><p>​    java8之前 String的底层结构类型都是 char[] ,但是java9 就替换成 byte[] 这样来讲，更节省了空间和提高了性能</p>
+<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/144044_FEnG_3209213.png" alt="img"></p>
+<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/144120_QBpj_3209213.png" alt="img"></p>
+<p>​    之所以替换是因为 之前一直是最小单位是一个char，用到两个byte,但是java8是基于latin1的，而这个latin1编码可以用一个byte标识，所以当你数据明明可以用到一个byte的时候，我们用到了一个最小单位chat两个byte，就多出了一个byte的空间。所以java9在这一方面进行了更新，现在的java9 是基于ISO/latin1/Utf-16  ,latin1和ISO用一个byte标识,UTF-16用两个byte标识，java9会自动识别用哪个编码，当数据用到1byte，就会使用iSO或者latin1 ，当空间数据满足2byte的时候，自动使用utf-16,节省了很多空间</p>
+<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/144527_x6kt_3209213.png" alt="img"></p>
+<p><strong>*</strong>同理，StringBuilder StringBuffer也更换了底层数据结构<strong><strong><strong>*</strong></strong></strong></p>
+<h1 id="10、Java9新特性之—Stream-API-新方法的添加"><a href="#10、Java9新特性之—Stream-API-新方法的添加" class="headerlink" title="10、Java9新特性之—Stream API 新方法的添加"></a>10、Java9新特性之—Stream API 新方法的添加</h1><p>​    在原有Stream API 新添加了4个方法，takeWhile dropWhile ofNullable iterate(新重载方法)</p>
+<p>​    首先解释 takeWhile 当达到一定条件就结束：输出结果为45 43，如图</p>
+<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/144923_sNmR_3209213.png" alt="img"></p>
+<p>​    而 dropWhile 则和takeWhile 相反</p>
+<p>​    ofNullable, 在java8中 Stream中的元素不能完全为null，否则空指针异常，而在java9的升级中，允许创建null</p>
+<p>​    iterate 不加条件无线循环</p>
+<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/145645_gggz_3209213.png" alt="img"></p>
+<h1 id="11、Java9新特性之—引进HttpClient"><a href="#11、Java9新特性之—引进HttpClient" class="headerlink" title="11、Java9新特性之—引进HttpClient"></a>11、Java9新特性之—引进HttpClient</h1><p>​    以往我们都是通过maven添加httpclient ,java9直接引入即可</p>
+<p>Java9所有特性都是为了提高性能和内存。。。。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1、Java9新特性之—目录结构&quot;&gt;&lt;a href=&quot;#1、Java9新特性之—目录结构&quot; class=&quot;headerlink&quot; title=&quot;1、Java9新特性之—目录结构&quot;&gt;&lt;/a&gt;1、Java9新特性之—目录结构&lt;/h1&gt;&lt;p&gt;​    包含jdk8及以前
+    
+    </summary>
+    
+      <category term="技术小栈" scheme="https://fantasykai.cc/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
+    
+    
+      <category term="java" scheme="https://fantasykai.cc/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>mac 安装opencv 报错，解决</title>
@@ -2870,47 +2955,6 @@ wd list             //查看所有标记
 &lt;li&gt;&lt;p&gt;[x] mongo&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;[x] ng
-    
-    </summary>
-    
-      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
-    
-    
-      <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>国庆节闲记一</title>
-    <link href="https://fantasykai.cc/2017/10/02/recording/%E5%9B%BD%E5%BA%86%E8%8A%82%E9%97%B2%E8%AE%B0%E4%B8%80/"/>
-    <id>https://fantasykai.cc/2017/10/02/recording/国庆节闲记一/</id>
-    <published>2017-10-01T16:00:00.000Z</published>
-    <updated>2017-10-02T15:45:05.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>国庆节了，也感觉有忙不完的事情，拿了本书回来，还没有怎么读，虽然是很早计划读完的书，到今天第一章还未读完。200多页，希望国庆内读完吧。</p>
-</blockquote>
-<p>晓说这个节目应该是洗澡节目吧，洗澡时，必听。。。今天在笔记本上看到三季的最新一期，于是书单里又要新增2本书了：</p>
-<ul>
-<li>《三体》 好吧，虽然是很早就想看的书，比重排名更往前了；</li>
-</ul>
-<blockquote>
-<p><a href="https://www.amazon.cn/%E4%B8%89%E4%BD%93-%E5%88%98%E6%85%88%E6%AC%A3/dp/B00OB3SNMY/ref=sr_1_1?ie=UTF8&amp;qid=1506958531&amp;sr=8-1&amp;keywords=%E4%B8%89%E4%BD%93" target="_blank" rel="external">三体</a></p>
-</blockquote>
-<ul>
-<li>《Story》 </li>
-</ul>
-<blockquote>
-<p><a href="https://www.amazon.cn/Story-Style-Structure-Substance-and-the-Principles-of-Screenwriting-Mckee-Robert/dp/0060391685/ref=sr_1_2?ie=UTF8&amp;qid=1506958398&amp;sr=8-2&amp;keywords=robert+mckee" target="_blank" rel="external">Story: Substance, Structure, Style and the Principles of Screenwriting</a>  </p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;国庆节了，也感觉有忙不完的事情，拿了本书回来，还没有怎么读，虽然是很早计划读完的书，到今天第一章还未读完。200多页，希望国庆内读完吧。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;晓说这个节目应该是洗澡节目吧，洗澡时，必听。。。今天在笔记本上看到三
     
     </summary>
     

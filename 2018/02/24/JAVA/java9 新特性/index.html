@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/">
+    
+    
+    <title>Java 9新特性解读 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="java">
+    <meta name="description" content="1、Java9新特性之—目录结构​    包含jdk8及以前的jdk版本，所有目录结构以及目录含义如图：                                                                                              img">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 9新特性解读">
+<meta property="og:url" content="https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="1、Java9新特性之—目录结构​    包含jdk8及以前的jdk版本，所有目录结构以及目录含义如图：                                                                                              img">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2018/0223/134757_QthE_3209213.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2018/0223/134835_7knf_3209213.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2018/0223/134936_Br5K_3209213.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2018/0223/141123_Zanv_3209213.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2018/0223/141217_v4Rg_3209213.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2018/0223/135741_hQRX_3209213.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2018/0223/135923_DO9V_3209213.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2018/0223/144044_FEnG_3209213.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2018/0223/144120_QBpj_3209213.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2018/0223/144527_x6kt_3209213.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2018/0223/144923_sNmR_3209213.png">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2018/0223/145645_gggz_3209213.png">
+<meta property="og:updated_time" content="2018-02-27T11:43:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 9新特性解读">
+<meta name="twitter:description" content="1、Java9新特性之—目录结构​    包含jdk8及以前的jdk版本，所有目录结构以及目录含义如图：                                                                                              img">
+<meta name="twitter:image" content="https://static.oschina.net/uploads/space/2018/0223/134757_QthE_3209213.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Java 9新特性解读</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Java 9新特性解读</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-23T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-02-24
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1、Java9新特性之—目录结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、Java9新特性之—目录结构</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2、Java9新特性之—JShell工具"><span class="post-toc-number">2.</span> <span class="post-toc-text">2、Java9新特性之—JShell工具</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3、Java9新特性之—模块化"><span class="post-toc-number">3.</span> <span class="post-toc-text">3、Java9新特性之—模块化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4、Java9新特性之—多版本兼容Jar包"><span class="post-toc-number">4.</span> <span class="post-toc-text">4、Java9新特性之—多版本兼容Jar包</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5、Java9新特性之—接口Interface的升级"><span class="post-toc-number">5.</span> <span class="post-toc-text">5、Java9新特性之—接口Interface的升级</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6、Java9新特性之—钻石操作符的升级"><span class="post-toc-number">6.</span> <span class="post-toc-text">6、Java9新特性之—钻石操作符的升级</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7、Java9新特性之—异常处理try升级"><span class="post-toc-number">7.</span> <span class="post-toc-text">7、Java9新特性之—异常处理try升级</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#8、Java9新特性之—特殊标识符增加限制"><span class="post-toc-number">8.</span> <span class="post-toc-text">8、Java9新特性之—特殊标识符增加限制</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#9、Java9新特性之—String底层存储结构更换"><span class="post-toc-number">9.</span> <span class="post-toc-text">9、Java9新特性之—String底层存储结构更换</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#10、Java9新特性之—Stream-API-新方法的添加"><span class="post-toc-number">10.</span> <span class="post-toc-text">10、Java9新特性之—Stream API 新方法的添加</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#11、Java9新特性之—引进HttpClient"><span class="post-toc-number">11.</span> <span class="post-toc-text">11、Java9新特性之—引进HttpClient</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-JAVA/java9 新特性"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Java 9新特性解读</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-24 00:00:00" datetime="2018-02-23T16:00:00.000Z"  itemprop="datePublished">2018-02-24</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="1、Java9新特性之—目录结构"><a href="#1、Java9新特性之—目录结构" class="headerlink" title="1、Java9新特性之—目录结构"></a>1、Java9新特性之—目录结构</h1><p>​    包含jdk8及以前的jdk版本，所有目录结构以及目录含义如图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2018/0223/134757_QthE_3209213.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure> 
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://static.oschina.net/uploads/space/2018/0223/134835_7knf_3209213.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>​    jdk9之后，目录结构发生变化如图：</p>
+<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/134936_Br5K_3209213.png" alt="img"></p>
+<p>​     这个新特性只要了解下就可以了，这个目录结构是方便为了接下来新特性做保证</p>
+<h1 id="2、Java9新特性之—JShell工具"><a href="#2、Java9新特性之—JShell工具" class="headerlink" title="2、Java9新特性之—JShell工具"></a>2、Java9新特性之—JShell工具</h1><p>​       怎么理解，怎么用呢？这个只是针对于java9来说，相当于cmd工具，你可以和cmd一样，直接写方法等等，不过我认为只是适用于初学者做一些最简单的运算和写一些方法：</p>
+<p>​        在cmd中打开这个工具：</p>
+<p>​        <img src="https://static.oschina.net/uploads/space/2018/0223/141123_Zanv_3209213.png" alt="img"></p>
+<p>​         进入工具后可以做一些简单的java操作</p>
+<p>​        <img src="https://static.oschina.net/uploads/space/2018/0223/141217_v4Rg_3209213.png" alt="img"></p>
+<p>​        。。。。等等，我认为只适用于初学者学习java不用其他编辑工具就可以学习java</p>
+<h1 id="3、Java9新特性之—模块化"><a href="#3、Java9新特性之—模块化" class="headerlink" title="3、Java9新特性之—模块化"></a>3、Java9新特性之—模块化</h1><p>​        一个大型的项目，比如淘宝商城等，都会包含多个模块，比如订单模块，前台模块，后台管理模块，广告位模块，会员模块…..等等，各个模块之间会相互调用，不过这种情况下会很少，只针对特殊情况，如果一个项目有30个模块系统进行开发，但是只要某个单独模块运行时，都会带动所有的模块，这样对于jvm来说在内存和性能上会很低，所以，java9提供了这一个特性，某一个模块运行的时候，jvm只会启动和它有依赖的模块，并不会加载所有的模块到内存中，这样性能大大的提高了。写法上如下：</p>
+<p>​        <img src="https://static.oschina.net/uploads/space/2018/0223/135741_hQRX_3209213.png" alt="img"></p>
+<p>​        一个项目中的两个模块，模块之间通过module-info.java来关联，在IDEA编辑器右键创建package-info.java</p>
+<p>​        <img src="https://static.oschina.net/uploads/space/2018/0223/135923_DO9V_3209213.png" alt="img"></p>
+<p>​        在这个两个模块java9Demo和java9Test中，java9demo编写一个实体类Person,在java9Test调用这样一个过程</p>
+<p>​        这个是java9Demo 将 java9Test 模块需要的文件导出 exports  把它所在的包导出 </p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">java9Demo</span>&#123;</span></div><div class="line">    exports com.mdxl.layer_cj.entity;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 然后在java9Test模块中创建一个package-info.java,引入java9Demo模块导出包名</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">java9Test</span>&#123;</span></div><div class="line">    requires java9Demo;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样就可以直接在java9Test中引入Person实体类了，这只是一个简单的例子。exports 控制着那些包可以被模块访问，所以不被导出的包不能被其他模块访问</p>
+<h1 id="4、Java9新特性之—多版本兼容Jar包"><a href="#4、Java9新特性之—多版本兼容Jar包" class="headerlink" title="4、Java9新特性之—多版本兼容Jar包"></a>4、Java9新特性之—多版本兼容Jar包</h1><p>​        怎么理解呢？</p>
+<p>​       好多公司用的jdk大部分还是老版本，jdk6,7 都有，他们都不敢升级主要是因为兼容的问题，但是java9做到了这一点，就是不管公司的项目是用的java6,7,8甚至5，他都可以兼容不出错，打个比方，你之前用的是iphone5，现在出现了iPhone6，iphone7，iphon8和iphone9，但是你不敢买9，因为你自己已经适应了iphone5的所有手机的运行流程，6,7,8每个手机的运行流程不一样，但是这个9很强大，它能够识别你现在所用的版本iphone是5，所以当你升级到iphone9的时候，你的这个手机运行流程还是iphone5的流程，只是在原有基础上拥有了更多的iphone9的所有优势。</p>
+<h1 id="5、Java9新特性之—接口Interface的升级"><a href="#5、Java9新特性之—接口Interface的升级" class="headerlink" title="5、Java9新特性之—接口Interface的升级"></a>5、Java9新特性之—接口Interface的升级</h1><p>​        </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">FilterProcess</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//java 7 及以前 特性  全局常量 和抽象方法</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String a =<span class="string">"22"</span>;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">process</span><span class="params">(T t)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">//java 8 特性 静态方法和默认方法</span></div><div class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">love</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"java8 特性默认方法"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">haha</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"java8 特性静态方法"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//java 8 特性 支持私有方法</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">java9</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="6、Java9新特性之—钻石操作符的升级"><a href="#6、Java9新特性之—钻石操作符的升级" class="headerlink" title="6、Java9新特性之—钻石操作符的升级"></a>6、Java9新特性之—钻石操作符的升级</h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//java6及以前</span></div><div class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>,<span class="built_in">String</span>&gt; map7 = <span class="keyword">new</span> HashMap&lt;<span class="built_in">String</span>,<span class="built_in">String</span>&gt;();</div><div class="line"><span class="comment">//java7和8 &lt;&gt;没有了数据类型</span></div><div class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>,<span class="built_in">String</span>&gt; map8 = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line"><span class="comment">//java9 添加了匿名内部类的功能 后面添加了大括号&#123;&#125;  可以做一些细节的操作</span></div><div class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>,<span class="built_in">String</span>&gt; map9 = <span class="keyword">new</span> HashMap&lt;&gt;()&#123;&#125;;</div></pre></td></tr></table></figure>
+<h1 id="7、Java9新特性之—异常处理try升级"><a href="#7、Java9新特性之—异常处理try升级" class="headerlink" title="7、Java9新特性之—异常处理try升级"></a>7、Java9新特性之—异常处理try升级</h1><p>​    首先看下jdk6,7,8,9 的try catch的比较</p>
+<p>​    Java6处理方式：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//java7及以前写法  每一个流打开的时候都要关闭</span></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test7</span><span class="params">()</span></span>&#123;</div><div class="line">    InputStreamReader reader = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">try</span>&#123;</div><div class="line">        reader = <span class="keyword">new</span> InputStreamReader(System.in);</div><div class="line">        reader.read();</div><div class="line">    &#125;<span class="keyword">catch</span> (IOException e)&#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;<span class="keyword">finally</span> &#123;</div><div class="line">        <span class="keyword">if</span> (reader != <span class="keyword">null</span>)&#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                reader.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    java7,8 共同的处理方式：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//java7和8及 每一个流打开的时候都要关闭,但是在try的括号中来进行关闭</span></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test7</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">try</span>(InputStreamReader reader =<span class="keyword">new</span> InputStreamReader(System.in))&#123;</div><div class="line">        reader.read();</div><div class="line">    &#125;<span class="keyword">catch</span> (IOException e)&#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    java9的处理方式：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//java9及 每一个流打开的时候都要关闭,但是在try的括号中来进行关闭，在</span></div><div class="line"><span class="comment">//java8的基础上进一步升级 直接在try括号中直接写入 变量就好，如果有多个流，就用分号隔开</span></div><div class="line"><span class="comment">//try(reader;writer)&#123;&#125;</span></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test7</span><span class="params">()</span></span>&#123;</div><div class="line">    InputStreamReader reader =<span class="keyword">new</span> InputStreamReader(System.in);</div><div class="line">    <span class="keyword">try</span>(reader)&#123;</div><div class="line">        reader.read();</div><div class="line">    &#125;<span class="keyword">catch</span> (IOException e)&#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​    这下子应该一幕了然了吧</p>
+<h1 id="8、Java9新特性之—特殊标识符增加限制"><a href="#8、Java9新特性之—特殊标识符增加限制" class="headerlink" title="8、Java9新特性之—特殊标识符增加限制"></a>8、Java9新特性之—特殊标识符增加限制</h1><p>​    java8 之前 String _ =”hello”;  这样的标识符可以用，java9就用不到。</p>
+<h1 id="9、Java9新特性之—String底层存储结构更换"><a href="#9、Java9新特性之—String底层存储结构更换" class="headerlink" title="9、Java9新特性之—String底层存储结构更换"></a>9、Java9新特性之—String底层存储结构更换</h1><p>​    java8之前 String的底层结构类型都是 char[] ,但是java9 就替换成 byte[] 这样来讲，更节省了空间和提高了性能</p>
+<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/144044_FEnG_3209213.png" alt="img"></p>
+<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/144120_QBpj_3209213.png" alt="img"></p>
+<p>​    之所以替换是因为 之前一直是最小单位是一个char，用到两个byte,但是java8是基于latin1的，而这个latin1编码可以用一个byte标识，所以当你数据明明可以用到一个byte的时候，我们用到了一个最小单位chat两个byte，就多出了一个byte的空间。所以java9在这一方面进行了更新，现在的java9 是基于ISO/latin1/Utf-16  ,latin1和ISO用一个byte标识,UTF-16用两个byte标识，java9会自动识别用哪个编码，当数据用到1byte，就会使用iSO或者latin1 ，当空间数据满足2byte的时候，自动使用utf-16,节省了很多空间</p>
+<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/144527_x6kt_3209213.png" alt="img"></p>
+<p><strong>*</strong>同理，StringBuilder StringBuffer也更换了底层数据结构<strong><strong><strong>*</strong></strong></strong></p>
+<h1 id="10、Java9新特性之—Stream-API-新方法的添加"><a href="#10、Java9新特性之—Stream-API-新方法的添加" class="headerlink" title="10、Java9新特性之—Stream API 新方法的添加"></a>10、Java9新特性之—Stream API 新方法的添加</h1><p>​    在原有Stream API 新添加了4个方法，takeWhile dropWhile ofNullable iterate(新重载方法)</p>
+<p>​    首先解释 takeWhile 当达到一定条件就结束：输出结果为45 43，如图</p>
+<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/144923_sNmR_3209213.png" alt="img"></p>
+<p>​    而 dropWhile 则和takeWhile 相反</p>
+<p>​    ofNullable, 在java8中 Stream中的元素不能完全为null，否则空指针异常，而在java9的升级中，允许创建null</p>
+<p>​    iterate 不加条件无线循环</p>
+<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/145645_gggz_3209213.png" alt="img"></p>
+<h1 id="11、Java9新特性之—引进HttpClient"><a href="#11、Java9新特性之—引进HttpClient" class="headerlink" title="11、Java9新特性之—引进HttpClient"></a>11、Java9新特性之—引进HttpClient</h1><p>​    以往我们都是通过maven添加httpclient ,java9直接引入即可</p>
+<p>Java9所有特性都是为了提高性能和内存。。。。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-02-27T11:43:41.000Z" itemprop="dateUpdated">2018-02-27 19:43:41</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2018/02/24/JAVA/java9 新特性/" target="_blank" rel="external">https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/&title=《Java 9新特性解读》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/&title=《Java 9新特性解读》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java 9新特性解读》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/02/11/mac/mac安装opencv3.4/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">mac 安装opencv 报错，解决</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/&title=《Java 9新特性解读》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/&title=《Java 9新特性解读》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java 9新特性解读》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3awYrDMAxF0fz/T2e2A8We+6R0IPL1KpRi+6SgWpKvC4/719h/8vn8Oc9q5s85Hx4yZMh4LePejtUW94sR9n4PfG8yZMg4h7EPjmTT6Uvhr4wEbhkyZMjgz/uwWJtThgwZMjjji5sAq8iQIUNG7TCXltUI9eu5uAwZMl7I4FX3/3/+Sn9DhgwZr2Lc4egntGnjAc0gQ4aM0YxaC7MTLvn8vPEpQ4aM2QxSUEuDZlq8S1sLy99BhgwZQxkkmPICGT/wPZXcLn8TGTJkDGL0F66FzlqQReU2GTJkjGPswyW5HtHpSKTtz7jcJkOGjEEMksQScNow4LwgHMuQIWMoIy2Q9ZfsvJplWitDhowDGJ2CVxpeySEvqBfKkCFjNOOpK19pqO1vXYYMGecw0itZteQzDda1I6kMGTJmM1JSp5F5lUaxNytDhoxBjP4liasxavMvO7EyZMgYx+BlNfQ+woJ+nKauviNDhozRjDQ1TbcedCfCFPqP/w0ZMmQMZaDroWBJvul+AixDhowzGeky5PDHP0+va6CzqgwZMkYwau3J9JDXL9ihNFuGDBnjGHc49oBO2E2DMjpjypAhYwQjbTQSJDky1kr/DzRQZciQ8VoG31xti53AHd8ZkSFDxmgGb16SQx5vMDzWhJAhQ4aMRor7QHsyrcbJkCHjeEZ6nasWXmOeDBkyDmB0LmnxradJcvCyZMiQMZpRu+hAjoOdoEy+L0OGjAMYP4Np1ixvlNMLAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>
