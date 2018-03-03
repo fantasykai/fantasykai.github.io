@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2018-02-28T07:13:22.000Z</updated>
+  <updated>2018-03-03T08:52:57.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>python中list的排序</title>
+    <title>python性能优化</title>
     <link href="https://fantasykai.cc/2018/02/27/python/python%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     <id>https://fantasykai.cc/2018/02/27/python/python性能优化/</id>
     <published>2018-02-26T16:00:00.000Z</published>
-    <updated>2018-02-28T07:13:22.000Z</updated>
+    <updated>2018-03-03T08:52:57.000Z</updated>
     
     <content type="html"><![CDATA[<p><strong>优化算法时间复杂度</strong></p>
 <p>算法的时间复杂度对程序的执行效率影响最大，在 Python 中可以通过选择合适的数据结构来优化时间复杂度，如 list 和 set 查找某一个元素的时间复杂度分别是O(n)和O(1)。不同的场景有不同的优化方式，总得来说，一般有分治，分支界限，贪心，动态规划等思想。</p>
