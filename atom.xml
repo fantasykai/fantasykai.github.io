@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2018-03-20T10:32:45.000Z</updated>
+  <updated>2018-03-21T02:01:06.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://fantasykai.cc/2018/03/20/mac/Mac%E9%AB%98%E6%95%88%E5%B7%A5%E4%BD%9C%E7%9A%84%E7%8E%A9%E6%B3%95%E9%85%8D%E7%BD%AE%E6%80%BB%E7%BB%93/"/>
     <id>https://fantasykai.cc/2018/03/20/mac/Mac高效工作的玩法配置总结/</id>
     <published>2018-03-20T03:06:50.000Z</published>
-    <updated>2018-03-20T10:32:45.000Z</updated>
+    <updated>2018-03-21T02:01:06.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>Mac 上有很多提升工作效率的工具，及配置，以下是一些来自网络和自己的总结汇总，希望给小伙伴们带来帮助</p>
@@ -73,7 +73,7 @@
 <p>打开<code>系统偏好设置</code>，点击<code>安全性和隐私</code>图标，在<code>隐私</code>Tab内，点击<code>辅助功能</code>，然后勾选<code>ShiftIt.app</code>（提示：你可能需要先点击右下角的黄色锁，输入密码后才能编辑右边的列表。）</p>
 <p>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpj95z8j7cj210a0ton0b.jpg" alt=""><br>图4.2-2</p>
 <p>如果你此时接上了外接显示器，快捷键按下<code>control+option+command+ N</code>，则当前左边显示器激活的最前端窗口将被立即发送到旁边的的显示器。</p>
-<p>下面列举一些SizeUp常用的快捷键，更多的快捷键和使用方式请查询其<a href="http://www.irradiatedsoftware.com/sizeup/" target="_blank" rel="external">官方网站</a>。</p>
+<p>下面列举一些<code>ShiftIt</code>常用的快捷键，更多的快捷键和使用方式请查询其<a href="https://github.com/fikovnik/ShiftIt" target="_blank" rel="external">ShiftIt</a>。</p>
 <ul>
 <li><code>control+option+command + M</code> ： 使当前窗口全屏</li>
 <li><code>control+option+command + 方向键上键</code> ： 使当前窗口占用当前屏幕上半部分</li>
@@ -242,9 +242,9 @@
 </ul>
 <p>再切换到<code>Window</code>Tab下，将<code>Style</code>，<code>Screen</code>和<code>Space</code>这3个值设置和下图一样。</p>
 <p>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpjenm8g44j21e20rs79v.jpg" alt=""><br>图5.1.2-2</p>
-<p>再切换到<code>Keys</code>Tab下，设置如下图所示的<code>Hotkey</code>F12。</p>
+<p>再切换到<code>Keys</code>Tab下，设置如下图所示的<code>Hotkey</code>Alt + .。</p>
 <p>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpjeox6o93j21ga0rq10u.jpg" alt=""><br>图5.1.2-3</p>
-<p>现在你按下<code>Alt + .</code>，就立即得到一个占满全屏的黑色命令行终端，再按一下F12隐藏终端，非常的方便。</p>
+<p>现在你按下<code>Alt + .</code>，就立即得到一个占满全屏的黑色命令行终端，再按一下Alt + .隐藏终端，非常的方便。</p>
 <h3 id="5-2-终端下的命令管理-—-Homebrew"><a href="#5-2-终端下的命令管理-—-Homebrew" class="headerlink" title="5.2 终端下的命令管理 — Homebrew"></a>5.2 终端下的命令管理 — Homebrew</h3><p>Mac <a href="http://www.apple.com/osx/apps/app-store/" target="_blank" rel="external">App Store</a>你一定非常熟悉了，它可以帮你下载和安装大部分常见的软件。</p>
 <p>在终端下，我们也需要一个App Store一样的管理程序，当你需要安装某个终端下的新命令的时候，这个程序可以帮助我们自动下载该命令以及相关的依赖，甚至在下载以后做必要的编译和环境设置。</p>
 <p><a href="http://brew.sh/index.html" target="_blank" rel="external">Homebrew</a>就是这样一款终端下的命令程序包管理器，安装非常简单，复制如下命令在终端下运行，按回车并输入密码后等待安装成功：</p>
