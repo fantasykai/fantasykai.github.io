@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2018-03-21T02:01:06.000Z</updated>
+  <updated>2018-04-07T03:04:39.000Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -14,6 +14,171 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>thymeleaf 常用的th标签</title>
+    <link href="https://fantasykai.cc/2018/03/24/web/thymeleaf%20%E5%B8%B8%E7%94%A8%E7%9A%84th%E6%A0%87%E7%AD%BE/"/>
+    <id>https://fantasykai.cc/2018/03/24/web/thymeleaf 常用的th标签/</id>
+    <published>2018-03-23T16:00:00.000Z</published>
+    <updated>2018-04-07T03:04:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>功能介绍</th>
+<th>案例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>th:id</td>
+<td>替换id</td>
+<td><code>&lt;input th:id=&quot;&#39;xxx&#39; + ${collect.id}&quot;/&gt;</code></td>
+</tr>
+<tr>
+<td>th:text</td>
+<td>文本替换</td>
+<td><code>&lt;p th:text=&quot;${collect.description}&quot;&gt;description&lt;/p&gt;</code></td>
+</tr>
+<tr>
+<td>th:utext</td>
+<td>支持html的文本替换</td>
+<td><code>&lt;p th:utext=&quot;${htmlcontent}&quot;&gt;conten&lt;/p&gt;</code></td>
+</tr>
+<tr>
+<td>th:object</td>
+<td>替换对象</td>
+<td><code>&lt;div th:object=&quot;${session.user}&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>th:value</td>
+<td>属性赋值</td>
+<td><code>&lt;input th:value=&quot;${user.name}&quot; /&gt;</code></td>
+</tr>
+<tr>
+<td>th:with</td>
+<td>变量赋值运算</td>
+<td><code>&lt;div th:with=&quot;isEven=${prodStat.count}%2==0&quot;&gt;&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>th:style</td>
+<td>设置样式</td>
+<td><code>th:style=&quot;&#39;display:&#39; + @{(${sitrue} ? &#39;none&#39; : &#39;inline-block&#39;)} + &#39;&#39;&quot;</code></td>
+</tr>
+<tr>
+<td>th:onclick</td>
+<td>点击事件</td>
+<td><code>th:onclick=&quot;&#39;getCollect()&#39;&quot;</code></td>
+</tr>
+<tr>
+<td>th:each</td>
+<td>属性赋值</td>
+<td><code>tr th:each=&quot;user,userStat:${users}&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>th:if</td>
+<td>判断条件</td>
+<td><code>&lt;a th:if=&quot;${userId == collect.userId}&quot; &gt;</code></td>
+</tr>
+<tr>
+<td>th:unless</td>
+<td>和th:if判断相反</td>
+<td><code>&lt;a th:href=&quot;@{/login}&quot; th:unless=${session.user != null}&gt;Login&lt;/a&gt;</code></td>
+</tr>
+<tr>
+<td>th:href</td>
+<td>链接地址</td>
+<td><code>&lt;a th:href=&quot;@{/login}&quot; th:unless=${session.user != null}&gt;Login&lt;/a&gt; /&gt;</code></td>
+</tr>
+<tr>
+<td>th:switch</td>
+<td>多路选择 配合th:case 使用</td>
+<td><code>&lt;div th:switch=&quot;${user.role}&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>th:case</td>
+<td>th:switch的一个分支</td>
+<td><code>&lt;p th:case=&quot;&#39;admin&#39;&quot;&gt;User is an administrator&lt;/p&gt;</code></td>
+</tr>
+<tr>
+<td>th:fragment</td>
+<td>布局标签，定义一个代码片段，方便其它地方引用</td>
+<td><code>&lt;div th:fragment=&quot;alert&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>th:include</td>
+<td>布局标签，替换内容到引入的文件</td>
+<td><code>&lt;head th:include=&quot;layout :: htmlhead&quot; th:with=&quot;title=&#39;xx&#39;&quot;&gt;&lt;/head&gt; /&gt;</code></td>
+</tr>
+<tr>
+<td>th:replace</td>
+<td>布局标签，替换整个标签到引入的文件</td>
+<td><code>&lt;div th:replace=&quot;fragments/header :: title&quot;&gt;&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>th:selected</td>
+<td>selected选择框 选中</td>
+<td><code>th:selected=&quot;(${xxx.id} == ${configObj.dd})&quot;</code></td>
+</tr>
+<tr>
+<td>th:src</td>
+<td>图片类地址引入</td>
+<td><code>&lt;img class=&quot;img-responsive&quot; alt=&quot;App Logo&quot; th:src=&quot;@{/img/logo.png}&quot; /&gt;</code></td>
+</tr>
+<tr>
+<td>th:inline</td>
+<td>定义js脚本可以使用变量</td>
+<td><code>&lt;script type=&quot;text/javascript&quot; th:inline=&quot;javascript&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>th:action</td>
+<td>表单提交的地址</td>
+<td><code>&lt;form action=&quot;subscribe.html&quot; th:action=&quot;@{/subscribe}&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>th:remove</td>
+<td>删除某个属性</td>
+<td><code>&lt;tr th:remove=&quot;all&quot;&gt;</code> 1.all:删除包含标签和所有的子节点。2.body:不包含标记删除,但删除其所有的子节点。3.tag:包含标记的删除,但不删除它的子节点。4.all-but-first:删除所有包含标签的子节点,除了第一个。5.none:什么也不做。这个值是有用的动态评估</td>
+</tr>
+<tr>
+<td>th:attr</td>
+<td>设置标签属性，多个属性可以用逗号分隔</td>
+<td>比如 <code>th:attr=&quot;src=@{/image/aa.jpg},title=#{logo}&quot;</code>，此标签不太优雅，一般用的比较少</td>
+</tr>
+</tbody>
+</table>
+<p>还有非常多的标签，这里只列出最常用的几个，由于一个标签内可以包含多个th:x属性，其生效的优先级顺序为:</p>
+<pre><code>include,each,if/unless/switch/case,with,attr/attrprepend/attrappend,value/href,src ,etc,text/utext,fragment,remove。 
+</code></pre><blockquote>
+<p>Thymeleaf 是一个非常灵活和优秀的前端页面模板引擎，使用 Thymeleaf 可以非常灵活的对页面进行布局，复用通用页面。Thymeleaf 提供了各种常用的语法，非常方便我们在前端页面中使用。</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;关键字&lt;/th&gt;
+&lt;th&gt;功能介绍&lt;/th&gt;
+&lt;th&gt;案例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;th:id&lt;/td&gt;
+&lt;td&gt;替换id&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;input th:
+    
+    </summary>
+    
+      <category term="web" scheme="https://fantasykai.cc/categories/web/"/>
+    
+    
+      <category term="thymeleaf" scheme="https://fantasykai.cc/tags/thymeleaf/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac高效工作的玩法配置总结</title>
@@ -3331,75 +3496,6 @@ upstream    https://github.com/pyeve/eve.git (push)
     
     
       <category term="java" scheme="https://fantasykai.cc/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>阿里Java开发规约idea插件</title>
-    <link href="https://fantasykai.cc/2017/10/16/JAVA/%E9%98%BF%E9%87%8CJava%E5%BC%80%E5%8F%91%E8%A7%84%E7%BA%A6idea%E6%8F%92%E4%BB%B6/"/>
-    <id>https://fantasykai.cc/2017/10/16/JAVA/阿里Java开发规约idea插件/</id>
-    <published>2017-10-15T16:00:00.000Z</published>
-    <updated>2017-10-18T03:10:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>周六日看了阿里云的云栖大会，周日场（10月15日）研发效能峰会上，阿里正式发布了《阿里巴巴Java开发手册》，并提供了代码规范插件，目前主要使用idea开发，这里简单记录下使用方法</p>
-</blockquote>
-<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
-<li>编码规约扫描</li>
-</ul>
-<p>扫描结果将以 <code>Blocker</code>/ <code>Critical</code>/ <code>Major</code> 三种级别显示</p>
-<ul>
-<li>实时检测</li>
-</ul>
-<p>基于Inspection机制提供了实时检测功能，编写代码的同时也能快速发现问题所在。对于历史代码，部分规则实现了批量一键修复的功能</p>
-<h3 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式"></a>安装方式</h3><blockquote>
-<p>安装很简单，在idea的Plugins，–&gt; Browse repositories 里直接搜索alibaba 就可以找到</p>
-</blockquote>
-<p>   <img src="https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/install_2.png" alt="Switch language"></p>
-<p>   <a href="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/install_2.png" target="_blank" rel="external">https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/install_2.png</a></p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>使用也很简单 idea —&gt; tools —&gt; 阿里编码规约</p>
-<ol>
-<li><p>Switch language</p>
-<p><img src="https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/switch_language.png" alt="Switch language"></p>
-</li>
-<li><p>Inspections</p>
-<p><img src="https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection.png" alt="Real time"></p>
-<p><a href="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection.png" target="_blank" rel="external">https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection.png</a></p>
-<p><img src="https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection_setting.png" alt="Settings"></p>
-<p><a href="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection_setting.png" target="_blank" rel="external">https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection_setting.png</a></p>
-</li>
-<li><p>Code Analyze</p>
-<p><img src="https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/analyze.png" alt="Settings"></p>
-<p><a href="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/analyze.png" target="_blank" rel="external">https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/analyze.png</a></p>
-<p>We use the idea standard Inspection Results to show our violations.</p>
-<p><img src="https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/inspection_result.png" alt="Result"></p>
-<p><a href="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection_result.png" target="_blank" rel="external">https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/inspection_result.png</a></p>
-<p>We can also analyze file which is modified before vcs checkin.</p>
-<p><img src="https://github.com/alibaba/p3c/raw/master/idea-plugin/doc/images/analyze_before_checkin.png" alt="Before Checkin"></p>
-<p><a href="https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/analyze_before_checkin.png" target="_blank" rel="external">https://github.com/alibaba/p3c/blob/master/idea-plugin/doc/images/analyze_before_checkin.png</a></p>
-</li>
-</ol>
-<blockquote>
-<p>《阿里巴巴Java开发手册（终极版）.pdf》已发 安排时间仔细阅读再~</p>
-</blockquote>
-<ul>
-<li><a href="https://github.com/alibaba/p3c" target="_blank" rel="external">github 地址</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;周六日看了阿里云的云栖大会，周日场（10月15日）研发效能峰会上，阿里正式发布了《阿里巴巴Java开发手册》，并提供了代码规范插件，目前主要使用idea开发，这里简单记录下使用方法&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;特点&quot;&gt;&lt;a 
-    
-    </summary>
-    
-      <category term="技术小栈" scheme="https://fantasykai.cc/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
-    
-    
-      <category term="idea" scheme="https://fantasykai.cc/tags/idea/"/>
     
   </entry>
   
