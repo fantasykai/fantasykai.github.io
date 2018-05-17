@@ -2442,6 +2442,181 @@
   </entry>
   
   <entry>
+    <title>多线程总结</title>
+    <link href="https://fantasykai.cc/2018/04/22/JAVA/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/"/>
+    <id>https://fantasykai.cc/2018/04/22/JAVA/多线程相关总结/</id>
+    <published>2018-04-21T16:00:00.000Z</published>
+    <updated>2018-05-17T06:52:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<p> 1、多线程有什么用？</p>
+<p>一个可能在很多人看来很扯淡的一个问题：我会用多线程就好了，还管它有什么用？在我看来，这个回答更扯淡。所谓”知其然知其所以然”，”会用”只是”知其然”，”为什么用”才是”知其所以然”，只有达到”知其然知其所以然”的程度才可以说是把一个知识点运用自如。OK，下面说说我对这个问题的看法：</p>
+<p>（1）发挥多核CPU的优势</p>
+<p>随着工业的进步，现在的笔记本、台式机乃至商用的应用服务器至少也都是双核的，4核、8核甚至16核的也都不少见，如果是单线程的程序，那么在双核CPU上就浪费了50%，在4核CPU上就浪费了75%。<strong>单核CPU上所谓的”多线程”那是假的多线程，同一时间处理器只会处理一段逻辑，只不过线程之间切换得比较快，看着像多个线程”同时”运行罢了</strong>。多核CPU上的多线程才是真正的多线程，它能让你的多段逻辑同时工作，多线程，可以真正发挥出多核CPU的优势来，达到充分利用CPU的目的。</p>
+<p>（2）防止阻塞</p>
+<p>从程序运行效率的角度来看，单核CPU不但不会发挥出多线程的优势，反而会因为在单核CPU上运行多线程导致线程上下文的切换，而降低程序整体的效率。但是单核CPU我们还是要应用多线程，就是为了防止阻塞。试想，如果单核CPU使用单线程，那么只要这个线程阻塞了，比方说远程读取某个数据吧，对端迟迟未返回又没有设置超时时间，那么你的整个程序在数据返回回来之前就停止运行了。多线程可以防止这个问题，多条线程同时运行，哪怕一条线程的代码执行读取数据阻塞，也不会影响其它任务的执行。</p>
+<p>（3）便于建模</p>
+<p>这是另外一个没有这么明显的优点了。假设有一个大的任务A，单线程编程，那么就要考虑很多，建立整个程序模型比较麻烦。但是如果把这个大的任务A分解成几个小任务，任务B、任务C、任务D，分别建立程序模型，并通过多线程分别运行这几个任务，那就简单很多了。</p>
+<p>2、创建线程的方式</p>
+<p>比较常见的一个问题了，一般就是两种：</p>
+<p>（1）继承Thread类</p>
+<p>（2）实现Runnable接口</p>
+<p>至于哪个好，不用说肯定是后者好，因为实现接口的方式比继承类的方式更灵活，也能减少程序之间的耦合度，<strong>面向接口编程</strong>也是设计模式6大原则的核心。</p>
+<p>3、start()方法和run()方法的区别</p>
+<p>只有调用了start()方法，才会表现出多线程的特性，不同线程的run()方法里面的代码交替执行。如果只是调用run()方法，那么代码还是同步执行的，必须等待一个线程的run()方法里面的代码全部执行完毕之后，另外一个线程才可以执行其run()方法里面的代码。</p>
+<p>4、Runnable接口和Callable接口的区别</p>
+<p>有点深的问题了，也看出一个Java程序员学习知识的广度。</p>
+<p>Runnable接口中的run()方法的返回值是void，它做的事情只是纯粹地去执行run()方法中的代码而已；Callable接口中的call()方法是有返回值的，是一个泛型，和Future、FutureTask配合可以用来获取异步执行的结果。</p>
+<p>这其实是很有用的一个特性，因为<strong>多线程相比单线程更难、更复杂的一个重要原因就是因为多线程充满着未知性</strong>，某条线程是否执行了？某条线程执行了多久？某条线程执行的时候我们期望的数据是否已经赋值完毕？无法得知，我们能做的只是等待这条多线程的任务执行完毕而已。而Callable+Future/FutureTask却可以获取多线程运行的结果，可以在等待时间太长没获取到需要的数据的情况下取消该线程的任务，真的是非常有用。</p>
+<p>5、CyclicBarrier和CountDownLatch的区别</p>
+<p>两个看上去有点像的类，都在java.util.concurrent下，都可以用来表示代码运行到某个点上，二者的区别在于：</p>
+<p>（1）CyclicBarrier的某个线程运行到某个点上之后，该线程即停止运行，直到所有的线程都到达了这个点，所有线程才重新运行；CountDownLatch则不是，某线程运行到某个点上之后，只是给某个数值-1而已，该线程继续运行</p>
+<p>（2）CyclicBarrier只能唤起一个任务，CountDownLatch可以唤起多个任务</p>
+<p>（3）CyclicBarrier可重用，CountDownLatch不可重用，计数值为0该CountDownLatch就不可再用了</p>
+<p>6、volatile关键字的作用</p>
+<p>一个非常重要的问题，是每个学习、应用多线程的Java程序员都必须掌握的。理解volatile关键字的作用的前提是要理解Java内存模型，这里就不讲Java内存模型了，可以参见第31点，volatile关键字的作用主要有两个：</p>
+<p>（1）多线程主要围绕可见性和原子性两个特性而展开，使用volatile关键字修饰的变量，保证了其在多线程之间的可见性，即每次读取到volatile变量，一定是最新的数据</p>
+<p>（2）代码底层执行不像我们看到的高级语言—-Java程序这么简单，它的执行是<strong>Java代码–&gt;字节码–&gt;根据字节码执行对应的C/C++代码–&gt;C/C++代码被编译成汇编语言–&gt;和硬件电路交互</strong>，现实中，为了获取更好的性能JVM可能会对指令进行重排序，多线程下可能会出现一些意想不到的问题。使用volatile则会对禁止语义重排序，当然这也一定程度上降低了代码执行效率</p>
+<p>从实践角度而言，volatile的一个重要作用就是和CAS结合，保证了原子性，详细的可以参见java.util.concurrent.atomic包下的类，比如AtomicInteger。</p>
+<p>7、什么是线程安全</p>
+<p>又是一个理论的问题，各式各样的答案有很多，我给出一个个人认为解释地最好的：<strong>如果你的代码在多线程下执行和在单线程下执行永远都能获得一样的结果，那么你的代码就是线程安全的</strong>。</p>
+<p>这个问题有值得一提的地方，就是线程安全也是有几个级别的：</p>
+<p>（1）不可变</p>
+<p>像String、Integer、Long这些，都是final类型的类，任何一个线程都改变不了它们的值，要改变除非新创建一个，因此这些不可变对象不需要任何同步手段就可以直接在多线程环境下使用</p>
+<p>（2）绝对线程安全</p>
+<p>不管运行时环境如何，调用者都不需要额外的同步措施。要做到这一点通常需要付出许多额外的代价，Java中标注自己是线程安全的类，实际上绝大多数都不是线程安全的，不过绝对线程安全的类，Java中也有，比方说CopyOnWriteArrayList、CopyOnWriteArraySet</p>
+<p>（3）相对线程安全</p>
+<p>相对线程安全也就是我们通常意义上所说的线程安全，像Vector这种，add、remove方法都是原子操作，不会被打断，但也仅限于此，如果有个线程在遍历某个Vector、有个线程同时在add这个Vector，99%的情况下都会出现ConcurrentModificationException，也就是<strong>fail-fast机制</strong>。</p>
+<p>（4）线程非安全</p>
+<p>这个就没什么好说的了，ArrayList、LinkedList、HashMap等都是线程非安全的类</p>
+<p>8、Java中如何获取到线程dump文件</p>
+<p>死循环、死锁、阻塞、页面打开慢等问题，打线程dump是最好的解决问题的途径。所谓线程dump也就是线程堆栈，获取到线程堆栈有两步：</p>
+<p>（1）获取到线程的pid，可以通过使用jps命令，在Linux环境下还可以使用ps -ef | grep java</p>
+<p>（2）打印线程堆栈，可以通过使用jstack pid命令，在Linux环境下还可以使用kill -3 pid</p>
+<p>另外提一点，Thread类提供了一个getStackTrace()方法也可以用于获取线程堆栈。这是一个实例方法，因此此方法是和具体线程实例绑定的，每次获取获取到的是具体某个线程当前运行的堆栈，</p>
+<p>9、一个线程如果出现了运行时异常会怎么样</p>
+<p>如果这个异常没有被捕获的话，这个线程就停止执行了。另外重要的一点是：<strong>如果这个线程持有某个某个对象的监视器，那么这个对象监视器会被立即释放</strong></p>
+<p>10、如何在两个线程之间共享数据</p>
+<p>通过在线程之间共享对象就可以了，然后通过wait/notify/notifyAll、await/signal/signalAll进行唤起和等待，比方说阻塞队列BlockingQueue就是为线程之间共享数据而设计的 </p>
+<p>11、sleep方法和wait方法有什么区别</p>
+<p>这个问题常问，sleep方法和wait方法都可以用来放弃CPU一定的时间，不同点在于如果线程持有某个对象的监视器，sleep方法不会放弃这个对象的监视器，wait方法会放弃这个对象的监视器</p>
+<p>12、生产者消费者模型的作用是什么</p>
+<p>这个问题很理论，但是很重要：</p>
+<p>（1）<strong>通过平衡生产者的生产能力和消费者的消费能力来提升整个系统的运行效率</strong>，这是生产者消费者模型最重要的作用</p>
+<p>（2）解耦，这是生产者消费者模型附带的作用，解耦意味着生产者和消费者之间的联系少，联系越少越可以独自发展而不需要收到相互的制约</p>
+<p>13、ThreadLocal有什么用</p>
+<p>简单说ThreadLocal就是一种以<strong>空间换时间</strong>的做法，在每个Thread里面维护了一个以开地址法实现的ThreadLocal.ThreadLocalMap，把数据进行隔离，数据不共享，自然就没有线程安全方面的问题了</p>
+<p>14、为什么wait()方法和notify()/notifyAll()方法要在同步块中被调用</p>
+<p>这是JDK强制的，wait()方法和notify()/notifyAll()方法在调用前都必须先获得对象的锁</p>
+<p>15、wait()方法和notify()/notifyAll()方法在放弃对象监视器时有什么区别</p>
+<p>wait()方法和notify()/notifyAll()方法在放弃对象监视器的时候的区别在于：<strong>wait()方法立即释放对象监视器，notify()/notifyAll()方法则会等待线程剩余代码执行完毕才会放弃对象监视器</strong>。</p>
+<p>16、为什么要使用线程池</p>
+<p>避免频繁地创建和销毁线程，达到线程对象的重用。另外，使用线程池还可以根据项目灵活地控制并发的数目。 </p>
+<p>17、怎么检测一个线程是否持有对象监视器</p>
+<p>我也是在网上看到一道多线程面试题才知道有方法可以判断某个线程是否持有对象监视器：Thread类提供了一个holdsLock(Object obj)方法，当且仅当对象obj的监视器被某条线程持有的时候才会返回true，注意这是一个static方法，这意味着<strong>“某条线程”指的是当前线程</strong>。</p>
+<p>18、synchronized和ReentrantLock的区别</p>
+<p>synchronized是和if、else、for、while一样的关键字，ReentrantLock是类，这是二者的本质区别。既然ReentrantLock是类，那么它就提供了比synchronized更多更灵活的特性，可以被继承、可以有方法、可以有各种各样的类变量，ReentrantLock比synchronized的扩展性体现在几点上：</p>
+<p>（1）ReentrantLock可以对获取锁的等待时间进行设置，这样就避免了死锁</p>
+<p>（2）ReentrantLock可以获取各种锁的信息</p>
+<p>（3）ReentrantLock可以灵活地实现多路通知</p>
+<p>另外，二者的锁机制其实也是不一样的。ReentrantLock底层调用的是Unsafe的park方法加锁，synchronized操作的应该是对象头中mark word，这点我不能确定。</p>
+<p>19、ConcurrentHashMap的并发度是什么</p>
+<p>ConcurrentHashMap的并发度就是segment的大小，默认为16，这意味着最多同时可以有16条线程操作ConcurrentHashMap，这也是ConcurrentHashMap对Hashtable的最大优势，任何情况下，Hashtable能同时有两条线程获取Hashtable中的数据吗？</p>
+<p>20、ReadWriteLock是什么</p>
+<p>首先明确一下，不是说ReentrantLock不好，只是ReentrantLock某些时候有局限。如果使用ReentrantLock，可能本身是为了防止线程A在写数据、线程B在读数据造成的数据不一致，但这样，如果线程C在读数据、线程D也在读数据，读数据是不会改变数据的，没有必要加锁，但是还是加锁了，降低了程序的性能。</p>
+<p>因为这个，才诞生了读写锁ReadWriteLock。ReadWriteLock是一个读写锁接口，ReentrantReadWriteLock是ReadWriteLock接口的一个具体实现，实现了读写的分离，<strong>读锁是共享的，写锁是独占的</strong>，读和读之间不会互斥，读和写、写和读、写和写之间才会互斥，提升了读写的性能。</p>
+<p>21、FutureTask是什么</p>
+<p>这个其实前面有提到过，FutureTask表示一个异步运算的任务。FutureTask里面可以传入一个Callable的具体实现类，可以对这个异步运算的任务的结果进行等待获取、判断是否已经完成、取消任务等操作。当然，由于FutureTask也是Runnable接口的实现类，所以FutureTask也可以放入线程池中。</p>
+<p>22、Linux环境下如何查找哪个线程使用CPU最长</p>
+<p>这是一个比较偏实践的问题，这种问题我觉得挺有意义的。可以这么做：</p>
+<p>（1）获取项目的pid，jps或者ps -ef | grep java，这个前面有讲过</p>
+<p>（2）top -H -p pid，顺序不能改变</p>
+<p>这样就可以打印出当前的项目，每条线程占用CPU时间的百分比。注意这里打出的是LWP，也就是操作系统原生线程的线程号，我笔记本山没有部署Linux环境下的Java工程，因此没有办法截图演示，网友朋友们如果公司是使用Linux环境部署项目的话，可以尝试一下。</p>
+<p>使用”top -H -p pid”+”jps pid”可以很容易地找到某条占用CPU高的线程的线程堆栈，从而定位占用CPU高的原因，一般是因为不当的代码操作导致了死循环。</p>
+<p>最后提一点，”top -H -p pid”打出来的LWP是十进制的，”jps pid”打出来的本地线程号是十六进制的，转换一下，就能定位到占用CPU高的线程的当前线程堆栈了。</p>
+<p>23、Java编程写一个会导致死锁的程序</p>
+<p>第一次看到这个题目，觉得这是一个非常好的问题。很多人都知道死锁是怎么一回事儿：线程A和线程B相互等待对方持有的锁导致程序无限死循环下去。当然也仅限于此了，问一下怎么写一个死锁的程序就不知道了，这种情况说白了就是不懂什么是死锁，懂一个理论就完事儿了，实践中碰到死锁的问题基本上是看不出来的。</p>
+<p>真正理解什么是死锁，这个问题其实不难，几个步骤：</p>
+<p>（1）两个线程里面分别持有两个Object对象：lock1和lock2。这两个lock作为同步代码块的锁；</p>
+<p>（2）线程1的run()方法中同步代码块先获取lock1的对象锁，Thread.sleep(xxx)，时间不需要太多，50毫秒差不多了，然后接着获取lock2的对象锁。这么做主要是为了防止线程1启动一下子就连续获得了lock1和lock2两个对象的对象锁</p>
+<p>（3）线程2的run)(方法中同步代码块先获取lock2的对象锁，接着获取lock1的对象锁，当然这时lock1的对象锁已经被线程1锁持有，线程2肯定是要等待线程1释放lock1的对象锁的</p>
+<p>这样，线程1”睡觉”睡完，线程2已经获取了lock2的对象锁了，线程1此时尝试获取lock2的对象锁，便被阻塞，此时一个死锁就形成了。代码就不写了，占的篇幅有点多，Java多线程7：死锁这篇文章里面有，就是上面步骤的代码实现。</p>
+<p>24、怎么唤醒一个阻塞的线程</p>
+<p>如果线程是因为调用了wait()、sleep()或者join()方法而导致的阻塞，可以中断线程，并且通过抛出InterruptedException来唤醒它；如果线程遇到了IO阻塞，无能为力，因为IO是操作系统实现的，Java代码并没有办法直接接触到操作系统。</p>
+<p>25、不可变对象对多线程有什么帮助</p>
+<p>前面有提到过的一个问题，不可变对象保证了对象的内存可见性，对不可变对象的读取不需要进行额外的同步手段，提升了代码执行效率。</p>
+<p>26、什么是多线程的上下文切换</p>
+<p>多线程的上下文切换是指CPU控制权由一个已经正在运行的线程切换到另外一个就绪并等待获取CPU执行权的线程的过程。</p>
+<p>27、如果你提交任务时，线程池队列已满，这时会发生什么</p>
+<p>这里区分一下：</p>
+<ol>
+<li>如果使用的是无界队列LinkedBlockingQueue，也就是无界队列的话，没关系，继续添加任务到阻塞队列中等待执行，因为LinkedBlockingQueue可以近乎认为是一个无穷大的队列，可以无限存放任务</li>
+<li>如果使用的是有界队列比如ArrayBlockingQueue，任务首先会被添加到ArrayBlockingQueue中，ArrayBlockingQueue满了，会根据maximumPoolSize的值增加线程数量，如果增加了线程数量还是处理不过来，ArrayBlockingQueue继续满，那么则会使用拒绝策略RejectedExecutionHandler处理满了的任务，默认是AbortPolicy</li>
+</ol>
+<p>28、Java中用到的线程调度算法是什么</p>
+<p>抢占式。一个线程用完CPU之后，操作系统会根据线程优先级、线程饥饿情况等数据算出一个总的优先级并分配下一个时间片给某个线程执行。</p>
+<p>29、Thread.sleep(0)的作用是什么</p>
+<p>这个问题和上面那个问题是相关的，我就连在一起了。由于Java采用抢占式的线程调度算法，因此可能会出现某条线程常常获取到CPU控制权的情况，为了让某些优先级比较低的线程也能获取到CPU控制权，可以使用Thread.sleep(0)手动触发一次操作系统分配时间片的操作，这也是平衡CPU控制权的一种操作。</p>
+<p>30、什么是自旋</p>
+<p>很多synchronized里面的代码只是一些很简单的代码，执行时间非常快，此时等待的线程都加锁可能是一种不太值得的操作，因为线程阻塞涉及到用户态和内核态切换的问题。既然synchronized里面的代码执行得非常快，不妨让等待锁的线程不要被阻塞，而是在synchronized的边界做忙循环，这就是自旋。如果做了多次忙循环发现还没有获得锁，再阻塞，这样可能是一种更好的策略。</p>
+<p>31、什么是Java内存模型</p>
+<p>Java内存模型定义了一种多线程访问Java内存的规范。Java内存模型要完整讲不是这里几句话能说清楚的，我简单总结一下Java内存模型的几部分内容：</p>
+<p>（1）Java内存模型将内存分为了<strong>主内存和工作内存</strong>。类的状态，也就是类之间共享的变量，是存储在主内存中的，每次Java线程用到这些主内存中的变量的时候，会读一次主内存中的变量，并让这些内存在自己的工作内存中有一份拷贝，运行自己线程代码的时候，用到这些变量，操作的都是自己工作内存中的那一份。在线程代码执行完毕之后，会将最新的值更新到主内存中去</p>
+<p>（2）定义了几个原子操作，用于操作主内存和工作内存中的变量</p>
+<p>（3）定义了volatile变量的使用规则</p>
+<p>（4）happens-before，即先行发生原则，定义了操作A必然先行发生于操作B的一些规则，比如在同一个线程内控制流前面的代码一定先行发生于控制流后面的代码、一个释放锁unlock的动作一定先行发生于后面对于同一个锁进行锁定lock的动作等等，只要符合这些规则，则不需要额外做同步措施，如果某段代码不符合所有的happens-before规则，则这段代码一定是线程非安全的</p>
+<p>32、什么是CAS</p>
+<p>CAS，全称为Compare and Swap，即比较-替换。假设有三个操作数：<strong>内存值V、旧的预期值A、要修改的值B，当且仅当预期值A和内存值V相同时，才会将内存值修改为B并返回true，否则什么都不做并返回false</strong>。当然CAS一定要volatile变量配合，这样才能保证每次拿到的变量是主内存中最新的那个值，否则旧的预期值A对某条线程来说，永远是一个不会变的值A，只要某次CAS操作失败，永远都不可能成功。</p>
+<p>33、什么是乐观锁和悲观锁</p>
+<p>（1）乐观锁：就像它的名字一样，对于并发间操作产生的线程安全问题持乐观状态，乐观锁认为竞争不总是会发生，因此它不需要持有锁，将<strong>比较-替换</strong>这两个动作作为一个原子操作尝试去修改内存中的变量，如果失败则表示发生冲突，那么就应该有相应的重试逻辑。</p>
+<p>（2）悲观锁：还是像它的名字一样，对于并发间操作产生的线程安全问题持悲观状态，悲观锁认为竞争总是会发生，因此每次对某资源进行操作时，都会持有一个独占的锁，就像synchronized，不管三七二十一，直接上了锁就操作资源了。</p>
+<p>34、什么是AQS</p>
+<p>简单说一下AQS，AQS全称为AbstractQueuedSychronizer，翻译过来应该是抽象队列同步器。</p>
+<p>如果说java.util.concurrent的基础是CAS的话，那么AQS就是整个Java并发包的核心了，ReentrantLock、CountDownLatch、Semaphore等等都用到了它。AQS实际上以双向队列的形式连接所有的Entry，比方说ReentrantLock，所有等待的线程都被放在一个Entry中并连成双向队列，前面一个线程使用ReentrantLock好了，则双向队列实际上的第一个Entry开始运行。</p>
+<p>AQS定义了对双向队列所有的操作，而只开放了tryLock和tryRelease方法给开发者使用，开发者可以根据自己的实现重写tryLock和tryRelease方法，以实现自己的并发功能。</p>
+<p>35、单例模式的线程安全性</p>
+<p>老生常谈的问题了，首先要说的是单例模式的线程安全意味着：<strong>某个类的实例在多线程环境下只会被创建一次出来</strong>。单例模式有很多种的写法，我总结一下：</p>
+<p>（1）饿汉式单例模式的写法：线程安全</p>
+<p>（2）懒汉式单例模式的写法：非线程安全</p>
+<p>（3）双检锁单例模式的写法：线程安全</p>
+<p>36、Semaphore有什么作用</p>
+<p>Semaphore就是一个信号量，它的作用是<strong>限制某段代码块的并发数</strong>。Semaphore有一个构造函数，可以传入一个int型整数n，表示某段代码最多只有n个线程可以访问，如果超出了n，那么请等待，等到某个线程执行完毕这段代码块，下一个线程再进入。由此可以看出如果Semaphore构造函数中传入的int型整数n=1，相当于变成了一个synchronized了。</p>
+<p>37、Hashtable的size()方法中明明只有一条语句”return count”，为什么还要做同步？</p>
+<p>这是我之前的一个困惑，不知道大家有没有想过这个问题。某个方法中如果有多条语句，并且都在操作同一个类变量，那么在多线程环境下不加锁，势必会引发线程安全问题，这很好理解，但是size()方法明明只有一条语句，为什么还要加锁？</p>
+<p>关于这个问题，在慢慢地工作、学习中，有了理解，主要原因有两点：</p>
+<p>（1）<strong>同一时间只能有一条线程执行固定类的同步方法，但是对于类的非同步方法，可以多条线程同时访问</strong>。所以，这样就有问题了，可能线程A在执行Hashtable的put方法添加数据，线程B则可以正常调用size()方法读取Hashtable中当前元素的个数，那读取到的值可能不是最新的，可能线程A添加了完了数据，但是没有对size++，线程B就已经读取size了，那么对于线程B来说读取到的size一定是不准确的。而给size()方法加了同步之后，意味着线程B调用size()方法只有在线程A调用put方法完毕之后才可以调用，这样就保证了线程安全性</p>
+<p>（2）<strong>CPU执行代码，执行的不是Java代码，这点很关键，一定得记住</strong>。Java代码最终是被翻译成机器码执行的，机器码才是真正可以和硬件电路交互的代码。<strong>即使你看到Java代码只有一行，甚至你看到Java代码编译之后生成的字节码也只有一行，也不意味着对于底层来说这句语句的操作只有一个</strong>。一句”return count”假设被翻译成了三句汇编语句执行，一句汇编语句和其机器码做对应，完全可能执行完第一句，线程就切换了。</p>
+<p>38、线程类的构造方法、静态块是被哪个线程调用的</p>
+<p>这是一个非常刁钻和狡猾的问题。请记住：线程类的构造方法、静态块是被new这个线程类所在的线程所调用的，而run方法里面的代码才是被线程自身所调用的。</p>
+<p>如果说上面的说法让你感到困惑，那么我举个例子，假设Thread2中new了Thread1，main函数中new了Thread2，那么：</p>
+<p>（1）Thread2的构造方法、静态块是main线程调用的，Thread2的run()方法是Thread2自己调用的</p>
+<p>（2）Thread1的构造方法、静态块是Thread2调用的，Thread1的run()方法是Thread1自己调用的</p>
+<p>39、同步方法和同步块，哪个是更好的选择</p>
+<p>同步块，这意味着同步块之外的代码是异步执行的，这比同步整个方法更提升代码的效率。请知道一条原则：<strong>同步的范围越小越好</strong>。</p>
+<p>借着这一条，我额外提一点，虽说同步的范围越少越好，但是在Java虚拟机中还是存在着一种叫做<strong>锁粗化</strong>的优化方法，这种方法就是把同步范围变大。这是有用的，比方说StringBuffer，它是一个线程安全的类，自然最常用的append()方法是一个同步方法，我们写代码的时候会反复append字符串，这意味着要进行反复的加锁-&gt;解锁，这对性能不利，因为这意味着Java虚拟机在这条线程上要反复地在内核态和用户态之间进行切换，因此Java虚拟机会将多次append方法调用的代码进行一个锁粗化的操作，将多次的append的操作扩展到append方法的头尾，变成一个大的同步块，这样就减少了加锁–&gt;解锁的次数，有效地提升了代码执行的效率。</p>
+<p>40、高并发、任务执行时间短的业务怎样使用线程池？并发不高、任务执行时间长的业务怎样使用线程池？并发高、业务执行时间长的业务怎样使用线程池？</p>
+<p>这是我在并发编程网上看到的一个问题，把这个问题放在最后一个，希望每个人都能看到并且思考一下，因为这个问题非常好、非常实际、非常专业。关于这个问题，个人看法是：</p>
+<p>（1）高并发、任务执行时间短的业务，线程池线程数可以设置为CPU核数+1，减少线程上下文的切换</p>
+<p>（2）并发不高、任务执行时间长的业务要区分开看：</p>
+<p>　　a）假如是业务时间长集中在IO操作上，也就是IO密集型的任务，因为IO操作并不占用CPU，所以不要让所有的CPU闲下来，可以加大线程池中的线程数目，让CPU处理更多的业务</p>
+<p>　　b）假如是业务时间长集中在计算操作上，也就是计算密集型任务，这个就没办法了，和（1）一样吧，线程池中的线程数设置得少一些，减少线程上下文的切换</p>
+<p>（3）并发高、业务执行时间长，解决这种类型任务的关键不在于线程池而在于整体架构的设计，看看这些业务里面某些数据是否能做缓存是第一步，增加服务器是第二步，至于线程池的设置，设置参考（2）。最后，业务执行时间长的问题，也可能需要分析一下，看看能不能使用中间件对任务进行拆分和解耦。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt; 1、多线程有什么用？&lt;/p&gt;
+&lt;p&gt;一个可能在很多人看来很扯淡的一个问题：我会用多线程就好了，还管它有什么用？在我看来，这个回答更扯淡。所谓”知其然知其所以然”，”会用”只是”知其然”，”为什么用”才是”知其所以然”，只有达到”知其然知其所以然”的程度才可以说是把一个知识
+    
+    </summary>
+    
+      <category term="技术小栈" scheme="https://fantasykai.cc/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
+    
+    
+      <category term="java" scheme="https://fantasykai.cc/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>thymeleaf 常用的th标签</title>
     <link href="https://fantasykai.cc/2018/03/24/web/thymeleaf%20%E5%B8%B8%E7%94%A8%E7%9A%84th%E6%A0%87%E7%AD%BE/"/>
     <id>https://fantasykai.cc/2018/03/24/web/thymeleaf 常用的th标签/</id>
@@ -3436,6 +3611,112 @@
     
     
       <category term="java" scheme="https://fantasykai.cc/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis相关总结2</title>
+    <link href="https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis%20%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%932/"/>
+    <id>https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis 相关总结2/</id>
+    <published>2018-01-06T16:00:00.000Z</published>
+    <updated>2018-05-08T05:57:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="什么是Redis？"><a href="#什么是Redis？" class="headerlink" title="什么是Redis？"></a>什么是Redis？</h3><blockquote>
+<p>Redis 是一个使用 C 语言写成的，开源的 key-value 数据库。。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。目前，Vmware在资助着redis项目的开发和维护。</p>
+</blockquote>
+<h3 id="Redis与Memcached的区别与比较"><a href="#Redis与Memcached的区别与比较" class="headerlink" title="Redis与Memcached的区别与比较"></a>Redis与Memcached的区别与比较</h3><p>1 、Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，zset，hash等数据结构的存储。memcache支持简单的数据类型，String。</p>
+<p>2 、Redis支持数据的备份，即master-slave模式的数据备份。</p>
+<p>3 、Redis支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用,而Memecache把数据全部存在内存之中</p>
+<p>4、 redis的速度比memcached快很多</p>
+<p>5、Memcached是多线程，非阻塞IO复用的网络模型；Redis使用单线程的IO复用模型。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/4/18/162d7773080d4570?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="Redis与Memcached的区别与比较" title="">
+                </div>
+                <div class="image-caption">Redis与Memcached的区别与比较</div>
+            </figure>
+<p>如果想要更详细了解的话，可以查看慕课网上的这篇手记（非常推荐） <strong>：《脚踏两只船的困惑 - Memcached与Redis》</strong>：<a href="https://link.juejin.im?target=https%3A%2F%2Fwww.imooc.com%2Farticle%2F23549" target="_blank" rel="external">www.imooc.com/article/235…</a></p>
+<h3 id="Redis与Memcached的选择"><a href="#Redis与Memcached的选择" class="headerlink" title="Redis与Memcached的选择"></a>Redis与Memcached的选择</h3><p><strong>终极策略：</strong> 使用Redis的String类型做的事，都可以用Memcached替换，以此换取更好的性能提升； 除此以外，优先考虑Redis；</p>
+<h3 id="使用redis有哪些好处？"><a href="#使用redis有哪些好处？" class="headerlink" title="使用redis有哪些好处？"></a>使用redis有哪些好处？</h3><p>(1) <strong>速度快</strong>，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1)</p>
+<p>(2)<strong>支持丰富数据类型</strong>，支持string，list，set，sorted set，hash</p>
+<p>(3) <strong>支持事务</strong> ：redis对事务是部分支持的，如果是在入队时报错，那么都不会执行；在非入队时报错，那么成功的就会成功执行。详细了解请参考：《Redis事务介绍（四）》：<a href="https://link.juejin.im?target=https%3A%2F%2Fblog.csdn.net%2Fcuipeng0916%2Farticle%2Fdetails%2F53698774" target="_blank" rel="external">blog.csdn.net/cuipeng0916…</a></p>
+<p>redis监控：锁的介绍</p>
+<p>(4) <strong>丰富的特性</strong>：可用于缓存，消息，按key设置过期时间，过期后将会自动删除</p>
+<h3 id="Redis常见数据结构使用场景"><a href="#Redis常见数据结构使用场景" class="headerlink" title="Redis常见数据结构使用场景"></a>Redis常见数据结构使用场景</h3><h4 id="1-String"><a href="#1-String" class="headerlink" title="1. String"></a>1. String</h4><blockquote>
+<p><strong>常用命令:</strong>  set,get,decr,incr,mget 等。</p>
+</blockquote>
+<p>String数据结构是简单的key-value类型，value其实不仅可以是String，也可以是数字。 常规key-value缓存应用； 常规计数：微博数，粉丝数等。</p>
+<h4 id="2-Hash"><a href="#2-Hash" class="headerlink" title="2.Hash"></a>2.Hash</h4><blockquote>
+<p><strong>常用命令：</strong> hget,hset,hgetall 等。</p>
+</blockquote>
+<p>Hash是一个string类型的field和value的映射表，hash特别适合用于存储对象。 比如我们可以Hash数据结构来存储用户信息，商品信息等等。</p>
+<p><strong>举个例子：</strong> 最近做的一个电商网站项目的首页就使用了redis的hash数据结构进行缓存，因为一个网站的首页访问量是最大的，所以通常网站的首页可以通过redis缓存来提高性能和并发量。我用<strong>jedis客户端</strong>来连接和操作我搭建的redis集群或者单机redis，利用jedis可以很容易的对redis进行相关操作，总的来说从搭一个简单的集群到实现redis作为缓存的整个步骤不难。感兴趣的可以看我昨天写的这篇文章：</p>
+<p><strong>《一文轻松搞懂redis集群原理及搭建与使用》：</strong> <a href="https://link.juejin.im?target=https%3A%2F%2Fjuejin.im%2Fpost%2F5ad54d76f265da23970759d3" target="_blank" rel="external">juejin.im/post/5ad54d…</a></p>
+<h4 id="3-List"><a href="#3-List" class="headerlink" title="3.List"></a>3.List</h4><blockquote>
+<p><strong>常用命令:</strong> lpush,rpush,lpop,rpop,lrange等</p>
+</blockquote>
+<p>list就是链表，Redis list的应用场景非常多，也是Redis最重要的数据结构之一，比如微博的关注列表，粉丝列表，最新消息排行等功能都可以用Redis的list结构来实现。</p>
+<p>Redis list的实现为一个双向链表，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销。</p>
+<h4 id="4-Set"><a href="#4-Set" class="headerlink" title="4.Set"></a>4.Set</h4><blockquote>
+<p><strong>常用命令：</strong> sadd,spop,smembers,sunion 等</p>
+</blockquote>
+<p>set对外提供的功能与list类似是一个列表的功能，特殊之处在于set是可以自动排重的。 当你需要存储一个列表数据，又不希望出现重复数据时，set是一个很好的选择，并且set提供了判断某个成员是否在一个set集合内的重要接口，这个也是list所不能提供的。</p>
+<p>在微博应用中，可以将一个用户所有的关注人存在一个集合中，将其所有粉丝存在一个集合。Redis可以非常方便的实现如共同关注、共同喜好、二度好友等功能。</p>
+<h4 id="5-Sorted-Set"><a href="#5-Sorted-Set" class="headerlink" title="5.Sorted Set"></a>5.Sorted Set</h4><blockquote>
+<p><strong>常用命令：</strong> zadd,zrange,zrem,zcard等</p>
+</blockquote>
+<p>和set相比，sorted set增加了一个权重参数score，使得集合中的元素能够按score进行有序排列。</p>
+<p><strong>举例：</strong> 在直播系统中，实时排行信息包含直播间在线用户列表，各种礼物排行榜，弹幕消息（可以理解为按消息维度的消息排行榜）等信息，适合使用Redis中的SortedSet结构进行存储。</p>
+<h3 id="MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）"><a href="#MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）" class="headerlink" title="MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）"></a>MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）</h3><p>   相关知识：redis 内存数据集大小上升到一定大小的时候，就会施行数据淘汰策略（回收策略）。redis 提供 6种数据淘汰策略：</p>
+<ol>
+<li><strong>volatile-lru</strong>：从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰</li>
+<li><strong>volatile-ttl</strong>：从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰</li>
+<li><strong>volatile-random</strong>：从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰</li>
+<li><strong>allkeys-lru</strong>：从数据集（server.db[i].dict）中挑选最近最少使用的数据淘汰</li>
+<li><strong>allkeys-random</strong>：从数据集（server.db[i].dict）中任意选择数据淘汰</li>
+<li><strong>no-enviction</strong>（驱逐）：禁止驱逐数据</li>
+</ol>
+<h3 id="Redis的并发竞争问题如何解决"><a href="#Redis的并发竞争问题如何解决" class="headerlink" title="Redis的并发竞争问题如何解决?"></a>Redis的并发竞争问题如何解决?</h3><p>Redis为单进程单线程模式，采用队列模式将并发访问变为串行访问。Redis本身没有锁的概念，Redis对于多个客户端连接并不存在竞争，但是在Jedis客户端对Redis进行并发访问时会发生连接超时、数据转换错误、阻塞、客户端关闭连接等问题，这些问题均是由于客户端连接混乱造成。对此有2种解决方法：</p>
+<p> 1.客户端角度，为保证每个客户端间正常有序与Redis进行通信，对连接进行池化，同时对客户端读写Redis操作采用内部锁synchronized。   2.服务器角度，利用setnx实现锁。</p>
+<p> 注：对于第一种，需要应用程序自己处理资源的同步，可以使用的方法比较通俗，可以使用synchronized也可以使用lock；第二种需要用到Redis的setnx命令，但是需要注意一些问题。</p>
+<h3 id="Redis回收进程如何工作的-Redis回收使用的是什么算法"><a href="#Redis回收进程如何工作的-Redis回收使用的是什么算法" class="headerlink" title="Redis回收进程如何工作的? Redis回收使用的是什么算法?"></a>Redis回收进程如何工作的? Redis回收使用的是什么算法?</h3><p><strong>Redis内存回收:LRU算法（写的很不错，推荐）</strong>：<a href="https://link.juejin.im?target=https%3A%2F%2Fwww.cnblogs.com%2FWJ5888%2Fp%2F4371647.html" target="_blank" rel="external">www.cnblogs.com/WJ5888/p/43…</a></p>
+<h3 id="Redis-大量数据插入"><a href="#Redis-大量数据插入" class="headerlink" title="Redis 大量数据插入"></a>Redis 大量数据插入</h3><p>官方文档给的解释：<a href="https://link.juejin.im?target=http%3A%2F%2Fwww.redis.cn%2Ftopics%2Fmass-insert.html" target="_blank" rel="external">www.redis.cn/topics/mass…</a></p>
+<h3 id="Redis-分区的优势、不足以及分区类型"><a href="#Redis-分区的优势、不足以及分区类型" class="headerlink" title="Redis 分区的优势、不足以及分区类型"></a>Redis 分区的优势、不足以及分区类型</h3><p>官方文档提供的讲解：<a href="https://link.juejin.im?target=http%3A%2F%2Fwww.redis.net.cn%2Ftutorial%2F3524.html" target="_blank" rel="external">www.redis.net.cn/tutorial/35…</a></p>
+<h3 id="Redis持久化数据和缓存怎么做扩容？"><a href="#Redis持久化数据和缓存怎么做扩容？" class="headerlink" title="Redis持久化数据和缓存怎么做扩容？"></a>Redis持久化数据和缓存怎么做扩容？</h3><p><strong>《redis的持久化和缓存机制》</strong> ：<a href="https://link.juejin.im?target=https%3A%2F%2Fblog.csdn.net%2Ftr1912%2Farticle%2Fdetails%2F70197085%3Ffoxhandler%3DRssReadRenderProcessHandler" target="_blank" rel="external">blog.csdn.net/tr1912/arti…</a></p>
+<p>扩容的话可以通过redis集群实现，之前做项目的时候用过自己搭的redis集群 然后写了一篇关于redis集群的文章：<strong>《一文轻松搞懂redis集群原理及搭建与使用》</strong>：<a href="https://link.juejin.im?target=https%3A%2F%2Fjuejin.im%2Fpost%2F5ad54d76f265da23970759d3" target="_blank" rel="external">juejin.im/post/5ad54d…</a></p>
+<h3 id="Redis常见性能问题和解决方案"><a href="#Redis常见性能问题和解决方案" class="headerlink" title="Redis常见性能问题和解决方案:"></a>Redis常见性能问题和解决方案:</h3><ol>
+<li>Master最好不要做任何持久化工作，如RDB内存快照和AOF日志文件</li>
+<li>如果数据比较重要，某个Slave开启AOF备份数据，策略设置为每秒同步一次</li>
+<li>为了主从复制的速度和连接的稳定性，Master和Slave最好在同一个局域网内</li>
+<li>尽量避免在压力很大的主库上增加从库</li>
+</ol>
+<h3 id="Redis与消息队列"><a href="#Redis与消息队列" class="headerlink" title="Redis与消息队列"></a>Redis与消息队列</h3><blockquote>
+<p>作者：翁伟 链接：<a href="https://www.zhihu.com/question/20795043/answer/345073457" target="_blank" rel="external">https://www.zhihu.com/question/20795043/answer/345073457</a></p>
+</blockquote>
+<p>不要使用redis去做消息队列，这不是redis的设计目标。但实在太多人使用redis去做去消息队列，redis的作者看不下去，另外基于redis的核心代码，另外实现了一个消息队列disque： antirez/disque:<a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fantirez%2Fdisque" target="_blank" rel="external">github.com/antirez/dis…</a>部署、协议等方面都跟redis非常类似，并且支持集群，延迟消息等等。</p>
+<p>我在做网站过程接触比较多的还是使用redis做缓存，比如秒杀系统，首页缓存等等。</p>
+<h2 id="好文Mark"><a href="#好文Mark" class="headerlink" title="好文Mark"></a>好文Mark</h2><p><strong>非常非常推荐下面几篇文章。。。</strong></p>
+<p><strong>《Redis深入之道：原理解析、场景使用以及视频解读》</strong>：<a href="https://link.juejin.im?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Fp%2F28073983" target="_blank" rel="external">zhuanlan.zhihu.com/p/28073983</a>: 主要介绍了：Redis集群开源的方案、Redis协议简介及持久化Aof文件解析、Redis短连接性能优化等等内容，文章干货太大，容量很大，建议时间充裕可以看看。另外文章里面还提供了视频讲解，可以说是非常非常用心了。</p>
+<p><strong>《阿里云Redis混合存储典型场景：如何轻松搭建视频直播间系统》：</strong><a href="https://link.juejin.im?target=https%3A%2F%2Fyq.aliyun.com%2Farticles%2F582487%3Futm_content%3Dm_46529" target="_blank" rel="external">yq.aliyun.com/articles/58…</a>: 主要介绍视频直播间系统，以及如何使用阿里云Redis混合存储实例方便快捷的构建大数据量，低延迟的视频直播间服务。还介绍到了我们之前提高过的redis的数据结构的使用场景</p>
+<p><strong>《美团在Redis上踩过的一些坑-5.redis cluster遇到的一些问》</strong>：<a href="https://link.juejin.im?target=http%3A%2F%2Fcarlosfu.iteye.com%2Fblog%2F2254573" target="_blank" rel="external">carlosfu.iteye.com/blog/225457…</a>：主要介绍了redis集群的两个常见问题，然后分享了 一些关于redis集群不错的文章。</p>
+<p><strong>参考：</strong></p>
+<p><a href="https://www.cnblogs.com/Survivalist/p/8119891.html" target="_blank" rel="external">https://www.cnblogs.com/Survivalist/p/8119891.html</a></p>
+<p><a href="http://www.redis.net.cn/tutorial/3524.html" target="_blank" rel="external">http://www.redis.net.cn/tutorial/3524.html</a></p>
+<p><a href="https://redis.io/" target="_blank" rel="external">https://redis.io/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是Redis？&quot;&gt;&lt;a href=&quot;#什么是Redis？&quot; class=&quot;headerlink&quot; title=&quot;什么是Redis？&quot;&gt;&lt;/a&gt;什么是Redis？&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Redis 是一个使用 C 语言写成的，开源的 key-v
+    
+    </summary>
+    
+      <category term="缓存" scheme="https://fantasykai.cc/categories/%E7%BC%93%E5%AD%98/"/>
+    
+    
+      <category term="Redis" scheme="https://fantasykai.cc/tags/Redis/"/>
     
   </entry>
   
@@ -5257,461 +5538,6 @@ systemctl start docker
     </summary>
     
       <category term="docker" scheme="https://fantasykai.cc/categories/docker/"/>
-    
-    
-      <category term="Linux" scheme="https://fantasykai.cc/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>同步github上fork的分支</title>
-    <link href="https://fantasykai.cc/2017/10/28/tools/git/%E5%90%8C%E6%AD%A5github%E4%B8%8Afork%E7%9A%84%E5%88%86%E6%94%AF/"/>
-    <id>https://fantasykai.cc/2017/10/28/tools/git/同步github上fork的分支/</id>
-    <published>2017-10-27T16:00:00.000Z</published>
-    <updated>2017-10-31T10:45:08.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>github 上fork 大牛的持续更新的项目，一段时间后，想把大牛提交的部分，更新到自己fork出来的项目上，为此google一把，了然于心，在此记录下~</p>
-</blockquote>
-<p>实现这个需求，发现有2种玩法：</p>
-<ul>
-<li>Github 上点点就行</li>
-<li>使用命令行的方式同步</li>
-</ul>
-<h3 id="在Github-页面上点击完成"><a href="#在Github-页面上点击完成" class="headerlink" title="在Github 页面上点击完成"></a>在Github 页面上点击完成</h3><p> 看图有真相！</p>
-<p> <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fl1lm22286j21ly0q6jz3.jpg" alt=""></p>
-<p> <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fl1ln40g4nj21li0l4tdm.jpg" alt=""></p>
-<p> <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fl1lncoxarj21r40smtfg.jpg" alt=""></p>
-<p> <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fl1lnkj5wrj21cm0yqagu.jpg" alt=""></p>
-<p> <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fl1lnqrersj21a20a2gnp.jpg" alt=""></p>
-<h3 id="使用命令行方式同步"><a href="#使用命令行方式同步" class="headerlink" title="使用命令行方式同步"></a>使用命令行方式同步</h3><blockquote>
-<p>怎么不了解命令行到方式呢～</p>
-</blockquote>
-<h4 id="1-配置源项目的地址"><a href="#1-配置源项目的地址" class="headerlink" title="1.配置源项目的地址"></a>1.配置源项目的地址</h4><blockquote>
-<p>讲fork源的项目地址配置到自己的项目上。</p>
-</blockquote>
-<p>举个栗子</p>
-<p>我fork了一个项目：pyeve/eve，我的项目地址就是 fantasykai/eve</p>
-<p>项目名称上会显示 <code>forked from pyeve/eve</code></p>
-<p>git clone 自己fork的项目后，添加一个远程仓库，即 源项目地址</p>
-<pre><code>git remote add upstream https://github.com/pyeve/eve.git
-</code></pre><p>执行命令行后，查看下是否配置进来    </p>
-<pre><code>git remote -v
-
-origin    git@github.com:fantasykai/eve.git (fetch)
-origin    git@github.com:fantasykai/eve.git (push)
-upstream    https://github.com/pyeve/eve.git (fetch)
-upstream    https://github.com/pyeve/eve.git (push)
-</code></pre><h4 id="2-获取源项目更新内容。"><a href="#2-获取源项目更新内容。" class="headerlink" title="2.获取源项目更新内容。"></a>2.获取源项目更新内容。</h4><blockquote>
-<p>使用 <code>fetch</code> 命令更新，fetch 后会更新到本地分支 <code>upstream/master</code></p>
-</blockquote>
-<pre><code>git fetch upstream
-</code></pre><h4 id="3-合并本地分支。"><a href="#3-合并本地分支。" class="headerlink" title="3.合并本地分支。"></a>3.合并本地分支。</h4><blockquote>
-<p>切换到 <code>master</code> 分支，合并<code>upstream/master</code> 分支</p>
-</blockquote>
-<pre><code>git merge upstream/master
-</code></pre><h4 id="4-提交推送"><a href="#4-提交推送" class="headerlink" title="4.提交推送"></a>4.提交推送</h4><blockquote>
-<p>解决本地冲突的代码，然后推送之</p>
-</blockquote>
-<pre><code>git push origin master
-</code></pre><blockquote>
-<p>这样以来，之后想同步源项目的commits，就执行2，3，4 步骤</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;github 上fork 大牛的持续更新的项目，一段时间后，想把大牛提交的部分，更新到自己fork出来的项目上，为此google一把，了然于心，在此记录下~&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;实现这个需求，发现有2种玩法：&lt;/p&gt;
-&lt;ul&gt;
-    
-    </summary>
-    
-      <category term="工具" scheme="https://fantasykai.cc/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="git" scheme="https://fantasykai.cc/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS内核参数优化参考</title>
-    <link href="https://fantasykai.cc/2017/10/24/Linux/CentOS%E5%86%85%E6%A0%B8%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96%E5%8F%82%E8%80%83/"/>
-    <id>https://fantasykai.cc/2017/10/24/Linux/CentOS内核参数优化参考/</id>
-    <published>2017-10-23T16:00:00.000Z</published>
-    <updated>2017-10-25T10:44:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="CentOS内核参数优化参考"><a href="#CentOS内核参数优化参考" class="headerlink" title="CentOS内核参数优化参考"></a>CentOS内核参数优化参考</h1><blockquote>
-<p>最近在做性能调优，把centos相关的配置也调整了下，找到一份不错的总结，这里记录下~</p>
-</blockquote>
-<p>所谓Linux服务器内核参数优化，主要是指在Linux系统中针对业务服务应用而进行的系统内核参数调整，优化并无一定的标准。下面以生产环境下Linux常见的内核优化为例进行讲解，仅供参考。</p>
-<p>参考文章：</p>
-<p>linux内核TCP相关参数解释</p>
-<p><a href="http://os.chinaunix.net/a2008/0918/985/000000985483.shtml" target="_blank" rel="external">http://os.chinaunix.net/a2008/0918/985/000000985483.shtml</a></p>
-<p>linux内核参数优化</p>
-<p><a href="http://blog.chinaunix.net/uid-29081804-id-3830203.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-29081804-id-3830203.html</a></p>
-<p>linux内核调整和内核参数详解</p>
-<p><a href="http://blog.csdn.net/cnbird2008/article/details/4419354" target="_blank" rel="external">http://blog.csdn.net/cnbird2008/article/details/4419354</a></p>
-<p>1、linux内核参数注释</p>
-<p><strong>说明：以下表格中红色字体为常用优化参数，根据参数文件所处目录不同而进行分表整理</strong></p>
-<p>（1）下列文件所在目录：/proc/sys/net/ipv4/</p>
-<table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>默认值</th>
-<th>建议值</th>
-<th>参数描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>tcp_syn_retries</td>
-<td>5</td>
-<td>1</td>
-<td>对于一个新建连接，内核要发送多少个 SYN 连接请求才决定放弃。不应该大于255，默认值是5，对应于180秒左右时间。(对于大负载而物理通信良好的网络而言,这个值偏高,可修改为2.这个值仅仅是针对对外的连接,对进来的连接,由tcp_retries1决定的)</td>
-</tr>
-<tr>
-<td>tcp_synack_retries</td>
-<td>5</td>
-<td>1</td>
-<td>对于远端的连接请求SYN，内核会发送SYN ＋ ACK数据报，以确认收到上一个 SYN连接请求包。这是所谓的三次握手( threeway handshake)机制的第二个步骤。这里决定内核在放弃连接之前所送出的 SYN+ACK 数目。不应该大于255，默认值是5，对应于180秒左右时间。</td>
-</tr>
-<tr>
-<td>tcp_keepalive_time</td>
-<td>7200</td>
-<td>600</td>
-<td>TCP发送keepalive探测消息的间隔时间（秒），用于确认TCP连接是否有效。防止两边建立连接但不发送数据的攻击。</td>
-</tr>
-<tr>
-<td>tcp_keepalive_probes</td>
-<td>9</td>
-<td>3</td>
-<td>TCP发送keepalive探测消息的间隔时间（秒），用于确认TCP连接是否有效。</td>
-</tr>
-<tr>
-<td>tcp_keepalive_intvl</td>
-<td>75</td>
-<td>15</td>
-<td>探测消息未获得响应时，重发该消息的间隔时间（秒）。默认值为75秒。 (对于普通应用来说,这个值有一些偏大,可以根据需要改小.特别是web类服务器需要改小该值,15是个比较合适的值)</td>
-</tr>
-<tr>
-<td>tcp_retries1</td>
-<td>3</td>
-<td>3</td>
-<td>是3</td>
-</tr>
-<tr>
-<td>tcp_retries2</td>
-<td>15</td>
-<td>5</td>
-<td>在丢弃激活(已建立通讯状况)的TCP连接之前﹐需要进行多少次重试。默认值为15，根据RTO的值来决定，相当于13-30分钟(RFC1122规定，必须大于100秒).(这个值根据目前的网络设置,可以适当地改小,我的网络内修改为了5)</td>
-</tr>
-<tr>
-<td>tcp_orphan_retries</td>
-<td>7</td>
-<td>3</td>
-<td>在近端丢弃TCP连接之前﹐要进行多少次重试。默认值是7个﹐相当于 50秒 - 16分钟﹐视 RTO 而定。如果您的系统是负载很大的web服务器﹐那么也许需要降低该值﹐这类 sockets 可能会耗费大量的资源。另外参的考tcp_max_orphans。(事实上做NAT的时候,降低该值也是好处显著的,我本人的网络环境中降低该值为3)</td>
-</tr>
-<tr>
-<td>tcp_fin_timeout</td>
-<td>60</td>
-<td>2</td>
-<td>对于本端断开的socket连接，TCP保持在FIN-WAIT-2状态的时间。对方可能会断开连接或一直不结束连接或不可预料的进程死亡。默认值为 60 秒。</td>
-</tr>
-<tr>
-<td>tcp_max_tw_buckets</td>
-<td>180000</td>
-<td>36000</td>
-<td>系统在同时所处理的最大 timewait sockets 数目。如果超过此数的话﹐time-wait socket 会被立即砍除并且显示警告信息。之所以要设定这个限制﹐纯粹为了抵御那些简单的 DoS 攻击﹐不过﹐如果网络条件需要比默认值更多﹐则可以提高它(或许还要增加内存)。(事实上做NAT的时候最好可以适当地增加该值)</td>
-</tr>
-<tr>
-<td>tcp_tw_recycle</td>
-<td>0</td>
-<td>1</td>
-<td>打开快速 TIME-WAIT sockets 回收。除非得到技术专家的建议或要求﹐请不要随意修改这个值。(做NAT的时候，建议打开它)</td>
-</tr>
-<tr>
-<td>tcp_tw_reuse</td>
-<td>0</td>
-<td>1</td>
-<td>表示是否允许重新应用处于TIME-WAIT状态的socket用于新的TCP连接(这个对快速重启动某些服务,而启动后提示端口已经被使用的情形非常有帮助)</td>
-</tr>
-<tr>
-<td>tcp_max_orphans</td>
-<td>8192</td>
-<td>32768</td>
-<td>系统所能处理不属于任何进程的TCP sockets最大数量。假如超过这个数量﹐那么不属于任何进程的连接会被立即reset，并同时显示警告信息。之所以要设定这个限制﹐纯粹为了抵御那些简单的 DoS 攻击﹐千万不要依赖这个或是人为的降低这个限制。如果内存大更应该增加这个值。(这个值Redhat AS版本中设置为32768,但是很多防火墙修改的时候,建议该值修改为2000)</td>
-</tr>
-<tr>
-<td>tcp_abort_on_overflow</td>
-<td>0</td>
-<td>0</td>
-<td>当守护进程太忙而不能接受新的连接，就象对方发送reset消息，默认值是false。这意味着当溢出的原因是因为一个偶然的猝发，那么连接将恢复状态。只有在你确信守护进程真的不能完成连接请求时才打开该选项，该选项会影响客户的使用。(对待已经满载的sendmail,apache这类服务的时候,这个可以很快让客户端终止连接,可以给予服务程序处理已有连接的缓冲机会,所以很多防火墙上推荐打开它)</td>
-</tr>
-<tr>
-<td>tcp_syncookies</td>
-<td>0</td>
-<td>1</td>
-<td>只有在内核编译时选择了CONFIG_SYNCOOKIES时才会发生作用。当出现syn等候队列出现溢出时象对方发送syncookies。目的是为了防止syn flood攻击。</td>
-</tr>
-<tr>
-<td>tcp_stdurg</td>
-<td>0</td>
-<td>0</td>
-<td>使用 TCP urg pointer 字段中的主机请求解释功能。大部份的主机都使用老旧的 BSD解释，因此如果您在Linux 打开它﹐或会导致不能和它们正确沟通。</td>
-</tr>
-<tr>
-<td>tcp_max_syn_backlog</td>
-<td>1024</td>
-<td>16384</td>
-<td>对于那些依然还未获得客户端确认的连接请求﹐需要保存在队列中最大数目。对于超过 128Mb 内存的系统﹐默认值是 1024 ﹐低于 128Mb 的则为 128。如果服务器经常出现过载﹐可以尝试增加这个数字。警告﹗假如您将此值设为大于 1024﹐最好修改include/net/tcp.h里面的TCP_SYNQ_HSIZE﹐以保持TCP_SYNQ_HSIZE*16(SYN Flood攻击利用TCP协议散布握手的缺陷，伪造虚假源IP地址发送大量TCP-SYN半打开连接到目标系统，最终导致目标系统Socket队列资源耗尽而无法接受新的连接。为了应付这种攻击，现代Unix系统中普遍采用多连接队列处理的方式来缓冲(而不是解决)这种攻击，是用一个基本队列处理正常的完全连接应用(Connect()和Accept() )，是用另一个队列单独存放半打开连接。这种双队列处理方式和其他一些系统内核措施(例如Syn-Cookies/Caches)联合应用时，能够比较有效的缓解小规模的SYN Flood攻击(事实证明)</td>
-</tr>
-<tr>
-<td>tcp_window_scaling</td>
-<td>1</td>
-<td>1</td>
-<td>该文件表示设置tcp/ip会话的滑动窗口大小是否可变。参数值为布尔值，为1时表示可变，为0时表示不可变。tcp/ip通常使用的窗口最大可达到 65535 字节，对于高速网络，该值可能太小，这时候如果启用了该功能，可以使tcp/ip滑动窗口大小增大数个数量级，从而提高数据传输的能力(RFC 1323)。（对普通地百M网络而言，关闭会降低开销，所以如果不是高速网络，可以考虑设置为0）</td>
-</tr>
-<tr>
-<td>tcp_timestamps</td>
-<td>1</td>
-<td>1</td>
-<td>Timestamps 用在其它一些东西中﹐可以防范那些伪造的sequence 号码。一条1G的宽带线路或许会重遇到带out-of-line数值的旧sequence 号码(假如它是由于上次产生的)。Timestamp 会让它知道这是个 ‘旧封包’。(该文件表示是否启用以一种比超时重发更精确的方法（RFC 1323）来启用对 RTT 的计算；为了实现更好的性能应该启用这个选项。)</td>
-</tr>
-<tr>
-<td>tcp_sack</td>
-<td>1</td>
-<td>1</td>
-<td>使用 Selective ACK﹐它可以用来查找特定的遗失的数据报— 因此有助于快速恢复状态。该文件表示是否启用有选择的应答（Selective Acknowledgment），这可以通过有选择地应答乱序接收到的报文来提高性能（这样可以让发送者只发送丢失的报文段）。(对于广域网通信来说这个选项应该启用，但是这会增加对 CPU 的占用。)</td>
-</tr>
-<tr>
-<td>tcp_fack</td>
-<td>1</td>
-<td>1</td>
-<td>打开FACK拥塞避免和快速重传功能。(注意，当tcp_sack设置为0的时候，这个值即使设置为1也无效)[这个是TCP连接靠谱的核心功能]</td>
-</tr>
-<tr>
-<td>tcp_dsack</td>
-<td>1</td>
-<td>1</td>
-<td>允许TCP发送”两个完全相同”的SACK。</td>
-</tr>
-<tr>
-<td>tcp_ecn</td>
-<td>0</td>
-<td>0</td>
-<td>TCP的直接拥塞通告功能。</td>
-</tr>
-<tr>
-<td>tcp_reordering</td>
-<td>3</td>
-<td>6</td>
-<td>TCP流中重排序的数据报最大数量。 (一般有看到推荐把这个数值略微调整大一些,比如5)</td>
-</tr>
-<tr>
-<td>tcp_retrans_collapse</td>
-<td>1</td>
-<td>0</td>
-<td>对于某些有bug的打印机提供针对其bug的兼容性。(一般不需要这个支持,可以关闭它)</td>
-</tr>
-<tr>
-<td>：</td>
-<td>4096</td>
-<td>8192</td>
-<td>发送缓存设置</td>
-</tr>
-<tr>
-<td>：</td>
-<td>87380</td>
-<td>32768</td>
-<td>接收缓存设置</td>
-</tr>
-<tr>
-<td>：</td>
-<td>根据内存计算</td>
-<td>786432</td>
-<td>：当TCP使用了低于该值的内存页面数时，TCP不会考虑释放内存。即低于此值没有内存压力。(理想情况下，这个值应与指定给 tcp_wmem 的第 2 个值相匹配 - 这第 2 个值表明，最大页面大小乘以最大并发请求数除以页大小 (131072 * 300 / 4096)。 )</td>
-</tr>
-<tr>
-<td>tcp_app_win</td>
-<td>31</td>
-<td>31</td>
-<td>时表示不需要缓冲。</td>
-</tr>
-<tr>
-<td>tcp_adv_win_scale</td>
-<td>2</td>
-<td>2</td>
-<td>计算缓冲开销</td>
-</tr>
-<tr>
-<td>tcp_low_latency</td>
-<td>0</td>
-<td>0</td>
-<td>集群的时候</td>
-</tr>
-<tr>
-<td>tcp_westwood</td>
-<td>0</td>
-<td>0</td>
-<td>通信来说应该启用这个选项。</td>
-</tr>
-<tr>
-<td>tcp_bic</td>
-<td>0</td>
-<td>0</td>
-<td>；这样可以更好地利用以</td>
-</tr>
-<tr>
-<td>ip_forward</td>
-<td>0</td>
-<td>-</td>
-<td>转发支持，把该值写</td>
-</tr>
-<tr>
-<td>ip_local_port_range</td>
-<td>61000</td>
-<td>65000</td>
-<td>，默认比较小，这个范围同样会间接用于</td>
-</tr>
-<tr>
-<td>ip_conntrack_max</td>
-<td>65535</td>
-<td>65535</td>
-<td>，这个值最大</td>
-</tr>
-</tbody>
-</table>
-<p><strong>（2）所处目录/proc/sys/net/ipv4/netfilter/，文件需要打开防火墙才会存在</strong></p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>默认值</th>
-<th>建议值</th>
-<th>参数描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ip_conntrack_max</td>
-<td>65536</td>
-<td>65536</td>
-<td>，这个值最大</td>
-</tr>
-<tr>
-<td>ip_conntrack_tcp_timeout_established</td>
-<td>432000</td>
-<td>180</td>
-<td>，也就是</td>
-</tr>
-<tr>
-<td>ip_conntrack_tcp_timeout_time_wait</td>
-<td>120</td>
-<td>120</td>
-<td>状态超时时间，超过该时间就清除该连接</td>
-</tr>
-<tr>
-<td>ip_conntrack_tcp_timeout_close_wait</td>
-<td>60</td>
-<td>60</td>
-<td>状态超时时间，超过该时间就清除该连接</td>
-</tr>
-<tr>
-<td>ip_conntrack_tcp_timeout_fin_wait</td>
-<td>120</td>
-<td>120</td>
-<td>状态超时时间，超过该时间就清除该连接</td>
-</tr>
-</tbody>
-</table>
-<p><strong>（3）文件所处目录/proc/sys/net/core/</strong></p>
-<table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>默认值</th>
-<th>建议值</th>
-<th>参数描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>netdev_max_backlog</td>
-<td>1024</td>
-<td>16384</td>
-<td>每个网络接口接收数据包的速率比内核处理这些包的速率快时，允许送到队列的数据包的最大数目，对重负载服务器而言，该值需要调高一点。</td>
-</tr>
-<tr>
-<td>somaxconn</td>
-<td>128</td>
-<td>16384</td>
-<td>用来限制监听(LISTEN)队列最大数据包的数量，超过这个数量就会导致链接超时或者触发重传机制。</td>
-</tr>
-<tr>
-<td>wmem_default</td>
-<td>129024</td>
-<td>129024</td>
-<td>（以字节为单位）</td>
-</tr>
-<tr>
-<td>rmem_default</td>
-<td>129024</td>
-<td>129024</td>
-<td>（以字节为单位）</td>
-</tr>
-<tr>
-<td>rmem_max</td>
-<td>129024</td>
-<td>873200</td>
-<td>最大的TCP数据接收缓冲</td>
-</tr>
-<tr>
-<td>wmem_max</td>
-<td>129024</td>
-<td>873200</td>
-<td>最大的TCP数据发送缓冲</td>
-</tr>
-</tbody>
-</table>
-<h1 id="2、两种修改内核参数方法"><a href="#2、两种修改内核参数方法" class="headerlink" title="2、两种修改内核参数方法"></a>2、两种修改内核参数方法</h1><p>（1）、使用echo value方式直接追加到文件里如echo “1” &gt;/proc/sys/net/ipv4/tcp_syn_retries，但这种方法设备重启后又会恢复为默认值。</p>
-<p>（2）、把参数添加到/etc/sysctl.conf中，然后执行sysctl -p使参数生效，永久生效。</p>
-<h1 id="3、内核生产环境优化参数"><a href="#3、内核生产环境优化参数" class="headerlink" title="3、内核生产环境优化参数"></a>3、内核生产环境优化参数</h1><p>net.ipv4.tcp_syn_retries = 1</p>
-<p>net.ipv4.tcp_synack_retries = 1</p>
-<p>net.ipv4.tcp_keepalive_time = 600</p>
-<p>net.ipv4.tcp_keepalive_probes = 3</p>
-<p>net.ipv4.tcp_keepalive_intvl =15</p>
-<p>net.ipv4.tcp_retries2 = 5</p>
-<p>net.ipv4.tcp_fin_timeout = 2</p>
-<p>net.ipv4.tcp_max_tw_buckets = 36000</p>
-<p>net.ipv4.tcp_tw_recycle = 1</p>
-<p>net.ipv4.tcp_tw_reuse = 1</p>
-<p>net.ipv4.tcp_max_orphans = 32768</p>
-<p>net.ipv4.tcp_syncookies = 1</p>
-<p>net.ipv4.tcp_max_syn_backlog = 16384</p>
-<p>net.ipv4.tcp_wmem = 8192 131072 16777216</p>
-<p>net.ipv4.tcp_rmem = 32768 131072 16777216</p>
-<p>net.ipv4.tcp_mem = 786432 1048576 1572864</p>
-<p>net.ipv4.ip_local_port_range = 1024 65000</p>
-<p>net.ipv4.ip_conntrack_max = 65536</p>
-<p>net.ipv4.netfilter.ip_conntrack_max=65536</p>
-<p>net.ipv4.netfilter.ip_conntrack_tcp_timeout_established=180</p>
-<p>net.core.somaxconn = 16384</p>
-<p>net.core.netdev_max_backlog = 16384</p>
-<p>对比网上其他人的生产环境优化参数，需要优化的参数基本差不多，只是值有相应的变化。具体优化值要参考应用场景，这里所列只是常用优化参数，是否适合，可在上面查看该参数描述，理解后，再根据自己生产环境而设。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;CentOS内核参数优化参考&quot;&gt;&lt;a href=&quot;#CentOS内核参数优化参考&quot; class=&quot;headerlink&quot; title=&quot;CentOS内核参数优化参考&quot;&gt;&lt;/a&gt;CentOS内核参数优化参考&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;最近在做性能调优，
-    
-    </summary>
-    
-      <category term="linux" scheme="https://fantasykai.cc/categories/linux/"/>
     
     
       <category term="Linux" scheme="https://fantasykai.cc/tags/Linux/"/>

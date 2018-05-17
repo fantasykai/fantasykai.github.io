@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis 相关总结2/">
+    
+    
+    <title>Redis相关总结2 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="Redis">
+    <meta name="description" content="什么是Redis？ Redis 是一个使用 C 语言写成的，开源的 key-value 数据库。。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis相关总结2">
+<meta property="og:url" content="https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis 相关总结2/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="什么是Redis？ Redis 是一个使用 C 语言写成的，开源的 key-value 数据库。。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/4/18/162d7773080d4570?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:updated_time" content="2018-05-08T05:57:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis相关总结2">
+<meta name="twitter:description" content="什么是Redis？ Redis 是一个使用 C 语言写成的，开源的 key-value 数据库。。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/4/18/162d7773080d4570?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Redis相关总结2</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Redis相关总结2</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-06T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-01-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/缓存/">缓存</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是Redis？"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是Redis？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Redis与Memcached的区别与比较"><span class="post-toc-number">2.</span> <span class="post-toc-text">Redis与Memcached的区别与比较</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Redis与Memcached的选择"><span class="post-toc-number">3.</span> <span class="post-toc-text">Redis与Memcached的选择</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用redis有哪些好处？"><span class="post-toc-number">4.</span> <span class="post-toc-text">使用redis有哪些好处？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Redis常见数据结构使用场景"><span class="post-toc-number">5.</span> <span class="post-toc-text">Redis常见数据结构使用场景</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-String"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">1. String</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-Hash"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">2.Hash</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-List"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">3.List</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-Set"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">4.Set</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-Sorted-Set"><span class="post-toc-number">5.5.</span> <span class="post-toc-text">5.Sorted Set</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）"><span class="post-toc-number">6.</span> <span class="post-toc-text">MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Redis的并发竞争问题如何解决"><span class="post-toc-number">7.</span> <span class="post-toc-text">Redis的并发竞争问题如何解决?</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Redis回收进程如何工作的-Redis回收使用的是什么算法"><span class="post-toc-number">8.</span> <span class="post-toc-text">Redis回收进程如何工作的? Redis回收使用的是什么算法?</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Redis-大量数据插入"><span class="post-toc-number">9.</span> <span class="post-toc-text">Redis 大量数据插入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Redis-分区的优势、不足以及分区类型"><span class="post-toc-number">10.</span> <span class="post-toc-text">Redis 分区的优势、不足以及分区类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Redis持久化数据和缓存怎么做扩容？"><span class="post-toc-number">11.</span> <span class="post-toc-text">Redis持久化数据和缓存怎么做扩容？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Redis常见性能问题和解决方案"><span class="post-toc-number">12.</span> <span class="post-toc-text">Redis常见性能问题和解决方案:</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Redis与消息队列"><span class="post-toc-number">13.</span> <span class="post-toc-text">Redis与消息队列</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#好文Mark"><span class="post-toc-number"></span> <span class="post-toc-text">好文Mark</span></a>
+        </nav>
+    </aside>
+    
+<article id="post-dateBase/NOSQL/Redis 相关总结2"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Redis相关总结2</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-07 00:00:00" datetime="2018-01-06T16:00:00.000Z"  itemprop="datePublished">2018-01-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/缓存/">缓存</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="什么是Redis？"><a href="#什么是Redis？" class="headerlink" title="什么是Redis？"></a>什么是Redis？</h3><blockquote>
+<p>Redis 是一个使用 C 语言写成的，开源的 key-value 数据库。。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。目前，Vmware在资助着redis项目的开发和维护。</p>
+</blockquote>
+<h3 id="Redis与Memcached的区别与比较"><a href="#Redis与Memcached的区别与比较" class="headerlink" title="Redis与Memcached的区别与比较"></a>Redis与Memcached的区别与比较</h3><p>1 、Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，zset，hash等数据结构的存储。memcache支持简单的数据类型，String。</p>
+<p>2 、Redis支持数据的备份，即master-slave模式的数据备份。</p>
+<p>3 、Redis支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用,而Memecache把数据全部存在内存之中</p>
+<p>4、 redis的速度比memcached快很多</p>
+<p>5、Memcached是多线程，非阻塞IO复用的网络模型；Redis使用单线程的IO复用模型。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/4/18/162d7773080d4570?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="Redis与Memcached的区别与比较" title="">
+                </div>
+                <div class="image-caption">Redis与Memcached的区别与比较</div>
+            </figure>
+<p>如果想要更详细了解的话，可以查看慕课网上的这篇手记（非常推荐） <strong>：《脚踏两只船的困惑 - Memcached与Redis》</strong>：<a href="https://link.juejin.im?target=https%3A%2F%2Fwww.imooc.com%2Farticle%2F23549" target="_blank" rel="external">www.imooc.com/article/235…</a></p>
+<h3 id="Redis与Memcached的选择"><a href="#Redis与Memcached的选择" class="headerlink" title="Redis与Memcached的选择"></a>Redis与Memcached的选择</h3><p><strong>终极策略：</strong> 使用Redis的String类型做的事，都可以用Memcached替换，以此换取更好的性能提升； 除此以外，优先考虑Redis；</p>
+<h3 id="使用redis有哪些好处？"><a href="#使用redis有哪些好处？" class="headerlink" title="使用redis有哪些好处？"></a>使用redis有哪些好处？</h3><p>(1) <strong>速度快</strong>，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1)</p>
+<p>(2)<strong>支持丰富数据类型</strong>，支持string，list，set，sorted set，hash</p>
+<p>(3) <strong>支持事务</strong> ：redis对事务是部分支持的，如果是在入队时报错，那么都不会执行；在非入队时报错，那么成功的就会成功执行。详细了解请参考：《Redis事务介绍（四）》：<a href="https://link.juejin.im?target=https%3A%2F%2Fblog.csdn.net%2Fcuipeng0916%2Farticle%2Fdetails%2F53698774" target="_blank" rel="external">blog.csdn.net/cuipeng0916…</a></p>
+<p>redis监控：锁的介绍</p>
+<p>(4) <strong>丰富的特性</strong>：可用于缓存，消息，按key设置过期时间，过期后将会自动删除</p>
+<h3 id="Redis常见数据结构使用场景"><a href="#Redis常见数据结构使用场景" class="headerlink" title="Redis常见数据结构使用场景"></a>Redis常见数据结构使用场景</h3><h4 id="1-String"><a href="#1-String" class="headerlink" title="1. String"></a>1. String</h4><blockquote>
+<p><strong>常用命令:</strong>  set,get,decr,incr,mget 等。</p>
+</blockquote>
+<p>String数据结构是简单的key-value类型，value其实不仅可以是String，也可以是数字。 常规key-value缓存应用； 常规计数：微博数，粉丝数等。</p>
+<h4 id="2-Hash"><a href="#2-Hash" class="headerlink" title="2.Hash"></a>2.Hash</h4><blockquote>
+<p><strong>常用命令：</strong> hget,hset,hgetall 等。</p>
+</blockquote>
+<p>Hash是一个string类型的field和value的映射表，hash特别适合用于存储对象。 比如我们可以Hash数据结构来存储用户信息，商品信息等等。</p>
+<p><strong>举个例子：</strong> 最近做的一个电商网站项目的首页就使用了redis的hash数据结构进行缓存，因为一个网站的首页访问量是最大的，所以通常网站的首页可以通过redis缓存来提高性能和并发量。我用<strong>jedis客户端</strong>来连接和操作我搭建的redis集群或者单机redis，利用jedis可以很容易的对redis进行相关操作，总的来说从搭一个简单的集群到实现redis作为缓存的整个步骤不难。感兴趣的可以看我昨天写的这篇文章：</p>
+<p><strong>《一文轻松搞懂redis集群原理及搭建与使用》：</strong> <a href="https://link.juejin.im?target=https%3A%2F%2Fjuejin.im%2Fpost%2F5ad54d76f265da23970759d3" target="_blank" rel="external">juejin.im/post/5ad54d…</a></p>
+<h4 id="3-List"><a href="#3-List" class="headerlink" title="3.List"></a>3.List</h4><blockquote>
+<p><strong>常用命令:</strong> lpush,rpush,lpop,rpop,lrange等</p>
+</blockquote>
+<p>list就是链表，Redis list的应用场景非常多，也是Redis最重要的数据结构之一，比如微博的关注列表，粉丝列表，最新消息排行等功能都可以用Redis的list结构来实现。</p>
+<p>Redis list的实现为一个双向链表，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销。</p>
+<h4 id="4-Set"><a href="#4-Set" class="headerlink" title="4.Set"></a>4.Set</h4><blockquote>
+<p><strong>常用命令：</strong> sadd,spop,smembers,sunion 等</p>
+</blockquote>
+<p>set对外提供的功能与list类似是一个列表的功能，特殊之处在于set是可以自动排重的。 当你需要存储一个列表数据，又不希望出现重复数据时，set是一个很好的选择，并且set提供了判断某个成员是否在一个set集合内的重要接口，这个也是list所不能提供的。</p>
+<p>在微博应用中，可以将一个用户所有的关注人存在一个集合中，将其所有粉丝存在一个集合。Redis可以非常方便的实现如共同关注、共同喜好、二度好友等功能。</p>
+<h4 id="5-Sorted-Set"><a href="#5-Sorted-Set" class="headerlink" title="5.Sorted Set"></a>5.Sorted Set</h4><blockquote>
+<p><strong>常用命令：</strong> zadd,zrange,zrem,zcard等</p>
+</blockquote>
+<p>和set相比，sorted set增加了一个权重参数score，使得集合中的元素能够按score进行有序排列。</p>
+<p><strong>举例：</strong> 在直播系统中，实时排行信息包含直播间在线用户列表，各种礼物排行榜，弹幕消息（可以理解为按消息维度的消息排行榜）等信息，适合使用Redis中的SortedSet结构进行存储。</p>
+<h3 id="MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）"><a href="#MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）" class="headerlink" title="MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）"></a>MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）</h3><p>   相关知识：redis 内存数据集大小上升到一定大小的时候，就会施行数据淘汰策略（回收策略）。redis 提供 6种数据淘汰策略：</p>
+<ol>
+<li><strong>volatile-lru</strong>：从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰</li>
+<li><strong>volatile-ttl</strong>：从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰</li>
+<li><strong>volatile-random</strong>：从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰</li>
+<li><strong>allkeys-lru</strong>：从数据集（server.db[i].dict）中挑选最近最少使用的数据淘汰</li>
+<li><strong>allkeys-random</strong>：从数据集（server.db[i].dict）中任意选择数据淘汰</li>
+<li><strong>no-enviction</strong>（驱逐）：禁止驱逐数据</li>
+</ol>
+<h3 id="Redis的并发竞争问题如何解决"><a href="#Redis的并发竞争问题如何解决" class="headerlink" title="Redis的并发竞争问题如何解决?"></a>Redis的并发竞争问题如何解决?</h3><p>Redis为单进程单线程模式，采用队列模式将并发访问变为串行访问。Redis本身没有锁的概念，Redis对于多个客户端连接并不存在竞争，但是在Jedis客户端对Redis进行并发访问时会发生连接超时、数据转换错误、阻塞、客户端关闭连接等问题，这些问题均是由于客户端连接混乱造成。对此有2种解决方法：</p>
+<p> 1.客户端角度，为保证每个客户端间正常有序与Redis进行通信，对连接进行池化，同时对客户端读写Redis操作采用内部锁synchronized。   2.服务器角度，利用setnx实现锁。</p>
+<p> 注：对于第一种，需要应用程序自己处理资源的同步，可以使用的方法比较通俗，可以使用synchronized也可以使用lock；第二种需要用到Redis的setnx命令，但是需要注意一些问题。</p>
+<h3 id="Redis回收进程如何工作的-Redis回收使用的是什么算法"><a href="#Redis回收进程如何工作的-Redis回收使用的是什么算法" class="headerlink" title="Redis回收进程如何工作的? Redis回收使用的是什么算法?"></a>Redis回收进程如何工作的? Redis回收使用的是什么算法?</h3><p><strong>Redis内存回收:LRU算法（写的很不错，推荐）</strong>：<a href="https://link.juejin.im?target=https%3A%2F%2Fwww.cnblogs.com%2FWJ5888%2Fp%2F4371647.html" target="_blank" rel="external">www.cnblogs.com/WJ5888/p/43…</a></p>
+<h3 id="Redis-大量数据插入"><a href="#Redis-大量数据插入" class="headerlink" title="Redis 大量数据插入"></a>Redis 大量数据插入</h3><p>官方文档给的解释：<a href="https://link.juejin.im?target=http%3A%2F%2Fwww.redis.cn%2Ftopics%2Fmass-insert.html" target="_blank" rel="external">www.redis.cn/topics/mass…</a></p>
+<h3 id="Redis-分区的优势、不足以及分区类型"><a href="#Redis-分区的优势、不足以及分区类型" class="headerlink" title="Redis 分区的优势、不足以及分区类型"></a>Redis 分区的优势、不足以及分区类型</h3><p>官方文档提供的讲解：<a href="https://link.juejin.im?target=http%3A%2F%2Fwww.redis.net.cn%2Ftutorial%2F3524.html" target="_blank" rel="external">www.redis.net.cn/tutorial/35…</a></p>
+<h3 id="Redis持久化数据和缓存怎么做扩容？"><a href="#Redis持久化数据和缓存怎么做扩容？" class="headerlink" title="Redis持久化数据和缓存怎么做扩容？"></a>Redis持久化数据和缓存怎么做扩容？</h3><p><strong>《redis的持久化和缓存机制》</strong> ：<a href="https://link.juejin.im?target=https%3A%2F%2Fblog.csdn.net%2Ftr1912%2Farticle%2Fdetails%2F70197085%3Ffoxhandler%3DRssReadRenderProcessHandler" target="_blank" rel="external">blog.csdn.net/tr1912/arti…</a></p>
+<p>扩容的话可以通过redis集群实现，之前做项目的时候用过自己搭的redis集群 然后写了一篇关于redis集群的文章：<strong>《一文轻松搞懂redis集群原理及搭建与使用》</strong>：<a href="https://link.juejin.im?target=https%3A%2F%2Fjuejin.im%2Fpost%2F5ad54d76f265da23970759d3" target="_blank" rel="external">juejin.im/post/5ad54d…</a></p>
+<h3 id="Redis常见性能问题和解决方案"><a href="#Redis常见性能问题和解决方案" class="headerlink" title="Redis常见性能问题和解决方案:"></a>Redis常见性能问题和解决方案:</h3><ol>
+<li>Master最好不要做任何持久化工作，如RDB内存快照和AOF日志文件</li>
+<li>如果数据比较重要，某个Slave开启AOF备份数据，策略设置为每秒同步一次</li>
+<li>为了主从复制的速度和连接的稳定性，Master和Slave最好在同一个局域网内</li>
+<li>尽量避免在压力很大的主库上增加从库</li>
+</ol>
+<h3 id="Redis与消息队列"><a href="#Redis与消息队列" class="headerlink" title="Redis与消息队列"></a>Redis与消息队列</h3><blockquote>
+<p>作者：翁伟 链接：<a href="https://www.zhihu.com/question/20795043/answer/345073457" target="_blank" rel="external">https://www.zhihu.com/question/20795043/answer/345073457</a></p>
+</blockquote>
+<p>不要使用redis去做消息队列，这不是redis的设计目标。但实在太多人使用redis去做去消息队列，redis的作者看不下去，另外基于redis的核心代码，另外实现了一个消息队列disque： antirez/disque:<a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fantirez%2Fdisque" target="_blank" rel="external">github.com/antirez/dis…</a>部署、协议等方面都跟redis非常类似，并且支持集群，延迟消息等等。</p>
+<p>我在做网站过程接触比较多的还是使用redis做缓存，比如秒杀系统，首页缓存等等。</p>
+<h2 id="好文Mark"><a href="#好文Mark" class="headerlink" title="好文Mark"></a>好文Mark</h2><p><strong>非常非常推荐下面几篇文章。。。</strong></p>
+<p><strong>《Redis深入之道：原理解析、场景使用以及视频解读》</strong>：<a href="https://link.juejin.im?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Fp%2F28073983" target="_blank" rel="external">zhuanlan.zhihu.com/p/28073983</a>: 主要介绍了：Redis集群开源的方案、Redis协议简介及持久化Aof文件解析、Redis短连接性能优化等等内容，文章干货太大，容量很大，建议时间充裕可以看看。另外文章里面还提供了视频讲解，可以说是非常非常用心了。</p>
+<p><strong>《阿里云Redis混合存储典型场景：如何轻松搭建视频直播间系统》：</strong><a href="https://link.juejin.im?target=https%3A%2F%2Fyq.aliyun.com%2Farticles%2F582487%3Futm_content%3Dm_46529" target="_blank" rel="external">yq.aliyun.com/articles/58…</a>: 主要介绍视频直播间系统，以及如何使用阿里云Redis混合存储实例方便快捷的构建大数据量，低延迟的视频直播间服务。还介绍到了我们之前提高过的redis的数据结构的使用场景</p>
+<p><strong>《美团在Redis上踩过的一些坑-5.redis cluster遇到的一些问》</strong>：<a href="https://link.juejin.im?target=http%3A%2F%2Fcarlosfu.iteye.com%2Fblog%2F2254573" target="_blank" rel="external">carlosfu.iteye.com/blog/225457…</a>：主要介绍了redis集群的两个常见问题，然后分享了 一些关于redis集群不错的文章。</p>
+<p><strong>参考：</strong></p>
+<p><a href="https://www.cnblogs.com/Survivalist/p/8119891.html" target="_blank" rel="external">https://www.cnblogs.com/Survivalist/p/8119891.html</a></p>
+<p><a href="http://www.redis.net.cn/tutorial/3524.html" target="_blank" rel="external">http://www.redis.net.cn/tutorial/3524.html</a></p>
+<p><a href="https://redis.io/" target="_blank" rel="external">https://redis.io/</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-05-08T05:57:11.000Z" itemprop="dateUpdated">2018-05-08 13:57:11</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2018/01/07/dateBase/NOSQL/Redis 相关总结2/" target="_blank" rel="external">https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis 相关总结2/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis 相关总结2/&title=《Redis相关总结2》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis 相关总结2/&title=《Redis相关总结2》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis 相关总结2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Redis相关总结2》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis 相关总结2/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis 相关总结2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/14/JAVA/CAS分析/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CAS分析</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/06/dateBase/NOSQL/Redis 总结/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Redis 总结</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis 相关总结2/&title=《Redis相关总结2》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis 相关总结2/&title=《Redis相关总结2》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis 相关总结2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Redis相关总结2》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis 相关总结2/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/01/07/dateBase/NOSQL/Redis 相关总结2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuElEQVR42u3aO5LbQAwFQN3/0nbiwFW2uO8BM7sKmpGKxc/0BAQE4PWKj19/Hc/nn69Jrv/3/Lu3Hzvw8PDwFkt/XsQp3n7jkjXj4eHh3eYln+bZXe0nfraet+fx8PDwPob3fL7NbJ/Zs0QcDw8P7zN5bdjI35uk1Hh4eHg/y2uLrS0pX26brB+rteDh4eF1Wesr/4h/wu8r/T08PDy8owWCWRl3tn37df55Gh4eHt4FXls4eE5qn1PtfAjgmdSuEw8PD+97eJvXJ6MDz2ME+fVR8o2Hh4f37by8dLu5a5bQRwEDDw8P7yivbfDfWETeWqvTbjw8PLwLvDzNncWcvACxKRYX4QEPDw/vEK8F5AWI/Jo2DNT/G/Dw8PAO8ZJmVf45zu9KChmbteHh4eHd4yWNqPZx+XPa9L0da8DDw8O7zZsVcFvA87vyrL8IKnh4eHiXeXkpYdO+2jTPVkNXeHh4eGvebKF5MMi3KQ8/RSsODw8P7xpv89DZp7wdOEgS8bczZXh4eHgXeJuHzkYKklJFW0T+z3vx8PDwvoU3G6JqJ7zyhtaqlIyHh4d3jbf529+2rJJFbzblNVs0Hh4eXsmbNftnA1V5oty23L5IqfHw8PAu8BLSZtFtkTdpv33RqMPDw8O7wMuXnpRZ92EmaYO1pWE8PDy8G7y8HFA37+NGVzv4FQUDPDw8vMu8U+WGduNmLa464uHh4eFd5iXhIb9rP2qwOvDw8PAuwPJjllhvyr75dkRlCDw8PLw1b/aNbcNDXoZoW2VtaRgPDw/vFK99dNKU2n/Kk2JEsol4eHh493hJgXX26T9b2qjvxcPDw/sA3iylbgPJPk3Hw8PD+xzebJB0E1TyAYIobuDh4eEd4s1GmtrSQN5Oa7f7i6ErPDw8vKO89g//bDhgM5RwquSBh4eHt+b9BmsKxTrzqwZtAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>
