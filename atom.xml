@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2018-12-25T13:22:22.119Z</updated>
+  <updated>2018-12-25T13:39:36.912Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -20,9 +20,10 @@
     <link href="https://fantasykai.cc/2018/12/25/recording/CAP%20%E5%AE%9A%E7%90%86%E7%9A%84%E5%90%AB%E4%B9%89/"/>
     <id>https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/</id>
     <published>2018-12-25T13:21:18.341Z</published>
-    <updated>2018-12-25T13:22:22.119Z</updated>
+    <updated>2018-12-25T13:39:36.912Z</updated>
     
-    <content type="html"><![CDATA[<p>title: CAP相关总结<br>date: 2018-08-04<br>categories: 技术小栈<br>tags: CAP</p>
+    <content type="html"><![CDATA[<p>title: CAP定理理解<br>date: 2018-08-04<br>categories: 技术小栈<br>tags: CAP</p>
+<p>–</p>
 <h1 id="CAP-定理的含义"><a href="#CAP-定理的含义" class="headerlink" title="CAP 定理的含义"></a>CAP 定理的含义</h1><p>转自阮一峰老师的博客 </p>
 <p><a href="http://www.ruanyifeng.com/home.html" target="_blank" rel="external">阮一峰</a></p>
 <p>分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。</p>
@@ -111,8 +112,9 @@
     
     <summary type="html">
     
-      &lt;p&gt;title: CAP相关总结&lt;br&gt;date: 2018-08-04&lt;br&gt;categories: 技术小栈&lt;br&gt;tags: CAP&lt;/p&gt;
-&lt;h1 id=&quot;CAP-定理的含义&quot;&gt;&lt;a href=&quot;#CAP-定理的含义&quot; class=&quot;headerlink&quot; title=
+      &lt;p&gt;title: CAP定理理解&lt;br&gt;date: 2018-08-04&lt;br&gt;categories: 技术小栈&lt;br&gt;tags: CAP&lt;/p&gt;
+&lt;p&gt;–&lt;/p&gt;
+&lt;h1 id=&quot;CAP-定理的含义&quot;&gt;&lt;a href=&quot;#CAP-定理的含义&quot; class=&quot;headerlin
     
     </summary>
     
@@ -182,6 +184,362 @@
     
     
       <category term="js" scheme="https://fantasykai.cc/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java代码优化总结</title>
+    <link href="https://fantasykai.cc/2018/10/20/JAVA/java%20%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/"/>
+    <id>https://fantasykai.cc/2018/10/20/JAVA/java 代码优化总结/</id>
+    <published>2018-10-19T16:00:00.000Z</published>
+    <updated>2018-12-25T13:38:19.217Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>代码优化的目标是：</strong></p>
+<p>1、减小代码的体积</p>
+<p>2、提高代码运行的效率</p>
+<p>本文的内容有些来自网络，有些来自平时工作和学习，当然这不重要，重要的是这些代码优化的细节是否真真正正地有用。那本文会保持长期更新，只要有遇到值得分享的代码优化细节，就会不定时地更新此文。</p>
+<p><strong>代码优化细节</strong></p>
+<p><strong>1、尽量指定类、方法的final修饰符</strong></p>
+<p>带有final修饰符的类是不可派生的。在Java核心API中，有许多应用final的例子，例如java.lang.String，整个类都是final的。为类指定final修饰符可以让类不可以被继承，为方法指定final修饰符可以让方法不可以被重写。如果指定了一个类为final，则该类所有的方法都是final的。Java编译器会寻找机会内联所有的final方法，内联对于提升Java运行效率作用重大，具体参见Java运行期优化。此举能够使性能平均提高50%。</p>
+<p><strong>2、尽量重用对象</strong></p>
+<p>特别是String对象的使用，出现字符串连接时应该使用StringBuilder/StringBuffer代替。由于Java虚拟机不仅要花时间生成对象，以后可能还需要花时间对这些对象进行垃圾回收和处理，因此，生成过多的对象将会给程序的性能带来很大的影响。</p>
+<p><strong>3、尽可能使用局部变量</strong></p>
+<p>调用方法时传递的参数以及在调用中创建的临时变量都保存在栈中速度较快，其他变量，如静态变量、实例变量等，都在堆中创建，速度较慢。另外，栈中创建的变量，随着方法的运行结束，这些内容就没了，不需要额外的垃圾回收。</p>
+<p><strong>4、及时关闭流</strong></p>
+<p>Java编程过程中，进行数据库连接、I/O流操作时务必小心，在使用完毕后，及时关闭以释放资源。因为对这些大对象的操作会造成系统大的开销，稍有不慎，将会导致严重的后果。</p>
+<p><strong>5、尽量减少对变量的重复计算</strong></p>
+<p>明确一个概念，对方法的调用，即使方法中只有一句语句，也是有消耗的，包括创建栈帧、调用方法时保护现场、调用方法完毕时恢复现场等。所以例如下面的操作：</p>
+<blockquote>
+<p>for (int i = 0; i &lt; list.size(); i++)</p>
+<p>{…}</p>
+</blockquote>
+<p><strong>建议替换为：</strong></p>
+<blockquote>
+<p>for (int i = 0, int length = list.size(); i &lt; length; i++)</p>
+<p>{…}</p>
+</blockquote>
+<p>这样，在list.size()很大的时候，就减少了很多的消耗</p>
+<p><strong>6、尽量采用懒加载的策略，即在需要的时候才创建</strong></p>
+<p><strong>例如：</strong></p>
+<blockquote>
+<p>String str = “aaa”;</p>
+<p>if (i == 1)</p>
+<p>{</p>
+<p>　　list.add(str);</p>
+<p>}</p>
+</blockquote>
+<p><strong>建议替换为：</strong></p>
+<blockquote>
+<p>if (i == 1)</p>
+<p>{</p>
+<p>　　String str = “aaa”;</p>
+<p>　　list.add(str);</p>
+<p>}</p>
+</blockquote>
+<p><strong>7、慎用异常</strong></p>
+<p>异常对性能不利。抛出异常首先要创建一个新的对象，Throwable接口的构造函数调用名为fillInStackTrace()的本地同步方法，fillInStackTrace()方法检查堆栈，收集调用跟踪信息。只要有异常被抛出，Java虚拟机就必须调整调用堆栈，因为在处理过程中创建了一个新的对象。异常只能用于错误处理，不应该用来控制程序流程。</p>
+<p><strong>8、不要在循环中使用try…catch…，应该把其放在最外层</strong></p>
+<p>根据网友们提出的意见，这一点我认为值得商榷</p>
+<p><strong>9、如果能估计到待添加的内容长度，为底层以数组方式实现的集合、工具类指定初始长度</strong></p>
+<p>比如ArrayList、LinkedLlist、StringBuilder、StringBuffer、HashMap、</p>
+<p><strong>HashSet等等，以StringBuilder为例：</strong></p>
+<p>（1）StringBuilder()　　　　　　// 默认分配16个字符的空间</p>
+<p>（2）StringBuilder(int size)　　// 默认分配size个字符的空间</p>
+<p>（3）StringBuilder(String str)　// 默认分配16个字符+str.length()个字符空间</p>
+<p>可以通过类（这里指的不仅仅是上面的StringBuilder）的构造函数来设定它的初始化容量，这样可以明显地提升性能。比如StringBuilder吧，length表示当前的StringBuilder能保持的字符数量。因为当StringBuilder达到最大容量的时候，它会将自身容量增加到当前的2倍再加2，无论何时只要StringBuilder达到它的最大容量，它就不得不创建一个新的字符数组然后将旧的字符数组内容拷贝到新字符数组中—-这是十分耗费性能的一个操作。试想，如果能预估到字符数组中大概要存放5000个字符而不指定长度，最接近5000的2次幂是4096，每次扩容加的2不管，那么：</p>
+<p>（1）在4096 的基础上，再申请8194个大小的字符数组，加起来相当于一次申请了12290个大小的字符数组，如果一开始能指定5000个大小的字符数组，就节省了一倍以上的空间</p>
+<p>（2）把原来的4096个字符拷贝到新的的字符数组中去</p>
+<p>这样，既浪费内存空间又降低代码运行效率。所以，给底层以数组实现的集合、工具类设置一个合理的初始化容量是错不了的，这会带来立竿见影的效果。但是，注意，像HashMap这种是以数组+链表实现的集合，别把初始大小和你估计的大小设置得一样，因为一个table上只连接一个对象的可能性几乎为0。初始大小建议设置为2的N次幂，如果能估计到有2000个元素，设置成new HashMap(128)、new HashMap(256)都可以。</p>
+<p><strong>10、当复制大量数据时，使用System.arraycopy()命令</strong></p>
+<p><strong>11、乘法和除法使用移位操作</strong></p>
+<p><strong>例如：</strong></p>
+<blockquote>
+<p>for (val = 0; val &lt; 100000; val += 5)</p>
+<p>{</p>
+<p>　　a = val * 8;</p>
+<p>　　b = val / 2;</p>
+<p>}</p>
+</blockquote>
+<p>用移位操作可以极大地提高性能，因为在计算机底层，对位的操作是最方便、最快的，因此建议修改为： </p>
+<blockquote>
+<p>for (val = 0; val &lt; 100000; val += 5)</p>
+<p>{</p>
+<p>　　a = val &lt;&lt; 3;</p>
+<p>　　b = val &gt;&gt; 1;</p>
+<p>}</p>
+</blockquote>
+<p>移位操作虽然快，但是可能会使代码不太好理解，因此最好加上相应的注释。</p>
+<p><strong>12、循环内不要不断创建对象引用</strong></p>
+<p><strong>例如：</strong></p>
+<blockquote>
+<p>for (int i = 1; i &lt;= count; i++)</p>
+<p>{</p>
+<p>​    Object obj = new Object();    </p>
+<p>}</p>
+</blockquote>
+<p>这种做法会导致内存中有count份Object对象引用存在，count很大的话，就耗费内存了，建议为改为：</p>
+<blockquote>
+<p>Object obj = null;</p>
+<p>for (int i = 0; i &lt;= count; i++)</p>
+<p>{</p>
+<p>​    obj = new Object();</p>
+<p>}</p>
+</blockquote>
+<p>这样的话，内存中只有一份Object对象引用，每次new Object()的时候，Object对象引用指向不同的Object罢了，但是内存中只有一份，这样就大大节省了内存空间了。</p>
+<p><strong>13、基于效率和类型检查的考虑，应该尽可能使用array，无法确定数组大小时才使用ArrayList</strong></p>
+<p><strong>14、尽量使用HashMap、ArrayList、StringBuilder，除非线程安全需要，否则不推荐使用Hashtable、Vector、StringBuffer，后三者由于使用同步机制而导致了性能开销</strong></p>
+<p><strong>15、不要将数组声明为public static final</strong></p>
+<p>因为这毫无意义，这样只是定义了引用为static final，数组的内容还是可以随意改变的，将数组声明为public更是一个安全漏洞，这意味着这个数组可以被外部类所改变</p>
+<p><strong>16、尽量在合适的场合使用单例</strong></p>
+<p>使用单例可以减轻加载的负担、缩短加载的时间、提高加载的效率，但并不是所有地方都适用于单例，简单来说，单例主要适用于以下三个方面：</p>
+<p>（1）控制资源的使用，通过线程同步来控制资源的并发访问</p>
+<p>（2）控制实例的产生，以达到节约资源的目的</p>
+<p>（3）控制数据的共享，在不建立直接关联的条件下，让多个不相关的进程或线程之间实现通信</p>
+<p><strong>17、尽量避免随意使用静态变量</strong></p>
+<p>要知道，当某个对象被定义为static的变量所引用，那么gc通常是不会回收这个对象所占有的堆内存的，如：</p>
+<blockquote>
+<p>public class A</p>
+<p>{</p>
+<p>​    private static B b = new B();  </p>
+<p>}</p>
+</blockquote>
+<p>此时静态变量b的生命周期与A类相同，如果A类不被卸载，那么引用B指向的B对象会常驻内存，直到程序终止</p>
+<p><strong>18、及时清除不再需要的会话</strong></p>
+<p>为了清除不再活动的会话，许多应用服务器都有默认的会话超时时间，一般为30分钟。当应用服务器需要保存更多的会话时，如果内存不足，那么操作系统会把部分数据转移到磁盘，应用服务器也可能根据MRU（最近最频繁使用）算法把部分不活跃的会话转储到磁盘，甚至可能抛出内存不足的异常。如果会话要被转储到磁盘，那么必须要先被序列化，在大规模集群中，对对象进行序列化的代价是很昂贵的。因此，当会话不再需要时，应当及时调用HttpSession的invalidate()方法清除会话。</p>
+<p><strong>19、实现RandomAccess接口的集合比如ArrayList，应当使用最普通的for循环而不是foreach循环来遍历</strong></p>
+<p>这是JDK推荐给用户的。JDK API对于RandomAccess接口的解释是：实现RandomAccess接口用来表明其支持快速随机访问，此接口的主要目的是允许一般的算法更改其行为，从而将其应用到随机或连续访问列表时能提供良好的性能。实际经验表明，实现RandomAccess接口的类实例，假如是随机访问的，使用普通for循环效率将高于使用foreach循环；反过来，如果是顺序访问的，则使用Iterator会效率更高。可以使用类似如下的代码作判断：</p>
+<blockquote>
+<p>if (list instanceof RandomAccess)</p>
+<p>{</p>
+<p>​    for (int i = 0; i &lt; list.size(); i++){}</p>
+<p>}</p>
+<p>else</p>
+<p>{</p>
+<p>​    Iterator&lt;?&gt; iterator = list.iterable();</p>
+<p>​    while (iterator.hasNext()){iterator.next()}</p>
+<p>}</p>
+</blockquote>
+<p>foreach循环的底层实现原理就是迭代器Iterator，参见Java语法糖1：可变长度参数以及foreach循环原理。所以后半句”反过来，如果是顺序访问的，则使用Iterator会效率更高”的意思就是顺序访问的那些类实例，使用foreach循环去遍历。</p>
+<p><strong>20、使用同步代码块替代同步方法</strong></p>
+<p>这点在多线程模块中的synchronized锁方法块一文中已经讲得很清楚了，除非能确定一整个方法都是需要进行同步的，否则尽量使用同步代码块，避免对那些不需要进行同步的代码也进行了同步，影响了代码执行效率。</p>
+<p><strong>21、将常量声明为static final，并以大写命名</strong></p>
+<p>这样在编译期间就可以把这些内容放入常量池中，避免运行期间计算生成常量的值。另外，将常量的名字以大写命名也可以方便区分出常量与变量</p>
+<p><strong>22、不要创建一些不使用的对象，不要导入一些不使用的类</strong></p>
+<p>这毫无意义，如果代码中出现”The value of the local variable i is not used”、”The import java.util is never used”，那么请删除这些无用的内容</p>
+<p><strong>23、程序运行过程中避免使用反射</strong></p>
+<p>关于，请参见反射。反射是Java提供给用户一个很强大的功能，功能强大往往意味着效率不高。不建议在程序运行过程中使用尤其是频繁使用反射机制，特别是Method的invoke方法，如果确实有必要，一种建议性的做法是将那些需要通过反射加载的类在项目启动的时候通过反射实例化出一个对象并放入内存—-用户只关心和对端交互的时候获取最快的响应速度，并不关心对端的项目启动花多久时间。</p>
+<p><strong>24、使用数据库连接池和线程池</strong></p>
+<p>这两个池都是用于重用对象的，前者可以避免频繁地打开和关闭连接，后者可以避免频繁地创建和销毁线程</p>
+<p><strong>25、使用带缓冲的输入输出流进行IO操作</strong></p>
+<p>带缓冲的输入输出流，即BufferedReader、BufferedWriter、BufferedInputStream、BufferedOutputStream，这可以极大地提升IO效率</p>
+<p><strong>26、顺序插入和随机访问比较多的场景使用ArrayList，元素删除和中间插入比较多的场景使用LinkedList</strong></p>
+<p>这个，理解ArrayList和LinkedList的原理就知道了</p>
+<p><strong>27、不要让public方法中有太多的形参</strong></p>
+<p>public方法即对外提供的方法，如果给这些方法太多形参的话主要有两点坏处：</p>
+<p>1、违反了面向对象的编程思想，Java讲求一切都是对象，太多的形参，和面向对象的编程思想并不契合</p>
+<p>2、参数太多势必导致方法调用的出错概率增加</p>
+<p>至于这个”太多”指的是多少个，3、4个吧。比如我们用JDBC写一个insertStudentInfo方法，有10个学生信息字段要插如Student表中，可以把这10个参数封装在一个实体类中，作为insert方法的形参</p>
+<p><strong>28、字符串变量和字符串常量equals的时候将字符串常量写在前面</strong></p>
+<p>这是一个比较常见的小技巧了，如果有以下代码：</p>
+<blockquote>
+<p>String str = “123”;</p>
+<p>if (str.equals(“123”))</p>
+<p>{</p>
+<p>​    …</p>
+<p>}</p>
+</blockquote>
+<p><strong>建议修改为：</strong></p>
+<blockquote>
+<p>String str = “123”;</p>
+<p>if (“123”.equals(str))</p>
+<p>{</p>
+<p>​    …</p>
+<p>}</p>
+</blockquote>
+<p>这么做主要是可以避免空指针异常</p>
+<p><strong>29、请知道，在java中if (i == 1)和if (1 == i)是没有区别的，但从阅读习惯上讲，建议使用前者</strong></p>
+<p>平时有人问，”if (i == 1)”和”if (1== i)”有没有区别，这就要从C/C++讲起。</p>
+<p>在C/C++中，”if (i == 1)”判断条件成立，是以0与非0为基准的，0表示false，非0表示true，如果有这么一段代码：</p>
+<blockquote>
+<p>int i = 2;</p>
+<p>if (i == 1)</p>
+<p>{</p>
+<p>​    …</p>
+<p>}</p>
+<p>else</p>
+<p>{</p>
+<p>​    …</p>
+<p>}</p>
+</blockquote>
+<p>C/C++判断”i==1”不成立，所以以0表示，即false。但是如果：</p>
+<blockquote>
+<p>int i = 2;</p>
+<p>if (i = 1)</p>
+<p>{</p>
+<p>​    …</p>
+<p>}</p>
+<p>else</p>
+<p>{</p>
+<p>​    …</p>
+<p>}</p>
+</blockquote>
+<p>万一程序员一个不小心，把”if (i == 1)”写成”if (i = 1)”，这样就有问题了。在if之内将i赋值为1，if判断里面的内容非0，返回的就是true了，但是明明i为2，比较的值是1，应该返回的false。这种情况在C/C++的开发中是很可能发生的并且会导致一些难以理解的错误产生，所以，为了避免开发者在if语句中不正确的赋值操作，建议将if语句写为：</p>
+<blockquote>
+<p>int i = 2;</p>
+<p>if (1 == i)</p>
+<p>{</p>
+<p>​    …</p>
+<p>}</p>
+<p>else</p>
+<p>{</p>
+<p>​    …</p>
+<p>}</p>
+</blockquote>
+<p>这样，即使开发者不小心写成了”1 = i”，C/C++编译器也可以第一时间检查出来，因为我们可以对一个变量赋值i为1，但是不能对一个常量赋值1为i。</p>
+<p>但是，在Java中，C/C++这种”if (i = 1)”的语法是不可能出现的，因为一旦写了这种语法，Java就会编译报错”Type mismatch: cannot convert from int to boolean”。但是，尽管Java的”if (i == 1)”和”if (1 == i)”在语义上没有任何区别，但是从阅读习惯上讲，建议使用前者会更好些。</p>
+<p><strong>30、不要对数组使用toString()方法</strong></p>
+<p><strong>看一下对数组使用toString()打印出来的是什么：</strong></p>
+<blockquote>
+<p>public static void main(String[] args)</p>
+<p>{</p>
+<p>​    int[] is = new int[]{1, 2, 3};</p>
+<p>​    System.out.println(is.toString());</p>
+<p>}</p>
+</blockquote>
+<p><strong>结果是：</strong></p>
+<blockquote>
+<p>[I@18a992f</p>
+</blockquote>
+<p>本意是想打印出数组内容，却有可能因为数组引用is为空而导致空指针异常。不过虽然对数组toString()没有意义，但是对集合toString()是可以打印出集合里面的内容的，因为集合的父类AbstractCollections<e>重写了Object的toString()方法。</e></p>
+<p><strong>32、不要对超出范围的基本数据类型做向下强制转型</strong></p>
+<p><strong>这绝不会得到想要的结果：</strong></p>
+<blockquote>
+<p>public static void main(String[] args)</p>
+<p>{</p>
+<p>​    long l = 12345678901234L;</p>
+<p>​    int i = (int)l;</p>
+<p>​    System.out.println(i);</p>
+<p>}</p>
+</blockquote>
+<p><strong>我们可能期望得到其中的某几位，但是结果却是：</strong></p>
+<blockquote>
+<p><strong>1942892530</strong></p>
+</blockquote>
+<p>解释一下。Java中long是8个字节64位的，所以12345678901234在计算机中的表示应该是：</p>
+<p>0000 0000 0000 0000 0000 1011 0011 1010 0111 0011 1100 1110 0010 1111 1111 0010</p>
+<p>一个int型数据是4个字节32位的，从低位取出上面这串二进制数据的前32位是：</p>
+<p>0111 0011 1100 1110 0010 1111 1111 0010</p>
+<p>这串二进制表示为十进制1942892530，所以就是我们上面的控制台上输出的内容。从这个例子上还能顺便得到两个结论：</p>
+<p>1、整型默认的数据类型是int，long l = 12345678901234L，这个数字已经超出了int的范围了，所以最后有一个L，表示这是一个long型数。顺便，浮点型的默认类型是double，所以定义float的时候要写成””float f = 3.5f”</p>
+<p>2、接下来再写一句”int ii = l + i;”会报错，因为long + int是一个long，不能赋值给int</p>
+<p><strong>33、公用的集合类中不使用的数据一定要及时remove掉</strong></p>
+<p>如果一个集合类是公用的（也就是说不是方法里面的属性），那么这个集合里面的元素是不会自动释放的，因为始终有引用指向它们。所以，如果公用集合里面的某些数据不使用而不去remove掉它们，那么将会造成这个公用集合不断增大，使得系统有内存泄露的隐患。</p>
+<p><strong>34、把一个基本数据类型转为字符串，基本数据类型.toString()是最快的方式、String.valueOf(数据)次之、数据+””最慢</strong></p>
+<p>把一个基本数据类型转为一般有三种方式，我有一个Integer型数据i，可以使用i.toString()、String.valueOf(i)、i+””三种方式，三种方式的效率如何，看一个测试：</p>
+<blockquote>
+<p>public static void main(String[] args)</p>
+<p>{</p>
+<p>​    int loopTime = 50000;</p>
+<p>​    Integer i = 0;</p>
+<p>​    long startTime = System.currentTimeMillis();</p>
+<p>​    for (int j = 0; j &lt; loopTime; j++)</p>
+<p>​    {</p>
+<p>​        String str = String.valueOf(i);</p>
+<p>​    }    </p>
+<p>​    System.out.println(“String.valueOf()：” + (System.currentTimeMillis() - startTime) + “ms”);</p>
+<p>​    startTime = System.currentTimeMillis();</p>
+<p>​    for (int j = 0; j &lt; loopTime; j++)</p>
+<p>​    {</p>
+<p>​        String str = i.toString();</p>
+<p>​    }    </p>
+<p>​    System.out.println(“Integer.toString()：” + (System.currentTimeMillis() - startTime) + “ms”);</p>
+<p>​    startTime = System.currentTimeMillis();</p>
+<p>​    for (int j = 0; j &lt; loopTime; j++)</p>
+<p>​    {</p>
+<p>​        String str = i + “”;</p>
+<p>​    }    </p>
+<p>​    System.out.println(“i + “”：” + (System.currentTimeMillis() - startTime) + “ms”);</p>
+<p>}</p>
+</blockquote>
+<p><strong>运行结果为：</strong></p>
+<blockquote>
+<p>String.valueOf()：11ms</p>
+<p>Integer.toString()：5ms</p>
+<p>i + “”：25ms</p>
+</blockquote>
+<p>所以以后遇到把一个基本数据类型转为String的时候，优先考虑使用toString()方法。至于为什么，很简单：</p>
+<p>1、String.valueOf()方法底层调用了Integer.toString()方法，但是会在调用前做空判断</p>
+<p>2、Integer.toString()方法就不说了，直接调用了</p>
+<p>3、i + “”底层使用了StringBuilder实现，先用append方法拼接，再用toString()方法获取字符串</p>
+<p>三者对比下来，明显是2最快、1次之、3最慢</p>
+<p><strong>35、使用最有效率的方式去遍历Map</strong></p>
+<p>遍历Map的方式有很多，通常场景下我们需要的是遍历Map中的Key和Value，那么推荐使用的、效率最高的方式是：</p>
+<blockquote>
+<p>public static void main(String[] args)</p>
+<p>{</p>
+<p>​    HashMap<string, string=""> hm = new HashMap<string, string="">();</string,></string,></p>
+<p>​    hm.put(“111”, “222”);</p>
+<p>​        </p>
+<p>​    Set<map.entry<string, string="">&gt; entrySet = hm.entrySet();</map.entry<string,></p>
+<p>​    Iterator<map.entry<string, string="">&gt; iter = entrySet.iterator();</map.entry<string,></p>
+<p>​    while (iter.hasNext())</p>
+<p>​    {</p>
+<p>​        Map.Entry<string, string=""> entry = iter.next();</string,></p>
+<p>​        System.out.println(entry.getKey() + “” + entry.getValue());</p>
+<p>​    }</p>
+<p>}</p>
+</blockquote>
+<p>如果你只是想遍历一下这个Map的key值，那用”Set<string> keySet = hm.keySet();”会比较合适一些</string></p>
+<p><strong>36、对资源的close()建议分开操作</strong></p>
+<blockquote>
+<p>意思是，比如我有这么一段代码：</p>
+<p>try</p>
+<p>{</p>
+<p>​    XXX.close();</p>
+<p>​    YYY.close();</p>
+<p>}</p>
+<p>catch (Exception e)</p>
+<p>{</p>
+<p>​    …</p>
+<p>}</p>
+</blockquote>
+<p><strong>建议修改为：</strong></p>
+<blockquote>
+<p>try</p>
+<p>{</p>
+<p>​    XXX.close();</p>
+<p>}</p>
+<p>catch (Exception e)</p>
+<p>{</p>
+<p>​    …</p>
+<p>}</p>
+<p>try</p>
+<p>{</p>
+<p>​    YYY.close();</p>
+<p>}</p>
+<p>catch (Exception e)</p>
+<p>{</p>
+<p>​    …</p>
+<p>}</p>
+</blockquote>
+<p>虽然有些麻烦，却能避免资源泄露。我们想，如果没有修改过的代码，万一XXX.close()抛异常了，那么就进入了catch块中了，YYY.close()不会执行，YYY这块资源就不会回收了，一直占用着，这样的代码一多，是可能引起资源句柄泄露的。而改为下面的写法之后，就保证了无论如何XXX和YYY都会被close掉</p>
+<p><strong>后记</strong></p>
+<p>优秀的代码来自每一点点小小的优化，关注每一个细节，不仅仅能提升程序运行效率，同样可以规避许多未知的问题。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;代码优化的目标是：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1、减小代码的体积&lt;/p&gt;
+&lt;p&gt;2、提高代码运行的效率&lt;/p&gt;
+&lt;p&gt;本文的内容有些来自网络，有些来自平时工作和学习，当然这不重要，重要的是这些代码优化的细节是否真真正正地有用。那本文会保持长期更新，只要
+    
+    </summary>
+    
+      <category term="技术小栈" scheme="https://fantasykai.cc/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
+    
+    
+      <category term="java" scheme="https://fantasykai.cc/tags/java/"/>
     
   </entry>
   
@@ -419,34 +777,6 @@
   </entry>
   
   <entry>
-    <title>笔记0708</title>
-    <link href="https://fantasykai.cc/2018/07/08/recording/%E7%AC%94%E8%AE%B00708/"/>
-    <id>https://fantasykai.cc/2018/07/08/recording/笔记0708/</id>
-    <published>2018-07-07T16:00:00.000Z</published>
-    <updated>2018-12-25T13:11:17.248Z</updated>
-    
-    <content type="html"><![CDATA[<p>  互联网+时代的四个关键词，分别是专注、极致、口碑和快速，这四大特点</p>
-<hr>
-<p>极致有三个支撑点，<br>第一叫产品思维。’<br>第二个叫痛点思维。我们要了解客户的三个点，叫痛点、痒点和兴奋点。<br>第三个叫尖叫点思维。你的产品一定有一款，哪怕是一点点也行，让人产生尖叫的感觉。</p>
-<hr>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;  互联网+时代的四个关键词，分别是专注、极致、口碑和快速，这四大特点&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;极致有三个支撑点，&lt;br&gt;第一叫产品思维。’&lt;br&gt;第二个叫痛点思维。我们要了解客户的三个点，叫痛点、痒点和兴奋点。&lt;br&gt;第三个叫尖叫点思维。你的产品一定有一款，哪怕是一点点也
-    
-    </summary>
-    
-      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
-    
-    
-      <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Java内存模型总结</title>
     <link href="https://fantasykai.cc/2018/07/08/JAVA/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/"/>
     <id>https://fantasykai.cc/2018/07/08/JAVA/Java内存模型总结/</id>
@@ -566,6 +896,34 @@
     
     
       <category term="java" scheme="https://fantasykai.cc/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笔记0708</title>
+    <link href="https://fantasykai.cc/2018/07/08/recording/%E7%AC%94%E8%AE%B00708/"/>
+    <id>https://fantasykai.cc/2018/07/08/recording/笔记0708/</id>
+    <published>2018-07-07T16:00:00.000Z</published>
+    <updated>2018-12-25T13:11:17.248Z</updated>
+    
+    <content type="html"><![CDATA[<p>  互联网+时代的四个关键词，分别是专注、极致、口碑和快速，这四大特点</p>
+<hr>
+<p>极致有三个支撑点，<br>第一叫产品思维。’<br>第二个叫痛点思维。我们要了解客户的三个点，叫痛点、痒点和兴奋点。<br>第三个叫尖叫点思维。你的产品一定有一款，哪怕是一点点也行，让人产生尖叫的感觉。</p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  互联网+时代的四个关键词，分别是专注、极致、口碑和快速，这四大特点&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;极致有三个支撑点，&lt;br&gt;第一叫产品思维。’&lt;br&gt;第二个叫痛点思维。我们要了解客户的三个点，叫痛点、痒点和兴奋点。&lt;br&gt;第三个叫尖叫点思维。你的产品一定有一款，哪怕是一点点也
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
     
   </entry>
   
@@ -3651,418 +4009,6 @@
     
     
       <category term="thymeleaf" scheme="https://fantasykai.cc/tags/thymeleaf/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac高效工作的玩法配置总结</title>
-    <link href="https://fantasykai.cc/2018/03/20/mac/Mac%E9%AB%98%E6%95%88%E5%B7%A5%E4%BD%9C%E7%9A%84%E7%8E%A9%E6%B3%95%E9%85%8D%E7%BD%AE%E6%80%BB%E7%BB%93/"/>
-    <id>https://fantasykai.cc/2018/03/20/mac/Mac高效工作的玩法配置总结/</id>
-    <published>2018-03-20T03:06:50.000Z</published>
-    <updated>2018-03-21T02:01:06.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>Mac 上有很多提升工作效率的工具，及配置，以下是一些来自网络和自己的总结汇总，希望给小伙伴们带来帮助</p>
-</blockquote>
-<h2 id="1-硬件提升"><a href="#1-硬件提升" class="headerlink" title="1. 硬件提升"></a>1. 硬件提升</h2><p>MacBook Pro + 外接一台显示器，事半功倍～</p>
-<h2 id="2-系统设置"><a href="#2-系统设置" class="headerlink" title="2. 系统设置"></a>2. 系统设置</h2><h3 id="2-1-设置触摸板轻触为单击"><a href="#2-1-设置触摸板轻触为单击" class="headerlink" title="2.1 设置触摸板轻触为单击"></a>2.1 设置触摸板轻触为单击</h3><p>通过轻点触摸板来实现点按，提高效率<br>打开<code>系统偏好设置</code>，点击<code>触摸板</code>图标，勾选<code>轻点来点按</code>选项，现在手指轻轻一碰触摸板，就达到鼠标单击的顺滑效果。</p>
-<h3 id="2-2-设置三指拖移"><a href="#2-2-设置三指拖移" class="headerlink" title="2.2 设置三指拖移"></a>2.2 设置三指拖移</h3><p>点按拖动好累，可以设置为三指拖动<br>打开<code>系统偏好设置</code>，点击<code>辅助功能</code>图标，选中<code>鼠标和触摸板</code>,点击<code>触摸板选项...</code>,勾选<code>启动拖移</code>选项，下拉选择三指拖移，确认后，只要把鼠标指针指向窗口标题栏位置，就可以三个指头拖着窗口移动了～</p>
-<h3 id="2-3-三指查词"><a href="#2-3-三指查词" class="headerlink" title="2.3 三指查词"></a>2.3 三指查词</h3><p>在浏览网页时，突然一些单词想英转中，亦或中转英，Mac可是支持的哦，简单设置一下即可<br>打开<code>系统便好设置</code>，点击<code>触摸板</code>，在<code>光标与点按</code>选项卡中，勾选<code>查询与数据检测器</code>。</p>
-<p>网页上随意选中一个单词，三指点按触摸板，即可查询词语含义及中英文</p>
-<h3 id="2-4-将Dock停靠在屏幕左边"><a href="#2-4-将Dock停靠在屏幕左边" class="headerlink" title="2.4 将Dock停靠在屏幕左边"></a>2.4 将Dock停靠在屏幕左边</h3><p>为什么要将<code>Dock</code>停靠在屏幕左边？MacBook的屏幕是一个长方形，如果你将<code>Dock</code>放在下面，那么屏幕的可用<code>宽度</code>就会减少，另外人眼阅读时的顺序是从左往右，因此<code>Dock</code>放在左边更适合将MacBook作为工作电脑的人。</p>
-<p>打开<code>系统偏好设置</code>，点击<code>Dock</code>图标，</p>
-<ol>
-<li>将图标的<code>大小</code>调到合适大小</li>
-<li>关闭<code>放大</code>特效（即鼠标放到Dock上图标放大的效果，此效果干扰注意力）</li>
-<li>在<code>置于屏幕上的位置</code>一栏，选择<code>左边</code></li>
-<li>勾选<code>将窗口最小化为应用图标</code></li>
-<li><p>勾选<code>自动显示和隐藏Dock</code> 增加工作显示区域～</p>
-<p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpj53f3p8qj210q0ke773.jpg" alt=""><br>图2.3-1</p>
-</li>
-</ol>
-<h3 id="2-5-全键盘控制模式"><a href="#2-5-全键盘控制模式" class="headerlink" title="2.5 全键盘控制模式"></a>2.5 全键盘控制模式</h3><p>全键盘控制模式是什么？ 举一个例子，如下图所示，我正在写一个文档，此文档还没有保存，也没有文件名，如果不不小心点了<code>关闭</code>按钮，将会弹出一个对话框：</p>
-<p>  <img src="http://img4.tbcdn.cn/L1/461/1/d390b46f0e56030ee7731af9231d52b8a997c4ee" alt=""><br>图2.4-1</p>
-<p>当前，<code>[Save]</code>按钮处于默认激活状态，按<code>回车</code>将会弹出保存对话框。但是如果我不想保存呢？ 只能通过鼠标或者触摸板来移动光标后点击<code>[Don&#39;t Save]</code>来取消保存。那我能不能通过键盘控制光标激活<code>[Don&#39;t Save]</code>按钮呢？ 答案是肯定的，做一个简单设置就好。</p>
-<p>如图，首先打开<code>系统偏好设置</code>，点击<code>键盘</code>图标，选择<code>快捷键</code>这个Tab, 选中<code>所有控制</code></p>
-<p>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpj56gp6toj210i0voznz.jpg" alt=""><br>图2.4-2</p>
-<p>现在当我再次试图关闭一个未保存的文件时，新弹出的对话框如下，有了些许变化，在<code>[Don&#39;t Save]</code>按钮上多了一个蓝色的外框，当你按键盘上的<code>tab</code>键的时候，蓝色的外框会在3个按钮间切换。 假设现在蓝色的外框在<code>[Don&#39;t Save]</code>按钮上，你按下<code>回车</code>，却发现系统依然进入了<code>保存</code>文件对话框，为什么蓝色的外框不起作用呢？那是因为蓝色的外框选中的按钮是由<code>空格键</code>触发的，当你按下<code>空格键</code>，系统就会不保存文件直接退出。 这样当你不方便使用鼠标和触摸板的时候，可以更快速的和你的MacBook交互。</p>
-<p>  <img src="http://img1.tbcdn.cn/L1/461/1/3abe8997fe7e3180655e05505d532fca0a37e640" alt=""><br>图2.4-3</p>
-<h3 id="2-6-快速锁定屏幕-触发脚设置"><a href="#2-6-快速锁定屏幕-触发脚设置" class="headerlink" title="2.6 快速锁定屏幕-触发脚设置"></a>2.6 快速锁定屏幕-触发脚设置</h3><p>如果你长时间离开电脑，最好锁定你的屏幕，以<code>防止数据泄露</code>。 那如何快速的锁定你的MacBook呢？ 答案是只需要<code>一摸触摸板</code>或者<code>一甩鼠标</code>就可以了。</p>
-<ul>
-<li>打开<code>系统偏好设置</code>，点击<code>桌面和屏幕保护程序</code>图标，选择<code>屏幕保护程序</code>这个Tab，再点击<code>触发脚...</code>，在弹出的如下界面里面，右下角选择<code>启动屏幕保护程序</code>，点击OK确定。<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpj5c5ckwvj210m0uyafi.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure><br>图2.5-1</li>
-<li><p>再打开<code>系统偏好设置</code>，点击<code>安全性与隐私</code>图标，在<code>通用</code>Tab内，勾选<code>进入睡眠或开始屏幕保护要求输入密码</code>。</p>
-<p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpj5guwpkkj210e0ew0uo.jpg" alt=""><br>图2.5-2</p>
-</li>
-</ul>
-<p>现在当你离开电脑前时，记得<code>一摸触摸板</code>或者<code>一甩鼠标</code>将光标快速的移到屏幕的右下角，MacBook将立刻进入<code>屏幕保护</code>模式并且需要<code>密码</code>才能进入桌面。</p>
-<h2 id="3-系统常用快捷键"><a href="#3-系统常用快捷键" class="headerlink" title="3. 系统常用快捷键"></a>3. 系统常用快捷键</h2><p>请<a href="https://support.apple.com/zh-cn/HT201236" target="_blank" rel="external">点击</a>这个文档，学习系统快捷键，适当使用快捷键将会提升你的工作效率。</p>
-<h2 id="4-日常软件推荐"><a href="#4-日常软件推荐" class="headerlink" title="4. 日常软件推荐"></a>4. 日常软件推荐</h2><h3 id="4-1-中文输入法"><a href="#4-1-中文输入法" class="headerlink" title="4.1 中文输入法"></a>4.1 中文输入法</h3><p>自带或搜狗吧，发现搜狗跟很多IDE一起玩时，不太兼容，我现在多已经习惯了自带输入法</p>
-<h3 id="4-2-开源窗口管理软件-–-ShiftIt"><a href="#4-2-开源窗口管理软件-–-ShiftIt" class="headerlink" title="4.2 开源窗口管理软件 – ShiftIt"></a>4.2 开源窗口管理软件 – ShiftIt</h3><ol>
-<li>想要文档在左半屏幕，IDE在右半屏幕？</li>
-<li>终于搞好了外接显示器，你是否经常将某个窗口在笔记本和外接显示器屏幕之间直接来回拖动？</li>
-</ol>
-<p><a href="https://github.com/fikovnik/ShiftIt" target="_blank" rel="external">ShiftIt</a>快速解决这样的需求，分屏软件千千万，在Mac上多是收费的，这是一款开源的，体验很6，当前app窗口中，快捷键按下<code>control+option+command + M</code>，则会立即进入全屏模式。</p>
-<p>刚安装或重启时，可能会需要对<code>ShiftIt</code> 授权</p>
-<p>打开<code>系统偏好设置</code>，点击<code>安全性和隐私</code>图标，在<code>隐私</code>Tab内，点击<code>辅助功能</code>，然后勾选<code>ShiftIt.app</code>（提示：你可能需要先点击右下角的黄色锁，输入密码后才能编辑右边的列表。）</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpj95z8j7cj210a0ton0b.jpg" alt=""><br>图4.2-2</p>
-<p>如果你此时接上了外接显示器，快捷键按下<code>control+option+command+ N</code>，则当前左边显示器激活的最前端窗口将被立即发送到旁边的的显示器。</p>
-<p>下面列举一些<code>ShiftIt</code>常用的快捷键，更多的快捷键和使用方式请查询其<a href="https://github.com/fikovnik/ShiftIt" target="_blank" rel="external">ShiftIt</a>。</p>
-<ul>
-<li><code>control+option+command + M</code> ： 使当前窗口全屏</li>
-<li><code>control+option+command + 方向键上键</code> ： 使当前窗口占用当前屏幕上半部分</li>
-<li><code>control+option+command + 方向键下键</code> ： 使当前窗口占用当前屏幕下半部分</li>
-<li><code>control+option+command + 方向键左键</code> ： 使当前窗口占用当前屏幕左半部分</li>
-<li><code>control+option+command + 方向键右键</code> ： 使当前窗口占用当前屏幕右半部分</li>
-<li><code>control+option+command + 1</code> ： 使当前窗口占用当前屏幕左上角</li>
-<li><code>control+option+command + 2</code> ： 使当前窗口占用当前屏幕右上角</li>
-<li><code>control+option+command + 3</code> ： 使当前窗口占用当前屏幕左下角</li>
-<li><p><code>control+option+command + 4</code> ： 使当前窗口占用当前屏幕右下角</p>
-</li>
-<li><p><code>control+option+command + N</code> ： 将当前窗口发送到下一个显示器屏幕</p>
-</li>
-<li><code>control+option+command + P</code> ： 将当前窗口发送到前一个显示器屏幕</li>
-</ul>
-<h3 id="4-3-效率神器-–-Alfred"><a href="#4-3-效率神器-–-Alfred" class="headerlink" title="4.3 效率神器 – Alfred"></a>4.3 效率神器 – Alfred</h3><p>如果你曾经使用过MacBook，你应该接触过<a href="https://support.apple.com/zh-cn/HT204014" target="_blank" rel="external">Spotlight</a>，就是屏幕中间弹出一个长条输入框，你输入文件名或者应用程序名，Spotlight将模糊查找到对应的候选项，按回车快速的打开你需要的文件或程序。</p>
-<p><a href="http://www.alfredapp.com/" target="_blank" rel="external">Alfred</a>的能力远远超过了Spotlight, 你可以直接下载免费版安装使用，Alfred另外还提供了更强大的工作流(Workflows)和剪切板(Clipboard)管理等高级功能，需要购买Powerpack。对于日常的操作，免费版已经足够使用了。</p>
-<p>因为Alfred可以完全取代Spotlight，下面先删除Spotlight占用的快捷键<code>command + 空格</code>，以供Alfred将来使用。</p>
-<p>打开<code>系统偏好设置</code>，选择<code>键盘</code>，切换到<code>快捷键</code>这个Tab下，点击Spotlight，取消对应的2个快捷键设置。</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpj9khpvi9j21000vigpn.jpg" alt=""><br>图4.3-1</p>
-<p>打开Alfred，在菜单栏点击Alfred图标，打开<code>Preferences...</code></p>
-<p>如下图所示，设置Alfred的快捷键为<code>command + 空格</code></p>
-<p>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpj9nqs2snj21ok0mmjws.jpg" alt=""><br>图4.3-2</p>
-<p>现在按下快捷键<code>command + 空格</code>，输入微信，Alfred将所有包含dash的应用程序，文档以及历史网址都列出来了，如下图所示，回车打开<code>微信</code>，<code>command+2</code>打开本微信Web开发者工具，你还可以移动键盘上下键或者光标来选择目标。<br>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpj9t38ywej20va0a83zp.jpg" alt=""></p>
-<p>图4.3-3</p>
-<p>更多关于Alfred的使用方式和无限想象力，请参考<a href="http://www.alfredapp.com/" target="_blank" rel="external">官方网站</a>或者网上现有的大量的教程。</p>
-<h3 id="4-4-快速切换和打开应用程序-—-Command-Tab-Plus-Manico-功效一样一样滴"><a href="#4-4-快速切换和打开应用程序-—-Command-Tab-Plus-Manico-功效一样一样滴" class="headerlink" title="4.4 快速切换和打开应用程序 — Command-Tab Plus | Manico (功效一样一样滴)"></a>4.4 快速切换和打开应用程序 — Command-Tab Plus | Manico (功效一样一样滴)</h3><p>MacBook系统默认设置了一个快捷键来显示当前运行中的应用程序，同时按下<code>tab + command</code>，将看到如下图的样式：</p>
-<p>  <img src="http://img4.tbcdn.cn/L1/461/1/216e6046485410605dc1883952ae22f8a685e3c5" alt=""><br>图4.4-1</p>
-<p>如果你想要却换到Firefox，需要再按一下<code>tab</code>，如果要切换到日历，需要按两下‘tab’，如果一次性打开10几个应用程序，你经常需要按十几下<code>tab</code>才能却换到想要的程序。</p>
-<p><a href="http://commandtab.noteifyapp.com/" target="_blank" rel="external">Command-Tab Plus</a>专为这个场景而设计，安装好后打开，默认快捷键是按住<code>option</code>，如图所示，此时按下数字<code>7</code>就能快速打开编号为<code>7</code>的<code>地图</code>。</p>
-<p>  <img src="http://img4.tbcdn.cn/L1/461/1/bd61382e4d329f7932dff65e7bf426a3bf6dc8cf" alt=""><br>图4.4-2</p>
-<p>这些app会经常限时免购，可以关注一些公众号来获取</p>
-<h3 id="4-5-随心所欲的复制粘贴以及无限想象-—-PopClip"><a href="#4-5-随心所欲的复制粘贴以及无限想象-—-PopClip" class="headerlink" title="4.5 随心所欲的复制粘贴以及无限想象 — PopClip"></a>4.5 随心所欲的复制粘贴以及无限想象 — PopClip</h3><ul>
-<li>日常工作中，你有多少次是从一个应用程序复制一段文本然后粘贴到另外一个地方？</li>
-<li>有多少次是复制一个网址然后打开浏览器粘贴到地址栏然后回车打开？</li>
-<li>有多少次是复制一个名词，然后打开浏览器找到搜索引擎来搜索？</li>
-</ul>
-<p>这些重复的操作模式都是可以简化的，你唯一需要的就是<a href="http://pilotmoon.com/popclip/" target="_blank" rel="external">PopClip</a>，当你选中一段文字（如下图，选中“当日收益”），PopClip就会弹出来一个快捷操作栏，你可以复制，剪切或者粘贴，更为强大的是，PopClip提供了很多免费的插件，例如使用指定的搜索引擎搜索选中的文字，或者选中英文单词做大小写转换等等。</p>
-<p>  <img src="http://img4.tbcdn.cn/L1/461/1/43e10d3e2589595b9b371620817878ffa49bf8f2" alt=""><br>图4.5-1</p>
-<p>需要注意的是，PopClip需要你的授权才能弹出快捷状态栏，直接点击<code>打开 系统偏好设置</code>或者打开<code>系统偏好设置</code>，点击<code>安全性与隐私</code>图标，在<code>隐私</code>Tab内，点击<code>辅助功能</code>，然后勾选PopClip。（提示：你可能需要先点击右下角的黄色锁，输入密码后才能编辑右边的列表。）</p>
-<h3 id="4-6-增强资源管理器-—-XtraFinder"><a href="#4-6-增强资源管理器-—-XtraFinder" class="headerlink" title="4.6 增强资源管理器 — XtraFinder"></a>4.6 增强资源管理器 — XtraFinder</h3><p>MacBook自带的资源管理器(Finder)已经可以满足一般的需要，但是当你有大量文件维护操作后，你就需要一个更强大的Finder。<a href="https://www.trankynam.com/xtrafinder/" target="_blank" rel="external">XtraFinder</a>完全集成到Finder里面，你根本感觉不出它是一个第三方的应用程序，同时还提供很多增强特性，比如：</p>
-<ul>
-<li>像浏览器那样的标签页(Tab)</li>
-<li>支持双操作面板(Panel)</li>
-<li>增强的全局快捷键，例如新建文件(New File)等</li>
-<li>多彩的侧边栏图标</li>
-<li>快速在当前文件夹打开终端</li>
-<li><p>快速在当前文件夹新建文件</p>
-<p><img src="http://img2.tbcdn.cn/L1/461/1/a9d636d1331d528d71ab9d720c7f64987b1b1350" alt=""><br>图4.8-1</p>
-</li>
-</ul>
-<h3 id="4-7-随心所欲的全键盘控制-–-Shortcat"><a href="#4-7-随心所欲的全键盘控制-–-Shortcat" class="headerlink" title="4.7 随心所欲的全键盘控制 – Shortcat"></a>4.7 随心所欲的全键盘控制 – Shortcat</h3><p>在系统设置里面，我介绍了<code>全键盘控制模式</code>，但是此模式只能做简单的按钮控制，无法达到随心所欲的控制。下面介绍一款比较geek的软件，<a href="https://shortcatapp.com/" target="_blank" rel="external">Shortcat</a>帮助你完全使用键盘来控制系统，供有键盘强迫症的同学使用。</p>
-<p>  <img src="http://img3.tbcdn.cn/L1/461/1/5920267ce10a6f28b669919720f4d8b196b78ff9" alt=""><br>图4.9-1</p>
-<h3 id="4-8-来杯鸡尾酒-—-Bartender"><a href="#4-8-来杯鸡尾酒-—-Bartender" class="headerlink" title="4.8 来杯鸡尾酒 — Bartender"></a>4.8 来杯鸡尾酒 — Bartender</h3><p>如果你看到这里，相信你已经被我推(hu)荐(you)的安装了一排软件，你的系统状态栏已经<code>人满为患</code>，有时候会因为当前激活的应用程序的菜单比较多挡住你要点击的状态栏图标，这个时候你需要一个<code>酒保</code>来帮你调理一下状态栏，<a href="http://www.macbartender.com/" target="_blank" rel="external">Bartender 3</a>就可以自定义隐藏某些不常用的状态栏图标，特别适合处女座强迫症。</p>
-<p>  <img src="http://img4.tbcdn.cn/L1/461/1/ed09772f6172235bd4b9de1a10c182703e298a35" alt=""><br>图4.8-1</p>
-<h3 id="4-9-markdown工具：-typora"><a href="#4-9-markdown工具：-typora" class="headerlink" title="4.9 markdown工具： typora"></a>4.9 markdown工具： typora</h3><p><a href="https://typora.io/" target="_blank" rel="external">typora</a> 是一款所见即所得的markdown编辑工具，不像其他工具那样，左边写，右边预览效果，整体编辑简介很多还有各种高效特性，推荐之</p>
-<h3 id="4-10-omini家族"><a href="#4-10-omini家族" class="headerlink" title="4.10 omini家族"></a>4.10 omini家族</h3><p><a href="https://www.omnigroup.com/" target="_blank" rel="external">The Omni Group</a> 家族各种高效软件，件件精品，值得大家关注</p>
-<p>The Omni Group 家族主要有四款：</p>
-<ul>
-<li>OmniFocus：GTD工具，主要用于个人事务的不同维度的清单管理</li>
-<li>OmniGraffle：绘图神器，包括流程图、组织结构图、插图、脑图、原型等</li>
-<li>OmniOutliner：写文章提纲必备</li>
-<li>OmniPlan：项目管理工具，主要用于项目团队的进度、资源、成本管理</li>
-</ul>
-<h3 id="4-11-快速进入Shell"><a href="#4-11-快速进入Shell" class="headerlink" title="4.11 快速进入Shell"></a>4.11 快速进入Shell</h3><p><a href="http://zipzapmac.com/Go2Shell" target="_blank" rel="external">go2shell</a>是一个对开发者来说非常有用的app, 使用它可以在Finder里快速进入shell环境.</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpjcwzekeqj20bw09aaab.jpg" alt=""></p>
-<p>图4.11-1</p>
-<p>安装好以后, 打开Finder, 点击Finder上的图标即可进入terminal:</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpjd3s6xoij21cm0j4mzd.jpg" alt=""></p>
-<p>图4.11-2</p>
-<h3 id="4-12-快速录屏–QuickTimePlayer"><a href="#4-12-快速录屏–QuickTimePlayer" class="headerlink" title="4.12 快速录屏–QuickTimePlayer"></a>4.12 快速录屏–QuickTimePlayer</h3><p>QuickTime Player是一个自带的录屏软件, 你可以用它来录制视屏,音频,以及屏幕操作. 对于开发者, 可以用它来记录屏幕操作, 做成动态图或视频, 供其它人学习; 对于普通工作者, 可以用QuickTime Player录制PPT讲座视频,右键图标，<code>新建影片录制</code></p>
-<blockquote>
-<p>Mac 上有太多的提高工作效率的工具了，我在这里在列一下其他一些常用工具，希望大家多多分享自己的工具和心得～</p>
-</blockquote>
-<ul>
-<li><p>清理工具： cleanMyMac，会自动提醒，该清理啦～</p>
-</li>
-<li><p>api文档查询 ： dash （配合 alfred3 点工作流可以快速查找api文档） 命令行终端：iTerm2</p>
-</li>
-<li><p>文档编辑：sublime3 + 各种插件，vScode也不错</p>
-</li>
-<li><p>抓包工具（还可以用来模拟各种网络环境，给客户端当代理）： charles</p>
-</li>
-<li><p>接口管理及测试：postman</p>
-</li>
-<li><p>压缩工具： BetterZip</p>
-</li>
-<li><p>支持ntfs移动硬盘：好多人都是windows 转的mac ，之前的移动硬盘肯定很多资料，这里推荐两款可以让Mac支持写入NTFS格式硬盘的工具，<a href="https://www.tuxera.com/products/tuxera-ntfs-for-mac/" target="_blank" rel="external">tuxera</a> （收费），<a href="http://enjoygineering.com/mounty/" target="_blank" rel="external">Mounty for NTFS</a> (免费)</p>
-</li>
-<li><p>远程windows ： Microsoft Remote Desktop （微软官网下载的）</p>
-</li>
-<li><p>思维导图：xmind，mindnote</p>
-</li>
-<li><p>ftp管理（froklift）我现在基本是用scp命令啥的</p>
-</li>
-<li><p>翻墙：蓝灯 ／ ShadowsocksX （目前我用的ShadowsocksX ，买的VPS）</p>
-</li>
-</ul>
-<p>… 好多好多吧，先举栗这些～</p>
-<h2 id="5-开发环境配置"><a href="#5-开发环境配置" class="headerlink" title="5. 开发环境配置"></a>5. 开发环境配置</h2><p>好了，到了咱们开发环境的配置阶段，在配置开发环境前，建议先将OS X系统升级到最新版，同时去Mac <a href="http://www.apple.com/osx/apps/app-store/" target="_blank" rel="external">App Store</a>下载最新版的<a href="https://developer.apple.com/xcode/" target="_blank" rel="external">Xcode</a>，然后使用下面的命令安装Xcode command line tools，这将为你安装很多终端下面常用的命令，将来很可能会使用到：</p>
-<p>Shell</p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>xcode-select –install</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="5-1-命令行终端Terminal"><a href="#5-1-命令行终端Terminal" class="headerlink" title="5.1 命令行终端Terminal"></a>5.1 命令行终端Terminal</h3><p>在用户界面没有发明前，终端Terminal曾经是计算机的唯一交互方式，就算到了今天，很多服务器仍然只提供终端登陆来操作，作为开发测试运维相关人员，在日常工作中合理使用终端将大大提高工作效率。</p>
-<h4 id="5-1-1-替换系统默认Shell-—-Oh-My-ZSH"><a href="#5-1-1-替换系统默认Shell-—-Oh-My-ZSH" class="headerlink" title="5.1.1 替换系统默认Shell — Oh My ZSH!"></a>5.1.1 替换系统默认Shell — Oh My ZSH!</h4><p><a href="http://www.gnu.org/software/bash/" target="_blank" rel="external">Bash</a>作为大多数系统默认安装的Shell，大家都多少有所接触，<a href="http://www.zsh.org/" target="_blank" rel="external">Zsh</a>和Bash类似都是一个Shell，但是Zsh更注重用户体验和与人的交互，OS X默认也安装好了Zsh，然而你想自己从头开始配置一个顺手的Zsh是比较浪费时间的，有人已经帮我们配置好了，这个流行的Zsh配置叫—<a href="http://ohmyz.sh/" target="_blank" rel="external">Oh My ZSH!</a>，直观的效果如下图所示，不是是很炫酷，代码开源在<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">github</a>。</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpje803mrhj20xy0jewmh.jpg" alt=""><br>图5.1.1-1</p>
-<ul>
-<li>切换默认Shell到Zsh</li>
-</ul>
-<p>Mac OS X默认已经安装好了Zsh，你可以打开终端，输入<code>zsh --version</code>来确认，如果没有安装，请参考<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH" target="_blank" rel="external">这个文档</a>。</p>
-<p>打开终端输入下面的命令，切换默认Shell为Zsh：</p>
-<p>Shell</p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>chsh -s /bin/zsh</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>关闭终端重新打开后，你将默认使用zsh作为终端Shell。然而你会发现，终端并没有变得多酷炫，接着往下走，<code>安装Oh My ZSH!</code></p>
-<ul>
-<li>安装Oh My ZSH!</li>
-</ul>
-<p>打开终端输入下面的命令：</p>
-<p>Shell</p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>sh -c “$(curl -fsSL <a href="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh" target="_blank" rel="external">https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh</a>)”</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>耐心等待一会儿，然后你就会发现你的终端变成了彩色的了。</p>
-<p>  <img src="http://img3.tbcdn.cn/L1/461/1/379712ed6ac5b61c40224f663ccd4ce4c4ab0180" alt=""><br>图5.1.1-2</p>
-<p>你可以修改终端的Profile，选择深色背景profile，这样就比较炫酷了。如果你对默认的<code>Oh My ZSH</code>的配色不满意，请参考<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes" target="_blank" rel="external">这里</a>找到你喜欢的配色。</p>
-<h4 id="5-1-2-替换系统默认终端-—-iTerm-2"><a href="#5-1-2-替换系统默认终端-—-iTerm-2" class="headerlink" title="5.1.2 替换系统默认终端 — iTerm 2"></a>5.1.2 替换系统默认终端 — iTerm 2</h4><p>经常使用终端，建议使用<a href="https://www.iterm2.com/" target="_blank" rel="external">iTerm 2</a>来替代系统自带的终端。关于iTerm 2的特性，请看<a href="https://www.iterm2.com/features.html" target="_blank" rel="external">这里</a>。</p>
-<p>这里只介绍一个小技巧，我想设置一个快捷键假设为<code>Alt + .</code>(新Mac 不能直观的按功能键了，外接键盘可以设置为F12之类的)，在任意场合，我按一下快捷键<code>Alt + .</code>就弹出终端，输入一些命令执行后，再按一下<code>Alt + .</code>终端就自动隐藏，这对经常使用终端的人，例如经常ssh连接服务器的人来说实在太方便了。</p>
-<p>设置过程如下：</p>
-<ul>
-<li><p>打开iTerm的<code>Preferences...</code>， 在<code>Profiles</code>Tab里面，点击下面的[<code>+</code>]添加一个新的profile，为什么要新建一个profile？答案是为了定制将来<code>弹出</code>的终端样式和大小等等参数。新的profile假设命名为guake，(注：guake这个名称是为了向Linux下的<a href="http://guake.org/" target="_blank" rel="external">Guake</a>终端致敬)，你可以自己任意起个名称，下面会用到。</p>
-<p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpjelx1aidj21ec0uugqu.jpg" alt=""><br>图5.1.2-1</p>
-</li>
-</ul>
-<p>再切换到<code>Window</code>Tab下，将<code>Style</code>，<code>Screen</code>和<code>Space</code>这3个值设置和下图一样。</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpjenm8g44j21e20rs79v.jpg" alt=""><br>图5.1.2-2</p>
-<p>再切换到<code>Keys</code>Tab下，设置如下图所示的<code>Hotkey</code>Alt + .。</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fpjeox6o93j21ga0rq10u.jpg" alt=""><br>图5.1.2-3</p>
-<p>现在你按下<code>Alt + .</code>，就立即得到一个占满全屏的黑色命令行终端，再按一下Alt + .隐藏终端，非常的方便。</p>
-<h3 id="5-2-终端下的命令管理-—-Homebrew"><a href="#5-2-终端下的命令管理-—-Homebrew" class="headerlink" title="5.2 终端下的命令管理 — Homebrew"></a>5.2 终端下的命令管理 — Homebrew</h3><p>Mac <a href="http://www.apple.com/osx/apps/app-store/" target="_blank" rel="external">App Store</a>你一定非常熟悉了，它可以帮你下载和安装大部分常见的软件。</p>
-<p>在终端下，我们也需要一个App Store一样的管理程序，当你需要安装某个终端下的新命令的时候，这个程序可以帮助我们自动下载该命令以及相关的依赖，甚至在下载以后做必要的编译和环境设置。</p>
-<p><a href="http://brew.sh/index.html" target="_blank" rel="external">Homebrew</a>就是这样一款终端下的命令程序包管理器，安装非常简单，复制如下命令在终端下运行，按回车并输入密码后等待安装成功：</p>
-<p>Shell</p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>/usr/bin/ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install" target="_blank" rel="external">https://raw.githubusercontent.com/Homebrew/install/master/install</a>)”</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>下面是安装截图：</p>
-<p>  <img src="http://img4.tbcdn.cn/L1/461/1/d97a24018bf9c6a95000f66b46800f7c3d9ff208" alt=""><br>图5.2-1</p>
-<p>curl和wget是命令行下面常用的命令，其中curl已经默认安装在OS X中了，但是wget没有默认安装，下面演示如何使用Homebrew来安装wget。</p>
-<p>Shell</p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>brew install wget</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>下面是运行截图：<br>  <img src="http://img4.tbcdn.cn/L1/461/1/c821f88dc7fa44040ea4261a57f6906fcc41a822" alt=""><br>图5.2-2</p>
-<h3 id="5-3-终端下管理非终端软件-—-Homebrew-Cask"><a href="#5-3-终端下管理非终端软件-—-Homebrew-Cask" class="headerlink" title="5.3 终端下管理非终端软件 — Homebrew Cask"></a>5.3 终端下管理非终端软件 — Homebrew Cask</h3><p>因为Apple不允许第三方的浏览器进入Mac App Store，如果你想要安装Google Chrome，只能去Google网站下载后运行安装文件。这一类App Store没有的非终端下的软件能不能享受Homebrew一样的命令行安装的便捷性呢？</p>
-<p><a href="http://caskroom.io/" target="_blank" rel="external">Homebrew Cask</a>就是这样一款终端下的程序管理器，它扩展了Homebrew，作为Mac App Store的有益补充，方便你快速维护日常软件的安装升级和卸载，复制如下命令在终端下运行，按回车后等待安装成功：</p>
-<p>Shell</p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>brew install caskroom/cask/brew-cask</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>下面是运行截图：</p>
-<p>  <img src="http://img2.tbcdn.cn/L1/461/1/fcc161f5926170d0d2bb3ecaf9be280b563b1726" alt=""><br>图5.3-1</p>
-<p>那如何使用Homebrew Cask来安装Google Chrome呢？ 首先使用<code>chrome</code>作为关键字查找一下：</p>
-<p>Shell</p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>&gt; brew cask search chrome ==&gt; Partial matches chrome-devtools chrome-remote-desktop-host chromecast google-chrome</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>上面的命令运行后列出了4个候选项，很明显最后一个<code>google-chrome</code>就是我们要安装的，继续输入</p>
-<p>Shell</p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>&gt; brew cask install google-chrome</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>下面只需要稍微等一会儿，最新版的Google Chrome就乖乖的安装在你的MacBook里面了。</p>
-<h3 id="5-4-Java开发环境搭建"><a href="#5-4-Java开发环境搭建" class="headerlink" title="5.4 Java开发环境搭建"></a>5.4 Java开发环境搭建</h3><h4 id="5-4-1-安装Java和Maven"><a href="#5-4-1-安装Java和Maven" class="headerlink" title="5.4.1 安装Java和Maven"></a>5.4.1 安装Java和Maven</h4><p>现在OS X没有默认安装JDK，如果你在终端输入<code>java</code>，系统会引导你到Oracle网站去<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">下载</a>，然后自己点击下载文件来安装，这个过程一点都不酷，而且不能自动化。现在你有了Homebrew Cask，只要输入如下命令，Java就可以自动安装好啦。</p>
-<p>Shell</p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>brew cask install java</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>现在最近版本的JDK是1.8，Homebrew默认安装最新版软件，如果你要安装非最新版的JDK，那么去Oracle网站下载吧，Homebrew的多版本支持不是很好用。</p>
-<p>同样的，输入如下命令来安装Maven最新版。</p>
-<p>Shell</p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>brew install maven</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>在开发中，你很可能会碰到这个错误<code>java.security.InvalidKeyException: Illegal key size or default parameters</code>，那是因为美国对出口软件<a href="http://stackoverflow.com/questions/6481627/java-security-illegal-key-size-or-default-parameters" target="_blank" rel="external">加密算法长度的限制</a>，你需要去如下链接下载补丁包：</p>
-<ul>
-<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/jce-6-download-429243.html" target="_blank" rel="external">JCE Unlimited Policy for JDK 6</a></li>
-<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html" target="_blank" rel="external">JCE Unlimited Policy for JDK 7</a></li>
-<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html" target="_blank" rel="external">JCE Unlimited Policy for JDK 8</a></li>
-</ul>
-<p>补丁替换路径为<code>${java.home}/jre/lib/security/</code>，大约如下所示：</p>
-<p>Shell</p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/security</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="5-4-2-安装版本控制软件-—-SmartGit-amp-SmartSVN"><a href="#5-4-2-安装版本控制软件-—-SmartGit-amp-SmartSVN" class="headerlink" title="5.4.2 安装版本控制软件 — SmartGit &amp; SmartSVN"></a>5.4.2 安装版本控制软件 — SmartGit &amp; SmartSVN</h4><p>如果代码就是生命，版本控制系统就是时光机。<a href="https://git-scm.com/" target="_blank" rel="external">Git</a>和<a href="https://subversion.apache.org/" target="_blank" rel="external">Subversion</a>分别是现在最流行的2个版本控制系统，<a href="http://www.syntevo.com/smartgit/" target="_blank" rel="external">SmartGit</a>和<a href="http://www.smartsvn.com/download?file=smartsvn/smartsvn-macosx-8_6_7.dmg" target="_blank" rel="external">SmartSVN</a>分别是他们的一个第三方客户端，当然他们有很多第三方客户端，我觉得SmartGit和SmartSVN是最好用的。</p>
-<h4 id="5-4-3-安装和配置IDE-—-IntelliJ-IDEA"><a href="#5-4-3-安装和配置IDE-—-IntelliJ-IDEA" class="headerlink" title="5.4.3 安装和配置IDE — IntelliJ IDEA"></a>5.4.3 安装和配置IDE — IntelliJ IDEA</h4><p><a href="https://www.jetbrains.com/idea/" target="_blank" rel="external">IntelliJ IDEA</a>作为最智能的Java IDE，推荐所有Java开发人员使用，你可以在<a href="https://www.jetbrains.com/idea/download/" target="_blank" rel="external">这里下载</a>安装文件，或者使用如下的Homebrew Cask命令来下载安装：</p>
-<p>Shell</p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>brew cask install intellij-idea</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>其他一些高效办公的总结</p>
-</blockquote>
-<ul>
-<li><a href="http://fantasykai.cc/2017/12/03/tools/chrome%20tools/Chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/">Chrome浏览器技巧总结</a></li>
-<li><a href="http://fantasykai.cc/2017/10/14/mac/%E6%94%B6%E8%97%8F%E9%AB%98%E6%95%88%E7%9A%84%E5%B0%8F%E5%B7%A5%E5%85%B7/">收藏高效的小工具</a></li>
-<li><a href="http://fantasykai.cc/2017/08/26/mac/iterm2%20%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C/">iTerm2 快捷操作</a></li>
-<li><a href="http://fantasykai.cc/2017/09/07/Linux/ssh%20%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/">ssh 设置别名的方式访问服务器</a></li>
-<li><a href="http://fantasykai.cc/2017/10/08/mac/oh-my-zsh%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/">oh-my-zsh的环境变量配置</a></li>
-<li><a href="http://fantasykai.cc/2016/12/09/mac/brew%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">brew常用命令</a></li>
-<li><a href="https://sspai.com/post/27403" target="_blank" rel="external">10 个实用技巧，让 Finder 带你飞</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;Mac 上有很多提升工作效率的工具，及配置，以下是一些来自网络和自己的总结汇总，希望给小伙伴们带来帮助&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;1-硬件提升&quot;&gt;&lt;a href=&quot;#1-硬件提升&quot; class=&quot;headerlink&quot; t
-    
-    </summary>
-    
-      <category term="工具" scheme="https://fantasykai.cc/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="mac" scheme="https://fantasykai.cc/tags/mac/"/>
     
   </entry>
   

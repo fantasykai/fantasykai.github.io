@@ -27,13 +27,13 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="title: CAP相关总结date: 2018-08-04categories: 技术小栈tags: CAP CAP 定理的含义转自阮一峰老师的博客  阮一峰 分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。 分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 本文介绍该定理。它其实很好懂，而">
+    <meta name="description" content="title: CAP定理理解date: 2018-08-04categories: 技术小栈tags: CAP – CAP 定理的含义转自阮一峰老师的博客  阮一峰 分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。 分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 本文介绍该定理。它其实很好懂">
 <meta name="keywords" content="java python  javaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="No title">
 <meta property="og:url" content="https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/index.html">
 <meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
-<meta property="og:description" content="title: CAP相关总结date: 2018-08-04categories: 技术小栈tags: CAP CAP 定理的含义转自阮一峰老师的博客  阮一峰 分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。 分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 本文介绍该定理。它其实很好懂，而">
+<meta property="og:description" content="title: CAP定理理解date: 2018-08-04categories: 技术小栈tags: CAP – CAP 定理的含义转自阮一峰老师的博客  阮一峰 分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。 分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 本文介绍该定理。它其实很好懂">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.wangbase.com/blogimg/asset/201807/bg2018071607.jpg">
 <meta property="og:image" content="https://www.wangbase.com/blogimg/asset/201807/bg2018071601.png">
@@ -42,10 +42,10 @@
 <meta property="og:image" content="https://www.wangbase.com/blogimg/asset/201807/bg2018071604.png">
 <meta property="og:image" content="https://www.wangbase.com/blogimg/asset/201807/bg2018071605.png">
 <meta property="og:image" content="https://www.wangbase.com/blogimg/asset/201807/bg2018071606.png">
-<meta property="og:updated_time" content="2018-12-25T13:22:22.119Z">
+<meta property="og:updated_time" content="2018-12-25T13:39:36.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="No title">
-<meta name="twitter:description" content="title: CAP相关总结date: 2018-08-04categories: 技术小栈tags: CAP CAP 定理的含义转自阮一峰老师的博客  阮一峰 分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。 分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 本文介绍该定理。它其实很好懂，而">
+<meta name="twitter:description" content="title: CAP定理理解date: 2018-08-04categories: 技术小栈tags: CAP – CAP 定理的含义转自阮一峰老师的博客  阮一峰 分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。 分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 本文介绍该定理。它其实很好懂">
 <meta name="twitter:image" content="https://www.wangbase.com/blogimg/asset/201807/bg2018071607.jpg">
     
         <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
@@ -212,7 +212,8 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>title: CAP相关总结<br>date: 2018-08-04<br>categories: 技术小栈<br>tags: CAP</p>
+            <p>title: CAP定理理解<br>date: 2018-08-04<br>categories: 技术小栈<br>tags: CAP</p>
+<p>–</p>
 <h1 id="CAP-定理的含义"><a href="#CAP-定理的含义" class="headerlink" title="CAP 定理的含义"></a>CAP 定理的含义</h1><p>转自阮一峰老师的博客 </p>
 <p><a href="http://www.ruanyifeng.com/home.html" target="_blank" rel="external">阮一峰</a></p>
 <p>分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。</p>
@@ -304,7 +305,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-12-25T13:22:22.119Z" itemprop="dateUpdated">2018-12-25 21:22:22</time>
+    最后更新时间：<time datetime="2018-12-25T13:39:36.912Z" itemprop="dateUpdated">2018-12-25 21:39:36</time>
 </span><br>
 
 
