@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2018/07/28/JAVA/spring/Stereotype组件与Bean扫描/">
+    
+    
+    <title>Stereotype组件与Bean扫描 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="spring">
+    <meta name="description" content="在注解自动装载中介绍了通过注解（Annotation）自动向Bean中注入其他Bean的方法，本篇将介绍通过注解（Annotation）向容器添加Bean的方法。  Spring的核心容器提供了@Component和@Bean注解来标记如何向IoC容器添加Bean。在核心包中@Component又派生了@Service、@Controller和@Repository这三个注解（在其他的Spring">
+<meta name="keywords" content="spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stereotype组件与Bean扫描">
+<meta property="og:url" content="https://fantasykai.cc/2018/07/28/JAVA/spring/Stereotype组件与Bean扫描/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="在注解自动装载中介绍了通过注解（Annotation）自动向Bean中注入其他Bean的方法，本篇将介绍通过注解（Annotation）向容器添加Bean的方法。  Spring的核心容器提供了@Component和@Bean注解来标记如何向IoC容器添加Bean。在核心包中@Component又派生了@Service、@Controller和@Repository这三个注解（在其他的Spring">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-25T13:15:36.248Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Stereotype组件与Bean扫描">
+<meta name="twitter:description" content="在注解自动装载中介绍了通过注解（Annotation）自动向Bean中注入其他Bean的方法，本篇将介绍通过注解（Annotation）向容器添加Bean的方法。  Spring的核心容器提供了@Component和@Bean注解来标记如何向IoC容器添加Bean。在核心包中@Component又派生了@Service、@Controller和@Repository这三个注解（在其他的Spring">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Stereotype组件与Bean扫描</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Stereotype组件与Bean扫描</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-07-27T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-07-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一个简单的使用例子"><span class="post-toc-number">1.</span> <span class="post-toc-text">一个简单的使用例子</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Stereotype与功能分层"><span class="post-toc-number">2.</span> <span class="post-toc-text">Stereotype与功能分层</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#扫描配置"><span class="post-toc-number">3.</span> <span class="post-toc-text">扫描配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#组件命名"><span class="post-toc-number">4.</span> <span class="post-toc-text">组件命名</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用索引提升启动速度"><span class="post-toc-number">5.</span> <span class="post-toc-text">使用索引提升启动速度</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-JAVA/spring/Stereotype组件与Bean扫描"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Stereotype组件与Bean扫描</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-07-28 00:00:00" datetime="2018-07-27T16:00:00.000Z"  itemprop="datePublished">2018-07-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在注解自动装载中介绍了通过注解（Annotation）自动向Bean中注入其他Bean的方法，本篇将介绍通过注解（Annotation）向容器添加Bean的方法。</p>
+<p> Spring的核心容器提供了@Component和@Bean注解来标记如何向IoC容器添加Bean。在核心包中@Component又派生了@Service、@Controller和@Repository这三个注解（在其他的Spring工程或包中还有更多的派生），本文主要介绍@Component及其派生注解的使用。</p>
+<h2 id="一个简单的使用例子"><a href="#一个简单的使用例子" class="headerlink" title="一个简单的使用例子"></a>一个简单的使用例子</h2><p>要想使用@Component等注解来向容器添加Bean，需要向IoC容器指明什么类有这个注解，所以Spring提供了一个扫描机制让使用者指定要检查的路径。配置非常简单，只要使用上下文的component-scan标签即可。我们通过下面的例子来简单说明如何配置。</p>
+<p>例子中的代码仅用于说明问题，并不能运行。源码请到<a href="https://gitee.com/chkui-com/spring-core-sample自行clone，例子在*chkui.springcore.example.hybrid.component*包中。" target="_blank" rel="external">https://gitee.com/chkui-com/spring-core-sample自行clone，例子在*chkui.springcore.example.hybrid.component*包中。</a></p>
+<p>有一个接口和一个实现类作为要添加到IoC容器的Bean：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> chkui.springcore.example.hybrid.component.bean;<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">NameService</span> </span>&#123;	<span class="function">String <span class="title">getName</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">package</span> chkui.springcore.example.hybrid.component.bean;<span class="meta">@Componentpublic</span> <span class="class"><span class="keyword">class</span> <span class="title">NameServiceImpl</span> <span class="keyword">implements</span> <span class="title">NameService</span></span>&#123;	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;		<span class="keyword">return</span> <span class="string">"This is My Component"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在实现类NameServiceImpl上使用了@Component注解。</p>
+<p>然后XML（/spring-core-sample/src/main/resources/hybrid/component）配置为：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?xml <span class="attribute">version</span>=<span class="string">"1.0"</span> <span class="attribute">encoding</span>=<span class="string">"UTF-8"</span>?&gt;&lt;beans <span class="attribute">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></div><div class="line">    xmlns:<span class="attribute">xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">    xmlns:<span class="attribute">context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></div><div class="line">    xsi:<span class="attribute">schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></div><div class="line"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd</span></div><div class="line"><span class="string">        http://www.springframework.org/schema/context</span></div><div class="line"><span class="string">        http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</div><div class="line">    </div><div class="line">    &lt;context:component-scan <span class="attribute">base-package</span>=<span class="string">"chkui.springcore.example.hybrid.component.bean"</span>/&gt;&lt;/beans&gt;</div></pre></td></tr></table></figure>
+<p>XML配置文件中没有任何<bean>的声明，仅仅是通过component-scan启用了路径扫描功能，base-package指定了扫描的包路径。</bean></p>
+<p>然后我们加载这个XML运行Spring IoC容器：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> chkui.springcore.example.hybrid.component;<span class="keyword">public</span> <span class="keyword">class</span> SimpleScanApp &#123;	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</div><div class="line">		<span class="keyword">print</span>(<span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"hybrid/component/scanConfig.xml"</span>));</div><div class="line">	&#125;	</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="keyword">print</span>(ApplicationContext context) &#123;</div><div class="line">    	NameService service = context.getBean(NameService.<span class="keyword">class</span>);</div><div class="line">    	System.out.<span class="keyword">println</span>(service.getName());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行之后NameServiceImpl就会作为一个Bean添加到IoC容器中。</p>
+<p>在 IOC功能扩展点 一文中已经介绍通过XML、@Component、@Bean任何一种方式去声明一个Bean都会转化为一个 BeanDefinition 的实现类交给BeanFactory来创建实例，所以实际上通过@Component注解和在XML文件中编写一个<bean>标签在结果上并没有什么区别——都是向容器添加了一个Bean实例。但是Spring偏偏提供了@Bean和@Component（以及他的派生注解）2个注解来声名Bean，这当中肯定是有一些差异的。</bean></p>
+<p>@Bean在后续的文章会介绍，它就等价与在XML编写一个<bean>标签。而@Component以及他的派生注解除了是一个IoC容器中的Bean还有许多附加的含义。</bean></p>
+<h2 id="Stereotype与功能分层"><a href="#Stereotype与功能分层" class="headerlink" title="Stereotype与功能分层"></a>Stereotype与功能分层</h2><p>观察@Bean和@Component两个注解的包，前者是在 <em>org.springframework.context.annotation</em> ，而后者是在 <em>org.springframework.stereotype</em> 。不仅仅是@Component，他的派生注解@Service、@Controller和@Repository都在这个包中，实际上它就是在告诉使用者这些注解提供<em>stereotype</em>的特性（或者称为功能、作用）。</p>
+<p>那什么是<em>stereotype</em>特性呢？这很难通过Stereotype这个词的字面意思（这个词能翻译的意思很多，这里最接近的翻译应该是“旧规矩”或者“使固定”）来理解。</p>
+<p>Stereotype特性最早出现在J2EE6中（忘记是哪个JSR提出的了），可以理解为围绕着“元数据”功能而发展出来的一种设计模式，虽然我很难说清楚他属于23个设计模式中的哪一个，但是这确实已经是一种约定俗成的做法，只要看到Stereotype就应该像看到“Factory——工厂模式”、“Adapter——适配器模式”、“Facade——外观模式”一样，一眼就知道他的作用。</p>
+<p>Stereotype特性的目标就是为“组合模式的分层系统”按层标记一个类的功能。所谓的“组合模式的分层系统”实际上就是我们常用的Controller-Service-Dao这种分层模式，只不过有些系统可能会多几层（比如Controller和Service之间加个RPC框架什么的）。根据Stereotype特性的Java官网原文介绍，它是一个用来标记注解的注解（annotating annotation）。一个注解如果被@Stereotype标记证明他提供Stereotype模式的功能，例如下面这样：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@Stereotype</span> <span class="variable">@Target</span>(TYPE) </div><div class="line"><span class="variable">@Retention</span>(RUNTIME) </div><div class="line"><span class="variable">@interface</span> controller &#123;&#125;<span class="variable">@Stereotype</span> <span class="variable">@Target</span>(TYPE) </div><div class="line"><span class="variable">@Retention</span>(RUNTIME) </div><div class="line"><span class="variable">@interface</span> service &#123;&#125;</div></pre></td></tr></table></figure>
+<p>然后我们在使用时可以为不同层的类打上这些标记，表示他们属于不同的分层：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">interface</span> <span class="selector-tag">UserService</span>&#123;&#125;<span class="variable">@Serviceclass</span> UserServiceImpl implements UserService&#123;</div><div class="line">	</div><div class="line">&#125;<span class="variable">@Controllerclass</span> UseController&#123;	<span class="variable">@Autowired</span></div><div class="line">	UserService userService;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一个类的实例可能会被用于0到多个分层中（比如Spring的一个Bean既可以是Controller也可以是Service，只要标记对应的注解即可），但是通常情况下一个类最多只会用在一个分层中使用。简单的说Stereotype特性就是用注解来告诉框架某个类是属于系统功能中的哪一层。</p>
+<p>Java的文档上要求提供Stereotype特性的注解需要用@Stereotype来标记。但是Spring的开发大神并没有理会这个事，@Component并没有使用@Stereotype来标记，但是他确实提供了Stereotype的模式。</p>
+<p>在Stereotype模式下，Spring核心工程为Controller-Service-Dao的分层模型分别提供了@Controller、@Service、@Repository注解。我们按照Stereotype的模式为对应的类标记3个注解，然后在引入MVC、ORM、JPA相关的框架之后这些注解会告诉框架对应的类扮演着什么样的功能角色，框架就能很清晰的根据注解提供相关的功能服务。</p>
+<p>例如引入Spring-webmvc之后，一个类如果用@Controller注解标记了之后框架就知道他们都是处理前端请求的，MVC框架就会为他提供RequestMapping之类的功能。随后我们需要将框架调整为WebFlux，基本上直接更换依赖的Jar包就可以了，因为大家都是按照一个模式来开发的。</p>
+<p>所以，如果我们的某个类是用于指定的分层功能，那么最好使用<em>org.springframework.stereotype</em>包中的注解来标记他所属的分层。如果类没有明确的功能（例如用于存储配置数据的类，或者Helper类），使用@Bean等其他方式添加到容器中更合适（@Bean会在后续的文章中介绍）。</p>
+<p>使用Stereotype特性来标记分层，还有一个好处是即使工程的结构再复杂多样，都可以很轻松的使用注解（Annotation）来实现拦截器或者AOP功能。因为我们能够很清晰的知道每个分层的作用，开发AOP的功能就非常便利。</p>
+<h2 id="扫描配置"><a href="#扫描配置" class="headerlink" title="扫描配置"></a>扫描配置</h2><p>本文开篇使用了一个简单的例子说明使用<context:component-scan>扫描功能来自动添加被注解标记的Bean。除了使用base-package属性还有其他的标签来控制扫描的路径。</context:component-scan></p>
+<p><context:include-filter>和<context:exclude-filter>标签用来指定包含和排除的过滤规则。他们提供2个参数——type和expression，用来指定过滤类型和过滤参数，例如:</context:exclude-filter></context:include-filter></p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;beans&gt;</div><div class="line">    &lt;<span class="keyword">context</span>:<span class="keyword">component</span>-scan base-<span class="keyword">package</span>=<span class="string">"org.example"</span>&gt;</div><div class="line">        &lt;<span class="keyword">context</span>:include-filter <span class="keyword">type</span>=<span class="string">"regex"</span></div><div class="line">                expression=<span class="string">".*Stub.*Repository"</span>/&gt;</div><div class="line">        &lt;<span class="keyword">context</span>:exclude-filter <span class="keyword">type</span>=<span class="string">"annotation"</span></div><div class="line">                expression=<span class="string">"org.springframework.stereotype.Repository"</span>/&gt;</div><div class="line">    &lt;/<span class="keyword">context</span>:<span class="keyword">component</span>-scan&gt;&lt;/beans&gt;</div></pre></td></tr></table></figure>
+<p>此外还可以使用use-default-filters属性来指定是否扫描默认注解（<code>@Component</code>、<code>@Repository</code>、<code>@Service</code>、<code>@Controller、``@Configuration</code>），默认值为ture。如果设定成false，需要我们在include-filter中增加对应的annotation。</p>
+<p>除了使用XML配置，还可以使用@ComponentScan注解来指定扫描的路径，他提供和XML配置一样的功能。在后续的文章会介绍纯Java配置的功能。</p>
+<p>关于扫描的详细说明见官网的过滤规则说明。</p>
+<h2 id="组件命名"><a href="#组件命名" class="headerlink" title="组件命名"></a>组件命名</h2><p>和普通的Bean一样，我们也可以在@Component上添加注解来指定Bean在IoC容器的名称：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> chkui.springcore.example.hybrid.component.bean;<span class="meta">@Service</span>(<span class="string">"implementNameService"</span>)<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NameServiceImpl</span> <span class="keyword">implements</span> <span class="title">NameService</span></span>&#123;	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;		<span class="keyword">return</span> <span class="string">"This is My Component"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样在容器中这个Bean的名称被命名为”implementNameService”。除了直接在注解上添加内容，我们还可以实现 BeanNameGenerator 接口来实现全局的命名方法。看下面这个例子。（源码请到<a href="https://gitee.com/chkui-com/spring-core-sample自行clone，例子在*chkui.springcore.example.hybrid.component*包中。）" target="_blank" rel="external">https://gitee.com/chkui-com/spring-core-sample自行clone，例子在*chkui.springcore.example.hybrid.component*包中。）</a></p>
+<p>首先在XML中使用 “name-generator” 指定名称的生成器：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;beans xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span></div><div class="line">	xmln<span class="variable">s:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">	xmln<span class="variable">s:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></div><div class="line">	xsi:schemaLocation=<span class="comment">"http://www.springframework.org/schema/beans</span></div><div class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd</div><div class="line">        http://www.springframework.org/schema/context</div><div class="line">        http://www.springframework.org/schema/context/spring-context.xsd<span class="comment">"&gt;</span></div><div class="line"></div><div class="line">	&lt;contex<span class="variable">t:component</span>-scan</div><div class="line">		base-package=<span class="string">"chkui.springcore.example.hybrid.component.bean"</span></div><div class="line">		name-generator=<span class="string">"chkui.springcore.example.hybrid.component.bean.NameGenerator"</span> /&gt;&lt;/beans&gt;</div></pre></td></tr></table></figure>
+<p>然后编写我们的命名生成规则：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">package chkui.springcore.example.hybrid.component.bean;<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NameGenerator</span> <span class="title">implements</span> <span class="title">BeanNameGenerator</span> &#123;</span>	@Override</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">generateBeanName</span><span class="params">(BeanDefinition definition, BeanDefinitionRegistry registry)</span> </span>&#123;</div><div class="line">		AnnotatedBeanDefinition annotdef = AnnotatedBeanDefinition.class.cast(definition);</div><div class="line">		AnnotationMetadata meta = annotdef.getMetadata();		<span class="comment">//生成规则:如果已经命名不做任何调整，如果未命名则在类名车后面增加”_NoDefinedName“字符串</span></div><div class="line">		<span class="keyword">return</span> Optional.of(meta).<span class="built_in">map</span>(met -&gt; met.getAnnotationTypes()).<span class="built_in">map</span>(<span class="built_in">set</span> -&gt; <span class="built_in">set</span>.toArray(<span class="keyword">new</span> String[] &#123;&#125;))</div><div class="line">				.<span class="built_in">map</span>(<span class="built_in">array</span> -&gt; <span class="built_in">array</span>[<span class="number">0</span>]).<span class="built_in">map</span>(name -&gt; meta.getAnnotationAttributes(name)).<span class="built_in">map</span>(entry -&gt; entry.get(<span class="string">"value"</span>))</div><div class="line">				.<span class="built_in">map</span>(obj -&gt; <span class="string">""</span>.equals(obj) ? null : obj).orElse(definition.getBeanClassName() + <span class="string">"_NoDefinedName"</span>)</div><div class="line">				.toString();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="使用索引提升启动速度"><a href="#使用索引提升启动速度" class="headerlink" title="使用索引提升启动速度"></a>使用索引提升启动速度</h2><p>通常情况下，即使是对整个classpath进行扫描并不会占用太多的时间，但是某些应用对启动时间有极高的要求，对此Spring提供了索引功能。索引功能并不复杂，就是第一次扫描之后生成一个静态文件记录所有的组件，然后下一次扫描就直接读取文件中的内容，而不去执行扫描过程。</p>
+<p>首先引入spring-context-indexer包：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="params">&lt;dependencies&gt;</span></div><div class="line">    <span class="params">&lt;dependency&gt;</span></div><div class="line">        <span class="params">&lt;groupId&gt;</span>org.springframework<span class="params">&lt;/groupId&gt;</span></div><div class="line">        <span class="params">&lt;artifactId&gt;</span>spring-context-indexer<span class="params">&lt;/artifactId&gt;</span></div><div class="line">        <span class="params">&lt;version&gt;</span><span class="number">5.0</span><span class="number">.7</span>.RELEASE<span class="params">&lt;/version&gt;</span></div><div class="line">        <span class="params">&lt;optional&gt;</span>true<span class="params">&lt;/optional&gt;</span></div><div class="line">    <span class="params">&lt;/dependency&gt;</span><span class="params">&lt;/dependencies&gt;</span></div><div class="line"><span class="class">dependencies </span>&#123;</div><div class="line">    compileOnly(<span class="string">"org.springframework:spring-context-indexer:5.0.7.RELEASE"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后在运行后会生成一个 META-INF/spring.components 的文件，之后只要运行工程发现这个文件都会直接使用他。可以通过环境变量或工程根目录的spring.properties中设置spring.index.ignore=ture来禁用这个功能。</p>
+<p>这个功能如果没有什么明确的需求，慎重使用，会提高工程的管理成本。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-25T13:15:36.248Z" itemprop="dateUpdated">2018-12-25 21:15:36</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2018/07/28/JAVA/spring/Stereotype组件与Bean扫描/" target="_blank" rel="external">https://fantasykai.cc/2018/07/28/JAVA/spring/Stereotype组件与Bean扫描/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/07/28/JAVA/spring/Stereotype组件与Bean扫描/&title=《Stereotype组件与Bean扫描》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/07/28/JAVA/spring/Stereotype组件与Bean扫描/&title=《Stereotype组件与Bean扫描》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/07/28/JAVA/spring/Stereotype组件与Bean扫描/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Stereotype组件与Bean扫描》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/07/28/JAVA/spring/Stereotype组件与Bean扫描/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/07/28/JAVA/spring/Stereotype组件与Bean扫描/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">WebAssembly 的未来：将逐渐解锁整个“技能树”</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/07/21/recording/笔记0721/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">笔记0721</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/07/28/JAVA/spring/Stereotype组件与Bean扫描/&title=《Stereotype组件与Bean扫描》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/07/28/JAVA/spring/Stereotype组件与Bean扫描/&title=《Stereotype组件与Bean扫描》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/07/28/JAVA/spring/Stereotype组件与Bean扫描/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Stereotype组件与Bean扫描》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/07/28/JAVA/spring/Stereotype组件与Bean扫描/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/07/28/JAVA/spring/Stereotype组件与Bean扫描/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACx0lEQVR42u3aQXLbMBAEQP//087VLofUzC7hKFXNk4qiTTQOwGoWHx/x9fnlSp65evLn/a93fn6++vbhCw8PD28x9KshXg36/vUJMnlj/u1f3oiHh4d3jJcMIl918+2kfVf+DB4eHt778O6L3XabyQtxPDw8vP+d12I2m80/2Bjw8PDwAl4+xCRWmE3TJsJ4IGvBw8PD66rWqIv0Pp+P9Pfw8PDw1l31WWnbNs/y7aQeLR4eHt4BXr7gJsVrQs1j2Vm5jIeHh/ebvGcbWm1lu4kzXkw0Hh4e3gHebCFuS952A2g3g4/9zoaHh4cX8PItYVNe3w+03XKKUAMPDw/vMK8dUHtwatb43xxZwMPDwzvBa4fS/lV7+KBtpBUNMDw8PLxHeXnLKn9NHlgk09GesKofwsPDwyt5+6W5PUrVhsV5nHHZ38PDw8N7iJe3/5PDVfmSPWz/l4EIHh4e3gleHubmZXReoLfbTB5q1G0wPDw8vJI3K4XbnKMd6Axfbw94eHh45XtnC2670M8C2bZYv+zs4eHh4R3gbZbg/M7+8EG+5n+LcfHw8PB+kZc0q/ZNsoO5Kx4eHt5h3mwbmFE3jbf7SalTZDw8PLwRb0OdHZlKpu+BSAIPDw/vGC9fpvPjAvk2kIS8+UR8u4OHh4d3gLeJWTfhQn5QIIEVbTA8PDy8R3l5E6sNap+NGOqgBA8PD+8YLy+R7/9dvsQnC30yxS+mGw8PD+8YL2oplSV4EjEkT+ZXVFLj4eHhLXif5bVq5I/Ci3z6ojNleHh4eGvebMFtD2O1zbCkiM8PFuDh4eGd4NU/7xcTsdk8hlOMh4eHd4yXB7htIyoJdmebzX0QjIeHh/c+vHxY56j5hoGHh4f3Prw88I2W77g0b9+Lh4eHd46XhBFtSDELJvbTjYeHh3ea1/7gb4c1XNDjaX2sv4eHh4f3+r1/AGWwsYabVz96AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>
