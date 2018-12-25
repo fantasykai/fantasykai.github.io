@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2018/11/04/JAVA/java的性能指标/">
+    
+    
+    <title>Java代码优化总结 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="java">
+    <meta name="description" content="来源：王韵菲  www.evget.com/article/2015/11/16/22990.html 本文中，小编搜集了7个最有影响的衡量标注，让你可以不依赖日志文件来了解应用程序。现在，让我们看看这些性能指标，并了解如何查看并收集它们： 1.响应时间和吞吐量 根据应用程序的响应时间可以知道程序完成传输数据所用的时间。也可以从HTTP请求级别，或者成为数据库级别来看。对那些缓慢的查询你需要做一些">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java代码优化总结">
+<meta property="og:url" content="https://fantasykai.cc/2018/11/04/JAVA/java的性能指标/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="来源：王韵菲  www.evget.com/article/2015/11/16/22990.html 本文中，小编搜集了7个最有影响的衡量标注，让你可以不依赖日志文件来了解应用程序。现在，让我们看看这些性能指标，并了解如何查看并收集它们： 1.响应时间和吞吐量 根据应用程序的响应时间可以知道程序完成传输数据所用的时间。也可以从HTTP请求级别，或者成为数据库级别来看。对那些缓慢的查询你需要做一些">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-25T13:48:59.148Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java代码优化总结">
+<meta name="twitter:description" content="来源：王韵菲  www.evget.com/article/2015/11/16/22990.html 本文中，小编搜集了7个最有影响的衡量标注，让你可以不依赖日志文件来了解应用程序。现在，让我们看看这些性能指标，并了解如何查看并收集它们： 1.响应时间和吞吐量 根据应用程序的响应时间可以知道程序完成传输数据所用的时间。也可以从HTTP请求级别，或者成为数据库级别来看。对那些缓慢的查询你需要做一些">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Java代码优化总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Java代码优化总结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-03T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-11-04
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-JAVA/java的性能指标"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Java代码优化总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-04 00:00:00" datetime="2018-11-03T16:00:00.000Z"  itemprop="datePublished">2018-11-04</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>来源：王韵菲 </p>
+<p>www.evget.com/article/2015/11/16/22990.html</p>
+<p>本文中，小编搜集了7个最有影响的衡量标注，让你可以不依赖日志文件来了解应用程序。现在，让我们看看这些性能指标，并了解如何查看并收集它们：</p>
+<p><strong>1.响应时间和吞吐量</strong></p>
+<p>根据应用程序的响应时间可以知道程序完成传输数据所用的时间。也可以从HTTP请求级别，或者成为数据库级别来看。对那些缓慢的查询你需要做一些优化来缩短时间。吞吐量是另一个角度衡量传输数据的指标，是指单位时间内系统处理的客户请求的数量。</p>
+<p>我们可以使用APMs（例如New Relic或AppDynamics）来衡量这些指标。使用这些工具，你可以在主报告仪表板中将平均响应时间与昨天的甚至上周的直接进行对比。这有助于我们观察新的部署是否会影响到我们的应用程序。你可以看到网络传输的百分比，测量HTTP完成请求需要多长时间。</p>
+<p>推荐工具：</p>
+<ul>
+<li>AppDynamics</li>
+<li>New Relic</li>
+<li>Ruxit</li>
+</ul>
+<p>New Relic报告：Web传输百分比和吞吐量</p>
+<p><strong>2.平均负载</strong></p>
+<p>第二个应用广泛的指标是平均负载。我们习惯上会把平均负载分为这三步测量，分别是第5分钟、第15分钟和最后1分钟。要保证数量低于机器的内核数。一旦超过内核数，机器就会运行在压力状态下。</p>
+<p>除了简单测量CPU使用率，还需要关注每个内核的队列中有多少进程。在内核使用率都是100%的情况下，队列中只有1个任务和有6个任务有很大不同。因此，平均负载不能只考虑CPU使用率。</p>
+<p>推荐工具：</p>
+<ul>
+<li>htop</li>
+</ul>
+<p><strong>3.错误率</strong></p>
+<p>大多数开发人员判断错误率是根据HTTP传输总失败百分比。但是他们忽略了一个更深层的东西：特定传输的错误率。这直接影响到您应用程序的运行状况。这可以显示出代码方法的错误以及错误或异常出现的次数。</p>
+<p>但单纯的错误率数据对我们没有多大帮助。最重要的是我们要找到它们的根源并解决问题。随着Takipi的运行，我们要在日志文件中需找线索。你可以找到所有关于服务器状态的信息，包括堆栈跟踪、源代码和变量值。</p>
+<p>推荐工具：</p>
+<ul>
+<li>Takipi</li>
+</ul>
+<p><strong>4.GC率和暂停时间</strong></p>
+<p>异常行为垃圾收集器应用程序的吞吐量和响应时间采取深潜的主要原因之一。了解GC暂停频率和持续时间的关键是分析GC日志文件。要分析它们，你需要收集GC日志和JVM参数。你要注意观察不同指标之间的数据是如何相互影响的。</p>
+<p>推荐工具：</p>
+<ul>
+<li>jClarity Censum</li>
+<li>GCViewer</li>
+</ul>
+<p><strong>5.业务指标</strong></p>
+<p>应用程序的性能不完全取决于响应时间和错误率。业务指标也是一方面，例如收益、用户数。</p>
+<p>推荐工具：</p>
+<ul>
+<li>Grafana</li>
+<li>The ELK stack</li>
+<li>Datadog</li>
+<li>Librato</li>
+</ul>
+<p><strong>6.正常运行时间和服务运行状态</strong></p>
+<p>这一指标奠定了整个应用程序性能的基础。不仅可以当做一个提醒指标，也可以让你定义一段时间内的SKA。我们可以使用Pingdom的servlet功能进行运行状态检查。我们可以查到应用程序的所有传输，包括数据库和S3。</p>
+<p>推荐工具：</p>
+<ul>
+<li>Pingdom</li>
+</ul>
+<p><strong>7.日志大小</strong></p>
+<p>日志有一个缺点，它是一直在增加的。当您的服务器启动塞满了垃圾，一切都慢下来。因此，我们需要密切的关注日志大小。</p>
+<p>目前通常的解决办法是使用logstash划分使用日志，并将它们发送并存储在Splunk、ELK或其他的日志管理工具中。</p>
+<p>推荐工具：</p>
+<ul>
+<li>Splunk</li>
+<li>Sumo Logic</li>
+<li>Loggly</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-25T13:48:59.148Z" itemprop="dateUpdated">2018-12-25 21:48:59</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2018/11/04/JAVA/java的性能指标/" target="_blank" rel="external">https://fantasykai.cc/2018/11/04/JAVA/java的性能指标/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/11/04/JAVA/java的性能指标/&title=《Java代码优化总结》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/11/04/JAVA/java的性能指标/&title=《Java代码优化总结》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/11/04/JAVA/java的性能指标/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java代码优化总结》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/11/04/JAVA/java的性能指标/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/11/04/JAVA/java的性能指标/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/10/recording/笔记1110/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">笔记1110</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/10/29/recording/笔记1029/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">笔记1029</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/11/04/JAVA/java的性能指标/&title=《Java代码优化总结》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/11/04/JAVA/java的性能指标/&title=《Java代码优化总结》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/11/04/JAVA/java的性能指标/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java代码优化总结》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/11/04/JAVA/java的性能指标/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/11/04/JAVA/java的性能指标/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIklEQVR42u3aQW7DIBAF0Nz/0u62UmXnf7ArGR6rqCGY58V0mOHzicfxa5x9+3dmMj9/yg0DAwPjtYzjclzPGVs/n5PsDQMDYx9GEkavN5r/Knll+d4wMDAwzuYkf8kTRwwMDIx7GWfbyvEzK2BgYOzMaNO19kCbl+QeP4tjYGC8kJGXzP7/8yP9DQwMjFcxjnK0j7+rkfBlVxgYGEsz8gCXJ2dJC2FmhdNrGRgYGIsy2tJYW+gfO+jmTQgMDIzdGPcmbckW5w+3GBgY+zDa9mQbFttyf116w8DAWJqRHzLvujaRv5qZIy4GBsaqjPYSWB4Wk2TxtosdGBgYSzPmD5PXwbd9Yp6qYmBgrM2YL5PNlNWS0BztCgMDYwPGZ2jMb7f9n3D6LQYGxgaMsYun+dE0X2es5YCBgbE244kUcKy41mJOn4WBgbEco120vU7xT8klBgbG0ow8HSzah/H8mdTzdA4GBsaijPaQmV+DaA/JU80JDAyMDRjzpKk2ZPCavgRlDAyMDRhtW3HsV3V7Mn81GBgY2zDmOwx5stiW5zAwMPZkHOXIr0pcrzDWioguWGBgYCzHaAPc/PWLvLiWF/swMDB2YLQhMke2iePYHAwMjH0YY83LNr0rWpLBK8PAwMAYyy6TwD12waIvJGJgYGCkSWTbYEgSypsDLgYGxksYbaCcueCVJ4uPnMUxMDBeyBjLu2YajXlbtC3nYWBgLMf4AYH3A/FGqEUzAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>
