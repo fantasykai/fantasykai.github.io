@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2018-12-25T11:25:28.648Z</updated>
+  <updated>2018-12-25T13:22:22.119Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -14,6 +14,110 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://fantasykai.cc/2018/12/25/recording/CAP%20%E5%AE%9A%E7%90%86%E7%9A%84%E5%90%AB%E4%B9%89/"/>
+    <id>https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/</id>
+    <published>2018-12-25T13:21:18.341Z</published>
+    <updated>2018-12-25T13:22:22.119Z</updated>
+    
+    <content type="html"><![CDATA[<p>title: CAP相关总结<br>date: 2018-08-04<br>categories: 技术小栈<br>tags: CAP</p>
+<h1 id="CAP-定理的含义"><a href="#CAP-定理的含义" class="headerlink" title="CAP 定理的含义"></a>CAP 定理的含义</h1><p>转自阮一峰老师的博客 </p>
+<p><a href="http://www.ruanyifeng.com/home.html" target="_blank" rel="external">阮一峰</a></p>
+<p>分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。</p>
+<p>分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。</p>
+<p>本文介绍该定理。它其实很好懂，而且是显而易见的。下面的内容主要参考了 Michael Whittaker 的<a href="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/" target="_blank" rel="external">文章</a>。</p>
+<h2 id="一、分布式系统的三个指标"><a href="#一、分布式系统的三个指标" class="headerlink" title="一、分布式系统的三个指标"></a>一、分布式系统的三个指标</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071607.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>1998年，加州大学的计算机科学家 Eric Brewer 提出，分布式系统有三个指标。</p>
+<blockquote>
+<ul>
+<li>Consistency</li>
+<li>Availability</li>
+<li>Partition tolerance</li>
+</ul>
+</blockquote>
+<p>它们的第一个字母分别是 C、A、P。</p>
+<p>Eric Brewer 说，这三个指标不可能同时做到。这个结论就叫做 CAP 定理。</p>
+<h2 id="二、Partition-tolerance"><a href="#二、Partition-tolerance" class="headerlink" title="二、Partition tolerance"></a>二、Partition tolerance</h2><p>先看 Partition tolerance，中文叫做”分区容错”。</p>
+<p>大多数分布式系统都分布在多个子网络。每个子网络就叫做一个区（partition）。分区容错的意思是，区间通信可能失败。比如，一台服务器放在中国，另一台服务器放在美国，这就是两个区，它们之间可能无法通信。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071601.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>上图中，G1 和 G2 是两台跨区的服务器。G1 向 G2 发送一条消息，G2 可能无法收到。系统设计的时候，必须考虑到这种情况。</p>
+<p>一般来说，分区容错无法避免，因此可以认为 CAP 的 P 总是成立。CAP 定理告诉我们，剩下的 C 和 A 无法同时做到。</p>
+<h2 id="三、Consistency"><a href="#三、Consistency" class="headerlink" title="三、Consistency"></a>三、Consistency</h2><p>Consistency 中文叫做”一致性”。意思是，写操作之后的读操作，必须返回该值。举例来说，某条记录是 v0，用户向 G1 发起一个写操作，将其改为 v1。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071602.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>接下来，用户的读操作就会得到 v1。这就叫一致性。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071603.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>问题是，用户有可能向 G2 发起读操作，由于 G2 的值没有发生变化，因此返回的是 v0。G1 和 G2 读操作的结果不一致，这就不满足一致性了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071604.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>为了让 G2 也能变为 v1，就要在 G1 写操作的时候，让 G1 向 G2 发送一条消息，要求 G2 也改成 v1。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071605.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>这样的话，用户向 G2 发起读操作，也能得到 v1。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071606.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<h2 id="四、Availability"><a href="#四、Availability" class="headerlink" title="四、Availability"></a>四、Availability</h2><p>Availability 中文叫做”可用性”，意思是只要收到用户的请求，服务器就必须给出回应。</p>
+<p>用户可以选择向 G1 或 G2 发起读操作。不管是哪台服务器，只要收到请求，就必须告诉用户，到底是 v0 还是 v1，否则就不满足可用性。</p>
+<h2 id="五、Consistency-和-Availability-的矛盾"><a href="#五、Consistency-和-Availability-的矛盾" class="headerlink" title="五、Consistency 和 Availability 的矛盾"></a>五、Consistency 和 Availability 的矛盾</h2><p>一致性和可用性，为什么不可能同时成立？答案很简单，因为可能通信失败（即出现分区容错）。</p>
+<p>如果保证 G2 的一致性，那么 G1 必须在写操作时，锁定 G2 的读操作和写操作。只有数据同步后，才能重新开放读写。锁定期间，G2 不能读写，没有可用性不。</p>
+<p>如果保证 G2 的可用性，那么势必不能锁定 G2，所以一致性不成立。</p>
+<p>综上所述，G2 无法同时做到一致性和可用性。系统设计时只能选择一个目标。如果追求一致性，那么无法保证所有节点的可用性；如果追求所有节点的可用性，那就没法做到一致性。</p>
+<p>[更新 2018.7.17]</p>
+<p>读者问，在什么场合，可用性高于一致性？</p>
+<p>举例来说，发布一张网页到 CDN，多个服务器有这张网页的副本。后来发现一个错误，需要更新网页，这时只能每个服务器都更新一遍。</p>
+<p>一般来说，网页的更新不是特别强调一致性。短时期内，一些用户拿到老版本，另一些用户拿到新版本，问题不会特别大。当然，所有人最终都会看到新版本。所以，这个场合就是可用性高于一致性。</p>
+<p>（完）</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;title: CAP相关总结&lt;br&gt;date: 2018-08-04&lt;br&gt;categories: 技术小栈&lt;br&gt;tags: CAP&lt;/p&gt;
+&lt;h1 id=&quot;CAP-定理的含义&quot;&gt;&lt;a href=&quot;#CAP-定理的含义&quot; class=&quot;headerlink&quot; title=
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>WebAssembly 的未来：将逐渐解锁整个“技能树”</title>
@@ -78,6 +182,103 @@
     
     
       <category term="js" scheme="https://fantasykai.cc/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笔记0916</title>
+    <link href="https://fantasykai.cc/2018/09/16/recording/%E7%AC%94%E8%AE%B00916/"/>
+    <id>https://fantasykai.cc/2018/09/16/recording/笔记0916/</id>
+    <published>2018-09-15T16:00:00.000Z</published>
+    <updated>2018-12-25T13:32:39.844Z</updated>
+    
+    <content type="html"><![CDATA[<p>零售的本质是把人和货连接在一起的场；新零售是一场效率革命。</p>
+<p>1.新零售，是效率更高的零售</p>
+<p>①场的效率</p>
+<p>信息流；资金流；物流。</p>
+<p>②人的效率</p>
+<p>流量革命；转化率；客单价；复购率。</p>
+<p>销售漏斗公式：销售额=流量×转化率×客单价×复购率</p>
+<p>该公式可以用来衡量销售额，却无法衡量销售的效率。</p>
+<p>③货的效率</p>
+<p>定倍率：商业世界最基础的逻辑之一，是衡量商业效率的重要指标。定倍率越低，效率越高。</p>
+<p>未来，中国制造的趋势是：</p>
+<p>低质高价和低质低价的商品，存活空间会越来越小，甚至被逐步淘汰；</p>
+<p>高质低价的零售业，将迎来它的时代，而C2M（Customer-to- Manufactory，客对厂）模式是实现高质低价的一个有效手段。</p>
+<p>2.新的商业思维</p>
+<p>① 进化思维</p>
+<p>② 本质思维</p>
+<p>③ 系统思维</p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;零售的本质是把人和货连接在一起的场；新零售是一场效率革命。&lt;/p&gt;
+&lt;p&gt;1.新零售，是效率更高的零售&lt;/p&gt;
+&lt;p&gt;①场的效率&lt;/p&gt;
+&lt;p&gt;信息流；资金流；物流。&lt;/p&gt;
+&lt;p&gt;②人的效率&lt;/p&gt;
+&lt;p&gt;流量革命；转化率；客单价；复购率。&lt;/p&gt;
+&lt;p&gt;销售漏斗公式：销
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笔记0830</title>
+    <link href="https://fantasykai.cc/2018/08/30/recording/%E7%AC%94%E8%AE%B00830/"/>
+    <id>https://fantasykai.cc/2018/08/30/recording/笔记0830/</id>
+    <published>2018-08-29T16:00:00.000Z</published>
+    <updated>2018-12-25T13:31:30.960Z</updated>
+    
+    <content type="html"><![CDATA[<p>食物链排名对个人相当不可控，但是还有另外一条链可以追求，我们不妨称之为 “智识链”。<br>智识，就是智慧和见识，智识不是一种资源。资源可以赠送，可以继承，可以一出生就有，智识不能。<br>资源可以出售变现，智识不能直接转换成钱。<br>智识是“三观”—对世界正确的认识，对人生合理的安排，知道什么东西是好东西；<br>智识还是历史的经验和做事的手段。</p>
+<p>be part of something bigger than yourself</p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;食物链排名对个人相当不可控，但是还有另外一条链可以追求，我们不妨称之为 “智识链”。&lt;br&gt;智识，就是智慧和见识，智识不是一种资源。资源可以赠送，可以继承，可以一出生就有，智识不能。&lt;br&gt;资源可以出售变现，智识不能直接转换成钱。&lt;br&gt;智识是“三观”—对世界正确的认识，对
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笔记0729</title>
+    <link href="https://fantasykai.cc/2018/07/29/recording/%E7%AC%94%E8%AE%B00729/"/>
+    <id>https://fantasykai.cc/2018/07/29/recording/笔记0729/</id>
+    <published>2018-07-28T16:00:00.000Z</published>
+    <updated>2018-12-25T13:17:30.902Z</updated>
+    
+    <content type="html"><![CDATA[<p>“活跃起用户的产品”<br>1.专属性，营造独一无二的价值感；<br>2.情绪性，使人们的高唤醒情绪受到激发；<br>3.社交货币，即谈资，让大家有共同话题，刺激越来越多的人加入。</p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;“活跃起用户的产品”&lt;br&gt;1.专属性，营造独一无二的价值感；&lt;br&gt;2.情绪性，使人们的高唤醒情绪受到激发；&lt;br&gt;3.社交货币，即谈资，让大家有共同话题，刺激越来越多的人加入。&lt;/p&gt;
+&lt;hr&gt;
+
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
     
   </entry>
   
@@ -218,6 +419,34 @@
   </entry>
   
   <entry>
+    <title>笔记0708</title>
+    <link href="https://fantasykai.cc/2018/07/08/recording/%E7%AC%94%E8%AE%B00708/"/>
+    <id>https://fantasykai.cc/2018/07/08/recording/笔记0708/</id>
+    <published>2018-07-07T16:00:00.000Z</published>
+    <updated>2018-12-25T13:11:17.248Z</updated>
+    
+    <content type="html"><![CDATA[<p>  互联网+时代的四个关键词，分别是专注、极致、口碑和快速，这四大特点</p>
+<hr>
+<p>极致有三个支撑点，<br>第一叫产品思维。’<br>第二个叫痛点思维。我们要了解客户的三个点，叫痛点、痒点和兴奋点。<br>第三个叫尖叫点思维。你的产品一定有一款，哪怕是一点点也行，让人产生尖叫的感觉。</p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  互联网+时代的四个关键词，分别是专注、极致、口碑和快速，这四大特点&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;极致有三个支撑点，&lt;br&gt;第一叫产品思维。’&lt;br&gt;第二个叫痛点思维。我们要了解客户的三个点，叫痛点、痒点和兴奋点。&lt;br&gt;第三个叫尖叫点思维。你的产品一定有一款，哪怕是一点点也
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java内存模型总结</title>
     <link href="https://fantasykai.cc/2018/07/08/JAVA/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/"/>
     <id>https://fantasykai.cc/2018/07/08/JAVA/Java内存模型总结/</id>
@@ -337,34 +566,6 @@
     
     
       <category term="java" scheme="https://fantasykai.cc/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>笔记0708</title>
-    <link href="https://fantasykai.cc/2018/07/08/recording/%E7%AC%94%E8%AE%B00708/"/>
-    <id>https://fantasykai.cc/2018/07/08/recording/笔记0708/</id>
-    <published>2018-07-07T16:00:00.000Z</published>
-    <updated>2018-12-25T13:11:17.248Z</updated>
-    
-    <content type="html"><![CDATA[<p>  互联网+时代的四个关键词，分别是专注、极致、口碑和快速，这四大特点</p>
-<hr>
-<p>极致有三个支撑点，<br>第一叫产品思维。’<br>第二个叫痛点思维。我们要了解客户的三个点，叫痛点、痒点和兴奋点。<br>第三个叫尖叫点思维。你的产品一定有一款，哪怕是一点点也行，让人产生尖叫的感觉。</p>
-<hr>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;  互联网+时代的四个关键词，分别是专注、极致、口碑和快速，这四大特点&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;极致有三个支撑点，&lt;br&gt;第一叫产品思维。’&lt;br&gt;第二个叫痛点思维。我们要了解客户的三个点，叫痛点、痒点和兴奋点。&lt;br&gt;第三个叫尖叫点思维。你的产品一定有一款，哪怕是一点点也
-    
-    </summary>
-    
-      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
-    
-    
-      <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
     
   </entry>
   
@@ -3855,338 +4056,6 @@
 &lt;p&gt;Mac 上有很多提升工作效率的工具，及配置，以下是一些来自网络和自己的总结汇总，希望给小伙伴们带来帮助&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&quot;1-硬件提升&quot;&gt;&lt;a href=&quot;#1-硬件提升&quot; class=&quot;headerlink&quot; t
-    
-    </summary>
-    
-      <category term="工具" scheme="https://fantasykai.cc/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="mac" scheme="https://fantasykai.cc/tags/mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sails守护进程启动</title>
-    <link href="https://fantasykai.cc/2018/03/11/js/sails%20%E5%90%8E%E5%8F%B0%E5%90%AF%E5%8A%A8/"/>
-    <id>https://fantasykai.cc/2018/03/11/js/sails 后台启动/</id>
-    <published>2018-03-10T16:00:00.000Z</published>
-    <updated>2018-03-21T03:11:09.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>玩了下 sails ，发现 sails lift –prod 之类的，如果关闭终端窗口，服务就停止了，用 nohup 启动也没啥luan 用，汗，如何使用守护进程后台启动嘞，好吧，Google之 </p>
-</blockquote>
-<p>sails官网推荐 forever、pm2，大家可以根据个人喜好选择。</p>
-<p>使用 forever</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cnpm install -g <span class="keyword">forever</span>      安装守护进程</div><div class="line"><span class="keyword">forever</span> <span class="built_in">start</span> app.js <span class="comment">--prod  开启守护进程</span></div><div class="line"><span class="keyword">forever</span> list  显示运行的服务</div><div class="line"><span class="keyword">forever</span> restartall  重启服务(建议用这个)</div><div class="line"><span class="keyword">forever</span> stopall     停止<span class="number">12345</span></div></pre></td></tr></table></figure>
-<p>使用 pm2</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cnpm install -g pm2  安装守护进程</div><div class="line">pm2 start app.js -x  开启守护进程</div><div class="line">pm2 restart <span class="built_in">all</span>      重启所有进程</div><div class="line">pm2 restart <span class="number">0</span>        重启指定进程</div><div class="line">pm2 <span class="keyword">stop</span> <span class="built_in">all</span>         停止</div></pre></td></tr></table></figure>
-<blockquote>
-<p>推荐使用pm2</p>
-</blockquote>
-<p>生产环境可以这样启动</p>
-<p>pm2 start app.js – –prod<br>sails默认支持 –prod的参数读取生产环境配置 那启动的时候传给他就可以<br>–之后的参数会传递到node app.js里执行</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;玩了下 sails ，发现 sails lift –prod 之类的，如果关闭终端窗口，服务就停止了，用 nohup 启动也没啥luan 用，汗，如何使用守护进程后台启动嘞，好吧，Google之 &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;sail
-    
-    </summary>
-    
-      <category term="前端" scheme="https://fantasykai.cc/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="js" scheme="https://fantasykai.cc/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python性能优化</title>
-    <link href="https://fantasykai.cc/2018/02/27/python/python%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
-    <id>https://fantasykai.cc/2018/02/27/python/python性能优化/</id>
-    <published>2018-02-26T16:00:00.000Z</published>
-    <updated>2018-03-03T08:52:57.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>优化算法时间复杂度</strong></p>
-<p>算法的时间复杂度对程序的执行效率影响最大，在 Python 中可以通过选择合适的数据结构来优化时间复杂度，如 list 和 set 查找某一个元素的时间复杂度分别是O(n)和O(1)。不同的场景有不同的优化方式，总得来说，一般有分治，分支界限，贪心，动态规划等思想。</p>
-<h3 id="减少冗余数据"><a href="#减少冗余数据" class="headerlink" title="减少冗余数据"></a><strong>减少冗余数据</strong></h3><p>如用上三角或下三角的方式去保存一个大的对称矩阵。在0元素占大多数的矩阵里使用稀疏矩阵表示。</p>
-<h3 id="合理使用-copy-与-deepcopy"><a href="#合理使用-copy-与-deepcopy" class="headerlink" title="合理使用 copy 与 deepcopy"></a><strong>合理使用 copy 与 deepcopy</strong></h3><p>对于 dict 和 list 等数据结构的对象，直接赋值使用的是引用的方式。而有些情况下需要复制整个对象，这时可以使用 copy 包里的 copy 和 deepcopy，这两个函数的不同之处在于后者是递归复制的。效率也不一样：（以下程序在 ipython 中运行）</p>
-<blockquote>
-<p>import copy</p>
-<p>a = range(100000)</p>
-<p>%timeit -n 10 copy.copy(a) # 运行10次 copy.copy(a)</p>
-<p>%timeit -n 10 copy.deepcopy(a)</p>
-<p>10 loops, best of 3: 1.55 ms per loop</p>
-<p>10 loops, best of 3: 151 ms per loop</p>
-</blockquote>
-<p>timeit 后面的-n表示运行的次数，后两行对应的是两个 timeit 的输出，下同。由此可见后者慢一个数量级。</p>
-<h3 id="使用-dict-或-set-查找元素"><a href="#使用-dict-或-set-查找元素" class="headerlink" title="使用 dict 或 set 查找元素"></a><strong>使用 dict 或 set 查找元素</strong></h3><p>python dict 和 set 都是使用 hash 表来实现(类似c++11标准库中unordered_map)，查找元素的时间复杂度是O(1)</p>
-<blockquote>
-<p>a = range(1000)s = set(a)d = dict((i,1) for i in a)%timeit -n 10000 100 in d%timeit -n 10000 100 in s10000 loops, best of 3: 43.5 ns per loop10000 loops, best of 3: 49.6 ns per loop</p>
-</blockquote>
-<p>dict 的效率略高(占用的空间也多一些)。</p>
-<h3 id="合理使用生成器（generator）和-yield"><a href="#合理使用生成器（generator）和-yield" class="headerlink" title="合理使用生成器（generator）和 yield"></a><strong>合理使用生成器（generator）和 yield</strong></h3><blockquote>
-<p>%timeit -n 100 a = (i for i in range(100000))%timeit -n 100 b = [i for i in range(100000)]100 loops, best of 3: 1.54 ms per loop100 loops, best of 3: 4.56 ms per loop</p>
-</blockquote>
-<p>使用()得到的是一个 generator 对象，所需要的内存空间与列表的大小无关，所以效率会高一些。在具体应用上，比如 set(i for i in range(100000))会比 set([i for i in range(100000)])快。</p>
-<p>但是对于需要循环遍历的情况：</p>
-<blockquote>
-<p>%timeit -n 10 for x in (i for i in range(100000)): pass%timeit -n 10 for x in [i for i in range(100000)]: pass10 loops, best of 3: 6.51 ms per loop10 loops, best of 3: 5.54 ms per loop</p>
-</blockquote>
-<p>后者的效率反而更高，但是如果循环里有 break,用 generator 的好处是显而易见的。yield 也是用于创建 generator：</p>
-<blockquote>
-<p>def yield_func(ls):    </p>
-<p>​    for i in ls:</p>
-<p>​        yield i+1</p>
-<p>def not_yield_func(ls):    </p>
-<p>​    return [i+1 for i in ls]</p>
-<p>ls = range(1000000)%timeit -n 10 for i in yield_func(ls):pass</p>
-<p>%timeit -n 10 for i in not_yield_func(ls):pass</p>
-<p>10 loops, best of 3: 63.8 ms per loop</p>
-<p>10 loops, best of 3: 62.9 ms per loop</p>
-</blockquote>
-<p>对于内存不是非常大的 list，可以直接返回一个 list，但是可读性 yield 更佳(人个喜好)。</p>
-<p>python2.x 内置 generator 功能的有 xrange 函数、itertools 包等。</p>
-<p>### </p>
-<h3 id="优化循环"><a href="#优化循环" class="headerlink" title="优化循环"></a><strong>优化循环</strong></h3><p>循环之外能做的事不要放在循环内，比如下面的优化可以快一倍：</p>
-<blockquote>
-<p>a = range(10000)size_a = len(a)%timeit -n 1000 for i in a: k = len(a)%timeit -n 1000 for i in a: k = size_a</p>
-<p>1000 loops, best of 3: 569 µs per loop</p>
-<p>1000 loops, best of 3: 256 µs per loop</p>
-</blockquote>
-<h3 id="优化包含多个判断表达式的顺序"><a href="#优化包含多个判断表达式的顺序" class="headerlink" title="优化包含多个判断表达式的顺序"></a><strong>优化包含多个判断表达式的顺序</strong></h3><p>对于 and，应该把满足条件少的放在前面，对于 or，把满足条件多的放在前面。如：</p>
-<blockquote>
-<p>a = range(2000)  %timeit -n 100 [i for i in a if 10 &lt; i &lt; 20 or 1000 &lt; i &lt; 2000]%timeit -n 100 [i for i in a if 1000 &lt; i &lt; 2000 or 100 &lt; i &lt; 20]     %timeit -n 100 [i for i in a if i % 2 == 0 and i &gt; 1900]%timeit -n 100 [i for i in a if i &gt; 1900 and i % 2 == 0]</p>
-<p>100 loops, best of 3: 287 µs per loop</p>
-<p>100 loops, best of 3: 214 µs per loop</p>
-<p>100 loops, best of 3: 128 µs per loop</p>
-<p>100 loops, best of 3: 56.1 µs per loop</p>
-</blockquote>
-<h3 id="使用-join-合并迭代器中的字符串"><a href="#使用-join-合并迭代器中的字符串" class="headerlink" title="使用 join 合并迭代器中的字符串"></a><strong>使用 join 合并迭代器中的字符串</strong></h3><blockquote>
-<p>In [1]: %%timeit   …: s = ‘’   …: for i in a:   …:         s += i   …:10000 loops, best of 3: 59.8 µs per loopIn [2]: %%timeits = ‘’.join(a)   …:100000 loops, best of 3: 11.8 µs per loop</p>
-</blockquote>
-<p>join 对于累加的方式，有大约5倍的提升。</p>
-<h3 id="选择合适的格式化字符方式"><a href="#选择合适的格式化字符方式" class="headerlink" title="选择合适的格式化字符方式"></a><strong>选择合适的格式化字符方式</strong></h3><blockquote>
-<p>s1, s2 = ‘ax’, ‘bx’</p>
-<p>%timeit -n 100000 ‘abc%s%s’ % (s1, s2)</p>
-<p>%timeit -n 100000 ‘abc{0}{1}’.format(s1, s2)</p>
-<p>%timeit -n 100000 ‘abc’ + s1 + s2</p>
-<p>100000 loops, best of 3: 183 ns per loop</p>
-<p>100000 loops, best of 3: 169 ns per loop</p>
-<p>100000 loops, best of 3: 103 ns per loop</p>
-</blockquote>
-<p>三种情况中，%的方式是最慢的，但是三者的差距并不大（都非常快）。(个人觉得%的可读性最好)</p>
-<h3 id="不借助中间变量交换两个变量的值"><a href="#不借助中间变量交换两个变量的值" class="headerlink" title="不借助中间变量交换两个变量的值"></a><strong>不借助中间变量交换两个变量的值</strong></h3><blockquote>
-<p>In [3]: %%timeit -n 10000    a,b=1,2   ….: c=a;a=b;b=c;   ….:10000 loops, best of 3: 172 ns per loopIn [4]: %%timeit -n 10000</p>
-<p>a,b=1,2</p>
-<p>a,b=b,a   ….:</p>
-<p>10000 loops, best of 3: 86 ns per loop</p>
-</blockquote>
-<p>使用a,b=b,a而不是c=a;a=b;b=c;来交换a,b的值，可以快1倍以上。</p>
-<h3 id="使用-if-is"><a href="#使用-if-is" class="headerlink" title="使用 if is"></a><strong>使用 if is</strong></h3><blockquote>
-<p>a = range(10000)</p>
-<p>%timeit -n 100 [i for i in a if i == True]</p>
-<p>%timeit -n 100 [i for i in a if i is True]</p>
-<p>100 loops, best of 3: 531 µs per loop</p>
-<p>100 loops, best of 3: 362 µs per loop</p>
-</blockquote>
-<p>使用 if is True 比 if == True 将近快一倍。</p>
-<h3 id="使用级联比较x-lt-y-lt-z"><a href="#使用级联比较x-lt-y-lt-z" class="headerlink" title="使用级联比较x &lt; y &lt; z"></a><strong>使用级联比较x &lt; y &lt; z</strong></h3><blockquote>
-<p>x, y, z = 1,2,3</p>
-<p>%timeit -n 1000000 if x &lt; y &lt; z:pass</p>
-<p>%timeit -n 1000000 if x &lt; y and y &lt; z:pass</p>
-<p>1000000 loops, best of 3: 101 ns per loop</p>
-<p>1000000 loops, best of 3: 121 ns per loop</p>
-</blockquote>
-<p>x &lt; y &lt; z效率略高，而且可读性更好。</p>
-<h3 id="while-1-比-while-True-更快"><a href="#while-1-比-while-True-更快" class="headerlink" title="while 1 比 while True 更快"></a><strong>while 1 比 while True 更快</strong></h3><blockquote>
-<p>def while_1():</p>
-<p>​    n = 100000</p>
-<p>​    while 1:</p>
-<p>​        n -= 1</p>
-<p>​        if n &lt;= 0: break</p>
-<p>def while_true():    n = 100000    while True:        n -= 1        if n &lt;= 0: break    </p>
-<p>m, n = 1000000, 1000000 </p>
-<p>%timeit -n 100 while_1()%timeit -n 100 while_true()</p>
-<p>100 loops, best of 3: 3.69 ms per loop</p>
-<p>100 loops, best of 3: 5.61 ms per loop</p>
-</blockquote>
-<p>while 1 比 while true 快很多，原因是在 python2.x 中，True 是一个全局变量，而非关键字。</p>
-<h3 id="使用-而不是-pow"><a href="#使用-而不是-pow" class="headerlink" title="使用\而不是 pow**"></a><strong>使用\</strong>而不是 pow**</h3><blockquote>
-<p>%timeit -n 10000 c = pow(2,20)%timeit -n 10000 c = 2**2010000 loops, best of 3: 284 ns per loop10000 loops, best of 3: 16.9 ns per loop</p>
-</blockquote>
-<p>**就是快10倍以上！</p>
-<h3 id="使用-cProfile-cStringIO-和-cPickle-等用c实现相同功能（分别对应profile-StringIO-pickle）的包"><a href="#使用-cProfile-cStringIO-和-cPickle-等用c实现相同功能（分别对应profile-StringIO-pickle）的包" class="headerlink" title="使用 cProfile, cStringIO 和 cPickle 等用c实现相同功能（分别对应profile, StringIO, pickle）的包"></a><strong>使用 cProfile, cStringIO 和 cPickle 等用c实现相同功能（分别对应profile, StringIO, pickle）的包</strong></h3><blockquote>
-<p>import cPickle</p>
-<p>import pickle</p>
-<p>a = range(10000)</p>
-<p>%timeit -n 100 x = cPickle.dumps(a)</p>
-<p>%timeit -n 100 x = pickle.dumps(a)</p>
-<p>100 loops, best of 3: 1.58 ms per loop</p>
-<p>100 loops, best of 3: 17 ms per loop</p>
-</blockquote>
-<p>由c实现的包，速度快10倍以上！</p>
-<p><strong>使用最佳的反序列化方式</strong></p>
-<p>下面比较了 eval, cPickle, json 方式三种对相应字符串反序列化的效率：</p>
-<blockquote>
-<p>import json</p>
-<p>import cPickle</p>
-<p>a = range(10000)</p>
-<p>s1 = str(a)</p>
-<p>s2 = cPickle.dumps(a)</p>
-<p>s3 = json.dumps(a)</p>
-<p>%timeit -n 100 x = eval(s1)</p>
-<p>%timeit -n 100 x = cPickle.loads(s2)</p>
-<p>%timeit -n 100 x = json.loads(s3)</p>
-<p>100 loops, best of 3: 16.8 ms per loop</p>
-<p>100 loops, best of 3: 2.02 ms per loop</p>
-<p>100 loops, best of 3: 798 µs per loop</p>
-</blockquote>
-<p>可见 json 比 cPickle 快近3倍，比 eval 快20多倍。</p>
-<h3 id="使用C扩展-Extension"><a href="#使用C扩展-Extension" class="headerlink" title="使用C扩展(Extension)"></a><strong>使用C扩展(Extension)</strong></h3><p>目前主要有 CPython(python最常见的实现的方式)原生API, ctypes,Cython，cffi三种方式，它们的作用是使得 Python 程序可以调用由C编译成的动态链接库，其特点分别是：</p>
-<p>CPython 原生 API: 通过引入 Python.h 头文件，对应的C程序中可以直接使用Python 的数据结构。实现过程相对繁琐，但是有比较大的适用范围。</p>
-<p>ctypes: 通常用于封装(wrap)C程序，让纯 Python 程序调用动态链接库（Windows 中的 dll 或 Unix 中的 so 文件）中的函数。如果想要在 python 中使用已经有C类库，使用 ctypes 是很好的选择，有一些基准测试下，python2+ctypes 是性能最好的方式。</p>
-<p>Cython: Cython 是 CPython 的超集，用于简化编写C扩展的过程。Cython 的优点是语法简洁，可以很好地兼容 numpy 等包含大量C扩展的库。Cython 的使得场景一般是针对项目中某个算法或过程的优化。在某些测试中，可以有几百倍的性能提升。</p>
-<p>cffi: cffi 的就是 ctypes 在 pypy（详见下文）中的实现，同进也兼容 CPython。cffi提供了在 python 使用C类库的方式，可以直接在 python 代码中编写C代码，同时支持链接到已有的C类库。</p>
-<p>使用这些优化方式一般是针对已有项目性能瓶颈模块的优化，可以在少量改动原有项目的情况下大幅度地提高整个程序的运行效率。</p>
-<h3 id="并行编程"><a href="#并行编程" class="headerlink" title="并行编程"></a><strong>并行编程</strong></h3><p>因为 GIL 的存在，Python 很难充分利用多核 CPU 的优势。但是，可以通过内置的模块 multiprocessing 实现下面几种并行模式：</p>
-<p>多进程：对于 CPU 密集型的程序，可以使用 multiprocessing 的 Process,Pool 等封装好的类，通过多进程的方式实现并行计算。但是因为进程中的通信成本比较大，对于进程之间需要大量数据交互的程序效率未必有大的提高。</p>
-<p>多线程：对于 IO 密集型的程序，multiprocessing.dummy 模块使用 multiprocessing 的接口封装 threading，使得多线程编程也变得非常轻松(比如可以使用 Pool 的 map 接口，简洁高效)。</p>
-<p>分布式：multiprocessing 中的 Managers 类提供了可以在不同进程之共享数据的方式，可以在此基础上开发出分布式的程序。</p>
-<p>不同的业务场景可以选择其中的一种或几种的组合实现程序性能的优化。</p>
-<h3 id="终级大杀器：PyPy"><a href="#终级大杀器：PyPy" class="headerlink" title="终级大杀器：PyPy"></a><strong>终级大杀器：PyPy</strong></h3><p>PyPy 是用 RPython(CPython 的子集)实现的 Python，根据官网的基准测试数据，它比 CPython 实现的 Python 要快6倍以上。快的原因是使用了 Just-in-Time(JIT)编译器，即动态编译器，与静态编译器(如gcc,javac等)不同，它是利用程序运行的过程的数据进行优化。由于历史原因，目前 pypy 中还保留着 GIL，不过正在进行的 STM 项目试图将 PyPy 变成没有 GIL 的 Python。</p>
-<p>如果 python 程序中含有C扩展(非cffi的方式)，JIT 的优化效果会大打折扣，甚至比 CPython 慢（比 Numpy）。所以在 PyPy 中最好用纯 Python 或使用 cffi 扩展。</p>
-<p>随着 STM，Numpy 等项目的完善，相信 PyPy 将会替代 CPython。</p>
-<h3 id="使用性能分析工具"><a href="#使用性能分析工具" class="headerlink" title="使用性能分析工具"></a><strong>使用性能分析工具</strong></h3><p>除了上面在 ipython 使用到的 timeit 模块，还有 cProfile。cProfile 的使用方式也非常简单： python -m cProfile filename.py，filename.py 是要运行程序的文件名，可以在标准输出中看到每一个函数被调用的次数和运行的时间，从而找到程序的性能瓶颈，然后可以有针对性地优化。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a><strong>参考</strong></h3><p>[1] <a href="http://www.ibm.com/developerworks/cn/linux/l-cn-python-optim/" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/linux/l-cn-python-optim/</a></p>
-<p>[2] <a href="http://maxburstein.com/blog/speeding-up-your-python-code/" target="_blank" rel="external">http://maxburstein.com/blog/speeding-up-your-python-code/</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;优化算法时间复杂度&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;算法的时间复杂度对程序的执行效率影响最大，在 Python 中可以通过选择合适的数据结构来优化时间复杂度，如 list 和 set 查找某一个元素的时间复杂度分别是O(n)和O(1)。不同的场景有不同的优化
-    
-    </summary>
-    
-      <category term="技术小栈" scheme="https://fantasykai.cc/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
-    
-    
-      <category term="python" scheme="https://fantasykai.cc/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java 9新特性</title>
-    <link href="https://fantasykai.cc/2018/02/24/JAVA/java9%20%E6%96%B0%E7%89%B9%E6%80%A7/"/>
-    <id>https://fantasykai.cc/2018/02/24/JAVA/java9 新特性/</id>
-    <published>2018-02-23T16:00:00.000Z</published>
-    <updated>2018-02-27T12:19:30.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1、Java9新特性之—目录结构"><a href="#1、Java9新特性之—目录结构" class="headerlink" title="1、Java9新特性之—目录结构"></a>1、Java9新特性之—目录结构</h1><p>​    包含jdk8及以前的jdk版本，所有目录结构以及目录含义如图：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2018/0223/134757_QthE_3209213.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure> 
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2018/0223/134835_7knf_3209213.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>​    jdk9之后，目录结构发生变化如图：</p>
-<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/134936_Br5K_3209213.png" alt="img"></p>
-<p>​     这个新特性只要了解下就可以了，这个目录结构是方便为了接下来新特性做保证</p>
-<h1 id="2、Java9新特性之—JShell工具"><a href="#2、Java9新特性之—JShell工具" class="headerlink" title="2、Java9新特性之—JShell工具"></a>2、Java9新特性之—JShell工具</h1><p>​       怎么理解，怎么用呢？这个只是针对于java9来说，相当于cmd工具，你可以和cmd一样，直接写方法等等，不过我认为只是适用于初学者做一些最简单的运算和写一些方法：</p>
-<p>​        在cmd中打开这个工具：</p>
-<p>​        <img src="https://static.oschina.net/uploads/space/2018/0223/141123_Zanv_3209213.png" alt="img"></p>
-<p>​         进入工具后可以做一些简单的java操作</p>
-<p>​        <img src="https://static.oschina.net/uploads/space/2018/0223/141217_v4Rg_3209213.png" alt="img"></p>
-<p>​        。。。。等等，我认为只适用于初学者学习java不用其他编辑工具就可以学习java</p>
-<h1 id="3、Java9新特性之—模块化"><a href="#3、Java9新特性之—模块化" class="headerlink" title="3、Java9新特性之—模块化"></a>3、Java9新特性之—模块化</h1><p>​        一个大型的项目，比如淘宝商城等，都会包含多个模块，比如订单模块，前台模块，后台管理模块，广告位模块，会员模块…..等等，各个模块之间会相互调用，不过这种情况下会很少，只针对特殊情况，如果一个项目有30个模块系统进行开发，但是只要某个单独模块运行时，都会带动所有的模块，这样对于jvm来说在内存和性能上会很低，所以，java9提供了这一个特性，某一个模块运行的时候，jvm只会启动和它有依赖的模块，并不会加载所有的模块到内存中，这样性能大大的提高了。写法上如下：</p>
-<p>​        <img src="https://static.oschina.net/uploads/space/2018/0223/135741_hQRX_3209213.png" alt="img"></p>
-<p>​        一个项目中的两个模块，模块之间通过module-info.java来关联，在IDEA编辑器右键创建package-info.java</p>
-<p>​        <img src="https://static.oschina.net/uploads/space/2018/0223/135923_DO9V_3209213.png" alt="img"></p>
-<p>​        在这个两个模块java9Demo和java9Test中，java9demo编写一个实体类Person,在java9Test调用这样一个过程</p>
-<p>​        这个是java9Demo 将 java9Test 模块需要的文件导出 exports  把它所在的包导出 </p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">java9Demo</span>&#123;</span></div><div class="line">    exports com.mdxl.layer_cj.entity;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p> 然后在java9Test模块中创建一个package-info.java,引入java9Demo模块导出包名</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">java9Test</span>&#123;</span></div><div class="line">    requires java9Demo;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样就可以直接在java9Test中引入Person实体类了，这只是一个简单的例子。exports 控制着那些包可以被模块访问，所以不被导出的包不能被其他模块访问</p>
-<h1 id="4、Java9新特性之—多版本兼容Jar包"><a href="#4、Java9新特性之—多版本兼容Jar包" class="headerlink" title="4、Java9新特性之—多版本兼容Jar包"></a>4、Java9新特性之—多版本兼容Jar包</h1><p>​        怎么理解呢？</p>
-<p>​       好多公司用的jdk大部分还是老版本，jdk6,7 都有，他们都不敢升级主要是因为兼容的问题，但是java9做到了这一点，就是不管公司的项目是用的java6,7,8甚至5，他都可以兼容不出错，打个比方，你之前用的是iphone5，现在出现了iPhone6，iphone7，iphon8和iphone9，但是你不敢买9，因为你自己已经适应了iphone5的所有手机的运行流程，6,7,8每个手机的运行流程不一样，但是这个9很强大，它能够识别你现在所用的版本iphone是5，所以当你升级到iphone9的时候，你的这个手机运行流程还是iphone5的流程，只是在原有基础上拥有了更多的iphone9的所有优势。</p>
-<h1 id="5、Java9新特性之—接口Interface的升级"><a href="#5、Java9新特性之—接口Interface的升级" class="headerlink" title="5、Java9新特性之—接口Interface的升级"></a>5、Java9新特性之—接口Interface的升级</h1><p>​        </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">FilterProcess</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//java 7 及以前 特性  全局常量 和抽象方法</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String a =<span class="string">"22"</span>;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">process</span><span class="params">(T t)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">//java 8 特性 静态方法和默认方法</span></div><div class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">love</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"java8 特性默认方法"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">haha</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"java8 特性静态方法"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//java 8 特性 支持私有方法</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">java9</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="6、Java9新特性之—钻石操作符的升级"><a href="#6、Java9新特性之—钻石操作符的升级" class="headerlink" title="6、Java9新特性之—钻石操作符的升级"></a>6、Java9新特性之—钻石操作符的升级</h1><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//java6及以前</span></div><div class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>,<span class="built_in">String</span>&gt; map7 = <span class="keyword">new</span> HashMap&lt;<span class="built_in">String</span>,<span class="built_in">String</span>&gt;();</div><div class="line"><span class="comment">//java7和8 &lt;&gt;没有了数据类型</span></div><div class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>,<span class="built_in">String</span>&gt; map8 = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line"><span class="comment">//java9 添加了匿名内部类的功能 后面添加了大括号&#123;&#125;  可以做一些细节的操作</span></div><div class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>,<span class="built_in">String</span>&gt; map9 = <span class="keyword">new</span> HashMap&lt;&gt;()&#123;&#125;;</div></pre></td></tr></table></figure>
-<h1 id="7、Java9新特性之—异常处理try升级"><a href="#7、Java9新特性之—异常处理try升级" class="headerlink" title="7、Java9新特性之—异常处理try升级"></a>7、Java9新特性之—异常处理try升级</h1><p>​    首先看下jdk6,7,8,9 的try catch的比较</p>
-<p>​    Java6处理方式：</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//java7及以前写法  每一个流打开的时候都要关闭</span></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test7</span><span class="params">()</span></span>&#123;</div><div class="line">    InputStreamReader reader = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">try</span>&#123;</div><div class="line">        reader = <span class="keyword">new</span> InputStreamReader(System.in);</div><div class="line">        reader.read();</div><div class="line">    &#125;<span class="keyword">catch</span> (IOException e)&#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;<span class="keyword">finally</span> &#123;</div><div class="line">        <span class="keyword">if</span> (reader != <span class="keyword">null</span>)&#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                reader.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​    java7,8 共同的处理方式：</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//java7和8及 每一个流打开的时候都要关闭,但是在try的括号中来进行关闭</span></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test7</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">try</span>(InputStreamReader reader =<span class="keyword">new</span> InputStreamReader(System.in))&#123;</div><div class="line">        reader.read();</div><div class="line">    &#125;<span class="keyword">catch</span> (IOException e)&#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​    java9的处理方式：</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//java9及 每一个流打开的时候都要关闭,但是在try的括号中来进行关闭，在</span></div><div class="line"><span class="comment">//java8的基础上进一步升级 直接在try括号中直接写入 变量就好，如果有多个流，就用分号隔开</span></div><div class="line"><span class="comment">//try(reader;writer)&#123;&#125;</span></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test7</span><span class="params">()</span></span>&#123;</div><div class="line">    InputStreamReader reader =<span class="keyword">new</span> InputStreamReader(System.in);</div><div class="line">    <span class="keyword">try</span>(reader)&#123;</div><div class="line">        reader.read();</div><div class="line">    &#125;<span class="keyword">catch</span> (IOException e)&#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​    这下子应该一幕了然了吧</p>
-<h1 id="8、Java9新特性之—特殊标识符增加限制"><a href="#8、Java9新特性之—特殊标识符增加限制" class="headerlink" title="8、Java9新特性之—特殊标识符增加限制"></a>8、Java9新特性之—特殊标识符增加限制</h1><p>​    java8 之前 String _ =”hello”;  这样的标识符可以用，java9就用不到。</p>
-<h1 id="9、Java9新特性之—String底层存储结构更换"><a href="#9、Java9新特性之—String底层存储结构更换" class="headerlink" title="9、Java9新特性之—String底层存储结构更换"></a>9、Java9新特性之—String底层存储结构更换</h1><p>​    java8之前 String的底层结构类型都是 char[] ,但是java9 就替换成 byte[] 这样来讲，更节省了空间和提高了性能</p>
-<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/144044_FEnG_3209213.png" alt="img"></p>
-<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/144120_QBpj_3209213.png" alt="img"></p>
-<p>​    之所以替换是因为 之前一直是最小单位是一个char，用到两个byte,但是java8是基于latin1的，而这个latin1编码可以用一个byte标识，所以当你数据明明可以用到一个byte的时候，我们用到了一个最小单位chat两个byte，就多出了一个byte的空间。所以java9在这一方面进行了更新，现在的java9 是基于ISO/latin1/Utf-16  ,latin1和ISO用一个byte标识,UTF-16用两个byte标识，java9会自动识别用哪个编码，当数据用到1byte，就会使用iSO或者latin1 ，当空间数据满足2byte的时候，自动使用utf-16,节省了很多空间</p>
-<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/144527_x6kt_3209213.png" alt="img"></p>
-<p><strong>*</strong>同理，StringBuilder StringBuffer也更换了底层数据结构<strong><strong><strong>*</strong></strong></strong></p>
-<h1 id="10、Java9新特性之—Stream-API-新方法的添加"><a href="#10、Java9新特性之—Stream-API-新方法的添加" class="headerlink" title="10、Java9新特性之—Stream API 新方法的添加"></a>10、Java9新特性之—Stream API 新方法的添加</h1><p>​    在原有Stream API 新添加了4个方法，takeWhile dropWhile ofNullable iterate(新重载方法)</p>
-<p>​    首先解释 takeWhile 当达到一定条件就结束：输出结果为45 43，如图</p>
-<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/144923_sNmR_3209213.png" alt="img"></p>
-<p>​    而 dropWhile 则和takeWhile 相反</p>
-<p>​    ofNullable, 在java8中 Stream中的元素不能完全为null，否则空指针异常，而在java9的升级中，允许创建null</p>
-<p>​    iterate 不加条件无线循环</p>
-<p>​    <img src="https://static.oschina.net/uploads/space/2018/0223/145645_gggz_3209213.png" alt="img"></p>
-<h1 id="11、Java9新特性之—引进HttpClient"><a href="#11、Java9新特性之—引进HttpClient" class="headerlink" title="11、Java9新特性之—引进HttpClient"></a>11、Java9新特性之—引进HttpClient</h1><p>​    以往我们都是通过maven添加httpclient ,java9直接引入即可</p>
-<p>Java9所有特性都是为了提高性能和内存。。。。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1、Java9新特性之—目录结构&quot;&gt;&lt;a href=&quot;#1、Java9新特性之—目录结构&quot; class=&quot;headerlink&quot; title=&quot;1、Java9新特性之—目录结构&quot;&gt;&lt;/a&gt;1、Java9新特性之—目录结构&lt;/h1&gt;&lt;p&gt;​    包含jdk8及以前
-    
-    </summary>
-    
-      <category term="技术小栈" scheme="https://fantasykai.cc/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
-    
-    
-      <category term="java" scheme="https://fantasykai.cc/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mac 安装opencv 报错，解决</title>
-    <link href="https://fantasykai.cc/2018/02/11/mac/mac%E5%AE%89%E8%A3%85opencv3.4/"/>
-    <id>https://fantasykai.cc/2018/02/11/mac/mac安装opencv3.4/</id>
-    <published>2018-02-10T16:00:00.000Z</published>
-    <updated>2018-02-25T10:02:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="mac-安装opencv-报错，解决"><a href="#mac-安装opencv-报错，解决" class="headerlink" title="mac 安装opencv 报错，解决"></a>mac 安装opencv 报错，解决</h3><p>安装成功后，引入 cv2 报错</p>
-<p>Python 3.6.4<br>[GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.39.2)] on darwin<br>Type “help”, “copyright”, “credits” or “license” for more information.</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>import cv2<br>ceback (most recent call last):<br>ile “<stdin>“, line 1, in <module><br>ortError: dlopen(/usr/local/Cellar/opencv/3.4.0_1/lib/python3.6/site-packages/cv2.cpython-36m-darwin.so, 2): Library not loaded: /usr/local/opt/jack/lib/libjack.0.dylib<br>eferenced from: /usr/local/opt/ffmpeg/lib/libavcodec.57.dylib<br>eason: image not found</module></stdin></p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>最终通过下面命令解决：</p>
-<p>​        brew install opencv3 –with-contrib –with-python3</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;mac-安装opencv-报错，解决&quot;&gt;&lt;a href=&quot;#mac-安装opencv-报错，解决&quot; class=&quot;headerlink&quot; title=&quot;mac 安装opencv 报错，解决&quot;&gt;&lt;/a&gt;mac 安装opencv 报错，解决&lt;/h3&gt;&lt;p&gt;安装成功后，
     
     </summary>
     
