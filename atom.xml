@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2018-12-25T13:39:36.912Z</updated>
+  <updated>2018-12-25T11:25:28.648Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -14,112 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://fantasykai.cc/2018/12/25/recording/CAP%20%E5%AE%9A%E7%90%86%E7%9A%84%E5%90%AB%E4%B9%89/"/>
-    <id>https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/</id>
-    <published>2018-12-25T13:21:18.341Z</published>
-    <updated>2018-12-25T13:39:36.912Z</updated>
-    
-    <content type="html"><![CDATA[<p>title: CAP定理理解<br>date: 2018-08-04<br>categories: 技术小栈<br>tags: CAP</p>
-<p>–</p>
-<h1 id="CAP-定理的含义"><a href="#CAP-定理的含义" class="headerlink" title="CAP 定理的含义"></a>CAP 定理的含义</h1><p>转自阮一峰老师的博客 </p>
-<p><a href="http://www.ruanyifeng.com/home.html" target="_blank" rel="external">阮一峰</a></p>
-<p>分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。</p>
-<p>分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。</p>
-<p>本文介绍该定理。它其实很好懂，而且是显而易见的。下面的内容主要参考了 Michael Whittaker 的<a href="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/" target="_blank" rel="external">文章</a>。</p>
-<h2 id="一、分布式系统的三个指标"><a href="#一、分布式系统的三个指标" class="headerlink" title="一、分布式系统的三个指标"></a>一、分布式系统的三个指标</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071607.jpg" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>1998年，加州大学的计算机科学家 Eric Brewer 提出，分布式系统有三个指标。</p>
-<blockquote>
-<ul>
-<li>Consistency</li>
-<li>Availability</li>
-<li>Partition tolerance</li>
-</ul>
-</blockquote>
-<p>它们的第一个字母分别是 C、A、P。</p>
-<p>Eric Brewer 说，这三个指标不可能同时做到。这个结论就叫做 CAP 定理。</p>
-<h2 id="二、Partition-tolerance"><a href="#二、Partition-tolerance" class="headerlink" title="二、Partition tolerance"></a>二、Partition tolerance</h2><p>先看 Partition tolerance，中文叫做”分区容错”。</p>
-<p>大多数分布式系统都分布在多个子网络。每个子网络就叫做一个区（partition）。分区容错的意思是，区间通信可能失败。比如，一台服务器放在中国，另一台服务器放在美国，这就是两个区，它们之间可能无法通信。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071601.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>上图中，G1 和 G2 是两台跨区的服务器。G1 向 G2 发送一条消息，G2 可能无法收到。系统设计的时候，必须考虑到这种情况。</p>
-<p>一般来说，分区容错无法避免，因此可以认为 CAP 的 P 总是成立。CAP 定理告诉我们，剩下的 C 和 A 无法同时做到。</p>
-<h2 id="三、Consistency"><a href="#三、Consistency" class="headerlink" title="三、Consistency"></a>三、Consistency</h2><p>Consistency 中文叫做”一致性”。意思是，写操作之后的读操作，必须返回该值。举例来说，某条记录是 v0，用户向 G1 发起一个写操作，将其改为 v1。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071602.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>接下来，用户的读操作就会得到 v1。这就叫一致性。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071603.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>问题是，用户有可能向 G2 发起读操作，由于 G2 的值没有发生变化，因此返回的是 v0。G1 和 G2 读操作的结果不一致，这就不满足一致性了。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071604.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>为了让 G2 也能变为 v1，就要在 G1 写操作的时候，让 G1 向 G2 发送一条消息，要求 G2 也改成 v1。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071605.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>这样的话，用户向 G2 发起读操作，也能得到 v1。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071606.png" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<h2 id="四、Availability"><a href="#四、Availability" class="headerlink" title="四、Availability"></a>四、Availability</h2><p>Availability 中文叫做”可用性”，意思是只要收到用户的请求，服务器就必须给出回应。</p>
-<p>用户可以选择向 G1 或 G2 发起读操作。不管是哪台服务器，只要收到请求，就必须告诉用户，到底是 v0 还是 v1，否则就不满足可用性。</p>
-<h2 id="五、Consistency-和-Availability-的矛盾"><a href="#五、Consistency-和-Availability-的矛盾" class="headerlink" title="五、Consistency 和 Availability 的矛盾"></a>五、Consistency 和 Availability 的矛盾</h2><p>一致性和可用性，为什么不可能同时成立？答案很简单，因为可能通信失败（即出现分区容错）。</p>
-<p>如果保证 G2 的一致性，那么 G1 必须在写操作时，锁定 G2 的读操作和写操作。只有数据同步后，才能重新开放读写。锁定期间，G2 不能读写，没有可用性不。</p>
-<p>如果保证 G2 的可用性，那么势必不能锁定 G2，所以一致性不成立。</p>
-<p>综上所述，G2 无法同时做到一致性和可用性。系统设计时只能选择一个目标。如果追求一致性，那么无法保证所有节点的可用性；如果追求所有节点的可用性，那就没法做到一致性。</p>
-<p>[更新 2018.7.17]</p>
-<p>读者问，在什么场合，可用性高于一致性？</p>
-<p>举例来说，发布一张网页到 CDN，多个服务器有这张网页的副本。后来发现一个错误，需要更新网页，这时只能每个服务器都更新一遍。</p>
-<p>一般来说，网页的更新不是特别强调一致性。短时期内，一些用户拿到老版本，另一些用户拿到新版本，问题不会特别大。当然，所有人最终都会看到新版本。所以，这个场合就是可用性高于一致性。</p>
-<p>（完）</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;title: CAP定理理解&lt;br&gt;date: 2018-08-04&lt;br&gt;categories: 技术小栈&lt;br&gt;tags: CAP&lt;/p&gt;
-&lt;p&gt;–&lt;/p&gt;
-&lt;h1 id=&quot;CAP-定理的含义&quot;&gt;&lt;a href=&quot;#CAP-定理的含义&quot; class=&quot;headerlin
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>WebAssembly 的未来：将逐渐解锁整个“技能树”</title>
@@ -615,6 +509,112 @@
   </entry>
   
   <entry>
+    <title>CAP定理的含义</title>
+    <link href="https://fantasykai.cc/2018/08/04/recording/CAP%E5%AE%9A%E7%90%86%E7%9A%84%E5%90%AB%E4%B9%89/"/>
+    <id>https://fantasykai.cc/2018/08/04/recording/CAP定理的含义/</id>
+    <published>2018-08-03T16:00:00.000Z</published>
+    <updated>2018-12-25T13:42:37.403Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="CAP-定理的含义"><a href="#CAP-定理的含义" class="headerlink" title="CAP 定理的含义"></a>CAP 定理的含义</h1><p>转自阮一峰老师的博客 </p>
+<p><a href="http://www.ruanyifeng.com/home.html" target="_blank" rel="external">阮一峰</a></p>
+<p>分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。</p>
+<p>分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。</p>
+<p>本文介绍该定理。它其实很好懂，而且是显而易见的。下面的内容主要参考了 Michael Whittaker 的<a href="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/" target="_blank" rel="external">文章</a>。</p>
+<h2 id="一、分布式系统的三个指标"><a href="#一、分布式系统的三个指标" class="headerlink" title="一、分布式系统的三个指标"></a>一、分布式系统的三个指标</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071607.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>1998年，加州大学的计算机科学家 Eric Brewer 提出，分布式系统有三个指标。</p>
+<blockquote>
+<ul>
+<li>Consistency</li>
+<li>Availability</li>
+<li>Partition tolerance</li>
+</ul>
+</blockquote>
+<p>它们的第一个字母分别是 C、A、P。</p>
+<p>Eric Brewer 说，这三个指标不可能同时做到。这个结论就叫做 CAP 定理。</p>
+<h2 id="二、Partition-tolerance"><a href="#二、Partition-tolerance" class="headerlink" title="二、Partition tolerance"></a>二、Partition tolerance</h2><p>先看 Partition tolerance，中文叫做”分区容错”。</p>
+<p>大多数分布式系统都分布在多个子网络。每个子网络就叫做一个区（partition）。分区容错的意思是，区间通信可能失败。比如，一台服务器放在中国，另一台服务器放在美国，这就是两个区，它们之间可能无法通信。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071601.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>上图中，G1 和 G2 是两台跨区的服务器。G1 向 G2 发送一条消息，G2 可能无法收到。系统设计的时候，必须考虑到这种情况。</p>
+<p>一般来说，分区容错无法避免，因此可以认为 CAP 的 P 总是成立。CAP 定理告诉我们，剩下的 C 和 A 无法同时做到。</p>
+<h2 id="三、Consistency"><a href="#三、Consistency" class="headerlink" title="三、Consistency"></a>三、Consistency</h2><p>Consistency 中文叫做”一致性”。意思是，写操作之后的读操作，必须返回该值。举例来说，某条记录是 v0，用户向 G1 发起一个写操作，将其改为 v1。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071602.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>接下来，用户的读操作就会得到 v1。这就叫一致性。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071603.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>问题是，用户有可能向 G2 发起读操作，由于 G2 的值没有发生变化，因此返回的是 v0。G1 和 G2 读操作的结果不一致，这就不满足一致性了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071604.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>为了让 G2 也能变为 v1，就要在 G1 写操作的时候，让 G1 向 G2 发送一条消息，要求 G2 也改成 v1。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071605.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>这样的话，用户向 G2 发起读操作，也能得到 v1。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://www.wangbase.com/blogimg/asset/201807/bg2018071606.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<h2 id="四、Availability"><a href="#四、Availability" class="headerlink" title="四、Availability"></a>四、Availability</h2><p>Availability 中文叫做”可用性”，意思是只要收到用户的请求，服务器就必须给出回应。</p>
+<p>用户可以选择向 G1 或 G2 发起读操作。不管是哪台服务器，只要收到请求，就必须告诉用户，到底是 v0 还是 v1，否则就不满足可用性。</p>
+<h2 id="五、Consistency-和-Availability-的矛盾"><a href="#五、Consistency-和-Availability-的矛盾" class="headerlink" title="五、Consistency 和 Availability 的矛盾"></a>五、Consistency 和 Availability 的矛盾</h2><p>一致性和可用性，为什么不可能同时成立？答案很简单，因为可能通信失败（即出现分区容错）。</p>
+<p>如果保证 G2 的一致性，那么 G1 必须在写操作时，锁定 G2 的读操作和写操作。只有数据同步后，才能重新开放读写。锁定期间，G2 不能读写，没有可用性不。</p>
+<p>如果保证 G2 的可用性，那么势必不能锁定 G2，所以一致性不成立。</p>
+<p>综上所述，G2 无法同时做到一致性和可用性。系统设计时只能选择一个目标。如果追求一致性，那么无法保证所有节点的可用性；如果追求所有节点的可用性，那就没法做到一致性。</p>
+<p>[更新 2018.7.17]</p>
+<p>读者问，在什么场合，可用性高于一致性？</p>
+<p>举例来说，发布一张网页到 CDN，多个服务器有这张网页的副本。后来发现一个错误，需要更新网页，这时只能每个服务器都更新一遍。</p>
+<p>一般来说，网页的更新不是特别强调一致性。短时期内，一些用户拿到老版本，另一些用户拿到新版本，问题不会特别大。当然，所有人最终都会看到新版本。所以，这个场合就是可用性高于一致性。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;CAP-定理的含义&quot;&gt;&lt;a href=&quot;#CAP-定理的含义&quot; class=&quot;headerlink&quot; title=&quot;CAP 定理的含义&quot;&gt;&lt;/a&gt;CAP 定理的含义&lt;/h1&gt;&lt;p&gt;转自阮一峰老师的博客 &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.rua
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="CAP" scheme="https://fantasykai.cc/tags/CAP/"/>
+    
+  </entry>
+  
+  <entry>
     <title>笔记0729</title>
     <link href="https://fantasykai.cc/2018/07/29/recording/%E7%AC%94%E8%AE%B00729/"/>
     <id>https://fantasykai.cc/2018/07/29/recording/笔记0729/</id>
@@ -777,6 +777,34 @@
   </entry>
   
   <entry>
+    <title>笔记0708</title>
+    <link href="https://fantasykai.cc/2018/07/08/recording/%E7%AC%94%E8%AE%B00708/"/>
+    <id>https://fantasykai.cc/2018/07/08/recording/笔记0708/</id>
+    <published>2018-07-07T16:00:00.000Z</published>
+    <updated>2018-12-25T13:11:17.248Z</updated>
+    
+    <content type="html"><![CDATA[<p>  互联网+时代的四个关键词，分别是专注、极致、口碑和快速，这四大特点</p>
+<hr>
+<p>极致有三个支撑点，<br>第一叫产品思维。’<br>第二个叫痛点思维。我们要了解客户的三个点，叫痛点、痒点和兴奋点。<br>第三个叫尖叫点思维。你的产品一定有一款，哪怕是一点点也行，让人产生尖叫的感觉。</p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  互联网+时代的四个关键词，分别是专注、极致、口碑和快速，这四大特点&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;极致有三个支撑点，&lt;br&gt;第一叫产品思维。’&lt;br&gt;第二个叫痛点思维。我们要了解客户的三个点，叫痛点、痒点和兴奋点。&lt;br&gt;第三个叫尖叫点思维。你的产品一定有一款，哪怕是一点点也
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java内存模型总结</title>
     <link href="https://fantasykai.cc/2018/07/08/JAVA/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/"/>
     <id>https://fantasykai.cc/2018/07/08/JAVA/Java内存模型总结/</id>
@@ -896,34 +924,6 @@
     
     
       <category term="java" scheme="https://fantasykai.cc/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>笔记0708</title>
-    <link href="https://fantasykai.cc/2018/07/08/recording/%E7%AC%94%E8%AE%B00708/"/>
-    <id>https://fantasykai.cc/2018/07/08/recording/笔记0708/</id>
-    <published>2018-07-07T16:00:00.000Z</published>
-    <updated>2018-12-25T13:11:17.248Z</updated>
-    
-    <content type="html"><![CDATA[<p>  互联网+时代的四个关键词，分别是专注、极致、口碑和快速，这四大特点</p>
-<hr>
-<p>极致有三个支撑点，<br>第一叫产品思维。’<br>第二个叫痛点思维。我们要了解客户的三个点，叫痛点、痒点和兴奋点。<br>第三个叫尖叫点思维。你的产品一定有一款，哪怕是一点点也行，让人产生尖叫的感觉。</p>
-<hr>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;  互联网+时代的四个关键词，分别是专注、极致、口碑和快速，这四大特点&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;极致有三个支撑点，&lt;br&gt;第一叫产品思维。’&lt;br&gt;第二个叫痛点思维。我们要了解客户的三个点，叫痛点、痒点和兴奋点。&lt;br&gt;第三个叫尖叫点思维。你的产品一定有一款，哪怕是一点点也
-    
-    </summary>
-    
-      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
-    
-    
-      <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
     
   </entry>
   

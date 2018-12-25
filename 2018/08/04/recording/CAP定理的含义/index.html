@@ -17,23 +17,23 @@
     <meta charset="utf-8">
     
     
-    <link rel="canonical" href="https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/">
+    <link rel="canonical" href="https://fantasykai.cc/2018/08/04/recording/CAP定理的含义/">
     
     
-    <title>No title | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <title>CAP定理的含义 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#589baf">
     
     
-    <meta name="keywords" content="">
-    <meta name="description" content="title: CAP定理理解date: 2018-08-04categories: 技术小栈tags: CAP – CAP 定理的含义转自阮一峰老师的博客  阮一峰 分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。 分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 本文介绍该定理。它其实很好懂">
-<meta name="keywords" content="java python  javaScript">
+    <meta name="keywords" content="CAP">
+    <meta name="description" content="CAP 定理的含义转自阮一峰老师的博客  阮一峰 分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。 分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 本文介绍该定理。它其实很好懂，而且是显而易见的。下面的内容主要参考了 Michael Whittaker 的文章。 一、分布式系统的三个指标">
+<meta name="keywords" content="CAP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="No title">
-<meta property="og:url" content="https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/index.html">
+<meta property="og:title" content="CAP定理的含义">
+<meta property="og:url" content="https://fantasykai.cc/2018/08/04/recording/CAP定理的含义/index.html">
 <meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
-<meta property="og:description" content="title: CAP定理理解date: 2018-08-04categories: 技术小栈tags: CAP – CAP 定理的含义转自阮一峰老师的博客  阮一峰 分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。 分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 本文介绍该定理。它其实很好懂">
+<meta property="og:description" content="CAP 定理的含义转自阮一峰老师的博客  阮一峰 分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。 分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 本文介绍该定理。它其实很好懂，而且是显而易见的。下面的内容主要参考了 Michael Whittaker 的文章。 一、分布式系统的三个指标">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.wangbase.com/blogimg/asset/201807/bg2018071607.jpg">
 <meta property="og:image" content="https://www.wangbase.com/blogimg/asset/201807/bg2018071601.png">
@@ -42,10 +42,10 @@
 <meta property="og:image" content="https://www.wangbase.com/blogimg/asset/201807/bg2018071604.png">
 <meta property="og:image" content="https://www.wangbase.com/blogimg/asset/201807/bg2018071605.png">
 <meta property="og:image" content="https://www.wangbase.com/blogimg/asset/201807/bg2018071606.png">
-<meta property="og:updated_time" content="2018-12-25T13:39:36.912Z">
+<meta property="og:updated_time" content="2018-12-25T13:42:37.403Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="No title">
-<meta name="twitter:description" content="title: CAP定理理解date: 2018-08-04categories: 技术小栈tags: CAP – CAP 定理的含义转自阮一峰老师的博客  阮一峰 分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。 分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 本文介绍该定理。它其实很好懂">
+<meta name="twitter:title" content="CAP定理的含义">
+<meta name="twitter:description" content="CAP 定理的含义转自阮一峰老师的博客  阮一峰 分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。 分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 本文介绍该定理。它其实很好懂，而且是显而易见的。下面的内容主要参考了 Michael Whittaker 的文章。 一、分布式系统的三个指标">
 <meta name="twitter:image" content="https://www.wangbase.com/blogimg/asset/201807/bg2018071607.jpg">
     
         <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
@@ -144,7 +144,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis"></div>
+        <div class="flex-col header-title ellipsis">CAP定理的含义</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -166,13 +166,15 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title"></h1>
+        <h1 class="title">CAP定理的含义</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-12-25T13:21:18.341Z" itemprop="datePublished" class="page-time">
-  2018-12-25
+                <time datetime="2018-08-03T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-08-04
 </time>
 
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/杂记/">杂记</a></li></ul>
 
             
         </h5>
@@ -193,15 +195,17 @@
         </nav>
     </aside>
     
-<article id="post-recording/CAP 定理的含义"
+<article id="post-recording/CAP定理的含义"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title"></h1>
+        <h1 class="post-card-title">CAP定理的含义</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-12-25 21:21:18" datetime="2018-12-25T13:21:18.341Z"  itemprop="datePublished">2018-12-25</time>
+            <time class="post-time" title="2018-08-04 00:00:00" datetime="2018-08-03T16:00:00.000Z"  itemprop="datePublished">2018-08-04</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/杂记/">杂记</a></li></ul>
+
 
 
             
@@ -212,9 +216,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>title: CAP定理理解<br>date: 2018-08-04<br>categories: 技术小栈<br>tags: CAP</p>
-<p>–</p>
-<h1 id="CAP-定理的含义"><a href="#CAP-定理的含义" class="headerlink" title="CAP 定理的含义"></a>CAP 定理的含义</h1><p>转自阮一峰老师的博客 </p>
+            <h1 id="CAP-定理的含义"><a href="#CAP-定理的含义" class="headerlink" title="CAP 定理的含义"></a>CAP 定理的含义</h1><p>转自阮一峰老师的博客 </p>
 <p><a href="http://www.ruanyifeng.com/home.html" target="_blank" rel="external">阮一峰</a></p>
 <p>分布式系统（distributed system）正变得越来越重要，大型网站几乎都是分布式的。</p>
 <p>分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。</p>
@@ -297,7 +299,6 @@
 <p>读者问，在什么场合，可用性高于一致性？</p>
 <p>举例来说，发布一张网页到 CDN，多个服务器有这张网页的副本。后来发现一个错误，需要更新网页，这时只能每个服务器都更新一遍。</p>
 <p>一般来说，网页的更新不是特别强调一致性。短时期内，一些用户拿到老版本，另一些用户拿到新版本，问题不会特别大。当然，所有人最终都会看到新版本。所以，这个场合就是可用性高于一致性。</p>
-<p>（完）</p>
 
         </div>
 
@@ -305,12 +306,12 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-12-25T13:39:36.912Z" itemprop="dateUpdated">2018-12-25 21:39:36</time>
+    最后更新时间：<time datetime="2018-12-25T13:42:37.403Z" itemprop="dateUpdated">2018-12-25 21:42:37</time>
 </span><br>
 
 
         
-        转载请署名：  <a href="/2018/12/25/recording/CAP 定理的含义/" target="_blank" rel="external">https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/</a>
+        转载请署名：  <a href="/2018/08/04/recording/CAP定理的含义/" target="_blank" rel="external">https://fantasykai.cc/2018/08/04/recording/CAP定理的含义/</a>
         
     </div>
     <footer>
@@ -330,6 +331,8 @@
 
         <div class="post-footer">
             
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CAP/">CAP</a></li></ul>
+
 
             
 <div class="page-share-wrap">
@@ -338,7 +341,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/&title=kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/08/04/recording/CAP定理的含义/&title=《CAP定理的含义》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -348,22 +351,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/&title=kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/08/04/recording/CAP定理的含义/&title=《CAP定理的含义》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/08/04/recording/CAP定理的含义/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/&via=https://fantasykai.cc" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CAP定理的含义》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/08/04/recording/CAP定理的含义/&via=https://fantasykai.cc" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/08/04/recording/CAP定理的含义/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -383,14 +386,21 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/08/30/recording/笔记0830/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">笔记0830</h4>
+      </a>
+    </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/" id="post-next" class="post-nav-link">
+      <a href="/2018/07/29/recording/笔记0729/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">WebAssembly 的未来：将逐渐解锁整个“技能树”</h4>
+        <h4 class="title">笔记0729</h4>
       </a>
     </div>
   
@@ -488,7 +498,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/&title=《No title》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/08/04/recording/CAP定理的含义/&title=《CAP定理的含义》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -498,22 +508,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/&title=《No title》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/08/04/recording/CAP定理的含义/&title=《CAP定理的含义》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/08/04/recording/CAP定理的含义/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/&via=https://fantasykai.cc" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CAP定理的含义》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/08/04/recording/CAP定理的含义/&via=https://fantasykai.cc" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/12/25/recording/CAP 定理的含义/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/08/04/recording/CAP定理的含义/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -524,7 +534,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwElEQVR42u3aQW7jMBAEQP//0w6QW+BY6eaQtgOUTouNpGVpAXLSM7dbfN2/r8e/ebye/fTZs4/vT+7ffOHh4eEtLb1d7vU91wvN33n95uRZPDw8vHO868Og3con9+x6Gx4eHt4n8NoCN19uW9bj4eHh/UdefmC0n+YjDgY8PDy8gJcEDddPtT9d+5QHsxY8PDy8mDcpZ9/154P9PTw8PLxBVz1vdCXbfT6OsG21eHh4eAd41+Vvvrh2mKCNMNpT4JZU93h4eHgDXhtMJK9uBwLycavRfwweHh7emJe/bq3sbptbdbl8/Snx8PDwjvHadlRSQLcbfdJsy8toPDw8vNO81w8E5KFGG4hEOTEeHh7eVl6bZLQDT5O4tj5y8PDw8A7w1mLZ/J9sB6fWCu5RGwwPDw+vfEMb1+69px07qAt3PDw8vAO8BNa2x9rtfhIN54EvHh4e3i5esh2vlcvzwDe/5ykbDw8P7yW8SZyabOu72mzRIYSHh4d3gJcvK2mDJTHrWktsMlKAh4eHt5c3CVvbTX9X3JA06vDw8PDO8Ua/6sdDBu2xMY+Di/MHDw8Pr+Ql4WwbE7SfLIkb2mL6x7mHh4eHd4CXHwn1PMJ4HHYtzqhTFjw8PLyS1z7WDhO0TazFuOFZjIuHh4e3lddi1uKJ6+OkDYXXynQ8PDy8Xby87ZQ37/MhgzyiXXwPHh4e3mFeDpt8gqREzkPbqAGGh4eHt5XXNvjXtun22RxWxMp4eHh4m3j38spL4UnTK49F/jiQ8PDw8A7w5u35dtRgUiLnwTEeHh7eaV7biGoX1D7bHgzR7wp4eHh4B3iTKGFtWe0BsHjh4eHhvZXXNu/bNlgbdkQfBQ8PD+9jePne2xboySfI4w88PDy8c7w2jJiMEewt36ODAQ8PD28rbzLY1BbNyfxXyzgSWODh4eH9zvsCHp8iFtMerhAAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHUlEQVR42u3aQZKEIAwFUO9/aecCrf4EnCrhsZrqaYHnIk1IjiMe58XofTN59nhjYGBgfJZx3o5kgfun7mfI1314iRgYGBswrjZX3VA+Q++bl59jYGBgBEGw+l8MDAyMtxn3uWTvqfvDJQYGBkYSKJOF88NfNXmelotjYGB8kJHfuv//36/UNzAwMD7FOIsjCb55UJ62KwwMjKUZeYAbJ1WLnfl+MDAwdmPcJ5C9FoqhzeWHRQwMjKUZeZGgukB+Ddd7EZerY2BgLMRILtx7LRf5SymkqdWsFwMDYyFGnnzmsLx4Wf1NeOgWwcDAWI6RHMWqS440T+R7wMDA2I0xK5hWywPVjT68UAwMjKUZvQS1d+mW83qXdBgYGOsxRlrBqkE2Ca95G8ePXwwMDIylGdVLsZEEtReOHz7BwMDYgJEf3XqJ5UihNAJjYGBsxphbEsh7JHIMBgbGbox8073r+zwQ5ynxQ30DAwNjG0a19SFfrHdMjEqnGBgYmzGqjRS9okL+yqLDJQYGxgaM/ACXB8Q3Lu8KDWEYGBiLMnrT5eHyxWYODAyMRRlncYy3XPRmeKBiYGAszchHtXgwntzm13YYGBg7MPIQOd48kRcGygVODAyMDRizAt+sImU19GNgYGAkYTFPg+cWCTAwMDDy4kF+vEtCdn7ExMDA2IeRX9YnUa56xV+dHwMDYzdGflCbNXUSrGe1aGBgYHyc8QcmIWC+Dx6o6wAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 
