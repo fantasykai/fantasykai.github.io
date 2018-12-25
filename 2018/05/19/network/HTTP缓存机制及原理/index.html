@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2018/05/19/network/HTTP缓存机制及原理/">
+    
+    
+    <title>HTTP缓存机制及原理总结 | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="HTTP">
+    <meta name="description" content="彻底弄懂HTTP缓存机制及原理感谢作者！ 原文地址 前言 Http 缓存机制作为 web 性能优化的重要手段，对于从事 Web 开发的同学们来说，应该是知识体系库中的一个基础环节，同时对于有志成为前端架构师的同学来说是必备的知识技能。但是对于很多前端同学来说，仅仅只是知道浏览器会对请求的静态文件进行缓存，但是为什么被缓存，缓存是怎样生效的，却并不是很清楚。在此，我会尝试用简单明了的文字，像大家系统">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP缓存机制及原理总结">
+<meta property="og:url" content="https://fantasykai.cc/2018/05/19/network/HTTP缓存机制及原理/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="彻底弄懂HTTP缓存机制及原理感谢作者！ 原文地址 前言 Http 缓存机制作为 web 性能优化的重要手段，对于从事 Web 开发的同学们来说，应该是知识体系库中的一个基础环节，同时对于有志成为前端架构师的同学来说是必备的知识技能。但是对于很多前端同学来说，仅仅只是知道浏览器会对请求的静态文件进行缓存，但是为什么被缓存，缓存是怎样生效的，却并不是很清楚。在此，我会尝试用简单明了的文字，像大家系统">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141639213-1923993391.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210135521072-1812985836.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141716838-764535017.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141755072-1978466289.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141836104-1513192908.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141911682-1756976419.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141921697-379821074.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142249541-789089587.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142307166-135607673.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142054182-1766818273.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142115479-1921175758.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142134291-1976923079.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141453338-1263276228.png">
+<meta property="og:updated_time" content="2018-12-25T12:26:31.435Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP缓存机制及原理总结">
+<meta name="twitter:description" content="彻底弄懂HTTP缓存机制及原理感谢作者！ 原文地址 前言 Http 缓存机制作为 web 性能优化的重要手段，对于从事 Web 开发的同学们来说，应该是知识体系库中的一个基础环节，同时对于有志成为前端架构师的同学来说是必备的知识技能。但是对于很多前端同学来说，仅仅只是知道浏览器会对请求的静态文件进行缓存，但是为什么被缓存，缓存是怎样生效的，却并不是很清楚。在此，我会尝试用简单明了的文字，像大家系统">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141639213-1923993391.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">HTTP缓存机制及原理总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">HTTP缓存机制及原理总结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-18T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-05-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络/">网络</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#彻底弄懂HTTP缓存机制及原理"><span class="post-toc-number">1.</span> <span class="post-toc-text">彻底弄懂HTTP缓存机制及原理</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-network/HTTP缓存机制及原理"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">HTTP缓存机制及原理总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-19 00:00:00" datetime="2018-05-18T16:00:00.000Z"  itemprop="datePublished">2018-05-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络/">网络</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="彻底弄懂HTTP缓存机制及原理"><a href="#彻底弄懂HTTP缓存机制及原理" class="headerlink" title="彻底弄懂HTTP缓存机制及原理"></a><a href="https://www.cnblogs.com/chenqf/p/6386163.html" target="_blank" rel="external">彻底弄懂HTTP缓存机制及原理</a></h1><p>感谢作者！</p>
+<p><a href="https://www.cnblogs.com/chenqf/p/6386163.html" target="_blank" rel="external">原文地址</a></p>
+<p>前言</p>
+<p>Http 缓存机制作为 web 性能优化的重要手段，对于从事 Web 开发的同学们来说，应该是知识体系库中的一个基础环节，同时对于有志成为前端架构师的同学来说是必备的知识技能。<br>但是对于很多前端同学来说，仅仅只是知道浏览器会对请求的静态文件进行缓存，但是为什么被缓存，缓存是怎样生效的，却并不是很清楚。<br>在此，我会尝试用简单明了的文字，像大家系统的介绍HTTP缓存机制，期望对各位正确的理解前端缓存有所帮助。</p>
+<p>在介绍HTTP缓存之前，作为知识铺垫，先简单介绍一下HTTP报文</p>
+<p>HTTP报文就是浏览器和服务器间通信时发送及响应的数据块。<br>浏览器向服务器请求数据，发送请求(request)报文；服务器向浏览器返回数据，返回响应(response)报文。<br>报文信息主要分为两部分<br>1.包含属性的首部(header)————————–附加信息（cookie，缓存信息等）与缓存相关的规则信息，均包含在header中<br>2.包含数据的主体部分(body)———————–HTTP请求真正想要传输的部分</p>
+<p>缓存规则解析</p>
+<p>为方便大家理解，我们认为浏览器存在一个缓存数据库,用于存储缓存信息。<br>在客户端第一次请求数据时，此时缓存数据库中没有对应的缓存数据，需要请求服务器，服务器返回后，将数据存储至缓存数据库中。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141639213-1923993391.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>HTTP缓存有多种规则，根据是否需要重新向服务器发起请求来分类，我将其分为两大类(强制缓存，对比缓存)<br>在详细介绍这两种规则之前，先通过时序图的方式，让大家对这两种规则有个简单了解。</p>
+<p>已存在缓存数据时，仅基于强制缓存，请求数据的流程如下</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210135521072-1812985836.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>已存在缓存数据时，仅基于对比缓存，请求数据的流程如下<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141716838-764535017.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<p>对缓存机制不太了解的同学可能会问，基于对比缓存的流程下，不管是否使用缓存，都需要向服务器发送请求，那么还用缓存干什么？<br>这个问题，我们暂且放下，后文在详细介绍每种缓存规则的时候，会带给大家答案。</p>
+<p>我们可以看到两类缓存规则的不同，强制缓存如果生效，不需要再和服务器发生交互，而对比缓存不管是否生效，都需要与服务端发生交互。<br>两类缓存规则可以同时存在，强制缓存优先级高于对比缓存，也就是说，当执行强制缓存的规则时，如果缓存生效，直接使用缓存，不再执行对比缓存规则。</p>
+<p>强制缓存</p>
+<p>从上文我们得知，强制缓存，在缓存数据未失效的情况下，可以直接使用缓存数据，那么浏览器是如何判断缓存数据是否失效呢？<br>我们知道，在没有缓存数据的时候，浏览器向服务器请求数据时，服务器会将数据和缓存规则一并返回，缓存规则信息包含在响应header中。</p>
+<p>对于强制缓存来说，响应header中会有两个字段来标明失效规则（Expires/Cache-Control）<br>使用chrome的开发者工具，可以很明显的看到对于强制缓存生效时，网络请求的情况<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141755072-1978466289.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<p><strong>Expires</strong><br>　　Expires的值为服务端返回的到期时间，即下一次请求时，请求时间小于服务端返回的到期时间，直接使用缓存数据。<br>不过Expires 是HTTP 1.0的东西，现在默认浏览器均默认使用HTTP 1.1，所以它的作用基本忽略。<br>另一个问题是，到期时间是由服务端生成的，但是客户端时间可能跟服务端时间有误差，这就会导致缓存命中的误差。<br>所以HTTP 1.1 的版本，使用Cache-Control替代。</p>
+<p><strong>Cache-Control</strong><br>Cache-Control 是最重要的规则。常见的取值有private、public、no-cache、max-age，no-store，默认为private。<br>private:             客户端可以缓存<br>public:              客户端和代理服务器都可缓存（前端的同学，可以认为public和private是一样的）<br>max-age=xxx:   缓存的内容将在 xxx 秒后失效<br>no-cache:          需要使用对比缓存来验证缓存数据（后面介绍）<br>no-store:           所有内容都不会缓存，强制缓存，对比缓存都不会触发（对于前端开发来说，缓存越多越好，so…基本上和它说886）</p>
+<p>举个板栗<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141836104-1513192908.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure><br>图中Cache-Control仅指定了max-age，所以默认为private，缓存时间为31536000秒（365天）<br>也就是说，在365天内再次请求这条数据，都会直接获取缓存数据库中的数据，直接使用。</p>
+<p>对比缓存</p>
+<p>对比缓存，顾名思义，需要进行比较判断是否可以使用缓存。<br>浏览器第一次请求数据时，服务器会将缓存标识与数据一起返回给客户端，客户端将二者备份至缓存数据库中。<br>再次请求数据时，客户端将备份的缓存标识发送给服务器，服务器根据缓存标识进行判断，判断成功后，返回304状态码，通知客户端比较成功，可以使用缓存数据。</p>
+<p><strong>第一次访问：</strong><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141911682-1756976419.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure><br><strong>再次访问：</strong><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141921697-379821074.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<p>通过两图的对比，我们可以很清楚的发现，在对比缓存生效时，状态码为304，并且报文大小和请求时间大大减少。<br>原因是，服务端在进行标识比较后，只返回header部分，通过状态码通知客户端使用缓存，不再需要将报文主体部分返回给客户端。</p>
+<p>对于对比缓存来说，缓存标识的传递是我们着重需要理解的，它在请求header和响应header间进行传递，<br>一共分为两种标识传递，接下来，我们分开介绍。</p>
+<p><strong>Last-Modified  /  If-Modified-Since</strong><br><strong>Last-Modified：</strong><br>服务器在响应请求时，告诉浏览器资源的最后修改时间。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142249541-789089587.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure><br><strong>If-Modified-Since：</strong><br>再次请求服务器时，通过此字段通知服务器上次请求时，服务器返回的资源最后修改时间。<br>服务器收到请求后发现有头If-Modified-Since 则与被请求资源的最后修改时间进行比对。<br>若资源的最后修改时间大于If-Modified-Since，说明资源又被改动过，则响应整片资源内容，返回状态码200；<br>若资源的最后修改时间小于或等于If-Modified-Since，说明资源无新修改，则响应HTTP 304，告知浏览器继续使用所保存的cache。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142307166-135607673.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p><strong>Etag  /  If-None-Match</strong>（优先级高于Last-Modified  /  If-Modified-Since）<br><strong>Etag：</strong><br>服务器响应请求时，告诉浏览器当前资源在服务器的唯一标识（生成规则由服务器决定）。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142054182-1766818273.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p><strong>If-None-Match：</strong><br>再次请求服务器时，通过此字段通知服务器客户段缓存数据的唯一标识。<br>服务器收到请求后发现有头If-None-Match 则与被请求资源的唯一标识进行比对，<br>不同，说明资源又被改动过，则响应整片资源内容，返回状态码200；<br>相同，说明资源无新修改，则响应HTTP 304，告知浏览器继续使用所保存的cache。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142115479-1921175758.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>总结<br><strong>对于强制缓存，服务器通知浏览器一个缓存时间，在缓存时间内，下次请求，直接用缓存，不在时间内，执行比较缓存策略。对于比较缓存，将缓存信息中的Etag和Last-Modified通过请求发送给服务器，由服务器校验，返回304状态码时，浏览器直接使用缓存。</strong></p>
+<p><strong>浏览器第一次请求：</strong><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142134291-1976923079.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<p><strong>浏览器再次请求时：</strong><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141453338-1263276228.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<p>文中如果出现错误，希望小伙伴们可以谅解，更希望可以给予指正</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-25T12:26:31.435Z" itemprop="dateUpdated">2018-12-25 20:26:31</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2018/05/19/network/HTTP缓存机制及原理/" target="_blank" rel="external">https://fantasykai.cc/2018/05/19/network/HTTP缓存机制及原理/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/05/19/network/HTTP缓存机制及原理/&title=《HTTP缓存机制及原理总结》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/05/19/network/HTTP缓存机制及原理/&title=《HTTP缓存机制及原理总结》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/05/19/network/HTTP缓存机制及原理/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP缓存机制及原理总结》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/05/19/network/HTTP缓存机制及原理/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/05/19/network/HTTP缓存机制及原理/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/06/21/recording/有感随笔/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">有感随笔</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/05/02/JAVA/后端架构师技术汇总/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">后端架构师技术汇总</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/05/19/network/HTTP缓存机制及原理/&title=《HTTP缓存机制及原理总结》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/05/19/network/HTTP缓存机制及原理/&title=《HTTP缓存机制及原理总结》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/05/19/network/HTTP缓存机制及原理/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP缓存机制及原理总结》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/05/19/network/HTTP缓存机制及原理/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/05/19/network/HTTP缓存机制及原理/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACu0lEQVR42u3a0WojMQwF0P7/T3ehT8uGpPdKdtqFM09hQsY+E7CEpI+P+Pr8uh7v/H3/8fPjrx6/zZ/z7GkHLjw8PLzR1pMlkwXyJyTrPnvFxW/x8PDwrvHyxyULPAskr1/HLAh9swoeHh7ej/LytDuh7p+Ph4eH97/w8s+z1HzzuvHw8PDeyWtLq5sCwes7s/LugVoLHh4eXlcjLRpgv+Hzxf4eHh4e3qKrnqTFmwM6L/UOd4uHh4d3gZensLMBrPZ+W554vQc8PDy8G7z26M+LqnnpNk+U29CFh4eHd4O3OeiTAmuLmaXyUXjAw8PDO8TbjEO9vl+83biplgcePDw8vHu8ltSWX/PXNCsHRyVjPDw8vGu89sAtjuYgTT8VcvDw8PDez8sXmN3PQ07SNivaYHh4eHhHee1YQFvqbYuzRbpc/j14eHh4p3h5mrtZ7NRgVr4TPDw8vBu8togw20QSl/IRrjwFx8PDw7vBa/PufPRq3/Rqhwa+CRt4eHh4R3lJGl3UM+JUO0/o82+joSs8PDy8NW82CvDOFHxW+MDDw8O7wZulrW0RYVhdXg8u4OHh4b2T1253li63Rd68/fZNYMDDw8Nb8JI+++xAzwu4bWmjbafh4eHh3eO1SW3CbpPgfcttdeHh4eGNeHkjP99622DLC8p18o2Hh4e35uU/zkes2g3NUnA8PDy838Zrh1A3YePU4EI0qIqHh4e35p0tH+Tf5o2xtryLh4eHd5v3WV5J6pwUdtvjfrguHh4e3gXeZhRgNkS1GUHI2cPGGB4eHl7MmwWDfausPe7bkQU8PDy827xZarspLiTbnQUSPDw8vN/DO7vpvA2WB5WnFRc8PDy8H+Xlm54NCrThJypG4OHh4V3gbZpeZ5Pg5Jl5io+Hh4d3g7dpgLVbzLe+abkdGx3Aw8PD+/f6A44Vu2CjhXGCAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://fantasykai.cc/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/">
+    
+    
+    <title>WebAssembly 的未来：将逐渐解锁整个“技能树” | kai.fantasy &#39;s 文栖小筑 | 没有拼搏过的人生终究苍白，没有繁华过的平淡终究浅薄。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#589baf">
+    
+    
+    <meta name="keywords" content="js">
+    <meta name="description" content="WebAssembly 的未来：将逐渐解锁整个“技能树” 原文  WebAssembly 在2017年受到主流浏览器的支持，并发布了被 MVP 版本（Minimum Viable Product，最简可行产品）。虽然 WebAssembly 社区组致力于使 WebAssembly 向后相容，让现在开发的 WebAssembly 应用程式，仍可以在未来的浏览器中运作，但这并不代表 WebAssemb">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebAssembly 的未来：将逐渐解锁整个“技能树”">
+<meta property="og:url" content="https://fantasykai.cc/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/index.html">
+<meta property="og:site_name" content="kai.fantasy &#39;s 文栖小筑">
+<meta property="og:description" content="WebAssembly 的未来：将逐渐解锁整个“技能树” 原文  WebAssembly 在2017年受到主流浏览器的支持，并发布了被 MVP 版本（Minimum Viable Product，最简可行产品）。虽然 WebAssembly 社区组致力于使 WebAssembly 向后相容，让现在开发的 WebAssembly 应用程式，仍可以在未来的浏览器中运作，但这并不代表 WebAssemb">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/42ccc510cfd9d1d2670037cba32f3007d47.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/48a0162ed0e0f848088cecfa4c9c0d6b5b4.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/586022e01ab45f31b0d35d223ea932a8827.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/5d163b3cfd5ecd82788682365c270636ebe.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/c84da0e9a6a4992b6a2219bc3b6f65dc950.jpg">
+<meta property="og:updated_time" content="2018-12-25T11:25:28.648Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebAssembly 的未来：将逐渐解锁整个“技能树”">
+<meta name="twitter:description" content="WebAssembly 的未来：将逐渐解锁整个“技能树” 原文  WebAssembly 在2017年受到主流浏览器的支持，并发布了被 MVP 版本（Minimum Viable Product，最简可行产品）。虽然 WebAssembly 社区组致力于使 WebAssembly 向后相容，让现在开发的 WebAssembly 应用程式，仍可以在未来的浏览器中运作，但这并不代表 WebAssemb">
+<meta name="twitter:image" content="https://oscimg.oschina.net/oscnet/42ccc510cfd9d1d2670037cba32f3007d47.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="kai.fantasy &#39;s 文栖小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.14">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+  <!-- highlight.js css -->
+  <!--<link rel="stylesheet" href="/plugins/highlight/styles/dracula.css">-->
+  <!-- highlight.js css -->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand2017.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kai.Fantasy</h5>
+          <a href="mailto:kai.fantasy@gmail.com" title="kai.fantasy@gmail.com" class="mail">kai.fantasy@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/fantasykai" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/2048"  >
+                <i class="icon icon-lg icon-gamepad"></i>
+                放松下
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">WebAssembly 的未来：将逐渐解锁整个“技能树”</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">WebAssembly 的未来：将逐渐解锁整个“技能树”</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-24T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-10-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#WebAssembly-的未来：将逐渐解锁整个“技能树”"><span class="post-toc-number">1.</span> <span class="post-toc-text">WebAssembly 的未来：将逐渐解锁整个“技能树”</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-js/WebAssembly 的未来：将逐渐解锁整个“技能树”"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">WebAssembly 的未来：将逐渐解锁整个“技能树”</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-25 00:00:00" datetime="2018-10-24T16:00:00.000Z"  itemprop="datePublished">2018-10-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术小栈/">技术小栈</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="WebAssembly-的未来：将逐渐解锁整个“技能树”"><a href="#WebAssembly-的未来：将逐渐解锁整个“技能树”" class="headerlink" title="WebAssembly 的未来：将逐渐解锁整个“技能树”"></a>WebAssembly 的未来：将逐渐解锁整个“技能树”</h1><ul>
+<li><a href="https://www.oschina.net/news/101159/the-future-of-webassembly" target="_blank" rel="external">原文</a></li>
+</ul>
+<p>WebAssembly 在2017年受到主流浏览器的支持，并发布了被 MVP 版本（Minimum Viable Product，最简可行产品）。虽然 WebAssembly 社区组致力于使 WebAssembly 向后相容，让现在开发的 WebAssembly 应用程式，仍可以在未来的浏览器中运作，但这并不代表 WebAssembly 功能已经完整，MVP 绝非最终版本。相反，WebAssembly 还将增加许多新功能，而这些新功能将从根本上颠覆 WebAssembly 所能实现的工作。</p>
+<p>为消除人们对 WebAssembly 的误解，WebAssembly 社区组以 RPG 游戏中人物养成的“技能树”形式，对 <a href="https://hacks.mozilla.org/2018/10/webassemblys-post-mvp-future/" target="_blank" rel="external">WebAssembly 的未来发展路径</a>做了非常详细的解释。他们表示目前已经完全掌握这些技能中的前几项，后续需要慢慢解锁整个技能树。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://oscimg.oschina.net/oscnet/42ccc510cfd9d1d2670037cba32f3007d47.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>WebAssembly 在 MVP 版本阶段满足 4 个基本技能要求：编译、快速执行、压缩和线性内存分配。使用 WebAssembly 的人知道他们不想只支持 C 和 C ++，而是希望能够将许多不同的语言编译为 WebAssembly 。经 WebAssembly 编译器编译的应用需要能够快速执行，满足需求。而为了加速载入速度，WebAssembly 还需具备压缩能力，减少使用者的等待时间。另外，WebAssembly 需要有别于 JavaScript 使用内存方式，能够直接管理使用的内存，在加上安全因素的考量，WebAssembly 采用线性内存模式。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://oscimg.oschina.net/oscnet/48a0162ed0e0f848088cecfa4c9c0d6b5b4.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>社区组表示，WebAssembly 的下一个目标是平滑运行那些更重的应用程序，比如 Photoshop、Gmail 等。为确保此类应用能在浏览器中运行良好，他们需要解锁新一批的“技能”，包括支持多线程、SIMD（单指令流多数据流）、64位寻址、流式编译（在下载的同时编译 WebAssembly 文件）、分层编译器、隐式 HTTP 缓存以及一些其他改进。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://oscimg.oschina.net/oscnet/586022e01ab45f31b0d35d223ea932a8827.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>一旦以上功能全部就位，WebAssembly 又将进入下一个阶段 —— 与 JavaScript 互操作，包括 JS 和 WebAssembly 之间的快速调用、简便的数据交换、ES模块集成、工具链集成和向后兼容性。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://oscimg.oschina.net/oscnet/5d163b3cfd5ecd82788682365c270636ebe.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>此外，他们还想在 WebAssembly 中重写 JavaScript 框架的大部分内容，并使静态类型的 compile-to-js 语言可编译为 WebAssembly 。想要实现这两个目标，WebAssembly 还需要支持高阶的语言功能，包括垃圾回收、异常处理、调试以及尾调用（Tail calls）。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://oscimg.oschina.net/oscnet/c84da0e9a6a4992b6a2219bc3b6f65dc950.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-25T11:25:28.648Z" itemprop="dateUpdated">2018-12-25 19:25:28</time>
+</span><br>
+
+
+        
+        转载请署名：  <a href="/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/" target="_blank" rel="external">https://fantasykai.cc/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/</a>
+        
+    </div>
+    <footer>
+        <a href="https://fantasykai.cc">
+            <img src="/img/avatar.jpg" alt="Kai.Fantasy">
+            Kai.Fantasy
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/&title=《WebAssembly 的未来：将逐渐解锁整个“技能树”》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/&title=《WebAssembly 的未来：将逐渐解锁整个“技能树”》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《WebAssembly 的未来：将逐渐解锁整个“技能树”》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/06/30/network/HTTP 演变总结/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">HTTP 演变总结</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2143380"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我喝咖啡~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kai.Fantasy &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fantasykai.cc/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/&title=《WebAssembly 的未来：将逐渐解锁整个“技能树”》 — kai.fantasy 's 文栖小筑&pic=https://fantasykai.cc/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fantasykai.cc/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/&title=《WebAssembly 的未来：将逐渐解锁整个“技能树”》 — kai.fantasy 's 文栖小筑&source=Become a Better Developer by Sharing and Learning ~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fantasykai.cc/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《WebAssembly 的未来：将逐渐解锁整个“技能树”》 — kai.fantasy 's 文栖小筑&url=https://fantasykai.cc/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/&via=https://fantasykai.cc" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fantasykai.cc/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADI0lEQVR42u3awZLaQAwEUP7/p0lVrhucbo2TAvF8ooC15w2HXknzeMTX8/f16vWrT39+5+en1/d59f1Xa7v5wsbGxv4Q9vPyul56zmi/c73RyWb9ZbuxsbGx17FnD0425dX3kwhMAPnPgI2NjY2dPDgvMPIriVtsbGxs7Jydt3XyUiRB5oGHjY2N/Z3sNhjujZl2PNCWLtjY2Ni72eeD3vd5/V/n29jY2NhvwH4eX3lc5WPj2Z2LNWNjY2MvYs/GAO34dja4na0qPxKKjY2NvY993h7KG0P5HWYjh6hcwcbGxl7Ezo9XJu/kI4GcPStdrkMOGxsbewf7PDCSDnw7js2LkPZg0OOunMTGxsZ+S/YsSPJHnowTkgTONxEbGxt7E3sWAO2y8pFAe2xoOOLFxsbGXse+rdV+cFwy2cRZcOZFFzY2NvYnsmdHYdoyI28PzcqYepuwsbGxF7FnC5rF1SzA2pZW3VTCxsbGXsFuR7Z5adEWEu3gOT8G1A6qsbGxsT+RnUTO0b/+cYv/OthmDSZsbGzs3ez86ExeTpwv619vBzY2NvYmdrKUdnFtjM2KotmxIWxsbOxN7HaIO5uTtuVHXiANIxAbGxt7ETtvDLVtprbsOZlgDEcO2NjY2CvY7eHL9q9mBcm9K/nDO9jY2NiL2Hk4nZz9mR2RPEFGK8TGxsb+GvZJwygfCbdxlVOjCgwbGxt7ETuPh7YUOVpizC6OB2FjY2N/AXsGSFpIs/C7987Y2NjY+9j5mDaPq1nrJymNbghObGxs7BXspI3ehkpOvTcyix8AGxsbexF7Rm2HxMn7dxU2+SEhbGxs7B3suqVeNoBmLaHZECK5AzY2NvY+dtJSvze0Enz+V8mFjY2NvZs9a+u0zZ2TdlXeZipqL2xsbOxF7DYG7mr3tJs4O9ZzEnvY2NjYn8VuQ+JkDNCG0GzQGxVX2NjY2OvYeaMnP0yTFwOzxlMbvdjY2NjY7bGbtvxoB8BtZBYPwMbGxl7KbhfdBl4LaIfT2NjY2LvZdw1TT4a1J3HYNqewsbGxN7Fng97zBtD59s0GwNjY2NiL2L8A+pKrz48jk2YAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261140604&web_id=1261140604')
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '~文栖小筑~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)欢迎回到 kai.fantasy の 文栖小筑!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<!-- highlight.js script -->
+<!-- <script src="/plugins/highlight/highlight.pack.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<!-- highlight.js script -->
+</body>
+</html>

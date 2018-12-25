@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fantasykai.cc/"/>
-  <updated>2018-05-08T04:07:48.000Z</updated>
+  <updated>2018-12-25T11:25:28.648Z</updated>
   <id>https://fantasykai.cc/</id>
   
   <author>
@@ -14,6 +14,399 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WebAssembly 的未来：将逐渐解锁整个“技能树”</title>
+    <link href="https://fantasykai.cc/2018/10/25/js/WebAssembly%20%E7%9A%84%E6%9C%AA%E6%9D%A5%EF%BC%9A%E5%B0%86%E9%80%90%E6%B8%90%E8%A7%A3%E9%94%81%E6%95%B4%E4%B8%AA%E2%80%9C%E6%8A%80%E8%83%BD%E6%A0%91%E2%80%9D/"/>
+    <id>https://fantasykai.cc/2018/10/25/js/WebAssembly 的未来：将逐渐解锁整个“技能树”/</id>
+    <published>2018-10-24T16:00:00.000Z</published>
+    <updated>2018-12-25T11:25:28.648Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="WebAssembly-的未来：将逐渐解锁整个“技能树”"><a href="#WebAssembly-的未来：将逐渐解锁整个“技能树”" class="headerlink" title="WebAssembly 的未来：将逐渐解锁整个“技能树”"></a>WebAssembly 的未来：将逐渐解锁整个“技能树”</h1><ul>
+<li><a href="https://www.oschina.net/news/101159/the-future-of-webassembly" target="_blank" rel="external">原文</a></li>
+</ul>
+<p>WebAssembly 在2017年受到主流浏览器的支持，并发布了被 MVP 版本（Minimum Viable Product，最简可行产品）。虽然 WebAssembly 社区组致力于使 WebAssembly 向后相容，让现在开发的 WebAssembly 应用程式，仍可以在未来的浏览器中运作，但这并不代表 WebAssembly 功能已经完整，MVP 绝非最终版本。相反，WebAssembly 还将增加许多新功能，而这些新功能将从根本上颠覆 WebAssembly 所能实现的工作。</p>
+<p>为消除人们对 WebAssembly 的误解，WebAssembly 社区组以 RPG 游戏中人物养成的“技能树”形式，对 <a href="https://hacks.mozilla.org/2018/10/webassemblys-post-mvp-future/" target="_blank" rel="external">WebAssembly 的未来发展路径</a>做了非常详细的解释。他们表示目前已经完全掌握这些技能中的前几项，后续需要慢慢解锁整个技能树。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://oscimg.oschina.net/oscnet/42ccc510cfd9d1d2670037cba32f3007d47.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>WebAssembly 在 MVP 版本阶段满足 4 个基本技能要求：编译、快速执行、压缩和线性内存分配。使用 WebAssembly 的人知道他们不想只支持 C 和 C ++，而是希望能够将许多不同的语言编译为 WebAssembly 。经 WebAssembly 编译器编译的应用需要能够快速执行，满足需求。而为了加速载入速度，WebAssembly 还需具备压缩能力，减少使用者的等待时间。另外，WebAssembly 需要有别于 JavaScript 使用内存方式，能够直接管理使用的内存，在加上安全因素的考量，WebAssembly 采用线性内存模式。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://oscimg.oschina.net/oscnet/48a0162ed0e0f848088cecfa4c9c0d6b5b4.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>社区组表示，WebAssembly 的下一个目标是平滑运行那些更重的应用程序，比如 Photoshop、Gmail 等。为确保此类应用能在浏览器中运行良好，他们需要解锁新一批的“技能”，包括支持多线程、SIMD（单指令流多数据流）、64位寻址、流式编译（在下载的同时编译 WebAssembly 文件）、分层编译器、隐式 HTTP 缓存以及一些其他改进。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://oscimg.oschina.net/oscnet/586022e01ab45f31b0d35d223ea932a8827.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>一旦以上功能全部就位，WebAssembly 又将进入下一个阶段 —— 与 JavaScript 互操作，包括 JS 和 WebAssembly 之间的快速调用、简便的数据交换、ES模块集成、工具链集成和向后兼容性。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://oscimg.oschina.net/oscnet/5d163b3cfd5ecd82788682365c270636ebe.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>此外，他们还想在 WebAssembly 中重写 JavaScript 框架的大部分内容，并使静态类型的 compile-to-js 语言可编译为 WebAssembly 。想要实现这两个目标，WebAssembly 还需要支持高阶的语言功能，包括垃圾回收、异常处理、调试以及尾调用（Tail calls）。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://oscimg.oschina.net/oscnet/c84da0e9a6a4992b6a2219bc3b6f65dc950.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;WebAssembly-的未来：将逐渐解锁整个“技能树”&quot;&gt;&lt;a href=&quot;#WebAssembly-的未来：将逐渐解锁整个“技能树”&quot; class=&quot;headerlink&quot; title=&quot;WebAssembly 的未来：将逐渐解锁整个“技能树”&quot;&gt;&lt;/a&gt;We
+    
+    </summary>
+    
+      <category term="技术小栈" scheme="https://fantasykai.cc/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
+    
+    
+      <category term="js" scheme="https://fantasykai.cc/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTTP 演变总结</title>
+    <link href="https://fantasykai.cc/2018/06/30/network/HTTP%20%E6%BC%94%E5%8F%98%E6%80%BB%E7%BB%93/"/>
+    <id>https://fantasykai.cc/2018/06/30/network/HTTP 演变总结/</id>
+    <published>2018-06-29T16:00:00.000Z</published>
+    <updated>2018-12-25T12:19:33.205Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、HTTP-0-9"><a href="#一、HTTP-0-9" class="headerlink" title="一、HTTP/0.9"></a>一、HTTP/0.9</h2><p>HTTP 是基于 TCP/IP 协议的应用层协议。它不涉及数据包（packet）传输，主要规定了客户端和服务器之间的通信格式，默认使用80端口。</p>
+<p>最早版本是1991年发布的0.9版。该版本极其简单，只有一个命令<code>GET</code>。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> GET /index.html</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>上面命令表示，TCP 连接（connection）建立后，客户端向服务器请求（request）网页<code>index.html</code>。</p>
+<p>协议规定，服务器只能回应HTML格式的字符串，不能回应别的格式。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> &lt;html&gt;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   &lt;body&gt;Hello World&lt;/body&gt;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &lt;/html&gt;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>服务器发送完毕，就关闭TCP连接。</p>
+<h2 id="二、HTTP-1-0"><a href="#二、HTTP-1-0" class="headerlink" title="二、HTTP/1.0"></a>二、HTTP/1.0</h2><h3 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1 简介"></a>2.1 简介</h3><p>1996年5月，HTTP/1.0 版本发布，内容大大增加。</p>
+<p>首先，任何格式的内容都可以发送。这使得互联网不仅可以传输文字，还能传输图像、视频、二进制文件。这为互联网的大发展奠定了基础。</p>
+<p>其次，除了<code>GET</code>命令，还引入了<code>POST</code>命令和<code>HEAD</code>命令，丰富了浏览器与服务器的互动手段。</p>
+<p>再次，HTTP请求和回应的格式也变了。除了数据部分，每次通信都必须包括头信息（HTTP header），用来描述一些元数据。</p>
+<p>其他的新增功能还包括状态码（status code）、多字符集支持、多部分发送（multi-part type）、权限（authorization）、缓存（cache）、内容编码（content encoding）等。</p>
+<h3 id="2-2-请求格式"><a href="#2-2-请求格式" class="headerlink" title="2.2 请求格式"></a>2.2 请求格式</h3><p>下面是一个1.0版的HTTP请求的例子。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> GET / HTTP/1.0User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)Accept: */*</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>可以看到，这个格式与0.9版有很大变化。</p>
+<p>第一行是请求命令，必须在尾部添加协议版本（<code>HTTP/1.0</code>）。后面就是多行头信息，描述客户端的情况。</p>
+<h3 id="2-3-回应格式"><a href="#2-3-回应格式" class="headerlink" title="2.3 回应格式"></a>2.3 回应格式</h3><p>服务器的回应如下。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> HTTP/1.0 200 OK </span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> Content-Type: text/plainContent-Length: 137582Expires: Thu, 05 Dec 1997 16:00:00 GMTLast-Modified: Wed, 5 August 1996 15:55:28 GMTServer: Apache 0.84</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> </span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &lt;html&gt;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   &lt;body&gt;Hello World&lt;/body&gt;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &lt;/html&gt;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>回应的格式是”头信息 + 一个空行（<code>\r\n</code>） + 数据”。其中，第一行是”协议版本 + 状态码（status code） + 状态描述”。</p>
+<h3 id="2-4-Content-Type-字段"><a href="#2-4-Content-Type-字段" class="headerlink" title="2.4 Content-Type 字段"></a>2.4 Content-Type 字段</h3><p>关于字符的编码，1.0版规定，头信息必须是 ASCII 码，后面的数据可以是任何格式。因此，服务器回应的时候，必须告诉客户端，数据是什么格式，这就是<code>Content-Type</code>字段的作用。</p>
+<p>下面是一些常见的<code>Content-Type</code>字段的值。</p>
+<blockquote>
+<ul>
+<li>text/plain</li>
+<li>text/html</li>
+<li>text/css</li>
+<li>image/jpeg</li>
+<li>image/png</li>
+<li>image/svg+xml</li>
+<li>audio/mp4</li>
+<li>video/mp4</li>
+<li>application/javascript</li>
+<li>application/pdf</li>
+<li>application/zip</li>
+<li>application/atom+xml</li>
+</ul>
+</blockquote>
+<p>这些数据类型总称为<code>MIME type</code>，每个值包括一级类型和二级类型，之间用斜杠分隔。</p>
+<p>除了预定义的类型，厂商也可以自定义类型。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> application/vnd.debian.binary-package</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>上面的类型表明，发送的是Debian系统的二进制数据包。</p>
+<p><code>MIME type</code>还可以在尾部使用分号，添加参数。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> Content-Type: text/html; charset=utf-8</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>上面的类型表明，发送的是网页，而且编码是UTF-8。</p>
+<p>客户端请求的时候，可以使用<code>Accept</code>字段声明自己可以接受哪些数据格式。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> Accept: */*</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码中，客户端声明自己可以接受任何格式的数据。</p>
+<p><code>MIME type</code>不仅用在HTTP协议，还可以用在其他地方，比如HTML网页。</p>
+<blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span> /&gt;</span></div><div class="line">&gt; <span class="comment">&lt;!-- 等同于 --&gt;</span></div><div class="line">&gt; <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span> </div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="2-5-Content-Encoding-字段"><a href="#2-5-Content-Encoding-字段" class="headerlink" title="2.5 Content-Encoding 字段"></a>2.5 Content-Encoding 字段</h3><p>由于发送的数据可以是任何格式，因此可以把数据压缩后再发送。<code>Content-Encoding</code>字段说明数据的压缩方法。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> Content-Encoding: gzipContent-Encoding: compressContent-Encoding: deflate</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>客户端在请求时，用<code>Accept-Encoding</code>字段说明自己可以接受哪些压缩方法。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> Accept-Encoding: gzip, deflate</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="2-6-缺点"><a href="#2-6-缺点" class="headerlink" title="2.6 缺点"></a>2.6 缺点</h3><p>HTTP/1.0 版的主要缺点是，每个TCP连接只能发送一个请求。发送数据完毕，连接就关闭，如果还要请求其他资源，就必须再新建一个连接。</p>
+<p>TCP连接的新建成本很高，因为需要客户端和服务器三次握手，并且开始时发送速率较慢（slow start）。所以，HTTP 1.0版本的性能比较差。随着网页加载的外部资源越来越多，这个问题就愈发突出了。</p>
+<p>为了解决这个问题，有些浏览器在请求时，用了一个非标准的<code>Connection</code>字段。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> Connection: keep-alive</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>这个字段要求服务器不要关闭TCP连接，以便其他请求复用。服务器同样回应这个字段。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> Connection: keep-alive</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>一个可以复用的TCP连接就建立了，直到客户端或服务器主动关闭连接。但是，这不是标准字段，不同实现的行为可能不一致，因此不是根本的解决办法。</p>
+<h2 id="三、HTTP-1-1"><a href="#三、HTTP-1-1" class="headerlink" title="三、HTTP/1.1"></a>三、HTTP/1.1</h2><p>1997年1月，HTTP/1.1 版本发布，只比 1.0 版本晚了半年。它进一步完善了 HTTP 协议，一直用到了20年后的今天，直到现在还是最流行的版本。</p>
+<h3 id="3-1-持久连接"><a href="#3-1-持久连接" class="headerlink" title="3.1 持久连接"></a>3.1 持久连接</h3><p>1.1 版的最大变化，就是引入了持久连接（persistent connection），即TCP连接默认不关闭，可以被多个请求复用，不用声明<code>Connection: keep-alive</code>。</p>
+<p>客户端和服务器发现对方一段时间没有活动，就可以主动关闭连接。不过，规范的做法是，客户端在最后一个请求时，发送<code>Connection: close</code>，明确要求服务器关闭TCP连接。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> Connection: close</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>目前，对于同一个域名，大多数浏览器允许同时建立6个持久连接。</p>
+<h3 id="3-2-管道机制"><a href="#3-2-管道机制" class="headerlink" title="3.2 管道机制"></a>3.2 管道机制</h3><p>1.1 版还引入了管道机制（pipelining），即在同一个TCP连接里面，客户端可以同时发送多个请求。这样就进一步改进了HTTP协议的效率。</p>
+<p>举例来说，客户端需要请求两个资源。以前的做法是，在同一个TCP连接里面，先发送A请求，然后等待服务器做出回应，收到后再发出B请求。管道机制则是允许浏览器同时发出A请求和B请求，但是服务器还是按照顺序，先回应A请求，完成后再回应B请求。</p>
+<h3 id="3-3-Content-Length-字段"><a href="#3-3-Content-Length-字段" class="headerlink" title="3.3 Content-Length 字段"></a>3.3 Content-Length 字段</h3><p>一个TCP连接现在可以传送多个回应，势必就要有一种机制，区分数据包是属于哪一个回应的。这就是<code>Content-length</code>字段的作用，声明本次回应的数据长度。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> Content-Length: 3495</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码告诉浏览器，本次回应的长度是3495个字节，后面的字节就属于下一个回应了。</p>
+<p>在1.0版中，<code>Content-Length</code>字段不是必需的，因为浏览器发现服务器关闭了TCP连接，就表明收到的数据包已经全了。</p>
+<h3 id="3-4-分块传输编码"><a href="#3-4-分块传输编码" class="headerlink" title="3.4 分块传输编码"></a>3.4 分块传输编码</h3><p>使用<code>Content-Length</code>字段的前提条件是，服务器发送回应之前，必须知道回应的数据长度。</p>
+<p>对于一些很耗时的动态操作来说，这意味着，服务器要等到所有操作完成，才能发送数据，显然这样的效率不高。更好的处理方法是，产生一块数据，就发送一块，采用”流模式”（stream）取代”缓存模式”（buffer）。</p>
+<p>因此，1.1版规定可以不使用<code>Content-Length</code>字段，而使用”分块传输编码”（chunked transfer encoding）。只要请求或回应的头信息有<code>Transfer-Encoding</code>字段，就表明回应将由数量未定的数据块组成。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> Transfer-Encoding: chunked</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>每个非空的数据块之前，会有一个16进制的数值，表示这个块的长度。最后是一个大小为0的块，就表示本次回应的数据发送完了。下面是一个例子。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> HTTP/1.1 200 OKContent-Type: text/plainTransfer-Encoding: chunked</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> </span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> 25</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> This is the data <span class="keyword">in</span> the first chunk</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> </span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> 1C</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> and this is the second one</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> </span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> 3</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> con</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> </span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> 8</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> sequence</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> </span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> 0</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="3-5-其他功能"><a href="#3-5-其他功能" class="headerlink" title="3.5 其他功能"></a>3.5 其他功能</h3><p>1.1版还新增了许多动词方法：<code>PUT</code>、<code>PATCH</code>、<code>HEAD</code>、 <code>OPTIONS</code>、<code>DELETE</code>。</p>
+<p>另外，客户端请求的头信息新增了<code>Host</code>字段，用来指定服务器的域名。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> Host: www.example.com</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>有了<code>Host</code>字段，就可以将请求发往同一台服务器上的不同网站，为虚拟主机的兴起打下了基础。</p>
+<h3 id="3-6-缺点"><a href="#3-6-缺点" class="headerlink" title="3.6 缺点"></a>3.6 缺点</h3><p>虽然1.1版允许复用TCP连接，但是同一个TCP连接里面，所有的数据通信是按次序进行的。服务器只有处理完一个回应，才会进行下一个回应。要是前面的回应特别慢，后面就会有许多请求排队等着。这称为”队头堵塞”（Head-of-line blocking）。</p>
+<p>为了避免这个问题，只有两种方法：一是减少请求数，二是同时多开持久连接。这导致了很多的网页优化技巧，比如合并脚本和样式表、将图片嵌入CSS代码、域名分片（domain sharding）等等。如果HTTP协议设计得更好一些，这些额外的工作是可以避免的。</p>
+<h2 id="四、SPDY-协议"><a href="#四、SPDY-协议" class="headerlink" title="四、SPDY 协议"></a>四、SPDY 协议</h2><p>2009年，谷歌公开了自行研发的 SPDY 协议，主要解决 HTTP/1.1 效率不高的问题。</p>
+<p>这个协议在Chrome浏览器上证明可行以后，就被当作 HTTP/2 的基础，主要特性都在 HTTP/2 之中得到继承。</p>
+<h2 id="五、HTTP-2"><a href="#五、HTTP-2" class="headerlink" title="五、HTTP/2"></a>五、HTTP/2</h2><p>2015年，HTTP/2 发布。它不叫 HTTP/2.0，是因为标准委员会不打算再发布子版本了，下一个新版本将是 HTTP/3。</p>
+<h3 id="5-1-二进制协议"><a href="#5-1-二进制协议" class="headerlink" title="5.1 二进制协议"></a>5.1 二进制协议</h3><p>HTTP/1.1 版的头信息肯定是文本（ASCII编码），数据体可以是文本，也可以是二进制。HTTP/2 则是一个彻底的二进制协议，头信息和数据体都是二进制，并且统称为”帧”（frame）：头信息帧和数据帧。</p>
+<p>二进制协议的一个好处是，可以定义额外的帧。HTTP/2 定义了近十种帧，为将来的高级应用打好了基础。如果使用文本实现这种功能，解析数据将会变得非常麻烦，二进制解析则方便得多。</p>
+<h3 id="5-2-多工"><a href="#5-2-多工" class="headerlink" title="5.2 多工"></a>5.2 多工</h3><p>HTTP/2 复用TCP连接，在一个连接里，客户端和浏览器都可以同时发送多个请求或回应，而且不用按照顺序一一对应，这样就避免了”队头堵塞”。</p>
+<p>举例来说，在一个TCP连接里面，服务器同时收到了A请求和B请求，于是先回应A请求，结果发现处理过程非常耗时，于是就发送A请求已经处理好的部分， 接着回应B请求，完成后，再发送A请求剩下的部分。</p>
+<p>这样双向的、实时的通信，就叫做多工（Multiplexing）。</p>
+<h3 id="5-3-数据流"><a href="#5-3-数据流" class="headerlink" title="5.3 数据流"></a>5.3 数据流</h3><p>因为 HTTP/2 的数据包是不按顺序发送的，同一个连接里面连续的数据包，可能属于不同的回应。因此，必须要对数据包做标记，指出它属于哪个回应。</p>
+<p>HTTP/2 将每个请求或回应的所有数据包，称为一个数据流（stream）。每个数据流都有一个独一无二的编号。数据包发送的时候，都必须标记数据流ID，用来区分它属于哪个数据流。另外还规定，客户端发出的数据流，ID一律为奇数，服务器发出的，ID为偶数。</p>
+<p>数据流发送到一半的时候，客户端和服务器都可以发送信号（<code>RST_STREAM</code>帧），取消这个数据流。1.1版取消数据流的唯一方法，就是关闭TCP连接。这就是说，HTTP/2 可以取消某一次请求，同时保证TCP连接还打开着，可以被其他请求使用。</p>
+<p>客户端还可以指定数据流的优先级。优先级越高，服务器就会越早回应。</p>
+<h3 id="5-4-头信息压缩"><a href="#5-4-头信息压缩" class="headerlink" title="5.4 头信息压缩"></a>5.4 头信息压缩</h3><p>HTTP 协议不带有状态，每次请求都必须附上所有信息。所以，请求的很多字段都是重复的，比如<code>Cookie</code>和<code>User Agent</code>，一模一样的内容，每次请求都必须附带，这会浪费很多带宽，也影响速度。</p>
+<p>HTTP/2 对这一点做了优化，引入了头信息压缩机制（header compression）。一方面，头信息使用<code>gzip</code>或<code>compress</code>压缩后再发送；另一方面，客户端和服务器同时维护一张头信息表，所有字段都会存入这个表，生成一个索引号，以后就不发送同样字段了，只发送索引号，这样就提高速度了。</p>
+<h3 id="5-5-服务器推送"><a href="#5-5-服务器推送" class="headerlink" title="5.5 服务器推送"></a>5.5 服务器推送</h3><p>HTTP/2 允许服务器未经请求，主动向客户端发送资源，这叫做服务器推送（server push）。</p>
+<p>常见场景是客户端请求一个网页，这个网页里面包含很多静态资源。正常情况下，客户端必须收到网页后，解析HTML源码，发现有静态资源，再发出静态资源请求。其实，服务器可以预期到客户端请求网页后，很可能会再请求静态资源，所以就主动把这些静态资源随着网页一起发给客户端了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、HTTP-0-9&quot;&gt;&lt;a href=&quot;#一、HTTP-0-9&quot; class=&quot;headerlink&quot; title=&quot;一、HTTP/0.9&quot;&gt;&lt;/a&gt;一、HTTP/0.9&lt;/h2&gt;&lt;p&gt;HTTP 是基于 TCP/IP 协议的应用层协议。它不涉及数据包（packe
+    
+    </summary>
+    
+      <category term="网络" scheme="https://fantasykai.cc/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="HTTP" scheme="https://fantasykai.cc/tags/HTTP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>有感随笔</title>
+    <link href="https://fantasykai.cc/2018/06/21/recording/%E6%9C%89%E6%84%9F%E9%9A%8F%E7%AC%94/"/>
+    <id>https://fantasykai.cc/2018/06/21/recording/有感随笔/</id>
+    <published>2018-06-20T16:00:00.000Z</published>
+    <updated>2018-12-25T12:14:49.666Z</updated>
+    
+    <content type="html"><![CDATA[<p>分享一些自己的理解：</p>
+<p>1.消费市场正在以商品为核心转向以人为核心，更优的用户体验，让用户有专属感，有“谈资”；</p>
+<p>2.企业思考的思路应该是不断的优化端到端的体验，形成闭环；</p>
+<p>3.更优的供应链体系一定是这一闭环上的关键点；</p>
+<p>对未来有助优化供应链体系的一些思路和见解：</p>
+<p>1.SDN,IPv6,HTTP/2的快速普及发展，降低了物联网的成本（通信，安全等）必将带来新一波物联网风潮；</p>
+<p>2.区块链的玩好的话，在解决物联网，设备安全，隐私，协同工作等痛点上会产生更多的思路；</p>
+<p>3.供应链体系，新零售借助于物联网的发展，配合区块链的应用必然产生更多的玩法，可能性；</p>
+<p>4.目前形成闭环的成本还比较高，但未来潜力巨大；</p>
+<p>5.未来真的很近；</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;分享一些自己的理解：&lt;/p&gt;
+&lt;p&gt;1.消费市场正在以商品为核心转向以人为核心，更优的用户体验，让用户有专属感，有“谈资”；&lt;/p&gt;
+&lt;p&gt;2.企业思考的思路应该是不断的优化端到端的体验，形成闭环；&lt;/p&gt;
+&lt;p&gt;3.更优的供应链体系一定是这一闭环上的关键点；&lt;/p&gt;
+&lt;p
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://fantasykai.cc/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://fantasykai.cc/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTTP缓存机制及原理总结</title>
+    <link href="https://fantasykai.cc/2018/05/19/network/HTTP%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%E5%8F%8A%E5%8E%9F%E7%90%86/"/>
+    <id>https://fantasykai.cc/2018/05/19/network/HTTP缓存机制及原理/</id>
+    <published>2018-05-18T16:00:00.000Z</published>
+    <updated>2018-12-25T12:26:31.435Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="彻底弄懂HTTP缓存机制及原理"><a href="#彻底弄懂HTTP缓存机制及原理" class="headerlink" title="彻底弄懂HTTP缓存机制及原理"></a><a href="https://www.cnblogs.com/chenqf/p/6386163.html" target="_blank" rel="external">彻底弄懂HTTP缓存机制及原理</a></h1><p>感谢作者！</p>
+<p><a href="https://www.cnblogs.com/chenqf/p/6386163.html" target="_blank" rel="external">原文地址</a></p>
+<p>前言</p>
+<p>Http 缓存机制作为 web 性能优化的重要手段，对于从事 Web 开发的同学们来说，应该是知识体系库中的一个基础环节，同时对于有志成为前端架构师的同学来说是必备的知识技能。<br>但是对于很多前端同学来说，仅仅只是知道浏览器会对请求的静态文件进行缓存，但是为什么被缓存，缓存是怎样生效的，却并不是很清楚。<br>在此，我会尝试用简单明了的文字，像大家系统的介绍HTTP缓存机制，期望对各位正确的理解前端缓存有所帮助。</p>
+<p>在介绍HTTP缓存之前，作为知识铺垫，先简单介绍一下HTTP报文</p>
+<p>HTTP报文就是浏览器和服务器间通信时发送及响应的数据块。<br>浏览器向服务器请求数据，发送请求(request)报文；服务器向浏览器返回数据，返回响应(response)报文。<br>报文信息主要分为两部分<br>1.包含属性的首部(header)————————–附加信息（cookie，缓存信息等）与缓存相关的规则信息，均包含在header中<br>2.包含数据的主体部分(body)———————–HTTP请求真正想要传输的部分</p>
+<p>缓存规则解析</p>
+<p>为方便大家理解，我们认为浏览器存在一个缓存数据库,用于存储缓存信息。<br>在客户端第一次请求数据时，此时缓存数据库中没有对应的缓存数据，需要请求服务器，服务器返回后，将数据存储至缓存数据库中。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141639213-1923993391.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>HTTP缓存有多种规则，根据是否需要重新向服务器发起请求来分类，我将其分为两大类(强制缓存，对比缓存)<br>在详细介绍这两种规则之前，先通过时序图的方式，让大家对这两种规则有个简单了解。</p>
+<p>已存在缓存数据时，仅基于强制缓存，请求数据的流程如下</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210135521072-1812985836.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>已存在缓存数据时，仅基于对比缓存，请求数据的流程如下<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141716838-764535017.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<p>对缓存机制不太了解的同学可能会问，基于对比缓存的流程下，不管是否使用缓存，都需要向服务器发送请求，那么还用缓存干什么？<br>这个问题，我们暂且放下，后文在详细介绍每种缓存规则的时候，会带给大家答案。</p>
+<p>我们可以看到两类缓存规则的不同，强制缓存如果生效，不需要再和服务器发生交互，而对比缓存不管是否生效，都需要与服务端发生交互。<br>两类缓存规则可以同时存在，强制缓存优先级高于对比缓存，也就是说，当执行强制缓存的规则时，如果缓存生效，直接使用缓存，不再执行对比缓存规则。</p>
+<p>强制缓存</p>
+<p>从上文我们得知，强制缓存，在缓存数据未失效的情况下，可以直接使用缓存数据，那么浏览器是如何判断缓存数据是否失效呢？<br>我们知道，在没有缓存数据的时候，浏览器向服务器请求数据时，服务器会将数据和缓存规则一并返回，缓存规则信息包含在响应header中。</p>
+<p>对于强制缓存来说，响应header中会有两个字段来标明失效规则（Expires/Cache-Control）<br>使用chrome的开发者工具，可以很明显的看到对于强制缓存生效时，网络请求的情况<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141755072-1978466289.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<p><strong>Expires</strong><br>　　Expires的值为服务端返回的到期时间，即下一次请求时，请求时间小于服务端返回的到期时间，直接使用缓存数据。<br>不过Expires 是HTTP 1.0的东西，现在默认浏览器均默认使用HTTP 1.1，所以它的作用基本忽略。<br>另一个问题是，到期时间是由服务端生成的，但是客户端时间可能跟服务端时间有误差，这就会导致缓存命中的误差。<br>所以HTTP 1.1 的版本，使用Cache-Control替代。</p>
+<p><strong>Cache-Control</strong><br>Cache-Control 是最重要的规则。常见的取值有private、public、no-cache、max-age，no-store，默认为private。<br>private:             客户端可以缓存<br>public:              客户端和代理服务器都可缓存（前端的同学，可以认为public和private是一样的）<br>max-age=xxx:   缓存的内容将在 xxx 秒后失效<br>no-cache:          需要使用对比缓存来验证缓存数据（后面介绍）<br>no-store:           所有内容都不会缓存，强制缓存，对比缓存都不会触发（对于前端开发来说，缓存越多越好，so…基本上和它说886）</p>
+<p>举个板栗<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141836104-1513192908.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure><br>图中Cache-Control仅指定了max-age，所以默认为private，缓存时间为31536000秒（365天）<br>也就是说，在365天内再次请求这条数据，都会直接获取缓存数据库中的数据，直接使用。</p>
+<p>对比缓存</p>
+<p>对比缓存，顾名思义，需要进行比较判断是否可以使用缓存。<br>浏览器第一次请求数据时，服务器会将缓存标识与数据一起返回给客户端，客户端将二者备份至缓存数据库中。<br>再次请求数据时，客户端将备份的缓存标识发送给服务器，服务器根据缓存标识进行判断，判断成功后，返回304状态码，通知客户端比较成功，可以使用缓存数据。</p>
+<p><strong>第一次访问：</strong><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141911682-1756976419.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure><br><strong>再次访问：</strong><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141921697-379821074.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<p>通过两图的对比，我们可以很清楚的发现，在对比缓存生效时，状态码为304，并且报文大小和请求时间大大减少。<br>原因是，服务端在进行标识比较后，只返回header部分，通过状态码通知客户端使用缓存，不再需要将报文主体部分返回给客户端。</p>
+<p>对于对比缓存来说，缓存标识的传递是我们着重需要理解的，它在请求header和响应header间进行传递，<br>一共分为两种标识传递，接下来，我们分开介绍。</p>
+<p><strong>Last-Modified  /  If-Modified-Since</strong><br><strong>Last-Modified：</strong><br>服务器在响应请求时，告诉浏览器资源的最后修改时间。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142249541-789089587.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure><br><strong>If-Modified-Since：</strong><br>再次请求服务器时，通过此字段通知服务器上次请求时，服务器返回的资源最后修改时间。<br>服务器收到请求后发现有头If-Modified-Since 则与被请求资源的最后修改时间进行比对。<br>若资源的最后修改时间大于If-Modified-Since，说明资源又被改动过，则响应整片资源内容，返回状态码200；<br>若资源的最后修改时间小于或等于If-Modified-Since，说明资源无新修改，则响应HTTP 304，告知浏览器继续使用所保存的cache。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142307166-135607673.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p><strong>Etag  /  If-None-Match</strong>（优先级高于Last-Modified  /  If-Modified-Since）<br><strong>Etag：</strong><br>服务器响应请求时，告诉浏览器当前资源在服务器的唯一标识（生成规则由服务器决定）。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142054182-1766818273.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p><strong>If-None-Match：</strong><br>再次请求服务器时，通过此字段通知服务器客户段缓存数据的唯一标识。<br>服务器收到请求后发现有头If-None-Match 则与被请求资源的唯一标识进行比对，<br>不同，说明资源又被改动过，则响应整片资源内容，返回状态码200；<br>相同，说明资源无新修改，则响应HTTP 304，告知浏览器继续使用所保存的cache。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142115479-1921175758.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>总结<br><strong>对于强制缓存，服务器通知浏览器一个缓存时间，在缓存时间内，下次请求，直接用缓存，不在时间内，执行比较缓存策略。对于比较缓存，将缓存信息中的Etag和Last-Modified通过请求发送给服务器，由服务器校验，返回304状态码时，浏览器直接使用缓存。</strong></p>
+<p><strong>浏览器第一次请求：</strong><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210142134291-1976923079.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<p><strong>浏览器再次请求时：</strong><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2015.cnblogs.com/blog/632130/201702/632130-20170210141453338-1263276228.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure></p>
+<p>文中如果出现错误，希望小伙伴们可以谅解，更希望可以给予指正</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;彻底弄懂HTTP缓存机制及原理&quot;&gt;&lt;a href=&quot;#彻底弄懂HTTP缓存机制及原理&quot; class=&quot;headerlink&quot; title=&quot;彻底弄懂HTTP缓存机制及原理&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.cnblogs.com/chenqf/p
+    
+    </summary>
+    
+      <category term="网络" scheme="https://fantasykai.cc/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="HTTP" scheme="https://fantasykai.cc/tags/HTTP/"/>
+    
+  </entry>
   
   <entry>
     <title>后端架构师技术汇总</title>
@@ -4981,542 +5374,6 @@
     
     
       <category term="js" scheme="https://fantasykai.cc/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Chrome浏览器技巧总结</title>
-    <link href="https://fantasykai.cc/2017/12/03/tools/chrome%20tools/Chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/"/>
-    <id>https://fantasykai.cc/2017/12/03/tools/chrome tools/Chrome浏览器技巧总结/</id>
-    <published>2017-12-02T16:00:00.000Z</published>
-    <updated>2017-12-04T09:57:56.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>简单介绍一些chrome浏览器的小技巧</p>
-</blockquote>
-<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><p>快捷键比较多，这里挑出几个常用的说一下<br>最后会给出一张比较完整的快捷键的表</p>
-<p>下列快捷键可以在所有 开发者工具 面板中可以使用</p>
-<table>
-<thead>
-<tr>
-<th>全局快捷键</th>
-<th>window</th>
-<th>Mac</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>打开 开发者工具</td>
-<td>F12、Ctrl+Shift+I</td>
-<td>Cmd+Opt+I</td>
-</tr>
-<tr>
-<td>打开 开发者工具 并聚焦到控制台</td>
-<td>Ctrl+Shift+J</td>
-<td>Cmd+Shift+C</td>
-</tr>
-<tr>
-<td>刷新页面</td>
-<td>F5、Ctrl+R</td>
-<td>Cmd+R</td>
-</tr>
-<tr>
-<td>刷新忽略缓存内容的页面</td>
-<td>Ctrl+F5、Ctrl+Shift+R</td>
-<td>Cmd+Shift+R</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p><strong>在Elements 面板中使用的快捷键</strong></p>
-<table>
-<thead>
-<tr>
-<th>Elements 面板</th>
-<th>window</th>
-<th>Mac</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>编辑属性</td>
-<td>Enter、双击属性</td>
-<td>Enter、双击属性</td>
-</tr>
-<tr>
-<td>隐藏元素</td>
-<td>H</td>
-<td>H</td>
-</tr>
-<tr>
-<td>切换为以HTML形式编辑</td>
-<td>F2</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p><strong>在Styles 边栏中使用的快捷键</strong></p>
-<table>
-<thead>
-<tr>
-<th>Styles 边栏</th>
-<th>window</th>
-<th>Mac</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>转到源中属性值声明行</td>
-<td>Ctrl+点击属性值</td>
-<td>CMd+点击属性值</td>
-</tr>
-<tr>
-<td>在颜色定义值之间循环</td>
-<td>Shift+点击颜色选取器框</td>
-<td>Shift+点击颜色选取器框</td>
-</tr>
-<tr>
-<td>编辑下一个/上一个属性</td>
-<td>Tab、Tab+Shift</td>
-<td>Tab、Tab+Shift</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p><strong>在控制台中使用的快捷键</strong></p>
-<table>
-<thead>
-<tr>
-<th>控制台</th>
-<th>window</th>
-<th>Mac</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>聚焦到控制台</td>
-<td>Ctrl+`</td>
-<td>Ctrl+`</td>
-</tr>
-<tr>
-<td>清除控制台</td>
-<td>Ctrl+L</td>
-<td>Cmd+K、Opt+L</td>
-</tr>
-<tr>
-<td>多行输入</td>
-<td>Shift+Enter</td>
-<td>Ctrl+Return</td>
-</tr>
-</tbody>
-</table>
-<h3 id="区域截屏"><a href="#区域截屏" class="headerlink" title="区域截屏"></a>区域截屏</h3><p>选取页面中的一部分，保存为图片<br>1、打开开发者工具<br>使用 快捷键 F12 (Windows) 或 Cmd+Opt+I (Mac)<br>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4uq956h4j20lv0bxt9p.jpg" alt=""></p>
-<p>2、选择左上角的元素选择按钮，图标颜色变为蓝色即表示选中了<br>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4vhn5xepj207h04l3yi.jpg" alt=""></p>
-<p>3、Windows 下按住 Ctrl，Mac 就按住 Command，然后点击鼠标左键在页面选择区域即可，松开鼠标后，截图自动下载。</p>
-<p>4、图片自动下载好后，点击图片后面的箭头，可以在文件夹中显示 </p>
-<p>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4viypbwuj20bl094mxp.jpg" alt=""></p>
-<h3 id="节点截图"><a href="#节点截图" class="headerlink" title="节点截图"></a>节点截图</h3><p>选中页面中某一元素，保存为图片<br>1、打开开发者工具<br>使用 快捷键 F12 (Windows) 或 Cmd+Opt+I (Mac)</p>
-<p>2、选中任意元素节点<br>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4vl692wlj20fb04vmxc.jpg" alt=""></p>
-<p>3、打开命令工具<br>使用快捷键 Ctrl + Shift + p (Windows) 或 Cmd + Shift + p (Mac)<br>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4vmbp1t0j20fs093q3a.jpg" alt=""></p>
-<p>4、点击Capture node screenshot，或者输入这行中任意的关键字，比如输入node，也会出来这个选项，然后点击这个选项，图片会自动下载。<br>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4vmwcwm6j20er04fjrd.jpg" alt=""></p>
-<p>5、图片自动下载好后，点击图片后面的箭头，可以在文件夹中显示</p>
-<h3 id="截全屏"><a href="#截全屏" class="headerlink" title="截全屏"></a>截全屏</h3><p>保存完整网页为图片<br><strong>第一种方式</strong><br>1、打开开发者工具<br>使用 快捷键 F12 (Windows) 或 Cmd+Opt+I (Mac)</p>
-<p>2、打开命令工具<br>使用快捷键 Ctrl + Shift + p (Windows) 或 Cmd + Shift + p (Mac) </p>
-<p>3、点击Capture full size screenshot，或者输入这行中任意的关键字，比如输入full，也会出来这个选项<br>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4vnpqtg4j20ej032q2t.jpg" alt=""></p>
-<p>4、图片自动下载好后，点击图片后面的箭头，可以在文件夹中显示 </p>
-<p><strong>第二种方式</strong><br>1、打开开发者工具<br>使用 快捷键 F12 (Windows) 或 Cmd+Opt+I (Mac)</p>
-<p>2、选中 切换开发模式按钮，图标颜色变为蓝色即表示选中了<br>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4votroz4j206j03wweg.jpg" alt=""></p>
-<p>3、点右上方的三个 小点，点击Capture full size screenshot，图片会自动下载<br>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4vp9m0pmj20kz08rt9o.jpg" alt=""></p>
-<h3 id="拾色器"><a href="#拾色器" class="headerlink" title="拾色器"></a>拾色器</h3><p>在Styles边栏 点击任意颜色的小色块，就可以弹出颜色选择器<br>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4vppvghkj207s079jri.jpg" alt=""><br>  <figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4vq9x3fbj20m80f679a.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure><br>1、颜色选择区域。<br>2、吸管。<br>3、复制到剪贴板。将显示值复制到剪贴板。<br>4、显示值。颜色的RGBA，HSLA或十六进制表示。<br>5、调色板。单击其中一个方块将颜色更改为该方块。<br>6、色相。<br>7、透明度。<br>8、显示值切换器。在当前颜色的RGBA，HSLA和Hex表示之间切换。<br>9、调色板切换器。</p>
-<h3 id="快速添加样式规则"><a href="#快速添加样式规则" class="headerlink" title="快速添加样式规则"></a>快速添加样式规则</h3><p>1、在Styles 边栏，鼠标放在每一小块样式规则上，右下方都会有三个小点<br>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4vqjn4ulj20d3087aad.jpg" alt=""></p>
-<p>2、鼠标放在这三个小点上，会出现5个小图标，每个小图标都有作用<br>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4vt1zf7wj20cc03vglm.jpg" alt=""></p>
-<p>3、他们从左到右分别代表</p>
-<ul>
-<li>添加 text-shadow</li>
-<li>添加 box-shadow</li>
-<li>添加 color</li>
-<li>添加 background-color</li>
-<li>插入样式规则</li>
-</ul>
-<h3 id="增加移动设备"><a href="#增加移动设备" class="headerlink" title="增加移动设备"></a>增加移动设备</h3><p>1、打开开发者工具<br>使用 快捷键 F12 (Windows) 或 Cmd+Opt+I (Mac)</p>
-<p>2、点击右上方的三个小点，然后选择Settings<br>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4vqx6nwoj20m8075gn3.jpg" alt=""></p>
-<p>3、选择Devices，然后在需要添加的设备前面打上勾就可以了<br>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fm4vthr10cj20e109jglu.jpg" alt=""></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这些小技巧，很简单，希望对大家有所帮助，不过对于有办法，有时间的朋友还是建议去官网看看吧，毕竟那里才更加全面。<br><a href="http://developers.google.com/web/tools/chrome-devtools/?hl=zh-cn" target="_blank" rel="external">Chrome 开发者工具</a></p>
-<p><a href="http://img.blog.csdn.net/20171122155304242" target="_blank" rel="external">点击查看具体图片</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;简单介绍一些chrome浏览器的小技巧&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;快捷键&quot;&gt;&lt;a href=&quot;#快捷键&quot; class=&quot;headerlink&quot; title=&quot;快捷键&quot;&gt;&lt;/a&gt;快捷键&lt;/h3&gt;&lt;p&gt;快捷键比较多，这里挑出几
-    
-    </summary>
-    
-      <category term="工具" scheme="https://fantasykai.cc/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="Chrome 效率插件" scheme="https://fantasykai.cc/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>负载均衡相关总结</title>
-    <link href="https://fantasykai.cc/2017/11/24/Linux/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/"/>
-    <id>https://fantasykai.cc/2017/11/24/Linux/负载均衡相关总结/</id>
-    <published>2017-11-23T16:00:00.000Z</published>
-    <updated>2017-11-25T11:56:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>先理解一下所谓的“均衡”</p>
-<p>不能狭义地理解为分配给所有实际服务器一样多的工作量，因为多台服务器的承载能力各不相同，这可能体现在硬件配置、网络带宽的差异，也可能因为某台服务器身兼多职，我们所说的“均衡”，也就是希望所有服务器都不要过载，并且能够最大程序地发挥作用。</p>
-<h1 id="一、http重定向"><a href="#一、http重定向" class="headerlink" title="一、http重定向"></a>一、http重定向</h1><p>当http代理（比如浏览器）向web服务器请求某个URL后，web服务器可以通过http响应头信息中的Location标记来返回一个新的URL。这意味着HTTP代理需要继续请求这个新的URL，完成自动跳转。</p>
-<p>性能缺陷：</p>
-<p>1、吞吐率限制</p>
-<p>主站点服务器的吞吐率平均分配到了被转移的服务器。现假设使用RR（Round Robin）调度策略，子服务器的最大吞吐率为1000reqs/s，那么主服务器的吞吐率要达到3000reqs/s才能完全发挥三台子服务器的作用，那么如果有100台子服务器，那么主服务器的吞吐率可想而知得有大？相反，如果主服务的最大吞吐率为6000reqs/s，那么平均分配到子服务器的吞吐率为2000reqs/s，而现子服务器的最大吞吐率为1000reqs/s，因此就得增加子服务器的数量，增加到6个才能满足。</p>
-<p>2、重定向访问深度不同</p>
-<p>有的重定向一个静态页面，有的重定向相比复杂的动态页面，那么实际服务器的负载差异是不可预料的，而主站服务器却一无所知。因此整站使用重定向方法做负载均衡不太好。</p>
-<p>我们需要权衡转移请求的开销和处理实际请求的开销，前者相对于后者越小，那么重定向的意义就越大，例如下载。你可以去很多镜像下载网站试下，会发现基本下载都使用了Location做了重定向。</p>
-<h1 id="二、DNS负载均衡"><a href="#二、DNS负载均衡" class="headerlink" title="二、DNS负载均衡"></a>二、DNS负载均衡</h1><p>DNS负责提供域名解析服务，当访问某个站点时，实际上首先需要通过该站点域名的DNS服务器来获取域名指向的IP地址，在这一过程中，DNS服务器完成了域名到IP地址的映射，同样，这样映射也可以是一对多的，这时候，DNS服务器便充当了负载均衡调度器，它就像http重定向转换策略一样，将用户的请求分散到多台服务器上，但是它的实现机制完全不同。</p>
-<p>使用dig命令来看下”baidu”的DNS设置</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0411/205913_PgDS_3341316.jpg" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>可见baidu拥有三个A记录</p>
-<p>相比http重定向，基于DNS的负载均衡完全节省了所谓的主站点，或者说DNS服务器已经充当了主站点的职能。但不同的是，作为调度器，DNS服务器本身的性能几乎不用担心。因为DNS记录可以被用户浏览器或者互联网接入服务商的各级DNS服务器缓存，只有当缓存过期后才会重新向域名的DNS服务器请求解析。也说是DNS不存在http的吞吐率限制，理论上可以无限增加实际服务器的数量。</p>
-<p>特性:</p>
-<p>1、可以根据用户IP来进行智能解析。DNS服务器可以在所有可用的A记录中寻找离用记最近的一台服务器。</p>
-<p>2、动态DNS：在每次IP地址变更时，及时更新DNS服务器。当然，因为缓存，一定的延迟不可避免。</p>
-<p>不足：</p>
-<p>1、没有用户能直接看到DNS解析到了哪一台实际服务器，加服务器运维人员的调试带来了不便。</p>
-<p>2、策略的局限性。例如你无法将HTTP请求的上下文引入到调度策略中，而在前面介绍的基于HTTP重定向的负载均衡系统中，调度器工作在HTTP层面，它可以充分理解HTTP请求后根据站点的应用逻辑来设计调度策略，比如根据请求不同的URL来进行合理的过滤和转移。</p>
-<p>3、如果要根据实际服务器的实时负载差异来调整调度策略，这需要DNS服务器在每次解析操作时分析各服务器的健康状态，对于DNS服务器来说，这种自定义开发存在较高的门槛，更何况大多数站点只是使用第三方DNS服务。</p>
-<p>4、DNS记录缓存，各级节点的DNS服务器不同程序的缓存会让你晕头转向。</p>
-<p>5、基于以上几点，DNS服务器并不能很好地完成工作量均衡分配，最后，是否选择基于DNS的负载均衡方式完全取决于你的需要。</p>
-<h1 id="三、反向代理负载均衡"><a href="#三、反向代理负载均衡" class="headerlink" title="三、反向代理负载均衡"></a>三、反向代理负载均衡</h1><p>这个肯定大家都有所接触，因为几乎所有主流的Web服务器都热衷于支持基于反向代理的负载均衡。它的核心工作就是转发HTTP请求。</p>
-<p>相比前面的HTTP重定向和DNS解析，反向代理的调度器扮演的是用户和实际服务器中间人的角色：</p>
-<p>1、任何对于实际服务器的HTTP请求都必须经过调度器</p>
-<p>2、调度器必须等待实际服务器的HTTP响应，并将它反馈给用户（前两种方式不需要经过调度反馈，是实际服务器直接发送给用户）</p>
-<p>特性：</p>
-<p>1、调度策略丰富。例如可以为不同的实际服务器设置不同的权重，以达到能者多劳的效果。</p>
-<p>2、对反向代理服务器的并发处理能力要求高，因为它工作在HTTP层面。</p>
-<p>3、反向代理服务器进行转发操作本身是需要一定开销的，比如创建线程、与后端服务器建立TCP连接、接收后端服务器返回的处理结果、分析HTTP头部信息、用户空间和内核空间的频繁切换等，虽然这部分时间并不长，但是当后端服务器处理请求的时间非常短时，转发的开销就显得尤为突出。例如请求静态文件，更适合使用前面介绍的基于DNS的负载均衡方式。</p>
-<p>4、反向代理服务器可以监控后端服务器，比如系统负载、响应时间、是否可用、TCP连接数、流量等，从而根据这些数据调整负载均衡的策略。</p>
-<p>5、反射代理服务器可以让用户在一次会话周期内的所有请求始终转发到一台特定的后端服务器上（粘滞会话），这样的好处一是保持session的本地访问，二是防止后端服务器的动态内存缓存的资源浪费。</p>
-<h1 id="四、IP负载均衡-LVS-NAT"><a href="#四、IP负载均衡-LVS-NAT" class="headerlink" title="四、IP负载均衡(LVS-NAT)"></a>四、IP负载均衡(LVS-NAT)</h1><p>因为反向代理服务器工作在HTTP层，其本身的开销就已经严重制约了可扩展性，从而也限制了它的性能极限。那能否在HTTP层面以下实现负载均衡呢？</p>
-<p>NAT服务器:它工作在传输层，它可以修改发送来的IP数据包，将数据包的目标地址修改为实际服务器地址。</p>
-<p>从Linux2.4内核开始，其内置的Neftilter模块在内核中维护着一些数据包过滤表，这些表包含了用于控制数据包过滤的规则。可喜的是，<a href="http://lib.csdn.net/base/linux" target="_blank" rel="external">Linux</a>提供了iptables来对过滤表进行插入、修改和删除等操作。更加令人振奋的是，Linux2.6.x内核中内置了IPVS模块，它的工作性质类型于Netfilter模块，不过它更专注于实现IP负载均衡。</p>
-<p>想知道你的服务器内核是否已经安装了IPVS模块，可以</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0411/211529_WLOE_3341316.jpg" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>有输出意味着IPVS已经安装了。IPVS的管理工具是ipvsadm，它为提供了基于命令行的配置界面，可以通过它快速实现负载均衡系统。这就是大名鼎鼎的LVS(Linux Virtual Server，Linux虚拟服务器)。</p>
-<p>1、打开调度器的数据包转发选项</p>
-<p>echo 1 &gt; /proc/sys/net/ipv4/ip_forward</p>
-<p>2、检查实际服务器是否已经将NAT服务器作为自己的默认网关，如果不是，如添加</p>
-<p>route add default gw xx.xx.xx.xx</p>
-<p>3、使用ipvsadm配置</p>
-<p>ipvsadm -A -t 111.11.11.11:80 -s rr  </p>
-<p>添加一台虚拟服务器，-t 后面是服务器的外网ip和端口，-s rr是指采用简单轮询的RR调度策略（这属于静态调度策略，除此之外，LVS还提供了系列的动态调度策略，比如最小连接（LC）、带权重的最小连接（WLC），最短期望时间延迟（SED）等）</p>
-<p>ipvsadm -a -t 111.11.11.11:80 -r 10.10.120.210:8000 -m  </p>
-<p>ipvsadm -a -t 111.11.11.11:80 -r 10.10.120.211:8000 -m  </p>
-<p>添加两台实际服务器（不需要有外网ip），-r后面是实际服务器的内网ip和端口，-m表示采用NAT方式来转发数据包</p>
-<p>运行ipvsadm -L -n可以查看实际服务器的状态。这样就大功告成了。</p>
-<p>实验证明使用基于NAT的负载均衡系统。作为调度器的NAT服务器可以将吞吐率提升到一个新的高度，几乎是反向代理服务器的两倍以上，这大多归功于在内核中进行请求转发的较低开销。但是一旦请求的内容过大时，不论是基于反向代理还是NAT，负载均衡的整体吞吐量都差距不大，这说明对于一睦开销较大的内容，使用简单的反向代理来搭建负载均衡系统是值考虑的。</p>
-<p>这么强大的系统还是有它的瓶颈，那就是NAT服务器的网络带宽，包括内部网络和外部网络。当然如果你不差钱，可以去花钱去购买千兆交换机或万兆交换机，甚至负载均衡硬件设备，但如果你是个屌丝，咋办？</p>
-<p>一个简单有效的办法就是将基于NAT的集群和前面的DNS混合使用，比如５个100Mbps出口宽带的集群，然后通过DNS来将用户请求均衡地指向这些集群，同时，你还可以利用DNS智能解析实现地域就近访问。这样的配置对于大多数业务是足够了，但是对于提供下载或视频等服务的大规模站点，NAT服务器还是不够出色。</p>
-<h1 id="五、直接路由-LVS-DR"><a href="#五、直接路由-LVS-DR" class="headerlink" title="五、直接路由(LVS-DR)"></a>五、直接路由(LVS-DR)</h1><p>NAT是工作在网络分层模型的传输层（第四层），而直接路由是工作在数据链路层（第二层），貌似更屌些。它通过修改数据包的目标MAC地址（没有修改目标IP），将数据包转发到实际服务器上，不同的是，实际服务器的响应数据包将直接发送给客户羰，而不经过调度器。</p>
-<p>1、网络设置</p>
-<p>这里假设一台负载均衡调度器，两台实际服务器，购买三个外网ip，一台机一个，三台机的默认网关需要相同，最后再设置同样的ip别名，这里假设别名为10.10.120.193。这样一来，将通过10.10.120.193这个IP别名来访问调度器，你可以将站点的域名指向这个IP别名。</p>
-<p>2、将ip别名添加到回环接口lo上</p>
-<p>这是为了让实际服务器不要去寻找其他拥有这个IP别名的服务器，在实际服务器中运行：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://static.oschina.net/uploads/space/2017/0411/211643_3QOL_3341316.jpg" alt="img" title="">
-                </div>
-                <div class="image-caption">img</div>
-            </figure>
-<p>另外还要防止实际服务器响应来自网络中针对IP别名的ARP广播，为此还要执行：</p>
-<p>echo “1” &gt; /proc/sys/net/ipv4/conf/lo/arp_ignore</p>
-<p>echo “2” &gt; /proc/sys/net/ipv4/conf/lo/arp_announce</p>
-<p>echo “1” &gt; /proc/sys/net/ipv4/conf/all/arp_ignore</p>
-<p>echo “1” &gt; /proc/sys/net/ipv4/conf/all/arp_announce</p>
-<p>配置完了就可以使用ipvsadm配置LVS-DR集群了</p>
-<p>ipvsadm -A -t 10.10.120.193:80 -s rr  </p>
-<p>ipvsadm -a -t 10.10.120.193:80 -r 10.10.120.210:8000 -g  </p>
-<p>ipvsadm -a -t 10.10.120.193:80 -r 10.10.120.211:8000 -g  </p>
-<p>-g 就意味着使用直接路由的方式转发数据包</p>
-<p>LVS-DR 相较于LVS-NAT的最大优势在于LVS-DR不受调度器宽带的限制，例如假设三台服务器在WAN交换机出口宽带都限制为10Mbps，只要对于连接调度器和两台实际服务器的LAN交换机没有限速，那么，使用LVS-DR理论上可以达到20Mbps的最大出口宽带，因为它的实际服务器的响应数据包可以不经过调度器而直接发往用户端啊，所以它与调度器的出口宽带没有关系，只能自身的有关系。而如果使用LVS-NAT，集群只能最大使用10Mbps的宽带。所以，越是响应数据包远远超过请求数据包的服务，就越应该降低调度器转移请求的开销，也就越能提高整体的扩展能力，最终也就越依赖于WAN出口宽带。</p>
-<p>总的来说，LVS-DR适合搭建可扩展的负载均衡系统，不论是Web服务器还是文件服务器，以及视频服务器，它都拥有出色的性能。前提是你必须为实际器购买一系列的合法IP地址。</p>
-<h1 id="六、IP隧道-LVS-TUN"><a href="#六、IP隧道-LVS-TUN" class="headerlink" title="六、IP隧道(LVS-TUN)"></a>六、IP隧道(LVS-TUN)</h1><p>基于IP隧道的请求转发机制：将调度器收到的IP数据包封装在一个新的IP数据包中，转交给实际服务器，然后实际服务器的响应数据包可以直接到达用户端。目前Linux大多支持，可以用LVS来实现，称为LVS-TUN，与LVS-DR不同的是，实际服务器可以和调度器不在同一个WANt网段，调度器通过IP隧道技术来转发请求到实际服务器，所以实际服务器也必须拥有合法的IP地址。</p>
-<p>总体来说，LVS-DR和LVS-TUN都适合响应和请求不对称的Web服务器，如何从它们中做出选择，取决于你的网络部署需要，因为LVS-TUN可以将实际服务器根据需要部署在不同的地域，并且根据就近访问的原则来转移请求，所以有类似这种需求的，就应该选择LVS-TUN。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;先理解一下所谓的“均衡”&lt;/p&gt;
-&lt;p&gt;不能狭义地理解为分配给所有实际服务器一样多的工作量，因为多台服务器的承载能力各不相同，这可能体现在硬件配置、网络带宽的差异，也可能因为某台服务器身兼多职，我们所说的“均衡”，也就是希望所有服务器都不要过载，并且能够最大程序地发挥作用。
-    
-    </summary>
-    
-      <category term="linux" scheme="https://fantasykai.cc/categories/linux/"/>
-    
-    
-      <category term="Linux" scheme="https://fantasykai.cc/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux的ip命令总结</title>
-    <link href="https://fantasykai.cc/2017/11/22/Linux/linux%E7%9A%84ip%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/"/>
-    <id>https://fantasykai.cc/2017/11/22/Linux/linux的ip命令总结/</id>
-    <published>2017-11-21T16:00:00.000Z</published>
-    <updated>2017-11-22T01:56:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>转载：<a href="https://linux.cn/" target="_blank" rel="external">Linux中国</a> <a href="https://linux.cn/article-3144-1.html" target="_blank" rel="external">https://linux.cn/article-3144-1.html</a><br>地址：<a href="https://linux.cn/article-3144-1.html" target="_blank" rel="external">https://linux.cn/article-3144-1.html</a></p>
-<p>linux的<strong>ip</strong>命令和<strong>ifconfig</strong>类似，但前者功能更强大，并旨在取代后者。使用ip命令，只需一个命令，你就能很轻松地执行一些网络管理任务。ifconfig是net-tools中已被废弃使用的一个命令，许多年前就已经没有维护了。iproute2套件里提供了许多增强功能的命令，ip命令即是其中之一。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003404uy9l1t5zayzllylm.png" alt="Net tools vs Iproute2" title="">
-                </div>
-                <div class="image-caption">Net tools vs Iproute2</div>
-            </figure>
-<p><em>Net tools vs Iproute2</em></p>
-<p>要安装ip，请<a href="http://www.linuxgrill.com/anonymous/iproute2/NEW-OSDL/" target="_blank" rel="external">点击这里</a>下载<strong>iproute2套装工具</strong> 。不过，大多数Linux发行版已经预装了iproute2工具。</p>
-<p>你也可以使用git命令来下载最新源代码来编译：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git clone <span class="symbol">https:</span>/<span class="regexp">/kernel.googlesource.com/pub</span><span class="regexp">/scm/linux</span><span class="regexp">/kernel/git</span><span class="regexp">/shemminger/iproute</span>2.git</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003410tpix2804k660lwu4.png" alt="iproute2 git clone" title="">
-                </div>
-                <div class="image-caption">iproute2 git clone</div>
-            </figure>
-<p><em>iproute2 git clone</em></p>
-<h3 id="设置和删除Ip地址"><a href="#设置和删除Ip地址" class="headerlink" title="设置和删除Ip地址"></a>设置和删除Ip地址</h3><p>要给你的机器设置一个IP地址，可以使用下列ip命令：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo<span class="built_in"> ip </span>addr <span class="builtin-name">add</span> 192.168.0.193/24 dev wlan0</div></pre></td></tr></table></figure>
-<p>请注意IP地址要有一个后缀，比如/24。这种用法用于在无类域内路由选择（CIDR）中来显示所用的子网掩码。在这个例子中，子网掩码是255.255.255.0。</p>
-<p>在你按照上述方式设置好IP地址后，需要查看是否已经生效。</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$<span class="built_in"> ip </span>addr show wlan0</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003411qp4xsem5491ee49t.png" alt="set ip address" title="">
-                </div>
-                <div class="image-caption">set ip address</div>
-            </figure>
-<p><em>set ip address</em></p>
-<p>你也可以使用相同的方式来删除IP地址，只需用del代替add。</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo<span class="built_in"> ip </span>addr del 192.168.0.193/24 dev wlan0</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003412dottfn0jnidyykd2.png" alt="delete ip address" title="">
-                </div>
-                <div class="image-caption">delete ip address</div>
-            </figure>
-<p><em>delete ip address</em></p>
-<h3 id="列出路由表条目"><a href="#列出路由表条目" class="headerlink" title="列出路由表条目"></a>列出路由表条目</h3><p>ip命令的路由对象的参数还可以帮助你查看网络中的路由数据，并设置你的路由表。第一个条目是默认的路由条目，你可以随意改动它。</p>
-<p>在这个例子中，有几个路由条目。这个结果显示有几个设备通过不同的网络接口连接起来。它们包括WIFI、以太网和一个点对点连接。</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$<span class="built_in"> ip route </span>show</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003413mnehm4uinhziu287.png" alt="ip route show" title="">
-                </div>
-                <div class="image-caption">ip route show</div>
-            </figure>
-<p><em>ip route show</em></p>
-<p>假设现在你有一个IP地址，你需要知道路由包从哪里来。可以使用下面的路由选项（译注：列出了路由所使用的接口等）：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$<span class="built_in"> ip route </span><span class="builtin-name">get</span> 10.42.0.47</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003414h53e34qwjfo34emm.png" alt="ip route get" title="">
-                </div>
-                <div class="image-caption">ip route get</div>
-            </figure>
-<p><em>ip route get</em></p>
-<h3 id="更改默认路由"><a href="#更改默认路由" class="headerlink" title="更改默认路由"></a>更改默认路由</h3><p>要更改默认路由，使用下面ip命令：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo<span class="built_in"> ip route </span><span class="builtin-name">add</span><span class="built_in"> default </span>via 192.168.0.196</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003415i8d82ulsa4c4jcd4.png" alt="default route" title="">
-                </div>
-                <div class="image-caption">default route</div>
-            </figure>
-<p><em>default route</em></p>
-<h3 id="显示网络统计数据"><a href="#显示网络统计数据" class="headerlink" title="显示网络统计数据"></a>显示网络统计数据</h3><p>使用ip命令还可以显示不同网络接口的统计数据。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003417l1jc4h5537m050wy.png" alt="ip statistics all interfaces" title="">
-                </div>
-                <div class="image-caption">ip statistics all interfaces</div>
-            </figure>
-<p><em>ip statistics all interfaces</em></p>
-<p>当你需要获取一个特定网络接口的信息时，在网络接口名字后面添加选项<strong>ls</strong>即可。使用多个选项<strong>-s</strong>会给你这个特定接口更详细的信息。特别是在排除网络连接故障时，这会非常有用。</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$<span class="built_in"> ip </span>-s -s link ls p2p1</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003418acoo0krhjellollu.png" alt="ip link statistics" title="">
-                </div>
-                <div class="image-caption">ip link statistics</div>
-            </figure>
-<p><em>ip link statistics</em></p>
-<h3 id="ARP条目"><a href="#ARP条目" class="headerlink" title="ARP条目"></a>ARP条目</h3><p>地址解析协议（ARP）用于将一个IP地址转换成它对应的物理地址，也就是通常所说的MAC地址。使用ip命令的neigh或者neighbour选项，你可以查看接入你所在的局域网的设备的MAC地址。</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$<span class="built_in"> ip </span>neighbour</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003419uzm96tbvujb5bvqe.png" alt="ip neighbour" title="">
-                </div>
-                <div class="image-caption">ip neighbour</div>
-            </figure>
-<p><em>ip neighbour</em></p>
-<h3 id="监控netlink消息"><a href="#监控netlink消息" class="headerlink" title="监控netlink消息"></a>监控netlink消息</h3><p>也可以使用ip命令查看netlink消息。monitor选项允许你查看网络设备的状态。比如，所在局域网的一台电脑根据它的状态可以被分类成REACHABLE或者STALE。使用下面的命令：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$<span class="built_in"> ip </span>monitor all</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003420ap2j3jjvjk3jvvoo.png" alt="ip monitor all" title="">
-                </div>
-                <div class="image-caption">ip monitor all</div>
-            </figure>
-<p><em>ip monitor all</em></p>
-<h3 id="激活和停止网络接口"><a href="#激活和停止网络接口" class="headerlink" title="激活和停止网络接口"></a>激活和停止网络接口</h3><p>你可以使用ip命令的up和down选项来激某个特定的接口，就像ifconfig的用法一样。</p>
-<p>在这个例子中，当ppp0接口被激活和在它被停止和再次激活之后，你可以看到相应的路由表条目。这个接口可能是wlan0或者eth0。将ppp0更改为你可用的任意接口即可。</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo<span class="built_in"> ip </span>link <span class="builtin-name">set</span> ppp0 down $ sudo<span class="built_in"> ip </span>link <span class="builtin-name">set</span> ppp0 up</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003421mdudvkazcgkl6g8d.png" alt="ip link set up and down" title="">
-                </div>
-                <div class="image-caption">ip link set up and down</div>
-            </figure>
-<p><em>ip link set up and down</em></p>
-<h3 id="获取帮助"><a href="#获取帮助" class="headerlink" title="获取帮助"></a>获取帮助</h3><p>当你陷入困境，不知道某一个特定的选项怎么用的时候，你可以使用help选项。man页面并不会提供许多关于如何使用ip选项的信息，因此这里就是获取帮助的地方。</p>
-<p>比如，想知道关于route选项更多的信息：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$<span class="built_in"> ip route </span>help</div></pre></td></tr></table></figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003422xh9xm2wihecdjhif.png" alt="ip route help" title="">
-                </div>
-                <div class="image-caption">ip route help</div>
-            </figure>
-<p><em>ip route help</em></p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>对于网络管理员们和所有的Linux使用者们，ip命令是必备工具。是时候抛弃ifconfig命令了，特别是当你写脚本时。</p>
-<hr>
-<p>via: <a href="http://linoxide.com/linux-command/use-ip-command-linux/" target="_blank" rel="external">http://linoxide.com/linux-command/use-ip-command-linux/</a></p>
-<h2 id="译者：KayGuoWhu-校对：wxy"><a href="#译者：KayGuoWhu-校对：wxy" class="headerlink" title="译者：KayGuoWhu 校对：wxy"></a>译者：<a href="https://github.com/KayGuoWhu" target="_blank" rel="external">KayGuoWhu</a> 校对：<a href="https://github.com/wxy" target="_blank" rel="external">wxy</a></h2><p>本文由 <a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="external">LCTT</a> 原创翻译，<a href="https://linux.cn/article-3144-1.html" target="_blank" rel="external">Linux中国</a> 荣誉推出</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;转载：&lt;a href=&quot;https://linux.cn/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Linux中国&lt;/a&gt; &lt;a href=&quot;https://linux.cn/article-3144-1.html&quot; target=&quot;_blank&quot; 
-    
-    </summary>
-    
-      <category term="linux" scheme="https://fantasykai.cc/categories/linux/"/>
-    
-    
-      <category term="Linux" scheme="https://fantasykai.cc/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python中list的排序</title>
-    <link href="https://fantasykai.cc/2017/11/12/python/python%E4%B8%ADlist%E7%9A%84%E6%8E%92%E5%BA%8F/"/>
-    <id>https://fantasykai.cc/2017/11/12/python/python中list的排序/</id>
-    <published>2017-11-11T16:00:00.000Z</published>
-    <updated>2017-11-16T06:02:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>这里先简单总结下python中排序的用法</p>
-</blockquote>
-<p>python内置的排序函数主要有两个： <code>sort</code> 和 <code>sorted</code></p>
-<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ol>
-<li>sort只能对list排序，sorted可以对list, tuple, dist 以及自定义的类型进行排序</li>
-<li>sort是在原有list上作操作，sorted 不会修改原来的数据结构，而是返回新的list （注意：对tuple排序只能用sorted）</li>
-</ol>
-<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>1.sort</p>
-<p>参数：reverse，key，cmp</p>
-<pre><code>&gt;&gt;&gt; a = [5,4,6,7,9,1,2]
-&gt;&gt;&gt; a.sort()
-&gt;&gt;&gt; print(a)
-[1, 2, 4, 5, 6, 7, 9]
-
-&gt;&gt;&gt; a.sort(reverse=True)
-&gt;&gt;&gt; print(a)
-[9, 7, 6, 5, 4, 2, 1]
-&gt;&gt;&gt; 
-</code></pre><p>2.sorted</p>
-<ul>
-<li>sorted(data, cmp=None, key=None, reverse=False) </li>
-</ul>
-<p>reverse True 从大到小，False 从小到大</p>
-<p>从网上收集到demo，这里直接用下～</p>
-<pre><code>&gt;&gt;&gt; b = [&apos;aa&apos;,&apos;BB&apos;,&apos;bb&apos;,&apos;zz&apos;,&apos;CC&apos;] 
-&gt;&gt;&gt; sorted(b) 
-[&apos;BB&apos;, &apos;CC&apos;, &apos;aa&apos;, &apos;bb&apos;, &apos;zz&apos;]    #按列表中元素每个字母的ascii码从小到大排序,如果要从大到小,请用sorted(b,reverse=True)下同 
-
-&gt;&gt;&gt; c =[&apos;CCC&apos;, &apos;bb&apos;, &apos;ffff&apos;, &apos;z&apos;]  
-&gt;&gt;&gt; sorted(c,key=len)             #按列表的元素的长度排序 
-[&apos;z&apos;, &apos;bb&apos;, &apos;CCC&apos;, &apos;ffff&apos;] 
-
-&gt;&gt;&gt; d =[&apos;CCC&apos;, &apos;bb&apos;, &apos;ffff&apos;, &apos;z&apos;] 
-&gt;&gt;&gt; sorted(d,key = str.lower )    #将列表中的每个元素变为小写，再按每个元素中的每个字母的ascii码从小到大排序 
-[&apos;bb&apos;, &apos;CCC&apos;, &apos;ffff&apos;, &apos;z&apos;] 
-
-&gt;&gt;&gt; def lastchar(s): 
-       return s[-1] 
-&gt;&gt;&gt; e = [&apos;abc&apos;,&apos;b&apos;,&apos;AAz&apos;,&apos;ef&apos;] 
-&gt;&gt;&gt; sorted(e,key = lastchar)      #自定义函数排序,lastchar为函数名，这个函数返回列表e中每个元素的最后一个字母 
-[&apos;b&apos;, &apos;abc&apos;, &apos;ef&apos;, &apos;AAz&apos;]         #sorted(e,key=lastchar)作用就是 按列表e中每个元素的最后一个字母的ascii码从小到大排序 
-
-&gt;&gt;&gt; f = [{&apos;name&apos;:&apos;abc&apos;,&apos;age&apos;:20},{&apos;name&apos;:&apos;def&apos;,&apos;age&apos;:30},{&apos;name&apos;:&apos;ghi&apos;,&apos;age&apos;:25}]     #列表中的元素为字典 
-&gt;&gt;&gt; def age(s): 
-       return s[&apos;age&apos;] 
-&gt;&gt;&gt; ff = sorted(f,key = age)      #自定义函数按列表f中字典的age从小到大排序  
-
-[{&apos;age&apos;: 20, &apos;name&apos;: &apos;abc&apos;}, {&apos;age&apos;: 25, &apos;name&apos;: &apos;ghi&apos;}, {&apos;age&apos;: 30, &apos;name&apos;: &apos;def&apos;}] 
-
-&gt;&gt;&gt; f2 = sorted(f,key = lambda x:x[&apos;age&apos;])    #如果觉得上面定义一个函数代码不美观，可以用lambda的形式来定义函数,效果同上 
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;这里先简单总结下python中排序的用法&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;python内置的排序函数主要有两个： &lt;code&gt;sort&lt;/code&gt; 和 &lt;code&gt;sorted&lt;/code&gt;&lt;/p&gt;
-&lt;h4 id=&quot;区别&quot;&gt;&lt;a hre
-    
-    </summary>
-    
-      <category term="技术小栈" scheme="https://fantasykai.cc/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
-    
-    
-      <category term="python" scheme="https://fantasykai.cc/tags/python/"/>
     
   </entry>
   
