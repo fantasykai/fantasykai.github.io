@@ -1,0 +1,601 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>nginx配置访问日志 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">nginx配置访问日志</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">nginx配置访问日志</h1><div class="post-meta">2017-02-23<span> | </span><span class="category"><a href="/categories/%E5%AE%B9%E5%99%A8/">容器</a></span></div><a class="disqus-comment-count" href="/2017/02/23/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20nginx%E9%85%8D%E7%BD%AE%E8%AE%BF%E9%97%AE%E6%97%A5%E5%BF%97/#vcomment"><span class="waline-comment-count" id="/2017/02/23/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20nginx%E9%85%8D%E7%BD%AE%E8%AE%BF%E9%97%AE%E6%97%A5%E5%BF%97/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx%E7%9A%84%E6%97%A5%E5%BF%97%E7%9B%B8%E5%85%B3%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">nginx的日志相关指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#log-format"><span class="toc-number">1.1.</span> <span class="toc-text">log_format</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">语法：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E8%AE%BE%E7%BD%AE%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-number">1.1.2.</span> <span class="toc-text">具体设置的参数说明：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9%EF%BC%9A"><span class="toc-number">1.1.3.</span> <span class="toc-text">注意点：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#access-log"><span class="toc-number">1.2.</span> <span class="toc-text">access_log</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%EF%BC%9A-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">语法：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#open-log-file-cache"><span class="toc-number">1.3.</span> <span class="toc-text">open_log_file_cache</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">1.3.1.</span> <span class="toc-text">语法:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#log-not-found"><span class="toc-number">1.4.</span> <span class="toc-text">log_not_found</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">语法:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#log-subrequest"><span class="toc-number">1.5.</span> <span class="toc-text">log_subrequest</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95-2"><span class="toc-number">1.5.1.</span> <span class="toc-text">语法:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rewrite-log"><span class="toc-number">1.6.</span> <span class="toc-text">rewrite_log</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95-3"><span class="toc-number">1.6.1.</span> <span class="toc-text">语法:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#error-log"><span class="toc-number">1.7.</span> <span class="toc-text">error_log</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95-4"><span class="toc-number">1.7.1.</span> <span class="toc-text">语法:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">日志统计分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%87%E5%89%B2%E6%97%A5%E5%BF%97"><span class="toc-number">3.</span> <span class="toc-text">切割日志</span></a></li></ol></div></div><div class="post-content"><blockquote>
+<p> 对接调式排查问题时，查询日志是非常关键的，nginx作为负载&#x2F;反向代理，冲在第一线可以收集到很多访问&#x2F;接入信息。熟悉和了解nginx的日志模块，对排查，分析，统计都有帮助。</p>
+</blockquote>
+<h3 id="nginx的日志相关指令"><a href="#nginx的日志相关指令" class="headerlink" title="nginx的日志相关指令"></a>nginx的日志相关指令</h3><hr>
+<h4 id="log-format"><a href="#log-format" class="headerlink" title="log_format"></a>log_format</h4><ul>
+<li>用于设置日志的格式</li>
+</ul>
+<h5 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h5><ul>
+<li><p>log_format name string</p>
+</li>
+<li><p><code>name</code>:格式名称</p>
+</li>
+<li><p><code>string</code>:定义的格式</p>
+</li>
+</ul>
+<p>举例：</p>
+<pre><code>    log_format access  &#39;$http_x_forwarded_for $remote_addr [$time_local] &quot;$request&quot; &#39;
+               &#39;$status $body_bytes_sent &quot;$http_referer&quot; &quot;$http_user_agent&quot; &quot;$request_body&quot; &quot;$sent_http_last_modified&quot; &quot;$remote_user&quot; &#39;;
+</code></pre>
+<ul>
+<li><p>当日志文件中记录的值为”-“时，表示为空</p>
+</li>
+<li><p>access为自定义的日志格式的名称，使用时引用即可：</p>
+<pre><code>access_log /var/log/nginx/access.log  access;
+</code></pre>
+</li>
+</ul>
+<h5 id="具体设置的参数说明："><a href="#具体设置的参数说明：" class="headerlink" title="具体设置的参数说明："></a>具体设置的参数说明：</h5><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$args</td>
+<td>#请求中的参数值</td>
+<td></td>
+</tr>
+<tr>
+<td>$query_string</td>
+<td>#同 $args</td>
+<td></td>
+</tr>
+<tr>
+<td>$arg_NAME</td>
+<td>#GET请求中NAME的值</td>
+<td></td>
+</tr>
+<tr>
+<td>$is_args</td>
+<td>#如果请求中有参数，值为”?”，否则为空字符串</td>
+<td></td>
+</tr>
+<tr>
+<td>$uri</td>
+<td>#请求中的当前URI(不带请求参数，参数位于$args)，可以不同于浏览器传递的$request_uri的值，它可以通过内部重定向，或者使用index指令进行修改，$uri不包含主机名，如”&#x2F;foo&#x2F;bar.html”。</td>
+<td></td>
+</tr>
+<tr>
+<td>$document_uri</td>
+<td>#同 $uri</td>
+<td></td>
+</tr>
+<tr>
+<td>$document_root</td>
+<td>#当前请求的文档根目录或别名</td>
+<td></td>
+</tr>
+<tr>
+<td>$host</td>
+<td>#优先级：HTTP请求行的主机名&gt;”HOST”请求头字段&gt;符合请求的服务器名.请求中的主机头字段，如果请求中的主机头不可用，则为服务器处理请求的服务器名称</td>
+<td></td>
+</tr>
+<tr>
+<td>$hostname</td>
+<td>#主机名</td>
+<td></td>
+</tr>
+<tr>
+<td>$https</td>
+<td>#如果开启了SSL安全模式，值为”on”，否则为空字符串。</td>
+<td></td>
+</tr>
+<tr>
+<td>$binary_remote_addr</td>
+<td>#客户端地址的二进制形式，固定长度为4个字节</td>
+<td></td>
+</tr>
+<tr>
+<td>$body_bytes_sent</td>
+<td>#传输给客户端的字节数，响应头不计算在内；这个变量和Apache的mod_log_config模块中的”%B”参数保持兼容</td>
+<td></td>
+</tr>
+<tr>
+<td>$bytes_sent</td>
+<td>#传输给客户端的字节数</td>
+<td></td>
+</tr>
+<tr>
+<td>$connection</td>
+<td>#TCP连接的序列号</td>
+<td></td>
+</tr>
+<tr>
+<td>$connection_requests</td>
+<td>#TCP连接当前的请求数量</td>
+<td></td>
+</tr>
+<tr>
+<td>$content_length</td>
+<td>#”Content-Length” 请求头字段</td>
+<td></td>
+</tr>
+<tr>
+<td>$content_type</td>
+<td>#”Content-Type” 请求头字段</td>
+<td></td>
+</tr>
+<tr>
+<td>$cookie_name</td>
+<td>#cookie名称</td>
+<td></td>
+</tr>
+<tr>
+<td>$limit_rate</td>
+<td>#用于设置响应的速度限制</td>
+<td></td>
+</tr>
+<tr>
+<td>$msec</td>
+<td>#当前的Unix时间戳</td>
+<td></td>
+</tr>
+<tr>
+<td>$nginx_version</td>
+<td>#nginx版本</td>
+<td></td>
+</tr>
+<tr>
+<td>$pid</td>
+<td>#工作进程的PID</td>
+<td></td>
+</tr>
+<tr>
+<td>$pipe</td>
+<td>#如果请求来自管道通信，值为”p”，否则为”.”</td>
+<td></td>
+</tr>
+<tr>
+<td>$proxy_protocol_addr</td>
+<td>#获取代理访问服务器的客户端地址，如果是直接访问，该值为空字符串</td>
+<td></td>
+</tr>
+<tr>
+<td>$realpath_root</td>
+<td>#当前请求的文档根目录或别名的真实路径，会将所有符号连接转换为真实路径</td>
+<td></td>
+</tr>
+<tr>
+<td>$remote_addr</td>
+<td>#客户端地址</td>
+<td></td>
+</tr>
+<tr>
+<td>$remote_port</td>
+<td>#客户端端口</td>
+<td></td>
+</tr>
+<tr>
+<td>$remote_user</td>
+<td>#用于HTTP基础认证服务的用户名</td>
+<td></td>
+</tr>
+<tr>
+<td>$request</td>
+<td>#代表客户端的请求地址</td>
+<td></td>
+</tr>
+<tr>
+<td>$request_body</td>
+<td>#客户端的请求主体：此变量可在location中使用，将请求主体通过proxy_pass，fastcgi_pass，uwsgi_pass和scgi_pass传递给下一级的代理服务器</td>
+<td></td>
+</tr>
+<tr>
+<td>$request_body_file</td>
+<td>#将客户端请求主体保存在临时文件中。文件处理结束后，此文件需删除。如果需要之一开启此功能，需要设置client_body_in_file_only。如果将次文件传 递给后端的代理服务器，需要禁用request body，即设置proxy_pass_request_body off，fastcgi_pass_request_body off，uwsgi_pass_request_body off，or scgi_pass_request_body off</td>
+<td></td>
+</tr>
+<tr>
+<td>$request_completion</td>
+<td>#如果请求成功，值为”OK”，如果请求未完成或者请求不是一个范围请求的最后一部分，则为空</td>
+<td></td>
+</tr>
+<tr>
+<td>$request_filename</td>
+<td>#当前连接请求的文件路径，由root或alias指令与URI请求生成</td>
+<td></td>
+</tr>
+<tr>
+<td>$request_length</td>
+<td>#请求的长度 (包括请求的地址，http请求头和请求主体)</td>
+<td></td>
+</tr>
+<tr>
+<td>$request_method</td>
+<td>#HTTP请求方法，通常为”GET”或”POST”</td>
+<td></td>
+</tr>
+<tr>
+<td>$request_time</td>
+<td>#处理客户端请求使用的时间,单位为秒，精度毫秒； 从读入客户端的第一个字节开始，直到把最后一个字符发送给客户端后进行日志写入为止。</td>
+<td></td>
+</tr>
+<tr>
+<td>$request_uri</td>
+<td>#这个变量等于包含一些客户端请求参数的原始URI，它无法修改，请查看$uri更改或重写URI，不包含主机名，例如：”&#x2F;cnphp&#x2F;test.php?arg&#x3D;freemouse”</td>
+<td></td>
+</tr>
+<tr>
+<td>$scheme</td>
+<td>#请求使用的Web协议，”http” 或 “https”</td>
+<td></td>
+</tr>
+<tr>
+<td>$server_addr</td>
+<td>#服务器端地址，需要注意的是：为了避免访问linux系统内核，应将ip地址提前设置在配置文件中</td>
+<td></td>
+</tr>
+<tr>
+<td>$server_name</td>
+<td>#服务器名</td>
+<td></td>
+</tr>
+<tr>
+<td>$server_port</td>
+<td>#服务器端口</td>
+<td></td>
+</tr>
+<tr>
+<td>$server_protocol</td>
+<td>#服务器的HTTP版本，通常为 “HTTP&#x2F;1.0” 或 “HTTP&#x2F;1.1”</td>
+<td></td>
+</tr>
+<tr>
+<td>$status</td>
+<td>#HTTP响应代码</td>
+<td></td>
+</tr>
+<tr>
+<td>$time_iso8601</td>
+<td>#服务器时间的ISO 8610格式</td>
+<td></td>
+</tr>
+<tr>
+<td>$time_local</td>
+<td>#服务器时间（LOG Format 格式）</td>
+<td></td>
+</tr>
+<tr>
+<td>$cookie_NAME</td>
+<td>#客户端请求Header头中的cookie变量，前缀”$cookie_”加上cookie名称的变量，该变量的值即为cookie名称的值</td>
+<td></td>
+</tr>
+<tr>
+<td>$http_NAME</td>
+<td>#匹配任意请求头字段；变量名中的后半部分NAME可以替换成任意请求头字段，如在配置文件中需要获取http请求头：”Accept-Language”，$http_accept_language即可</td>
+<td></td>
+</tr>
+<tr>
+<td>$http_cookie</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$http_host</td>
+<td>#请求地址，即浏览器中你输入的地址（IP或域名）</td>
+<td></td>
+</tr>
+<tr>
+<td>$http_referer</td>
+<td>#url跳转来源,用来记录从那个页面链接访问过来的</td>
+<td></td>
+</tr>
+<tr>
+<td>$http_user_agent</td>
+<td>#用户终端浏览器等信息</td>
+<td></td>
+</tr>
+<tr>
+<td>$http_x_forwarded_for</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$sent_http_NAME</td>
+<td>#可以设置任意http响应头字段；变量名中的后半部分NAME可以替换成任意响应头字段，如需要设置响应头Content-length，$sent_http_content_length即可</td>
+<td></td>
+</tr>
+<tr>
+<td>$sent_http_cache_control</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$sent_http_connection</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$sent_http_content_type</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$sent_http_keep_alive</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$sent_http_last_modified</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$sent_http_location</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$sent_http_transfer_encoding</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>常用的配置：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$remote_addr</td>
+<td>客户端地址</td>
+<td>211.28.65.253</td>
+</tr>
+<tr>
+<td>$remote_user</td>
+<td>客户端用户名称</td>
+<td>—</td>
+</tr>
+<tr>
+<td>$time_local</td>
+<td>访问时间和时区</td>
+<td>18&#x2F;Jul&#x2F;2012:17:00:01 +0800</td>
+</tr>
+<tr>
+<td>$request</td>
+<td>请求的URI和HTTP协议</td>
+<td>“GET &#x2F;article-10000.html HTTP&#x2F;1.1”</td>
+</tr>
+<tr>
+<td>$http_host</td>
+<td>请求地址，即浏览器中你输入的地址（IP或域名）</td>
+<td><a target="_blank" rel="noopener" href="http://www.it300.com/">www.it300.com</a> 192.168.100.100</td>
+</tr>
+<tr>
+<td>$status</td>
+<td>HTTP请求状态</td>
+<td>200</td>
+</tr>
+<tr>
+<td>$upstream_status</td>
+<td>upstream状态</td>
+<td>200</td>
+</tr>
+<tr>
+<td>$body_bytes_sent</td>
+<td>发送给客户端文件内容大小</td>
+<td>1547</td>
+</tr>
+<tr>
+<td>$http_referer</td>
+<td>url跳转来源</td>
+<td><a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com/</a></td>
+</tr>
+<tr>
+<td>$http_user_agent</td>
+<td>用户终端浏览器等信息</td>
+<td>Mozilla&#x2F;4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident&#x2F;4.0; SV1; GTB7.0; .NET4.</td>
+</tr>
+<tr>
+<td>$ssl_protocol</td>
+<td>SSL协议版本	TLSv1</td>
+<td></td>
+</tr>
+<tr>
+<td>$ssl_cipher</td>
+<td>交换数据中的算法</td>
+<td>RC4-SHA</td>
+</tr>
+<tr>
+<td>$upstream_addr</td>
+<td>后台upstream的地址，即真正提供服务的主机地址</td>
+<td>10.10.10.100:80</td>
+</tr>
+<tr>
+<td>$request_time</td>
+<td>整个请求的总时间</td>
+<td>0.002</td>
+</tr>
+<tr>
+<td>$upstream_response_time</td>
+<td>请求过程中，upstream响应时间</td>
+<td>0.002</td>
+</tr>
+<tr>
+<td>$request_body</td>
+<td>post请求的参数</td>
+<td>—</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h5 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h5><ul>
+<li>如何设置nginx中remote_addr和x_forwarded_for参数</li>
+</ul>
+<p><code>remote_addr</code> : remote_addr代表客户端的IP，但它的值不是由客户端提供的，而是服务端根据客户端的ip指定的，当你的浏览器访问某个网站时，假设中间没有任何代理，那么网站的web服务器（Nginx，Apache等）就会把remote_addr设为你的机器IP，如果你用了某个代理，那么你的浏览器会先访问这个代理，然后再由这个代理转发到网站，这样web服务器就会把remote_addr设为这台代理机器的IP</p>
+<p><code>x_forwarded_for</code>:通常web服务器放在反向代理的后面，当使用了代理时，web服务器就不知道你的真实IP了，为了避免这个情况，代理服务器通常会增加一个<code>x_forwarded_for</code>的头信息，把连接它的客户端IP（即你的上网机器IP）加到这个头信息里，这样就能保证网站的web服务器能获取到真实IP.</p>
+<ul>
+<li><p>在server中设置x_forwarded_for</p>
+<pre><code>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</code></pre>
+</li>
+</ul>
+<h4 id="access-log"><a href="#access-log" class="headerlink" title="access_log"></a>access_log</h4><ul>
+<li>用来指定日志文件的存放路径、格式</li>
+</ul>
+<h5 id="语法：-1"><a href="#语法：-1" class="headerlink" title="语法："></a>语法：</h5><ul>
+<li>access_log path [format [buffer&#x3D;size [flush&#x3D;time]]];</li>
+<li>access_log path format gzip[&#x3D;level] [buffer&#x3D;size] [flush&#x3D;time];</li>
+<li>access_log syslog:server&#x3D;address[,parameter&#x3D;value] [format];</li>
+<li>access_log off;</li>
+</ul>
+<p>默认值: access_log logs&#x2F;access.log combined;</p>
+<p>配置段: http, server, location, if in location, limit_except</p>
+<p>gzip压缩等级。</p>
+<p>buffer设置内存缓存区大小。</p>
+<p>flush保存在缓存区中的最长时间。</p>
+<p>不记录日志：access_log off;</p>
+<p>使用默认combined格式记录日志：access_log logs&#x2F;access.log 或 access_log logs&#x2F;access.log combined;</p>
+<h4 id="open-log-file-cache"><a href="#open-log-file-cache" class="headerlink" title="open_log_file_cache"></a>open_log_file_cache</h4><h5 id="语法"><a href="#语法" class="headerlink" title="语法:"></a>语法:</h5><ul>
+<li>open_log_file_cache max&#x3D;N [inactive&#x3D;time] [min_uses&#x3D;N] [valid&#x3D;time];</li>
+<li>open_log_file_cache off;</li>
+</ul>
+<p>默认值: open_log_file_cache off;</p>
+<p>配置段: http, server, location</p>
+<p>对于每一条日志记录，都将是先打开文件，再写入日志，然后关闭。可以使用open_log_file_cache来设置日志文件缓存(默认是off)，格式如下：</p>
+<p>参数注释如下：</p>
+<ul>
+<li>max:设置缓存中的最大文件描述符数量，如果缓存被占满，采用LRU算法将描述符关闭。</li>
+<li>inactive:设置存活时间，默认是10s</li>
+<li>min_uses:设置在inactive时间段内，日志文件最少使用多少次后，该日志文件描述符记入缓存中，默认是1次</li>
+<li>valid:设置检查频率，默认60s</li>
+<li>off：禁用缓存</li>
+</ul>
+<p>实例：</p>
+<pre><code>open_log_file_cache max=1000 inactive=20s valid=1m min_uses=2;
+</code></pre>
+<h4 id="log-not-found"><a href="#log-not-found" class="headerlink" title="log_not_found"></a>log_not_found</h4><ul>
+<li>是否在error_log中记录不存在的错误。默认是。</li>
+</ul>
+<h5 id="语法-1"><a href="#语法-1" class="headerlink" title="语法:"></a>语法:</h5><ul>
+<li>log_not_found on | off;</li>
+</ul>
+<p>默认值: log_not_found on;</p>
+<p>配置段: http, server, location</p>
+<h4 id="log-subrequest"><a href="#log-subrequest" class="headerlink" title="log_subrequest"></a>log_subrequest</h4><ul>
+<li>是否在access_log中记录子请求的访问日志。默认不记录。</li>
+</ul>
+<h5 id="语法-2"><a href="#语法-2" class="headerlink" title="语法:"></a>语法:</h5><ul>
+<li>log_subrequest on | off;<br>默认值: log_subrequest off;<br>配置段: http, server, location</li>
+</ul>
+<h4 id="rewrite-log"><a href="#rewrite-log" class="headerlink" title="rewrite_log"></a>rewrite_log</h4><ul>
+<li>启用时将在error log中记录notice级别的重写日志。</li>
+</ul>
+<p>由ngx_http_rewrite_module模块提供的。用来记录重写日志的。对于调试重写规则建议开启。 Nginx重写规则指南</p>
+<h5 id="语法-3"><a href="#语法-3" class="headerlink" title="语法:"></a>语法:</h5><p>rewrite_log on | off;</p>
+<p>默认值: rewrite_log off;</p>
+<p>配置段: http, server, location, if</p>
+<h4 id="error-log"><a href="#error-log" class="headerlink" title="error_log"></a>error_log</h4><ul>
+<li>配置错误日志。</li>
+</ul>
+<h5 id="语法-4"><a href="#语法-4" class="headerlink" title="语法:"></a>语法:</h5><ul>
+<li>error_log file | stderr | syslog:server&#x3D;address[,parameter&#x3D;value] [debug | info | notice | warn | error | crit | alert | emerg];</li>
+</ul>
+<p>默认值: error_log logs&#x2F;error.log error;</p>
+<p>配置段: main, http, server, location</p>
+<h3 id="日志统计分析"><a href="#日志统计分析" class="headerlink" title="日志统计分析"></a>日志统计分析</h3><p>＞　看到某大师分享的关于手动分析的日志的方式，方法不错，简单记录下</p>
+<p><strong>Nginx 日志能够记录的变量还有很多没出现在默认配置中：</strong></p>
+<p>比如：</p>
+<p>请求数据大小：$request_length</p>
+<p>返回数据大小：$bytes_sent</p>
+<p>请求耗时：$request_time</p>
+<p>所用连接序号：$connection</p>
+<p>当前连接发生请求数：$connection_requests</p>
+<p>Nginx 的默认格式不可计算统计，需要想办法转换成可统计计算的格式，比如用控制字符 ^A (Mac 下 ctrl+v ctrl+a 打出)分割每个字段。</p>
+<p>log_format 的格式可以变成这样：</p>
+<pre><code>    log_format new &#39;$remote_addr^A$http_x_forwarded_for^A$host^A$time_local^A$status^A&#39;
+    &#39;$request_time^A$request_length^A$bytes_sent^A$http_referer^A$request^A$http_user_agent&#39;;
+</code></pre>
+<p>这样之后就通过常见的 Linux 命令行工具进行分析了：</p>
+<ul>
+<li><p>查找访问频率最高的 URL 和次数：</p>
+<pre><code>cat access.log | awk -F ‘^A’ ‘&#123;print $10&#125;’ | sort | uniq -c
+</code></pre>
+</li>
+<li><p>查找当前日志文件 500 错误的访问：</p>
+<pre><code>cat access.log | awk -F ‘^A’ ‘&#123;if($5 == 500) print $0&#125;’
+</code></pre>
+</li>
+<li><p>查找当前日志文件 500 错误的数量：<br>cat access.log | awk -F ‘^A’ ‘{if($5 &#x3D;&#x3D; 500) print $0}’ | wc -l</p>
+</li>
+<li><p>查找某一分钟内 500 错误访问的数量:</p>
+<pre><code>cat access.log | awk -F ‘^A’ ‘&#123;if($5 == 500) print $0&#125;’ | grep ’09:00’ | wc-l
+</code></pre>
+</li>
+<li><p>查找耗时超过 1s 的慢请求：</p>
+<pre><code>tail -f access.log | awk -F ‘^A’ ‘&#123;if($6&gt;1) print $0&#125;’
+</code></pre>
+</li>
+<li><p>假如只想查看某些位：</p>
+<pre><code>tail -f access.log | awk -F ‘^A’ ‘&#123;if($6&gt;1) print $3″|”$4&#125;’
+</code></pre>
+</li>
+<li><p>查找 502 错误最多的 URL：</p>
+<pre><code>cat access.log | awk -F ‘^A’ ‘&#123;if($5==502) print $11&#125;’ | sort | uniq -c
+</code></pre>
+</li>
+<li><p>查找 200 空白页</p>
+<pre><code>cat access.log | awk -F ‘^A’ ‘&#123;if($5==200 &amp;&amp; $8 &lt; 100) print $3″|”$4″|”$11″|”$6&#125;’
+</code></pre>
+</li>
+<li><p>查看实时日志数据流</p>
+<pre><code>tail -f access.log | cat -e
+</code></pre>
+</li>
+<li><p>或者</p>
+<pre><code>tail -f access.log | tr ‘^A’ ‘|’
+</code></pre>
+</li>
+</ul>
+<p>按这个思路可以做很多其他分析，比如 UA 最多的访问；访问频率最高的 IP；请求耗时分析；请求返回包大小分析；等等。</p>
+<h3 id="切割日志"><a href="#切割日志" class="headerlink" title="切割日志"></a>切割日志</h3><p>Nginx 的日志都是写在一个文件当中的，不会自动地进行切割，如果访问量很大的话，将导致日志文件容量非常大，不便于管理和造成Nginx 日志写入效率低下等问题。所以，往往需要要对access_log、error_log日志进行切割。</p>
+<p>切割日志一般利用USR1信号让nginx产生新的日志。</p>
+<ul>
+<li>实例：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">logdir=&quot;/data/logs/nginx&quot;</span><br><span class="line">pid=`cat $logdir/nginx.pid`</span><br><span class="line">DATE=`date -d &quot;1 hours ago&quot; +%Y%m%d%H`</span><br><span class="line">DATE_OLD=`date -d &quot;7 days ago&quot; +%Y%m%d`</span><br><span class="line">for i in `ls $logdir/*access.log`; do</span><br><span class="line">        mv $i $i.$DATE</span><br><span class="line">done</span><br><span class="line">for i in `ls $logdir/*error.log`; do</span><br><span class="line">        mv $i $i.$DATE</span><br><span class="line">done</span><br><span class="line">kill -s USR1 $pid</span><br><span class="line">rm -v $logdir&quot;/access.log.&quot;$DATE_OLD*</span><br><span class="line"></span><br><span class="line">rm -v $logdir&quot;/error.log.&quot;$DATE_OLD*</span><br></pre></td></tr></table></figure>
+
+
+<p>1、分析：</p>
+<p>将上面的脚本放到crontab中，每小时执行一次（0 ），这样每小时会把当前日志重命名成一个新文件；然后发送USR1这个信号让Nginx 重新生成一个新的日志。（相当于备份日志）<br>将前7天的日志删除；</p>
+<p>2、说明：</p>
+<p>在没有执行kill -USR1 $pid之前，即便已经对文件执行了mv命令而改变了文件名称，nginx还是会向新命名的文件”*access.log.2016032623”照常写入日志数据的。原因在于：linux系统中，内核是根据文件描述符来找文件的。</p>
+<p>3、logrotates：</p>
+<p>使用系统自带的logrotates，也可以实现nginx的日志分割，查看其bash源码，发现也是发送USR1这个信号。</p>
+<p>nginx的日志相关总结先到这里。</p>
+</div><div class="tags"><a href="/tags/nginx"><i class="fa fa-tag">nginx</i></a></div><div class="post-nav"><a class="pre" href="/2017/02/25/%E5%B7%A5%E5%85%B7/%20wrk%20%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">wrk 安装与使用</a><a class="next" href="/2017/02/20/%E5%B7%A5%E5%85%B7/%E5%B8%B8%E7%94%A8%E5%9B%BE%E5%BA%8A%E5%8F%8A%E8%87%AA%E5%BB%BA%E5%9B%BE%E5%BA%8A%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/">常用图床及自建图床方法汇总</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">46</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E6%8A%80/">杂技</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/https/" style="font-size: 15px;">https</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/08/14/%E6%9D%82%E8%AE%B0/%E5%B9%B3%E5%87%A1%E6%97%A5%E5%AD%90%E9%87%8C%E7%9A%84%E6%8C%A3%E6%89%8E/">平凡日子里的挣扎</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/11/%E7%BD%91%E7%BB%9C/Openflow%E6%80%BB%E7%BB%93/">Openflow总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/09/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20nacos%E4%BB%A5mysql%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%BA%90%E8%BF%9B%E8%A1%8C%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%8C%E6%8A%A5%E2%80%9CNo%20DataSource%20set%E2%80%9D%E9%94%99%E8%AF%AF/">nacos以mysql为数据源进行持久化，报“No DataSource set”错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/27/java/java%20%E6%97%A5%E5%BF%97%E8%A7%84%E8%8C%83/">java 日志规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/24/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01224/">笔记-王阳明</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/21/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01221/">笔记-数字化转型核心</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/05/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01205/">笔记-小程序带来了什么改变</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/04/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01204/">笔记-互联网思维～</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/03/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01203/">笔记-张子选《藏地诗篇》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/02/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01202/">笔记-刻意练习</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">枫哲's文栖小筑.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

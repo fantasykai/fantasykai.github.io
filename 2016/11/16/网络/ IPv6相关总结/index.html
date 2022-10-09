@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>IPv6相关总结 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">IPv6相关总结</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">IPv6相关总结</h1><div class="post-meta">2016-11-16<span> | </span><span class="category"><a href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></span></div><a class="disqus-comment-count" href="/2016/11/16/%E7%BD%91%E7%BB%9C/%20IPv6%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/#vcomment"><span class="waline-comment-count" id="/2016/11/16/%E7%BD%91%E7%BB%9C/%20IPv6%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">简述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv6%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">IPv6格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv6-DNS"><span class="toc-number">3.</span> <span class="toc-text">IPv6 DNS:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E5%91%BD%E4%BB%A4-ping-IPv6%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">Linux命令 ping IPv6：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E5%91%BD%E4%BB%A4-ping-IPv6%EF%BC%9A"><span class="toc-number">5.</span> <span class="toc-text">Windows命令 ping IPv6：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E5%91%BD%E4%BB%A4-wget-IPv6%EF%BC%9A"><span class="toc-number">6.</span> <span class="toc-text">Linux命令 wget IPv6：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E5%92%8CWindows%E5%91%BD%E4%BB%A4%E6%9F%A5%E8%AF%A2%E5%9F%9F%E5%90%8DAAAA%E8%AE%B0%E5%BD%95%EF%BC%8C%E6%98%AF%E5%90%A6%E6%94%AF%E6%8C%81IPv6%EF%BC%9A"><span class="toc-number">7.</span> <span class="toc-text">Linux和Windows命令查询域名AAAA记录，是否支持IPv6：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache-httpd%E9%85%8D%E7%BD%AEIPv6%EF%BC%9A"><span class="toc-number">8.</span> <span class="toc-text">Apache httpd配置IPv6：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv4%E5%A4%96%E7%BD%91%E7%94%A8%E6%88%B7%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8IPv6%EF%BC%9A"><span class="toc-number">9.</span> <span class="toc-text">IPv4外网用户如何使用IPv6：</span></a></li></ol></div></div><div class="post-content"><h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><blockquote>
+<p>ios上架AppStore时，被驳回，要求必须支持IPv6,在此总结一些IPv6相关的知识点</p>
+</blockquote>
+<h2 id="IPv6格式"><a href="#IPv6格式" class="headerlink" title="IPv6格式"></a>IPv6格式</h2><blockquote>
+<p>IPv6是128bit</p>
+</blockquote>
+<h2 id="IPv6-DNS"><a href="#IPv6-DNS" class="headerlink" title="IPv6 DNS:"></a>IPv6 DNS:</h2><p>未知国家<br>2001:470:20::2</p>
+<p>加拿大<br>2001:478:6:0:230:48ff:fe22:6a29</p>
+<p>英国<br>2001:7fd::1</p>
+<p>日本<br>2001:dc4::1</p>
+<h2 id="Linux命令-ping-IPv6："><a href="#Linux命令-ping-IPv6：" class="headerlink" title="Linux命令 ping IPv6："></a>Linux命令 ping IPv6：</h2><p>Linux下ping IPv6需要使用ping6，如果使用ping，则会提示ping: unknown host。</p>
+<p>ping6 ipv6.google.com</p>
+<p>ping6 2001:470:20::2</p>
+<p>PING 2001:470:20::2(2001:470:20::2) 56 data bytes</p>
+<p>64 bytes from 2001:470:20::2: icmp_seq&#x3D;11 ttl&#x3D;60 time&#x3D;714 ms</p>
+<p>64 bytes from 2001:470:20::2: icmp_seq&#x3D;12 ttl&#x3D;60 time&#x3D;4.65 ms</p>
+<p>ping 2001:470:20::2</p>
+<p>ping: unknown host 2001:470:20::2</p>
+<h2 id="Windows命令-ping-IPv6："><a href="#Windows命令-ping-IPv6：" class="headerlink" title="Windows命令 ping IPv6："></a>Windows命令 ping IPv6：</h2><p>ping -6 ipv6.google.com</p>
+<h2 id="Linux命令-wget-IPv6："><a href="#Linux命令-wget-IPv6：" class="headerlink" title="Linux命令 wget IPv6："></a>Linux命令 wget IPv6：</h2><p>wget -6 <a target="_blank" rel="noopener" href="http://ipv6.google.com/">http://ipv6.google.com</a></p>
+<h2 id="Linux和Windows命令查询域名AAAA记录，是否支持IPv6："><a href="#Linux和Windows命令查询域名AAAA记录，是否支持IPv6：" class="headerlink" title="Linux和Windows命令查询域名AAAA记录，是否支持IPv6："></a>Linux和Windows命令查询域名AAAA记录，是否支持IPv6：</h2><p>Linux和Windows都是使用nslookup程序查询dns。</p>
+<pre><code>$ nslookup
+
+&gt;set querytype=aaaa
+
+&gt;ipv6.google.com
+
+Server:		8.8.8.8
+
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+
+ipv6.google.com	canonical name = ipv6.l.google.com.
+
+ipv6.l.google.com	has AAAA address 2404:6800:8005::6a
+</code></pre>
+<p>由此可知，IPv4的DNS也能返回域名的IPv6记录，即AAAA记录。</p>
+<pre><code>$ nslookup
+&gt; set querytype=aaaa
+&gt; google.com
+Server:		2001:470:20::2
+Address:	2001:470:20::2#53
+
+Non-authoritative answer:
+google.com	has AAAA address 2001:4860:800b::69
+</code></pre>
+<p>配置域名同时支持IPv6和IPv4：</p>
+<p>领先的域名注册商同时支持IPv6和IPv4，比如godaddy、namesilo，在注册商这里购买了域名之后，登录到域名管理界面，可以设置A记录和AAAA记录。</p>
+<p>假设购买了example.com，希望example.com同时支持IPv6和IPv4，则添加一条A记录指向192.0.32.10，添加一条AAAA记录，指向2620:0:2d0:200::10，等待一段时间即可生效（等待时间与TTL有关）。结果如下：</p>
+<pre><code>$ nslookup
+&gt; example.com
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+Name:	example.com
+Address: 192.0.32.10
+&gt; set querytype=aaaa
+&gt; example.com
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+example.com	has AAAA address 2620:0:2d0:200::10
+</code></pre>
+<p>配置域名只支持IPv6：</p>
+<p>假设购买了google.com，希望ipv6.google.com只支持IPv6，不支持IPv4，则不添加A记录，只添加一条AAAA记录，指向2404:6800:8005::68。结果如下：</p>
+<pre><code>$ nslookup
+&gt; ipv6.google.com
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+ipv6.google.com	canonical name = ipv6.l.google.com.
+&gt; ipv6.l.google.com
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+*** Can&#39;t find ipv6.l.google.com: No answer
+&gt; set querytype=aaaa
+&gt; ipv6.google.com
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+ipv6.google.com	canonical name = ipv6.l.google.com.
+ipv6.l.google.com	has AAAA address 2404:6800:8005::68
+</code></pre>
+<h2 id="Apache-httpd配置IPv6："><a href="#Apache-httpd配置IPv6：" class="headerlink" title="Apache httpd配置IPv6："></a>Apache httpd配置IPv6：</h2><p>Apache httpd配置支持IPv6，需要给IP带上方括号，参考：<a target="_blank" rel="noopener" href="http://lamp.linux.gov.cn/Apache/ApacheMenu/mod/core.html#virtualhost">http://lamp.linux.gov.cn/Apache/ApacheMenu/mod/core.html#virtualhost</a></p>
+<pre><code>&lt;VirtualHost [2404:6800:8005::68]:80&gt;
+ServerAdmin webmaster@ipv6.google.com
+DocumentRoot /var/www/html/ipv6.google.com/
+ServerName ipv6.google.com
+&lt;/VirtualHost&gt;
+IPv4内网用户如何使用IPv6：
+</code></pre>
+<p>安装Teredo隧道即可。访问IPv6网站通过Teredo服务器转发，速度受影响。</p>
+<ul>
+<li>注意：</li>
+</ul>
+<p>Teredo隧道与PPPOE冲突，解决方法：使用路由拨号，本机只有一个本地连接即可。</p>
+<p>Teredo隧道与多网卡冲突，比如virtualbox的虚拟网卡，解决办法：禁用别的网卡，只留一个本地连接。</p>
+<ul>
+<li><p>参考：</p>
+</li>
+<li><p>在IPv4网络下接入IPv6网络的方法：<a target="_blank" rel="noopener" href="http://www.ipv6bbs.cn/thread-151-1-1.html">http://www.ipv6bbs.cn/thread-151-1-1.html</a></p>
+</li>
+<li><p>资料：<a target="_blank" rel="noopener" href="http://felixcat.net/2010/04/install-teredo-ipv6/">http://felixcat.net/2010/04/install-teredo-ipv6/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.ipv6home.cn/html/63/t-17563.html">http://www.ipv6home.cn/html/63/t-17563.html</a></p>
+</li>
+<li><p>Win 7下用Teredo隧道接入IPv6后，操作系统默认还是直接走IPv4：<a target="_blank" rel="noopener" href="http://social.technet.microsoft.com/Forums/zh-CN/window7betacn/thread/ae1f7d47-aa19-493d-a10d-f8032441a147/">http://social.technet.microsoft.com/Forums/zh-CN/window7betacn/thread/ae1f7d47-aa19-493d-a10d-f8032441a147/</a></p>
+</li>
+<li><p>teredo IPv6 配置hosts后无法使用gtalk客户端（解决办法：使用Pidgin）：<a target="_blank" rel="noopener" href="http://www.google.com/support/forum/p/other/thread?tid=4f65f26a7da1785f&amp;hl=zh-CN">http://www.google.com/support/forum/p/other/thread?tid=4f65f26a7da1785f&amp;hl=zh-CN</a></p>
+</li>
+</ul>
+<h2 id="IPv4外网用户如何使用IPv6："><a href="#IPv4外网用户如何使用IPv6：" class="headerlink" title="IPv4外网用户如何使用IPv6："></a>IPv4外网用户如何使用IPv6：</h2><p>安装isatap隧道即可。访问IPv6网站通过isatap网关转发，速度受影响。</p>
+<p>如何设置浏览器默认使用IPv6：</p>
+<p>1、真实IPv4 + 真实IPv6</p>
+<p>操作系统会优先使用IPv6（未测试）。</p>
+<p>2、真实IPv4内网+ IPv6 Teredo隧道</p>
+<p>当域名同时有A和AAAA记录时，Windows 7、Ubuntu优先使用真实IPv4内网，所以需要修改hosts加入IPv6。</p>
+<p>当域名只有AAAA记录时，Ubuntu可直接访问（比如ipv6.google.com），不用配hosts。</p>
+<p>2、真实IPv4外网+ IPv6 isatap隧道</p>
+<p>XP可以直接访问ipv6.google.com，不能直接访问docs.google.com，需要配hosts。</p>
+<p>IPv6路由器：</p>
+<p>D-Link一百元的家用路由器国外版本支持IPv6：<a target="_blank" rel="noopener" href="http://www.dlink.com/ipv6%EF%BC%8C%E6%AF%94%E5%A6%82DIR-615%EF%BC%8C%E6%88%AA%E5%9B%BE%E5%9C%A8%E6%9C%80%E5%90%8E%E3%80%82%E4%BD%86%E5%9B%BD%E5%86%85%E7%89%88%E6%9C%AC%E4%B8%8D%E7%9F%A5%E6%98%AF%E5%90%A6%E6%94%AF%E6%8C%81IPv6%EF%BC%8C%E4%BA%AC%E4%B8%9C%E5%AE%A2%E6%9C%8D%E8%AF%B4%E4%B8%8D%E6%94%AF%E6%8C%81%E3%80%82">http://www.dlink.com/ipv6，比如DIR-615，截图在最后。但国内版本不知是否支持IPv6，京东客服说不支持。</a></p>
+<p>TP-Link家用路由器不支持IPv6。</p>
+<p>是不是刷了dd-wrt完整版操作系统的路由器都支持IPv6，还待确认。</p>
+<ul>
+<li><p>参考资料：</p>
+</li>
+<li><p>google的工具 ： <a target="_blank" rel="noopener" href="https://toolbox.googleapps.com/apps/dig/">https://toolbox.googleapps.com/apps/dig/</a></p>
+</li>
+<li><p>IPv6 隧道 ： <a target="_blank" rel="noopener" href="https://tunnelbroker.net/">https://tunnelbroker.net/</a></p>
+</li>
+<li><p>测试浏览器是否支持IPv6：<a target="_blank" rel="noopener" href="http://test-ipv6.com/">http://test-ipv6.com/</a></p>
+</li>
+<li><p>测试浏览器是否默认使用IPv6：<a target="_blank" rel="noopener" href="http://www.kame.net/">http://www.kame.net/</a></p>
+</li>
+<li><p>火狐扩展，显示正在访问的网站IP，可以看出是否是IPv6：<a target="_blank" rel="noopener" href="https://addons.mozilla.org/zh-CN/firefox/addon/worldip-flag-and-datacenter-pi/">https://addons.mozilla.org/zh-CN/firefox/addon/worldip-flag-and-datacenter-pi/</a></p>
+</li>
+</ul>
+</div><div class="tags"><a href="/tags/IPv6"><i class="fa fa-tag">IPv6</i></a></div><div class="post-nav"><a class="pre" href="/2016/11/16/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20ios-apple-review%E8%A2%AB%E6%8B%92-app-server-%E5%AE%8C%E5%85%A8%E9%80%82%E9%85%8D-ipv6%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89/">ios-apple-review被拒-app-server-完全适配-ipv6（转载）</a><a class="next" href="/2016/11/04/java/%20Spring%20Boot%20Data%20Rest%20Service/">Spring Boot Data Rest Service</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">46</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E6%8A%80/">杂技</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/https/" style="font-size: 15px;">https</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/08/14/%E6%9D%82%E8%AE%B0/%E5%B9%B3%E5%87%A1%E6%97%A5%E5%AD%90%E9%87%8C%E7%9A%84%E6%8C%A3%E6%89%8E/">平凡日子里的挣扎</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/11/%E7%BD%91%E7%BB%9C/Openflow%E6%80%BB%E7%BB%93/">Openflow总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/09/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20nacos%E4%BB%A5mysql%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%BA%90%E8%BF%9B%E8%A1%8C%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%8C%E6%8A%A5%E2%80%9CNo%20DataSource%20set%E2%80%9D%E9%94%99%E8%AF%AF/">nacos以mysql为数据源进行持久化，报“No DataSource set”错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/27/java/java%20%E6%97%A5%E5%BF%97%E8%A7%84%E8%8C%83/">java 日志规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/24/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01224/">笔记-王阳明</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/21/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01221/">笔记-数字化转型核心</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/05/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01205/">笔记-小程序带来了什么改变</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/04/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01204/">笔记-互联网思维～</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/03/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01203/">笔记-张子选《藏地诗篇》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/02/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01202/">笔记-刻意练习</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">枫哲's文栖小筑.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

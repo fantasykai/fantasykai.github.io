@@ -1,0 +1,459 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>axios 总结 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">axios 总结</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">axios 总结</h1><div class="post-meta">2017-06-10<span> | </span><span class="category"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><a class="disqus-comment-count" href="/2017/06/10/%E5%89%8D%E7%AB%AF/axios%20%E6%80%BB%E7%BB%93/#vcomment"><span class="waline-comment-count" id="/2017/06/10/%E5%89%8D%E7%AB%AF/axios%20%E6%80%BB%E7%BB%93/"></span><span> 条评论</span></a><div class="post-content"><h2 id="axios-总结"><a href="#axios-总结" class="headerlink" title="axios 总结"></a>axios 总结</h2><blockquote>
+<p>公司目前没有web端开发，逐步需要做运维，运营的页面，想要快速开展工作，<br>就去了解了下目前比较火的前端框架，前端框架层出不穷技术栈也是日新月异，react vue angular，在做过一段时间了解和对比之后，认为目前vue是最合适的。</p>
+</blockquote>
+<blockquote>
+<p>去官网熟悉了一下基本文档，写了几个demo，就开始设计运营业务的前端架构，借鉴很多github上的优秀作品，今天主要是总结下接口调用的http框架：axios</p>
+</blockquote>
+<blockquote>
+<p>之前使用JQuery时，接口调用是通过$.ajax， 在熟悉vue的过程中，去了解到这块的解决方案，虽然vue全家桶中，提供了vue-resource，但是vue2.0版本以后，尤大宣布不再继续维护vue-resource，并推荐使用 axios，通过实践后，发现axios确实好用~</p>
+</blockquote>
+<h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><ul>
+<li>axios 是一个基于Promise 用于浏览器和 nodejs 的 HTTP 客户端</li>
+</ul>
+<h4 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h4><ul>
+<li>从浏览器中创建 XMLHttpRequest</li>
+<li>从 node.js 发出 http 请求</li>
+<li>支持 Promise API</li>
+<li>拦截请求和响应</li>
+<li>转换请求和响应数据</li>
+<li>取消请求</li>
+<li>自动转换JSON数据</li>
+<li>客户端支持防止 CSRF&#x2F;XSRF</li>
+</ul>
+<h3 id="引入方式："><a href="#引入方式：" class="headerlink" title="引入方式："></a>引入方式：</h3><p>Using npm:</p>
+<pre><code>$ npm install axios
+</code></pre>
+<p>Using bower:</p>
+<pre><code>$ bower install axios
+</code></pre>
+<p>Using cdn:</p>
+<pre><code>&lt;script src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>我的项目使用的是vue-cli脚手架构建，使用的npm的安装方式进行引入</p>
+<pre><code>npm install --save axios
+</code></pre>
+<h3 id="使用举例："><a href="#使用举例：" class="headerlink" title="使用举例："></a>使用举例：</h3><ul>
+<li><p>GET 请求</p>
+<pre><code>  // Make a request for a user with a given ID
+  axios.get(&#39;/user?ID=12345&#39;)
+    .then(function (response) &#123;
+      console.log(response);
+    &#125;)
+    .catch(function (error) &#123;
+      console.log(error);
+    &#125;);
+  
+  // Optionally the request above could also be done as
+  axios.get(&#39;/user&#39;, &#123;
+      params: &#123;
+        ID: 12345
+      &#125;
+    &#125;)
+    .then(function (response) &#123;
+      console.log(response);
+    &#125;)
+    .catch(function (error) &#123;
+      console.log(error);
+    &#125;);
+</code></pre>
+</li>
+<li><p>POST 请求</p>
+<pre><code>  axios.post(&#39;/user&#39;, &#123;
+      firstName: &#39;Fred&#39;,
+      lastName: &#39;Flintstone&#39;
+    &#125;)
+    .then(function (response) &#123;
+      console.log(response);
+    &#125;)
+    .catch(function (error) &#123;
+      console.log(error);
+    &#125;);
+</code></pre>
+</li>
+<li><p>并发请求</p>
+<pre><code>  function getUserAccount() &#123;
+    return axios.get(&#39;/user/12345&#39;);
+  &#125;
+  function getUserPermissions() &#123;
+    return axios.get(&#39;/user/12345/permissions&#39;);
+  &#125;
+  axios.all([getUserAccount(), getUserPermissions()])
+    .then(axios.spread(function (acct, perms) &#123;
+      //两个请求现已完成
+    &#125;));
+</code></pre>
+</li>
+</ul>
+<h3 id="axios-API"><a href="#axios-API" class="headerlink" title="axios API"></a>axios API</h3><p>可以通过向 axios 传递相关配置来创建请求</p>
+<p>axios(config)</p>
+<pre><code>// 发送 POST 请求
+axios(&#123;
+  method: &#39;post&#39;,
+  url: &#39;/user/12345&#39;,
+  data: &#123;
+    firstName: &#39;Fred&#39;,
+    lastName: &#39;Flintstone&#39;
+  &#125;
+&#125;);
+</code></pre>
+<p>axios(url[, config])</p>
+<pre><code>// 发送 GET 请求（默认的方法）
+axios(&#39;/user/12345&#39;);
+</code></pre>
+<h4 id="请求方法的别名"><a href="#请求方法的别名" class="headerlink" title="请求方法的别名"></a>请求方法的别名</h4><p>为方便起见，为所有支持的请求方法提供了别名</p>
+<pre><code>axios.request(config)
+axios.get(url[, config])
+axios.delete(url[, config])
+axios.head(url[, config])
+axios.post(url[, data[, config]])
+axios.put(url[, data[, config]])
+axios.patch(url[, data[, config]])
+</code></pre>
+<ul>
+<li>注意：在使用别名方法时， url、method、data 这些属性都不必在配置中指定。</li>
+</ul>
+<p>并发</p>
+<p>处理并发请求的助手函数</p>
+<pre><code>axios.all(iterable)
+axios.spread(callback)
+</code></pre>
+<h4 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h4><p>可以使用自定义配置新建一个 axios 实例</p>
+<p>axios.create([config])</p>
+<pre><code>var instance = axios.create(&#123;
+  baseURL: &#39;https://some-domain.com/api/&#39;,
+  timeout: 1000,
+  headers: &#123;&#39;X-Custom-Header&#39;: &#39;foobar&#39;&#125;
+&#125;);
+</code></pre>
+<h5 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h5><p>以下是可用的实例方法。指定的配置将与实例的配置合并</p>
+<pre><code>axios#request(config)
+axios#get(url[, config])
+axios#delete(url[, config])
+axios#head(url[, config])
+axios#post(url[, data[, config]])
+axios#put(url[, data[, config]])
+axios#patch(url[, data[, config]])
+</code></pre>
+<h4 id="请求配置"><a href="#请求配置" class="headerlink" title="请求配置"></a>请求配置</h4><p>这些是创建请求时可以用的配置选项。只有 url 是必需的。如果没有指定 method，请求将默认使用 get 方法。</p>
+<pre><code>&#123;
+  // `url` 是用于请求的服务器 URL
+  url: &#39;/user&#39;,
+
+  // `method` 是创建请求时使用的方法
+  method: &#39;get&#39;, // 默认是 get
+
+  // `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL。
+  // 它可以通过设置一个 `baseURL` 便于为 axios 实例的方法传递相对 URL
+  baseURL: &#39;https://some-domain.com/api/&#39;,
+
+  // `transformRequest` 允许在向服务器发送前，修改请求数据
+  // 只能用在 &#39;PUT&#39;, &#39;POST&#39; 和 &#39;PATCH&#39; 这几个请求方法
+  // 后面数组中的函数必须返回一个字符串，或 ArrayBuffer，或 Stream
+  transformRequest: [function (data) &#123;
+    // 对 data 进行任意转换处理
+
+    return data;
+  &#125;],
+
+  // `transformResponse` 在传递给 then/catch 前，允许修改响应数据
+  transformResponse: [function (data) &#123;
+    // 对 data 进行任意转换处理
+
+    return data;
+  &#125;],
+
+  // `headers` 是即将被发送的自定义请求头
+  headers: &#123;&#39;X-Requested-With&#39;: &#39;XMLHttpRequest&#39;&#125;,
+
+  // `params` 是即将与请求一起发送的 URL 参数
+  // 必须是一个无格式对象(plain object)或 URLSearchParams 对象
+  params: &#123;
+    ID: 12345
+  &#125;,
+
+  // `paramsSerializer` 是一个负责 `params` 序列化的函数
+  // (e.g. https://www.npmjs.com/package/qs, http://api.jquery.com/jquery.param/)
+  paramsSerializer: function(params) &#123;
+    return Qs.stringify(params, &#123;arrayFormat: &#39;brackets&#39;&#125;)
+  &#125;,
+
+  // `data` 是作为请求主体被发送的数据
+  // 只适用于这些请求方法 &#39;PUT&#39;, &#39;POST&#39;, 和 &#39;PATCH&#39;
+  // 在没有设置 `transformRequest` 时，必须是以下类型之一：
+  // - string, plain object, ArrayBuffer, ArrayBufferView, URLSearchParams
+  // - 浏览器专属：FormData, File, Blob
+  // - Node 专属： Stream
+  data: &#123;
+    firstName: &#39;Fred&#39;
+  &#125;,
+
+  // `timeout` 指定请求超时的毫秒数(0 表示无超时时间)
+  // 如果请求话费了超过 `timeout` 的时间，请求将被中断
+  timeout: 1000,
+
+  // `withCredentials` 表示跨域请求时是否需要使用凭证
+  withCredentials: false, // 默认的
+
+  // `adapter` 允许自定义处理请求，以使测试更轻松
+  // 返回一个 promise 并应用一个有效的响应 (查阅 [response docs](#response-api)).
+  adapter: function (config) &#123;
+    /* ... */
+  &#125;,
+
+  // `auth` 表示应该使用 HTTP 基础验证，并提供凭据
+  // 这将设置一个 `Authorization` 头，覆写掉现有的任意使用 `headers` 设置的自定义 `Authorization`头
+  auth: &#123;
+    username: &#39;janedoe&#39;,
+    password: &#39;s00pers3cret&#39;
+  &#125;,
+
+  // `responseType` 表示服务器响应的数据类型，可以是 &#39;arraybuffer&#39;, &#39;blob&#39;, &#39;document&#39;, &#39;json&#39;, &#39;text&#39;, &#39;stream&#39;
+  responseType: &#39;json&#39;, // 默认的
+
+  // `xsrfCookieName` 是用作 xsrf token 的值的cookie的名称
+  xsrfCookieName: &#39;XSRF-TOKEN&#39;, // default
+
+  // `xsrfHeaderName` 是承载 xsrf token 的值的 HTTP 头的名称
+  xsrfHeaderName: &#39;X-XSRF-TOKEN&#39;, // 默认的
+
+  // `onUploadProgress` 允许为上传处理进度事件
+  onUploadProgress: function (progressEvent) &#123;
+    // 对原生进度事件的处理
+  &#125;,
+
+  // `onDownloadProgress` 允许为下载处理进度事件
+  onDownloadProgress: function (progressEvent) &#123;
+    // 对原生进度事件的处理
+  &#125;,
+
+  // `maxContentLength` 定义允许的响应内容的最大尺寸
+  maxContentLength: 2000,
+
+  // `validateStatus` 定义对于给定的HTTP 响应状态码是 resolve 或 reject  promise 。如果 `validateStatus` 返回 `true` (或者设置为 `null` 或 `undefined`)，promise 将被 resolve; 否则，promise 将被 rejecte
+  validateStatus: function (status) &#123;
+    return status &gt;= 200 &amp;&amp; status &lt; 300; // 默认的
+  &#125;,
+
+  // `maxRedirects` 定义在 node.js 中 follow 的最大重定向数目
+  // 如果设置为0，将不会 follow 任何重定向
+  maxRedirects: 5, // 默认的
+
+  // `httpAgent` 和 `httpsAgent` 分别在 node.js 中用于定义在执行 http 和 https 时使用的自定义代理。允许像这样配置选项：
+  // `keepAlive` 默认没有启用
+  httpAgent: new http.Agent(&#123; keepAlive: true &#125;),
+  httpsAgent: new https.Agent(&#123; keepAlive: true &#125;),
+
+  // &#39;proxy&#39; 定义代理服务器的主机名称和端口
+  // `auth` 表示 HTTP 基础验证应当用于连接代理，并提供凭据
+  // 这将会设置一个 `Proxy-Authorization` 头，覆写掉已有的通过使用 `header` 设置的自定义 `Proxy-Authorization` 头。
+  proxy: &#123;
+    host: &#39;127.0.0.1&#39;,
+    port: 9000,
+    auth: : &#123;
+      username: &#39;mikeymike&#39;,
+      password: &#39;rapunz3l&#39;
+    &#125;
+  &#125;,
+
+  // `cancelToken` 指定用于取消请求的 cancel token
+  // （查看后面的 Cancellation 这节了解更多）
+  cancelToken: new CancelToken(function (cancel) &#123;
+  &#125;)
+&#125;
+</code></pre>
+<h4 id="响应结构"><a href="#响应结构" class="headerlink" title="响应结构"></a>响应结构</h4><p>某个请求的响应包含以下信息</p>
+<pre><code>&#123;
+  // `data` 由服务器提供的响应
+  data: &#123;&#125;,
+
+  // `status` 来自服务器响应的 HTTP 状态码
+  status: 200,
+
+  // `statusText` 来自服务器响应的 HTTP 状态信息
+  statusText: &#39;OK&#39;,
+
+  // `headers` 服务器响应的头
+  headers: &#123;&#125;,
+
+  // `config` 是为请求提供的配置信息
+  config: &#123;&#125;
+&#125;
+</code></pre>
+<p>使用 then 时，你将接收下面这样的响应：</p>
+<pre><code>axios.get(&#39;/user/12345&#39;)
+  .then(function(response) &#123;
+    console.log(response.data);
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.headers);
+    console.log(response.config);
+  &#125;);
+</code></pre>
+<ul>
+<li>在使用 catch 时，或传递 rejection callback 作为 then 的第二个参数时，响应可以通过 error 对象可被使用，正如在错误处理这一节所讲。</li>
+</ul>
+<h3 id="配置的默认值-x2F-defaults"><a href="#配置的默认值-x2F-defaults" class="headerlink" title="配置的默认值&#x2F;defaults"></a>配置的默认值&#x2F;defaults</h3><p>你可以指定将被用在各个请求的配置默认值</p>
+<h4 id="全局的-axios-默认值"><a href="#全局的-axios-默认值" class="headerlink" title="全局的 axios 默认值"></a>全局的 axios 默认值</h4><pre><code>axios.defaults.baseURL = &#39;https://api.example.com&#39;;
+axios.defaults.headers.common[&#39;Authorization&#39;] = AUTH_TOKEN;
+axios.defaults.headers.post[&#39;Content-Type&#39;] = &#39;application/x-www-form-urlencoded&#39;;
+</code></pre>
+<h4 id="自定义实例默认值"><a href="#自定义实例默认值" class="headerlink" title="自定义实例默认值"></a>自定义实例默认值</h4><pre><code>// 创建实例时设置配置的默认值
+var instance = axios.create(&#123;
+  baseURL: &#39;https://api.example.com&#39;
+&#125;);
+
+// 在实例已创建后修改默认值
+instance.defaults.headers.common[&#39;Authorization&#39;] = AUTH_TOKEN;
+</code></pre>
+<h4 id="配置的优先顺序"><a href="#配置的优先顺序" class="headerlink" title="配置的优先顺序"></a>配置的优先顺序</h4><p>配置会以一个优先顺序进行合并。这个顺序是：在 lib&#x2F;defaults.js 找到的库的默认值，然后是实例的 defaults 属性，最后是请求的 config 参数。后者将优先于前者。这里是一个例子：</p>
+<pre><code>// 使用由库提供的配置的默认值来创建实例
+// 此时超时配置的默认值是 `0`
+var instance = axios.create();
+
+// 覆写库的超时默认值
+// 现在，在超时前，所有请求都会等待 2.5 秒
+instance.defaults.timeout = 2500;
+
+// 为已知需要花费很长时间的请求覆写超时设置
+instance.get(&#39;/longRequest&#39;, &#123;
+  timeout: 5000
+&#125;);
+</code></pre>
+<h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>在请求或响应被 then 或 catch 处理前拦截它们。</p>
+<pre><code>// 添加请求拦截器
+axios.interceptors.request.use(function (config) &#123;
+    // 在发送请求之前做些什么
+    return config;
+  &#125;, function (error) &#123;
+    // 对请求错误做些什么
+    return Promise.reject(error);
+  &#125;);
+
+// 添加响应拦截器
+axios.interceptors.response.use(function (response) &#123;
+    // 对响应数据做点什么
+    return response;
+  &#125;, function (error) &#123;
+    // 对响应错误做点什么
+    return Promise.reject(error);
+  &#125;);
+</code></pre>
+<p>如果你想在稍后移除拦截器，可以这样：</p>
+<pre><code>var myInterceptor = axios.interceptors.request.use(function () &#123;/*...*/&#125;);
+axios.interceptors.request.eject(myInterceptor);
+</code></pre>
+<p>可以为自定义 axios 实例添加拦截器</p>
+<pre><code>var instance = axios.create();
+instance.interceptors.request.use(function () &#123;/*...*/&#125;);
+</code></pre>
+<h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><pre><code>axios.get(&#39;/user/12345&#39;)
+  .catch(function (error) &#123;
+    if (error.response) &#123;
+      // 请求已发出，但服务器响应的状态码不在 2xx 范围内
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    &#125; else &#123;
+      // Something happened in setting up the request that triggered an Error
+      console.log(&#39;Error&#39;, error.message);
+    &#125;
+    console.log(error.config);
+  &#125;);
+</code></pre>
+<p>可以使用 validateStatus 配置选项定义一个自定义 HTTP 状态码的错误范围。</p>
+<pre><code>axios.get(&#39;/user/12345&#39;, &#123;
+  validateStatus: function (status) &#123;
+    return status &lt; 500; // 状态码在大于或等于500时才会 reject
+  &#125;
+&#125;)
+</code></pre>
+<h3 id="取消"><a href="#取消" class="headerlink" title="取消"></a>取消</h3><p>使用 cancel token 取消请求</p>
+<blockquote>
+<p>Axios 的 cancel token API 基于cancelable promises proposal，它还处于第一阶段。</p>
+</blockquote>
+<p>可以使用 CancelToken.source 工厂方法创建 cancel token，像这样：</p>
+<pre><code>var CancelToken = axios.CancelToken;
+var source = CancelToken.source();
+
+axios.get(&#39;/user/12345&#39;, &#123;
+  cancelToken: source.token
+&#125;).catch(function(thrown) &#123;
+  if (axios.isCancel(thrown)) &#123;
+    console.log(&#39;Request canceled&#39;, thrown.message);
+  &#125; else &#123;
+    // 处理错误
+  &#125;
+&#125;);
+
+// 取消请求（message 参数是可选的）
+source.cancel(&#39;Operation canceled by the user.&#39;);
+</code></pre>
+<p>还可以通过传递一个 executor 函数到 CancelToken 的构造函数来创建 cancel token：</p>
+<pre><code>var CancelToken = axios.CancelToken;
+var cancel;
+
+axios.get(&#39;/user/12345&#39;, &#123;
+  cancelToken: new CancelToken(function executor(c) &#123;
+    // executor 函数接收一个 cancel 函数作为参数
+    cancel = c;
+  &#125;)
+&#125;);
+
+// 取消请求
+cancel();
+</code></pre>
+<ul>
+<li>注意 : 可以使用同一个 cancel token 取消多个请求</li>
+</ul>
+<h3 id="使用application-x2F-x-www-form-urlencoded格式"><a href="#使用application-x2F-x-www-form-urlencoded格式" class="headerlink" title="使用application &#x2F; x-www-form-urlencoded格式"></a>使用application &#x2F; x-www-form-urlencoded格式</h3><pre><code> 默认情况下，axios将JavaScript对象序列化为JSON。 要以应用程序/ x-www-form-urlencoded格式发送数据，您可以使用以下选项之一。
+</code></pre>
+<h4 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h4><p>在浏览器中，您可以使用URLSearchParams API，如下所示：</p>
+<pre><code>var params = new URLSearchParams();
+params.append(&#39;param1&#39;, &#39;value1&#39;);
+params.append(&#39;param2&#39;, &#39;value2&#39;);
+axios.post(&#39;/foo&#39;, params);
+</code></pre>
+<ul>
+<li>请注意，所有浏览器都不支持URLSearchParams，但是有一个polyfill可用（确保polyfill全局环境）。</li>
+</ul>
+<p>或者，您可以使用qs库对数据进行编码：</p>
+<pre><code>var qs = require(&#39;qs&#39;);
+axios.post(&#39;/foo&#39;, qs.stringify(&#123; &#39;bar&#39;: 123 &#125;);
+</code></pre>
+<h4 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h4><p>在node.js中，可以使用querystring模块，如下所示：</p>
+<pre><code>var querystring = require(&#39;querystring&#39;);
+axios.post(&#39;http://something.com/&#39;, querystring.stringify(&#123; foo: &#39;bar&#39; &#125;);
+</code></pre>
+<p>当然也可以使用qs库。</p>
+<h3 id="使用心得"><a href="#使用心得" class="headerlink" title="使用心得"></a>使用心得</h3><p>在vue项目中，新建api&#x2F;index.js</p>
+<pre><code>import axios from &#39;axios&#39;
+</code></pre>
+<p>将所有的api集中到该文件中，方便管理</p>
+</div><div class="tags"><a href="/tags/js"><i class="fa fa-tag">js</i></a></div><div class="post-nav"><a class="pre" href="/2017/06/17/%E5%89%8D%E7%AB%AF/%E7%90%86%E8%A7%A3WebAssembly/">理解WebAssembly</a><a class="next" href="/2017/05/19/%E5%89%8D%E7%AB%AF/%20js%20%E6%8C%87%E7%BA%B9%E4%BF%A1%E6%81%AF%E7%9B%B8%E5%85%B3/">js 指纹信息相关</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">46</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E6%8A%80/">杂技</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/https/" style="font-size: 15px;">https</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/08/14/%E6%9D%82%E8%AE%B0/%E5%B9%B3%E5%87%A1%E6%97%A5%E5%AD%90%E9%87%8C%E7%9A%84%E6%8C%A3%E6%89%8E/">平凡日子里的挣扎</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/11/%E7%BD%91%E7%BB%9C/Openflow%E6%80%BB%E7%BB%93/">Openflow总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/09/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20nacos%E4%BB%A5mysql%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%BA%90%E8%BF%9B%E8%A1%8C%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%8C%E6%8A%A5%E2%80%9CNo%20DataSource%20set%E2%80%9D%E9%94%99%E8%AF%AF/">nacos以mysql为数据源进行持久化，报“No DataSource set”错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/27/java/java%20%E6%97%A5%E5%BF%97%E8%A7%84%E8%8C%83/">java 日志规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/24/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01224/">笔记-王阳明</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/21/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01221/">笔记-数字化转型核心</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/05/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01205/">笔记-小程序带来了什么改变</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/04/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01204/">笔记-互联网思维～</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/03/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01203/">笔记-张子选《藏地诗篇》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/02/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01202/">笔记-刻意练习</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">枫哲's文栖小筑.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
