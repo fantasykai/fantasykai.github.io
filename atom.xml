@@ -6,7 +6,7 @@
   <link href="http://ai.mak.cn/atom.xml" rel="self"/>
   
   <link href="http://ai.mak.cn/"/>
-  <updated>2022-10-09T15:39:16.431Z</updated>
+  <updated>2022-10-20T23:00:30.187Z</updated>
   <id>http://ai.mak.cn/</id>
   
   <author>
@@ -17,11 +17,115 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>图看二十大报告</title>
+    <link href="http://ai.mak.cn/2022/10/19/%E8%AF%AD%E5%BD%95/%E5%9B%BE%E7%9C%8B%E4%BA%8C%E5%8D%81%E5%A4%A7%E6%8A%A5%E5%91%8A/"/>
+    <id>http://ai.mak.cn/2022/10/19/%E8%AF%AD%E5%BD%95/%E5%9B%BE%E7%9C%8B%E4%BA%8C%E5%8D%81%E5%A4%A7%E6%8A%A5%E5%91%8A/</id>
+    <published>2022-10-18T16:00:00.000Z</published>
+    <updated>2022-10-20T23:00:30.187Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>媒体总结的二十大报告，收集一下，来自，“人民日报”，“新华网”，“央视新闻”</p></blockquote><h4 id="二十大报告中的9个数字"><a href="#二十大报告中的9个数字" class="headerlink" title="二十大报告中的9个数字"></a>二十大报告中的9个数字</h4><p><img src="https://aimak.cn/20D/%E4%BA%8C%E5%8D%81%E5%A4%A7%E6%8A%A5%E5%91%8A%E4%B8%AD%E7%9A%849%E4%B8%AA%E6%95%B0%E5%AD%97.png" alt="9"></p><h4 id="党的二十大报告关键词"><a href="#党的二十大报告关键词" class="headerlink" title="党的二十大报告关键词"></a>党的二十大报告关键词</h4><p><img src="https://aimak.cn/20D/%E5%85%9A%E7%9A%84%E4%BA%8C%E5%8D%81%E5%A4%A7%E6%8A%A5%E5%91%8A%E5%85%B3%E9%94%AE%E8%AF%8D.png" alt="keys"></p><h4 id="二十大报告擘画中国发展蓝图"><a href="#二十大报告擘画中国发展蓝图" class="headerlink" title="二十大报告擘画中国发展蓝图"></a>二十大报告擘画中国发展蓝图</h4><p><img src="https://aimak.cn/20D/%E4%BA%8C%E5%8D%81%E5%A4%A7%E6%8A%A5%E5%91%8A%E6%93%98%E7%94%BB%E4%B8%AD%E5%9B%BD%E5%8F%91%E5%B1%95%E8%93%9D%E5%9B%BE.png" alt="future"></p><p>　　</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;媒体总结的二十大报告，收集一下，来自，“人民日报”，“新华网”，“央视新闻”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;二十大报告中的9个数字&quot;&gt;&lt;a href=&quot;#二十大报告中的9个数字&quot; class=&quot;headerlink&quot; titl</summary>
+      
+    
+    
+    
+    <category term="语录" scheme="http://ai.mak.cn/categories/%E8%AF%AD%E5%BD%95/"/>
+    
+    
+    <category term="语录" scheme="http://ai.mak.cn/tags/%E8%AF%AD%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Cherry键盘 win键无效</title>
+    <link href="http://ai.mak.cn/2022/10/18/%E5%B7%A5%E5%85%B7/Cherry%E9%94%AE%E7%9B%98%20win%E9%94%AE%E6%97%A0%E6%95%88/"/>
+    <id>http://ai.mak.cn/2022/10/18/%E5%B7%A5%E5%85%B7/Cherry%E9%94%AE%E7%9B%98%20win%E9%94%AE%E6%97%A0%E6%95%88/</id>
+    <published>2022-10-17T16:00:00.000Z</published>
+    <updated>2022-10-18T05:10:14.467Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>这两天，发现shiftlt 的快捷键无效了，不能自由的分屏了，以为是新安装的软件有快捷键冲突，今天中午排查了一下，发现是win键（option）无效，但Mac自己的键盘可以，又以为是我的cherry 的这个键坏了，认真看了一下键盘，发现F9 有个樱桃图标，好吧，用这么久，才知道，这是锁定win键的</p></blockquote><p>最终正解：</p><p><strong>FUN+F9解锁，这是为了防止误触把个键给锁定了</strong></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;这两天，发现shiftlt 的快捷键无效了，不能自由的分屏了，以为是新安装的软件有快捷键冲突，今天中午排查了一下，发现是win键（option）无效，但Mac自己的键盘可以，又以为是我的cherry 的这个键坏了，认真看了一下键盘，发现F9 有个樱</summary>
+      
+    
+    
+    
+    <category term="工具" scheme="http://ai.mak.cn/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="mac" scheme="http://ai.mak.cn/tags/mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>二十大手帐</title>
+    <link href="http://ai.mak.cn/2022/10/18/%E8%AF%AD%E5%BD%95/%E4%BA%8C%E5%8D%81%E5%A4%A7%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/"/>
+    <id>http://ai.mak.cn/2022/10/18/%E8%AF%AD%E5%BD%95/%E4%BA%8C%E5%8D%81%E5%A4%A7%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/</id>
+    <published>2022-10-17T16:00:00.000Z</published>
+    <updated>2022-10-21T00:18:24.120Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>党的二十大学习手帐，来自人民日报</p></blockquote><p><img src="https://aimak.cn/20D/report/0.jpg"><br><img src="https://aimak.cn/20D/report/1.jpg"><br><img src="https://aimak.cn/20D/report/2.jpg"><br><img src="https://aimak.cn/20D/report/3.jpg"><br><img src="https://aimak.cn/20D/report/4.jpeg"><br><img src="https://aimak.cn/20D/report/5.jpeg"><br><img src="https://aimak.cn/20D/report/6.jpeg"><br><img src="https://aimak.cn/20D/report/7.jpeg"><br><img src="https://aimak.cn/20D/report/8.jpeg"><br><img src="https://aimak.cn/20D/report/9.jpeg"><br><img src="https://aimak.cn/20D/report/10.jpeg"><br><img src="https://aimak.cn/20D/report/11.jpeg"><br><img src="https://aimak.cn/20D/report/12.jpeg"><br><img src="https://aimak.cn/20D/report/13.jpeg"></p><p>　　</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;党的二十大学习手帐，来自人民日报&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;https://aimak.cn/20D/report/0.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;https://aimak.cn/20D/report</summary>
+      
+    
+    
+    
+    <category term="语录" scheme="http://ai.mak.cn/categories/%E8%AF%AD%E5%BD%95/"/>
+    
+    
+    <category term="语录" scheme="http://ai.mak.cn/tags/%E8%AF%AD%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mac上用trash命令代替rm</title>
+    <link href="http://ai.mak.cn/2022/08/16/%E5%B7%A5%E5%85%B7/mac%E4%B8%8A%E7%9A%84trash%E5%91%BD%E4%BB%A4/"/>
+    <id>http://ai.mak.cn/2022/08/16/%E5%B7%A5%E5%85%B7/mac%E4%B8%8A%E7%9A%84trash%E5%91%BD%E4%BB%A4/</id>
+    <published>2022-08-15T16:00:00.000Z</published>
+    <updated>2022-10-19T07:32:23.431Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>在Downloads目录下发现很多word文档的临时文件，~$xxx.doc，强迫症，刚好在iTerm2下，就像直接删除，然后没过脑子执行了, rm -rf ~$* ！！！ 哇日，根目录被清空了，用磁盘恢复软件 + 移动硬盘，恢复了一个周末，好多文件找到也打不开了，PS，之前2太Mac 做备份，但目前就一台了，刚想着把资料备份到移动硬盘，出现这档子事儿。好在找回来一些资料，博客也只能重新搭建，资料一点一点找回来。</p></blockquote><p>于是决定替换掉rm命令</p><p>1、安装 trash</p><blockquote><p>brew install trash</p></blockquote><p>2、删除文件时候，使用trash -F代替rm，是把文件移动到“废纸筐”；</p><blockquote><p>trash -l，查看“废纸筐”；<br>trash -e，清空“废纸筐”。</p></blockquote><p>3、在环境配置中，把rm 命令替换掉，或者逐步习惯用trash，毕竟rm 不是友好的</p><blockquote><p>alias rm&#x3D;”trash”</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;在Downloads目录下发现很多word文档的临时文件，~$xxx.doc，强迫症，刚好在iTerm2下，就像直接删除，然后没过脑子执行了, rm -rf ~$* ！！！ 哇日，根目录被清空了，用磁盘恢复软件 + 移动硬盘，恢复了一个周末，好多文</summary>
+      
+    
+    
+    
+    <category term="工具" scheme="http://ai.mak.cn/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="mac" scheme="http://ai.mak.cn/tags/mac/"/>
+    
+  </entry>
+  
+  <entry>
     <title>平凡日子里的挣扎</title>
     <link href="http://ai.mak.cn/2022/08/14/%E6%9D%82%E8%AE%B0/%E5%B9%B3%E5%87%A1%E6%97%A5%E5%AD%90%E9%87%8C%E7%9A%84%E6%8C%A3%E6%89%8E/"/>
     <id>http://ai.mak.cn/2022/08/14/%E6%9D%82%E8%AE%B0/%E5%B9%B3%E5%87%A1%E6%97%A5%E5%AD%90%E9%87%8C%E7%9A%84%E6%8C%A3%E6%89%8E/</id>
     <published>2022-08-13T16:00:00.000Z</published>
-    <updated>2022-10-09T15:39:16.431Z</updated>
+    <updated>2022-10-20T23:12:28.063Z</updated>
     
     <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&amp;id=1970331106&amp;auto=1&amp;height=66"></iframe><p>关注曾抖抖，是之前听过跟他女儿合唱的 <strong>人间</strong></p><p>这首原创歌词，还是很贴合，从北京回来的地铁上～</p><blockquote><p>我知道 认真生活的人总是百般滋味 也知道 成年人的世界会在瞬间崩溃 我们都再平凡的日子里拼命挣扎 拼命想活成别人期待的人呐 就算四海为家 就算风吹雨打 也要微笑着说我还好</p></blockquote>]]></content>
     
@@ -33,7 +137,7 @@
     
     
     
-    <category term="杂技" scheme="http://ai.mak.cn/categories/%E6%9D%82%E6%8A%80/"/>
+    <category term="杂记" scheme="http://ai.mak.cn/categories/%E6%9D%82%E8%AE%B0/"/>
     
     
     <category term="杂记" scheme="http://ai.mak.cn/tags/%E6%9D%82%E8%AE%B0/"/>
@@ -101,6 +205,57 @@
       
       
     <summary type="html">&lt;h1 id=&quot;java-开发日志规范&quot;&gt;&lt;a href=&quot;#java-开发日志规范&quot; class=&quot;headerlink&quot; title=&quot;java 开发日志规范&quot;&gt;&lt;/a&gt;java 开发日志规范&lt;/h1&gt;&lt;h2 id=&quot;一-日志&quot;&gt;&lt;a href=&quot;#一-日志&quot; class=&quot;</summary>
+      
+    
+    
+    
+    <category term="技术小栈" scheme="http://ai.mak.cn/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
+    
+    
+    <category term="java" scheme="http://ai.mak.cn/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>三大成功定律：荷花定律，竹子定律，金蝉定律</title>
+    <link href="http://ai.mak.cn/2019/02/21/%E6%9D%82%E8%AE%B0/%E4%B8%89%E5%A4%A7%E6%88%90%E5%8A%9F%E5%AE%9A%E5%BE%8B%EF%BC%9A%E8%8D%B7%E8%8A%B1%E5%AE%9A%E5%BE%8B%EF%BC%8C%E7%AB%B9%E5%AD%90%E5%AE%9A%E5%BE%8B%EF%BC%8C%E9%87%91%E8%9D%89%E5%AE%9A%E5%BE%8B/"/>
+    <id>http://ai.mak.cn/2019/02/21/%E6%9D%82%E8%AE%B0/%E4%B8%89%E5%A4%A7%E6%88%90%E5%8A%9F%E5%AE%9A%E5%BE%8B%EF%BC%9A%E8%8D%B7%E8%8A%B1%E5%AE%9A%E5%BE%8B%EF%BC%8C%E7%AB%B9%E5%AD%90%E5%AE%9A%E5%BE%8B%EF%BC%8C%E9%87%91%E8%9D%89%E5%AE%9A%E5%BE%8B/</id>
+    <published>2019-02-20T16:00:00.000Z</published>
+    <updated>2022-10-20T23:11:52.102Z</updated>
+    
+    <content type="html"><![CDATA[<p>关于成功，有很多定律，比较有名的就是荷花定律、竹子定律和金蝉定律。</p><p>无论是荷花定律、竹子定律，还是金蝉定律，他们都有共同的意义：</p><p><strong>成功，需要厚积薄发</strong></p><p><strong>要忍受煎熬，要耐得住寂寞</strong></p><p><strong>坚持，坚持，再坚持</strong></p><p><strong>直到最后成功的那一刻</strong></p><p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/r5ibYXKmn8p1zaevfiaNExBsv2AMrCGVVQgHSc6EYrsDLVVdSicS8W5Ok6wMDVmqIlXUtpyzdUN93rqajBgPvsgPw/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p><p> <strong>01</strong> </p><p><strong>荷花定律</strong></p><p>一个池塘里的荷花，每一天都会以前一天的2倍数量在开放。</p><p>如果到第30天，荷花就开满了整个池塘。</p><p>请问：<strong>在第几天池塘中的荷花开了一半？</strong></p><p><strong>第15天？错！是第29天。</strong></p><p>这就是荷花定律。</p><p>第一天开放的只是一小部分，第二天，它们会以前一天的两倍速度开放。</p><p>到第29天时荷花仅仅开满了一半，直到最后一天才会开满另一半。</p><p>也就是说：最后一天的速度最快，等于前29天的总和。</p><p>这就是著名的荷花定律。</p><p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/SL01kv8vjY3HelNJDPP6027TiajaTdazGDFVFtAoua5Ao0Afu8oeVhZ0xImjwa7ibOz7XMrC914ahvibMDFaruRcw/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p><p>这其中藏着深刻的道理就是：<strong>成功需要厚积薄发，需要积累沉淀。</strong></p><p>这个定律最早是听过马云的一个公开演讲，而透过这个定律去联想人生，你会发生，很多人的一生就像池塘里的荷花，一开始用力地开，玩命地开……</p><p>但渐渐的，人们开始感到枯燥甚至是厌烦，你可能在第9天、第19天甚至第29天的时候放弃了坚持。</p><p><strong>这时，这个时候的放弃，往往离成功只有一步之遥。</strong></p><p>甚至可以说大多时候，人能获得成功，关键在于毅力。</p><p>据说人这一生大概能遇到7次左右的机会，都是可以改变人生的机会，而这样的机会往往都是在前期日复一日的投入和坚持才能遇到这样的机会。</p><p>所以说，如果有梦想就要先动起来，然后坚定不移的去执行下去。</p><p> <strong>02</strong> </p><p><strong>竹子定律</strong></p><p>竹子用了4年的时间，仅仅长了3cm。</p><p>从第五年开始，以每天30cm的速度疯狂地生长，仅仅用了六周的时间，就长到了15米。</p><p>其实，在前面的四年，竹子将根在土壤里延伸了数百平米。</p><p>做人做事亦是如此。</p><p><strong>不要担心你此时此刻的付出得不到回报，因为这些付出都是为了扎根。</strong></p><p>人生需要储备，有多少人，没能熬过那三厘米？</p><p>什么叫价值？同是两根竹子，一支做成了笛子，一支做成了晾衣杠。</p><p>晾衣杠不服气的问笛子：“我们都是同一片山上的竹子，凭什么我天天日晒雨淋，不值一文，而你却价值千金呢？”</p><p>笛子回答说：“<strong>因为你只挨了一刀，而我却经历了千刀万剐，精雕细做。</strong>”</p><p>晾衣杠沉默了。</p><p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/SL01kv8vjY3HelNJDPP6027TiajaTdazGicZibwUm0QKJsE8atp1bEic3V0xtic0uQSag2ItibHJSVN3QfomEiaPibG3Hg/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p><p><strong>人生亦是如此，经得起打磨，耐得起寂寞，扛得起责任，肩负起使命，人生才会有价值。</strong></p><p>看见别人辉煌的时候，不要嫉妒，因为别人付出的比你多。</p><blockquote><p>国学大师钱穆说：“古往今来有大成就者，诀窍无他，都是能人肯下笨劲。”</p><p>胡适也说：“这个世界聪明人太多，肯下笨功夫的人太少，所以成功者只是少数人。”</p></blockquote><p>说起钱钟书的满腹经纶，人们往往归功于他的天分高，记忆力强。</p><p>其实，钱钟书学问博大精深，更多来自后天手不释卷的苦功。</p><p>钱钟书大学同窗许振德这样描述：在校时，以一周读中文经典，一周阅欧美名著，交互行之，四年如一日。每赴图书馆借书还书，必怀抱五六巨册，且奔且驰。且阅毕一册，必作札记……</p><p><strong>代表他学术成就的《管锥编》，引述4000多位名家的上万种著作中的数万条书证，汪洋恣肆，博大精深。</strong></p><p>有些人可能不知道，他进入清华后，目标是“横扫清华图书馆”。</p><p>他的治学心得是：越是聪明人，越要懂得下笨功夫。</p><p>“心在一艺，其艺必工，一心在一职，其职必举”。</p><p><strong>成长不是一蹴而就的，哪有什么人生开挂，只不过是厚积薄发。</strong></p><p>这就叫竹子定律。</p><p> <strong>03</strong> </p><p><strong>金蝉定律</strong></p><p>蝉，要先在地下暗无天日的生活三年（有一种美国的蝉，要在地下生活17年），忍受各种寂寞和孤独，依靠树根的汁一点点长大。</p><p>然后在夏天的一个晚上，悄悄爬到树枝上，一夜之间蜕变成知了。</p><p>然后期待太阳升起的那一刻，它就可以飞向天空，冲向自由。</p><p>这就叫金蝉定律。</p><p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/SL01kv8vjY3HelNJDPP6027TiajaTdazG7OqmoGTrL07cUkNcl1pFk3t9Ok5BcfWNf4Eo3xzBpKB2dQ73EWzKOQ/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p><p> <strong>04</strong> </p><p>很多人的一生就像池塘里的荷花，一开始用力盛开，但是总感觉自己绽放的不够，所以渐渐感到厌倦，在第10天、第20天、甚至第29天的时候，选择了放弃。</p><p>很多人的奋斗也像生长的竹子，一开始卯足了劲，但是由于前面的大部分阶段都在打基，所以成效并不那么明显，在第1年、第3年，甚至第4年的时候选择了放弃。</p><p>就更不用提蝉的淡定和坚守了。</p><p><strong>越接近成功越困难，越需要坚持。</strong></p><p>无论是事业还是人生，我们缺少的不是能力、技巧、模式，需要的是坚持和毅力，只有坚持量变，才能最后完成质变，才能突破成功的临界点，取得最后的成功。</p><p>马云曾说：“今天很残酷，明天更残酷，后天很美好，但是大多数人死在明天晚上，看不到后天的太阳。”</p><p>大部分人都是在离成功一步之遥却放弃了。</p><p>中国有句老话“<strong>行百里半九十</strong>”，就是说走一百里路，走九十里才算走了一半，因为很多人坚持到九十里就放弃了。</p><p>这些定律告诉我们这样一个道理：<strong>人拼到最后，拼的不是运气和聪明，而是毅力。</strong></p><p>来源：京博国学(ID: jingboguoxue)</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;关于成功，有很多定律，比较有名的就是荷花定律、竹子定律和金蝉定律。&lt;/p&gt;
+&lt;p&gt;无论是荷花定律、竹子定律，还是金蝉定律，他们都有共同的意义：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;成功，需要厚积薄发&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;要忍受煎熬，要耐得住寂寞&lt;/st</summary>
+      
+    
+    
+    
+    <category term="杂记" scheme="http://ai.mak.cn/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+    <category term="杂记" scheme="http://ai.mak.cn/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java性能优化的50个细节</title>
+    <link href="http://ai.mak.cn/2019/02/01/java/Java%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%8450%E4%B8%AA%E7%BB%86%E8%8A%82/"/>
+    <id>http://ai.mak.cn/2019/02/01/java/Java%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%8450%E4%B8%AA%E7%BB%86%E8%8A%82/</id>
+    <published>2019-01-31T16:00:00.000Z</published>
+    <updated>2022-10-20T11:42:04.931Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Java性能优化的50个细节"><a href="#Java性能优化的50个细节" class="headerlink" title="Java性能优化的50个细节"></a>Java性能优化的50个细节</h3><p>在JAVA程序中，性能问题的大部分原因并不在于JAVA语言，而是程序本身。养成良好的编码习惯非常重要，能够显著地提升程序性能。</p><h4 id="1-尽量在合适的场合使用单例"><a href="#1-尽量在合适的场合使用单例" class="headerlink" title="1. 尽量在合适的场合使用单例"></a>1. 尽量在合适的场合使用单例</h4><p>使用单例可以减轻加载的负担，缩短加载的时间，提高加载的效率，但并不是所有地方都适用于单例，简单来说，单例主要适用于以下三个方面：</p><p>第一，控制资源的使用，通过线程同步来控制资源的并发访问；</p><p>第二，控制实例的产生，以达到节约资源的目的；</p><p>第三，控制数据共享，在不建立直接关联的条件下，让多个不相关的进程或线程之间实现通信。</p><h4 id="2-尽量避免随意使用静态变量"><a href="#2-尽量避免随意使用静态变量" class="headerlink" title="2. 尽量避免随意使用静态变量"></a>2. 尽量避免随意使用静态变量</h4><p>当某个对象被定义为static变量所引用，那么GC通常是不会回收这个对象所占有的内存，如</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class A&#123;private static B b = new B();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>此时静态变量b的生命周期与A类同步，如果A类不会卸载，那么b对象会常驻内存，直到程序终止。</p><h4 id="3-尽量避免过多过常地创建Java对象"><a href="#3-尽量避免过多过常地创建Java对象" class="headerlink" title="3. 尽量避免过多过常地创建Java对象"></a>3. 尽量避免过多过常地创建Java对象</h4><p>尽量避免在经常调用的方法，循环中new对象，由于系统不仅要花费时间来创建对象，而且还要花时间对这些对象进行垃圾回收和处理，在我们可以控制的范围内，最大限度地重用对象，最好能用基本的数据类型或数组来替代对象。</p><h4 id="4-尽量使用final修饰符"><a href="#4-尽量使用final修饰符" class="headerlink" title="4. 尽量使用final修饰符"></a>4. 尽量使用final修饰符</h4><p>带有final修饰符的类是不可派生的。在JAVA核心API中，有许多应用final的例子，例如java、lang、String，为String类指定final防止了使用者覆盖length()方法。另外，如果一个类是final的，则该类所有方法都是final的。java编译器会寻找机会内联（inline）所有的final方法（这和具体的编译器实现有关），此举能够使性能平均提高50%。</p><p>如：让访问实例内变量的getter&#x2F;setter方法变成”final：</p><p>简单的getter&#x2F;setter方法应该被置成final，这会告诉编译器，这个方法不会被重载，所以，可以变成”inlined”,例子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class MAF &#123;</span><br><span class="line">public void setSize (int size) &#123;</span><br><span class="line">_size = size;</span><br><span class="line">&#125;</span><br><span class="line">private int _size;</span><br><span class="line">&#125;</span><br><span class="line">更正</span><br><span class="line">class DAF_fixed &#123;</span><br><span class="line">final public void setSize (int size) &#123;</span><br><span class="line">_size = size;</span><br><span class="line">&#125;</span><br><span class="line">private int _size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h4 id="5-尽量使用局部变量"><a href="#5-尽量使用局部变量" class="headerlink" title="5. 尽量使用局部变量"></a>5. 尽量使用局部变量</h4><p>调用方法时传递的参数以及在调用中创建的临时变量都保存在栈（Stack）中，速度较快；其他变量，如静态变量、实例变量等，都在堆（Heap）中创建，速度较慢。</p><h4 id="6-尽量处理好包装类型和基本类型两者的使用场所"><a href="#6-尽量处理好包装类型和基本类型两者的使用场所" class="headerlink" title="6. 尽量处理好包装类型和基本类型两者的使用场所"></a>6. 尽量处理好包装类型和基本类型两者的使用场所</h4><p>虽然包装类型和基本类型在使用过程中是可以相互转换，但它们两者所产生的内存区域是完全不同的，基本类型数据产生和处理都在栈中处理，包装类型是对象，是在堆中产生实例。在集合类对象，有对象方面需要的处理适用包装类型，其他的处理提倡使用基本类型。</p><h4 id="7-慎用synchronized，尽量减小synchronize的方法"><a href="#7-慎用synchronized，尽量减小synchronize的方法" class="headerlink" title="7. 慎用synchronized，尽量减小synchronize的方法"></a>7. 慎用synchronized，尽量减小synchronize的方法</h4><p>都知道，实现同步是要很大的系统开销作为代价的，甚至可能造成死锁，所以尽量避免无谓的同步控制。synchronize方法被调用时，直接会把当前对象锁了，在方法执行完之前其他线程无法调用当前对象的其他方法。所以，synchronize的方法尽量减小，并且应尽量使用方法同步代替代码块同步。</p><h4 id="8-尽量不要使用finalize方法"><a href="#8-尽量不要使用finalize方法" class="headerlink" title="8. 尽量不要使用finalize方法"></a>8. 尽量不要使用finalize方法</h4><p>实际上，将资源清理放在finalize方法中完成是非常不好的选择，由于GC的工作量很大，尤其是回收Young代内存时，大都会引起应用程序暂停，所以再选择使用finalize方法进行资源清理，会导致GC负担更大，程序运行效率更差。</p><h3 id="9-尽量使用基本数据类型代替对象"><a href="#9-尽量使用基本数据类型代替对象" class="headerlink" title="9. 尽量使用基本数据类型代替对象"></a>9. 尽量使用基本数据类型代替对象</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String str = &quot;hello&quot;;</span><br></pre></td></tr></table></figure><p>上面这种方式会创建一个“hello”字符串，而且JVM的字符缓存池还会缓存这个字符串；</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String str = new String(&quot;hello&quot;);</span><br></pre></td></tr></table></figure><p>此时程序除创建字符串外，str所引用的String对象底层还包含一个char[]数组，这个char[]数组依次存放了h,e,l,l,o</p><h4 id="10-多线程在未发生线程安全前提下应尽量使用HashMap、ArrayList"><a href="#10-多线程在未发生线程安全前提下应尽量使用HashMap、ArrayList" class="headerlink" title="10. 多线程在未发生线程安全前提下应尽量使用HashMap、ArrayList"></a>10. 多线程在未发生线程安全前提下应尽量使用HashMap、ArrayList</h4><p>HashTable、Vector等使用了同步机制，降低了性能。</p><h4 id="11-尽量合理的创建HashMap"><a href="#11-尽量合理的创建HashMap" class="headerlink" title="11. 尽量合理的创建HashMap"></a>11. 尽量合理的创建HashMap</h4><p>当你要创建一个比较大的hashMap时，充分利用这个构造函数</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public HashMap(int initialCapacity, float loadFactor);</span><br></pre></td></tr></table></figure><p>避免HashMap多次进行了hash重构,扩容是一件很耗费性能的事，在默认中initialCapacity只有16，而loadFactor是 0.75，需要多大的容量，你最好能准确的估计你所需要的最佳大小，同样的Hashtable，Vectors也是一样的道理。</p><h4 id="12-尽量减少对变量的重复计算"><a href="#12-尽量减少对变量的重复计算" class="headerlink" title="12. 尽量减少对变量的重复计算"></a>12. 尽量减少对变量的重复计算</h4><p>如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(int i=0;i&lt;list.size();i++)</span><br></pre></td></tr></table></figure><p>应该改为：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(int i=0,len=list.size();i&lt;len;i++)</span><br></pre></td></tr></table></figure><p>并且在循环中应该避免使用复杂的表达式，在循环中，循环条件会被反复计算，如果不使用复杂表达式，而使循环条件值不变的话，程序将会运行的更快。</p><h4 id="13-尽量避免不必要的创建"><a href="#13-尽量避免不必要的创建" class="headerlink" title="13. 尽量避免不必要的创建"></a>13. 尽量避免不必要的创建</h4><p>如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A a = new A();</span><br><span class="line">if(i==1)&#123;</span><br><span class="line">list.add(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>应该改为：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(i==1)&#123;</span><br><span class="line">A a = new A();</span><br><span class="line">list.add(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="14-尽量在finally块中释放资源"><a href="#14-尽量在finally块中释放资源" class="headerlink" title="14. 尽量在finally块中释放资源"></a>14. 尽量在finally块中释放资源</h4><p>程序中使用到的资源应当被释放，以避免资源泄漏，这最好在finally块中去做。不管程序执行的结果如何，finally块总是会执行的，以确保资源的正确关闭。</p><h4 id="15-尽量使用移位来代替’a-x2F-b’的操作"><a href="#15-尽量使用移位来代替’a-x2F-b’的操作" class="headerlink" title="15. 尽量使用移位来代替’a&#x2F;b’的操作"></a>15. 尽量使用移位来代替’a&#x2F;b’的操作</h4><p>“&#x2F;“是一个代价很高的操作，使用移位的操作将会更快和更有效</p><p>如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int num = a / 4;</span><br><span class="line">int num = a / 8;</span><br></pre></td></tr></table></figure><p>应该改为：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int num = a &gt;&gt; 2;</span><br><span class="line">int num = a &gt;&gt; 3;</span><br></pre></td></tr></table></figure><p>但注意的是使用移位应添加注释，因为移位操作不直观，比较难理解。</p><h4 id="16-尽量使用移位来代替’a-b’的操作"><a href="#16-尽量使用移位来代替’a-b’的操作" class="headerlink" title="16.尽量使用移位来代替’a*b’的操作"></a>16.尽量使用移位来代替’a*b’的操作</h4><p>同样的，对于’*’操作，使用移位的操作将会更快和更有效</p><p>如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int num = a * 4;</span><br><span class="line">int num = a * 8;</span><br></pre></td></tr></table></figure><p>应该改为：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int num = a &lt;&lt; 2;</span><br><span class="line">int num = a &lt;&lt; 3;</span><br></pre></td></tr></table></figure><h4 id="17-尽量确定StringBuffer的容量"><a href="#17-尽量确定StringBuffer的容量" class="headerlink" title="17. 尽量确定StringBuffer的容量"></a>17. 尽量确定StringBuffer的容量</h4><p>StringBuffer 的构造器会创建一个默认大小（通常是16）的字符数组。在使用中，如果超出这个大小，就会重新分配内存，创建一个更大的数组，并将原先的数组复制过来，再丢弃旧的数组。在大多数情况下，你可以在创建 StringBuffer的时候指定大小，这样就避免了在容量不够的时候自动增长，以提高性能。</p><p>如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer buffer = new StringBuffer(1000);</span><br></pre></td></tr></table></figure><h4 id="18-尽量早释放无用对象的引用"><a href="#18-尽量早释放无用对象的引用" class="headerlink" title="18. 尽量早释放无用对象的引用"></a>18. 尽量早释放无用对象的引用</h4><p>大部分时，方法局部引用变量所引用的对象会随着方法结束而变成垃圾，因此，大部分时候程序无需将局部，引用变量显式设为null。</p><p>例如：</p><p>Java代码</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Public void test()&#123;</span><br><span class="line">Object obj = new Object();</span><br><span class="line">……</span><br><span class="line">Obj=null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>上面这个就没必要了，随着方法test()的执行完成，程序中obj引用变量的作用域就结束了。但是如果是改成下面：</p><p>Java代码</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Public void test()&#123;</span><br><span class="line">Object obj = new Object();</span><br><span class="line">……</span><br><span class="line">Obj=null;</span><br><span class="line">//执行耗时，耗内存操作；或调用耗时，耗内存的方法</span><br><span class="line">……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这时候就有必要将obj赋值为null，可以尽早的释放对Object对象的引用。</p><h4 id="19-尽量避免使用二维数组"><a href="#19-尽量避免使用二维数组" class="headerlink" title="19. 尽量避免使用二维数组"></a>19. 尽量避免使用二维数组</h4><p>二维数据占用的内存空间比一维数组多得多，大概10倍以上。</p><h4 id="20-尽量避免使用split"><a href="#20-尽量避免使用split" class="headerlink" title="20. 尽量避免使用split"></a>20. 尽量避免使用split</h4><p>除非是必须的，否则应该避免使用split，split由于支持正则表达式，所以效率比较低，如果是频繁的几十，几百万的调用将会耗费大量资源，如果确实需要频繁的调用split，可以考虑使用apache的StringUtils.split(string,char)，频繁split的可以缓存结果。</p><h4 id="21-ArrayList-amp-LinkedList"><a href="#21-ArrayList-amp-LinkedList" class="headerlink" title="21. ArrayList &amp; LinkedList"></a>21. ArrayList &amp; LinkedList</h4><p>一个是线性表，一个是链表，一句话，随机查询尽量使用ArrayList，ArrayList优于LinkedList，LinkedList还要移动指针，添加删除的操作LinkedList优于ArrayList，ArrayList还要移动数据，不过这是理论性分析，事实未必如此，重要的是理解好2者得数据结构，对症下药。</p><h4 id="22-尽量使用System-arraycopy-代替通过来循环复制数组"><a href="#22-尽量使用System-arraycopy-代替通过来循环复制数组" class="headerlink" title="22. 尽量使用System.arraycopy ()代替通过来循环复制数组"></a>22. 尽量使用System.arraycopy ()代替通过来循环复制数组</h4><p>System.arraycopy() 要比通过循环来复制数组快的多。</p><h4 id="23-尽量缓存经常使用的对象"><a href="#23-尽量缓存经常使用的对象" class="headerlink" title="23. 尽量缓存经常使用的对象"></a>23. 尽量缓存经常使用的对象</h4><p>尽可能将经常使用的对象进行缓存，可以使用数组，或HashMap的容器来进行缓存，但这种方式可能导致系统占用过多的缓存，性能下降，推荐可以使用一些第三方的开源工具，如EhCache，Oscache进行缓存，他们基本都实现了FIFO&#x2F;FLU等缓存算法。</p><h4 id="24-尽量避免非常大的内存分配"><a href="#24-尽量避免非常大的内存分配" class="headerlink" title="24. 尽量避免非常大的内存分配"></a>24. 尽量避免非常大的内存分配</h4><p>有时候问题不是由当时的堆状态造成的，而是因为分配失败造成的。分配的内存块都必须是连续的，而随着堆越来越满，找到较大的连续块越来越困难。</p><h4 id="25-慎用异常"><a href="#25-慎用异常" class="headerlink" title="25. 慎用异常"></a>25. 慎用异常</h4><p>当创建一个异常时，需要收集一个栈跟踪(stack track)，这个栈跟踪用于描述异常是在何处创建的。构建这些栈跟踪时需要为运行时栈做一份快照，正是这一部分开销很大。当需要创建一个 Exception 时，JVM 不得不说：先别动，我想就您现在的样子存一份快照，所以暂时停止入栈和出栈操作。栈跟踪不只包含运行时栈中的一两个元素，而是包含这个栈中的每一个元素。</p><p>如果您创建一个 Exception ，就得付出代价，好在捕获异常开销不大，因此可以使用 try-catch 将核心内容包起来。从技术上讲，你甚至可以随意地抛出异常，而不用花费很大的代价。招致性能损失的并不是 throw 操作——尽管在没有预先创建异常的情况下就抛出异常是有点不寻常。真正要花代价的是创建异常，幸运的是，好的编程习惯已教会我们，不应该不管三七二十一就抛出异常。异常是为异常的情况而设计的，使用时也应该牢记这一原则。</p><h4 id="26-尽量重用对象"><a href="#26-尽量重用对象" class="headerlink" title="26. 尽量重用对象"></a>26. 尽量重用对象</h4><p>特别是String对象的使用中，出现字符串连接情况时应使用StringBuffer代替，由于系统不仅要花时间生成对象，以后可能还需要花时间对这些对象进行垃圾回收和处理。因此生成过多的对象将会给程序的性能带来很大的影响。</p><h4 id="27-不要重复初始化变量"><a href="#27-不要重复初始化变量" class="headerlink" title="27. 不要重复初始化变量"></a>27. 不要重复初始化变量</h4><p>默认情况下，调用类的构造函数时，java会把变量初始化成确定的值，所有的对象被设置成null，整数变量设置成0，float和double变量设置成0.0，逻辑值设置成false。当一个类从另一个类派生时，这一点尤其应该注意，因为用new关键字创建一个对象时，构造函数链中的所有构造函数都会被自动调用。</p><p>这里有个注意，给成员变量设置初始值但需要调用其他方法的时候，最好放在一个方法。比如initXXX()中，因为直接调用某方法赋值可能会因为类尚未初始化而抛空指针异常，如：public int state &#x3D; this.getState()。</p><h4 id="28-在java-Oracle的应用系统开发中，java中内嵌的SQL语言应尽量使用大写形式，以减少Oracle解析器的解析负担。"><a href="#28-在java-Oracle的应用系统开发中，java中内嵌的SQL语言应尽量使用大写形式，以减少Oracle解析器的解析负担。" class="headerlink" title="28. 在java+Oracle的应用系统开发中，java中内嵌的SQL语言应尽量使用大写形式，以减少Oracle解析器的解析负担。"></a>28. 在java+Oracle的应用系统开发中，java中内嵌的SQL语言应尽量使用大写形式，以减少Oracle解析器的解析负担。</h4><h4 id="29-在java编程过程中，进行数据库连接，I-x2F-O流操作，在使用完毕后，及时关闭以释放资源。因为对这些大对象的操作会造成系统大的开销。"><a href="#29-在java编程过程中，进行数据库连接，I-x2F-O流操作，在使用完毕后，及时关闭以释放资源。因为对这些大对象的操作会造成系统大的开销。" class="headerlink" title="29. 在java编程过程中，进行数据库连接，I&#x2F;O流操作，在使用完毕后，及时关闭以释放资源。因为对这些大对象的操作会造成系统大的开销。"></a>29. 在java编程过程中，进行数据库连接，I&#x2F;O流操作，在使用完毕后，及时关闭以释放资源。因为对这些大对象的操作会造成系统大的开销。</h4><h4 id="30-过分的创建对象会消耗系统的大量内存，严重时，会导致内存泄漏，因此，保证过期的对象的及时回收具有重要意义。JVM的GC并非十分智能，因此建议在对象使用完毕后，手动设置成null。"><a href="#30-过分的创建对象会消耗系统的大量内存，严重时，会导致内存泄漏，因此，保证过期的对象的及时回收具有重要意义。JVM的GC并非十分智能，因此建议在对象使用完毕后，手动设置成null。" class="headerlink" title="30. 过分的创建对象会消耗系统的大量内存，严重时，会导致内存泄漏，因此，保证过期的对象的及时回收具有重要意义。JVM的GC并非十分智能，因此建议在对象使用完毕后，手动设置成null。"></a>30. 过分的创建对象会消耗系统的大量内存，严重时，会导致内存泄漏，因此，保证过期的对象的及时回收具有重要意义。JVM的GC并非十分智能，因此建议在对象使用完毕后，手动设置成null。</h4><h4 id="31-在使用同步机制时，应尽量使用方法同步代替代码块同步。"><a href="#31-在使用同步机制时，应尽量使用方法同步代替代码块同步。" class="headerlink" title="31. 在使用同步机制时，应尽量使用方法同步代替代码块同步。"></a>31. 在使用同步机制时，应尽量使用方法同步代替代码块同步。</h4><h4 id="32-不要在循环中使用Try-x2F-Catch语句，应把Try-x2F-Catch放在循环最外层"><a href="#32-不要在循环中使用Try-x2F-Catch语句，应把Try-x2F-Catch放在循环最外层" class="headerlink" title="32. 不要在循环中使用Try&#x2F;Catch语句，应把Try&#x2F;Catch放在循环最外层"></a>32. 不要在循环中使用Try&#x2F;Catch语句，应把Try&#x2F;Catch放在循环最外层</h4><p>Error是获取系统错误的类，或者说是虚拟机错误的类。不是所有的错误Exception都能获取到的，虚拟机报错Exception就获取不到，必须用Error获取。</p><h4 id="33-通过StringBuffer的构造函数来设定它的初始化容量，可以明显提升性能"><a href="#33-通过StringBuffer的构造函数来设定它的初始化容量，可以明显提升性能" class="headerlink" title="33. 通过StringBuffer的构造函数来设定它的初始化容量，可以明显提升性能"></a>33. 通过StringBuffer的构造函数来设定它的初始化容量，可以明显提升性能</h4><p>StringBuffer的默认容量为16，当StringBuffer的容量达到最大容量时，它会将自身容量增加到当前的2倍+2，也就是2*n+2。无论何时，只要StringBuffer到达它的最大容量，它就不得不创建一个新的对象数组，然后复制旧的对象数组，这会浪费很多时间。所以给StringBuffer设置一个合理的初始化容量值，是很有必要的！</p><h4 id="34-合理使用java-util-Vector"><a href="#34-合理使用java-util-Vector" class="headerlink" title="34. 合理使用java.util.Vector"></a>34. 合理使用java.util.Vector</h4><p>Vector与StringBuffer类似，每次扩展容量时，所有现有元素都要赋值到新的存储空间中。Vector的默认存储能力为10个元素，扩容加倍。</p><p>vector.add(index,obj) 这个方法可以将元素obj插入到index位置，但index以及之后的元素依次都要向下移动一个位置（将其索引加 1）。 除非必要，否则对性能不利。同样规则适用于remove(int index)方法，移除此向量中指定位置的元素。将所有后续元素左移（将其索引减 1）。返回此向量中移除的元素。所以删除vector最后一个元素要比删除第1个元素开销低很多。删除所有元素最好用removeAllElements()方法。</p><p>如果要删除vector里的一个元素可以使用 vector.remove(obj)；而不必自己检索元素位置，再删除，如int index &#x3D; indexOf（obj）;vector.remove(index)。</p><h4 id="35-不用new关键字创建对象的实例"><a href="#35-不用new关键字创建对象的实例" class="headerlink" title="35. 不用new关键字创建对象的实例"></a>35. 不用new关键字创建对象的实例</h4><p>用new关键词创建类的实例时，构造函数链中的所有构造函数都会被自动调用。但如果一个对象实现了Cloneable接口，我们可以调用它的clone()方法。clone()方法不会调用任何类构造函数。</p><p>下面是Factory模式的一个典型实现：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static Credit getNewCredit()</span><br><span class="line">&#123;</span><br><span class="line">return new Credit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>改进后的代码使用clone()方法：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">private static Credit BaseCredit = new Credit();</span><br><span class="line">public static Credit getNewCredit()</span><br><span class="line">&#123;</span><br><span class="line">return (Credit)BaseCredit.clone();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="36-不要将数组声明为：public-static-final"><a href="#36-不要将数组声明为：public-static-final" class="headerlink" title="36. 不要将数组声明为：public static final"></a>36. 不要将数组声明为：public static final</h4><h4 id="37-HaspMap的遍历："><a href="#37-HaspMap的遍历：" class="headerlink" title="37. HaspMap的遍历："></a>37. HaspMap的遍历：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String[]&gt; paraMap = new HashMap&lt;String, String[]&gt;();</span><br><span class="line">for( Entry&lt;String, String[]&gt; entry : paraMap.entrySet() )</span><br><span class="line">&#123;</span><br><span class="line">String appFieldDefId = entry.getKey();</span><br><span class="line">String[] values = entry.getValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>利用散列值取出相应的Entry做比较得到结果，取得entry的值之后直接取key和value。</p><h4 id="38-array-数组-和ArrayList的使用"><a href="#38-array-数组-和ArrayList的使用" class="headerlink" title="38. array(数组)和ArrayList的使用"></a>38. array(数组)和ArrayList的使用</h4><p>array 数组效率最高，但容量固定，无法动态改变，ArrayList容量可以动态增长，但牺牲了效率。</p><h4 id="39-单线程应尽量使用-HashMap-ArrayList-除非必要，否则不推荐使用HashTable-Vector，它们使用了同步机制，而降低了性能。"><a href="#39-单线程应尽量使用-HashMap-ArrayList-除非必要，否则不推荐使用HashTable-Vector，它们使用了同步机制，而降低了性能。" class="headerlink" title="39. 单线程应尽量使用 HashMap, ArrayList,除非必要，否则不推荐使用HashTable,Vector，它们使用了同步机制，而降低了性能。"></a>39. 单线程应尽量使用 HashMap, ArrayList,除非必要，否则不推荐使用HashTable,Vector，它们使用了同步机制，而降低了性能。</h4><h4 id="40-StringBuffer-StringBuilder的区别在于"><a href="#40-StringBuffer-StringBuilder的区别在于" class="headerlink" title="40. StringBuffer,StringBuilder的区别在于"></a>40. StringBuffer,StringBuilder的区别在于</h4><p>java.lang.StringBuffer 线程安全的可变字符序列。一个类似于String的字符串缓冲区，但不能修改。StringBuilder与该类相比，通常应该优先使用StringBuilder类，因为它支持所有相同的操作，但由于它不执行同步，所以速度更快。</p><p>为了获得更好的性能，在构造StringBuffer或StringBuilder时应尽量指定她的容量。当然如果不超过16个字符时就不用了。 相同情况下，使用StringBuilder比使用StringBuffer仅能获得10%~15%的性能提升，但却要冒多线程不安全的风险。综合考虑还是建议使用StringBuffer。</p><h4 id="41-尽量使用基本数据类型代替对象。"><a href="#41-尽量使用基本数据类型代替对象。" class="headerlink" title="41. 尽量使用基本数据类型代替对象。"></a>41. 尽量使用基本数据类型代替对象。</h4><h4 id="42-使用具体类比使用接口效率高，但结构弹性降低了，但现代IDE都可以解决这个问题。"><a href="#42-使用具体类比使用接口效率高，但结构弹性降低了，但现代IDE都可以解决这个问题。" class="headerlink" title="42. 使用具体类比使用接口效率高，但结构弹性降低了，但现代IDE都可以解决这个问题。"></a>42. 使用具体类比使用接口效率高，但结构弹性降低了，但现代IDE都可以解决这个问题。</h4><h4 id="43-考虑使用静态方法，如果你没有必要去访问对象的外部，那么就使你的方法成为静态方法。它会被更快地调用，因为它不需要一个虚拟函数导向表。这同时也是一个很好的实践，因为它告诉你如何区分方法的性质，调用这个方法不会改变对象的状态。"><a href="#43-考虑使用静态方法，如果你没有必要去访问对象的外部，那么就使你的方法成为静态方法。它会被更快地调用，因为它不需要一个虚拟函数导向表。这同时也是一个很好的实践，因为它告诉你如何区分方法的性质，调用这个方法不会改变对象的状态。" class="headerlink" title="43. 考虑使用静态方法，如果你没有必要去访问对象的外部，那么就使你的方法成为静态方法。它会被更快地调用，因为它不需要一个虚拟函数导向表。这同时也是一个很好的实践，因为它告诉你如何区分方法的性质，调用这个方法不会改变对象的状态。"></a>43. 考虑使用静态方法，如果你没有必要去访问对象的外部，那么就使你的方法成为静态方法。它会被更快地调用，因为它不需要一个虚拟函数导向表。这同时也是一个很好的实践，因为它告诉你如何区分方法的性质，调用这个方法不会改变对象的状态。</h4><h4 id="44-应尽可能避免使用内在的GET-SET方法。"><a href="#44-应尽可能避免使用内在的GET-SET方法。" class="headerlink" title="44. 应尽可能避免使用内在的GET,SET方法。"></a>44. 应尽可能避免使用内在的GET,SET方法。</h4><h4 id="45-避免枚举，浮点数的使用。"><a href="#45-避免枚举，浮点数的使用。" class="headerlink" title="45.避免枚举，浮点数的使用。"></a>45.避免枚举，浮点数的使用。</h4><p>以下举几个实用优化的例子：</p><h4 id="46、避免在循环条件中使用复杂表达式"><a href="#46、避免在循环条件中使用复杂表达式" class="headerlink" title="46、避免在循环条件中使用复杂表达式"></a>46、避免在循环条件中使用复杂表达式</h4><p>在不做编译优化的情况下，在循环中，循环条件会被反复计算，如果不使用复杂表达式，而使循环条件值不变的话，程序将会运行的更快。例子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Vector;</span><br><span class="line">class CEL &#123;</span><br><span class="line">void method (Vector vector) &#123;</span><br><span class="line">for (int i = 0; i &lt; vector.size (); i++) // Violation</span><br><span class="line">; // ...</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>更正：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class CEL_fixed &#123;</span><br><span class="line">void method (Vector vector) &#123;</span><br><span class="line">int size = vector.size ()</span><br><span class="line">for (int i = 0; i &lt; size; i++)</span><br><span class="line">; // ...</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="47、为’Vectors’-和-‘Hashtables’定义初始大小"><a href="#47、为’Vectors’-和-‘Hashtables’定义初始大小" class="headerlink" title="47、为’Vectors’ 和 ‘Hashtables’定义初始大小"></a>47、为’Vectors’ 和 ‘Hashtables’定义初始大小</h4><p>JVM为Vector扩充大小的时候需要重新创建一个更大的数组，将原原先数组中的内容复制过来，最后，原先的数组再被回收。可见Vector容量的扩大是一个颇费时间的事。</p><p>通常，默认的10个元素大小是不够的。你最好能准确的估计你所需要的最佳大小。例子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Vector;</span><br><span class="line">public class DIC &#123;</span><br><span class="line">public void addObjects (Object[] o) &#123;</span><br><span class="line">// if length &gt; 10, Vector needs to expand</span><br><span class="line">for (int i = 0; i&lt; o.length;i++) &#123;</span><br><span class="line">v.add(o); // capacity before it can add more elements.</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">public Vector v = new Vector(); // no initialCapacity.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>更正：</p><p>自己设定初始大小。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public Vector v = new Vector(20);</span><br><span class="line">public Hashtable hash = new Hashtable(10);</span><br></pre></td></tr></table></figure><h4 id="48、在finally块中关闭Stream"><a href="#48、在finally块中关闭Stream" class="headerlink" title="48、在finally块中关闭Stream"></a>48、在finally块中关闭Stream</h4><p>程序中使用到的资源应当被释放，以避免资源泄漏。这最好在finally块中去做。不管程序执行的结果如何，finally块总是会执行的，以确保资源的正确关闭。</p><p>四、使用’System.arraycopy ()’代替通过来循环复制数组</p><p>例子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class IRB</span><br><span class="line">&#123;</span><br><span class="line">void method () &#123;</span><br><span class="line">int[] array1 = new int [100];</span><br><span class="line">for (int i = 0; i &lt; array1.length; i++) &#123;</span><br><span class="line">array1 [i] = i;</span><br><span class="line">&#125;</span><br><span class="line">int[] array2 = new int [100];</span><br><span class="line">for (int i = 0; i &lt; array2.length; i++) &#123;</span><br><span class="line">array2 [i] = array1 [i]; // Violation</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>更正：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class IRB</span><br><span class="line">&#123;</span><br><span class="line">void method () &#123;</span><br><span class="line">int[] array1 = new int [100];</span><br><span class="line">for (int i = 0; i &lt; array1.length; i++) &#123;</span><br><span class="line">array1 [i] = i;</span><br><span class="line">&#125;</span><br><span class="line">int[] array2 = new int [100];</span><br><span class="line">System.arraycopy(array1, 0, array2, 0, 100);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="49、让访问实例内变量的getter-x2F-setter方法变成”final”"><a href="#49、让访问实例内变量的getter-x2F-setter方法变成”final”" class="headerlink" title="49、让访问实例内变量的getter&#x2F;setter方法变成”final”"></a>49、让访问实例内变量的getter&#x2F;setter方法变成”final”</h4><p>简单的getter&#x2F;setter方法应该被置成final，这会告诉编译器，这个方法不会被重载，所以，可以变成”inlined”,例子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class MAF &#123;</span><br><span class="line">public void setSize (int size) &#123;</span><br><span class="line">_size = size;</span><br><span class="line">&#125;</span><br><span class="line">private int _size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>更正：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class DAF_fixed &#123;</span><br><span class="line">final public void setSize (int size) &#123;</span><br><span class="line">_size = size;</span><br><span class="line">&#125;</span><br><span class="line">private int _size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="50、对于常量字符串，用’String’-代替-‘StringBuffer’"><a href="#50、对于常量字符串，用’String’-代替-‘StringBuffer’" class="headerlink" title="50、对于常量字符串，用’String’ 代替 ‘StringBuffer’"></a>50、对于常量字符串，用’String’ 代替 ‘StringBuffer’</h4><p>常量字符串并不需要动态改变长度。</p><p>例子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class USC &#123;</span><br><span class="line">String method () &#123;</span><br><span class="line">StringBuffer s = new StringBuffer (&quot;Hello&quot;);</span><br><span class="line">String t = s + &quot;World!&quot;;</span><br><span class="line">return t;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>更正：把StringBuffer换成String，如果确定这个String不会再变的话，这将会减少运行开销提高性能。</p><h4 id="51、在字符串相加的时候，使用-‘-‘-代替-“-“，如果该字符串只有一个字符的话"><a href="#51、在字符串相加的时候，使用-‘-‘-代替-“-“，如果该字符串只有一个字符的话" class="headerlink" title="51、在字符串相加的时候，使用 ‘ ‘ 代替 “ “，如果该字符串只有一个字符的话"></a>51、在字符串相加的时候，使用 ‘ ‘ 代替 “ “，如果该字符串只有一个字符的话</h4><p>例子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class STR &#123;</span><br><span class="line">public void method(String s) &#123;</span><br><span class="line">String string = s + &quot;d&quot; // violation.</span><br><span class="line">string = &quot;abc&quot; + &quot;d&quot; // violation.</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>更正：</p><p>将一个字符的字符串替换成’ ‘</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class STR &#123;</span><br><span class="line">public void method(String s) &#123;</span><br><span class="line">String string = s + &#x27;d&#x27;</span><br><span class="line">string = &quot;abc&quot; + &#x27;d&#x27;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>以上仅是Java方面编程时的性能优化，性能优化大部分都是在时间、效率、代码结构层次等方面的权衡，各有利弊，不要把上面内容当成教条，或许有些对我们实际工作适用，有些不适用，还望根据实际工作场景进行取舍，活学活用，变通为宜。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;Java性能优化的50个细节&quot;&gt;&lt;a href=&quot;#Java性能优化的50个细节&quot; class=&quot;headerlink&quot; title=&quot;Java性能优化的50个细节&quot;&gt;&lt;/a&gt;Java性能优化的50个细节&lt;/h3&gt;&lt;p&gt;在JAVA程序中，性能问题的大部分原因并不在</summary>
       
     
     
@@ -373,165 +528,6 @@
     <summary type="html">&lt;p&gt;运营该如何被定义和理解&lt;br&gt;1.运营，就是帮助产品和用户之间更好的建立起来关系，所需要使用的一切干预手段&lt;/p&gt;
 &lt;p&gt;2.运营工作的流程：&lt;br&gt;1）制定策略：根据不同的产品形态及数据变化制定不用的策略&lt;/p&gt;
 &lt;p&gt;2）分解指标，规划工作：对目标进行拆解，向内向外的资</summary>
-      
-    
-    
-    
-    <category term="杂记" scheme="http://ai.mak.cn/categories/%E6%9D%82%E8%AE%B0/"/>
-    
-    
-    <category term="杂记" scheme="http://ai.mak.cn/tags/%E6%9D%82%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java代码优化总结</title>
-    <link href="http://ai.mak.cn/2018/11/04/java/%20Java%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93-1/"/>
-    <id>http://ai.mak.cn/2018/11/04/java/%20Java%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93-1/</id>
-    <published>2018-11-03T16:00:00.000Z</published>
-    <updated>2022-08-05T17:37:13.266Z</updated>
-    
-    <content type="html"><![CDATA[<p>来源：王韵菲 </p><p><a href="http://www.evget.com/article/2015/11/16/22990.html">www.evget.com/article/2015/11/16/22990.html</a></p><p>本文中，小编搜集了7个最有影响的衡量标注，让你可以不依赖日志文件来了解应用程序。现在，让我们看看这些性能指标，并了解如何查看并收集它们：</p><p><strong>1.响应时间和吞吐量</strong></p><p>根据应用程序的响应时间可以知道程序完成传输数据所用的时间。也可以从HTTP请求级别，或者成为数据库级别来看。对那些缓慢的查询你需要做一些优化来缩短时间。吞吐量是另一个角度衡量传输数据的指标，是指单位时间内系统处理的客户请求的数量。</p><p>我们可以使用APMs（例如New Relic或AppDynamics）来衡量这些指标。使用这些工具，你可以在主报告仪表板中将平均响应时间与昨天的甚至上周的直接进行对比。这有助于我们观察新的部署是否会影响到我们的应用程序。你可以看到网络传输的百分比，测量HTTP完成请求需要多长时间。</p><p>推荐工具：</p><ul><li>AppDynamics</li><li>New Relic</li><li>Ruxit</li></ul><p>New Relic报告：Web传输百分比和吞吐量</p><p><strong>2.平均负载</strong></p><p>第二个应用广泛的指标是平均负载。我们习惯上会把平均负载分为这三步测量，分别是第5分钟、第15分钟和最后1分钟。要保证数量低于机器的内核数。一旦超过内核数，机器就会运行在压力状态下。</p><p>除了简单测量CPU使用率，还需要关注每个内核的队列中有多少进程。在内核使用率都是100%的情况下，队列中只有1个任务和有6个任务有很大不同。因此，平均负载不能只考虑CPU使用率。</p><p>推荐工具：</p><ul><li>htop</li></ul><p><strong>3.错误率</strong></p><p>大多数开发人员判断错误率是根据HTTP传输总失败百分比。但是他们忽略了一个更深层的东西：特定传输的错误率。这直接影响到您应用程序的运行状况。这可以显示出代码方法的错误以及错误或异常出现的次数。</p><p>但单纯的错误率数据对我们没有多大帮助。最重要的是我们要找到它们的根源并解决问题。随着Takipi的运行，我们要在日志文件中需找线索。你可以找到所有关于服务器状态的信息，包括堆栈跟踪、源代码和变量值。</p><p>推荐工具：</p><ul><li>Takipi</li></ul><p><strong>4.GC率和暂停时间</strong></p><p>异常行为垃圾收集器应用程序的吞吐量和响应时间采取深潜的主要原因之一。了解GC暂停频率和持续时间的关键是分析GC日志文件。要分析它们，你需要收集GC日志和JVM参数。你要注意观察不同指标之间的数据是如何相互影响的。</p><p>推荐工具：</p><ul><li>jClarity Censum</li><li>GCViewer</li></ul><p><strong>5.业务指标</strong></p><p>应用程序的性能不完全取决于响应时间和错误率。业务指标也是一方面，例如收益、用户数。</p><p>推荐工具：</p><ul><li>Grafana</li><li>The ELK stack</li><li>Datadog</li><li>Librato</li></ul><p><strong>6.正常运行时间和服务运行状态</strong></p><p>这一指标奠定了整个应用程序性能的基础。不仅可以当做一个提醒指标，也可以让你定义一段时间内的SKA。我们可以使用Pingdom的servlet功能进行运行状态检查。我们可以查到应用程序的所有传输，包括数据库和S3。</p><p>推荐工具：</p><ul><li>Pingdom</li></ul><p><strong>7.日志大小</strong></p><p>日志有一个缺点，它是一直在增加的。当您的服务器启动塞满了垃圾，一切都慢下来。因此，我们需要密切的关注日志大小。</p><p>目前通常的解决办法是使用logstash划分使用日志，并将它们发送并存储在Splunk、ELK或其他的日志管理工具中。</p><p>推荐工具：</p><ul><li>Splunk</li><li>Sumo Logic</li><li>Loggly</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;来源：王韵菲 &lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.evget.com/article/2015/11/16/22990.html&quot;&gt;www.evget.com/article/2015/11/16/22990.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;本文中，小编</summary>
-      
-    
-    
-    
-    <category term="技术小栈" scheme="http://ai.mak.cn/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
-    
-    
-    <category term="java" scheme="http://ai.mak.cn/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>摘要-任何商业模式都来源于用户需求</title>
-    <link href="http://ai.mak.cn/2018/10/29/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01029/"/>
-    <id>http://ai.mak.cn/2018/10/29/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01029/</id>
-    <published>2018-10-28T16:00:00.000Z</published>
-    <updated>2022-10-09T15:48:55.596Z</updated>
-    
-    <content type="html"><![CDATA[<p>任何商业模式都来源于用户需求～</p><p>用户需求特点:更快，更多，更便宜，更好玩<br>需求处理:发现，分析，描述<br>产品设计步骤:<br>产品决策:需求是否全面，流程是否打的通，是否战略一致。<br>产品功能设计:基本功能，核心功能<br>用户体验原则:不要强迫用户，不要让用户思考，用户易操作，不破坏用户原则，超出用户预期。</p><p>网络运营<br>网络运营模型:来源量，转化率，活跃度，留存率<br>周期:种子期，爆发期，平台期<br>网络推广:用户互导，资源互换，购买流量</p><p>网络运营总结：<br>1 种子期是产品最难的阶段，留存率是关键，不在乎来多少人，而在乎有多少人留下来。种子期成功，产品成功一半。<br>2 爆发期是产品成功的标志，来源量是关键，产品形成口碑影响力，能成功的产品一定有爆发期。<br>3 平台期是用户爆发增长后有意控制产品节奏的时期，活跃度是关键，重点做好系统稳定和产品用户体验。<br>4 爆发期和平台期交替出现，产品才能不断稳定增长。</p><p>互联网商业模式:<br>循环:做好的产品，吸引用户，产生收入<br>形成比由之路:创造好产品 ，获取海量用户，引导用户消费。</p><hr>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;任何商业模式都来源于用户需求～&lt;/p&gt;
-&lt;p&gt;用户需求特点:更快，更多，更便宜，更好玩&lt;br&gt;需求处理:发现，分析，描述&lt;br&gt;产品设计步骤:&lt;br&gt;产品决策:需求是否全面，流程是否打的通，是否战略一致。&lt;br&gt;产品功能设计:基本功能，核心功能&lt;br&gt;用户体验原则:不要强迫</summary>
-      
-    
-    
-    
-    <category term="杂记" scheme="http://ai.mak.cn/categories/%E6%9D%82%E8%AE%B0/"/>
-    
-    
-    <category term="杂记" scheme="http://ai.mak.cn/tags/%E6%9D%82%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>摘要-企业文化三要素</title>
-    <link href="http://ai.mak.cn/2018/10/28/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01028/"/>
-    <id>http://ai.mak.cn/2018/10/28/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B01028/</id>
-    <published>2018-10-27T16:00:00.000Z</published>
-    <updated>2022-10-09T15:48:24.367Z</updated>
-    
-    <content type="html"><![CDATA[<p>企业文化三要素：</p><p>赋予员工使命：激发员工主人翁意识，从全人类层面考虑问题，打造使命的不可逾越性；</p><p>保障公司透明度：信息共享，给予员工充分信任，会议形成记录，达到有效沟通</p><p>保障员工发声权利：高层权力下放，员工拥有话语权，培养员工独立思考</p><p>谷歌如何招聘人才：</p><p>人才原则：慢工招人才，只招聘比自己优秀的人才</p><p>招聘流程：谷歌求职者调查测试，下属面试，横向面试</p><p>评估工具：采用qDroid, 多人多角度多流程评估面试者</p><p>如何重新定义团队：</p><p>打造“小而美”团队，消除内部地位象征，依据数据做决策，自我职业规划，关注优劣两极员工，保持高期待和高收益；</p><hr>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;企业文化三要素：&lt;/p&gt;
-&lt;p&gt;赋予员工使命：激发员工主人翁意识，从全人类层面考虑问题，打造使命的不可逾越性；&lt;/p&gt;
-&lt;p&gt;保障公司透明度：信息共享，给予员工充分信任，会议形成记录，达到有效沟通&lt;/p&gt;
-&lt;p&gt;保障员工发声权利：高层权力下放，员工拥有话语权，培养员工独立思</summary>
-      
-    
-    
-    
-    <category term="杂记" scheme="http://ai.mak.cn/categories/%E6%9D%82%E8%AE%B0/"/>
-    
-    
-    <category term="杂记" scheme="http://ai.mak.cn/tags/%E6%9D%82%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WebAssembly 的未来：将逐渐解锁整个“技能树”</title>
-    <link href="http://ai.mak.cn/2018/10/25/%E5%89%8D%E7%AB%AF/%20WebAssembly%20%E7%9A%84%E6%9C%AA%E6%9D%A5%EF%BC%9A%E5%B0%86%E9%80%90%E6%B8%90%E8%A7%A3%E9%94%81%E6%95%B4%E4%B8%AA%E2%80%9C%E6%8A%80%E8%83%BD%E6%A0%91%E2%80%9D/"/>
-    <id>http://ai.mak.cn/2018/10/25/%E5%89%8D%E7%AB%AF/%20WebAssembly%20%E7%9A%84%E6%9C%AA%E6%9D%A5%EF%BC%9A%E5%B0%86%E9%80%90%E6%B8%90%E8%A7%A3%E9%94%81%E6%95%B4%E4%B8%AA%E2%80%9C%E6%8A%80%E8%83%BD%E6%A0%91%E2%80%9D/</id>
-    <published>2018-10-24T16:00:00.000Z</published>
-    <updated>2022-08-05T17:37:13.342Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="WebAssembly-的未来：将逐渐解锁整个“技能树”"><a href="#WebAssembly-的未来：将逐渐解锁整个“技能树”" class="headerlink" title="WebAssembly 的未来：将逐渐解锁整个“技能树”"></a>WebAssembly 的未来：将逐渐解锁整个“技能树”</h1><ul><li><a href="https://www.oschina.net/news/101159/the-future-of-webassembly">原文</a></li></ul><p>WebAssembly 在2017年受到主流浏览器的支持，并发布了被 MVP 版本（Minimum Viable Product，最简可行产品）。虽然 WebAssembly 社区组致力于使 WebAssembly 向后相容，让现在开发的 WebAssembly 应用程式，仍可以在未来的浏览器中运作，但这并不代表 WebAssembly 功能已经完整，MVP 绝非最终版本。相反，WebAssembly 还将增加许多新功能，而这些新功能将从根本上颠覆 WebAssembly 所能实现的工作。</p><p>为消除人们对 WebAssembly 的误解，WebAssembly 社区组以 RPG 游戏中人物养成的“技能树”形式，对 <a href="https://hacks.mozilla.org/2018/10/webassemblys-post-mvp-future/">WebAssembly 的未来发展路径</a>做了非常详细的解释。他们表示目前已经完全掌握这些技能中的前几项，后续需要慢慢解锁整个技能树。</p><p><img src="https://oscimg.oschina.net/oscnet/42ccc510cfd9d1d2670037cba32f3007d47.jpg" alt="img"></p><p>WebAssembly 在 MVP 版本阶段满足 4 个基本技能要求：编译、快速执行、压缩和线性内存分配。使用 WebAssembly 的人知道他们不想只支持 C 和 C ++，而是希望能够将许多不同的语言编译为 WebAssembly 。经 WebAssembly 编译器编译的应用需要能够快速执行，满足需求。而为了加速载入速度，WebAssembly 还需具备压缩能力，减少使用者的等待时间。另外，WebAssembly 需要有别于 JavaScript 使用内存方式，能够直接管理使用的内存，在加上安全因素的考量，WebAssembly 采用线性内存模式。</p><p><img src="https://oscimg.oschina.net/oscnet/48a0162ed0e0f848088cecfa4c9c0d6b5b4.jpg" alt="img"></p><p>社区组表示，WebAssembly 的下一个目标是平滑运行那些更重的应用程序，比如 Photoshop、Gmail 等。为确保此类应用能在浏览器中运行良好，他们需要解锁新一批的“技能”，包括支持多线程、SIMD（单指令流多数据流）、64位寻址、流式编译（在下载的同时编译 WebAssembly 文件）、分层编译器、隐式 HTTP 缓存以及一些其他改进。</p><p><img src="https://oscimg.oschina.net/oscnet/586022e01ab45f31b0d35d223ea932a8827.jpg" alt="img"></p><p>一旦以上功能全部就位，WebAssembly 又将进入下一个阶段 —— 与 JavaScript 互操作，包括 JS 和 WebAssembly 之间的快速调用、简便的数据交换、ES模块集成、工具链集成和向后兼容性。</p><p><img src="https://oscimg.oschina.net/oscnet/5d163b3cfd5ecd82788682365c270636ebe.jpg" alt="img"></p><p>此外，他们还想在 WebAssembly 中重写 JavaScript 框架的大部分内容，并使静态类型的 compile-to-js 语言可编译为 WebAssembly 。想要实现这两个目标，WebAssembly 还需要支持高阶的语言功能，包括垃圾回收、异常处理、调试以及尾调用（Tail calls）。</p><p><img src="https://oscimg.oschina.net/oscnet/c84da0e9a6a4992b6a2219bc3b6f65dc950.jpg" alt="img"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;WebAssembly-的未来：将逐渐解锁整个“技能树”&quot;&gt;&lt;a href=&quot;#WebAssembly-的未来：将逐渐解锁整个“技能树”&quot; class=&quot;headerlink&quot; title=&quot;WebAssembly 的未来：将逐渐解锁整个“技能树”&quot;&gt;&lt;/a&gt;We</summary>
-      
-    
-    
-    
-    <category term="技术小栈" scheme="http://ai.mak.cn/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
-    
-    
-    <category term="js" scheme="http://ai.mak.cn/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java代码优化总结</title>
-    <link href="http://ai.mak.cn/2018/10/20/java/%20Java%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93-2/"/>
-    <id>http://ai.mak.cn/2018/10/20/java/%20Java%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93-2/</id>
-    <published>2018-10-19T16:00:00.000Z</published>
-    <updated>2022-08-05T17:37:13.294Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>代码优化的目标是：</strong></p><p>1、减小代码的体积</p><p>2、提高代码运行的效率</p><p>本文的内容有些来自网络，有些来自平时工作和学习，当然这不重要，重要的是这些代码优化的细节是否真真正正地有用。那本文会保持长期更新，只要有遇到值得分享的代码优化细节，就会不定时地更新此文。</p><p><strong>代码优化细节</strong></p><p><strong>1、尽量指定类、方法的final修饰符</strong></p><p>带有final修饰符的类是不可派生的。在Java核心API中，有许多应用final的例子，例如java.lang.String，整个类都是final的。为类指定final修饰符可以让类不可以被继承，为方法指定final修饰符可以让方法不可以被重写。如果指定了一个类为final，则该类所有的方法都是final的。Java编译器会寻找机会内联所有的final方法，内联对于提升Java运行效率作用重大，具体参见Java运行期优化。此举能够使性能平均提高50%。</p><p><strong>2、尽量重用对象</strong></p><p>特别是String对象的使用，出现字符串连接时应该使用StringBuilder&#x2F;StringBuffer代替。由于Java虚拟机不仅要花时间生成对象，以后可能还需要花时间对这些对象进行垃圾回收和处理，因此，生成过多的对象将会给程序的性能带来很大的影响。</p><p><strong>3、尽可能使用局部变量</strong></p><p>调用方法时传递的参数以及在调用中创建的临时变量都保存在栈中速度较快，其他变量，如静态变量、实例变量等，都在堆中创建，速度较慢。另外，栈中创建的变量，随着方法的运行结束，这些内容就没了，不需要额外的垃圾回收。</p><p><strong>4、及时关闭流</strong></p><p>Java编程过程中，进行数据库连接、I&#x2F;O流操作时务必小心，在使用完毕后，及时关闭以释放资源。因为对这些大对象的操作会造成系统大的开销，稍有不慎，将会导致严重的后果。</p><p><strong>5、尽量减少对变量的重复计算</strong></p><p>明确一个概念，对方法的调用，即使方法中只有一句语句，也是有消耗的，包括创建栈帧、调用方法时保护现场、调用方法完毕时恢复现场等。所以例如下面的操作：</p><blockquote><p>for (int i &#x3D; 0; i &lt; list.size(); i++)</p><p>{…}</p></blockquote><p><strong>建议替换为：</strong></p><blockquote><p>for (int i &#x3D; 0, int length &#x3D; list.size(); i &lt; length; i++)</p><p>{…}</p></blockquote><p>这样，在list.size()很大的时候，就减少了很多的消耗</p><p><strong>6、尽量采用懒加载的策略，即在需要的时候才创建</strong></p><p><strong>例如：</strong></p><blockquote><p>String str &#x3D; “aaa”;</p><p>if (i &#x3D;&#x3D; 1)</p><p>{</p><p>　　list.add(str);</p><p>}</p></blockquote><p><strong>建议替换为：</strong></p><blockquote><p>if (i &#x3D;&#x3D; 1)</p><p>{</p><p>　　String str &#x3D; “aaa”;</p><p>　　list.add(str);</p><p>}</p></blockquote><p><strong>7、慎用异常</strong></p><p>异常对性能不利。抛出异常首先要创建一个新的对象，Throwable接口的构造函数调用名为fillInStackTrace()的本地同步方法，fillInStackTrace()方法检查堆栈，收集调用跟踪信息。只要有异常被抛出，Java虚拟机就必须调整调用堆栈，因为在处理过程中创建了一个新的对象。异常只能用于错误处理，不应该用来控制程序流程。</p><p><strong>8、不要在循环中使用try…catch…，应该把其放在最外层</strong></p><p>根据网友们提出的意见，这一点我认为值得商榷</p><p><strong>9、如果能估计到待添加的内容长度，为底层以数组方式实现的集合、工具类指定初始长度</strong></p><p>比如ArrayList、LinkedLlist、StringBuilder、StringBuffer、HashMap、</p><p><strong>HashSet等等，以StringBuilder为例：</strong></p><p>（1）StringBuilder()　　　　　　&#x2F;&#x2F; 默认分配16个字符的空间</p><p>（2）StringBuilder(int size)　　&#x2F;&#x2F; 默认分配size个字符的空间</p><p>（3）StringBuilder(String str)　&#x2F;&#x2F; 默认分配16个字符+str.length()个字符空间</p><p>可以通过类（这里指的不仅仅是上面的StringBuilder）的构造函数来设定它的初始化容量，这样可以明显地提升性能。比如StringBuilder吧，length表示当前的StringBuilder能保持的字符数量。因为当StringBuilder达到最大容量的时候，它会将自身容量增加到当前的2倍再加2，无论何时只要StringBuilder达到它的最大容量，它就不得不创建一个新的字符数组然后将旧的字符数组内容拷贝到新字符数组中—-这是十分耗费性能的一个操作。试想，如果能预估到字符数组中大概要存放5000个字符而不指定长度，最接近5000的2次幂是4096，每次扩容加的2不管，那么：</p><p>（1）在4096 的基础上，再申请8194个大小的字符数组，加起来相当于一次申请了12290个大小的字符数组，如果一开始能指定5000个大小的字符数组，就节省了一倍以上的空间</p><p>（2）把原来的4096个字符拷贝到新的的字符数组中去</p><p>这样，既浪费内存空间又降低代码运行效率。所以，给底层以数组实现的集合、工具类设置一个合理的初始化容量是错不了的，这会带来立竿见影的效果。但是，注意，像HashMap这种是以数组+链表实现的集合，别把初始大小和你估计的大小设置得一样，因为一个table上只连接一个对象的可能性几乎为0。初始大小建议设置为2的N次幂，如果能估计到有2000个元素，设置成new HashMap(128)、new HashMap(256)都可以。</p><p><strong>10、当复制大量数据时，使用System.arraycopy()命令</strong></p><p><strong>11、乘法和除法使用移位操作</strong></p><p><strong>例如：</strong></p><blockquote><p>for (val &#x3D; 0; val &lt; 100000; val +&#x3D; 5)</p><p>{</p><p>　　a &#x3D; val * 8;</p><p>　　b &#x3D; val &#x2F; 2;</p><p>}</p></blockquote><p>用移位操作可以极大地提高性能，因为在计算机底层，对位的操作是最方便、最快的，因此建议修改为： </p><blockquote><p>for (val &#x3D; 0; val &lt; 100000; val +&#x3D; 5)</p><p>{</p><p>　　a &#x3D; val &lt;&lt; 3;</p><p>　　b &#x3D; val &gt;&gt; 1;</p><p>}</p></blockquote><p>移位操作虽然快，但是可能会使代码不太好理解，因此最好加上相应的注释。</p><p><strong>12、循环内不要不断创建对象引用</strong></p><p><strong>例如：</strong></p><blockquote><p>for (int i &#x3D; 1; i &lt;&#x3D; count; i++)</p><p>{</p><p>​    Object obj &#x3D; new Object();    </p><p>}</p></blockquote><p>这种做法会导致内存中有count份Object对象引用存在，count很大的话，就耗费内存了，建议为改为：</p><blockquote><p>Object obj &#x3D; null;</p><p>for (int i &#x3D; 0; i &lt;&#x3D; count; i++)</p><p>{</p><p>​    obj &#x3D; new Object();</p><p>}</p></blockquote><p>这样的话，内存中只有一份Object对象引用，每次new Object()的时候，Object对象引用指向不同的Object罢了，但是内存中只有一份，这样就大大节省了内存空间了。</p><p><strong>13、基于效率和类型检查的考虑，应该尽可能使用array，无法确定数组大小时才使用ArrayList</strong></p><p><strong>14、尽量使用HashMap、ArrayList、StringBuilder，除非线程安全需要，否则不推荐使用Hashtable、Vector、StringBuffer，后三者由于使用同步机制而导致了性能开销</strong></p><p><strong>15、不要将数组声明为public static final</strong></p><p>因为这毫无意义，这样只是定义了引用为static final，数组的内容还是可以随意改变的，将数组声明为public更是一个安全漏洞，这意味着这个数组可以被外部类所改变</p><p><strong>16、尽量在合适的场合使用单例</strong></p><p>使用单例可以减轻加载的负担、缩短加载的时间、提高加载的效率，但并不是所有地方都适用于单例，简单来说，单例主要适用于以下三个方面：</p><p>（1）控制资源的使用，通过线程同步来控制资源的并发访问</p><p>（2）控制实例的产生，以达到节约资源的目的</p><p>（3）控制数据的共享，在不建立直接关联的条件下，让多个不相关的进程或线程之间实现通信</p><p><strong>17、尽量避免随意使用静态变量</strong></p><p>要知道，当某个对象被定义为static的变量所引用，那么gc通常是不会回收这个对象所占有的堆内存的，如：</p><blockquote><p>public class A</p><p>{</p><p>​    private static B b &#x3D; new B();  </p><p>}</p></blockquote><p>此时静态变量b的生命周期与A类相同，如果A类不被卸载，那么引用B指向的B对象会常驻内存，直到程序终止</p><p><strong>18、及时清除不再需要的会话</strong></p><p>为了清除不再活动的会话，许多应用服务器都有默认的会话超时时间，一般为30分钟。当应用服务器需要保存更多的会话时，如果内存不足，那么操作系统会把部分数据转移到磁盘，应用服务器也可能根据MRU（最近最频繁使用）算法把部分不活跃的会话转储到磁盘，甚至可能抛出内存不足的异常。如果会话要被转储到磁盘，那么必须要先被序列化，在大规模集群中，对对象进行序列化的代价是很昂贵的。因此，当会话不再需要时，应当及时调用HttpSession的invalidate()方法清除会话。</p><p><strong>19、实现RandomAccess接口的集合比如ArrayList，应当使用最普通的for循环而不是foreach循环来遍历</strong></p><p>这是JDK推荐给用户的。JDK API对于RandomAccess接口的解释是：实现RandomAccess接口用来表明其支持快速随机访问，此接口的主要目的是允许一般的算法更改其行为，从而将其应用到随机或连续访问列表时能提供良好的性能。实际经验表明，实现RandomAccess接口的类实例，假如是随机访问的，使用普通for循环效率将高于使用foreach循环；反过来，如果是顺序访问的，则使用Iterator会效率更高。可以使用类似如下的代码作判断：</p><blockquote><p>if (list instanceof RandomAccess)</p><p>{</p><p>​    for (int i &#x3D; 0; i &lt; list.size(); i++){}</p><p>}</p><p>else</p><p>{</p><p>​    Iterator&lt;?&gt; iterator &#x3D; list.iterable();</p><p>​    while (iterator.hasNext()){iterator.next()}</p><p>}</p></blockquote><p>foreach循环的底层实现原理就是迭代器Iterator，参见Java语法糖1：可变长度参数以及foreach循环原理。所以后半句”反过来，如果是顺序访问的，则使用Iterator会效率更高”的意思就是顺序访问的那些类实例，使用foreach循环去遍历。</p><p><strong>20、使用同步代码块替代同步方法</strong></p><p>这点在多线程模块中的synchronized锁方法块一文中已经讲得很清楚了，除非能确定一整个方法都是需要进行同步的，否则尽量使用同步代码块，避免对那些不需要进行同步的代码也进行了同步，影响了代码执行效率。</p><p><strong>21、将常量声明为static final，并以大写命名</strong></p><p>这样在编译期间就可以把这些内容放入常量池中，避免运行期间计算生成常量的值。另外，将常量的名字以大写命名也可以方便区分出常量与变量</p><p><strong>22、不要创建一些不使用的对象，不要导入一些不使用的类</strong></p><p>这毫无意义，如果代码中出现”The value of the local variable i is not used”、”The import java.util is never used”，那么请删除这些无用的内容</p><p><strong>23、程序运行过程中避免使用反射</strong></p><p>关于，请参见反射。反射是Java提供给用户一个很强大的功能，功能强大往往意味着效率不高。不建议在程序运行过程中使用尤其是频繁使用反射机制，特别是Method的invoke方法，如果确实有必要，一种建议性的做法是将那些需要通过反射加载的类在项目启动的时候通过反射实例化出一个对象并放入内存—-用户只关心和对端交互的时候获取最快的响应速度，并不关心对端的项目启动花多久时间。</p><p><strong>24、使用数据库连接池和线程池</strong></p><p>这两个池都是用于重用对象的，前者可以避免频繁地打开和关闭连接，后者可以避免频繁地创建和销毁线程</p><p><strong>25、使用带缓冲的输入输出流进行IO操作</strong></p><p>带缓冲的输入输出流，即BufferedReader、BufferedWriter、BufferedInputStream、BufferedOutputStream，这可以极大地提升IO效率</p><p><strong>26、顺序插入和随机访问比较多的场景使用ArrayList，元素删除和中间插入比较多的场景使用LinkedList</strong></p><p>这个，理解ArrayList和LinkedList的原理就知道了</p><p><strong>27、不要让public方法中有太多的形参</strong></p><p>public方法即对外提供的方法，如果给这些方法太多形参的话主要有两点坏处：</p><p>1、违反了面向对象的编程思想，Java讲求一切都是对象，太多的形参，和面向对象的编程思想并不契合</p><p>2、参数太多势必导致方法调用的出错概率增加</p><p>至于这个”太多”指的是多少个，3、4个吧。比如我们用JDBC写一个insertStudentInfo方法，有10个学生信息字段要插如Student表中，可以把这10个参数封装在一个实体类中，作为insert方法的形参</p><p><strong>28、字符串变量和字符串常量equals的时候将字符串常量写在前面</strong></p><p>这是一个比较常见的小技巧了，如果有以下代码：</p><blockquote><p>String str &#x3D; “123”;</p><p>if (str.equals(“123”))</p><p>{</p><p>​    …</p><p>}</p></blockquote><p><strong>建议修改为：</strong></p><blockquote><p>String str &#x3D; “123”;</p><p>if (“123”.equals(str))</p><p>{</p><p>​    …</p><p>}</p></blockquote><p>这么做主要是可以避免空指针异常</p><p><strong>29、请知道，在java中if (i &#x3D;&#x3D; 1)和if (1 &#x3D;&#x3D; i)是没有区别的，但从阅读习惯上讲，建议使用前者</strong></p><p>平时有人问，”if (i &#x3D;&#x3D; 1)”和”if (1&#x3D;&#x3D; i)”有没有区别，这就要从C&#x2F;C++讲起。</p><p>在C&#x2F;C++中，”if (i &#x3D;&#x3D; 1)”判断条件成立，是以0与非0为基准的，0表示false，非0表示true，如果有这么一段代码：</p><blockquote><p>int i &#x3D; 2;</p><p>if (i &#x3D;&#x3D; 1)</p><p>{</p><p>​    …</p><p>}</p><p>else</p><p>{</p><p>​    …</p><p>}</p></blockquote><p>C&#x2F;C++判断”i&#x3D;&#x3D;1”不成立，所以以0表示，即false。但是如果：</p><blockquote><p>int i &#x3D; 2;</p><p>if (i &#x3D; 1)</p><p>{</p><p>​    …</p><p>}</p><p>else</p><p>{</p><p>​    …</p><p>}</p></blockquote><p>万一程序员一个不小心，把”if (i &#x3D;&#x3D; 1)”写成”if (i &#x3D; 1)”，这样就有问题了。在if之内将i赋值为1，if判断里面的内容非0，返回的就是true了，但是明明i为2，比较的值是1，应该返回的false。这种情况在C&#x2F;C++的开发中是很可能发生的并且会导致一些难以理解的错误产生，所以，为了避免开发者在if语句中不正确的赋值操作，建议将if语句写为：</p><blockquote><p>int i &#x3D; 2;</p><p>if (1 &#x3D;&#x3D; i)</p><p>{</p><p>​    …</p><p>}</p><p>else</p><p>{</p><p>​    …</p><p>}</p></blockquote><p>这样，即使开发者不小心写成了”1 &#x3D; i”，C&#x2F;C++编译器也可以第一时间检查出来，因为我们可以对一个变量赋值i为1，但是不能对一个常量赋值1为i。</p><p>但是，在Java中，C&#x2F;C++这种”if (i &#x3D; 1)”的语法是不可能出现的，因为一旦写了这种语法，Java就会编译报错”Type mismatch: cannot convert from int to boolean”。但是，尽管Java的”if (i &#x3D;&#x3D; 1)”和”if (1 &#x3D;&#x3D; i)”在语义上没有任何区别，但是从阅读习惯上讲，建议使用前者会更好些。</p><p><strong>30、不要对数组使用toString()方法</strong></p><p><strong>看一下对数组使用toString()打印出来的是什么：</strong></p><blockquote><p>public static void main(String[] args)</p><p>{</p><p>​    int[] is &#x3D; new int[]{1, 2, 3};</p><p>​    System.out.println(is.toString());</p><p>}</p></blockquote><p><strong>结果是：</strong></p><blockquote><p>[I@18a992f</p></blockquote><p>本意是想打印出数组内容，却有可能因为数组引用is为空而导致空指针异常。不过虽然对数组toString()没有意义，但是对集合toString()是可以打印出集合里面的内容的，因为集合的父类AbstractCollections<E>重写了Object的toString()方法。</p><p><strong>32、不要对超出范围的基本数据类型做向下强制转型</strong></p><p><strong>这绝不会得到想要的结果：</strong></p><blockquote><p>public static void main(String[] args)</p><p>{</p><p>​    long l &#x3D; 12345678901234L;</p><p>​    int i &#x3D; (int)l;</p><p>​    System.out.println(i);</p><p>}</p></blockquote><p><strong>我们可能期望得到其中的某几位，但是结果却是：</strong></p><blockquote><p><strong>1942892530</strong></p></blockquote><p>解释一下。Java中long是8个字节64位的，所以12345678901234在计算机中的表示应该是：</p><p>0000 0000 0000 0000 0000 1011 0011 1010 0111 0011 1100 1110 0010 1111 1111 0010</p><p>一个int型数据是4个字节32位的，从低位取出上面这串二进制数据的前32位是：</p><p>0111 0011 1100 1110 0010 1111 1111 0010</p><p>这串二进制表示为十进制1942892530，所以就是我们上面的控制台上输出的内容。从这个例子上还能顺便得到两个结论：</p><p>1、整型默认的数据类型是int，long l &#x3D; 12345678901234L，这个数字已经超出了int的范围了，所以最后有一个L，表示这是一个long型数。顺便，浮点型的默认类型是double，所以定义float的时候要写成””float f &#x3D; 3.5f”</p><p>2、接下来再写一句”int ii &#x3D; l + i;”会报错，因为long + int是一个long，不能赋值给int</p><p><strong>33、公用的集合类中不使用的数据一定要及时remove掉</strong></p><p>如果一个集合类是公用的（也就是说不是方法里面的属性），那么这个集合里面的元素是不会自动释放的，因为始终有引用指向它们。所以，如果公用集合里面的某些数据不使用而不去remove掉它们，那么将会造成这个公用集合不断增大，使得系统有内存泄露的隐患。</p><p><strong>34、把一个基本数据类型转为字符串，基本数据类型.toString()是最快的方式、String.valueOf(数据)次之、数据+””最慢</strong></p><p>把一个基本数据类型转为一般有三种方式，我有一个Integer型数据i，可以使用i.toString()、String.valueOf(i)、i+””三种方式，三种方式的效率如何，看一个测试：</p><blockquote><p>public static void main(String[] args)</p><p>{</p><p>​    int loopTime &#x3D; 50000;</p><p>​    Integer i &#x3D; 0;</p><p>​    long startTime &#x3D; System.currentTimeMillis();</p><p>​    for (int j &#x3D; 0; j &lt; loopTime; j++)</p><p>​    {</p><p>​        String str &#x3D; String.valueOf(i);</p><p>​    }    </p><p>​    System.out.println(“String.valueOf()：” + (System.currentTimeMillis() - startTime) + “ms”);</p><p>​    startTime &#x3D; System.currentTimeMillis();</p><p>​    for (int j &#x3D; 0; j &lt; loopTime; j++)</p><p>​    {</p><p>​        String str &#x3D; i.toString();</p><p>​    }    </p><p>​    System.out.println(“Integer.toString()：” + (System.currentTimeMillis() - startTime) + “ms”);</p><p>​    startTime &#x3D; System.currentTimeMillis();</p><p>​    for (int j &#x3D; 0; j &lt; loopTime; j++)</p><p>​    {</p><p>​        String str &#x3D; i + “”;</p><p>​    }    </p><p>​    System.out.println(“i + “”：” + (System.currentTimeMillis() - startTime) + “ms”);</p><p>}</p></blockquote><p><strong>运行结果为：</strong></p><blockquote><p>String.valueOf()：11ms</p><p>Integer.toString()：5ms</p><p>i + “”：25ms</p></blockquote><p>所以以后遇到把一个基本数据类型转为String的时候，优先考虑使用toString()方法。至于为什么，很简单：</p><p>1、String.valueOf()方法底层调用了Integer.toString()方法，但是会在调用前做空判断</p><p>2、Integer.toString()方法就不说了，直接调用了</p><p>3、i + “”底层使用了StringBuilder实现，先用append方法拼接，再用toString()方法获取字符串</p><p>三者对比下来，明显是2最快、1次之、3最慢</p><p><strong>35、使用最有效率的方式去遍历Map</strong></p><p>遍历Map的方式有很多，通常场景下我们需要的是遍历Map中的Key和Value，那么推荐使用的、效率最高的方式是：</p><blockquote><p>public static void main(String[] args)</p><p>{</p><p>​    HashMap&lt;String, String&gt; hm &#x3D; new HashMap&lt;String, String&gt;();</p><p>​    hm.put(“111”, “222”);</p><p>​        </p><p>​    Set&lt;Map.Entry&lt;String, String&gt;&gt; entrySet &#x3D; hm.entrySet();</p><p>​    Iterator&lt;Map.Entry&lt;String, String&gt;&gt; iter &#x3D; entrySet.iterator();</p><p>​    while (iter.hasNext())</p><p>​    {</p><p>​        Map.Entry&lt;String, String&gt; entry &#x3D; iter.next();</p><p>​        System.out.println(entry.getKey() + “” + entry.getValue());</p><p>​    }</p><p>}</p></blockquote><p>如果你只是想遍历一下这个Map的key值，那用”Set<String> keySet &#x3D; hm.keySet();”会比较合适一些</p><p><strong>36、对资源的close()建议分开操作</strong></p><blockquote><p>意思是，比如我有这么一段代码：</p><p>try</p><p>{</p><p>​    XXX.close();</p><p>​    YYY.close();</p><p>}</p><p>catch (Exception e)</p><p>{</p><p>​    …</p><p>}</p></blockquote><p><strong>建议修改为：</strong></p><blockquote><p>try</p><p>{</p><p>​    XXX.close();</p><p>}</p><p>catch (Exception e)</p><p>{</p><p>​    …</p><p>}</p><p>try</p><p>{</p><p>​    YYY.close();</p><p>}</p><p>catch (Exception e)</p><p>{</p><p>​    …</p><p>}</p></blockquote><p>虽然有些麻烦，却能避免资源泄露。我们想，如果没有修改过的代码，万一XXX.close()抛异常了，那么就进入了catch块中了，YYY.close()不会执行，YYY这块资源就不会回收了，一直占用着，这样的代码一多，是可能引起资源句柄泄露的。而改为下面的写法之后，就保证了无论如何XXX和YYY都会被close掉</p><p><strong>后记</strong></p><p>优秀的代码来自每一点点小小的优化，关注每一个细节，不仅仅能提升程序运行效率，同样可以规避许多未知的问题。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;strong&gt;代码优化的目标是：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;1、减小代码的体积&lt;/p&gt;
-&lt;p&gt;2、提高代码运行的效率&lt;/p&gt;
-&lt;p&gt;本文的内容有些来自网络，有些来自平时工作和学习，当然这不重要，重要的是这些代码优化的细节是否真真正正地有用。那本文会保持长期更新，只要</summary>
-      
-    
-    
-    
-    <category term="技术小栈" scheme="http://ai.mak.cn/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
-    
-    
-    <category term="java" scheme="http://ai.mak.cn/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>笔记-新零售的本质</title>
-    <link href="http://ai.mak.cn/2018/09/16/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B00916/"/>
-    <id>http://ai.mak.cn/2018/09/16/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B00916/</id>
-    <published>2018-09-15T16:00:00.000Z</published>
-    <updated>2022-10-09T15:48:02.703Z</updated>
-    
-    <content type="html"><![CDATA[<p>零售的本质是把人和货连接在一起的场；新零售是一场效率革命。</p><p>1.新零售，是效率更高的零售</p><p>①场的效率</p><p>信息流；资金流；物流。</p><p>②人的效率</p><p>流量革命；转化率；客单价；复购率。</p><p>销售漏斗公式：销售额&#x3D;流量×转化率×客单价×复购率</p><p>该公式可以用来衡量销售额，却无法衡量销售的效率。</p><p>③货的效率</p><p>定倍率：商业世界最基础的逻辑之一，是衡量商业效率的重要指标。定倍率越低，效率越高。</p><p>未来，中国制造的趋势是：</p><p>低质高价和低质低价的商品，存活空间会越来越小，甚至被逐步淘汰；</p><p>高质低价的零售业，将迎来它的时代，而C2M（Customer-to- Manufactory，客对厂）模式是实现高质低价的一个有效手段。</p><p>2.新的商业思维</p><p>① 进化思维</p><p>② 本质思维</p><p>③ 系统思维</p><hr>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;零售的本质是把人和货连接在一起的场；新零售是一场效率革命。&lt;/p&gt;
-&lt;p&gt;1.新零售，是效率更高的零售&lt;/p&gt;
-&lt;p&gt;①场的效率&lt;/p&gt;
-&lt;p&gt;信息流；资金流；物流。&lt;/p&gt;
-&lt;p&gt;②人的效率&lt;/p&gt;
-&lt;p&gt;流量革命；转化率；客单价；复购率。&lt;/p&gt;
-&lt;p&gt;销售漏斗公式：销</summary>
       
     
     
