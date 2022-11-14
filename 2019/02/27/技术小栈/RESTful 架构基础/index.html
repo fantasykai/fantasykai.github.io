@@ -1,0 +1,294 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>RESTful 架构基础 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">RESTful 架构基础</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">RESTful 架构基础</h1><div class="post-meta">2019-02-27<span> | </span><span class="category"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a></span></div><a class="disqus-comment-count" href="/2019/02/27/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/RESTful%20%E6%9E%B6%E6%9E%84%E5%9F%BA%E7%A1%80/#vcomment"><span class="waline-comment-count" id="/2019/02/27/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/RESTful%20%E6%9E%B6%E6%9E%84%E5%9F%BA%E7%A1%80/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">1. 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 基础概念</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-REST-%E5%92%8C-SOAP-%E6%AF%94%E6%80%8E%E4%B9%88%E6%A0%B7%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">2. REST 和 SOAP 比怎么样？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Richardson-%E6%88%90%E7%86%9F%E5%BA%A6%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">3. Richardson 成熟度模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%8A%A8%E8%AF%8D"><span class="toc-number">4.</span> <span class="toc-text">4. 动词</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-GET"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 GET</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-POST"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 POST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-PUT"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 PUT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-DELETE"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 DELETE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-HEAD"><span class="toc-number">4.5.</span> <span class="toc-text">4.5 HEAD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-OPTIONS"><span class="toc-number">4.6.</span> <span class="toc-text">4.6 OPTIONS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7-PATCH"><span class="toc-number">4.7.</span> <span class="toc-text">4.7 PATCH</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%93%8D%E5%BA%94%E7%A0%81"><span class="toc-number">5.</span> <span class="toc-text">5. 响应码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-REST-%E8%B5%84%E6%BA%90"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 REST 资源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-1-%E8%AE%BA%E6%96%87"><span class="toc-number">5.1.1.</span> <span class="toc-text">5.1.1 论文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-2-RFC-%E8%A7%84%E8%8C%83"><span class="toc-number">5.1.2.</span> <span class="toc-text">5.1.2 RFC 规范</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-2-1-URI"><span class="toc-number">5.1.2.1.</span> <span class="toc-text">5.1.2.1 URI</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-2-2-URL"><span class="toc-number">5.1.2.2.</span> <span class="toc-text">5.1.2.2 URL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-2-3-IRI"><span class="toc-number">5.1.2.3.</span> <span class="toc-text">5.1.2.3 IRI</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-2-4-HTTP"><span class="toc-number">5.1.2.4.</span> <span class="toc-text">5.1.2.4 HTTP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-2-5-PATCH-%E6%A0%BC%E5%BC%8F"><span class="toc-number">5.1.2.5.</span> <span class="toc-text">5.1.2.5 PATCH 格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E6%8F%8F%E8%BF%B0%E8%AF%AD%E8%A8%80"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 描述语言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-1-RAML"><span class="toc-number">5.2.1.</span> <span class="toc-text">5.2.1 RAML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-2-Swagger"><span class="toc-number">5.2.2.</span> <span class="toc-text">5.2.2 Swagger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-3-Apiary-io"><span class="toc-number">5.2.3.</span> <span class="toc-text">5.2.3 Apiary.io</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-4-Hydra-Cg"><span class="toc-number">5.2.4.</span> <span class="toc-text">5.2.4 Hydra-Cg</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-1-JAX-RS"><span class="toc-number">5.3.1.</span> <span class="toc-text">5.3.1 JAX-RS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-2-Restlet"><span class="toc-number">5.3.2.</span> <span class="toc-text">5.3.2 Restlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-3-NetKernel"><span class="toc-number">5.3.3.</span> <span class="toc-text">5.3.3 NetKernel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-4-Play"><span class="toc-number">5.3.4.</span> <span class="toc-text">5.3.4 Play</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-5-Spray"><span class="toc-number">5.3.5.</span> <span class="toc-text">5.3.5 Spray</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-6-Express"><span class="toc-number">5.3.6.</span> <span class="toc-text">5.3.6 Express</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-7-hapi"><span class="toc-number">5.3.7.</span> <span class="toc-text">5.3.7 hapi</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-8-Sinatra"><span class="toc-number">5.3.8.</span> <span class="toc-text">5.3.8 Sinatra</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">5.4.</span> <span class="toc-text">5.4 客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-1-curl"><span class="toc-number">5.4.1.</span> <span class="toc-text">5.4.1 curl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-2-httpie"><span class="toc-number">5.4.2.</span> <span class="toc-text">5.4.2 httpie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-3-Postman"><span class="toc-number">5.4.3.</span> <span class="toc-text">5.4.3 Postman</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E4%B9%A6%E7%B1%8D"><span class="toc-number">6.</span> <span class="toc-text">6. 书籍</span></a></li></ol></div></div><div class="post-content"><p>来源：<a target="_blank" rel="noopener" href="http://t.cn/EVBQ2Ug">http://t.cn/EVBQ2Ug</a></p>
+<p>REST（Representational State Transfer）架构风格是一种世界观，把信息提升为架构中的一等公民。通过 REST 可以实现系统的高性能、可伸缩、通用性、简单性、可修改性和可扩展等特性。这篇文章解释了主要的 HTTP 操作，对 HTTP 响应码进行描述，并列举相关开发库和框架。此外，本文还提供了额外的资源，对每个主题进行了更深入的探讨。</p>
+<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>REST 架构风格不是一种可以购买的技术，也不是一个可以添加到软件开发项目中的开发库。首先也是最重要的，REST 是一种世界观，把将信息提升为构建架构中的一等公民。</p>
+<p>Roy Fielding 的博士论文“架构风格和基于网络的软件架构设计”介绍和整理了“RESTful”系统的思想和相关术语。这是一篇学术论文，虽然使用正式语言，但是仍然易于理解并且提供了实践基础。</p>
+<p>总结一下，RESTful 通过体系结构的特定选择能从部署的系统中获得理想特性。尽管这种风格定义的约束细节并没有为所有场合设计，但是的确可以广泛适用。</p>
+<p>由于 Web 对消费者偏好有多重影响，REST 风格的倡导者鼓励企业组织在其边界内使用相同原则，就像他们在面向外部客户的网页上做的那样。本文将讨论现代 REST Web 实现中的基本约束和属性。</p>
+<h2 id="1-1-基础概念"><a href="#1-1-基础概念" class="headerlink" title="1.1 基础概念"></a>1.1 基础概念</h2><p>REST 表示什么含义？以无状态方式传输、访问和操作文本数据。当正确部署后，REST 为互联网上不同应用程序之间提供了一致的互操作性。无状态（stateless）这个术语至关重要，它使得应用程序可以用不可知的方式进行通信。RESTful API 通过统一资源定位符地址（URL）公开服务。URL 名称将资源的区分为接受内容或返回内容。RFC 1738中定义了 URL scheme，可以在这里找到: <a target="_blank" rel="noopener" href="https://tools.ietf.org/rfc/rfc1738.txt">https://tools.ietf.org/rfc/rfc1738.txt</a></p>
+<p>RESTful URL 类似于下面这个 library API：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://fakelibrary.org/library</span><br></pre></td></tr></table></figure>
+
+<p>实际公开的不一定是某种任意的服务，而是代表对消费者有价值的信息资源。URL 作为资源句柄，可以请求、更新或删除内容。</p>
+<p>开始把服务发布到某个地方，然后开始与 REST 服务进行交互。返回的内容可能是 XML、JSON 格式，或者更确切地说是像 Atom 或自定义 MIME 类型等超媒体格式。虽然一般建议尽可能重用现有的格式，但是对正确设计的媒体类型正在变得越来越宽容。</p>
+<p>需要请求资源的时候，客户机会发一个超文本传输协议（HTTP）GET 请求，例如在浏览器中键入一个 URL 然后点击回车，选择书签，或者点击锚引用链接。</p>
+<p>通过编程方式与 RESTful API 交互，有数十个客户端 API 或工具可供选择。使用 curl 命令行工具，可以输入以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://fakelibrary.org/library</span><br></pre></td></tr></table></figure>
+
+<p>上面的命令使用默认格式，但你可能不需要这种格式的信息。幸运的是 HTTP 有一种机制，可以指定返回信息的格式。在请求中指定 “Accept” 头，如果服务器支持这种格式，会以指定的格式返回。这个过程称为内容协商，这是 HTTP 中未被充分利用的功能之一，可以使用一个类似于上面例子中的 curl 命令来指定：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl –H &quot;Accept:application/json&quot; http://fakelibrary.org/library</span><br></pre></td></tr></table></figure>
+
+<p>由于资源名称与内容格式是独立的，从而让请求不同格式信息成为可能。虽然 REST 中的 “R” 的含义是 “表现”而非“资源”，但是应该在构建系统时允许客户端指定请求的内容格式，请牢记这一点。在我们的例子中 library API 可能包含以下 URL：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://fakelibrary.org/library%EF%BC%9A%E5%9B%BE%E4%B9%A6%E9%A6%86%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF%EF%BC%8C%E6%90%9C%E7%B4%A2%E5%9B%BE%E4%B9%A6%E3%80%81DVD%E7%AD%89%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD%E7%9A%84%E9%93%BE%E6%8E%A5%E3%80%82">http://fakelibrary.org/library：图书馆基本信息，搜索图书、DVD等相关资源基本功能的链接。</a></li>
+<li><a target="_blank" rel="noopener" href="http://fakelibrary.org/book%EF%BC%9A%E5%AD%98%E6%94%BE%E4%B9%A6%E7%B1%8D%E7%9A%84%E2%80%9C%E4%BF%A1%E6%81%AF%E7%A9%BA%E9%97%B4%E2%80%9D%E3%80%82%E4%BB%8E%E6%A6%82%E5%BF%B5%E4%B8%8A%E8%AF%B4%EF%BC%8C%E8%BF%99%E9%87%8C%E5%8F%AF%E8%83%BD%E4%BC%9A%E5%AD%98%E6%94%BE%E6%89%80%E6%9C%89%E7%9A%84%E4%B9%A6%E7%B1%8D%E3%80%82%E6%98%BE%E7%84%B6%EF%BC%8C%E5%A6%82%E6%9E%9C%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%E5%BE%97%E5%88%B0%E8%A7%A3%E5%86%B3%EF%BC%8C%E6%88%91%E4%BB%AC%E4%B8%8D%E4%BC%9A%E5%B8%8C%E6%9C%9B%E8%BF%94%E5%9B%9E%E6%89%80%E6%9C%89%E5%9B%BE%E4%B9%A6%EF%BC%8C%E8%80%8C%E6%98%AF%E5%B8%8C%E6%9C%9B%E9%80%9A%E8%BF%87%E7%B1%BB%E5%88%AB%E3%80%81%E6%90%9C%E7%B4%A2%E5%85%B3%E9%94%AE%E8%AF%8D%E7%AD%89%E6%9D%A5%E6%A3%80%E7%B4%A2%E5%9B%BE%E4%B9%A6%E3%80%82">http://fakelibrary.org/book：存放书籍的“信息空间”。从概念上说，这里可能会存放所有的书籍。显然，如果这个问题得到解决，我们不会希望返回所有图书，而是希望通过类别、搜索关键词等来检索图书。</a></li>
+<li><a target="_blank" rel="noopener" href="http://fakelibrary.org/book/category/1234%EF%BC%9A%E5%9C%A8%E4%B9%A6%E7%B1%8D%E7%9A%84%E4%BF%A1%E6%81%AF%E7%A9%BA%E9%97%B4%E9%87%8C%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E6%8C%87%E5%AE%9A%E7%B1%BB%E5%88%AB%E6%B5%8F%E8%A7%88%EF%BC%8C%E4%BE%8B%E5%A6%82%E6%88%90%E4%BA%BA%E5%B0%8F%E8%AF%B4%E3%80%81%E5%84%BF%E7%AB%A5%E4%B9%A6%E7%B1%8D%E3%80%81%E5%9B%AD%E8%89%BA%E4%B9%A6%E7%B1%8D%E7%AD%89%E3%80%82%E4%BD%BF%E7%94%A8%E6%9D%9C%E5%A8%81%E5%8D%81%E8%BF%9B%E5%88%B6%E5%9B%BE%E4%B9%A6%E5%88%86%E7%B1%BB%E6%B3%95%E6%98%AF%E5%8F%AF%E8%A1%8C%E7%9A%84%EF%BC%8C%E4%BD%86%E6%88%91%E4%BB%AC%E4%B9%9F%E5%8F%AF%E4%BB%A5%E6%83%B3%E8%B1%A1%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E7%BB%84%E3%80%82%E9%97%AE%E9%A2%98%E7%9A%84%E5%85%B3%E9%94%AE%E5%9C%A8%E4%BA%8E%EF%BC%8C%E8%BF%99%E7%A7%8D%E2%80%9C%E4%BF%A1%E6%81%AF%E7%A9%BA%E9%97%B4%E2%80%9D%E5%8F%AF%E8%83%BD%E6%98%AF%E6%97%A0%E9%99%90%E7%9A%84%EF%BC%8C%E8%80%8C%E4%B8%94%E5%8F%AF%E8%83%BD%E6%94%B6%E5%88%B0%E4%BA%BA%E4%BB%AC%E5%AE%9E%E9%99%85%E5%85%B3%E5%BF%83%E7%9A%84%E4%BF%A1%E6%81%AF%E7%B1%BB%E5%9E%8B%E5%BD%B1%E5%93%8D%E3%80%82">http://fakelibrary.org/book/category/1234：在书籍的信息空间里，我们可以指定类别浏览，例如成人小说、儿童书籍、园艺书籍等。使用杜威十进制图书分类法是可行的，但我们也可以想象自定义分组。问题的关键在于，这种“信息空间”可能是无限的，而且可能收到人们实际关心的信息类型影响。</a></li>
+<li><a target="_blank" rel="noopener" href="http://fakelibrary.org/book/isbn/978-0596801687%EF%BC%9A%E6%8F%90%E5%88%B0%E6%9F%90%E6%9C%AC%E5%85%B7%E4%BD%93%E7%9A%84%E4%B9%A6%EF%BC%8C%E5%BA%94%E8%AF%A5%E5%8C%85%E6%8B%AC%E4%B9%A6%E5%90%8D%E3%80%81%E4%BD%9C%E8%80%85%E3%80%81%E5%87%BA%E7%89%88%E5%95%86%E3%80%81%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%8B%B7%E8%B4%9D%E6%95%B0%E3%80%81%E5%8F%AF%E7%94%A8%E6%8B%B7%E8%B4%9D%E6%95%B0%E7%AD%89%E4%BF%A1%E6%81%AF%E3%80%82">http://fakelibrary.org/book/isbn/978-0596801687：提到某本具体的书，应该包括书名、作者、出版商、系统中的拷贝数、可用拷贝数等信息。</a></li>
+</ul>
+<blockquote>
+<p>译注： 杜威十进制图书分类法由美国图书馆专家麦尔威·杜威发明，于1876年首次发表，历经22次的大改版。该分类法以三位数字代表分类码，共可分为10个大分类、100个中分类及1000个小分类。</p>
+</blockquote>
+<p>就图书馆用户而言，上面提到的这些 URL 可能就是只读的，但是图书馆员使用应用程序时实际上可以操作这些资源。</p>
+<p>例如添加一本新书，可以向 main&#x2F;book 地址 POST 一个 XML。 使用 curl 提交，看起来可能像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  curl –u username:password -d @book.xml -H &quot;Content-type: text/xml&quot; http://fakelibrary.org/book</span><br></pre></td></tr></table></figure>
+
+<p>此时，服务器可能会对提交的内容进行校验，创建与图书相关的记录，并返回响应代码201——表示已创建新资源。新资源的 URL 可以在响应的 Location 头中找到。</p>
+<p>RESTful 请求一个重要特性：每次请求都包含了充足的状态信息来响应请求。这为服务器的可见性和无状态创造了条件，并为扩展系统和识别发送的请求内容提供了理想特性。对于缓存结果也非常有帮助。服务器地址和请求状态组合成可计算的 hash 键值，并形成一个结果集：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://fakelibrary.org + /book/isbn/978-0596801687</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们会先介绍 GET 请求。客户端在需要时发出 GET 请求获取指定资源。客户端可以在本地缓存请求结果，服务器可以在远程缓存结果，系统的中间层可以在请求链路中间缓存结果。这是一个与具体应用程序无关的特性，可以加入系统设计中。</p>
+<p>正因为可以操作资源，也就意味着并不是每个人都可以这样做。我们完全可以建立一个防护模型，要求用户在操作前验证身份，证明他们具有该操作的授权。在本文的最后，将提供一些提升 RESTful 服务安全性的内容。</p>
+<h1 id="2-REST-和-SOAP-比怎么样？"><a href="#2-REST-和-SOAP-比怎么样？" class="headerlink" title="2. REST 和 SOAP 比怎么样？"></a>2. REST 和 SOAP 比怎么样？</h1><blockquote>
+<p>SOAP：简单对象访问协议（Simple Object Access Protocol）。是交换数据的一种协议规范，是一种轻量的、简单的、基于XML的协议。一条 SOAP 消息就是一个普通的 XML 文档，包含必需的 Envelope 元素、可选的 Header 元素、必需的 Body 元素和可选的 Fault 元素。</p>
+</blockquote>
+<p>把 REST 与 SOAP 划等号是错误的。在这两者之间进行比较，带来的困扰远多于好处。简单来说，它们不是一回事。尽管可以用这两种方法解决许多架构问题，但是它们不能相互替换。</p>
+<p>这种混淆很大程度上源于对 “REST 是通过 URL 调用 Web 服务”这句话的误解。这种观点与 RESTful 架构的功能相距甚远。如果不全面深入理解 RESTful 的架构实现，就很容易误解 REST 实践的本意。</p>
+<p>利用 REST 的最佳方式，是将生产和消费过程中的信息与技术分离实现解耦，进而更好地管理系统，让架构具备以下特性：</p>
+<ul>
+<li>高性能</li>
+<li>可扩展</li>
+<li>通用</li>
+<li>简洁</li>
+<li>可修改</li>
+<li>可扩展</li>
+</ul>
+<p>这并不是说，基于 SOAP 构建的系统不能具备上述特性。而是当技术、组织或过程的复杂性造成不能在单个事务中完成请求的生命周期时，这种情况 SOAP 能够发挥最佳效果。</p>
+<h1 id="3-Richardson-成熟度模型"><a href="#3-Richardson-成熟度模型" class="headerlink" title="3. Richardson 成熟度模型"></a>3. Richardson 成熟度模型</h1><p>Leonard Richardson 引入了一种成熟度模型，部分阐述了 SOAP 与 REST 之间的区别，并提供一种对不同类型的系统进行分类的框架。许多人不恰当地称之为 “REST”。可以将这种分类看作系统中不同 Web 技术组件紧密程度的度量标准：包括信息资源、HTTP 作为应用层协议和作超媒体作为控制媒介。</p>
+<table>
+<thead>
+<tr>
+<th>LEVEL</th>
+<th>ADOPTION</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>This is basically where SOAP is. There are no information resources, HTTP is treated like a transport protocol, and there is no concept of hypermedia. Conclusion: REST and SOAP are different approaches.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>URLs are used, but not always as appropriate information resources, and everything is usually a GET request (including requests that update server state). Most people new to REST first build systems that look like this.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>URLs are used to represent information resources. HTTP is respected as an application protocol, sometimes including content negotiation. Most Internet-facing “REST” web services are really only at this level because they only support non- hypermedia formats.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>URLs are used to represent information resources. HTTP is respected as an application protocol including content negotiation. Hypermedia drives the interactions for clients.</td>
+</tr>
+</tbody></table>
+<p>称其为“成熟度模型”似乎意味着应该只构建“成熟度”最高的系统。这种看法是不合适的。第2级是有价值的，从2级向3级转变通常只是采用了一种新的 MIME 类型。然而，从0级到3级的转变要困难得多，因此增量式升级转变通常也会增值。</p>
+<p>首先，确定希望公开哪些信息资源。采用 HTTP 作为处理这些信息资源的应用协议，包括内容协商。接下来，当一切就绪时，使用基于超媒体的 MIME 类型，这样就可以充分享受 REST 的好处了。</p>
+<h1 id="4-动词"><a href="#4-动词" class="headerlink" title="4. 动词"></a>4. 动词</h1><p>动词是用来与服务器资源交互的方法或操作。 RESTful 系统中有限的动词让刚接触该的使用者感到困惑和沮丧。看似武断和不必要的约束，目的是鼓励以应用程序无关的形式提供可预测的行为。通过明确、清晰地定义这些动词的行为，客户端可以在网络中断或故障时自主处理。</p>
+<p>精心设计的 RESTful 系统主要使用4个 HTTP 动词。</p>
+<h2 id="4-1-GET"><a href="#4-1-GET" class="headerlink" title="4.1 GET"></a>4.1 GET</h2><p>GET 请求是最常用的 Web 动词。 GET 请求将命名资源从服务器传输到客户端。尽管客户端不需要知道请求的资源内容，但是请求返回的结果是带元数据标记的字节流，这表明客户端应该知道如何解释资源。 在 Web 中通常用 “text&#x2F;html” 或 “application&#x2F;xhtml+xml” 表示。正如之前提到的那样，只要服务器支持，客户端可以通过内容协商提前指定请求的返回格式。</p>
+<p>GET 请求关键点之一，不要修改服务器端的任何内容。这是一个基本的安全要求，也是不熟悉 REST 的开发者犯的最大错误之一。你可能会遇到这样的 URL：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://example.com/res/action=update?data=1234</span><br></pre></td></tr></table></figure>
+
+<p><strong>不要这样做！</strong> 由于 GET 请求安全性允许缓存请求，这会让正在构建的 RESTful 系统陷入混乱。 GET 请求也意味着幂等性，即多次请求不会对系统产生任何影响。这是基于分布式基础设施的一个重要特性。如果进行 GET 请求时被打断，由于幂等性，客户端可以再次发起请求。这点非常重要。在设计良好的基础结构中，客户端可以从任意应用程序发起请求。虽然一定会有与应用程序相关的特定行为，但是加入与应用程序无关的行为越多，系统就会越有弹性，也更容易维护。</p>
+<h2 id="4-2-POST"><a href="#4-2-POST" class="headerlink" title="4.2 POST"></a>4.2 POST</h2><p>在辨别 POST 和 PUT 动词意图的时候，情况开始变得不那么清晰。根据定义，二者似乎都可以被客户端用来创建或更新服务器资源，然而它们的用途各有不同。</p>
+<p>当无法预测请求创建的资源的标识时，客户端会使用 POST 请求。在新增雇员、下订单或提交表单的时候，我们无法预测服务器将如何命名正在创建的资源。这就是为什么将资源提交给类似 Servlet 这样的程序处理。接下来，服务器会接受请求、校验请求、验证用户凭据等。成功处理后，服务器将返回 201 HTTP 响应代码，其中包含一个 “Location” 头，代表新创建的资源的位置。</p>
+<p><strong>注意：</strong> 有些人将 POST 视为创建资源的 GET 会话。他们会对创建的资源通过 body 返回200，而不是返回201。这似乎是避免二次请求的一种快捷方式，但是这种做法混合了 POST 和 GET，让缓存资源的潜在影响变得微妙。尽量避免因为走捷径而牺牲大局。短期看这似乎是值得的，但随着时间的推移，这些捷径叠加起来可能会带来不利的影响。</p>
+<p>POST 动词的另一个主要用途是“追加（Append）”资源信息，即增量编辑或部分更新，而不是提交完整的资源。这里应使用 PUT 操作。对已知资源使用 POST 更新，可用于向订单添加新送货地址或更新购物车中某个商品的数量。</p>
+<p>由于是更新资源的部分信息，<strong>POST 既不安全也不幂等</strong>。</p>
+<p>POST 的最后一种常见用法是提交查询。将查询的内容或表单内容进行 URL 编码后提交给服务执行查询。通常可以直接返回 POST 结果，因为没有与查询相关的标识。</p>
+<p><strong>注意：</strong> 建议将这样的查询转换为信息资源本身。如果采用 POST 查询，可以考虑采用 GET 请求，后者支持缓存。你可以与其他人分享这个链接。</p>
+<h2 id="4-3-PUT"><a href="#4-3-PUT" class="headerlink" title="4.3 PUT"></a>4.3 PUT</h2><p>由于 HTML 表单目前还不支持 PUT，许多开发人员基本上会忽略 PUT 动词。然而，PUT 有一个重要作用并且是 RESTful 系统完整愿景的一部分。</p>
+<p>客户端可以向指定 URL 发 PUT 请求，服务器用请求中的数据执行覆盖操作。PUT 请求在某种程度上是等幂的，而 POST 更新不是。</p>
+<p>如果客户端在 PUT 覆盖请求时被打断，由于重新发送覆盖操不会造成任何后果，因此可以再次发送。客户端具备管理状态能力，所以直接重发覆盖命令即可。</p>
+<p><strong>注意：</strong> 这种协议层处理并不意味着要取消更高级别（如应用层）的事务，但是同样地，它也是一种体系结构上理想的属性，可以在应用层以下使用。</p>
+<p>如果客户端能够提前了解资源的标识，那么 PUT 也可用于创建资源。正如我们在 POST 部分中讨论的那样，通常不会出现这种情况。但是如果客户端能够控制服务器端信息空间，那么这种操作也是合理的。</p>
+<h2 id="4-4-DELETE"><a href="#4-4-DELETE" class="headerlink" title="4.4 DELETE"></a>4.4 DELETE</h2><p>在公共网络上 DELETE 动词没有被广泛使用（谢天谢地!）。然而，对于控制信息空间非常有用，它是资源生命周期中非常有用的一部分。</p>
+<p>DELETE 请求意在实现等幂。可能由于网络故障 DELETE 请求被打断，这时我们希望客户端继续尝试。第一次请求无论成功与否，资源都应该返回204（无指定内容）。对之前已删除的资源或不存在的资源可能需要一些额外处理，两种情况都应该返回404。一些安全策略要求为不存在的和已删除的资源返回404，这样 DELETE 请求就不会泄漏有关资源是否存在的信息。</p>
+<p>还有另外三个没有广泛使用但是有价值的动词。</p>
+<h2 id="4-5-HEAD"><a href="#4-5-HEAD" class="headerlink" title="4.5 HEAD"></a>4.5 HEAD</h2><p>HEAD 动词用来请求资源，但不实际检索。客户端可以通过 HEAD 检查资源是否存在，并检查资源相关的元数据。</p>
+<h2 id="4-6-OPTIONS"><a href="#4-6-OPTIONS" class="headerlink" title="4.6 OPTIONS"></a>4.6 OPTIONS</h2><p>OPTIONS 动词也可以用来查询服务器相关资源的情况，方法是询问哪些其它动词可用于该资源。</p>
+<h2 id="4-7-PATCH"><a href="#4-7-PATCH" class="headerlink" title="4.7 PATCH"></a>4.7 PATCH</h2><p>最新的动词 PATCH 直到2010年才正式采纳为 HTTP 的一部分。旨在提供一种标准化方式来表示部分更新。PATCH 请求通过标准格式让交互的意图更明确。这是推荐使用 PATCH 而非 POST 的原因，尽管 POST 可以用于任何事情。 IETF 发布了 RFC 文档，定义用于 PATCH 操作的 XML 和 JSON。</p>
+<p>如果客户端 PATCH 请求的 header 中带 If-Match，则此部分为幂等更新。可以重试中断的请求，因为如果第一次请求成功，那么 If-Match header 会不同于新状态。如果相同，则未处理原始请求可应用 PATCH。</p>
+<h1 id="5-响应码"><a href="#5-响应码" class="headerlink" title="5. 响应码"></a>5. 响应码</h1><p>HTTP 响应码为我们在客户端和服务器之间的对话提供了丰富的请求状态信息。大多数人只熟悉一般意义上的200、403、404或者500，但是还有更多有用的代码可供使用。这里表格并不全面，但是它们涵盖了许多在 RESTful 环境中应该考虑使用的最重要代码。数字可按照以下类别分组：</p>
+<ul>
+<li>1XX：信息类</li>
+<li>2XX：操作成功</li>
+<li>3XX：重定向</li>
+<li>4XX：客户端错误</li>
+<li>5XX：服务器错误</li>
+</ul>
+<p>第一组响应码表明客户端的请求格式正确且处理成功。具体操作如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>CODE</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200</td>
+<td>OK. The request has successfully executed. Response depends upon the verb invoked.</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created. The request has successfully executed and a new resource has been created in the process. The response body is either empty or contains a representation containing URIs for the resource created. The Location header in the response should point to the URI as well.</td>
+</tr>
+<tr>
+<td>202</td>
+<td>Accepted. The request was valid and has been accepted but has not yet been processed. The response should include a URI to poll for status updates on the request. This allows asynchronous REST requests</td>
+</tr>
+<tr>
+<td>204</td>
+<td>No Content. The request was successfully processed but the server did not have any response. The client should not update its display.</td>
+</tr>
+</tbody></table>
+<p>表1 成功的客户端请求</p>
+<table>
+<thead>
+<tr>
+<th>CODE</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>301</td>
+<td>Moved Permanently. The requested resource is no longer located at the specified URL. The new Location should be returned in the response header. Only GET or HEAD requests should redirect to the new location. The client should update its bookmark if possible.</td>
+</tr>
+<tr>
+<td>302</td>
+<td>Found. The requested resource has temporarily been found somewhere else. The temporary Location should be returned in the response header. Only GET or HEAD requests should redirect to the new location. The client need not update its bookmark as the resource may return to this URL.</td>
+</tr>
+<tr>
+<td>303</td>
+<td>See Other. This response code has been reinterpreted by the W3C Technical Architecture Group (TAG) as a way of responding to a valid request for a non-network addressable resource. This is an important concept in the Semantic Web when we give URIs to people, concepts, organizations, etc. There is a distinction between resources that can be found on the Web and those that cannot. Clients can tell this difference if they get a 303 instead of 200. The redirected location will be reflected in the Location header of the response. This header will contain a reference to a document about the resource or perhaps some metadata about it.</td>
+</tr>
+</tbody></table>
+<p>表2 — 客户端重定向请求</p>
+<p>表3中的响应代码表示客户端请求无效，如果条件不发生变化，重新请求仍无法处理。这些故障可能有请求格式错误、未授权的请求、请求的资源不存在等。</p>
+<table>
+<thead>
+<tr>
+<th>CODE</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>405</td>
+<td>Method Not Allowed.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone.</td>
+</tr>
+<tr>
+<td>411</td>
+<td>Length Required.</td>
+</tr>
+<tr>
+<td>412</td>
+<td>Precondition Failed.</td>
+</tr>
+<tr>
+<td>413</td>
+<td>Entity Too Large.</td>
+</tr>
+<tr>
+<td>414</td>
+<td>URI Too Long.</td>
+</tr>
+<tr>
+<td>415</td>
+<td>Unsupported Media Type.</td>
+</tr>
+<tr>
+<td>417</td>
+<td>Expectation Failed.</td>
+</tr>
+</tbody></table>
+<p>表3 客户端请求错误</p>
+<p>最后，表4中的响应代码表示服务器暂时无法处理客户端请求（可能仍然无效）。客户端应当在将来的某个时候重新请求。</p>
+<table>
+<thead>
+<tr>
+<th>CODE</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>500</td>
+<td>Internal Server Error.</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable.</td>
+</tr>
+</tbody></table>
+<p>表4 服务器处理请求错误</p>
+<p>服务根据其自身功能要求具有不同程度的可扩展性。</p>
+<p><strong>注意：</strong> 试试响应代码418，它会返回简洁有力的回复：”我是一个茶壶。”</p>
+<h2 id="5-1-REST-资源"><a href="#5-1-REST-资源" class="headerlink" title="5.1 REST 资源"></a>5.1 REST 资源</h2><h3 id="5-1-1-论文"><a href="#5-1-1-论文" class="headerlink" title="5.1.1 论文"></a>5.1.1 论文</h3><p>Fielding 博士的论文《架构的风格与基于网络的软件架构设计》是对 RESTful 思想的主要介绍：<a target="_blank" rel="noopener" href="http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm</a></p>
+<h3 id="5-1-2-RFC-规范"><a href="#5-1-2-RFC-规范" class="headerlink" title="5.1.2 RFC 规范"></a>5.1.2 RFC 规范</h3><p>REST 常见用法的技术规范由<strong>国际互联网工程任务组（IETF）定义，按照请求评议（RFC）</strong>流程完善。规范由数字定义，并随着时间推移不时更新版本，以替换已经过时的文件。目前，这里有最新的相关 RFC 文件。</p>
+<h4 id="5-1-2-1-URI"><a href="#5-1-2-1-URI" class="headerlink" title="5.1.2.1 URI"></a>5.1.2.1 URI</h4><p>RFC 3986定义了 URI 命名方案的通用语法。URI 是一种命名方案，包含了对其他如网址、支持名字子空间等编码方案。网址：<a target="_blank" rel="noopener" href="http://www.ietf.org/rfc/rfc3986.txt&gt;">http://www.ietf.org/rfc/rfc3986.txt&gt;</a></p>
+<h4 id="5-1-2-2-URL"><a href="#5-1-2-2-URL" class="headerlink" title="5.1.2.2 URL"></a>5.1.2.2 URL</h4><p>Url 是 URI 的一种形式，其中嵌入了充足的信息（通常是访问方案和地址），用于解析和定位资源统一资源定位符。 网址：<a target="_blank" rel="noopener" href="http://www.ietf.org/rfc/rfc1738.txt">http://www.ietf.org/rfc/rfc1738.txt</a></p>
+<h4 id="5-1-2-3-IRI"><a href="#5-1-2-3-IRI" class="headerlink" title="5.1.2.3 IRI"></a>5.1.2.3 IRI</h4><p>国际化资源标识符（IRI）在概念上是一个用 Unicode 编码的 URI，用于在 Web 上使用的标识符中支持世界上各种语言的字符。 IETF 选择创建一个新的标准，而不是改变 URI 方案本身，以避免破坏现有的系统并明确区分这两种方法。那些支持 IRI 的人故意这样做。 还定义了在 IRI 和 URI 之间进行转换的映射方案。 网址&lt;：<a target="_blank" rel="noopener" href="http://www.ietf.org/rfc/rfc3987.txt">http://www.ietf.org/rfc/rfc3987.txt</a></p>
+<h4 id="5-1-2-4-HTTP"><a href="#5-1-2-4-HTTP" class="headerlink" title="5.1.2.4 HTTP"></a>5.1.2.4 HTTP</h4><p>HTTP 1.1版本定义了一个应用程序协议，用于操作通常以超媒体格式表示的信息资源。虽然它是一个应用级协议，但通常不与应用程序绑定，由此产生了重要的体系结构优势。 大多数人认为 HTTP 和超文本标记语言文（HTML）就是“Web”，但是 HTTP 在非面向文档的系统开发中也很有用。 网址： <a target="_blank" rel="noopener" href="http://www.ietf.org/rfc/rfc2616.txt">http://www.ietf.org/rfc/rfc2616.txt</a></p>
+<h4 id="5-1-2-5-PATCH-格式"><a href="#5-1-2-5-PATCH-格式" class="headerlink" title="5.1.2.5 PATCH 格式"></a>5.1.2.5 PATCH 格式</h4><p>JavaScript 对象表示法（JSON）Patch 网址：<a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc6902.txt">https://www.ietf.org/rfc/rfc6902.txt</a><br>XML Patch 网址：<a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc7351.txt">https://www.ietf.org/rfc/rfc7351.txt</a></p>
+<h2 id="5-2-描述语言"><a href="#5-2-描述语言" class="headerlink" title="5.2 描述语言"></a>5.2 描述语言</h2><p>人们对使用各种语言来描述 API 非常感兴趣，通过描述语言可以更容易地编写客户端和服务器文档，甚至生成骨架代码。一些比较流行、有趣的描述语言包括：</p>
+<h3 id="5-2-1-RAML"><a href="#5-2-1-RAML" class="headerlink" title="5.2.1 RAML"></a>5.2.1 RAML</h3><p>RAML 是一种 YAML&#x2F;JSON 语言，可以定义2级成熟度的 API。它支持可重用模式和特性，通过模式和特性实现功能 API 设计的标准化。网址：<a target="_blank" rel="noopener" href="http://raml.org/">http://raml.org</a></p>
+<h3 id="5-2-2-Swagger"><a href="#5-2-2-Swagger" class="headerlink" title="5.2.2 Swagger"></a><strong>5.2.2 Swagger</strong></h3><p>Swagger 是另一种 YAML&#x2F;JSON 语言，支持定义2级成熟度的 API。它包含代码生成器、编辑器、 API 文档可视化功能，能够与其他服务集成的。 网址：<a target="_blank" rel="noopener" href="http://swagger.io/">http://swagger.io</a></p>
+<h3 id="5-2-3-Apiary-io"><a href="#5-2-3-Apiary-io" class="headerlink" title="5.2.3 Apiary.io"></a>5.2.3 Apiary.io</h3><p>Apiary.io 是一个协作式的托管站点。它支持 Markdown 格式的 API 文档，可以围绕设计过程进行社交，并且支持模拟数据的托管实现，以便于在 API 实现之前对其进行测试。 网址：<a target="_blank" rel="noopener" href="http://apiary.io/">http://apiary.io</a></p>
+<h3 id="5-2-4-Hydra-Cg"><a href="#5-2-4-Hydra-Cg" class="headerlink" title="5.2.4 Hydra-Cg"></a>5.2.4 Hydra-Cg</h3><p>Hydra-Cg 是一种超媒体描述语言，通过像 JSON-LD 这样的标准方便地实现数据关联和并其它数据源的交互。网址：<a target="_blank" rel="noopener" href="http://www.hydra-cg.com/">http://www.hydra-cg.com</a></p>
+<h2 id="5-3-实现"><a href="#5-3-实现" class="headerlink" title="5.3 实现"></a>5.3 实现</h2><p>有一些用于构建、生成和使用 RESTful 系统的库和框架。虽然任何 Web 服务器都可以配置成提供 REST API，但有了这些框架、库和环境可以让过程变得更容易。</p>
+<p>以下概述了一些主流的环境：</p>
+<h3 id="5-3-1-JAX-RS"><a href="#5-3-1-JAX-RS" class="headerlink" title="5.3.1 JAX-RS"></a>5.3.1 JAX-RS</h3><p>JAX-RS 规范为 JEE 环境增加了对 REST 的支持。网址：<a target="_blank" rel="noopener" href="https://jax-rs-spec.java.net/">https://jax-rs-spec.java.net</a></p>
+<h3 id="5-3-2-Restlet"><a href="#5-3-2-Restlet" class="headerlink" title="5.3.2 Restlet"></a>5.3.2 Restlet</h3><p>Restlet API 是构建用于生产和消费 RESTful 系统的 Java API 先行者之一。它专注于为客户端和服务器生成一些非常干净、强大的 API。</p>
+<p>Restlet Studio 是一个免费工具，能够在 RAML 和基于 swagger 的 API 描述之间进行转换，支持 Restlet、 Node 和 JAX-RS 服务器和客户端的骨架和 Stub 代码。网址：<a target="_blank" rel="noopener" href="http://restlet.org/">http://restlet.org</a></p>
+<h3 id="5-3-3-NetKernel"><a href="#5-3-3-NetKernel" class="headerlink" title="5.3.3 NetKernel"></a>5.3.3 NetKernel</h3><p>Netkernel 是一个比较有趣的 RESTful 系统。它基于微内核，是支持各种架构风格环境的代表。Netkernel 受益于在软件体系结构中采用 Web 的经济属性。你可以把它想象成“在内部引入 REST”。虽然任何基于 REST 的系统在外面看起来都一样，但在运行环境内部 NetKernel 看起来也一样。网址：<a target="_blank" rel="noopener" href="http://netkernel.org/">http://netkernel.org</a></p>
+<h3 id="5-3-4-Play"><a href="#5-3-4-Play" class="headerlink" title="5.3.4 Play"></a>5.3.4 Play</h3><p>两个主要的 Scala REST 框架之一。网址：<a target="_blank" rel="noopener" href="https://www.playframework.com/">https://www.playframework.com</a></p>
+<h3 id="5-3-5-Spray"><a href="#5-3-5-Spray" class="headerlink" title="5.3.5 Spray"></a>5.3.5 Spray</h3><p>两个主要的 Scala REST 框架之一。它设计成配合 Akka actor 模型一起工作。网址：<a target="_blank" rel="noopener" href="http://spray.io/">http://spray.io</a></p>
+<h3 id="5-3-6-Express"><a href="#5-3-6-Express" class="headerlink" title="5.3.6 Express"></a>5.3.6 Express</h3><p>两个主要的 Node.js REST 框架之一。网址：<a target="_blank" rel="noopener" href="http://expressjs.com/">http://expressjs.com</a></p>
+<h3 id="5-3-7-hapi"><a href="#5-3-7-hapi" class="headerlink" title="5.3.7 hapi"></a>5.3.7 hapi</h3><p>两个主要的 Node.js REST 框架之一。网址：<a target="_blank" rel="noopener" href="http://hapijs.com/">http://hapijs.com</a></p>
+<h3 id="5-3-8-Sinatra"><a href="#5-3-8-Sinatra" class="headerlink" title="5.3.8 Sinatra"></a>5.3.8 Sinatra</h3><p>Sinatra 是一个领域特定语言（DSL），用来在 Ruby 中创建 RESTful 应用程序。网址：<a target="_blank" rel="noopener" href="http://www.sinatrarb.com/">http://www.sinatrarb.com</a></p>
+<h2 id="5-4-客户端"><a href="#5-4-客户端" class="headerlink" title="5.4 客户端"></a>5.4 客户端</h2><p>通过浏览器调用 REST API 是可行的，但是还有其它客户端可用于测试和构建面向资源的系统。</p>
+<h3 id="5-4-1-curl"><a href="#5-4-1-curl" class="headerlink" title="5.4.1 curl"></a>5.4.1 curl</h3><p>curl 是流行的库和命令行工具之一，支持在各种资源上调用各种协议。网址：<a target="_blank" rel="noopener" href="https://curl.haxx.se/">https://curl.haxx.se</a></p>
+<h3 id="5-4-2-httpie"><a href="#5-4-2-httpie" class="headerlink" title="5.4.2 httpie"></a>5.4.2 httpie</h3><p>httpie 是一个非常灵活和易用的客户端，支持通过 HTTP 与资源进行交互。网址：<a target="_blank" rel="noopener" href="https://httpie.org/">https://httpie.org</a></p>
+<h3 id="5-4-3-Postman"><a href="#5-4-3-Postman" class="headerlink" title="5.4.3 Postman"></a>5.4.3 Postman</h3><p>健全的 API 测试需要能够捕获和重播请求，支持各种身份验证和授权方案等功能。以前的命令行工具允许这样做，但 Postman 是一个较新的桌面应用程序，让这些工作对于开发团队来说变得更容易。网址：<a target="_blank" rel="noopener" href="https://www.getpostman.com/">https://www.getpostman.com</a></p>
+<h1 id="6-书籍"><a href="#6-书籍" class="headerlink" title="6. 书籍"></a>6. 书籍</h1><ul>
+<li>“RESTful Web APIs”：Leonard Richardson、Mike Amundsen 和 Sam Ruby，2013，O’Reilly 出版社</li>
+<li>“RESTful Web Services Cookbook”：Subbu Allamaraju，2010，O’Reilly 出版社</li>
+<li>“REST in Practice”：Jim Webber、Savas Parastatidis 和 Ian Robinson，2010，O’Reilly 出版社。中文版《REST实战(中文版)》</li>
+<li>“Restlet in Action” by Jerome Louvel and Thierry Boileau，2011，Manning 出版社</li>
+<li>“Resource-Oriented Architecture Patterns for Webs of Data (Synthesis Lectures on the Semantic Web: Theory and Technology)”：Brian Sletten，2013，Morgan &amp; Claypool</li>
+</ul>
+</div><div class="tags"><a href="/tags/restful"><i class="fa fa-tag">restful</i></a></div><div class="post-nav"><a class="pre" href="/2019/02/28/%E6%9D%82%E8%AE%B0/%E6%89%80%E6%9C%89%E7%A4%BE%E4%BA%A4%E8%83%8C%E5%90%8E%EF%BC%8C%E9%83%BD%E8%97%8F%E7%9D%80%E5%AD%A4%E7%8B%AC%E5%92%8C%E5%88%A9%E7%9B%8A/">所有社交背后，都藏着孤独和利益</a><a class="next" href="/2019/02/21/%E6%9D%82%E8%AE%B0/%E4%B8%89%E5%A4%A7%E6%88%90%E5%8A%9F%E5%AE%9A%E5%BE%8B%EF%BC%9A%E8%8D%B7%E8%8A%B1%E5%AE%9A%E5%BE%8B%EF%BC%8C%E7%AB%B9%E5%AD%90%E5%AE%9A%E5%BE%8B%EF%BC%8C%E9%87%91%E8%9D%89%E5%AE%9A%E5%BE%8B/">三大成功定律：荷花定律，竹子定律，金蝉定律</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">25</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">52</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/11/11/%E5%89%8D%E7%AB%AF/qs.stringify%E7%9A%84%E4%BD%BF%E7%94%A8/">qs.stringify的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/19/%E8%AF%AD%E5%BD%95/%E5%9B%BE%E7%9C%8B%E4%BA%8C%E5%8D%81%E5%A4%A7%E6%8A%A5%E5%91%8A/">图看二十大报告</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/18/%E5%B7%A5%E5%85%B7/Cherry%E9%94%AE%E7%9B%98%20win%E9%94%AE%E6%97%A0%E6%95%88/">Cherry键盘 win键无效</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/18/%E8%AF%AD%E5%BD%95/%E4%BA%8C%E5%8D%81%E5%A4%A7%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">二十大手帐</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/16/%E5%B7%A5%E5%85%B7/mac%E4%B8%8A%E7%9A%84trash%E5%91%BD%E4%BB%A4/">mac上用trash命令代替rm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/14/%E6%9D%82%E8%AE%B0/%E5%B9%B3%E5%87%A1%E6%97%A5%E5%AD%90%E9%87%8C%E7%9A%84%E6%8C%A3%E6%89%8E/">平凡日子里的挣扎</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/11/%E7%BD%91%E7%BB%9C/Openflow%E6%80%BB%E7%BB%93/">Openflow总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/09/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20nacos%E4%BB%A5mysql%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%BA%90%E8%BF%9B%E8%A1%8C%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%8C%E6%8A%A5%E2%80%9CNo%20DataSource%20set%E2%80%9D%E9%94%99%E8%AF%AF/">nacos以mysql为数据源进行持久化，报“No DataSource set”错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/27/java/java%20%E6%97%A5%E5%BF%97%E8%A7%84%E8%8C%83/">java 日志规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/07/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E9%98%BF%E9%87%8C%E6%AF%95%E7%8E%84%EF%BC%9A%E6%88%91%E5%9C%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%8A%E7%8A%AF%E8%BF%87%E7%9A%84%2014%20%E4%B8%AA%E9%94%99/">阿里毕玄：我在系统设计上犯过的 14 个错</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">枫哲's文栖小筑.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>Redis 的一些新特性、使用建议和最佳实践 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Redis 的一些新特性、使用建议和最佳实践</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Redis 的一些新特性、使用建议和最佳实践</h1><div class="post-meta">2019-03-23<span> | </span><span class="category"><a href="/categories/%E7%BC%93%E5%AD%98/">缓存</a></span></div><a class="disqus-comment-count" href="/2019/03/23/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis%20%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7%E3%80%81%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE%E5%92%8C%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/#vcomment"><span class="waline-comment-count" id="/2019/03/23/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis%20%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7%E3%80%81%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE%E5%92%8C%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%B9%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">特性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE"><span class="toc-number">2.</span> <span class="toc-text">使用建议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">3.</span> <span class="toc-text">最佳实践</span></a></li></ol></div></div><div class="post-content"><hr>
+<p>Redis 5.0已经发布，越来越多的新特性被加入，在工作中发现很多人只是了解一些Redis的基本使用，也并未完整的阅读过Redis的官方文档，对于一些命令不熟悉，不同场景下滥用不合理的数据结构，对一些新的特性似乎也不会去关注，本文总结了一些使用建议。</p>
+<h1 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h1><p>1、SET key value [expiration EX seconds|PX milliseconds][NX|XX]</p>
+<ul>
+<li>Redis 2.6.12版本后的Set命令支持过期时间等参数，不必再像以前一样分为set和expire两个命令</li>
+</ul>
+<p>2、bitmap</p>
+<ul>
+<li>适用于大量数据的位图信息标记，例如如果要标记大量用户的某个状态值，可以考虑使用bitmap</li>
+<li>bitmap的另外一个应用是基于redis的bloom filter</li>
+</ul>
+<p>3、stream</p>
+<ul>
+<li>Redis4开始提供的新的数据结构，可以理解成轻量级的kafka steam，主要解决了pub&#x2F;sub无法保证通知处理成功和blocked list无法多个client消费的问题，具体点击此处查看topic。</li>
+<li>如果想实现一个简单的聊天室，可以尝试下steam。</li>
+</ul>
+<h1 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h1><p>1、合理分配过期时间</p>
+<ul>
+<li>不管是将Redis作为缓存，还是存储，如果不愿意看到内存被慢慢消耗殆尽，最后只能扩容或者人工介入，就给自己的key设置一个合理的过期时间。 当把Redis作为缓存时，更要预估自己的数据量和数据大小，选择一个合理的过期时间。</li>
+</ul>
+<p>2、多个操作使用pinepine</p>
+<ul>
+<li>这是Redis使用中的一项基本原则，同时需要知道，另外如果下一个命令的input基于上一个命令的output，就不可以放到一个pipeline里面执行了</li>
+<li>使用时考虑pipeline中一个命令执行失败的场景，后面的命令未执行是否因为一致性带来问题</li>
+</ul>
+<p>3、使用命名空间</p>
+<ul>
+<li>方便key的管理，我们开发中常用的redis-desktop客户端能够按照命名空间对key进行展示，另外，命名空间方便需要对某一类key进行统计和管理</li>
+<li>如果需要通过key进行分片，命名空间可以作为分片参数</li>
+</ul>
+<p>4、选用合适的数据结构</p>
+<ul>
+<li>理解每个数据结构的用途，和常用的命令，我曾经见过开发人员因为不知道scard命令可以获得set的size，而将所有的元素取出然后在程序中计算，所以需要平时多查看Redis命令文档；如果能够理解每种数据结构背后的原理，使用时会更加得心应手。</li>
+<li>不建议使用Redis缓存单个数据大小较大的对象，尤其是使用Set，Hash此类数据结构时候，考虑到Redis是单线程，过多的大对象访问增加了网络IO压力，对Redis性能有一定影响，另一方面Redis的虚拟内存page较小，如果内存碎片率较高，则分配&#x2F;申请内存时在性能上有些影响。如果要缓存较大的对象，可以考虑memcache</li>
+</ul>
+<p>5、禁用keys</p>
+<ul>
+<li>很基本的Redis使用常识，可以通过rename-command来将一些类似的命令重命名，实现disable的效果</li>
+</ul>
+<p>6、选用lua script</p>
+<ul>
+<li>如果要保证多个操作的原子性，可以选择使用lua脚本</li>
+</ul>
+<p>7、config set parameter value</p>
+<ul>
+<li>redis 2.0后提供了config set 命令来动态修改一些运行参数而不必重启redis，目前已经支持动态修改maxmemory，可以通过CONFIG GET * 查看支持动态修改的参数列表</li>
+</ul>
+<h1 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h1><p>1、key的命名</p>
+<ul>
+<li>合理的命名自己的key，不能在查看数据时可读性更强，也更便于统计和管理</li>
+</ul>
+<p>2、key name的长度</p>
+<ul>
+<li>预估key的存活数量，如果key的数量可能达到百万级别，就需要考虑key的名字过长而导致占用太多的存储空间，我在曾经参与过的一个消息系统中使用redis存储消息阅读量，但是后面由于消息量过多，导致name的占用空间达到几百M，如果精简name，可以节省大量的空间，减少不必要的困扰。 例如，保存用户的基本信息可以使用u:${id}</li>
+</ul>
+<p>3、不滥用Lua Script</p>
+<ul>
+<li>由于Redis是单线程，在QPS很高的情况下，过多的lua脚本执行，特别是内部包含较多业务逻辑处理的情况下，会对Redis性能产生很大的影响。曾经参与过的直播业务的生产环境中，我们在Lua脚本中对送礼物触发的的积分和活动信息的有较多的逻辑处理（20行左右），导致Redis负载100%，所以在排查时Lua脚本有可能是负载较高的元凶之一。</li>
+</ul>
+<p>4、关注内存和slowlog等统计数据</p>
+<ul>
+<li><p>通过info memory查看内存的分配和使用大小，碎片等情况</p>
+</li>
+<li><p>slowlog get N 查看最近几条执行较慢的命令</p>
+</li>
+<li><p>通过redis-cli –bigkeys 通过采样scan元素较多的key，不会一直阻塞redis执行</p>
+</li>
+<li><p>更多好玩的redis-cli命令可以查看此处</p>
+<blockquote>
+<p>monitor命令不建议生产环境使用</p>
+</blockquote>
+</li>
+</ul>
+<p>面对一款优秀开源产品，我们除了要了解它的基本使用，也要擅于运用才能更好发挥其作用，否则会有不必要的麻烦，甚至适得其反。当然如果能深入了解其内部运行机制，知其然并知其所以然，并基于此创造出更加优秀的开源产品，就更符合coder的hacker精神。</p>
+</div><div class="tags"><a href="/tags/Redis"><i class="fa fa-tag">Redis</i></a></div><div class="post-nav"><a class="pre" href="/2019/03/26/%E6%9D%82%E8%AE%B0/%E5%A6%82%E4%BD%95%E6%BF%80%E5%8F%91%E5%9B%A2%E9%98%9F%E7%9A%84%E5%88%9B%E9%80%A0%E5%8A%9B/">如何激发团队的创造力</a><a class="next" href="/2019/03/20/java/Java12%20%E6%96%B0%E7%89%B9%E6%80%A7/">Java12 新特性</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">25</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">52</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/11/11/%E5%89%8D%E7%AB%AF/qs.stringify%E7%9A%84%E4%BD%BF%E7%94%A8/">qs.stringify的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/19/%E8%AF%AD%E5%BD%95/%E5%9B%BE%E7%9C%8B%E4%BA%8C%E5%8D%81%E5%A4%A7%E6%8A%A5%E5%91%8A/">图看二十大报告</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/18/%E5%B7%A5%E5%85%B7/Cherry%E9%94%AE%E7%9B%98%20win%E9%94%AE%E6%97%A0%E6%95%88/">Cherry键盘 win键无效</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/18/%E8%AF%AD%E5%BD%95/%E4%BA%8C%E5%8D%81%E5%A4%A7%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">二十大手帐</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/16/%E5%B7%A5%E5%85%B7/mac%E4%B8%8A%E7%9A%84trash%E5%91%BD%E4%BB%A4/">mac上用trash命令代替rm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/14/%E6%9D%82%E8%AE%B0/%E5%B9%B3%E5%87%A1%E6%97%A5%E5%AD%90%E9%87%8C%E7%9A%84%E6%8C%A3%E6%89%8E/">平凡日子里的挣扎</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/11/%E7%BD%91%E7%BB%9C/Openflow%E6%80%BB%E7%BB%93/">Openflow总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/09/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20nacos%E4%BB%A5mysql%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%BA%90%E8%BF%9B%E8%A1%8C%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%8C%E6%8A%A5%E2%80%9CNo%20DataSource%20set%E2%80%9D%E9%94%99%E8%AF%AF/">nacos以mysql为数据源进行持久化，报“No DataSource set”错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/27/java/java%20%E6%97%A5%E5%BF%97%E8%A7%84%E8%8C%83/">java 日志规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/07/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E9%98%BF%E9%87%8C%E6%AF%95%E7%8E%84%EF%BC%9A%E6%88%91%E5%9C%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%8A%E7%8A%AF%E8%BF%87%E7%9A%84%2014%20%E4%B8%AA%E9%94%99/">阿里毕玄：我在系统设计上犯过的 14 个错</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">枫哲's文栖小筑.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

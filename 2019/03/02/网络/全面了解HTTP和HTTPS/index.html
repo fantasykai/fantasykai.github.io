@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>全面了解HTTP和HTTPS | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">全面了解HTTP和HTTPS</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">全面了解HTTP和HTTPS</h1><div class="post-meta">2019-03-02<span> | </span><span class="category"><a href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></span></div><a class="disqus-comment-count" href="/2019/03/02/%E7%BD%91%E7%BB%9C/%E5%85%A8%E9%9D%A2%E4%BA%86%E8%A7%A3HTTP%E5%92%8CHTTPS/#vcomment"><span class="waline-comment-count" id="/2019/03/02/%E7%BD%91%E7%BB%9C/%E5%85%A8%E9%9D%A2%E4%BA%86%E8%A7%A3HTTP%E5%92%8CHTTPS/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#OSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%92%8CTCP-x2F-IP%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">OSI七层模型和TCP&#x2F;IP四层模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%9E%8B%E5%8C%BA%E5%88%AB"><span class="toc-number">2.</span> <span class="toc-text">两种模型区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Http%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2"><span class="toc-number">3.</span> <span class="toc-text">Http协议的发展历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-1"><span class="toc-number">5.</span> <span class="toc-text">** **</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Http%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94%E6%A0%BC%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">Http请求和响应格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-2"><span class="toc-number"></span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-3"><span class="toc-number"></span> <span class="toc-text">** **</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL%E5%8F%91%E5%B1%95%E5%8F%B2%EF%BC%88%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A0%E5%AF%86%E9%80%9A%E4%BF%A1%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">SSL发展史（互联网加密通信）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-4"><span class="toc-number">2.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-5"><span class="toc-number">3.</span> <span class="toc-text">** **</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL%E5%8E%9F%E7%90%86%E5%8F%8A%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">SSL原理及运行过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%88%86%E7%B1%BB"><span class="toc-number">5.</span> <span class="toc-text">加密算法分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">RSA加密算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DH%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text">DH加密算法</span></a></li></ol></div></div><div class="post-content"><p>作者：左大人，链接：jianshu.com&#x2F;p&#x2F;27862635c077</p>
+<p> <strong>前言</strong> </p>
+<p>Http和Https属于计算机网络范畴，但作为开发人员，不管是后台开发或是前台开发，都很有必要掌握它们。<br>在学习Http和Https的过程中，主要是参考了阮一峰老师的博客，讲的很全面，并且通俗易懂，有兴趣的同学可以去学习学习。</p>
+<p><em><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/08/http.html">http://www.ruanyifeng.com/blog/2016/08/http.html</a></em></p>
+<p>这篇文章主要是按照自己的思路来讲解对Http和Https的理解。文章将会从以下几个方面介绍。</p>
+<p>目录树：</p>
+<ul>
+<li>一、网络层结构</li>
+<li>二、Http协议</li>
+<li>三、Tcp三次握手</li>
+<li>四、Https协议&#x2F;SSL协议</li>
+<li>五、SSL证书</li>
+<li>六、RSA加密和DH加密</li>
+<li>七、Http和Https对比</li>
+</ul>
+<p>从目录结构可以看出，每个标题展开来说都是一个很大的主题。但本文旨在让各位同学对Http和Https相关知识有一个全面的认知，不会太过深入探讨各个主题，有兴趣的同学可以进行针对性研究。</p>
+<p> <strong>01 网络层结构</strong> </p>
+<p>网络结构有两种主流的分层方式：OSI七层模型和TCP&#x2F;IP四层模型。</p>
+<h3 id="OSI七层模型和TCP-x2F-IP四层模型"><a href="#OSI七层模型和TCP-x2F-IP四层模型" class="headerlink" title="OSI七层模型和TCP&#x2F;IP四层模型"></a><strong>OSI七层模型和TCP&#x2F;IP四层模型</strong></h3><p>OSI是指Open System Interconnect，意为开放式系统互联。</p>
+<p>TCP&#x2F;IP是指传输控制协议&#x2F;网间协议，是目前世界上应用最广的协议。</p>
+<table>
+<thead>
+<tr>
+<th align="left">OSI层</th>
+<th align="left">对应TCP&#x2F;IP层</th>
+<th align="left">OSI各层功能</th>
+<th align="left">网络协议</th>
+<th align="left">设备</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">应用层</td>
+<td align="left">应用层</td>
+<td align="left">应用程序（电子邮件，文件服务）,用户接口</td>
+<td align="left">HTTP，FTP，TFTP，NFS</td>
+<td align="left">网关</td>
+</tr>
+<tr>
+<td align="left">表示层</td>
+<td align="left">应用层</td>
+<td align="left">数据的表示，压缩和加密（数据格式化，代码转换，数据加密）</td>
+<td align="left">TELNET，SNMP</td>
+<td align="left">网关</td>
+</tr>
+<tr>
+<td align="left">会话层</td>
+<td align="left">应用层</td>
+<td align="left">建立、管理和终止会话</td>
+<td align="left">SMTP，DNS</td>
+<td align="left">网关</td>
+</tr>
+<tr>
+<td align="left">传输层</td>
+<td align="left">传输层</td>
+<td align="left">提供端到端可靠报文段传递和错误恢复</td>
+<td align="left">TCP，UDP</td>
+<td align="left">网关</td>
+</tr>
+<tr>
+<td align="left">网络层</td>
+<td align="left">网际互联层</td>
+<td align="left">提供数据包从源到宿的传递和网际交互</td>
+<td align="left">IP，ICMP，ARP，RARP，UUCP</td>
+<td align="left">路由器</td>
+</tr>
+<tr>
+<td align="left">链路层</td>
+<td align="left">网络接口层</td>
+<td align="left">将比特组装成帧和点到点传递</td>
+<td align="left">FDDI，SLIP，PPP，PDN</td>
+<td align="left">交换机</td>
+</tr>
+<tr>
+<td align="left">物理层</td>
+<td align="left">网络接口层</td>
+<td align="left">传输比特流，以二进制数据形式在物理媒体上传输数据</td>
+<td align="left">ISO2110，IEEE802，IEEE802.2</td>
+<td align="left">集线器，中继器</td>
+</tr>
+</tbody></table>
+<h3 id="两种模型区别"><a href="#两种模型区别" class="headerlink" title="两种模型区别"></a><strong>两种模型区别</strong></h3><ol>
+<li><p>OSI采用七层模型，TCP&#x2F;IP是四层模型</p>
+</li>
+<li><p>TCP&#x2F;IP网络接口层没有真正的定义，只是概念性的描述。OSI把它分为2层，每一层功能详尽。</p>
+</li>
+<li><p>在协议开发之前，就有了OSI模型，所以OSI模型具有共通性，而TCP&#x2F;IP是基于协议建立的模型，不适用于非TCP&#x2F;IP的网络。</p>
+</li>
+<li><p>实际应用中，OSI模型是理论上的模型，没有成熟的产品；而TCP&#x2F;IP已经成为国际标准。</p>
+</li>
+</ol>
+<p> <strong>02 HTTP协议</strong> </p>
+<p>Http是基于TCP&#x2F;IP协议的应用程序协议，不包括数据包的传输，主要规定了客户端和服务器的通信格式，默认使用80端口。</p>
+<h3 id="Http协议的发展历史"><a href="#Http协议的发展历史" class="headerlink" title="Http协议的发展历史"></a><strong>Http协议的发展历史</strong></h3><ol>
+<li>1991年发布Http&#x2F;0.9版本，只有Get命令，且服务端直返HTML格式字符串，服务器响应完毕就关闭TCP连接。</li>
+<li>1996年发布Http&#x2F;1.0版本，优点：可以发送任何格式内容，包括文字、图像、视频、二进制。也丰富了命令Get，Post，Head。请求和响应的格式加入头信息。缺点：每个TCP连接只能发送一个请求，而新建TCP连接的成本很高，导致Http&#x2F;1.0新能很差。</li>
+<li>1997发布Http&#x2F;1.1版本，完善了Http协议，直至20年后的今天仍是最流行的版本。<br>优点：a. 引入持久连接，TCP默认不关闭，可被多个请求复用，对于一个域名，多数浏览器允许同时建立6个持久连接。b. 引入管道机制，即在同一个TCP连接中，可以同时发送多个请求，不过服务器还是按顺序响应。c. 在头部加入Content-Length字段，一个TCP可以同时传送多个响应，所以就需要该字段来区分哪些内容属于哪个响应。d. 分块传输编码，对于耗时的动态操作，用流模式取代缓存模式，即产生一块数据，就发送一块数据。e. 增加了许多命令，头信息增加Host来指定服务器域名，可以访问一台服务器上的不同网站。<br>缺点：TCP连接中的响应有顺序，服务器处理完一个回应才能处理下一个回应，如果某个回应特别慢，后面的请求就会排队等着（对头堵塞）。</li>
+<li>2015年发布Http&#x2F;2版本，它有几个特性：二进制协议、多工、数据流、头信息压缩、服务器推送。</li>
+</ol>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="-1"><a href="#-1" class="headerlink" title="** **"></a>** **</h3><h3 id="Http请求和响应格式"><a href="#Http请求和响应格式" class="headerlink" title="Http请求和响应格式"></a><strong>Http请求和响应格式</strong></h3><p>Request格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /barite/account/stock/groups HTTP/1.1</span><br><span class="line">QUARTZ-SESSION: MC4xMDQ0NjA3NTI0Mzc0MjAyNg.VPXuA8rxTghcZlRCfiAwZlAIdCA</span><br><span class="line">DEVICE-TYPE: ANDROID</span><br><span class="line">API-VERSION: 15</span><br><span class="line">Host: shitouji.bluestonehk.com</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Accept-Encoding: gzip</span><br><span class="line">User-Agent: okhttp/3.10.0</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Response格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: nginx/1.6.3</span><br><span class="line">Date: Mon, 15 Oct 2018 03:30:28 GMT</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Expires: Thu, 01 Jan 1970 00:00:00 GMT</span><br><span class="line">Content-Encoding: gzip</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line">Proxy-Connection: Keep-alive</span><br><span class="line"></span><br><span class="line">&#123;&quot;errno&quot;:0,&quot;dialogInfo&quot;:null,&quot;body&quot;:&#123;&quot;list&quot;:[&#123;&quot;flag&quot;:2,&quot;group_id&quot;:1557,&quot;group_name&quot;:&quot;港股&quot;,&quot;count&quot;:1&#125;,&#123;&quot;flag&quot;:3,&quot;group_id&quot;:1558,&quot;group_name&quot;:&quot;美股&quot;,&quot;count&quot;:7&#125;,&#123;&quot;flag&quot;:1,&quot;group_id&quot;:1556,&quot;group_name&quot;:&quot;全部&quot;,&quot;count&quot;:8&#125;]&#125;,&quot;message&quot;:&quot;success&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>说明一下请求头和响应头的部分字段：</p>
+<ul>
+<li>Host：指定服务器域名，可用来区分访问一个服务器上的不同服务</li>
+<li>Connection：keep-alive表示要求服务器不要关闭TCP连接，close表示明确要求关闭连接，默认值是keep-alive</li>
+<li>Accept-Encoding：说明自己可以接收的压缩方式</li>
+<li>User-Agent：用户代理，是服务器能识别客户端的操作系统（Android、IOS、WEB）及相关的信息。作用是帮助服务器区分客户端，并且针对不同客户端让用户看到不同数据，做不同操作。</li>
+<li>Content-Type：服务器告诉客户端数据的格式，常见的值有text&#x2F;plain，image&#x2F;jpeg，image&#x2F;png，video&#x2F;mp4，application&#x2F;json，application&#x2F;zip。这些数据类型总称为MIME TYPE。</li>
+<li>Content-Encoding：服务器数据压缩方式</li>
+<li>Transfer-Encoding：chunked表示采用分块传输编码，有该字段则无需使用Content-Length字段。</li>
+<li>Content-Length：声明数据的长度，请求和回应头部都可以使用该字段。</li>
+</ul>
+<h2 id="-2"><a href="#-2" class="headerlink" title=""></a></h2><h2 id="-3"><a href="#-3" class="headerlink" title="** **"></a>** **</h2><p>**<br>**</p>
+<p><strong>03 Tcp三次握手</strong> </p>
+<p>Http和Https协议请求时都会通过Tcp三次握手建立Tcp连接。</p>
+<p><strong>那么，三次握手是指什么呢？</strong></p>
+<p><img src="https://aimak.cn/blog_img/tcp_3.jpg" alt="img"></p>
+<p><strong>那么，为什么一定要三次握手呢，一次可以吗？两次可以吗？</strong></p>
+<p>带着这些问题，我们来分析一下为什么必须是三次握手。</p>
+<ol>
+<li>第一次握手，A向B发送信息后，B收到信息。B可确认A的发信能力和B的收信能力</li>
+<li>第二次握手，B向A发消息，A收到消息。A可确认A的发信能力和收信能力，A也可确认B的收信能力和发信能力</li>
+<li>第三次握手，A向B发送消息，B接收到消息。B可确认A的收信能力和B的发信能力</li>
+</ol>
+<p>通过三次握手，A和B都能确认自己和对方的收发信能力，相当于建立了互相的信任，就可以开始通信了。</p>
+<p>下面，我们介绍一下三次握手具体发送的内容，用一张图描述如下：</p>
+<p><img src="https://aimak.cn/blog_img/tcp_3_1.jpg" alt="img"></p>
+<p>首先，介绍一下几个概念：</p>
+<ul>
+<li>ACK：响应标识，1表示响应，连接建立成功之后，所有报文段ACK的值都为1</li>
+<li>SYN：连接标识，1表示建立连接，连接请求和连接接受报文段SYN&#x3D;1，其他情况都是0</li>
+<li>FIN：关闭连接标识，1标识关闭连接，关闭请求和关闭接受报文段FIN&#x3D;1，其他情况都是0，跟SYN类似</li>
+<li>seq number：序号，一个随机数X，请求报文段中会有该字段，响应报文段没有</li>
+<li>ack number：应答号，值为请求seq+1，即X+1，除了连接请求和连接接受响应报文段没有该字段，其他的报文段都有该字段</li>
+</ul>
+<p>知道了上面几个概念后，看一下三次握手的具体流程：</p>
+<ol>
+<li>第一次握手：建立连接请求。客户端发送连接请求报文段，将SYN置为1，seq为随机数x。然后，客户端进入SYN_SEND状态，等待服务器确认。</li>
+<li>第二次握手：确认连接请求。服务器收到客户端的SYN报文段，需要对该请求进行确认，设置ack&#x3D;x+1（即客户端seq+1）。同时自己也要发送SYN请求信息，即SYN置为1，seq&#x3D;y。服务器将SYN和ACK信息放在一个报文段中，一并发送给客户端，服务器进入SYN_RECV状态。</li>
+<li>第三次握手：客户端收到SYN+ACK报文段，将ack设置为y+1，向服务器发送ACK报文段，这个报文段发送完毕，客户端和服务券进入ESTABLISHED状态，完成Tcp三次握手。</li>
+</ol>
+<p>从图中可以看出，建立连接经历了三次握手，当数据传输完毕，需要断开连接，而断开连接经历了四次挥手：</p>
+<ol>
+<li>第一次挥手：主机1（可以是客户端或服务器），设置seq和ack向主机2发送一个FIN报文段，此时主机1进入FIN_WAIT_1状态，表示没有数据要发送给主机2了</li>
+<li>第二次挥手：主机2收到主机1的FIN报文段，向主机1回应一个ACK报文段，表示同意关闭请求，主机1进入FIN_WAIT_2状态。</li>
+<li>第三次挥手：主机2向主机1发送FIN报文段，请求关闭连接，主机2进入LAST_ACK状态。</li>
+<li>第四次挥手：主机1收到主机2的FIN报文段，想主机2回应ACK报文段，然后主机1进入TIME_WAIT状态；主机2收到主机1的ACK报文段后，关闭连接。此时主机1等待主机2一段时间后，没有收到回复，证明主机2已经正常关闭，主机1页关闭连接。</li>
+</ol>
+<p>下面是Tcp报文段首部格式图，对于理解Tcp协议很重要：</p>
+<p><img src="https://aimak.cn/blog_img/tcp_3_baowen.jpg" alt="img"></p>
+<p> <strong>04 Https协议&#x2F;SSL协议</strong> </p>
+<p>Https协议是以安全为目标的Http通道，简单来说就是Http的安全版。主要是在Http下加入SSL层（现在主流的是SLL&#x2F;TLS），SSL是Https协议的安全基础。Https默认端口号为443。</p>
+<p><strong>前面介绍了Http协议，各位同学能说出Http存在的风险吗？</strong></p>
+<ol>
+<li>窃听风险：Http采用明文传输数据，第三方可以获知通信内容</li>
+<li>篡改风险：第三方可以修改通信内容</li>
+<li>冒充风险：第三方可以冒充他人身份进行通信</li>
+</ol>
+<p>SSL&#x2F;TLS协议就是为了解决这些风险而设计，希望达到：</p>
+<ol>
+<li>所有信息加密传输，三方窃听通信内容</li>
+<li>具有校验机制，内容一旦被篡改，通信双发立刻会发现</li>
+<li>配备身份证书，防止身份被冒充</li>
+</ol>
+<p>下面主要介绍SSL&#x2F;TLS协议。</p>
+<h3 id="SSL发展史（互联网加密通信）"><a href="#SSL发展史（互联网加密通信）" class="headerlink" title="SSL发展史（互联网加密通信）"></a><strong>SSL发展史（互联网加密通信）</strong></h3><ol>
+<li>1994年NetSpace公司设计SSL协议（Secure Sockets Layout）1.0版本，但未发布。</li>
+<li>1995年NetSpace发布SSL&#x2F;2.0版本，很快发现有严重漏洞</li>
+<li>1996年发布SSL&#x2F;3.0版本，得到大规模应用</li>
+<li>1999年，发布了SSL升级版TLS&#x2F;1.0版本，目前应用最广泛的版本</li>
+<li>2006年和2008年，发布了TLS&#x2F;1.1版本和TLS&#x2F;1.2版本</li>
+</ol>
+<h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><h3 id="-5"><a href="#-5" class="headerlink" title="** **"></a>** **</h3><h3 id="SSL原理及运行过程"><a href="#SSL原理及运行过程" class="headerlink" title="SSL原理及运行过程"></a><strong>SSL原理及运行过程</strong></h3><p>SSL&#x2F;TLS协议基本思路是采用公钥加密法（最有名的是RSA加密算法）。大概流程是，客户端向服务器索要公钥，然后用公钥加密信息，服务器收到密文，用自己的私钥解密。</p>
+<p>为了防止公钥被篡改，把公钥放在数字证书中，证书可信则公钥可信。公钥加密计算量很大，为了提高效率，服务端和客户端都生成对话秘钥，用它加密信息，而对话秘钥是对称加密，速度非常快。而公钥用来机密对话秘钥。</p>
+<p>下面用一张图表示SSL加密传输过程：</p>
+<p><img src="https://aimak.cn/blog_img/tcp_3_ssl.jpg" alt="img"></p>
+<p>详细介绍一下图中过程：</p>
+<ol>
+<li>客户端给出协议版本号、一个客户端随机数A（Client random）以及客户端支持的加密方式</li>
+<li>服务端确认双方使用的加密方式，并给出数字证书、一个服务器生成的随机数B（Server random）</li>
+<li>客户端确认数字证书有效，生成一个新的随机数C（Pre-master-secret），使用证书中的公钥对C加密，发送给服务端</li>
+<li>服务端使用自己的私钥解密出C</li>
+<li>客户端和服务器根据约定的加密方法，使用三个随机数ABC，生成对话秘钥，之后的通信都用这个对话秘钥进行加密。</li>
+</ol>
+<p><strong>05 SSL证书</strong> </p>
+<p>上面提到了，Https协议中需要使用到SSL证书。</p>
+<p>SSL证书是一个二进制文件，里面包含经过认证的网站公钥和一些元数据，需要从经销商购买。<br>证书有很多类型，按认证级别分类：</p>
+<ul>
+<li>域名认证（DV&#x3D;Domain Validation）：最低级别的认证，可以确认申请人拥有这个域名</li>
+<li>公司认证（OV&#x3D;Organization Validation）：确认域名所有人是哪家公司，证书里面包含公司的信息</li>
+<li>扩展认证（EV&#x3D;Extended Validation）：最高级别认证，浏览器地址栏会显示公司名称。</li>
+</ul>
+<p>EV证书浏览器地址栏样式：</p>
+<p><img src="https://aimak.cn/blog_img/ssl_1.jpg" alt="img"></p>
+<p>OV证书浏览器地址栏样式：</p>
+<p><img src="https://aimak.cn/blog_img/ssl_2.jpg" alt="img"></p>
+<p>DV证书浏览器样式：</p>
+<p><img src="https://aimak.cn/blog_img/ssl_3.jpg" alt="img"></p>
+<p>按覆盖范围分类：</p>
+<ul>
+<li>单域名证书：只能用于单域名，foo.com证书不能用不<a target="_blank" rel="noopener" href="http://www.foo.com/">www.foo.com</a></li>
+<li>通配符证书：可用于某个域名及所有一级子域名，比如*.foo.com的证书可用于foo.com，也可用于<a target="_blank" rel="noopener" href="http://www.foo.com/">www.foo.com</a></li>
+<li>多域名证书：可用于多个域名，比如foo.com和bar.com</li>
+</ul>
+<p>认证级别越高，覆盖范围越广的证书，价格越贵。也有免费的证书，为了推广Https，电子前哨基金会成立了Let’s Encrypt提供免费证书。</p>
+<p><em><a target="_blank" rel="noopener" href="https://letsencrypt.org/">https://letsencrypt.org/</a></em></p>
+<p>证书的经销商也很多，知名度比较高的有亚洲诚信(Trust Asia)。</p>
+<p><strong>06 RSA加密和DH加密</strong> </p>
+<h3 id="加密算法分类"><a href="#加密算法分类" class="headerlink" title="加密算法分类"></a><strong>加密算法分类</strong></h3><p>加密算法分为对称加密、非对称加密和Hash加密算法。</p>
+<ul>
+<li>对称加密：甲方和乙方使用同一种加密规则对信息加解密</li>
+<li>非对称加密：乙方生成两把秘钥（公钥和私钥）。公钥是公开的，任何人都可以获取，私钥是保密的，只存在于乙方手中。甲方获取公钥，然后用公钥加密信息，乙方得到密文后，用私钥解密。</li>
+<li>Hash加密：Hash算法是一种单向密码体制，即只有加密过程，没有解密过程</li>
+</ul>
+<p>对称加密算法加解密效率高，速度快，适合大数据量加解密。常见的堆成加密算法有DES、AES、RC5、Blowfish、IDEA</p>
+<p>非对称加密算法复杂，加解密速度慢，但安全性高，一般与对称加密结合使用（对称加密通信内容，非对称加密对称秘钥）。</p>
+<p>常见的非对称加密算法有RSA、DH、DSA、ECC</p>
+<p>Hash算法特性是：输入值一样，经过哈希函数得到相同的散列值，但并非散列值相同则输入值也相同。常见的Hash加密算法有MD5、SHA-1、SHA-X系列</p>
+<p><strong>下面着重介绍一下RSA算法和DH算法。</strong></p>
+<h3 id="RSA加密算法"><a href="#RSA加密算法" class="headerlink" title="RSA加密算法"></a><strong>RSA加密算法</strong></h3><p>Https协议就是使用RSA加密算法，可以说RSA加密算法是宇宙中最重要的加密算法。</p>
+<p>RSA算法用到一些数论知识，包括互质关系，欧拉函数，欧拉定理。此处不具体介绍加密的过程，如果有兴趣，可以参照RSA算法加密过程。</p>
+<p><em><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html">http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html</a></em></p>
+<p>RSA算法的安全保障基于大数分解问题，目前破解过的最大秘钥是700+位，也就代表1024位秘钥和2048位秘钥可以认为绝对安全。</p>
+<p>大数分解主要难点在于计算能力，如果未来计算能力有了质的提升，那么这些秘钥也是有可能被破解的。</p>
+<h3 id="DH加密算法"><a href="#DH加密算法" class="headerlink" title="DH加密算法"></a><strong>DH加密算法</strong></h3><p>DH也是一种非对称加密算法，DH加密算法过程。</p>
+<p><em><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%BF%AA%E8%8F%B2-%E8%B5%AB%E7%88%BE%E6%9B%BC%E5%AF%86%E9%91%B0%E4%BA%A4%E6%8F%9B">https://zh.wikipedia.org/wiki/%E8%BF%AA%E8%8F%B2-%E8%B5%AB%E7%88%BE%E6%9B%BC%E5%AF%86%E9%91%B0%E4%BA%A4%E6%8F%9B</a></em></p>
+<p>DH算法的安全保障是基于离散对数问题。</p>
+<p><strong>07 Http协议和Https协议的对比</strong> </p>
+<p>Http和Https的区别如下：</p>
+<ol>
+<li>https协议需要到CA申请证书，大多数情况下需要一定费用</li>
+<li>Http是超文本传输协议，信息采用明文传输，Https则是具有安全性SSL加密传输协议</li>
+<li>Http和Https端口号不一样，Http是80端口，Https是443端口</li>
+<li>Http连接是无状态的，而Https采用Http+SSL构建可进行加密传输、身份认证的网络协议，更安全。</li>
+<li>Http协议建立连接的过程比Https协议快。因为Https除了Tcp三次握手，还要经过SSL握手。连接建立之后数据传输速度，二者无明显区别。</li>
+</ol>
+<p> <strong>08 总结</strong> </p>
+<p>经过了3天的学习和总结，总算完成了这篇文章，本文可以帮助读者大体上把握Http和Https的知识框架。</p>
+<p>并没有深入探讨每个主题的内容，当读者有了自己知识框架之后，可以自行深入了解每个知识点的内容。<br>这边提供一份总结资料：计算机网络相关知识汇总。</p>
+<p><em><a target="_blank" rel="noopener" href="https://github.com/JeffyLu/JeffyLu.github.io/issues/22">https://github.com/JeffyLu/JeffyLu.github.io/issues/22</a></em></p>
+</div><div class="tags"><a href="/tags/HTTP"><i class="fa fa-tag">HTTP</i></a></div><div class="post-nav"><a class="pre" href="/2019/03/17/%E6%9D%82%E8%AE%B0/%E5%BD%93%E4%BC%A0%E7%BB%9F%E6%8B%A5%E6%8A%B1%E4%BA%92%E8%81%94%E7%BD%91/">哪怕1%的提升，效益都非常大 | 当传统拥抱互联网</a><a class="next" href="/2019/02/28/%E6%9D%82%E8%AE%B0/%E6%89%80%E6%9C%89%E7%A4%BE%E4%BA%A4%E8%83%8C%E5%90%8E%EF%BC%8C%E9%83%BD%E8%97%8F%E7%9D%80%E5%AD%A4%E7%8B%AC%E5%92%8C%E5%88%A9%E7%9B%8A/">所有社交背后，都藏着孤独和利益</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">25</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">52</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/11/11/%E5%89%8D%E7%AB%AF/qs.stringify%E7%9A%84%E4%BD%BF%E7%94%A8/">qs.stringify的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/19/%E8%AF%AD%E5%BD%95/%E5%9B%BE%E7%9C%8B%E4%BA%8C%E5%8D%81%E5%A4%A7%E6%8A%A5%E5%91%8A/">图看二十大报告</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/18/%E5%B7%A5%E5%85%B7/Cherry%E9%94%AE%E7%9B%98%20win%E9%94%AE%E6%97%A0%E6%95%88/">Cherry键盘 win键无效</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/18/%E8%AF%AD%E5%BD%95/%E4%BA%8C%E5%8D%81%E5%A4%A7%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">二十大手帐</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/16/%E5%B7%A5%E5%85%B7/mac%E4%B8%8A%E7%9A%84trash%E5%91%BD%E4%BB%A4/">mac上用trash命令代替rm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/14/%E6%9D%82%E8%AE%B0/%E5%B9%B3%E5%87%A1%E6%97%A5%E5%AD%90%E9%87%8C%E7%9A%84%E6%8C%A3%E6%89%8E/">平凡日子里的挣扎</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/11/%E7%BD%91%E7%BB%9C/Openflow%E6%80%BB%E7%BB%93/">Openflow总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/09/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20nacos%E4%BB%A5mysql%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%BA%90%E8%BF%9B%E8%A1%8C%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%8C%E6%8A%A5%E2%80%9CNo%20DataSource%20set%E2%80%9D%E9%94%99%E8%AF%AF/">nacos以mysql为数据源进行持久化，报“No DataSource set”错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/27/java/java%20%E6%97%A5%E5%BF%97%E8%A7%84%E8%8C%83/">java 日志规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/07/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E9%98%BF%E9%87%8C%E6%AF%95%E7%8E%84%EF%BC%9A%E6%88%91%E5%9C%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%8A%E7%8A%AF%E8%BF%87%E7%9A%84%2014%20%E4%B8%AA%E9%94%99/">阿里毕玄：我在系统设计上犯过的 14 个错</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">枫哲's文栖小筑.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
