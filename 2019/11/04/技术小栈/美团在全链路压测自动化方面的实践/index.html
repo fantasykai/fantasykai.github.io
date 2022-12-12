@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>美团在全链路压测自动化方面的实践 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">美团在全链路压测自动化方面的实践</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">美团在全链路压测自动化方面的实践</h1><div class="post-meta">2019-11-04<span> | </span><span class="category"><a href="/categories/%E6%B5%8B%E8%AF%95/">测试</a></span></div><a class="disqus-comment-count" href="/2019/11/04/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E7%BE%8E%E5%9B%A2%E5%9C%A8%E5%85%A8%E9%93%BE%E8%B7%AF%E5%8E%8B%E6%B5%8B%E8%87%AA%E5%8A%A8%E5%8C%96%E6%96%B9%E9%9D%A2%E7%9A%84%E5%AE%9E%E8%B7%B5/#vcomment"><span class="waline-comment-count" id="/2019/11/04/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E7%BE%8E%E5%9B%A2%E5%9C%A8%E5%85%A8%E9%93%BE%E8%B7%AF%E5%8E%8B%E6%B5%8B%E8%87%AA%E5%8A%A8%E5%8C%96%E6%96%B9%E9%9D%A2%E7%9A%84%E5%AE%9E%E8%B7%B5/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BE%8E%E5%9B%A2%E5%9C%A8%E5%85%A8%E9%93%BE%E8%B7%AF%E5%8E%8B%E6%B5%8B%E8%87%AA%E5%8A%A8%E5%8C%96%E6%96%B9%E9%9D%A2%E7%9A%84%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.</span> <span class="toc-text">美团在全链路压测自动化方面的实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.1.</span> <span class="toc-text">系统设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.1.1.</span> <span class="toc-text">系统总体设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%B7%AF%E6%B2%BB%E7%90%86%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text">链路治理模块设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%9E%84%E9%80%A0%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.</span> <span class="toc-text">数据构造模块设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E6%B5%8B%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.</span> <span class="toc-text">压测验证模块设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E6%B5%8B%E8%AE%A1%E5%88%92%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.</span> <span class="toc-text">压测计划管理模块设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%E5%88%86%E4%BA%AB"><span class="toc-number">1.6.</span> <span class="toc-text">案例分享</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%B1%95%E6%9C%9B"><span class="toc-number">1.7.</span> <span class="toc-text">总结与展望</span></a></li></ol></li></ol></div></div><div class="post-content"><h1 id="美团在全链路压测自动化方面的实践"><a href="#美团在全链路压测自动化方面的实践" class="headerlink" title="美团在全链路压测自动化方面的实践"></a>美团在全链路压测自动化方面的实践</h1><p>境内度假是一个低频、与节假日典型相关的业务，流量在节假日较平日会上涨五到十几倍，会给生产系统带来非常大的风险。因此，在 2018 年春节前，基于美团基础的压测平台 Quake，我们把整个境内度假业务接入了全链路压测，来系统性地评估容量和发现隐患，最终确保了春节期间系统的稳定。</p>
+<p>在整个过程中，我们意识到，全链路压测在整个系统稳定性建设中占有核心重要的位置，也是最有效的方案。结合实际业务节假日的频率（基本平均一个月一次），如果能够把它作为稳定性保障的常规手段，我们的系统质量也能够得到很好的保障。同时，为了解决周期常态化压测过程中人力成本高、多个团队重复工作、压测安全不可控，风险高等痛点，我们提出了全链路压测自动化的设想。</p>
+<p>通过对压测实施的具体动作做统一的梳理，在压测各个阶段推进标准化和自动化，尽力提升全流程的执行效率，最终达到常态化的目标，如图 1 所示：</p>
+<p><img src="https://static001.infoq.cn/resource/image/d1/22/d132f820e00ae26e629b9ac725721c22.jpg" alt="img"></p>
+<p>图 1 自动化落地整体思路</p>
+<p>另外，在全链路压测的整个周期中，压测安全和压测有效性也是需要一直关注的质量属性。基于这些思考，如图 2 所示，我们把压测自动化需要解决的关键问题进行了归类和分解：</p>
+<ul>
+<li>基础流程如何自动化，提高人效；</li>
+<li>如何自动做好压测验证，保障压测安全；</li>
+<li>压测置信度量化如何计算，保证压测有效。</li>
+</ul>
+<p><img src="https://static001.infoq.cn/resource/image/38/c1/386f0c0cbd05a802f916ec0abc9e39c1.png" alt="img"></p>
+<p>图 2 问题分析</p>
+<p>最终，基于美团基础的压测平台 Quake（在整个系统，主要提供流量录制、回放、施压的功能），设计并实现了全链路自动化压测系统，为不同业务实施全链路压测提效，并确保压测安全。该系统：</p>
+<ul>
+<li>提供链路梳理工具，能够自动构建压测入口链路完整的依赖信息，辅助链路梳理；</li>
+<li>支持链路标注和配置功能，对于无需压测触达的依赖接口，可以通过配置化手段，完成相关接口的 Mock 配置，不用在业务代码中嵌入压测判断逻辑；</li>
+<li>提供抽象的数据构造接口，通过平台，用户可以配置任意的数据构造逻辑和流程；</li>
+<li>在压测前&#x2F;压测中，自动对压测服务和流量做多项校验，保障压测安全性；</li>
+<li>在平日，基于压测计划提供周期性小流量的压测校验，使得业务迭代变更带来的压测安全风险被尽早发现；</li>
+<li>提供压测计划管理功能，通过系统自动调度和控制施压过程，解放人力；同时强制前置预压测，也提高了安全性；</li>
+<li>一键压测，自动生成报告，收集链路入口和告警信息，提供问题记录和跟进功能。</li>
+</ul>
+<h2 id="系统设计"><a href="#系统设计" class="headerlink" title="系统设计"></a>系统设计</h2><h3 id="系统总体设计"><a href="#系统总体设计" class="headerlink" title="系统总体设计"></a>系统总体设计</h3><p><img src="https://static001.infoq.cn/resource/image/93/cb/93f34b102890c1809d6dd8fc507ee0cb.jpg" alt="img"></p>
+<p>图 3 系统总体逻辑架构</p>
+<p>系统的总体逻辑架构，如图 3 所示，主要包括链路构建&#x2F;比对、事件&#x2F;指标收集、链路治理、压测配置管理、压测验证检查、数据构造、压测计划管理、报告输出等功能模块。通过这些模块，为全链路压测的整个流程提供支持，尽力降低业务部门使用全链路压测的门槛和成本。</p>
+<p>链路构建&#x2F;比对：负责服务接口方法调用链路的构建、更新、存储。</p>
+<p>链路治理：基于构建的链路关系，提供链路中核心依赖、出口 Mock 接口等标注、上下游分析、展示，以及出口 Mock 的配置等功能。</p>
+<p>压测配置管理：自动发现注册服务的 Mafka（美团基于 Kafka 开发的一个分布式消息中间件综合解决方案）&#x2F;Cellar（基于 Tair 开发的分布式 KV 存储服务）&#x2F;Squirrel（基于 Redis-Cluster 模式进行二次开发的分布式缓存系统）&#x2F;Zebra（美团数据库访问层中间件）的压测配置，辅助压测方核查和配置相关配置项。</p>
+<p>压测验证检查：确保系统可压测，通过多种校验手段和机制设计，来保证压测的安全性。</p>
+<p>数据构造：为不同业务压测实施准备基础和流量数据。</p>
+<p>压测计划管理：设定压测执行计划，并依赖“压测控制”模块，自动调度整个压测执行过程。</p>
+<p>故障诊断：依据收集的关键业务&#x2F;服务指标、报警等信息，判断分析服务是否异常，以及是否终止压测。</p>
+<p>置信度评估：从数据覆盖、链路覆盖、技术指标等维度评估压测结果的置信度，即与真实流量情况下各评估维度的相似性。</p>
+<p>非功能性需求说明：</p>
+<ul>
+<li>可扩展性</li>
+<li>能够兼容不同业务线数据构造逻辑的差异性。</li>
+<li>能够支持不同的流量录制方式。</li>
+<li>安全性</li>
+<li>集成 SSO，按用户所属团队分组，展示所属的压测服务信息。对关键操作留存操作日志。</li>
+<li>压测验证检查，是确保压测安全的关键。支持周期性压测验证，能发现待压测服务可压测性随时间的退化。</li>
+<li>可重用性</li>
+<li>长远看，链路构建、事件&#x2F;指标收集&#x2F;故障诊断等模块，在稳定性领域是可重用的基础设施，按独立通用模块建设。</li>
+</ul>
+<p>约束说明：</p>
+<ul>
+<li>基于 Quake 搭建，流量的录制、回放、施压等依赖 Quake。</li>
+<li>以下对部分关键模块设计做详细介绍。</li>
+</ul>
+<h2 id="链路治理模块设计"><a href="#链路治理模块设计" class="headerlink" title="链路治理模块设计"></a>链路治理模块设计</h2><p><img src="https://static001.infoq.cn/resource/image/60/89/6060c68e8ee1eb2d6856a59c5b484c89.png" alt="img"></p>
+<p>图 4 链路治理示意图</p>
+<p>链路治理模块是基于链路构建模块实现的。链路构建模块，底层是以闭包表的方式存储两个维度（服务和接口）的链路关系的，会周期自动地构建或更新。</p>
+<p>链路治理模块主要提供链路入口选取、链路标注、服务出口分析、出口 Mock 配置等功能。如图 4 所示，注册压测的服务构成了压测服务的范围，也就确定了各个链路的边界。通过系统自动构建的树结构方式的链路关系，可以辅助压测方对整个链路的梳理，它解决了以往链路梳理靠翻代码等低效手段，缺少全链路视角无法做到完备梳理等问题。</p>
+<p><img src="https://static001.infoq.cn/resource/image/d0/7a/d08f41a776cbe9a9f6141bda4798067a.png" alt="img"></p>
+<p>图 5 出口 Mock 配置化</p>
+<p>同时，针对整个压测范围，依赖接口可以做人工标注。哪些需要 Mock，哪些不需要 Mock，如此压测特有的链路信息能够得到持续的维护。</p>
+<p>对于需要 Mock 的外部接口（如图 4 中的接口 C），待压测系统通过引入专有 SDK 的方式，获得出口配置化 Mock 的能力。如图 5 所示，这里使用了美团酒旅 Mock 平台的基础能力，采用 JVM-Sandbox 作为 AOP 工具，对配置的需要 Mock 的外部接口做动态能力增强。在接口调用时，判断是否是压测流量，是的话走 Mock 逻辑，做模拟时延处理，返回提前配置的响应数据。这样的话，第一，简化了出口 Mock 的操作，业务代码里 Mock 逻辑 0 侵入；第二，把之前本地 Mock 与借助 Mockserver 的两种解决方案用一种方案替代，便于统一管理；第三，在实际压测时，平台还可以通过 SDK 收集 Mock 逻辑执行的数据，自动与后台标注的 Mock 数据对比，来确保应该被 Mock 的出口确实被 Mock 掉。</p>
+<h2 id="数据构造模块设计"><a href="#数据构造模块设计" class="headerlink" title="数据构造模块设计"></a>数据构造模块设计</h2><p><img src="https://static001.infoq.cn/resource/image/f9/20/f9a2e1b507526e109982ecac0359b620.png" alt="img"></p>
+<p>图 6 数据构造</p>
+<p>数据构造模块是为了解决不同业务对于基础数据和流量数据的差异化构造流程。提出了两个关键的概念：数据构造逻辑和数据构造流程。数据构造逻辑，是数据构造的细粒度可复用的基本单元，由一段 Java 代码表示。平台提供统一抽象的数据构造接口，基于 Java 动态编译技术，开发了一个 Java 版的脚本引擎，支持构造逻辑的在线编辑与更新。同时，基于美团 RPC 中间件泛化调用能力，构建了泛化调用工具，帮助用户把外部基础数据构造接口的调用集成到一个数据构造逻辑中。</p>
+<p>数据构造流程，定义了压测基础数据和流量数据生成的整个流程。通过与 Quake 的交互，获取原始真实的线上数据；构建了一个简版的流程引擎，在统一设定的流程中，如图 6 所示，通过在标准扩展槽中，配置不同类型的数据构造逻辑和执行顺序，来定义整个数据构造执行的流程；最后，把构造的流量数据与 Quake 压测场景绑定，作为后续 Quake 压测施压中，场景回放流量的来源。</p>
+<p>通过这样的设计，能够支持任意数据构造逻辑，通用灵活。同时集成了 Quake 已有的流量录制功能，一键执行数据构造流程，大大地提升了效率。</p>
+<h2 id="压测验证模块设计"><a href="#压测验证模块设计" class="headerlink" title="压测验证模块设计"></a>压测验证模块设计</h2><p><img src="https://static001.infoq.cn/resource/image/65/6b/65ba4cd007740cf35772e7ea4633a56b.jpg" alt="img"></p>
+<p>图 7 美团服务压测验证示意</p>
+<p>对于压测安全性的保障，一直是自动化的难点。之前的经验多是在非生产环境压测或预压测过程中，依靠不同服务相关负责人的人工确认。这里针对压测验证，提供两条新的思考角度：一个是从待压测服务系统可压测性的角度看；一个是从压测流量特征的角度看。对于第一个角度，一个服务支持压测需要满足压测数据和流量的隔离。对于不同的系统生态，需要满足的点是不同的，对于美团生态下的服务，可压测的条件包括组件版本支持压测、影子存储配置符合预期等等。</p>
+<p>从这些条件出发，就可以得到下面这些静态的校验项：</p>
+<ul>
+<li>服务依赖中间件版本要求校验；</li>
+<li>Zebra 压测配置校验；</li>
+<li>Cellar&#x2F;Squirrel 压测配置校验；</li>
+<li>Mafka 压测开关同步及校验；</li>
+<li>服务 Mock 逻辑存在性校验。</li>
+</ul>
+<p>而从第二个角度来看，就是关注压测流量下会产生哪些特有的流量特征数据，通过这些特有的数据来确保压测的安全性。这里主要有三类数据：美团分布式追踪系统（MTrace）中调用链路的压测标记数据（正常的压测链路应该是一直带有压测标记，直到压测范围的边界节点，可参考图 4）；标记 Mock 的外部接口被调用时，上报的运行数据；基于监控系统得到的压测流量特有的监控数据。利用这些数据，我们设计了三种动态的校验项，发现压测标记丢失、Mock 出口被调用等异常情况：</p>
+<ul>
+<li>MTrace 链路标记校验，从压测链路入口出发，收集压测链路信息，校验压测标记信息传递是否符合预期。</li>
+</ul>
+<p><img src="https://static001.infoq.cn/resource/image/07/11/07d0100434cec699bfbd7b823d369611.png" alt="img"></p>
+<p>图 8 MTrace 链路标记校验示意</p>
+<ul>
+<li>服务 Mock 逻辑压测标记校验，通过增强的校验逻辑，把执行信息上报到平台，与 Mock 配置时的标注数据对比验证。</li>
+</ul>
+<p><img src="https://static001.infoq.cn/resource/image/42/f4/424b9e7782e721f1524796dbd117a5f4.png" alt="img"></p>
+<p>图 9 服务 Mock 压测校验示意</p>
+<ul>
+<li>压测与真实链路比对校验，利用链路治理模块构建链路的能力，采集压测监控数据重构链路，与真实链路对比验证。</li>
+</ul>
+<p><img src="https://static001.infoq.cn/resource/image/31/91/31d13eba73a566e5075e674ff8661691.png" alt="img"></p>
+<p>图 10 压测与真实链路对比示意</p>
+<p>除了明确静态和动态两类压测校验规则，在具体流程安排上，在压测时和平日两个时期执行这些规则。既能把压测校验的压力分散到平时，也能尽快地发现服务因代码迭代引入的新风险。</p>
+<p>在压测时，通过强制前置预压测的流程设计以及静态&#x2F;动态压测校验项的自动执行，保障安全这个事情。校验不通过，给出告警，甚至在允许的情况下直接终止设定的压测计划。</p>
+<p>在平日，通过执行周期性小流量压测校验，在施压过程中对 QPS 做个位数的精细控制，以尽量小的代价快速发现压测范围内压测安全性的退化。</p>
+<h2 id="压测计划管理模块设计"><a href="#压测计划管理模块设计" class="headerlink" title="压测计划管理模块设计"></a>压测计划管理模块设计</h2><p>压测计划管理模块，提供压测计划的提前设定，然后模块能够自动调度和控制整个施压过程。如图 11 所示，这里的压测计划是多个压测场景的组合，包含 QPS 的增长计划等信息，主要分为预压测和正式压测两个阶段。压测计划的自动实施，能够解决尤其多场景组合压测，操作耗时多、多场景压测 QPS 无法同步变更、压测方无法兼顾操作和观测等问题，提升了效率。同时，在压测计划执行状态机里，预压测正常执行完成，状态才能迁移到正式压测的开始状态，提高了压测安全性。</p>
+<p><img src="https://static001.infoq.cn/resource/image/76/3f/76fd6115851f9b4d5503e7995b4e4d3f.png" alt="img"></p>
+<p>图 11 压测计划执行</p>
+<p>从图 11 可以看到，压测计划模块，是整个自动化压测的核心，协同起了各个模块。通过具体的计划任务执行产生的事件，触发了压测验证检查、压测进展播报、收集压测监控&#x2F;告警等数据，来检测服务是否异常，并根据配置来终止压测，能够故障时及时止损。最后，报告生成模块收到压测终止事件，汇总各种信息，自动生成包括压测基本信息等多维度信息的压测报告，节省了一些压测后分析的时间。</p>
+<h2 id="案例分享"><a href="#案例分享" class="headerlink" title="案例分享"></a>案例分享</h2><p>以下以实际压测的过程来做个案例分享。</p>
+<p><strong>团队&#x2F;服务注册</strong></p>
+<ul>
+<li>设定实施压测的虚拟团队和压测覆盖范围的应用服务。</li>
+</ul>
+<p><img src="https://static001.infoq.cn/resource/image/9b/ea/9b5572017d1fb136366b80241713adea.jpg" alt="img"></p>
+<p><strong>链路治理</strong></p>
+<ul>
+<li>选定压测链路入口，可以得到入口以下的接口链路关系树，便于梳理。</li>
+<li>明确需要 Mock 的外部接口，并做配置，参考“链路治理模块设计”一节。</li>
+</ul>
+<p><img src="https://static001.infoq.cn/resource/image/f4/e4/f4a172982f91243b0cb410c603536ce4.jpg" alt="img"></p>
+<p><strong>应用改造与压测配置</strong></p>
+<ul>
+<li>对待接入压测应用改造，满足“服务的可压测条件”，参考图 7。</li>
+<li>压测应用依赖中间件配置，系统依据构建的链路信息，能够自动发现。提供统一配置和核对的页面功能。</li>
+<li><img src="https://static001.infoq.cn/resource/image/a4/85/a442826c7c90692248e423c781f5e985.png" alt="img"></li>
+</ul>
+<p><strong>Quake 准备</strong></p>
+<ul>
+<li>压测自动化系统是基于 Quake 构建的，流量录制、回放、施压等依赖于此。因此需要到 Quake 上配置流量录制的“流量任务”和压测执行的“压测场景”。</li>
+</ul>
+<p><img src="https://static001.infoq.cn/resource/image/4a/7e/4a7e7fe8a1d2f3aa98661c3779ef977e.png" alt="img"></p>
+<p><strong>数据构造</strong></p>
+<p>配置数据构造逻辑，当然已有的逻辑都是可复用的单元，可以先查看已有逻辑是否能满足自己的需要。</p>
+<p><img src="https://static001.infoq.cn/resource/image/8c/37/8c44afa725c533ddf446e446d3d84537.jpg" alt="img"></p>
+<ul>
+<li>配置数据构造流程。</li>
+</ul>
+<p><strong>压测实施</strong></p>
+<ul>
+<li>设定压测计划，到启动时间，系统会自动启动压测。</li>
+</ul>
+<p><img src="https://static001.infoq.cn/resource/image/7d/1b/7db495027bea72fc8cd1b7ad0d8f651b.png" alt="img"></p>
+<p>压测中，注意关注压测验证校验的告警信息，及时处理。</p>
+<p><img src="https://static001.infoq.cn/resource/image/29/f7/29c96d574b217c5bca4b50cfe99015f7.png" alt="img"></p>
+<ul>
+<li>压测后，可查看压测报告。记录和跟进发现的问题。</li>
+<li><img src="https://static001.infoq.cn/resource/image/a9/39/a986012a95836b5b44ab064c775d3939.png" alt="img"></li>
+</ul>
+<h2 id="总结与展望"><a href="#总结与展望" class="headerlink" title="总结与展望"></a>总结与展望</h2><p>目前，压测自动化系统已经投入使用，美团酒店和境内度假的全部团队已经接入，有效地提升了压测效率。后续会在两个大方向上持续建设升级，一个是把全链路压测放到“容量评估与优化”领域来看，不仅关注整体系统的稳定性，同时也期望兼顾成本的平衡；另一个是与稳定性其他子领域的生态集成，比如故障演练、弹性伸缩等等，在更多场景发挥压测的作用。最后，通过这些努力，使得线上系统的稳定性成为一个确定性的事情。</p>
+<p><strong>作者简介：</strong></p>
+<p>欧龙，美团研发工程师，2013 年加入美团，目前主要负责境内度假交易稳定性建设等工作。</p>
+<p><strong>本文转载自技术琐话公众号。</strong></p>
+<p><strong>原文链接：</strong><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/BfxFGm_RW-qZqZDbWSUp8w">https://mp.weixin.qq.com/s/BfxFGm_RW-qZqZDbWSUp8w</a></p>
+</div><div class="tags"><a href="/tags/测试"><i class="fa fa-tag">测试</i></a></div><div class="post-nav"><a class="pre" href="/2019/11/15/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E7%BC%93%E5%AD%98%E3%80%81%E9%99%90%E6%B5%81%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E3%80%81%E5%B9%82%E7%AD%89%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/">微服务架构的缓存、限流、分布式锁、幂等的使用方式</a><a class="next" href="/2019/10/28/%E6%9D%82%E8%AE%B0/%E7%AE%A1%E7%90%86%E7%9A%844C%E6%A8%A1%E5%9E%8B/">管理的4C模型</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">59</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">39</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/11/11/%E5%89%8D%E7%AB%AF/qs.stringify%E7%9A%84%E4%BD%BF%E7%94%A8/">qs.stringify的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/19/%E8%AF%AD%E5%BD%95/%E5%9B%BE%E7%9C%8B%E4%BA%8C%E5%8D%81%E5%A4%A7%E6%8A%A5%E5%91%8A/">图看二十大报告</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/18/%E5%B7%A5%E5%85%B7/Cherry%E9%94%AE%E7%9B%98%20win%E9%94%AE%E6%97%A0%E6%95%88/">Cherry键盘 win键无效</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/18/%E8%AF%AD%E5%BD%95/%E4%BA%8C%E5%8D%81%E5%A4%A7%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">二十大手帐</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/16/%E5%B7%A5%E5%85%B7/mac%E4%B8%8A%E7%9A%84trash%E5%91%BD%E4%BB%A4/">mac上用trash命令代替rm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/14/%E6%9D%82%E8%AE%B0/%E5%B9%B3%E5%87%A1%E6%97%A5%E5%AD%90%E9%87%8C%E7%9A%84%E6%8C%A3%E6%89%8E/">平凡日子里的挣扎</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/11/%E7%BD%91%E7%BB%9C/Openflow%E6%80%BB%E7%BB%93/">Openflow总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/09/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20nacos%E4%BB%A5mysql%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%BA%90%E8%BF%9B%E8%A1%8C%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%8C%E6%8A%A5%E2%80%9CNo%20DataSource%20set%E2%80%9D%E9%94%99%E8%AF%AF/">nacos以mysql为数据源进行持久化，报“No DataSource set”错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/27/java/java%20%E6%97%A5%E5%BF%97%E8%A7%84%E8%8C%83/">java 日志规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/11/java/Java%20%2050+%20Spring%20%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">Java  50+ Spring 常用注解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">枫哲's文栖小筑.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
