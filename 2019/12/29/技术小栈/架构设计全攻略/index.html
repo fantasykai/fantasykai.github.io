@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>Java  50+ Spring 常用注解 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Java  50+ Spring 常用注解</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Java  50+ Spring 常用注解</h1><div class="post-meta">2019-12-29<span> | </span><span class="category"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a></span></div><a class="disqus-comment-count" href="/2019/12/29/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%85%A8%E6%94%BB%E7%95%A5/#vcomment"><span class="waline-comment-count" id="/2019/12/29/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%85%A8%E6%94%BB%E7%95%A5/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E5%87%A0%E4%B8%AA%E6%80%9D%E8%80%83%E3%80%81%E5%AE%9E%E8%B7%B5%E6%A1%86%E6%9E%B6"><span class="toc-number">1.</span> <span class="toc-text">一. 几个思考、实践框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E7%9B%AE%E6%A0%87%E9%A9%B1%E5%8A%A8%E3%80%81%E5%8F%AF%E9%87%8F%E6%B5%8B%E7%9A%84%E8%A1%8C%E5%8A%A8%E6%A1%86%E6%9E%B6"><span class="toc-number">1.1.</span> <span class="toc-text">1、目标驱动、可量测的行动框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E4%BA%92%E8%81%94%E7%BD%91%E6%80%9D%E7%BB%B4-%E8%BF%AD%E4%BB%A3%E6%80%9D%E7%BB%B4"><span class="toc-number">1.2.</span> <span class="toc-text">2、互联网思维-迭代思维</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%815W1H-%E8%AE%A4%E8%AF%86%E3%80%81%E5%88%86%E6%9E%90%E4%B8%80%E4%BB%B6%E4%BA%8B%E7%89%A9%E6%97%B6%E7%9A%84%E6%80%9D%E7%BB%B4%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">3、5W1H-认识、分析一件事物时的思维方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%A4%9A%E5%85%83%E8%A7%86%E8%A7%92%E7%9C%8B%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">4、多元视角看问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E8%BF%99%E4%BA%9B%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E5%9C%A8%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%B8%AD%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">二. 这些模型如何在架构设计中使用？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E6%9E%B6%E6%9E%84%E5%AE%9A%E4%B9%89"><span class="toc-number">3.</span> <span class="toc-text">三. 架构定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-%E6%9E%B6%E6%9E%84%E7%9B%AE%E7%9A%84%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">四. 架构目的有哪些？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94-%E5%A6%82%E4%BD%95%E8%AF%84%E6%B5%8B%E8%BF%99%E4%BA%9B%E7%9B%AE%E6%A0%87%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">五. 如何评测这些目标？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%B8%E7%94%A8%E6%89%8B%E6%AE%B5"><span class="toc-number">6.</span> <span class="toc-text">六. 架构设计常用手段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83-%E6%8F%90%E5%8D%87%E8%AE%A4%E7%9F%A5"><span class="toc-number">7.</span> <span class="toc-text">七. 提升认知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB-THIS-IS-NOT-THE-END"><span class="toc-number">8.</span> <span class="toc-text">八. THIS IS NOT THE END</span></a></li></ol></div></div><div class="post-content"><p>正文开始前，先花大量笔墨推荐几个我工作中常用的思考框架、实践框架，后续文章中会使用这几种思考框架作为工具来描述、拆解、分析问题。当然你也可以使用到其它工作内容中，掌握几种利器，比无头苍蝇样做事效率会高很多。</p>
+<h2 id="一-几个思考、实践框架"><a href="#一-几个思考、实践框架" class="headerlink" title="一. 几个思考、实践框架"></a>一. 几个思考、实践框架</h2><h3 id="1、目标驱动、可量测的行动框架"><a href="#1、目标驱动、可量测的行动框架" class="headerlink" title="1、目标驱动、可量测的行动框架"></a><strong>1、目标驱动、可量测的行动框架</strong></h3><p>OGSM 是 Objective（目的）、Goal（目标）、Strategy（策略）、Measurement（测量）的英文首字母组成。一种实践策略的手段，以达成理想的目的与目标。</p>
+<p>学术界一个研究方向快速进展的关键，是清晰地定义了问题的目标函数。当年 Google 和雅虎的几位大师把广告清晰地定义为一个优化问题，这个领域的进展才日新月异。按照某前辈的话说，管理一个工程团队，只需要做好两件事：一是 <strong>定义好目标</strong>，二是建立一个 <strong>评测系统</strong>。 可见目标、可量测不是神秘职务，在各个领域都有案例。</p>
+<p>当我们做事情时候，可以按照以下流程来实践：</p>
+<ul>
+<li><p>目的：明白领导意图。通常这个目的是领导层或上层给予执行层面、部门、团队的任务。通常比较含糊或者宏大，一方面不容易快速达到，另一方面这个目的，对于执行者来说，很不容易测量。</p>
+</li>
+<li><p>目标：当我们面临一项任务或目的时候，都会把目的拆分为 <strong>易执行</strong>、 <strong>可量测的小目标</strong>。 可以拆解成小目标、小任务，排优先、定重点、分配给下属、并制定 KPI 或 OKR 关键性指标。</p>
+</li>
+<li><p>策略：执行层面考究团队执行力，可以针对小目标或可量测指标，做很多 TIP 或工作策略。例如：写代码时，对代码的测试覆盖、结对编程、Code Review 等。具体到不同时期，有不同方法论，这里暂不展开。</p>
+</li>
+<li><p>量测：拆解的目标必须是可量测、可量化，有指标可以衡量任务是否完成、完成度等。如果特别特别放到量测指标，其实算过度 KPI， 对我们架构创造性事情，需要更深层次考虑。毕竟，软件不是富士康计件类型工作。</p>
+</li>
+<li><p>不断迭代：通过量测指标，不断调整执行策略，甚至调整拆解目标。小步快进，达成目的，良好的完成上游给予的任务。</p>
+</li>
+</ul>
+<p>业内实践或很多书籍，从不同角度验证该工作方法的适用：</p>
+<ul>
+<li>很多运营方面，尤其是增长黑客、数字营销方面工作，特别强调数字指标设定、运营方法、迭代运营。比如：《增长黑客》中海盗模型转化漏斗，以及衍生出来一些列案例；《运营之光》提到的“优秀的运营要以目标为导向，主动行事。”</li>
+<li>目标驱动、数字衡量的新型运营手段：大数据时代，数据带给决策更加丰富、准确的素材或理由。改变了企业运营、运作的传统方法。个人认为传统运营偏文科一些，需要更多活动策划、文案文字相关工作。而有些领域，如计算广告中，广告优化师，需要很强的数据能力。市面上运营两类书，一类一看就是文科写的，增加很多数据指标之类问题，不深入，但写的很好看。后一类一看理科生写的，很多数据模型，但是看得很头大。</li>
+<li>测试先行的敏捷实践：当项目足够复杂的时候，想要保证尽可能的减少 Bug，有两种有效的方式分别是代码审核和测试先行。我们完成正式逻辑前，先编写测试用例，就是编写量测方法。</li>
+<li>ABTest 的产品衡量手段：ABTest 在互联网公司广泛使用，并在各个领域发扬光大。比如：拆分用户，针对不同用户界面功能使用投票等。推荐系统中评估体系的建设。广告优化师，通过不断的调整素材、定向等优化投放姿势。甚至抖音这类 App，整体产品逻辑，就是“ABTest ”。</li>
+<li>机器学习算法中，假设空间、优化目标、寻解算法三角中，优化目标的设计是为了设定衡量标准。可以说机器学习、深度学习背后的理论，跟测试用例编写是很像的。注：例子还可以很多，前面例子可以当成一个职业方向去学习研究，这里点到为止，也可以留言沟通交流。</li>
+</ul>
+<h3 id="2、互联网思维-迭代思维"><a href="#2、互联网思维-迭代思维" class="headerlink" title="2、互联网思维-迭代思维"></a><strong>2、互联网思维-迭代思维</strong></h3><p>“迭代思维”是互联网产品开发的典型方法论。“天下武功，唯快不破”，只有快速地对消费者需求做出反映，产品才更容易贴近消费者。这里暂且不说这个“快字”，按照我们传统思维方式，我已经足够了解产品需求了，我直接设计满足用户需求的产品不就可以了嘛？答案是否定的！</p>
+<p>互联网产品是迭代而成的，（无数案例证实这点，这里不展开篇幅）！那么我们为这些产品设计的后台、前台、数据架构，也必定是迭代而成的！按照达尔文进化论来解释的话，物种是迭代进化而来的。人这个物种对外界的需求、诉求、主动变革，都在不停地迭代。那么软件产品、架构也肯定需要迭代。</p>
+<p>产品生命周期理论如图1所示（PLC 模型）是由美国经济学家 Raymond Vernon 提出的，即一种新产品从开始进入市场到被市场淘汰的整个过程。用户、产品、人、事都存在生命周期。</p>
+<p><img src="https://5b0988e595225.cdn.sohucs.com/images/20191228/3b00282cd1b0483493847748ebcf8e84.jpeg" alt="img"></p>
+<p>图 1 PLC模型</p>
+<p>从另一方面来看，我们看待用户、产品、人、事，绝对不能是静态思维，我们制定计划、制定目标时候，不可能是不变的。举个例子：笔者原来在北大方正工作，每年集团都会制定***战略目标，等落实到各个子公司、子部门时候，整体外部环境都已经改变，这些“战略目标”很可能不合适了，但是由于集团最大，也没法反驳。造成整个集团、公司 运转效率、努力方向、同业竞争都产生很大的问题。</p>
+<p>这个问题摊开讲，会很复杂，回到软件架构这一领域，一定要明白架构是从简单合适，通过业务需求推进，再到复杂的演进过程。近一年挺火的中台概念，阿里需要中台，难道小创业公司也需要中台战略吗？不了解中台演进或推进中台的业务需求痛点，根本了解不了中台，更不可能架构好。</p>
+<h3 id="3、5W1H-认识、分析一件事物时的思维方法"><a href="#3、5W1H-认识、分析一件事物时的思维方法" class="headerlink" title="3、5W1H-认识、分析一件事物时的思维方法"></a><strong>3、5W1H-认识、分析一件事物时的思维方法</strong></h3><p>IT 从业者要不断面临新的语言、新的技术、新的框架，如何才能快速学习、认知一门新技术呢？5W1H（WWWWWH）分析法也叫六何分析法，是一种思考方法，也可以说是一种创造技法。在企业管理、日常工作生活和学习中得到广泛的应用。</p>
+<p>5W+1H：是对选定的项目、工序或操作，都要从原因（何因 Why）、对象（何事 What）、地点（何地 Where）、时间（何时 When）、人员（何人 Who）、方法（何法 How）等六个方面提出问题进行思考。</p>
+<p><strong>实践案例：</strong></p>
+<p>认识 Redis、认识微服务、认识 Docker、Kubernetes、认识机器学习、认识深度学习，让我们面临新的技术或概念时候，都会需要学习。我是怎么学习的呢？</p>
+<p>以 Redis 为例，不一定强调内容全面或完全正确，主要体会思考学习方法：</p>
+<ul>
+<li>What： 基于内存实现的 K-V 存储系统； 内存数据库； NoSQL； 支持 sting、list、set、hashmap、zset 五种数据结构。</li>
+<li>Why： 在分布式系统中，本地缓存不能满足需求。 分布式缓存系统，类似框架 Memacache、基于 SSD 低磁盘的成本分布式缓存系统。</li>
+<li>Where：相当于使用场景。如果系统按照 App-&gt;Gateway-&gt;Service-&gt;Dao-&gt;持久层来分的话。Dao 与持久层（MySQL）之间使用，减少与持久化数据访问频率，提高 QPS；Service 层可以使用，例如：做一些业务缓存；Gateway 层，也可以把鉴权 token 放到 Redis 中。</li>
+<li>When：性能、QPS需要提升时，缓存是第一时间想到的解决手段。当然 Redis 扩展出很多其它用法，例如：分布式锁、分布式优先队列、布隆过滤器、set 交集等较为高级用法。</li>
+<li>Who：通常架构师、后端工程师使用。</li>
+<li>How：API 查阅文档，看看例子就能明白。</li>
+<li>类似比较学习：当我们认识新事物时候，类比法也是特别好的使用方法。假如我么使用过本地缓存 Ehcache、Guava，再去学习 Redis 会简单很多。</li>
+</ul>
+<p>近几年我很少看源码，不是源码不重要，而是你了解了初衷后，对框架本身兴趣点会降低，而会思考生态，思考思维路径。摘录一段如下，期望有启发：</p>
+<blockquote>
+<p>建议大家观看一个视频，伟大领袖如何激励行动 TED 演讲：伟大的领袖如何激励行动_腾讯视频 ；里面提到一个非常有意思的认知“三环”,绝大多数人是由外而内（What&#x3D;&gt;How&#x3D;&gt;why），但伟大的公司或领导者，思考的路径通常是由内而外（why&#x3D;&gt;How&#x3D;&gt;what），团队或者客户认可的常常是你的理念&#x2F;信念即“为什么”，从而愿意接受你的产品或服务。</p>
+</blockquote>
+<h3 id="4、多元视角看问题"><a href="#4、多元视角看问题" class="headerlink" title="4、多元视角看问题"></a><strong>4、多元视角看问题</strong></h3><p>著名的大文豪苏轼的《题西林壁》</p>
+<blockquote>
+<p>横看成岭侧成峰，远近高低各不同。</p>
+</blockquote>
+<blockquote>
+<p>不识庐山真面目，只缘身在此山中。</p>
+</blockquote>
+<p>猎豹 CEO 傅盛曾说：</p>
+<blockquote>
+<p>一个创业者想要成功，首先要用多种视角看事情。</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>在看待问题时候，既将自己深入其中，能敏锐感受内里变化；抽身其外，又能让自己变成一个旁观者，观察很多事情的发生和结果。</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<p>如果看问题的视角只有一种，即从自己出发的视角，我们看到的世界就会过于局限。笔者传统 i 行业转型互联网创业过程中，对这点深有体会。以前都是站在技术角度看问题或个人视角看问题，根本不会站在用户角度思考。</p>
+<blockquote>
+<p>“微信之父”张小龙就曾说，乔布斯最厉害的地方是什么？“乔布斯最厉害的地方是他 1 秒钟就能变成傻瓜，而马化腾大概需要 5 秒钟，而我差不多需要 10 秒钟。”</p>
+</blockquote>
+<blockquote>
+<p>所以，更重要的是思维观念上的通达，越聪明的人越可以“大道至简”</p>
+</blockquote>
+<blockquote>
+<p>周鸿祎喜欢用“一分钟变小白”来作为评价产品经理能力的一个要素。而张小龙，据传私下里说过“我可以在五分钟内变成小白，而马化腾立即就可以”这样的话。无论真假，可以看出“变小白”这种能力在这几位产品大拿眼里是极其重要的，以至于变小白的时间的长短决定了产品能力的段位。</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>这三位所说的“变小白”，其实是“变用户”，也就是从“产品设计人员”或“产品经理”的角色切换为“用户”角色。只不过由于这三位所掌控的产品面向的用户以“小白”为主，所以有了“变小白”一说。</p>
+</blockquote>
+<p>一个人有足够的视角或多维视角观察能力，总是能认清楚要解决的问题，找准目标、确定方向，执行上如何错误，至少是在进步。如果不能全面的掌握问题，使劲的方向都不对，可能会事半功倍。</p>
+<p>前几天跟群里几个同学聊起中台，有的同学拿起微服务说事，有的拿起标准说事，有的说是什么新的框架技术，有的转发了微信的几篇中台文章，我感觉都不是全面或准备。为什么，因为视角不对，中台战略最终受益者是谁呢？我觉得站在最终受益者（用户）视角考虑整个问题可能会全面些！</p>
+<blockquote>
+<p>据说连马云都带人去北欧 Supercell 学习所谓的“大中台架构”，据此调整阿里巴巴的组织结构，以 <strong>避免了大公司常见的部门与部门争夺资源</strong>，不同的小组做同样的事情。</p>
+</blockquote>
+<p>如果以上为真的话，按照 OGSM 框架分析一下。马教主为了避免“大公司常见的部门与部门争夺资源，不同的小组做同样的事情” ，提出大中台架构的目的。各个执行部门针对教主提出的目的，制定自己职权内的目的、目标。技术部门或事业群接收到任务不同，拆分出业务中台、数据中台的概念。我们换个视角思考， 公司的组织结构需要调整吗？考核标准需要调整？奖金激励手段需要调整吗？权利责任各个组织结构节点变了吗？个人在创业公司，这辈子有可能不会做中台相关工作，理解不深，展开也说不清楚（憨笑）。如果我们理解一个新的概念时候，可以换多个视角或提升视角，站在更高的角度看这个问题，可能会更加全面，那么处理手头面临的问题时，会很容易。</p>
+<p><strong>分享几个视角：</strong></p>
+<p><strong>宇宙视角：</strong>宇宙视角能将我们禁锢已久的国与国、区域与区域、地区与地区、公司与公司、个人与个人的界限彻底打破，从而带给我们更为广博的胸怀以及更加宽阔的视野。 说白了，自己能跳出利益，看清楚利益相关方的嘴脸，灵魂附体后再争取利益时，会更有优势（汗一下自己）。</p>
+<p><strong>利益相关方视角：</strong>做商业产品或撮合交易系统，尤其需要有这方面能力。当然要站在不同利益相关方看问题，需要有同理心、换位思考等等更方面的训练。可以看一些产品方面的书籍。</p>
+<p><strong>用户视角：</strong>产品经理需要经常用用户视角来思考。当我们做系统、架构时，必须了解是谁使用它。可以确定的是，肯定不是自己使用，所以切勿以自我为中心的思考、设计等。</p>
+<p><strong>时间线视角：</strong></p>
+<ul>
+<li>你可以让自己退后一步，离开正在进行的一切，站在时间线的后面，注视它，感受它。 眼前这根时间线代表的正是你的一生，它像是一条不断奔涌向前的河，不论你是否正在其中，还是已经退后一步，它的奔涌都从不止息。</li>
+<li>你也可以试着站在未来某一时点上看问题，它能让我们从此时此刻的纠结中抽离出去，站到更远一点的地方回望。</li>
+<li>当我们不知道自己真正想要什么、真正在乎什么的时候，可以尝试时间线临终视角。 它能帮我们滤尽铅华，看清内心真实渴望，甚至是我们的核心价值观。</li>
+</ul>
+<h2 id="二-这些模型如何在架构设计中使用？"><a href="#二-这些模型如何在架构设计中使用？" class="headerlink" title="二. 这些模型如何在架构设计中使用？"></a><strong>二. 这些模型如何在架构设计中使用？</strong></h2><p><strong>第一、</strong> 使用目标驱动的行动框架。 明确我们要去哪里？知道架构设计的目的、阶段性目标， 才能有针对性的少走弯路。</p>
+<p><strong>第二、</strong> 我们怎么才能知道我们现在在哪？ 明白评价架构、系统的常见评价体系，才能针对目标，一步一个台阶的走下去。评价指标通常是与数据相关的，但是容易评估的目的，往往是简单容易实现或案例很多的。</p>
+<p><strong>第三、</strong> 无论我们面对的需求或目标多么高大，路要一步一步走，饭要一口一口吃。 零零散散各个目标指标，只能有侧重、有优先不断迭代、夯实、拔高的达到目标。</p>
+<p><strong>第四、</strong> 如何理解大厂、书籍、国外传播的最佳实践呢？ 我们需要明白，任何最佳都是迭代出来的，而不是一蹴而就的。</p>
+<p><strong>第五、</strong> 针对架构设计目的，常用的有哪些手段呢？ 我们如何建立自己的武器库，常见的解决问题的手段呢，通过 5W1H 来了解梳理。</p>
+<p><strong>第六、</strong> 架构师岗位是与其他岗位高度协同的岗位，了解业务、了解其它岗位、协同人职责视角很重要。 多元视角不光可以让自己更深刻理解架构本身，还可以了解业务、了解场景，更有效的协同工作。</p>
+<p>注：文章只是抛砖引玉，笔者也是在其它岗位的一些经验，反哺总结到架构岗位上。不一定正确，适合自己的才是最好的。</p>
+<h2 id="三-架构定义"><a href="#三-架构定义" class="headerlink" title="三. 架构定义"></a><strong>三. 架构定义</strong></h2><p>软件架构（Software Architecture）是一系列相关的抽象模式，用于指导大型软件系统各个方面的设计。其实我们把架构当成一个技能、工种、职位、岗位，<strong>核心还是为了应对软件设计、构建中的复杂度，降低成本、提升效率。</strong></p>
+<p>对我们常见系统做一下分类。如果按照行业分，篇幅不够、积累也少，无法全面分类。这里尝试按照时间线分类，后面阅读会更加顺畅一些。</p>
+<p><strong>事中业务</strong></p>
+<p>常见的业务系统。如：电商、交易系统等等大多属于这类。实际业务中，对业务反馈需要越实时，实现难度相对越高，比如：共享单车APP、股票交易等，需要实时的提示、预警、交互。除了传统型业务型架构外，对大数据流计算架构要求逐步提高。</p>
+<p><strong>事后业务</strong></p>
+<p>事后肯定有数据沉淀，有数据肯定可以对未来决策做指导。自然而然查询统计、报表决策、数据挖掘、事后总结等数据应用类系统。</p>
+<p><strong>事前业务</strong></p>
+<p>事前基本为业务预测、分类、推荐、决策辅助灯业务。随着机器学习、深度学习的火热，这部分应用越来越广泛。例如：量化投资、广告点击率预测、短视频推荐、电商推荐等。</p>
+<p><strong>趋势</strong></p>
+<p>人类欲望膨胀，业务需求无止境，从而推进技术、架构发展。人工智能、流计算、大数据发展，离线&#x2F;在线、事后&#x2F;事前&#x2F;事中、人工决策&#x2F;机器预测 等界限已经很模糊。也是我个人认为的技术方向， 大数据、流计算、推荐系统、广告系统。（机器学习、深度学习等业务系统）。</p>
+<h2 id="四-架构目的有哪些？"><a href="#四-架构目的有哪些？" class="headerlink" title="四. 架构目的有哪些？"></a><strong>四. 架构目的有哪些？</strong></h2><p>架构的目的其实每个架构师、程序员都很清楚，或日常工作中自然而然都会面对。但是我们很容易迷失自我。如果你是个架构师，现在闭上眼睛，回想三十秒，想想当天工作内容的解决了什么问题？达成什么目的？晚上加餐学习内容的目的是什么？是在熬时间等工资？是在踢皮球推卸责任？还是为了少干点活？还是学习新的知识为了提升个人价值，升职跳槽？</p>
+<p>面试时，面试官通常会从项目经验中考察以下几点：<strong>业务复杂引起的复杂度</strong>、 <strong>数据量引起的复杂度</strong>、 <strong>用户数引起的复杂度</strong>。 比如，做过什么项目，是否了解电商交易系统？你们用户数有多少，峰值 QPS 多少？你们一天产生多少数据？如何存储处理等？</p>
+<p>面临架构设计 Case 时候，无论是架构升级、还是构建架构地基，主要目的肯定只有一到两个。比如：用户规模扩大，原有架构在并发、性能上无法容忍；又如：业务快速发展，7*24 小时运转下，升级迭代新功能太麻烦， 是否可以考虑微服务架构等。</p>
+<p>如果从客观来说，架构需求肯定包含在以下需求之列：<strong>高并发、高性能、高可用、安全性、规模扩展性、规模成本</strong>。 书籍、网上都是这样说的，因为这样说都没错。</p>
+<p>小节：基本很多书上、文章都有讲解，下面来点很少地方能看到的知识点！就算我们设计的架构，都能满足需求，达到目的，算合格的架构吗？答案是不算！为啥，回到前面 OGSM， 能够明确量测方式、可量化任务的目的、目标，其实都不是难事。我们做很多事情时，尤其是探索性架构师，可量测性其实是很模糊的。<strong>举个例子：****当初 MapReduce 框架刚出来时，谁有说它慢呢？是否直到 Spark 在更短时间完成相同任务，才发现 MapReduce 框架如此之慢！</strong></p>
+<p><strong>所以是否有个结论，可量测方法、量化指标都是在实践后的结果</strong>。 当然，不是说目标的评测不重要，对于初学者肯定是重要的， 但是用这些评价架构或评判事物，可能陷入自欺欺人的境地。</p>
+<h2 id="五-如何评测这些目标？"><a href="#五-如何评测这些目标？" class="headerlink" title="五. 如何评测这些目标？"></a><strong>五. 如何评测这些目标？</strong></h2><p>SLA 服务等级协议(Service-Level Agreement)，指的是系统服务提供者（Provider）对客户（Customer）的一个服务承诺。这是衡量一个大型分布式系统是否“健康”的常见方法。SLA 设定一些指标，来考核、衡量系统。</p>
+<p><strong>1. 系统可用性：</strong>也就是常说的 4 个 9、5 个 9 指标。</p>
+<p><strong>2. 准确性或错误率：</strong>可以简单理解为 错误请求数&#x2F;全部请求数&#x3D;错误率。</p>
+<p><strong>3. 系统容量&#x2F;吞吐量&#x2F;预期负载：</strong>也就是常说的 QPS&#x2F;TPS 等， 每秒可处理的查询数或事务数。</p>
+<p><strong>4. 延迟或 RT 等：</strong>系统响应时间。</p>
+<p>注：关于这部分概念，上网查询即可，不展开描述。</p>
+<p>当系统架构在不停迭代的时候，有了一个明确的 SLA，我们可以知道下一个版本架构的改进目标以及优化好的系统架构是否比上一代的系统 SLA 更加优秀。当然评测系统还有很多其它指标，比如：可扩展性，随着云计算的发展，硬件层面扩展性基本不用考虑，我们通常考虑业务需求的扩展性即可， 但这个需求、业务扩展往往无法衡量，而架构师又容易过渡设计，是个考验架构师火候的指标之一。还比如分布式系统数据一致性、持久性、数据可靠性能，这里不展开阐述。</p>
+<p>当架构搭建基础较好的时候，这些指标其实比较容易提升。从另外一方面说，真正架构难度，不是业务架构，而是 <strong>支撑核心业务稳定运行的点点滴滴</strong>，以微服务为例来看：</p>
+<ul>
+<li>冗余部署是提高系统可用性唯一法宝。服务的冗余部署，是为了提升系统可用性。另外使用微服务架构，有个很重要目标，就是要无感知升级系统模块。汽车的备用轮胎也可以提升汽车可用性，但汽车爆胎后，需要换轮胎的时间，这个可用级别上不去。而微服务，把功能拆分成小服务，可以通过技术手段，无感知的升级。</li>
+<li>服务治理都会包含服务监测、预警功能。当服务错误率达到一定阈值， 很可以报警或开启限流、服务降级、熔断等策略，把影响降低到最小。</li>
+<li>微服务架构中，通常会在在 Gateway 层，甚至 Service、Dao 层 设置限流措施。当流量大于预期时，开启防御手段。也有一些弹性扩容的设定，当流量大于阈值时，自动扩展服务，应对突发流量，这个过程甚至不用人工参与。</li>
+<li>系统延迟或相应时间，也会在服务监测平台设置相应指标，超过阈值时，启动相关服务降级、限流、熔断等策略。</li>
+</ul>
+<p>注：个人理解，其实微服务、Kubernetes 等，很大一部分功能都是为了应对 SLA 的智能化扩展。</p>
+<h2 id="六-架构设计常用手段"><a href="#六-架构设计常用手段" class="headerlink" title="六. 架构设计常用手段"></a><strong>六. 架构设计常用手段</strong></h2><p>相信大多数人都认同，与其说架构是设计出来的， <strong>不如是说抄袭或拼装而成的</strong>。 所以我们需要熟悉常用的手段或成熟的框架来解决日常工作中的问题。每个架构师工作经历不同、应对过的业务系统不同、兴趣点不同，手头的弹药库也不同。我列举一些自己认为重要的知识点或框架。（前端太久没接触，只列举后端，大多以微服务为例，后续文章有机会展开探讨）</p>
+<p>业务处理相关技术点和框架</p>
+<p><strong>单机：****高性能、高并发手段相关</strong></p>
+<p><strong>1. 单机高性能手段：</strong> 可以上网查询 C10K 问题，获取相关文章。 把进程、线程、池、IO 多路复用相关知识点弄清楚。</p>
+<p><strong>2. 分清楚 IO 密集型和 CPU 密集型场景：</strong> 一般互联网应用多为 IO 密集型。 但是类似：滴滴出行、股市量化投资、在线游戏之类，属于 IO 密集型和 CPU 密集型并存的场景，甚至对响应时间要求也很高。幸好大多数 CPU 密集型应用也是多租户、区域独立性架构，容易扩展拆分。</p>
+<p><strong>3. 程序访问存储介质或链路快慢：</strong> 程序肯定要与存储进行消息交换。 一定明白，CPU 高速存储器、内存、SSD 硬盘、机械硬盘、同交换机网络、同机房网络、同城网络、同运营商网络等。细节展开很多内容，包含缓存、CDN、多机房等，从细节编程到部署架构的知识点。</p>
+<p><strong>集群：****高性能、高并发相关</strong></p>
+<p><strong>1. 负载均衡反向代理：</strong> 其实把 Nginx 了解就可以了。 如果是初创小公司，基本使用云上 SLB 负载均衡(Server LoadBalancer)就可以， 如果需要自建机房，有专门运维负责这些工作，到时候补补 LVS、F5 相关技术即可。</p>
+<p><strong>2. 服务无状态：</strong> 以微服务为例来说，服务无状态会带来太多的好处，扩展冗余部署服务会很方便。 不谈微服务，就说前后端分离，鉴权这块 token 的实现，其实根本目的也是把用户状态剥离出来，实现服务的无状态化。（提个小插曲，估计老人才了解 J2EE EJB 规范，当初居然专门设计了一个 sessionBean 有状态的服务规范）。</p>
+<p><strong>3. 任务（服务）拆分：</strong> 可以理解为服务拆解、功能拆解。 其实拆分准则很多，可以按照实际需求来权衡。比如：按照人头分、按照功能划分、按照数据库表划分、按照功能重要性划分、按照功能访问频度划分。不过，水平按照 Gateway、逻辑层、数据层、存储层算基本规范了。</p>
+<p><strong>4. 常用的语言及框架：</strong> 了解语言特性，如 Node 语言的快速开发、前后端语言一致带来的便利、多路复用回调的原生支持等； go 语言 “goroutines”特性带来的编程便利；Java 优秀的生态及开源框架；C++性能优势等。当然技术选型，跟团队及业务成熟度很大关系。</p>
+<p><strong>5. 缓存：</strong> 分布式缓存是提升系统性能利器。基本掌握 Redis 即可，需要知晓 Codis 和 Redis 官方集群部署方式。</p>
+<p><strong>6. 消息队列：</strong> 消息队列也是常用提升系统性能利器，如业务逻辑异步化、削峰、解耦等。 熟悉 Kafka、RocketMQ即可。</p>
+<p><strong>高可用手段（集群）：</strong></p>
+<p>高可用手段核心解决思路是冗余部署，同样的服务冗余多份，会带来服务出错通知、服务自动切换、容错等一系列问题。高可用的实现更有技术含量，现在微服务框架服务治理组件，很多在高可用上做创新突破。（高性能冗余部署为了扩展节点，带来更高的处理性能）</p>
+<p><strong>1. 服务无状态：</strong> 当某个服务故障时，自动切换到新的服务，不用产生状态丢失等问题。</p>
+<p><strong>2. 调用方支持超时、重试配置：</strong>由于网络抖动等原因，某个服务可能某次调用不可用，调用方需要重试重新调用。 当然超时是调用方通用遇到的故障之一，也会有在其它故障发生，然后发起重试的配置。</p>
+<p><strong>3. 被调用方需要幂等支持：</strong> 显而易见，无论是重试、还是调用方自动切换到的新的服务， 被调用方服务幂等支持的必备的。</p>
+<p><strong>4. 服务状态监测：</strong> 所有服务都可用，那是理想情况。 当某个服务发生故障时，整个体系必须知道这个服务有问题了，重试调用多少次也不会成功了。按照微服务框架来说，需要两方知道这个信息：1、服务注册组件。2、服务上游调用方。当然报警让运维技术恢复是常规。</p>
+<p><strong>5. 服务状态通知：</strong> 按照微服务架构，服务的状态 在注册中心都会体现。 但是注册中心跟服务之间一般是通过心跳来检测的，有时间延时。另外，服务调用方会缓存注册中心数据，其中就包含服务状态。所以说，从注册中心获取服务状态，是有延时，可能会造成很多无效的请求。高效的服务状态机制，很难组件化框架化， 所以这块需要高性能、较实时的自研通信机制或高性能集中存储机制保证。具体可以留言讨论或后续文章探讨。</p>
+<p><strong>6. 调用方智能路由：</strong> 除了负载均衡以外，当调用方 A1 知晓下游服务 C1 故障后，可以自动切换到 C2 等服务上。 另外，通过服务状态通知机制，最好可以告诉 A2、A3，C1 服务故障了，你们别去尝试了。</p>
+<p><strong>7. 服务故障恢复有，状态通知机制：</strong> 这部分就比较简单了。 注册中心状态变化后，调用方会慢慢更新注册中心元数据，来获取最新状态。当时，如果有更实时的消息机制，时效性会更高。</p>
+<p>系统可靠性（牺牲少部分可容忍体验，降低问题到最低）</p>
+<p><strong>8. 服务（功能）分类</strong>： 不管是微服务框架也好，单体框架也好，架构师必须对功能、服务进行分类。分类维度很多，比如：重要程度、QPS 量级、是否可以降级停止等等。</p>
+<p><strong>9. 应用限流：</strong> 对于一般规模的应用，在 Gateway 层做即可，从源头保护整个应用。 对于超大应用（个人没经验），我觉得架构会更加复杂，可能 Gateway 会分为很多层或多个，甚至有业务中台，层次会更复杂。</p>
+<p><strong>10. 服务降级：</strong> 服务是在服务分类的基础上的。 比如：百度贴吧的发帖功能，信息流广告功能，紧急情况下是可以降级处理的。可以人工或自动执行。其实 限流也是一种特殊的服务降级。（服务可以是个功能、也可以是接口，就看团队内如何达成一致）</p>
+<p><strong>11.</strong> <strong>接口熔断：</strong> 熔断一般在接口方法级别，因为调用链路很长，容易引起调用雪崩。 让某个接口方法出现问题，我们可以按照预定配置处理业务，快速返回预设结果，防止整个链路的奔溃。</p>
+<p><strong>12. 弹性扩容：</strong> 弹性扩容是理想的智能运维，但是具体操作也做大厂才会做相关工作。 例如新年红包业务，双十一电商业务，秒杀业务，明星结婚对新浪微博的影响等，这些可以预知或未知的突发流量，如果系统可以自动扩容，那将很是完美。其实很多当前 Docker + kubernetes 的使用案例，还只是方便运维工作量，对弹性扩容这块实践感觉不是很好。</p>
+<p><strong>存储相关：</strong></p>
+<p><strong>1. 关系型数据库：</strong> 传统的 MySQL 数据需要掌握。 如果做互联网业务，对分库分表肯定有需求，关注 NewSQL，如 TiDB，可以避免分库分表的麻烦。</p>
+<p><strong>2. NoSQL 存储：</strong> Elasticsearch、MongoDB至少掌握一个。 笔者对 Elasticsearch 还是比较看好，综合性 文档数据、列式存储、反向索引 都支持，社区生态也很不错。</p>
+<p><strong>3. 大数据数据库：</strong> 强烈建议熟悉 HDFS + HBase + openTSDB。 如果熟悉时序数据库 openTSDB 设计以后，对了解各个监控系统如 OpenFalcon 有很大的帮助。基本自研监控系统也难度不是特别大了。</p>
+<p><strong>4. 内存数据库：</strong> 有些特殊应用使用内存数据会事半功倍。 Redis 提供丰富的数据结构及良好特性，并且有很多插件，巧妙使用可以降低业务代码复杂度。</p>
+<p><strong>5. 消息队列：</strong> 消息队列也有存储机制，使用得当，也可以当成存储介质使用。 例如：kappa 架构、RocketMQ 事务消息支持等。</p>
+<p>注：存储相关其实只是中间件的学习，自研或改造几率机会还是比较少。</p>
+<p><strong>最佳实践：</strong></p>
+<p>笔者强烈建议架构师研究商业化广告系统的架构，有心得也可以与我交流。广告系统涵盖知识点很多，如：高并发、高性能的广告引擎；倒排索引的广告定向召回；流计算计费系统；批处理反作弊大数据处理系统；大数据DMP用户设备画像系统；点击率预测机器学习、深度学习方向；adx + ssp + dsp 之间跨公司、跨系统间通信调用；频次控制等需要的缓存系统设计；交易相关资金方面的处理等等。</p>
+<h2 id="七-提升认知"><a href="#七-提升认知" class="headerlink" title="七. 提升认知"></a><strong>七. 提升认知</strong></h2><p>每个架构师都梦想架构世界，设计未来。可惜当你真正有能力或有义务为社会做点贡献时候，往往忘了初心或体力有限。所以年轻时候，精力充沛时候，往往经验能力有限，年轻时候过度设计都会经历，为了可扩展性、可重用、预防需求变更做这样那样的设计。前文互联网思维-迭代思维中也讲到，世事万物都是在变化的。无论我们如何封装变化、兼容变化，都有个刻度。变化始终要面对，一劳永逸是不可能的， 好的设计模式本身就是封装变化、应对变化的最佳实践。</p>
+<p>笔者在多元视角看问题章节也提到过，学会用时间线眼光看待问题。这里很是适用，刻意练习自己多元视角思维，可能会找到事物发展的趋势或固有轨迹。如果你能够把我企业内部、业内流行架构趋势，或推动架构演进的企业内部业务发展趋势， 做架构方面取舍时，可能会有更加全面的考虑，从而设计出扩展性更好的架构。</p>
+<p>注：当然，做任何事情也是如此，顺势而为。</p>
+<h2 id="八-THIS-IS-NOT-THE-END"><a href="#八-THIS-IS-NOT-THE-END" class="headerlink" title="八. THIS IS NOT THE END"></a><strong>八. THIS IS NOT THE END</strong></h2><p>《道生一，一生二，二生三，三生万物》出自老子的《道德经》第四十二章，是老子的宇宙生成论。这里老子说到“一”、“二”、“三”，乃是指“道”创生万物的过程。主要讲述了一、二、三这几个数字，并不把一、二、三看作具体的事物和具体数量。它们只是表示“道”生万物从少到多，从简单到复杂的一个过程。</p>
+<p><strong>我们对任何事物的认知，尤其用文字表达出来，都是“一”、“二”、“三”这几个数字，而它们不代表具体事物和数量，就和这篇文章一样，只是思考的开始或过程，无法代表特定结论。</strong></p>
+<p>作者介绍：张凯江，低调的骨灰级架构师。</p>
+</div><div class="tags"><a href="/tags/架构"><i class="fa fa-tag">架构</i></a></div><div class="post-nav"><a class="pre" href="/2022/01/27/java/java%20%E6%97%A5%E5%BF%97%E8%A7%84%E8%8C%83/">java 日志规范</a><a class="next" href="/2019/12/16/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E5%9B%A2%E9%98%9F%E7%9A%84%E7%9B%AE%E6%A0%87%E5%92%8C%E6%8A%80%E6%9C%AF%E8%A7%84%E5%88%92/">Java  如何做好团队的目标和技术规划</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">62</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">44</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/01/09/%E6%9D%82%E8%AE%B0/%E5%BC%A0%E5%8B%87%EF%BC%9A%E7%BB%8F%E8%90%A5%E7%9A%84%E6%A0%B8%E5%BF%83%E6%98%AF%E7%AA%81%E7%A0%B4%EF%BC%8C%E7%AE%A1%E7%90%86%E7%9A%84%E6%A0%B8%E5%BF%83%E6%98%AF%E6%95%88%E7%8E%87/">杂记/张勇：经营的核心是突破，管理的核心是效率</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/01/05/ai/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BC%96%E8%BE%91%E5%99%A8%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/">知识图谱编辑器帮助文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/12/09/%E6%9D%82%E8%AE%B0/%E6%9D%8E%E5%8F%94%E5%90%8C%E5%85%AB%E7%84%B6/">八然</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/12/06/%E6%9D%82%E8%AE%B0/%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%BD%E6%B1%82%E6%9E%81%E8%87%B4/">什么是追求极致</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/11/11/%E5%89%8D%E7%AB%AF/qs.stringify%E7%9A%84%E4%BD%BF%E7%94%A8/">qs.stringify的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/19/%E8%AF%AD%E5%BD%95/%E5%9B%BE%E7%9C%8B%E4%BA%8C%E5%8D%81%E5%A4%A7%E6%8A%A5%E5%91%8A/">图看二十大报告</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/18/%E5%B7%A5%E5%85%B7/Cherry%E9%94%AE%E7%9B%98%20win%E9%94%AE%E6%97%A0%E6%95%88/">Cherry键盘 win键无效</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/18/%E8%AF%AD%E5%BD%95/%E4%BA%8C%E5%8D%81%E5%A4%A7%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">二十大手帐</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/07/%E8%AF%AD%E5%BD%95/%E4%BB%80%E4%B9%88%E6%98%AF%E6%88%90%E9%95%BF/">什么是成长</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/09/20/%E6%9D%82%E8%AE%B0/%E6%80%8E%E4%B9%88%E8%AE%A9%E7%8C%AB%E5%90%83%E8%BE%A3%E6%A4%92/">怎么让猫吃辣椒</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2023 <a href="/." rel="nofollow">枫哲's文栖小筑.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
