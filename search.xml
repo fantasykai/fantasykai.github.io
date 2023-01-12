@@ -379,6 +379,106 @@
     
     
     <entry>
+      <title>什么是 VLAN、三层交换机、网关、DNS、子网掩码、MAC地址</title>
+      <link href="/2020/08/26/%E7%BD%91%E7%BB%9C/%E4%B8%80%E6%96%87%E8%AE%B2%E6%87%82%E4%BB%80%E4%B9%88%E6%98%AF%20VLAN%E3%80%81%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA%E3%80%81%E7%BD%91%E5%85%B3%E3%80%81DNS%E3%80%81%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E3%80%81MAC%E5%9C%B0%E5%9D%80/"/>
+      <url>/2020/08/26/%E7%BD%91%E7%BB%9C/%E4%B8%80%E6%96%87%E8%AE%B2%E6%87%82%E4%BB%80%E4%B9%88%E6%98%AF%20VLAN%E3%80%81%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA%E3%80%81%E7%BD%91%E5%85%B3%E3%80%81DNS%E3%80%81%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E3%80%81MAC%E5%9C%B0%E5%9D%80/</url>
+      
+        <content type="html"><![CDATA[<p><strong>一、什么是vlan?</strong></p><p>VLAN中文是“虚拟局域网”。LAN可以是由少数几台家用计算机构成的网络，也可以是数以百计的计算机构成的企业网络。VLAN所指的LAN特指使用路由器分割的网络——也就是广播域。</p><p>听上面的概念，肯定有不少朋友是一头雾水的，什么是虚拟局域网？好好的，为什么要划分vlan？</p><p><strong>这里举个例：通俗的了解</strong></p><p>一所高中，新学期高一招了800个学生，这800个学生，如果放在一个班里，那肯定是管理不过来，面对800个人，老师看了也头疼，这边在授课，那边完全听不到，老师布置什么任务，也会有一些传达不到，老师要是想找某个学生的信息，要从800份信息中去找，极其麻烦，浪费时间；</p><p>而实际中，也是一样，电脑A要想要与电脑B通信，于是电脑A就需要发送arp请求，而网络中电脑众多，最终ARP请求会被转发到同一网络中的所有电脑，才能找到电脑B，如此一来，为了找到电脑B，消耗了网络整体的带宽，收到广播信息的计算机还要消耗一部分CPU时间来对它进行处理。造成了网络带宽和CPU运算能力的大量无谓消耗。</p><p><strong>那么怎么办呢？</strong></p><p>学校就针对这800个学生，分成了10个班，每个班80人，分别命名为高一（1）班，高一（2）班、、、、高一（10）班，每个人都会获得一个班级编号。</p><p>1101表示一班01号学生。</p><p>1102表示一班02号学生。</p><p>1201表示2班01号学生。</p><p>同一个班的学生编号尾数不同，其它的都相同。</p><p>那么这样老师再管理起来就轻松多了，可以把一班这80人管理的妥妥的，隔壁2班与3班乱成一锅粥也不管一班的事，我就要这一班80人好好上课就行。</p><p>这就是vlan，每个班就相当于一个vlan，而每个班名称，就相当于vlan的名称，而每个学生的编号就是ip地址；同班同学（同一个vlan的ip），因为同一个教室，朝夕相处，且可以相互通信，不同班的同学，若不做其它工作，很难往来通信。</p><p>所以同一个vlan间，可以相互通信；不同vlan，若不做配置，不能相互通信。</p><p>搜索公众号程序员小乐回复关键字“offer”获取算法面试题和答案。</p><p>那么不同vlan如何通通信呢？就需要单臂路由与三层交换机。</p><p><strong>二、单臂路由与三层交换机</strong></p><p>我们知道要实现不同vlan间通信，就必须需要有路由功能，不同VLAN之间相互通信的两种方式（单臂路由、三层交换机）。</p><p><strong>什么是单臂路由？</strong></p><p>单臂路由的实现方式，其实就是普通二层交换机加路由器，从而实现不同vlan间的可以互相通信。</p><p><img src="https://aimak.cn/blog_img/tools/network/danbituopu.jpeg"></p><p><strong>那什么是三层交换机呢？</strong></p><p>对于小型的网络，单臂路由可以应付，但随着VLAN之间流量的不断增加，很可能导致路由器成为整个网络的瓶颈，出现掉包、或者通信堵塞。</p><p>为了解决上述问题，三层交换机应运而生。三层交换机，本质上就是“带有路由功能的（二层）交换机”。路由属于OSI参照模型中第三层网络层的功能，因此带有第三层路由功能的交换机才被称为“三层交换机”。</p><p>关于三层交换机的内部结构，可以参照下面的简图。</p><p><img src="https://aimak.cn/blog_img/tools/network/sanceng.png"></p><p>在一台本体内，分别设置了交换机模块和路由器模块；而内置的路由模块与交换模块相同，使用ASIC硬件处理路由。因此，与传统的路由器相比，可以实现高速路由。并且，路由与交换模块是汇聚链接的，由于是内部连接，可以确保相当大的带宽，所以对于正规的项目，需要使用三层交换机来实现网网络间的通信。</p><p><strong>三、什么是网关</strong></p><p>在了解了vlan与三层交换机后，能不能通信，还需要看网关是否正确。</p><p><strong>一、什么是网关</strong></p><p>网关(Gateway)又称网间连接器、协议转换器。网关在传输层上以实现网络互连，是最复杂的网络互连设备，仅用于两个高层协议不同的网络互连。</p><p><strong>二、如何来理解网关</strong></p><p>大家都知道，从一个房间走到另一个房间，必然要经过<strong>一扇门</strong>。同样，从一个网络向另一个网络发送信息，也必须经过一道“关口”，这道关口就是网关。顾名思义，网关(Gateway)就是一个网络连接到另一个网络的“<strong>关口</strong>”。</p><p>按照不同的分类标准，网关也有很多种。TCP&#x2F;IP协议里的网关是最常用的，在这里我们所讲的“网关”均指TCP&#x2F;IP协议下的网关。</p><p><strong>三、网关的ip地址</strong></p><p><strong>那么网关到底是什么呢？</strong></p><p>网关实质上是一个网络通向其他网络的IP地址，网关在网段内的可用<strong>ip中选一个</strong>，不过，一般用的是<strong>第1个和最后一个</strong>。</p><p><strong>例如</strong></p><p>比如有网络A和网络B，</p><p><strong>网络A：</strong>的IP地址范围为“192.168.1.1~192. 168.1.254”，子网掩255.255.255.0；</p><p>如果需要与其它网段通信，那么它的网关可以设置为192.168.1.1，当然也可以设置为<strong>网段内</strong>其它的一个ip地址。</p><p><strong>网络B：</strong>的IP地址范为“192.168.2.1~192.168.2.254”，子网掩码255.255.255.0。</p><p>如果需要与其它网段通信，那么它的网关可以设置为192.168.2.1，当然也可以设置为<strong>网段内</strong>其它的一个ip地址。</p><p>  <img src="https://aimak.cn/blog_img/tools/network/ipaddr.jpeg"></p><p><strong>四、网关是如何实现通信？</strong></p><p>在没有<strong>路由器</strong>的情况下，不同的两个网络之间是<strong>不能</strong>进行TCP&#x2F;IP通信的，即使是两个网络连接在同一台交换机(或集线器)上，TCP&#x2F;IP协议也会根据子网掩码(255.255.255.0)判定两个网络中的主机处在不同的网络里。而要实现这两个网络之间的通信，则<strong>必须通过网关</strong>。</p><p>如果<strong>网络A</strong>中的主机发现<strong>数据包</strong>的目的主机<strong>不在</strong>本地网络中，就把数据包转发给它<strong>自己的网关</strong>，再由网关转发给网络B的网关，网络B的网关再转发给网络B的某个主机(如附图所示)。网络B向网络A转发数据包的过程。</p><p>所以说，只有设置好网关的<strong>IP地址</strong>，TCP&#x2F;IP协议才能实现不同网络之间的相互通信。</p><p><strong>五、什么是默认网关？</strong></p><p>如果搞清了什么是网关，默认网关也就好理解了。就好像一个房间可以有多扇门一样，一台主机可以有多个网关。<strong>默认网关</strong>的意思是一台主机如果找不到可用的网关，就把数据包发给默认<strong>指定的网关</strong>，由这个网关来处理数据包。现在<strong>主机</strong>使用的网关，一般指的是默认网关。 </p><p><strong>四、什么是DNS</strong></p><p>DNS是域名解析服务器（Domain Name System），是把网址变成IP地址的服务器。</p><p>搜索公众号程序员小乐回复关键字“Java”获取Java面试题和答案。</p><p>DNS说白了是把域名翻译成IP地址用的，这里面<strong>举个例子</strong>，大家就很容易清楚了。</p><p>例如我们在浏览器里面输入<a href="http://www.baidu.com的时候,机器要跟百度这个网站进行**通信**,机器要往外面**发送**数据包,数据包里面要写百度这台服务器的**ip地址**,我们不知道ip地址是多少,那么就需要主机**问dns服务器**,dns服务器就自动帮我们把www.baidu.com这个域名**翻译成**了ip地址61.135.169.105.然后写到了数据包的目的ip地址里面就可以进行通信./">www.baidu.com的时候，机器要跟百度这个网站进行**通信**，机器要往外面**发送**数据包，数据包里面要写百度这台服务器的**IP地址**，我们不知道IP地址是多少，那么就需要主机**问DNS服务器**，DNS服务器就自动帮我们把www.baidu.com这个域名**翻译成**了IP地址61.135.169.105。然后写到了数据包的目的IP地址里面就可以进行通信。</a></p><p>就跟我们写信一样，你得写个收信人的<strong>地址</strong>邮局才能给你发送吧，你给国外写信，你写中文地址邮局不认识，需要这个一个人帮你翻译成英语。这就是DNS的作用，所以你的在本地连接里面写DNS才可以正常浏览网页，如果不设置DNS，是无法正常访问网页的。</p><p><strong>五、MAC地址</strong></p><p>讲到MAC地址，就不得不提ip地址，这里顺便把ip地址也说下。</p><p><strong>IP与MAC</strong></p><p>虽然现在已经ipv6了，但我们基本用的大多数还是ipv4协议，所谓ip就是你电脑整个<strong>网络的编号</strong>。其他电脑想访问电脑就得需要这个编号。但是这个编号很多情况下是一直在<strong>变化</strong>的。唯一不变的是你的MAC地址：<strong>物理地址</strong>。</p><p>MAC是网络中用来标识网卡设备的唯一网络地址。由相关硬件制造商统一分配，每台电脑的MAC地址都是<strong>唯一</strong>的。</p><p>做个比喻，你经常搬家，你没搬一次家都有一个地址，XX小区XX单元XX号，这个就是IP。但是你的名字不变，这个就是MAC，不同的是我们的<strong>MAC不允许重名。</strong></p><p><strong><img src="https://aimak.cn/blog_img/tools/network/mac_info.jpeg"></strong></p><p><strong>我们的IP分为两个部分：</strong>如上图分为<strong>网络部分</strong>和<strong>主机部分</strong>。网络部分好比就是你在XX省XX市XX镇，这个是国家固定下来了的。但是XX小区XX单元XX号是开发商自己定的。两个编号<strong>加起来</strong>就是你的ip了。不同的是在现实中两个编号的长度是固定的，在网络上A、B、C、D的ip地址却是变化的，这个在前天有详细讲到。</p><p><strong>六、子网掩码</strong></p><p>子网掩码是为了区分网络位和主机位，上面我们说到过，一个ip地址是由<strong>网络部分</strong>和<strong>主机部分。</strong>正如一个人的名字由姓与名组成。</p><p>那么我们可以把IP地址比作一个人的名字，那么子网掩码就像是一份名单，可以快速的知道那些人同姓，那些人不同姓，把同姓的人分在一组，让他们之前可以互相交流。</p><p><strong>举个例子</strong></p><blockquote><p> <strong>有一个网段</strong>是192.168.1.0-192.1.254，这个网段就像一个村子一样，就称它为<strong>安防村</strong>，此这网段有个ip地址是192.168.1.1，我们就叫他安防一，另外一个人叫安防二，它的ip地址为192.168.1.2，我们一看他们，就知道他们是同村的。</p></blockquote><blockquote><p> <strong>另外有一个网段，</strong>是192.168.0.0——192.168.255.254，我们叫它<strong>安村</strong>，村里有个同样有两个ip地址为92.168.1.1与192.168.1.2，也叫安防一，安防二，那么问题来了？这个时候，如何区分他们是属于那个村的？</p></blockquote><blockquote><p> 这个时候就需要<strong>子网掩码</strong>了来判断他们是属于那个网段的，需要把安防一、安防二带到村里去认下，就知道他们是属于那个村了，<strong>安防村</strong>的网段是255.255.255.0，<strong>安村</strong>的网段是255.255.0.0。</p></blockquote><blockquote><p>网络中也会出现类似于“同名”“同姓”的ip地址，如何区分他们到底是属于那个网段，就需要依靠子网掩码了。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java 工具包Hutool</title>
+      <link href="/2020/08/13/java/Java%20%E5%B7%A5%E5%85%B7%E5%8C%85Hutool/"/>
+      <url>/2020/08/13/java/Java%20%E5%B7%A5%E5%85%B7%E5%8C%85Hutool/</url>
+      
+        <content type="html"><![CDATA[<p>Hutool 谐音 “糊涂”，寓意追求 “万事都作糊涂观，无所谓失，无所谓得” 的境界。</p><p>Hutool 是一个 Java 工具包，也只是一个工具包，它帮助我们简化每一行代码，减少每一个方法，让 Java 语言也可以 “甜甜的”。Hutool 最初是我项目中 “util” 包的一个整理，后来慢慢积累并加入更多非业务相关功能，并广泛学习其它开源项目精髓，经过自己整理修改，最终形成丰富的开源工具集。（抄自作者简介）</p><h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>一个 Java 基础工具类，对文件、流、加密解密、转码、正则、线程、XML 等 JDK 方法进行封装，组成各种 Util 工具类，同时提供以下组件：</p><ul><li>hutool-aop JDK 动态代理封装，提供非 IOC 下的切面支持</li><li>hutool-bloomFilter 布隆过滤，提供一些 Hash 算法的布隆过滤</li><li>hutool-cache 缓存</li><li>hutool-core 核心，包括 Bean 操作、日期、各种 Util 等</li><li>hutool-cron 定时任务模块，提供类 Crontab 表达式的定时任务</li><li>hutool-crypto 加密解密模块</li><li>hutool-db JDBC 封装后的数据操作，基于 ActiveRecord 思想</li><li>hutool-dfa 基于 DFA 模型的多关键字查找</li><li>hutool-extra 扩展模块，对第三方封装（模板引擎、邮件等）</li><li>hutool-http 基于 HttpUrlConnection 的 Http 客户端封装</li><li>hutool-log 自动识别日志实现的日志门面</li><li>hutool-script 脚本执行封装，例如 Javascript</li><li>hutool-setting 功能更强大的 Setting 配置文件和 Properties 封装</li><li>hutool-system 系统参数调用封装（JVM 信息等）</li><li>hutool-json JSON 实现</li><li>hutool-captcha 图片验证码实现</li></ul><h2 id="简单测试"><a href="#简单测试" class="headerlink" title="简单测试"></a>简单测试</h2><p>这两天使用 Hutool 把 Halo 里面的一些代码给替换掉了，不得不说，用起来十分顺心，下面简单介绍一下我用到的一些 Hutool 的工具类。</p><h3 id="SecureUtil（加密解密工具）"><a href="#SecureUtil（加密解密工具）" class="headerlink" title="SecureUtil（加密解密工具）"></a>SecureUtil（加密解密工具）</h3><p>主要是在登录的时候还有修改密码的时候用到的，因为数据库里面的密码是 md5 加密处理的，所以登录的时候需要先加密之后再到数据库进行查询，使用 Hutool 的话，只需要调用 <code>SecureUtil</code> 中的 md5 方法就可以了。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user = userService.userLoginByName(loginName,SecureUtil.md5(loginPwd));</span><br></pre></td></tr></table></figure><h3 id="HtmlUtil（HTML-工具类）"><a href="#HtmlUtil（HTML-工具类）" class="headerlink" title="HtmlUtil（HTML 工具类）"></a>HtmlUtil（HTML 工具类）</h3><p>这个工具类就比较厉害了，不过我在 Halo 当中用得最多的还是 <code>HtmlUtil.encode</code>，可以将一些字符转化为安全字符，防止 xss 注入和 SQL 注入，比如下面的评论提交。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">comment.setCommentAuthor(HtmlUtil.encode(comment.getCommentAuthor()));</span><br></pre></td></tr></table></figure><p>这就是防止有小坏蛋故意写一些可执行的 js 代码，然后提交评论，在后台面板就会执行这一段代码，比较危险，使用 encode 方法就可以将 <code>标签给转化成</code>，这样转化之后，js 代码就不会执行了。</p><p>另外，HtmlUtil 还提供了以下方法，有兴趣的可以去试一下。</p><ul><li>HtmlUtil.restoreEscaped 还原被转义的 HTML 特殊字符</li><li>HtmlUtil.encode 转义文本中的 HTML 字符为安全的字符</li><li>HtmlUtil.cleanHtmlTag 清除所有 HTML 标签</li><li>HtmlUtil.removeHtmlTag 清除指定 HTML 标签和被标签包围的内容</li><li>HtmlUtil.unwrapHtmlTag 清除指定 HTML 标签，不包括内容</li><li>HtmlUtil.removeHtmlAttr 去除 HTML 标签中的属性</li><li>HtmlUtil.removeAllHtmlAttr 去除指定标签的所有属性</li><li>HtmlUtil.filter 过滤 HTML 文本，防止 XSS 攻击</li></ul><h3 id="CronUtil（定时任务）"><a href="#CronUtil（定时任务）" class="headerlink" title="CronUtil（定时任务）"></a>CronUtil（定时任务）</h3><p>这个工具就更厉害了，完全不需要类似 <code>quartz</code> 这样的框架来做定时任务，而且 CronUtil 也不需要任何其他依赖，只需要在 resources 下建一个配置文件，然后在程序启动的时候将定时任务开启就行了，如 Halo 的定时备份功能（每天凌晨 1 点备份一次）。</p><p>cron.setting:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cc.ryanc.halo.web.controller.admin.BackupController.backupResources = 0 0 1 * * ?</span><br><span class="line">cc.ryanc.halo.web.controller.admin.BackupController.backupDatabase = 0 0 1 * * ?</span><br><span class="line">cc.ryanc.halo.web.controller.admin.BackupController.backupPosts = 0 0 1 * * ?</span><br><span class="line">@Override</span><br><span class="line">public void onApplicationEvent(ContextRefreshedEvent event)&#123;</span><br><span class="line"> this.loadActiveTheme();</span><br><span class="line"> this.loadOptions();</span><br><span class="line"> this.loadFiles();</span><br><span class="line"> this.loadThemes();</span><br><span class="line"> //启动定时任务</span><br><span class="line"> CronUtil.start();</span><br><span class="line"> log.info(&quot;定时任务启动成功！&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>具体使用方法请看文档 <a href="http://hutool.mydoc.io/?t=255673">http://hutool.mydoc.io/?t=255673</a></p><blockquote><p>好了，就介绍这三个工具类，有兴趣的可以去试试其他的工具，挺全的，这应该是我用过最好用的一个工具类库了，值得一试。</p></blockquote><p>官网地址：<a href="http://www.hutool.cn/">http://www.hutool.cn/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术小栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>技术管理者管理模板总结</title>
+      <link href="/2020/07/20/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%80%85%E7%AE%A1%E7%90%86%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/"/>
+      <url>/2020/07/20/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%80%85%E7%AE%A1%E7%90%86%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<h2 id="看方向"><a href="#看方向" class="headerlink" title="看方向"></a><strong>看方向</strong></h2><ul><li>向上级明确团队的职责</li><li>基于职责确定团队的使命、目标</li><li>把职责、使命向团队成员传达清楚</li><li>做好团队规划，包括：规模、分工、梯队、资源盘点等</li><li>建立团队的WIki，包括：职责、使命、目标、团队规划、人员分工、规章制度等</li></ul><h2 id="管事"><a href="#管事" class="headerlink" title="管事"></a><strong>管事</strong></h2><ul><li><p>OKR</p></li><li><ul><li>制定团队OKR，对齐公司和部门OKR</li><li>跟进团队成员的个人OKR制定和进度跟踪</li><li>跟踪OKR进展，识别高绩效人才</li></ul></li><li><p>技术管理</p></li><li><ul><li><p>参与技术方向决策，将研发规范、例会等信息明确传达给团队成员并推进</p></li><li><ul><li>技术评审规范</li><li>代码风格规范</li><li>代码开发规范</li><li>代码管理规范</li><li>CodeReview规范</li></ul></li><li><p>组织技术评审、CodeReview</p></li><li><p>制定学习分享机制并切实推行</p></li><li><p>团队所负责维护的系统的周期巡检</p></li><li><p>公司层面基础技术以及成熟开源项目的引入和推进</p></li></ul></li><li><p>项目管理</p></li><li><ul><li><p>创建并保持项目文档的更新</p></li><li><ul><li>需求文档</li><li>技术调研文档</li><li>方案选型文档</li><li>系统设计文档</li></ul></li><li><p>根据技术评审的结果预估开发工期并做好关键时间点的把控</p></li><li><ul><li>系统、模块、功能的设计以及简述</li><li>参与的研发人员以及分工</li><li>预估工时</li><li>预计完成时间</li><li>关键时间点、里程碑</li><li>确定会议机制：晨会、周会</li></ul></li><li><p>技术方案确定</p></li><li><ul><li>技术选型</li><li>技术架构</li><li>技术难点</li><li>性能瓶颈</li><li>上下游系统</li><li>功能模块</li></ul></li><li><p>项目风险管理</p></li><li><p>项目质量管理，包括代码质量把控和监控告警设施的接入</p></li><li><p>协调资源推进项目进展</p></li></ul></li><li><p>技术产品运营</p></li><li><ul><li>提炼团队项目的公共抽象部分，组件化和平台化</li><li>组件、技术平台的推广</li></ul></li><li><p>成本管理</p></li><li><ul><li>技术选型时把成本做为重要考量项</li><li>提升团队资源的利用率</li><li>关注团队的人力成本和技术成本</li><li>关注团队的产出价值</li></ul></li><li><p>流程改进</p></li><li><ul><li>定位阻碍研发的流程节点，寻找有效的解决方案</li><li>寻求有效工具或者方案提升关键流程效率</li></ul></li><li><p>制度建设</p></li><li><ul><li>明确公司和部门的规章制度并推进实行</li><li>根据团队需要，制定团队规章制度</li><li>制定SOP，保障下限水准</li><li>明确团队例会制度</li></ul></li></ul><h2 id="管人"><a href="#管人" class="headerlink" title="管人"></a><strong>管人</strong></h2><ul><li><p>定期的一对一沟通</p></li><li><ul><li>你所负责业务的完成情况到现在怎么样？目标完成情况怎么样？</li><li>这段时间自我评价绩效如何？什么原因？</li><li>你个人有没有什么你觉得我应该知道的？</li></ul></li><li><p>关注团队成员职业规划和能力成长，给与指导和建议</p></li><li><p>关注团队成员工作状态</p></li><li><p>组织团建，提高团队凝聚力</p></li></ul><h2 id="管理仪表盘"><a href="#管理仪表盘" class="headerlink" title="管理仪表盘"></a><strong>管理仪表盘</strong></h2><p>建立自己的管理仪表盘，关注关键数据</p><ul><li>系统监控数据（QPS、硬件资源使用率、错误数等）-&gt; 提前发现系统瓶颈，消除隐患；提高资源利用率，降低成本</li><li>项目构建报告（单元测试覆盖率报告、代码质量报告、构建失败与成功概况）-&gt; 关注项目研发质量，保障持续交付</li><li>项目&#x2F;任务进度 -&gt; 保证项目&#x2F;任务正常进行</li><li>业务关键数据指标 -&gt; 关注业务价值，提升团队成员成就感</li><li>OKR进度 -&gt; 关注OKR实现状况，识别高绩效人员</li><li>团队成员的每日&#x2F;周的工作状况 -&gt; 关注团队成员状况</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术小栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PMO </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Redis中设置了过期时间的Key，需要注意哪些问题</title>
+      <link href="/2020/07/15/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/Redis%E4%B8%AD%E8%AE%BE%E7%BD%AE%E4%BA%86%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%E7%9A%84Key%EF%BC%8C%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98/"/>
+      <url>/2020/07/15/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/Redis%E4%B8%AD%E8%AE%BE%E7%BD%AE%E4%BA%86%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%E7%9A%84Key%EF%BC%8C%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>熟悉Redis的同学应该知道，Redis的每个Key都可以设置一个过期时间，当达到过期时间的时候，这个key就会被自动删除。</p><h2 id="在为key设置过期时间需要注意的事项"><a href="#在为key设置过期时间需要注意的事项" class="headerlink" title="在为key设置过期时间需要注意的事项"></a><strong>在为key设置过期时间需要注意的事项</strong></h2><p><strong>1、 DEL&#x2F;SET&#x2F;GETSET等命令会清除过期时间</strong></p><p>在使用DEL、SET、GETSET等会覆盖key对应value的命令操作一个设置了过期时间的key的时候，会导致对应的key的过期时间被清除。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//设置mykey的过期时间为300s</span><br><span class="line">127.0.0.1:6379&gt; set mykey hello ex 300</span><br><span class="line">OK</span><br><span class="line">//查看过期时间</span><br><span class="line">127.0.0.1:6379&gt; ttl mykey</span><br><span class="line">(integer) 294</span><br><span class="line">//使用set命令覆盖mykey的内容</span><br><span class="line">127.0.0.1:6379&gt; set mykey olleh</span><br><span class="line">OK</span><br><span class="line">//过期时间被清除</span><br><span class="line">127.0.0.1:6379&gt; ttl mykey</span><br><span class="line">(integer) -1</span><br></pre></td></tr></table></figure><p><strong>2、INCR&#x2F;LPUSH&#x2F;HSET等命令则不会清除过期时间</strong></p><p>而在使用INCR&#x2F;LPUSH&#x2F;HSET这种只是修改一个key的value，而不是覆盖整个value的命令，则不会清除key的过期时间。</p><p>INCR：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//设置incr_key的过期时间为300s</span><br><span class="line">127.0.0.1:6379&gt; set incr_key 1 ex 300</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; ttl incr_key</span><br><span class="line">(integer) 291</span><br><span class="line">//进行自增操作</span><br><span class="line">127.0.0.1:6379&gt; incr incr_key</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; get incr_key</span><br><span class="line">&quot;2&quot;</span><br><span class="line">//查询过期时间，发现过期时间没有被清除</span><br><span class="line">127.0.0.1:6379&gt; ttl incr_key</span><br><span class="line">(integer) 277</span><br></pre></td></tr></table></figure><p>LPUSH：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//新增一个list类型的key，并添加一个为1的值</span><br><span class="line">127.0.0.1:6379&gt; LPUSH list 1</span><br><span class="line">(integer) 1</span><br><span class="line">//为list设置300s的过期时间</span><br><span class="line">127.0.0.1:6379&gt; expire list 300</span><br><span class="line">(integer) 1</span><br><span class="line">//查看过期时间</span><br><span class="line">127.0.0.1:6379&gt; ttl list</span><br><span class="line">(integer) 292</span><br><span class="line">//往list里面添加值2</span><br><span class="line">127.0.0.1:6379&gt; lpush list 2</span><br><span class="line">(integer) 2</span><br><span class="line">//查看list的所有值</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 1</span><br><span class="line">1) &quot;2&quot;</span><br><span class="line">2) &quot;1&quot;</span><br><span class="line">//能看到往list里面添加值并没有使过期时间清除</span><br><span class="line">127.0.0.1:6379&gt; ttl list</span><br><span class="line">(integer) 252</span><br></pre></td></tr></table></figure><p><strong>3、PERSIST命令会清除过期时间</strong></p><p>当使用PERSIST命令将一个设置了过期时间的key转变成一个持久化的key的时候，也会清除过期时间。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set persist_key haha ex 300</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; ttl persist_key</span><br><span class="line">(integer) 296</span><br><span class="line">//将key变为持久化的</span><br><span class="line">127.0.0.1:6379&gt; persist persist_key</span><br><span class="line">(integer) 1</span><br><span class="line">//过期时间被清除</span><br><span class="line">127.0.0.1:6379&gt; ttl persist_key</span><br><span class="line">(integer) -1</span><br></pre></td></tr></table></figure><p><strong>4、使用RENAME命令，老key的过期时间将会转到新key上</strong></p><p>在使用例如：RENAME KEY_A KEY_B命令将KEY_A重命名为KEY_B，不管KEY_B有没有设置过期时间，新的key KEY_B将会继承KEY_A的所有特性。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//设置key_a的过期时间为300s</span><br><span class="line">127.0.0.1:6379&gt; set key_a value_a ex 300</span><br><span class="line">OK</span><br><span class="line">//设置key_b的过期时间为600s</span><br><span class="line">127.0.0.1:6379&gt; set key_b value_b ex 600</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; ttl key_a</span><br><span class="line">(integer) 279</span><br><span class="line">127.0.0.1:6379&gt; ttl key_b</span><br><span class="line">(integer) 591</span><br><span class="line">//将key_a重命名为key_b</span><br><span class="line">127.0.0.1:6379&gt; rename key_a key_b</span><br><span class="line">OK</span><br><span class="line">//新的key_b继承了key_a的过期时间</span><br><span class="line">127.0.0.1:6379&gt; ttl key_b</span><br><span class="line">(integer) 248</span><br></pre></td></tr></table></figure><p>这里篇幅有限，我就不一一将key_a重命名到key_b的各个情况列出来，大家可以在自己电脑上试一下key_a设置了过期时间，key_b没设置过期时间这种情况。</p><p><strong>5、使用EXPIRE&#x2F;PEXPIRE设置的过期时间为负数或者使用EXPIREAT&#x2F;PEXPIREAT设置过期时间戳为过去的时间会导致key被删除</strong></p><p>EXPIRE：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set key_1 value_1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get key_1</span><br><span class="line">&quot;value_1&quot;</span><br><span class="line">//设置过期时间为-1</span><br><span class="line">127.0.0.1:6379&gt; expire key_1 -1</span><br><span class="line">(integer) 1</span><br><span class="line">//发现key被删除</span><br><span class="line">127.0.0.1:6379&gt; get key_1</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure><p>EXPIREAT：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set key_2 value_2</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get key_2</span><br><span class="line">&quot;value_2&quot;</span><br><span class="line">//设置的时间戳为过去的时间</span><br><span class="line">127.0.0.1:6379&gt; expireat key_2 10000</span><br><span class="line">(integer) 1</span><br><span class="line">//key被删除</span><br><span class="line">127.0.0.1:6379&gt; get key_2</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure><p><strong>6、EXPIRE命令可以更新过期时间</strong></p><p>对一个已经设置了过期时间的key使用expire命令，可以更新其过期时间。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//设置key_1的过期时间为100s</span><br><span class="line">127.0.0.1:6379&gt; set key_1 value_1 ex 100</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; ttl key_1</span><br><span class="line">(integer) 95</span><br><span class="line">//更新key_1的过期时间为300s</span><br><span class="line">127.0.0.1:6379&gt; expire key_1 300</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; ttl key_1</span><br><span class="line">(integer) 295</span><br></pre></td></tr></table></figure><p>在Redis2.1.3以下的版本中，使用expire命令更新一个已经设置了过期时间的key的过期时间会失败。并且对一个设置了过期时间的key使用LPUSH&#x2F;HSET等命令修改其value的时候，会导致Redis删除该key。</p><h2 id="Redis的过期策略"><a href="#Redis的过期策略" class="headerlink" title="Redis的过期策略"></a>Redis的过期策略</h2><p>那你有没有想过一个问题，Redis里面如果有大量的key，怎样才能高效的找出过期的key并将其删除呢，难道是遍历每一个key吗？假如同一时期过期的key非常多，Redis会不会因为一直处理过期事件，而导致读写指令的卡顿。</p><p>这里说明一下，Redis是单线程的，所以一些耗时的操作会导致Redis卡顿，比如当Redis数据量特别大的时候，使用keys * 命令列出所有的key。</p><p>实际上Redis使用懒惰删除+定期删除相结合的方式处理过期的key。</p><h3 id="懒惰删除"><a href="#懒惰删除" class="headerlink" title="懒惰删除"></a><strong>懒惰删除</strong></h3><p>所谓懒惰删除就是在客户端访问该key的时候，redis会对key的过期时间进行检查，如果过期了就立即删除。</p><p>这种方式看似很完美，在访问的时候检查key的过期时间，不会占用太多的额外CPU资源。但是如果一个key已经过期了，如果长时间没有被访问，那么这个key就会一直存留在内存之中，严重消耗了内存资源。</p><h3 id="定期删除"><a href="#定期删除" class="headerlink" title="定期删除"></a><strong>定期删除</strong></h3><p>定期删除的原理是，Redis会将所有设置了过期时间的key放入一个字典中，然后每隔一段时间从字典中随机一些key检查过期时间并删除已过期的key。</p><p>Redis默认每秒进行10次过期扫描：</p><ol><li>从过期字典中随机20个key</li><li>删除这20个key中已过期的</li><li>如果超过25%的key过期，则重复第一步</li></ol><p>同时，为了保证不出现循环过度的情况，Redis还设置了扫描的时间上限，默认不会超过25ms。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><p><a href="https://redis.io/commands/expire#expire-accuracy">https://redis.io/commands/expire#expire-accuracy</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术小栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 缓存 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>云端研发新基建：Serverless 与持续架构服务落地实践</title>
       <link href="/2020/06/09/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E4%BA%91%E7%AB%AF%E7%A0%94%E5%8F%91%E6%96%B0%E5%9F%BA%E5%BB%BA%EF%BC%9AServerless%20%E4%B8%8E%E6%8C%81%E7%BB%AD%E6%9E%B6%E6%9E%84%E6%9C%8D%E5%8A%A1%E8%90%BD%E5%9C%B0%E5%AE%9E%E8%B7%B5/"/>
       <url>/2020/06/09/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E4%BA%91%E7%AB%AF%E7%A0%94%E5%8F%91%E6%96%B0%E5%9F%BA%E5%BB%BA%EF%BC%9AServerless%20%E4%B8%8E%E6%8C%81%E7%BB%AD%E6%9E%B6%E6%9E%84%E6%9C%8D%E5%8A%A1%E8%90%BD%E5%9C%B0%E5%AE%9E%E8%B7%B5/</url>
@@ -1354,31 +1454,6 @@
     
     
     <entry>
-      <title>哪怕1%的提升，效益都非常大 | 当传统拥抱互联网</title>
-      <link href="/2019/03/17/%E6%9D%82%E8%AE%B0/%E5%BD%93%E4%BC%A0%E7%BB%9F%E6%8B%A5%E6%8A%B1%E4%BA%92%E8%81%94%E7%BD%91/"/>
-      <url>/2019/03/17/%E6%9D%82%E8%AE%B0/%E5%BD%93%E4%BC%A0%E7%BB%9F%E6%8B%A5%E6%8A%B1%E4%BA%92%E8%81%94%E7%BD%91/</url>
-      
-        <content type="html"><![CDATA[<p>文章来自笔记侠，一直关注笔记侠的文章，分享</p><p><a href="https://mp.weixin.qq.com/s/D4mg4iNNgeSc8jpWcNKrpg">https://mp.weixin.qq.com/s/D4mg4iNNgeSc8jpWcNKrpg</a></p><p>故事硬核《独家深访：腾讯变革150天全记录》中有这样一个细节。2016年腾讯云峰会，马化腾出现在会场，给云站台。</p><p>他的鲜明风格之一就是不给腾讯任何产品站台——一个例行邀请，“竟然来了”，汤道生回忆，云团队像过节一样开心，“关键他不仅仅是给云的团队看，他出来是给整个行业看”。</p><p>最终，腾讯在2018年“香港总办会议”的共识中达成了最重要的几项：</p><p>一、进行组织架构调整，成立云与智慧产业事业群（CSIG），主攻产业互联网；</p><p>二、从TO C 到 TO B，继续巩固消费互联网，重兵投入产业互联网。</p><p>国家在发生深刻转型，全面的数字化、智能化时代已经来临，每个产业都在拥抱云、大数据与人工智能，“跟以前拥抱电一样”。</p><p>早在2013年底，马化腾就提出互联网+的概念。他当时去国家发改委演讲，向主任、各司局局长、处长将近600人，讲用互联网去“+”传统的各行各业。两场重要演讲之后，这个概念流行开来。</p><p>2015年两会前，马化腾受邀向政府智库提交了“互联网+”的意见。这个概念被写入了政府工作报告。</p><p>那正是“互联网+”如日中天的时候，“互联网+打车”颠覆出行，“互联网外卖”改写餐饮，“互联网支付”影响金融……一时间互联网人都在说赋能、颠覆，仿佛新的大革命已然来临，正大刀阔斧重组重造。</p><p>但互联网当主角，传统行业不服气，说“我+你还差不多” 。他们的忧虑在于，一旦开门欢迎互联网，下场会不会是把自个儿颠覆了。</p><p>行至深水区，“+”的对象变成了那些有着高壁垒的行业——教育、医疗、能源、制造业……腾讯2B前方团队突然发现“+”不了了，许多产业的核心技术，互联网公司不懂，人家也不可能把自己的命脉交到别人手上。</p><p>僵局之中，马化腾捕捉到一个奇特的变化信号。</p><p>2016年两会期间，他去拜访链家CEO左晖，了解到了全新的故事样本：一个线下传统中介机构不仅没有被互联网企业入侵、颠覆，还倒攻线上，成功逆袭，“最终成了老大”。</p><p><strong>一、拥抱互联网，如火如荼</strong></p><p>王兴在2016年就新美大公司上半年工作进行了一次内部讲话，他说：“往后看，‘互联网＋’要做的是各个行业从上游到下游的产业互联网化。</p><p>不是仅仅停留在最末端做营销、做交易那一小段，而是真正能够用互联网、用IT全面提升整个行业的效率…</p><p>‘互联网＋’根本上还是要靠创新服务于各行各业，靠互联网、靠IT技术为各行各业的各个环节提升体验、提高效率、降低成本。”</p><p>正如王兴所言：“从最宏大的角度来讲，整个中国经济也进入了‘下半场’。党和政府讲‘新常态’差不多要两年了，从去年年底到现在，也在反复讲‘供给侧结构性改革’。</p><p>如果你去细看这些提法背后的论述，你就能看到这些论述并不是中央领导的‘拍脑袋’和‘心血来潮’，而是中国经济发展到了这个阶段，确实是需要转变增长模式。</p><p>过去那种粗放的高速增长已经一去不复返了，不能再简单追求GDP的数字，中国经济也是进入了‘下半场’的状态。”</p><p>▲ 长按图片保存可分享至朋友圈</p><p>投资了新美大、优步、Airbnb等的宽带资本，也在2016年就已经提出有一个更广阔的市场叫“互联网+”（“互联网+”正是马化腾过去重点在公开场合提及的），也就是“产业互联网”。各种各样的企业，都得拥抱互联网，不拥抱互联网，就会面临着各种问题。</p><p>最先和互联网碰撞的一批是零售行业。</p><p>1.食</p><p>2017年末，2018年初，随着电商红利见底，阿里、京东等线上巨头开始大举进军线下市场，纷纷开设实体店。</p><p>如此一来，零售企业的生存环境便遭到进一步挤压。为求生存发展，零售企业开启转型之路，纷纷推出智慧门店，如沃尔玛的惠选超市、家乐福的Le Marche、优衣库的数字体验馆、苏宁的苏宁极物……</p><p>不同于传统零售门店，这些智慧门店引入了各种“黑科技”，如用自助收银机、“扫码购”等减少排队结账的时间，利用VR技术提供虚拟试装、试衣等。</p><p>永辉超市收到了腾讯集结全公司能力定制的智慧解决方案包——以选址为例，不再凭经验，而是在腾讯云预测销量前提下科学布局。市场占有率前十的超市品牌5家变成了腾讯的盟友。</p><p>永辉超市的互联网升级做得相对较快，其中一个原因是在传统行业基础上，创始人张轩宁非常重视人，重视年轻的高精尖团队，并从互联网挖过去人，发展非常快。</p><p>《第三次零售革命》作者、盛景网联合伙人颜艳春研究了7-11的损益表，发现7-11日本公司8000名员工创造了接近100亿人民币的净利润，人均创造利润为120万元，人效比肩世界上最赚钱的电商平台公司阿里巴巴。</p><p>这背后，是一个快消品行业的产业共同体和命运共同体，90%的参与方，无论上游、中游还是下游都获得了3-5倍的成长。</p><p>之前，在很多人的眼里，7-11是一个传统的连锁便利店，实际上，对7-11的这个认知是错误的。</p><p>它的模型：7-11总部着手把在日本每一个商圈里头部、碎片化的需求连接起来，团结进来。</p><p>就像三峡大坝一样，把需求端2万家夫妻老婆店团结起来，通过产业路由器，把供给端的178个工厂，还有140个物流中心连接起来，但这都不是它自己的资产，全部是这些头牌供给。</p><p>它根本就不是一家传统商业模式的零售公司，7-11将自己打造成为产业路由器平台，将这些小店与这些物流中心和所有工厂实时连接起来。</p><p>将自己唯一一个中介去中介化，4个不赚（不赚差价，不赚通道费，不赚佣金，不赚广告费）。</p><p>通过共享采购、共享配送、共享制造、共享研发、共享库存，共享供应链，为小店、小工厂提供了三大赋能（从商品赋能、经营赋能到基础设施赋能），成就了他们，每家的投资都得到了很大的回报。</p><p>7-11创造了一种新的利他经济模型，把实体经济和电商经济所有的商业逻辑彻底摧毁。</p><p>其实不只是智慧零售，各行各业的盟友越来越多。</p><p>2.衣</p><p>2018年3月30日，优衣库全新独栋概念店将在深圳万象天地正式开业。</p><p>优衣库在这家门店首次推出融合线上线下、打通实体与虚拟的“数字体验馆”，在店内的货架侧面和四方立柱的单面墙上安装了两款智能科技。</p><p>四方立柱上安装的是一款智能语音集成设备“智能小U”：顾客站在智能小U面前，设备自动完成对顾客的五官识别。</p><p>顾客可触摸屏幕商品清单，点击自己喜欢的服饰，然后进入4D虚拟试穿画面。</p><p>货架侧面的电子大屏则主要突出广告功能，只要顾客打开手机QQ的扫一扫功能，对着大屏上的静态海报扫描一遍，手机屏幕立即出现海报对应的TVC广告。</p><p>据悉，3月30日起，数字体验馆将在优衣库全国近600家门店陆续上市。</p><p>3.住</p><p>我们从衣食走到住房。</p><p>有人把近两年疯狂扩张的链家称为现象级公司，这家原本盘踞在北京的房地产中介公司在2015年进行了如火如荼的并购，把业务扩展到了全国。</p><p>链家长期以来就是一家跨界企业，从最初的房地产网站起家，到后来转向线下，再到现在的互联网化，链家既不在互联网圈，也不完全是传统意义上的地产中介公司。</p><p>之前，链家的高管们被分为势均力敌的两队，一队负责用互联网思维来干掉链家(简称“互联网派”)，一队作为传统中介琢磨如何应对(简称“传统派”)。这是左晖一直拷问管理层的一个问题。　</p><p>“当时思路没有现在这么清晰。”链家地产副总裁林倩回忆道。</p><p>管理层们脑洞大开，在讨论互联网到底能在多大程度上取代传统中介时，“互联网派”几乎取得了压倒性的胜利。</p><p>事实上，这直接影响了链家地产之后在线上的布局。从彼时起，每年投在链家在线上的资金都在亿元左右。</p><p>多年布局下来，链家在线促成的二手房买卖成交占到其整体成交量的30%左右，这一数字已经高出链家在其它互联网公司购买端口来促成成交的比例。</p><p>而在链家董事长左晖心目中，链家一直是一个由数据驱动的房地产平台。</p><p>他称自己2013年发微博吹牛说链家已经有100TB的数据。但两年时间后，数据库的规模已经增至1000TB，并且还在不断增长。</p><p>在二手房领域，不仅仅是信息分散，且没有被电子化，定义不够标准和统一。</p><p>贝壳找房和链家网CEO彭永东举例说，北京有700多万套二手房，有10万种户型。</p><p>每套房子的户型图，长、宽、高的尺寸，一个小区到底有多少这样的户型，同样户型能卖多少钱，不同用户定价是多少，都要被整理到数据库中去，以供决策参考。</p><p><strong>二、干不倒的实体店</strong></p><p>开篇，我们就讲到了零售行业。零售行业拥抱互联网的速度更快、也更容易。</p><p>2015年初，盒马鲜生的创始人侯毅，用一个下午的时间改变了阿里对线下店的认知。</p><p>过去，阿里认为电商遇上实体店，就像端机关枪的遇上了冷兵器，简直所向无敌。</p><p>但是，市场是在不断变化的，那时阿里高管第一次意识到，实体店是不可取代的。正因如此，阿里悄悄的布下了一个局，开始正式涉足线下经济。</p><p>两年前，知道盒马鲜生隶属阿里公司的人寥寥无几。</p><p>当这个信息被众人周知的时候，很多人感慨，零售市场到处都是京东和阿里的身影，作为一个零售行业的人，除非加入京东或者阿里，否则没有出路了。</p><p>颜艳春认为，未来相当长的一段时间里，70%的生意仍然是在线下场景完成的。</p><p>▲ 长按图片保存可分享至朋友圈</p><p>米兰有一家超市叫Eataly，在超市里可以坐下来休息、听音乐，甚至点两份牛排，十分受欢迎。</p><p>占地6500平米，一年可以营收4000万欧元。他们在美国纽约的分店，据说一年可以营收5000万美金。</p><p>这家店为什么可以取得成功呢？</p><p>因为互联网没有办法颠覆人性，线下的体验、人类情感的连接和宣泄是美妙的，不可取代的场景。</p><p>所以颜艳春大胆预言：<strong>得实体店者得天下，得头牌实体店，得天下第一</strong>。</p><p>再拿孩子王（”孩子王”是五星控股集团旗下零售事业，总部位于江苏南京。专业从事孕婴童商品一站式购物及提供全方位增值服务）为例。</p><p>孩子王在妈妈圈里拥有200家店、2000万用户，平均每家店拥有10万用户，每一个店每年举办100场线下活动直接连接起来的。将低频的交易场景转变成高频的约会场景，这个模式获得了巨大的成功。</p><p>聚焦到一个领域的实体店做得尤其漂亮。</p><p>包括Costco、Airbnb、7-11在内的公司，都只关注一个领域，亚马逊只卖最畅销的1000本书。</p><p>盒马鲜生只做吃这个品类，并将其发挥到极致，承诺不卖隔夜肉，只卖当天的肉和菜。光上海的10家店铺就拥有200万用户，店铺里面热闹的氛围是很棒的高频场景。</p><p>这些店都有一个共同的特征，它们不是传统的实体店，而是经过互联网加工过的实体店。</p><p>在实体店这个高度碎片化的市场里，即便投资100家公司，也不一定能够控制10%的市场份额。</p><p>这对于创业者来说，是一种机会，不是大家一起集中开喜茶，而是应该去思考如何去团结存量，如何用互联网(数字化)手段，让实体店过得更滋润。</p><p><strong>三、哪怕1%的收益，效益都非常大</strong></p><p>许多大型企业在使用互联网的过程当中迭代速度很快，因为互联网化过程带给它们很多有用的信息数据，让企业经营者能够更深层地理解自己所处的行业，这是互联网带来很重要的变化。</p><p>BAT之后诞生的新型企业，并不依赖简单的商业模式，而是学会驾驭了一种新型工具，对于人工智能更是如此。人工智能出现，会有一批更加新型的企业崛起，BAT很难在商业模式上跟它们直面竞争。</p><p>给大家举几个例子。</p><p>心上，现在是全国最大的二手奢侈品交易平台。最开始的业务全部是线下进行的，进行—、二手奢侈品的洗涤和养护，有4家直营店，40家加盟店。</p><p>在2014年时，创始人董博文决定做线上转型，这个过程势必有很大的困难。她一开始不清楚互联网商业逻辑，于是开始招兵买马一点一点构建互联网团队。</p><p>使用互联网工具之后，她发现很多客户是可以量化的，原来的用户定位和商品定位不够准确。</p><p>转型初期，她认为线上互联网奢侈品的交易平台应该是高端奢侈品，客单价是5000块钱左右，后来通过调整数据定位客户类型后发现，价格越低成交量越大，1750元是最优点。</p><p>二手奢侈品交易平台面对的是小康人群或者是中产人群，在消费过程中的认知应该是：我需要刚需品，而我不需要为了这东西付很多钱。所以她在数据调整过程当中理解到之前的用户定位是错误的。</p><p>同样的，她在供应链里也发现了一些问题。比如公司买的洗涤养护液和面辅料，这些东西可能是通过A公司去买，物流过程很复杂，账期很长，价格很高。</p><p>搭起整个互联网控制结构以后，她发现进货环节、产品特性、用户类型存在问题，然后开始不断地进行迭代。</p><p>这个过程中能非常明显地感觉到她在驾驭工具，最开始使用互联网工具后，她认为只是搭建了一个网站而已，后来这个工具给她带来了大量的数据和参考依据，她也越来越了解自己的商业模式。</p><p>任何一个公司都是倾向于产业升级和企业升级，把企业原来的那套理论体系逐渐的总结成新的规律去推动，把公司做得越来越规范的过程。</p><p>这是一个从经验走向规范化、走向数据化、走向结构化的过程，互联网只是其中一个推动的工具，只是使某一些企业在从信息化走向数据结构化的过程中，让它的数据变得更加标准，所以才能更深刻地理解自己的商业模式过程。</p><p>比如像农业和工业企业也能受到互联网影响，是因为原来他们的管理都是依靠于人进行管理的，依靠于自己的经验进行管理的。</p><p>而突然有了互联网之后，多出了一种数据化、量化的工具，使得整个行业更加标准化。</p><p>比如农业公司甲加由，一个在河南的农业公司，它很快从工业化衍生出了金融属性化，原因是它非常注重量化管理，他们对所有农户的工作状态用信用评级、用数据化衡量，做到了很多村镇银行很难办到的一步。</p><p>通过量化管理，它能给农户进行评级，对接银行、金融产品，给农户发放贷款做保险、卖期货。</p><p><strong>传统行业拥抱互联网，哪怕有1%的提升，都会产生非常高的效益。不管是农业、电力、航空、铁路还是石油。</strong></p><p>中国宽带产业基金合伙人周耘认为，产业互联网产生的经济效益，会有几个方面：</p><p>① 工业升级：</p><p>生产设备和物联网相结合，不管是物联网，还是供应链、工单、流程再造，都跟提升效益相关；</p><p>② 服务升级：</p><p>比如想知道外出人员，去哪了？做什么？你无从了解，现在可以通过移动互联网，通过位置服务，通过跟客户交互，都能知道了，也能提高效率。</p><p>在当前的国家经济形势下，正好赶上下一个浪潮：产业互联网，2B企业越来越多，<strong>传统行业和互联网的相互结合，会孕育着更多的投资和机会。</strong></p><p><strong>四、用对姿势，很关键</strong></p><p>企业的成长其实跟人的进化是很像的，都是不断使用新工具的过程。</p><p>但在工具的使用过程中，一些公司并没有利用得恰如其分。</p><p>2016年，投资了特斯拉、推特、百度的德丰杰，其中国的德丰杰龙脉基金合伙人王岳华指出，消费互联网时代已是过去，产业互联网时代才是未来。</p><p>当时他就已经看到消费者互联网的渗透增长变慢，变为稳定。国内传统制造业很多产业比如陶瓷业、家装业，很多传统产业没有很好地应用互联网化。</p><p>我们来看这样一个故事，古代打仗都用冷兵器，近代打仗用热兵器，这两种兵器的更迭是在什么时候？</p><p>在19世纪美国南北战争中。在那个时候刚配备枪炮的军队根本不知道怎么用，于是两边军队各站成一排，两边的军官在短暂沟通后下令开打，两边就开始相互扫射，这是一个令人啼笑皆非的故事。</p><p>为什么会出现这种问题？</p><p>因为对于军官和士兵来讲，他们使用了新的工具，但是没有更新战术和方法。方法论、战术是非常重要的，当时的枪怎么用，大家都不知道，还是处于拿着枪互相肉搏的状态，这是典型的用工具和战术的更迭过程。</p><p>我们每天都需要接触大量的互联网公司，大多数公司都声称自己的产品是互联网化的，但其实它们并不是标准的互联网公司。</p><p><strong>他们虽然有了新的互联网工具，但却不知道如何使用。</strong></p><p>还有一种情况是，有些科技公司想赋能传统行业，却找不到正确的路径，拿金融客户举例。</p><p>当前，随着经济增速放缓，息差收窄，监管趋严，互联网金融科技企业全面跨界渗透，中小银行的生存环境日益严峻，转型求变已成必然之势。</p><p>行业实践证明，金融科技的运用可以帮助银行提升核心业务能力、业务效率、用户体验，降低风险与成本，是中小银行实现转型的必备能力。</p><p>除了一些大型银行和全国性股份制银行，一些小型的农商行们普遍存在资产规模小、业务区域受限、风险控制能力弱等短板。</p><p>因此，为这类客户服务的供应商也特别多，其中既有各种国际巨头IOE、MBB、四大……，它们把这里视为自己的利润主战场；也有N多本土化的服务商，想进来分一杯羹。</p><p>总之，蛇有蛇路，鼠有鼠道，八仙过海，各显神通。但其中，真正能做到，理解金融类客户业务本质的并不多。</p><p>传统产业的升级，有时需要自己内向成长，有时需要借助外力，当外力的操作姿势不对时，也需要传统产业和外力打成一片，两者真正融合到一起。</p><p>当然，也有一些行业可能真的不适合互联网，这也需要我们警惕。</p><p>很多人认为很多To B的行业可以做线上化，于是出现了找木网、找纱线、纺织、建材这些细分类目的网站，这其实并不算严格意义上的互联网企业。</p><p>比如一家建材公司想把所有的建材、石料板材都放到线上，创始人的网站构想也非常清楚，团队干劲也比较足，每年有几个亿的成交量，开始觉得做得不错。</p><p>最后到公司一看，发现公司的工作状态是什么？虽然有网站，但没有人运营维护，所有人都在打销售电话，这是完全依赖于人和客户进行沟通的一种商业模式，它不能算是一个互联网化的公司。</p><p>互联网化公司最开始的时候要能看到商品是标准的，而不依赖于人和客户沟通，这是很重要的一点。</p><p>再比一个纱线公司，前端的研发和后端的布局是很完善的，以为对于纱这一品类是可以互联网化的。因为这个行业可能是50个SKU（库存进出计量单位），然后把它们全部标准化放到线上，大家在线上进行交易。</p><p>结果到公司去看的时候，很让人震惊的是，纱线有12000到15000种SKU，每一年下雨的雨水不一样，纱线韧性弹性不一样，边纹不一样，口径粗细不一样，颜色不一样，每一种纱线SKU有50多种标签，出来之后有几万种SKU，买方就没有办法在网上选择。</p><p>所有的人买纱线都是要亲自根据手感来挑选——“这种纱线对我有效，以后不要麻烦看别的了，以后我只进货这一种”。它是高度依赖于线下体验的产品，这种产品非常难以互联网化。</p><p>在供应链中从生产过程、到仓储流转、到分销，有很多的企业，比如第二产业中建材类等行业，都是如此。</p><p>并不是所有的行业都可以互联网化，并不是所有的企业用同一种方式进行转型都是可以升级的，完全不是的。</p><p>很多行业没有办法进行互联网转型升级，只能拿它作为辅助性工具管理公司。</p><p>产业互联网的大潮下，行人急匆匆，审时度势很重要，不忘初心更要紧。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 杂记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 杂记 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>技术团队的4个难题</title>
       <link href="/2019/03/17/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%844%E4%B8%AA%E9%9A%BE%E9%A2%98/"/>
       <url>/2019/03/17/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%844%E4%B8%AA%E9%9A%BE%E9%A2%98/</url>
@@ -1396,6 +1471,31 @@
         <tags>
             
             <tag> 开发效率 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>哪怕1%的提升，效益都非常大 | 当传统拥抱互联网</title>
+      <link href="/2019/03/17/%E6%9D%82%E8%AE%B0/%E5%BD%93%E4%BC%A0%E7%BB%9F%E6%8B%A5%E6%8A%B1%E4%BA%92%E8%81%94%E7%BD%91/"/>
+      <url>/2019/03/17/%E6%9D%82%E8%AE%B0/%E5%BD%93%E4%BC%A0%E7%BB%9F%E6%8B%A5%E6%8A%B1%E4%BA%92%E8%81%94%E7%BD%91/</url>
+      
+        <content type="html"><![CDATA[<p>文章来自笔记侠，一直关注笔记侠的文章，分享</p><p><a href="https://mp.weixin.qq.com/s/D4mg4iNNgeSc8jpWcNKrpg">https://mp.weixin.qq.com/s/D4mg4iNNgeSc8jpWcNKrpg</a></p><p>故事硬核《独家深访：腾讯变革150天全记录》中有这样一个细节。2016年腾讯云峰会，马化腾出现在会场，给云站台。</p><p>他的鲜明风格之一就是不给腾讯任何产品站台——一个例行邀请，“竟然来了”，汤道生回忆，云团队像过节一样开心，“关键他不仅仅是给云的团队看，他出来是给整个行业看”。</p><p>最终，腾讯在2018年“香港总办会议”的共识中达成了最重要的几项：</p><p>一、进行组织架构调整，成立云与智慧产业事业群（CSIG），主攻产业互联网；</p><p>二、从TO C 到 TO B，继续巩固消费互联网，重兵投入产业互联网。</p><p>国家在发生深刻转型，全面的数字化、智能化时代已经来临，每个产业都在拥抱云、大数据与人工智能，“跟以前拥抱电一样”。</p><p>早在2013年底，马化腾就提出互联网+的概念。他当时去国家发改委演讲，向主任、各司局局长、处长将近600人，讲用互联网去“+”传统的各行各业。两场重要演讲之后，这个概念流行开来。</p><p>2015年两会前，马化腾受邀向政府智库提交了“互联网+”的意见。这个概念被写入了政府工作报告。</p><p>那正是“互联网+”如日中天的时候，“互联网+打车”颠覆出行，“互联网外卖”改写餐饮，“互联网支付”影响金融……一时间互联网人都在说赋能、颠覆，仿佛新的大革命已然来临，正大刀阔斧重组重造。</p><p>但互联网当主角，传统行业不服气，说“我+你还差不多” 。他们的忧虑在于，一旦开门欢迎互联网，下场会不会是把自个儿颠覆了。</p><p>行至深水区，“+”的对象变成了那些有着高壁垒的行业——教育、医疗、能源、制造业……腾讯2B前方团队突然发现“+”不了了，许多产业的核心技术，互联网公司不懂，人家也不可能把自己的命脉交到别人手上。</p><p>僵局之中，马化腾捕捉到一个奇特的变化信号。</p><p>2016年两会期间，他去拜访链家CEO左晖，了解到了全新的故事样本：一个线下传统中介机构不仅没有被互联网企业入侵、颠覆，还倒攻线上，成功逆袭，“最终成了老大”。</p><p><strong>一、拥抱互联网，如火如荼</strong></p><p>王兴在2016年就新美大公司上半年工作进行了一次内部讲话，他说：“往后看，‘互联网＋’要做的是各个行业从上游到下游的产业互联网化。</p><p>不是仅仅停留在最末端做营销、做交易那一小段，而是真正能够用互联网、用IT全面提升整个行业的效率…</p><p>‘互联网＋’根本上还是要靠创新服务于各行各业，靠互联网、靠IT技术为各行各业的各个环节提升体验、提高效率、降低成本。”</p><p>正如王兴所言：“从最宏大的角度来讲，整个中国经济也进入了‘下半场’。党和政府讲‘新常态’差不多要两年了，从去年年底到现在，也在反复讲‘供给侧结构性改革’。</p><p>如果你去细看这些提法背后的论述，你就能看到这些论述并不是中央领导的‘拍脑袋’和‘心血来潮’，而是中国经济发展到了这个阶段，确实是需要转变增长模式。</p><p>过去那种粗放的高速增长已经一去不复返了，不能再简单追求GDP的数字，中国经济也是进入了‘下半场’的状态。”</p><p>▲ 长按图片保存可分享至朋友圈</p><p>投资了新美大、优步、Airbnb等的宽带资本，也在2016年就已经提出有一个更广阔的市场叫“互联网+”（“互联网+”正是马化腾过去重点在公开场合提及的），也就是“产业互联网”。各种各样的企业，都得拥抱互联网，不拥抱互联网，就会面临着各种问题。</p><p>最先和互联网碰撞的一批是零售行业。</p><p>1.食</p><p>2017年末，2018年初，随着电商红利见底，阿里、京东等线上巨头开始大举进军线下市场，纷纷开设实体店。</p><p>如此一来，零售企业的生存环境便遭到进一步挤压。为求生存发展，零售企业开启转型之路，纷纷推出智慧门店，如沃尔玛的惠选超市、家乐福的Le Marche、优衣库的数字体验馆、苏宁的苏宁极物……</p><p>不同于传统零售门店，这些智慧门店引入了各种“黑科技”，如用自助收银机、“扫码购”等减少排队结账的时间，利用VR技术提供虚拟试装、试衣等。</p><p>永辉超市收到了腾讯集结全公司能力定制的智慧解决方案包——以选址为例，不再凭经验，而是在腾讯云预测销量前提下科学布局。市场占有率前十的超市品牌5家变成了腾讯的盟友。</p><p>永辉超市的互联网升级做得相对较快，其中一个原因是在传统行业基础上，创始人张轩宁非常重视人，重视年轻的高精尖团队，并从互联网挖过去人，发展非常快。</p><p>《第三次零售革命》作者、盛景网联合伙人颜艳春研究了7-11的损益表，发现7-11日本公司8000名员工创造了接近100亿人民币的净利润，人均创造利润为120万元，人效比肩世界上最赚钱的电商平台公司阿里巴巴。</p><p>这背后，是一个快消品行业的产业共同体和命运共同体，90%的参与方，无论上游、中游还是下游都获得了3-5倍的成长。</p><p>之前，在很多人的眼里，7-11是一个传统的连锁便利店，实际上，对7-11的这个认知是错误的。</p><p>它的模型：7-11总部着手把在日本每一个商圈里头部、碎片化的需求连接起来，团结进来。</p><p>就像三峡大坝一样，把需求端2万家夫妻老婆店团结起来，通过产业路由器，把供给端的178个工厂，还有140个物流中心连接起来，但这都不是它自己的资产，全部是这些头牌供给。</p><p>它根本就不是一家传统商业模式的零售公司，7-11将自己打造成为产业路由器平台，将这些小店与这些物流中心和所有工厂实时连接起来。</p><p>将自己唯一一个中介去中介化，4个不赚（不赚差价，不赚通道费，不赚佣金，不赚广告费）。</p><p>通过共享采购、共享配送、共享制造、共享研发、共享库存，共享供应链，为小店、小工厂提供了三大赋能（从商品赋能、经营赋能到基础设施赋能），成就了他们，每家的投资都得到了很大的回报。</p><p>7-11创造了一种新的利他经济模型，把实体经济和电商经济所有的商业逻辑彻底摧毁。</p><p>其实不只是智慧零售，各行各业的盟友越来越多。</p><p>2.衣</p><p>2018年3月30日，优衣库全新独栋概念店将在深圳万象天地正式开业。</p><p>优衣库在这家门店首次推出融合线上线下、打通实体与虚拟的“数字体验馆”，在店内的货架侧面和四方立柱的单面墙上安装了两款智能科技。</p><p>四方立柱上安装的是一款智能语音集成设备“智能小U”：顾客站在智能小U面前，设备自动完成对顾客的五官识别。</p><p>顾客可触摸屏幕商品清单，点击自己喜欢的服饰，然后进入4D虚拟试穿画面。</p><p>货架侧面的电子大屏则主要突出广告功能，只要顾客打开手机QQ的扫一扫功能，对着大屏上的静态海报扫描一遍，手机屏幕立即出现海报对应的TVC广告。</p><p>据悉，3月30日起，数字体验馆将在优衣库全国近600家门店陆续上市。</p><p>3.住</p><p>我们从衣食走到住房。</p><p>有人把近两年疯狂扩张的链家称为现象级公司，这家原本盘踞在北京的房地产中介公司在2015年进行了如火如荼的并购，把业务扩展到了全国。</p><p>链家长期以来就是一家跨界企业，从最初的房地产网站起家，到后来转向线下，再到现在的互联网化，链家既不在互联网圈，也不完全是传统意义上的地产中介公司。</p><p>之前，链家的高管们被分为势均力敌的两队，一队负责用互联网思维来干掉链家(简称“互联网派”)，一队作为传统中介琢磨如何应对(简称“传统派”)。这是左晖一直拷问管理层的一个问题。　</p><p>“当时思路没有现在这么清晰。”链家地产副总裁林倩回忆道。</p><p>管理层们脑洞大开，在讨论互联网到底能在多大程度上取代传统中介时，“互联网派”几乎取得了压倒性的胜利。</p><p>事实上，这直接影响了链家地产之后在线上的布局。从彼时起，每年投在链家在线上的资金都在亿元左右。</p><p>多年布局下来，链家在线促成的二手房买卖成交占到其整体成交量的30%左右，这一数字已经高出链家在其它互联网公司购买端口来促成成交的比例。</p><p>而在链家董事长左晖心目中，链家一直是一个由数据驱动的房地产平台。</p><p>他称自己2013年发微博吹牛说链家已经有100TB的数据。但两年时间后，数据库的规模已经增至1000TB，并且还在不断增长。</p><p>在二手房领域，不仅仅是信息分散，且没有被电子化，定义不够标准和统一。</p><p>贝壳找房和链家网CEO彭永东举例说，北京有700多万套二手房，有10万种户型。</p><p>每套房子的户型图，长、宽、高的尺寸，一个小区到底有多少这样的户型，同样户型能卖多少钱，不同用户定价是多少，都要被整理到数据库中去，以供决策参考。</p><p><strong>二、干不倒的实体店</strong></p><p>开篇，我们就讲到了零售行业。零售行业拥抱互联网的速度更快、也更容易。</p><p>2015年初，盒马鲜生的创始人侯毅，用一个下午的时间改变了阿里对线下店的认知。</p><p>过去，阿里认为电商遇上实体店，就像端机关枪的遇上了冷兵器，简直所向无敌。</p><p>但是，市场是在不断变化的，那时阿里高管第一次意识到，实体店是不可取代的。正因如此，阿里悄悄的布下了一个局，开始正式涉足线下经济。</p><p>两年前，知道盒马鲜生隶属阿里公司的人寥寥无几。</p><p>当这个信息被众人周知的时候，很多人感慨，零售市场到处都是京东和阿里的身影，作为一个零售行业的人，除非加入京东或者阿里，否则没有出路了。</p><p>颜艳春认为，未来相当长的一段时间里，70%的生意仍然是在线下场景完成的。</p><p>▲ 长按图片保存可分享至朋友圈</p><p>米兰有一家超市叫Eataly，在超市里可以坐下来休息、听音乐，甚至点两份牛排，十分受欢迎。</p><p>占地6500平米，一年可以营收4000万欧元。他们在美国纽约的分店，据说一年可以营收5000万美金。</p><p>这家店为什么可以取得成功呢？</p><p>因为互联网没有办法颠覆人性，线下的体验、人类情感的连接和宣泄是美妙的，不可取代的场景。</p><p>所以颜艳春大胆预言：<strong>得实体店者得天下，得头牌实体店，得天下第一</strong>。</p><p>再拿孩子王（”孩子王”是五星控股集团旗下零售事业，总部位于江苏南京。专业从事孕婴童商品一站式购物及提供全方位增值服务）为例。</p><p>孩子王在妈妈圈里拥有200家店、2000万用户，平均每家店拥有10万用户，每一个店每年举办100场线下活动直接连接起来的。将低频的交易场景转变成高频的约会场景，这个模式获得了巨大的成功。</p><p>聚焦到一个领域的实体店做得尤其漂亮。</p><p>包括Costco、Airbnb、7-11在内的公司，都只关注一个领域，亚马逊只卖最畅销的1000本书。</p><p>盒马鲜生只做吃这个品类，并将其发挥到极致，承诺不卖隔夜肉，只卖当天的肉和菜。光上海的10家店铺就拥有200万用户，店铺里面热闹的氛围是很棒的高频场景。</p><p>这些店都有一个共同的特征，它们不是传统的实体店，而是经过互联网加工过的实体店。</p><p>在实体店这个高度碎片化的市场里，即便投资100家公司，也不一定能够控制10%的市场份额。</p><p>这对于创业者来说，是一种机会，不是大家一起集中开喜茶，而是应该去思考如何去团结存量，如何用互联网(数字化)手段，让实体店过得更滋润。</p><p><strong>三、哪怕1%的收益，效益都非常大</strong></p><p>许多大型企业在使用互联网的过程当中迭代速度很快，因为互联网化过程带给它们很多有用的信息数据，让企业经营者能够更深层地理解自己所处的行业，这是互联网带来很重要的变化。</p><p>BAT之后诞生的新型企业，并不依赖简单的商业模式，而是学会驾驭了一种新型工具，对于人工智能更是如此。人工智能出现，会有一批更加新型的企业崛起，BAT很难在商业模式上跟它们直面竞争。</p><p>给大家举几个例子。</p><p>心上，现在是全国最大的二手奢侈品交易平台。最开始的业务全部是线下进行的，进行—、二手奢侈品的洗涤和养护，有4家直营店，40家加盟店。</p><p>在2014年时，创始人董博文决定做线上转型，这个过程势必有很大的困难。她一开始不清楚互联网商业逻辑，于是开始招兵买马一点一点构建互联网团队。</p><p>使用互联网工具之后，她发现很多客户是可以量化的，原来的用户定位和商品定位不够准确。</p><p>转型初期，她认为线上互联网奢侈品的交易平台应该是高端奢侈品，客单价是5000块钱左右，后来通过调整数据定位客户类型后发现，价格越低成交量越大，1750元是最优点。</p><p>二手奢侈品交易平台面对的是小康人群或者是中产人群，在消费过程中的认知应该是：我需要刚需品，而我不需要为了这东西付很多钱。所以她在数据调整过程当中理解到之前的用户定位是错误的。</p><p>同样的，她在供应链里也发现了一些问题。比如公司买的洗涤养护液和面辅料，这些东西可能是通过A公司去买，物流过程很复杂，账期很长，价格很高。</p><p>搭起整个互联网控制结构以后，她发现进货环节、产品特性、用户类型存在问题，然后开始不断地进行迭代。</p><p>这个过程中能非常明显地感觉到她在驾驭工具，最开始使用互联网工具后，她认为只是搭建了一个网站而已，后来这个工具给她带来了大量的数据和参考依据，她也越来越了解自己的商业模式。</p><p>任何一个公司都是倾向于产业升级和企业升级，把企业原来的那套理论体系逐渐的总结成新的规律去推动，把公司做得越来越规范的过程。</p><p>这是一个从经验走向规范化、走向数据化、走向结构化的过程，互联网只是其中一个推动的工具，只是使某一些企业在从信息化走向数据结构化的过程中，让它的数据变得更加标准，所以才能更深刻地理解自己的商业模式过程。</p><p>比如像农业和工业企业也能受到互联网影响，是因为原来他们的管理都是依靠于人进行管理的，依靠于自己的经验进行管理的。</p><p>而突然有了互联网之后，多出了一种数据化、量化的工具，使得整个行业更加标准化。</p><p>比如农业公司甲加由，一个在河南的农业公司，它很快从工业化衍生出了金融属性化，原因是它非常注重量化管理，他们对所有农户的工作状态用信用评级、用数据化衡量，做到了很多村镇银行很难办到的一步。</p><p>通过量化管理，它能给农户进行评级，对接银行、金融产品，给农户发放贷款做保险、卖期货。</p><p><strong>传统行业拥抱互联网，哪怕有1%的提升，都会产生非常高的效益。不管是农业、电力、航空、铁路还是石油。</strong></p><p>中国宽带产业基金合伙人周耘认为，产业互联网产生的经济效益，会有几个方面：</p><p>① 工业升级：</p><p>生产设备和物联网相结合，不管是物联网，还是供应链、工单、流程再造，都跟提升效益相关；</p><p>② 服务升级：</p><p>比如想知道外出人员，去哪了？做什么？你无从了解，现在可以通过移动互联网，通过位置服务，通过跟客户交互，都能知道了，也能提高效率。</p><p>在当前的国家经济形势下，正好赶上下一个浪潮：产业互联网，2B企业越来越多，<strong>传统行业和互联网的相互结合，会孕育着更多的投资和机会。</strong></p><p><strong>四、用对姿势，很关键</strong></p><p>企业的成长其实跟人的进化是很像的，都是不断使用新工具的过程。</p><p>但在工具的使用过程中，一些公司并没有利用得恰如其分。</p><p>2016年，投资了特斯拉、推特、百度的德丰杰，其中国的德丰杰龙脉基金合伙人王岳华指出，消费互联网时代已是过去，产业互联网时代才是未来。</p><p>当时他就已经看到消费者互联网的渗透增长变慢，变为稳定。国内传统制造业很多产业比如陶瓷业、家装业，很多传统产业没有很好地应用互联网化。</p><p>我们来看这样一个故事，古代打仗都用冷兵器，近代打仗用热兵器，这两种兵器的更迭是在什么时候？</p><p>在19世纪美国南北战争中。在那个时候刚配备枪炮的军队根本不知道怎么用，于是两边军队各站成一排，两边的军官在短暂沟通后下令开打，两边就开始相互扫射，这是一个令人啼笑皆非的故事。</p><p>为什么会出现这种问题？</p><p>因为对于军官和士兵来讲，他们使用了新的工具，但是没有更新战术和方法。方法论、战术是非常重要的，当时的枪怎么用，大家都不知道，还是处于拿着枪互相肉搏的状态，这是典型的用工具和战术的更迭过程。</p><p>我们每天都需要接触大量的互联网公司，大多数公司都声称自己的产品是互联网化的，但其实它们并不是标准的互联网公司。</p><p><strong>他们虽然有了新的互联网工具，但却不知道如何使用。</strong></p><p>还有一种情况是，有些科技公司想赋能传统行业，却找不到正确的路径，拿金融客户举例。</p><p>当前，随着经济增速放缓，息差收窄，监管趋严，互联网金融科技企业全面跨界渗透，中小银行的生存环境日益严峻，转型求变已成必然之势。</p><p>行业实践证明，金融科技的运用可以帮助银行提升核心业务能力、业务效率、用户体验，降低风险与成本，是中小银行实现转型的必备能力。</p><p>除了一些大型银行和全国性股份制银行，一些小型的农商行们普遍存在资产规模小、业务区域受限、风险控制能力弱等短板。</p><p>因此，为这类客户服务的供应商也特别多，其中既有各种国际巨头IOE、MBB、四大……，它们把这里视为自己的利润主战场；也有N多本土化的服务商，想进来分一杯羹。</p><p>总之，蛇有蛇路，鼠有鼠道，八仙过海，各显神通。但其中，真正能做到，理解金融类客户业务本质的并不多。</p><p>传统产业的升级，有时需要自己内向成长，有时需要借助外力，当外力的操作姿势不对时，也需要传统产业和外力打成一片，两者真正融合到一起。</p><p>当然，也有一些行业可能真的不适合互联网，这也需要我们警惕。</p><p>很多人认为很多To B的行业可以做线上化，于是出现了找木网、找纱线、纺织、建材这些细分类目的网站，这其实并不算严格意义上的互联网企业。</p><p>比如一家建材公司想把所有的建材、石料板材都放到线上，创始人的网站构想也非常清楚，团队干劲也比较足，每年有几个亿的成交量，开始觉得做得不错。</p><p>最后到公司一看，发现公司的工作状态是什么？虽然有网站，但没有人运营维护，所有人都在打销售电话，这是完全依赖于人和客户进行沟通的一种商业模式，它不能算是一个互联网化的公司。</p><p>互联网化公司最开始的时候要能看到商品是标准的，而不依赖于人和客户沟通，这是很重要的一点。</p><p>再比一个纱线公司，前端的研发和后端的布局是很完善的，以为对于纱这一品类是可以互联网化的。因为这个行业可能是50个SKU（库存进出计量单位），然后把它们全部标准化放到线上，大家在线上进行交易。</p><p>结果到公司去看的时候，很让人震惊的是，纱线有12000到15000种SKU，每一年下雨的雨水不一样，纱线韧性弹性不一样，边纹不一样，口径粗细不一样，颜色不一样，每一种纱线SKU有50多种标签，出来之后有几万种SKU，买方就没有办法在网上选择。</p><p>所有的人买纱线都是要亲自根据手感来挑选——“这种纱线对我有效，以后不要麻烦看别的了，以后我只进货这一种”。它是高度依赖于线下体验的产品，这种产品非常难以互联网化。</p><p>在供应链中从生产过程、到仓储流转、到分销，有很多的企业，比如第二产业中建材类等行业，都是如此。</p><p>并不是所有的行业都可以互联网化，并不是所有的企业用同一种方式进行转型都是可以升级的，完全不是的。</p><p>很多行业没有办法进行互联网转型升级，只能拿它作为辅助性工具管理公司。</p><p>产业互联网的大潮下，行人急匆匆，审时度势很重要，不忘初心更要紧。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 杂记 </tag>
             
         </tags>
       
@@ -1804,31 +1904,6 @@
     
     
     <entry>
-      <title>一部震撼人心的电影——《人类》</title>
-      <link href="/2018/11/04/%E6%9D%82%E8%AE%B0/%E4%B8%80%E9%83%A8%E9%9C%87%E6%92%BC%E4%BA%BA%E5%BF%83%E7%9A%84%E7%94%B5%E5%BD%B1%E2%80%94%E2%80%94%E3%80%8A%E4%BA%BA%E7%B1%BB%E3%80%8B/"/>
-      <url>/2018/11/04/%E6%9D%82%E8%AE%B0/%E4%B8%80%E9%83%A8%E9%9C%87%E6%92%BC%E4%BA%BA%E5%BF%83%E7%9A%84%E7%94%B5%E5%BD%B1%E2%80%94%E2%80%94%E3%80%8A%E4%BA%BA%E7%B1%BB%E3%80%8B/</url>
-      
-        <content type="html"><![CDATA[<p><strong>法国著名纪录片导演 Yann Arthus-Bertrand，让2000个人坐在镜头前，讲出他们自己一生中最隐秘的故事，并以此拍摄了一部震撼人心的电影——《人类》！</strong></p><p>这是一部筹备15年，跨越50多个国家，动用88000名员工，21个月拍摄完成，已被翻译成14种语言，中文由周迅配音的，非常美、非常棒的记录片。</p><p>周迅说：“这是一部震撼人心的纪录片，我在配音的过程里哭了好几次。第一次看完这个纪录片，我就觉得一定要为这个电影做些什么</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/741a45be93a3442fa2e84e930c881347.jpeg" alt="img"></p><p>△美国黄石公园大棱镜温泉</p><p>你可曾见过视觉如此唯美震撼的地球？</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/6df1e31f060e4672935bc408c3ff768a.jpeg" alt="img"></p><p>澳大利亚大堡礁</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/6ce853d1b698472f8e008af4c9126070.jpeg" alt="img"></p><p>地球，是宇宙的奇迹，生命的摇篮，人类共同的家园。她给人类提供生存的空间和资源，使人类在这里生息繁衍。</p><p><strong>史上投资最大的环保纪录片——</strong></p><p>这是一部筹备15年，跨越50多个国家，动用88000名员工，21个月拍摄完成，已被翻译成14种语言，中文由周迅配音的，非常美、非常棒的记录片。</p><p>周迅说：“这是一部震撼人心的纪录片，我在配音的过程里哭了好几次。第一次看完这个纪录片，我就觉得一定要为这个电影做些什么，一定要让这个纪录片被更多的人看到。”</p><p>《Home》的导演，是著名法国摄影师、生态学家、环境保护者Yann Arthus-Bertrand (扬·阿尔蒂斯-贝特朗)，Yann Arthus-Bertrand专门从事空中摄影已超过30年，极具声望。</p><p>他的空中摄影作品集《Earth from Above（鸟瞰地球）》被翻译成24种语言，销售量超过3百万册；同名的免费摄影展在全球110个城市展出，观众达1.2亿人次。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/55f1beedf0c24110aed6eeba32c1ae5e.jpeg" alt="img"></p><p>而《Home》，便是Yann Arthus-Bertrand 30年空中摄影和环保工作的一次动态精华荟萃。法国著名导演吕克·贝松 ( Luc Besson, 《这个杀手不太冷》、《第五元素》导演) 则担任《Home》的制片。</p><p>贝特朗和他的团队耗费了一年半时间，遍历整个地球，才得以完成此片。来自五十多个国家的影像给人类带来了这样一个信息：</p><p>我们应当认识到人类对地球的残酷掠夺，应当改变我们的消费模式。</p><p>演员周迅为了将本片引进中国颇费周折，她为该片的中文版进行了旁白配音。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/a04fbd8fb2534cb4a24674e791910c65.jpeg" alt="img"></p><blockquote><p><strong>拍摄幕后</strong></p></blockquote><p>经过四十亿年的漫长演变，地球变成一个物种繁多、资源丰富、奇特美丽的蓝色星球。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/0da717f8fda543cabe0a9226e63f8b03.jpeg" alt="img"></p><p>然而自人类出现以来，我们只用了二十万年的时间，便将地球的宝贵资源消耗殆尽。珍稀物种灭绝，原始资源奇缺，污染日益严重，人类以及地球的明天将何去何从？</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/743f77a3d78b415c92236a2e3b0727b5.jpeg" alt="img"></p><p>被蚕食的森林</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/a20d2d3eff8547b399c452927f3ec87a.jpeg" alt="img"></p><p>印度拉贾斯坦等候取水的人群</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/5331db0a26c64fcbab5e629bf6cc5445.jpeg" alt="img"></p><p>融化的冰川</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/4ba67a4366c449b28f2c9c08a38bff23.jpeg" alt="img"></p><p>本片素材长达488小时，拍摄周期为21个月，共动用88,000名员工，拍摄范围从澳洲海底的大堡礁到非洲肯亚高原的乞力马扎罗山；从亚玛逊热带雨林到戈壁沙漠；从美国德萨斯州连绵不断的棉花田到中国上海、深圳的工业城镇。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/526096197ae74170851c5a8fc5aece01.jpeg" alt="img"></p><p>影片以上帝的俯瞰视角向世人展现地球的绝美以及日趋危急的现状。</p><p>明天并不遥远，但我们该选择怎样的未来？</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/1a43fbdd3ad54cc2ad7e0496491295b5.jpeg" alt="img"></p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/fd8ff40732af4f1ea3b827f5a84e518a.jpeg" alt="img"></p><p>为了展示各地广阔的风光，《家园》采用了各种不同拍摄方式，导演扬·阿尔蒂斯-贝特朗跟一名摄像师、一位摄影技师和一位飞行员驾驶一架小型直升机飞跃了世界上55个国家，历时18个月。</p><p>拍摄过程中使用了”Cineflex”高清摄像机，这种摄像机原本是一种军事器械，能够有效减轻振动从而获得高清画面。</p><p>在一天内，《家园》在181个国家发行，打破了历史上电影发行量最大的世界纪录。</p><p>在YouTube上发布后，《家园》在头24小时里即获得了400,000的点击率，在世界各地的电视台也收到了很高的收视率。在法国电视2台首映时，仅在法国就有超过八百万的观众收看。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/db35dfb1e7044c79aee8a56464ad63f6.jpeg" alt="img"></p><p>扬·阿尔蒂斯-贝特朗的航空影像，既是对地球直观真实的再现，又美得令人吃惊；粗看恢弘大气，仔细观察又会注意到被清楚展现的细节，画面极具震撼力。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/f2ab7a6a66894837a52cc1282cf405e0.jpeg" alt="img"></p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/9f88d76026054466ba40b138297bbecb.jpeg" alt="img"></p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/6b7e9514cc3942f2b980c916f546a22a.jpeg" alt="img"></p><p>让影片增色不少的电影配乐，是由法国著名作曲家Armand Amar创作，并由布达佩斯交响乐团和上海音乐学院打击乐团演绎。</p><p>影片音乐中融汇了蒙古、亚美尼亚、伊朗等国的吟唱和器乐，使影片犹如冥想般舒缓又带着淡淡的哀伤，以另一种方式，传达了对地球家园现状的不安及深切怜爱之情。</p><blockquote><p><strong>地球故事</strong></p></blockquote><p>我们居住的这个蓝色星球，已经存在了45亿年，她孕育出来的万千物种长期一直相互依存。但只有20万年历史的人类，却快速掌控了这个星球并为所欲为，过度索取资源，打破了亿万年来的固有生态平衡。</p><p>在《Home》里面，我们了解到——</p><p>为了满足日益增长的食物需要，全球一半的谷物用于饲养提供肉类的牲口，生产1公斤牛肉就需要消耗1万3千升的水；</p><p>为了生产纸浆而砍伐原始森林大量种植桉树，生物的多样性被人为破坏，快速生长的桉树，抽干了地下的水分，快速消耗地球的资源。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/cb88cb7690d34b26aee49713732df880.jpeg" alt="img"></p><p>过去50年，人类对地球的改变，比前面20万年还要多，令这个美丽的蓝星球千疮百孔：大河断流，资源枯竭；冰川冰冠快速减少，气温上升，气候反常；森林消失，物种灭绝……</p><p>影片中，还列举纽约、拉斯维加斯、洛杉矶、深圳、孟买、东京和迪拜等城市，能源、水及食物被大量消耗的例子。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/3343c6cbe2a34acb85e7f310be8020af.jpeg" alt="img"></p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/a0a74e78325b48c199d52045a8ffc031.jpeg" alt="img"></p><p>整个纪录片表达了“相互联系”的主题：所有生物以及地球互相处于一个“微妙却至关重要”的自然平衡，任何生物都无法自给自足。</p><p>这是一些资料，可以供我们来了解我们的星球：</p><p>20％的世界人口消耗了80％的地球资源</p><p>全球军费开支多于援助发展中国家经费的12倍</p><p>每天有5千人死于受污染的食水，10亿人没有干净的饮用水</p><p>10亿人在饱受饥饿</p><p>全球超过50％销售的谷物用于喂食牲口与生化燃料上</p><p>全球40％耕地质量下降</p><p>每年有1300万公顷的林地给毁灭</p><p>1&#x2F;4的哺乳动物、1&#x2F;8的鸟类、1&#x2F;3的两栖动物濒临绝种，生物品种的死亡率快于自然速度1000倍</p><p>75％的渔产品已耗尽或面临耗尽</p><p>过去15年的平均温度是有纪录以来的最高</p><p>冰冠的厚度40年来减少了40％</p><p>到2050年，可能导致多达2亿的气候难民</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/236c4ae1a0b140498e6eb50144e658ed.jpeg" alt="img"></p><p>正如《Home》影片最后所传达的信息：</p><p>“现在已不再是悲观的时候，让我们立即联手，重要的不是我们失去了什么，而是我们剩下的还有什么。”</p><p>是继续破坏直至毁灭还是行动起来拯救我们唯一的家园？</p><p>答案就在你的一念之间！</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 杂记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 杂记 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Java代码优化总结</title>
       <link href="/2018/11/04/java/%20Java%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93-1/"/>
       <url>/2018/11/04/java/%20Java%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93-1/</url>
@@ -1846,6 +1921,31 @@
         <tags>
             
             <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>一部震撼人心的电影——《人类》</title>
+      <link href="/2018/11/04/%E6%9D%82%E8%AE%B0/%E4%B8%80%E9%83%A8%E9%9C%87%E6%92%BC%E4%BA%BA%E5%BF%83%E7%9A%84%E7%94%B5%E5%BD%B1%E2%80%94%E2%80%94%E3%80%8A%E4%BA%BA%E7%B1%BB%E3%80%8B/"/>
+      <url>/2018/11/04/%E6%9D%82%E8%AE%B0/%E4%B8%80%E9%83%A8%E9%9C%87%E6%92%BC%E4%BA%BA%E5%BF%83%E7%9A%84%E7%94%B5%E5%BD%B1%E2%80%94%E2%80%94%E3%80%8A%E4%BA%BA%E7%B1%BB%E3%80%8B/</url>
+      
+        <content type="html"><![CDATA[<p><strong>法国著名纪录片导演 Yann Arthus-Bertrand，让2000个人坐在镜头前，讲出他们自己一生中最隐秘的故事，并以此拍摄了一部震撼人心的电影——《人类》！</strong></p><p>这是一部筹备15年，跨越50多个国家，动用88000名员工，21个月拍摄完成，已被翻译成14种语言，中文由周迅配音的，非常美、非常棒的记录片。</p><p>周迅说：“这是一部震撼人心的纪录片，我在配音的过程里哭了好几次。第一次看完这个纪录片，我就觉得一定要为这个电影做些什么</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/741a45be93a3442fa2e84e930c881347.jpeg" alt="img"></p><p>△美国黄石公园大棱镜温泉</p><p>你可曾见过视觉如此唯美震撼的地球？</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/6df1e31f060e4672935bc408c3ff768a.jpeg" alt="img"></p><p>澳大利亚大堡礁</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/6ce853d1b698472f8e008af4c9126070.jpeg" alt="img"></p><p>地球，是宇宙的奇迹，生命的摇篮，人类共同的家园。她给人类提供生存的空间和资源，使人类在这里生息繁衍。</p><p><strong>史上投资最大的环保纪录片——</strong></p><p>这是一部筹备15年，跨越50多个国家，动用88000名员工，21个月拍摄完成，已被翻译成14种语言，中文由周迅配音的，非常美、非常棒的记录片。</p><p>周迅说：“这是一部震撼人心的纪录片，我在配音的过程里哭了好几次。第一次看完这个纪录片，我就觉得一定要为这个电影做些什么，一定要让这个纪录片被更多的人看到。”</p><p>《Home》的导演，是著名法国摄影师、生态学家、环境保护者Yann Arthus-Bertrand (扬·阿尔蒂斯-贝特朗)，Yann Arthus-Bertrand专门从事空中摄影已超过30年，极具声望。</p><p>他的空中摄影作品集《Earth from Above（鸟瞰地球）》被翻译成24种语言，销售量超过3百万册；同名的免费摄影展在全球110个城市展出，观众达1.2亿人次。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/55f1beedf0c24110aed6eeba32c1ae5e.jpeg" alt="img"></p><p>而《Home》，便是Yann Arthus-Bertrand 30年空中摄影和环保工作的一次动态精华荟萃。法国著名导演吕克·贝松 ( Luc Besson, 《这个杀手不太冷》、《第五元素》导演) 则担任《Home》的制片。</p><p>贝特朗和他的团队耗费了一年半时间，遍历整个地球，才得以完成此片。来自五十多个国家的影像给人类带来了这样一个信息：</p><p>我们应当认识到人类对地球的残酷掠夺，应当改变我们的消费模式。</p><p>演员周迅为了将本片引进中国颇费周折，她为该片的中文版进行了旁白配音。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/a04fbd8fb2534cb4a24674e791910c65.jpeg" alt="img"></p><blockquote><p><strong>拍摄幕后</strong></p></blockquote><p>经过四十亿年的漫长演变，地球变成一个物种繁多、资源丰富、奇特美丽的蓝色星球。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/0da717f8fda543cabe0a9226e63f8b03.jpeg" alt="img"></p><p>然而自人类出现以来，我们只用了二十万年的时间，便将地球的宝贵资源消耗殆尽。珍稀物种灭绝，原始资源奇缺，污染日益严重，人类以及地球的明天将何去何从？</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/743f77a3d78b415c92236a2e3b0727b5.jpeg" alt="img"></p><p>被蚕食的森林</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/a20d2d3eff8547b399c452927f3ec87a.jpeg" alt="img"></p><p>印度拉贾斯坦等候取水的人群</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/5331db0a26c64fcbab5e629bf6cc5445.jpeg" alt="img"></p><p>融化的冰川</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/4ba67a4366c449b28f2c9c08a38bff23.jpeg" alt="img"></p><p>本片素材长达488小时，拍摄周期为21个月，共动用88,000名员工，拍摄范围从澳洲海底的大堡礁到非洲肯亚高原的乞力马扎罗山；从亚玛逊热带雨林到戈壁沙漠；从美国德萨斯州连绵不断的棉花田到中国上海、深圳的工业城镇。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/526096197ae74170851c5a8fc5aece01.jpeg" alt="img"></p><p>影片以上帝的俯瞰视角向世人展现地球的绝美以及日趋危急的现状。</p><p>明天并不遥远，但我们该选择怎样的未来？</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/1a43fbdd3ad54cc2ad7e0496491295b5.jpeg" alt="img"></p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/fd8ff40732af4f1ea3b827f5a84e518a.jpeg" alt="img"></p><p>为了展示各地广阔的风光，《家园》采用了各种不同拍摄方式，导演扬·阿尔蒂斯-贝特朗跟一名摄像师、一位摄影技师和一位飞行员驾驶一架小型直升机飞跃了世界上55个国家，历时18个月。</p><p>拍摄过程中使用了”Cineflex”高清摄像机，这种摄像机原本是一种军事器械，能够有效减轻振动从而获得高清画面。</p><p>在一天内，《家园》在181个国家发行，打破了历史上电影发行量最大的世界纪录。</p><p>在YouTube上发布后，《家园》在头24小时里即获得了400,000的点击率，在世界各地的电视台也收到了很高的收视率。在法国电视2台首映时，仅在法国就有超过八百万的观众收看。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/db35dfb1e7044c79aee8a56464ad63f6.jpeg" alt="img"></p><p>扬·阿尔蒂斯-贝特朗的航空影像，既是对地球直观真实的再现，又美得令人吃惊；粗看恢弘大气，仔细观察又会注意到被清楚展现的细节，画面极具震撼力。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/f2ab7a6a66894837a52cc1282cf405e0.jpeg" alt="img"></p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/9f88d76026054466ba40b138297bbecb.jpeg" alt="img"></p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/6b7e9514cc3942f2b980c916f546a22a.jpeg" alt="img"></p><p>让影片增色不少的电影配乐，是由法国著名作曲家Armand Amar创作，并由布达佩斯交响乐团和上海音乐学院打击乐团演绎。</p><p>影片音乐中融汇了蒙古、亚美尼亚、伊朗等国的吟唱和器乐，使影片犹如冥想般舒缓又带着淡淡的哀伤，以另一种方式，传达了对地球家园现状的不安及深切怜爱之情。</p><blockquote><p><strong>地球故事</strong></p></blockquote><p>我们居住的这个蓝色星球，已经存在了45亿年，她孕育出来的万千物种长期一直相互依存。但只有20万年历史的人类，却快速掌控了这个星球并为所欲为，过度索取资源，打破了亿万年来的固有生态平衡。</p><p>在《Home》里面，我们了解到——</p><p>为了满足日益增长的食物需要，全球一半的谷物用于饲养提供肉类的牲口，生产1公斤牛肉就需要消耗1万3千升的水；</p><p>为了生产纸浆而砍伐原始森林大量种植桉树，生物的多样性被人为破坏，快速生长的桉树，抽干了地下的水分，快速消耗地球的资源。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/cb88cb7690d34b26aee49713732df880.jpeg" alt="img"></p><p>过去50年，人类对地球的改变，比前面20万年还要多，令这个美丽的蓝星球千疮百孔：大河断流，资源枯竭；冰川冰冠快速减少，气温上升，气候反常；森林消失，物种灭绝……</p><p>影片中，还列举纽约、拉斯维加斯、洛杉矶、深圳、孟买、东京和迪拜等城市，能源、水及食物被大量消耗的例子。</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/3343c6cbe2a34acb85e7f310be8020af.jpeg" alt="img"></p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/a0a74e78325b48c199d52045a8ffc031.jpeg" alt="img"></p><p>整个纪录片表达了“相互联系”的主题：所有生物以及地球互相处于一个“微妙却至关重要”的自然平衡，任何生物都无法自给自足。</p><p>这是一些资料，可以供我们来了解我们的星球：</p><p>20％的世界人口消耗了80％的地球资源</p><p>全球军费开支多于援助发展中国家经费的12倍</p><p>每天有5千人死于受污染的食水，10亿人没有干净的饮用水</p><p>10亿人在饱受饥饿</p><p>全球超过50％销售的谷物用于喂食牲口与生化燃料上</p><p>全球40％耕地质量下降</p><p>每年有1300万公顷的林地给毁灭</p><p>1&#x2F;4的哺乳动物、1&#x2F;8的鸟类、1&#x2F;3的两栖动物濒临绝种，生物品种的死亡率快于自然速度1000倍</p><p>75％的渔产品已耗尽或面临耗尽</p><p>过去15年的平均温度是有纪录以来的最高</p><p>冰冠的厚度40年来减少了40％</p><p>到2050年，可能导致多达2亿的气候难民</p><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190412/236c4ae1a0b140498e6eb50144e658ed.jpeg" alt="img"></p><p>正如《Home》影片最后所传达的信息：</p><p>“现在已不再是悲观的时候，让我们立即联手，重要的不是我们失去了什么，而是我们剩下的还有什么。”</p><p>是继续破坏直至毁灭还是行动起来拯救我们唯一的家园？</p><p>答案就在你的一念之间！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 杂记 </tag>
             
         </tags>
       
@@ -2129,31 +2229,6 @@
     
     
     <entry>
-      <title>语录摘要-互联网4个关键词</title>
-      <link href="/2018/07/08/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B00708/"/>
-      <url>/2018/07/08/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B00708/</url>
-      
-        <content type="html"><![CDATA[<p>  互联网+时代的四个关键词，分别是专注、极致、口碑和快速，这四大特点</p><hr><p>极致有三个支撑点，<br>第一叫产品思维。’<br>第二个叫痛点思维。我们要了解客户的三个点，叫痛点、痒点和兴奋点。<br>第三个叫尖叫点思维。你的产品一定有一款，哪怕是一点点也行，让人产生尖叫的感觉。</p><hr>]]></content>
-      
-      
-      <categories>
-          
-          <category> 杂记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 杂记 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Java内存模型总结</title>
       <link href="/2018/07/08/java/%20Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/"/>
       <url>/2018/07/08/java/%20Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/</url>
@@ -2171,6 +2246,31 @@
         <tags>
             
             <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>语录摘要-互联网4个关键词</title>
+      <link href="/2018/07/08/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B00708/"/>
+      <url>/2018/07/08/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B00708/</url>
+      
+        <content type="html"><![CDATA[<p>  互联网+时代的四个关键词，分别是专注、极致、口碑和快速，这四大特点</p><hr><p>极致有三个支撑点，<br>第一叫产品思维。’<br>第二个叫痛点思维。我们要了解客户的三个点，叫痛点、痒点和兴奋点。<br>第三个叫尖叫点思维。你的产品一定有一款，哪怕是一点点也行，让人产生尖叫的感觉。</p><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 杂记 </tag>
             
         </tags>
       
@@ -3158,7 +3258,7 @@
       <link href="/2017/09/07/%E5%B7%A5%E5%85%B7/%20ssh%20%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
       <url>/2017/09/07/%E5%B7%A5%E5%85%B7/%20ssh%20%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。<span id="more"></span> 一般在终端上通过 ssh 命令进行远程服务器登录。</p></blockquote><h3 id="远程登录服务器命令-ssh"><a href="#远程登录服务器命令-ssh" class="headerlink" title="远程登录服务器命令 ssh"></a>远程登录服务器命令 ssh</h3><ul><li>ssh username@ip地址</li></ul><p>例如： ssh <a href="mailto:&#114;&#111;&#111;&#x74;&#64;&#x31;&#57;&#x32;&#46;&#49;&#54;&#x38;&#46;&#x31;&#x31;&#x2e;&#x32;">&#114;&#111;&#111;&#x74;&#64;&#x31;&#57;&#x32;&#46;&#49;&#54;&#x38;&#46;&#x31;&#x31;&#x2e;&#x32;</a></p><p>but 服务端一般多台服务器，好几个ip地址，记住这么多ip地址好难，但是根据不同服务器的用途给他们起个别名，就方便多了，能想到自然能实现，这里简述下具体玩法~</p><h3 id="给服务器起个别名"><a href="#给服务器起个别名" class="headerlink" title="给服务器起个别名"></a>给服务器起个别名</h3><ol><li><p>在 <code>~/.ssh/</code> 目录下，新建一个config（有的话，就不用建了噻）</p></li><li><p>vim config 文件，进行编辑</p></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host dev</span><br><span class="line">HostName xxx.xx.xx.xx</span><br><span class="line">User root</span><br><span class="line">IdentitiesOnly <span class="built_in">yes</span></span><br></pre></td></tr></table></figure><ul><li>Host 别名 起一个自己记得住的，比如开发环境 dev 测试环境 test  ..</li><li>HostName 服务器的ip address    </li><li>User 远程登录的用户名</li><li>IdentitiesOnly yes 反正这个就配置yes</li></ul><h3 id="ssh-别名-走起"><a href="#ssh-别名-走起" class="headerlink" title="ssh 别名 走起"></a>ssh 别名 走起</h3><p>配置好文件后，直接 键入 ssh dev 就玩起来了</p>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。<span id="more"></span> 一般在终端上通过 ssh 命令进行远程服务器登录。</p></blockquote><h3 id="远程登录服务器命令-ssh"><a href="#远程登录服务器命令-ssh" class="headerlink" title="远程登录服务器命令 ssh"></a>远程登录服务器命令 ssh</h3><ul><li>ssh username@ip地址</li></ul><p>例如： ssh <a href="mailto:&#114;&#111;&#x6f;&#116;&#x40;&#49;&#x39;&#x32;&#x2e;&#49;&#x36;&#x38;&#46;&#49;&#x31;&#46;&#50;">&#114;&#111;&#x6f;&#116;&#x40;&#49;&#x39;&#x32;&#x2e;&#49;&#x36;&#x38;&#46;&#49;&#x31;&#46;&#50;</a></p><p>but 服务端一般多台服务器，好几个ip地址，记住这么多ip地址好难，但是根据不同服务器的用途给他们起个别名，就方便多了，能想到自然能实现，这里简述下具体玩法~</p><h3 id="给服务器起个别名"><a href="#给服务器起个别名" class="headerlink" title="给服务器起个别名"></a>给服务器起个别名</h3><ol><li><p>在 <code>~/.ssh/</code> 目录下，新建一个config（有的话，就不用建了噻）</p></li><li><p>vim config 文件，进行编辑</p></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host dev</span><br><span class="line">HostName xxx.xx.xx.xx</span><br><span class="line">User root</span><br><span class="line">IdentitiesOnly <span class="built_in">yes</span></span><br></pre></td></tr></table></figure><ul><li>Host 别名 起一个自己记得住的，比如开发环境 dev 测试环境 test  ..</li><li>HostName 服务器的ip address    </li><li>User 远程登录的用户名</li><li>IdentitiesOnly yes 反正这个就配置yes</li></ul><h3 id="ssh-别名-走起"><a href="#ssh-别名-走起" class="headerlink" title="ssh 别名 走起"></a>ssh 别名 走起</h3><p>配置好文件后，直接 键入 ssh dev 就玩起来了</p>]]></content>
       
       
       <categories>
@@ -3233,32 +3333,7 @@
       <link href="/2017/08/25/%E6%9D%82%E8%AE%B0/%20hexo%20%E4%BB%8EWindows%20%E8%BF%81%E7%A7%BB%E5%88%B0Mac%20%E4%B8%8A%E7%BB%A7%E7%BB%AD%E7%8E%A9%E8%80%8D/"/>
       <url>/2017/08/25/%E6%9D%82%E8%AE%B0/%20hexo%20%E4%BB%8EWindows%20%E8%BF%81%E7%A7%BB%E5%88%B0Mac%20%E4%B8%8A%E7%BB%A7%E7%BB%AD%E7%8E%A9%E8%80%8D/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>最近刚刚入手Mac，各种体验Mac的妙处，后面有时间把总结的各种坑记录下，这次先把基本的工具搬迁过来~</p><p>hexo 的搬家路： windows -&gt; mac </p></blockquote><h2 id="迁移思路"><a href="#迁移思路" class="headerlink" title="迁移思路"></a>迁移思路</h2><ul><li>在mac上安装好 <code>hexo</code>，初始化根目录；</li><li>然后生成新的 <code>SSH key</code>，并将其添加到 <code>github</code>；</li><li>将Windows上的资源、配置复制、直接粘贴覆盖Mac上对应的目录。</li></ul><h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p><strong>安装 node&#x2F;git</strong></p><p>homebrew 安装：</p><p>​brew install node</p><p>​brew install git</p><p><strong>安装 hexo</strong></p><p>用 node 的 npm 安装 hexo：</p><pre><code>    npm install hexo-cli -g</code></pre><ul><li><p>每个版本安装方式可能不一样，这一步需要异步到 官网 </p></li><li><p><a href="https://hexo.io/">hexo 官网</a></p></li></ul><p><strong>初始化 hexo</strong></p><p>hexo init blog<br>cd blog<br>npm install<br>hexo server</p><p>启动成功</p><pre><code>    INFO  Start processing    INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</code></pre><p><strong>生成 SSH key</strong><br>先检查一下本机的 SSH key：<code>cd ~/.ssh</code>；<br>生成 SSH key：<code>ssh-keygen -t rsa -C &quot;xxxx@xxxx.com&quot;</code>，<a href="mailto:&#120;&#120;&#120;&#x78;&#x40;&#x78;&#120;&#120;&#x78;&#x2e;&#99;&#x6f;&#x6d;">&#120;&#120;&#120;&#x78;&#x40;&#x78;&#120;&#120;&#x78;&#x2e;&#99;&#x6f;&#x6d;</a> 为自己注册 github 的邮箱；</p><p><strong>添加 SSH key 至 github</strong><br>进入.ssh文件夹： <code>cd ~/.ssh</code>，然后打开里面的 id_rsa.pub文件，里面的内容就是 SSH key，复制全部内容；</p><p>网页打开 github 的设置：<em>Settings -&gt; SSH and GPG keys</em>，点击绿色的按钮 <em>New SSH key</em>，然后在输入框中输入刚才复制的内容；</p><p>使用coding的，同理</p><p>测试一下是否成功：<code>ssh git@github.com</code>，<br>看到以下即成功：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PTY allocation request failed on channel 0</span><br><span class="line">Hi gjincai! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line">Connection to github.com closed.</span><br></pre></td></tr></table></figure><p><strong>文件配置转移</strong><br>windows 下的博客根目录 hexo，复制该目录下的：_config.yml, scaffolds, source, themes；<br>把这几个文件复制到mac的目录下，直接覆盖替换相同的文件文件夹。</p><p>哦了！在mac上愉快的玩耍 <code>hexo</code> 吧！</p><ul><li>注意： 如果在 <code>hexo d</code> 部署不成功，有可能是缺少了模块，</li></ul><p>安装以下再尝试：<code>npm install hexo-deployer-git --save</code></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 工具 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> mac </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Mac OX上安装MongoDb</title>
-      <link href="/2017/08/24/%E6%9D%82%E8%AE%B0/%20Mac%20OX%E4%B8%8A%E5%AE%89%E8%A3%85MongoDb/"/>
-      <url>/2017/08/24/%E6%9D%82%E8%AE%B0/%20Mac%20OX%E4%B8%8A%E5%AE%89%E8%A3%85MongoDb/</url>
-      
-        <content type="html"><![CDATA[<p>在mac上安装mongodb有很多方式，HomeBrew 安装 MongoDB是最快速简洁的，也方便后面的维护，这次主要记录使用brew安装的方式</p><ul><li><a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/">官方安装文档</a></li></ul><p>更新Homebrew的package源，在Mac的终端中输入：</p><pre><code>$ brew update</code></pre><h2 id="开始安装MongoDB"><a href="#开始安装MongoDB" class="headerlink" title="开始安装MongoDB"></a>开始安装MongoDB</h2><pre><code>$ brew install mongodb</code></pre><p>然后等待MongoDB下载完成。</p><pre><code>==&gt; Downloading https://homebrew.bintray.com/bottles/mongodb-3.4.7.sierra.bottle.1.tar.gz######################################################################## 100.0%==&gt; Pouring mongodb-3.4.7.sierra.bottle.1.tar.gz==&gt; CaveatsTo have launchd start mongodb now and restart at login:  brew services start mongodbOr, if you don&#39;t want/need a background service you can just run:  mongod --config /usr/local/etc/mongod.conf==&gt; Summary🍺  /usr/local/Cellar/mongodb/3.4.7: 19 files, 281.9MB</code></pre><h2 id="启动MongoDB"><a href="#启动MongoDB" class="headerlink" title="启动MongoDB"></a>启动MongoDB</h2><p>上面最后提示的直接启动MongoDb的方法.</p><pre><code>mongod —config /usr/local/etc/mongod.conf</code></pre><p>后台方式启动</p><p>   nohup mongod —config &#x2F;usr&#x2F;local&#x2F;etc&#x2F;mongod.conf &amp;</p><h2 id="关闭MongoDB服务"><a href="#关闭MongoDB服务" class="headerlink" title="关闭MongoDB服务"></a>关闭MongoDB服务</h2><p>在 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongo.html#bin.mongo"><code>mongo</code></a> shell中使用 <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer"><code>db.shutdownServer()</code></a> 方法来关闭 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> ，如下所示：</p><pre><code>use admindb.shutdownServer()</code></pre><p>对于启用 <a href="http://docs.mongoing.com/manual-zh/reference/configuration-options.html#security.authorization"><code>authorization</code></a> 的系统，通过验证登陆到 <code>admin</code> 数据库，或者在为开启验证的情况下经由本地主机的系统接口登陆到 <code>admin</code> 数据库时，用户可以仅仅通过发送 <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer"><code>db.shutdownServer()</code></a> 来关闭实例。</p><p>For systems with <a href="http://docs.mongoing.com/manual-zh/reference/configuration-options.html#security.authorization"><code>authorization</code></a> enabled, users may only issue <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer"><code>db.shutdownServer()</code></a> when authenticated to the <code>admin</code> database or via the localhost interface on systems without authentication enabled.</p><h3 id="使用-shutdown"><a href="#使用-shutdown" class="headerlink" title="使用 --shutdown"></a>使用 <code>--shutdown</code></h3><p>从Linux命令行关闭 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> ，可以使用 <em>–shutdown</em> 选项 如下所示：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mongod --shutdown</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="使用-CTRL-C"><a href="#使用-CTRL-C" class="headerlink" title="使用 CTRL-C"></a>使用 <code>CTRL-C</code></h3><p>当正在运行一个交互模式 (i.e. without <em>–fork</em>) 的 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> 实例时，发送 <code>Control-C</code> 来进行正常关闭。</p><h3 id="使用-kill"><a href="#使用-kill" class="headerlink" title="使用 kill"></a>使用 <code>kill</code></h3><p>From the Linux command line, shut down a specific <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> instance using one of the following commands:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kill &lt;mongod process ID&gt;</span><br><span class="line">kill -2 &lt;mongod process ID&gt;</span><br></pre></td></tr></table></figure><h2 id="连接到MongoDb-直接在命令行使用mongo连接："><a href="#连接到MongoDb-直接在命令行使用mongo连接：" class="headerlink" title="连接到MongoDb,直接在命令行使用mongo连接："></a>连接到MongoDb,直接在命令行使用mongo连接：</h2><p>$ mongo</p><pre><code>MongoDB shell version v3.4.7connecting to: mongodb://127.0.0.1:27017MongoDB server version: 3.4.7Server has startup warnings:2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten]2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten]&gt;</code></pre>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>最近刚刚入手Mac，各种体验Mac的妙处，后面有时间把总结的各种坑记录下，这次先把基本的工具搬迁过来~</p><p>hexo 的搬家路： windows -&gt; mac </p></blockquote><h2 id="迁移思路"><a href="#迁移思路" class="headerlink" title="迁移思路"></a>迁移思路</h2><ul><li>在mac上安装好 <code>hexo</code>，初始化根目录；</li><li>然后生成新的 <code>SSH key</code>，并将其添加到 <code>github</code>；</li><li>将Windows上的资源、配置复制、直接粘贴覆盖Mac上对应的目录。</li></ul><h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p><strong>安装 node&#x2F;git</strong></p><p>homebrew 安装：</p><p>​brew install node</p><p>​brew install git</p><p><strong>安装 hexo</strong></p><p>用 node 的 npm 安装 hexo：</p><pre><code>    npm install hexo-cli -g</code></pre><ul><li><p>每个版本安装方式可能不一样，这一步需要异步到 官网 </p></li><li><p><a href="https://hexo.io/">hexo 官网</a></p></li></ul><p><strong>初始化 hexo</strong></p><p>hexo init blog<br>cd blog<br>npm install<br>hexo server</p><p>启动成功</p><pre><code>    INFO  Start processing    INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</code></pre><p><strong>生成 SSH key</strong><br>先检查一下本机的 SSH key：<code>cd ~/.ssh</code>；<br>生成 SSH key：<code>ssh-keygen -t rsa -C &quot;xxxx@xxxx.com&quot;</code>，<a href="mailto:&#120;&#x78;&#x78;&#x78;&#64;&#120;&#120;&#120;&#x78;&#46;&#99;&#x6f;&#109;">&#120;&#x78;&#x78;&#x78;&#64;&#120;&#120;&#120;&#x78;&#46;&#99;&#x6f;&#109;</a> 为自己注册 github 的邮箱；</p><p><strong>添加 SSH key 至 github</strong><br>进入.ssh文件夹： <code>cd ~/.ssh</code>，然后打开里面的 id_rsa.pub文件，里面的内容就是 SSH key，复制全部内容；</p><p>网页打开 github 的设置：<em>Settings -&gt; SSH and GPG keys</em>，点击绿色的按钮 <em>New SSH key</em>，然后在输入框中输入刚才复制的内容；</p><p>使用coding的，同理</p><p>测试一下是否成功：<code>ssh git@github.com</code>，<br>看到以下即成功：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PTY allocation request failed on channel 0</span><br><span class="line">Hi gjincai! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line">Connection to github.com closed.</span><br></pre></td></tr></table></figure><p><strong>文件配置转移</strong><br>windows 下的博客根目录 hexo，复制该目录下的：_config.yml, scaffolds, source, themes；<br>把这几个文件复制到mac的目录下，直接覆盖替换相同的文件文件夹。</p><p>哦了！在mac上愉快的玩耍 <code>hexo</code> 吧！</p><ul><li>注意： 如果在 <code>hexo d</code> 部署不成功，有可能是缺少了模块，</li></ul><p>安装以下再尝试：<code>npm install hexo-deployer-git --save</code></p>]]></content>
       
       
       <categories>
@@ -3296,6 +3371,31 @@
         <tags>
             
             <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Mac OX上安装MongoDb</title>
+      <link href="/2017/08/24/%E6%9D%82%E8%AE%B0/%20Mac%20OX%E4%B8%8A%E5%AE%89%E8%A3%85MongoDb/"/>
+      <url>/2017/08/24/%E6%9D%82%E8%AE%B0/%20Mac%20OX%E4%B8%8A%E5%AE%89%E8%A3%85MongoDb/</url>
+      
+        <content type="html"><![CDATA[<p>在mac上安装mongodb有很多方式，HomeBrew 安装 MongoDB是最快速简洁的，也方便后面的维护，这次主要记录使用brew安装的方式</p><ul><li><a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/">官方安装文档</a></li></ul><p>更新Homebrew的package源，在Mac的终端中输入：</p><pre><code>$ brew update</code></pre><h2 id="开始安装MongoDB"><a href="#开始安装MongoDB" class="headerlink" title="开始安装MongoDB"></a>开始安装MongoDB</h2><pre><code>$ brew install mongodb</code></pre><p>然后等待MongoDB下载完成。</p><pre><code>==&gt; Downloading https://homebrew.bintray.com/bottles/mongodb-3.4.7.sierra.bottle.1.tar.gz######################################################################## 100.0%==&gt; Pouring mongodb-3.4.7.sierra.bottle.1.tar.gz==&gt; CaveatsTo have launchd start mongodb now and restart at login:  brew services start mongodbOr, if you don&#39;t want/need a background service you can just run:  mongod --config /usr/local/etc/mongod.conf==&gt; Summary🍺  /usr/local/Cellar/mongodb/3.4.7: 19 files, 281.9MB</code></pre><h2 id="启动MongoDB"><a href="#启动MongoDB" class="headerlink" title="启动MongoDB"></a>启动MongoDB</h2><p>上面最后提示的直接启动MongoDb的方法.</p><pre><code>mongod —config /usr/local/etc/mongod.conf</code></pre><p>后台方式启动</p><p>   nohup mongod —config &#x2F;usr&#x2F;local&#x2F;etc&#x2F;mongod.conf &amp;</p><h2 id="关闭MongoDB服务"><a href="#关闭MongoDB服务" class="headerlink" title="关闭MongoDB服务"></a>关闭MongoDB服务</h2><p>在 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongo.html#bin.mongo"><code>mongo</code></a> shell中使用 <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer"><code>db.shutdownServer()</code></a> 方法来关闭 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> ，如下所示：</p><pre><code>use admindb.shutdownServer()</code></pre><p>对于启用 <a href="http://docs.mongoing.com/manual-zh/reference/configuration-options.html#security.authorization"><code>authorization</code></a> 的系统，通过验证登陆到 <code>admin</code> 数据库，或者在为开启验证的情况下经由本地主机的系统接口登陆到 <code>admin</code> 数据库时，用户可以仅仅通过发送 <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer"><code>db.shutdownServer()</code></a> 来关闭实例。</p><p>For systems with <a href="http://docs.mongoing.com/manual-zh/reference/configuration-options.html#security.authorization"><code>authorization</code></a> enabled, users may only issue <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer"><code>db.shutdownServer()</code></a> when authenticated to the <code>admin</code> database or via the localhost interface on systems without authentication enabled.</p><h3 id="使用-shutdown"><a href="#使用-shutdown" class="headerlink" title="使用 --shutdown"></a>使用 <code>--shutdown</code></h3><p>从Linux命令行关闭 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> ，可以使用 <em>–shutdown</em> 选项 如下所示：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mongod --shutdown</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="使用-CTRL-C"><a href="#使用-CTRL-C" class="headerlink" title="使用 CTRL-C"></a>使用 <code>CTRL-C</code></h3><p>当正在运行一个交互模式 (i.e. without <em>–fork</em>) 的 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> 实例时，发送 <code>Control-C</code> 来进行正常关闭。</p><h3 id="使用-kill"><a href="#使用-kill" class="headerlink" title="使用 kill"></a>使用 <code>kill</code></h3><p>From the Linux command line, shut down a specific <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> instance using one of the following commands:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kill &lt;mongod process ID&gt;</span><br><span class="line">kill -2 &lt;mongod process ID&gt;</span><br></pre></td></tr></table></figure><h2 id="连接到MongoDb-直接在命令行使用mongo连接："><a href="#连接到MongoDb-直接在命令行使用mongo连接：" class="headerlink" title="连接到MongoDb,直接在命令行使用mongo连接："></a>连接到MongoDb,直接在命令行使用mongo连接：</h2><p>$ mongo</p><pre><code>MongoDB shell version v3.4.7connecting to: mongodb://127.0.0.1:27017MongoDB server version: 3.4.7Server has startup warnings:2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten]2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten]&gt;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mac </tag>
             
         </tags>
       
@@ -4104,11 +4204,11 @@
     
     
     <entry>
-      <title>IPv6相关总结</title>
-      <link href="/2016/11/16/%E7%BD%91%E7%BB%9C/%20IPv6%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/"/>
-      <url>/2016/11/16/%E7%BD%91%E7%BB%9C/%20IPv6%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/</url>
+      <title>ios-apple-review被拒-app-server-完全适配-ipv6（转载）</title>
+      <link href="/2016/11/16/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20ios-apple-review%E8%A2%AB%E6%8B%92-app-server-%E5%AE%8C%E5%85%A8%E9%80%82%E9%85%8D-ipv6%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89/"/>
+      <url>/2016/11/16/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20ios-apple-review%E8%A2%AB%E6%8B%92-app-server-%E5%AE%8C%E5%85%A8%E9%80%82%E9%85%8D-ipv6%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89/</url>
       
-        <content type="html"><![CDATA[<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><blockquote><p>ios上架AppStore时，被驳回，要求必须支持IPv6,在此总结一些IPv6相关的知识点</p></blockquote><h2 id="IPv6格式"><a href="#IPv6格式" class="headerlink" title="IPv6格式"></a>IPv6格式</h2><blockquote><p>IPv6是128bit</p></blockquote><h2 id="IPv6-DNS"><a href="#IPv6-DNS" class="headerlink" title="IPv6 DNS:"></a>IPv6 DNS:</h2><p>未知国家<br>2001:470:20::2</p><p>加拿大<br>2001:478:6:0:230:48ff:fe22:6a29</p><p>英国<br>2001:7fd::1</p><p>日本<br>2001:dc4::1</p><h2 id="Linux命令-ping-IPv6："><a href="#Linux命令-ping-IPv6：" class="headerlink" title="Linux命令 ping IPv6："></a>Linux命令 ping IPv6：</h2><p>Linux下ping IPv6需要使用ping6，如果使用ping，则会提示ping: unknown host。</p><p>ping6 ipv6.google.com</p><p>ping6 2001:470:20::2</p><p>PING 2001:470:20::2(2001:470:20::2) 56 data bytes</p><p>64 bytes from 2001:470:20::2: icmp_seq&#x3D;11 ttl&#x3D;60 time&#x3D;714 ms</p><p>64 bytes from 2001:470:20::2: icmp_seq&#x3D;12 ttl&#x3D;60 time&#x3D;4.65 ms</p><p>ping 2001:470:20::2</p><p>ping: unknown host 2001:470:20::2</p><h2 id="Windows命令-ping-IPv6："><a href="#Windows命令-ping-IPv6：" class="headerlink" title="Windows命令 ping IPv6："></a>Windows命令 ping IPv6：</h2><p>ping -6 ipv6.google.com</p><h2 id="Linux命令-wget-IPv6："><a href="#Linux命令-wget-IPv6：" class="headerlink" title="Linux命令 wget IPv6："></a>Linux命令 wget IPv6：</h2><p>wget -6 <a href="http://ipv6.google.com/">http://ipv6.google.com</a></p><h2 id="Linux和Windows命令查询域名AAAA记录，是否支持IPv6："><a href="#Linux和Windows命令查询域名AAAA记录，是否支持IPv6：" class="headerlink" title="Linux和Windows命令查询域名AAAA记录，是否支持IPv6："></a>Linux和Windows命令查询域名AAAA记录，是否支持IPv6：</h2><p>Linux和Windows都是使用nslookup程序查询dns。</p><pre><code>$ nslookup&gt;set querytype=aaaa&gt;ipv6.google.comServer:8.8.8.8Address:8.8.8.8#53Non-authoritative answer:ipv6.google.comcanonical name = ipv6.l.google.com.ipv6.l.google.comhas AAAA address 2404:6800:8005::6a</code></pre><p>由此可知，IPv4的DNS也能返回域名的IPv6记录，即AAAA记录。</p><pre><code>$ nslookup&gt; set querytype=aaaa&gt; google.comServer:2001:470:20::2Address:2001:470:20::2#53Non-authoritative answer:google.comhas AAAA address 2001:4860:800b::69</code></pre><p>配置域名同时支持IPv6和IPv4：</p><p>领先的域名注册商同时支持IPv6和IPv4，比如godaddy、namesilo，在注册商这里购买了域名之后，登录到域名管理界面，可以设置A记录和AAAA记录。</p><p>假设购买了example.com，希望example.com同时支持IPv6和IPv4，则添加一条A记录指向192.0.32.10，添加一条AAAA记录，指向2620:0:2d0:200::10，等待一段时间即可生效（等待时间与TTL有关）。结果如下：</p><pre><code>$ nslookup&gt; example.comServer:8.8.8.8Address:8.8.8.8#53Non-authoritative answer:Name:example.comAddress: 192.0.32.10&gt; set querytype=aaaa&gt; example.comServer:8.8.8.8Address:8.8.8.8#53Non-authoritative answer:example.comhas AAAA address 2620:0:2d0:200::10</code></pre><p>配置域名只支持IPv6：</p><p>假设购买了google.com，希望ipv6.google.com只支持IPv6，不支持IPv4，则不添加A记录，只添加一条AAAA记录，指向2404:6800:8005::68。结果如下：</p><pre><code>$ nslookup&gt; ipv6.google.comServer:8.8.8.8Address:8.8.8.8#53Non-authoritative answer:ipv6.google.comcanonical name = ipv6.l.google.com.&gt; ipv6.l.google.comServer:8.8.8.8Address:8.8.8.8#53Non-authoritative answer:*** Can&#39;t find ipv6.l.google.com: No answer&gt; set querytype=aaaa&gt; ipv6.google.comServer:8.8.8.8Address:8.8.8.8#53Non-authoritative answer:ipv6.google.comcanonical name = ipv6.l.google.com.ipv6.l.google.comhas AAAA address 2404:6800:8005::68</code></pre><h2 id="Apache-httpd配置IPv6："><a href="#Apache-httpd配置IPv6：" class="headerlink" title="Apache httpd配置IPv6："></a>Apache httpd配置IPv6：</h2><p>Apache httpd配置支持IPv6，需要给IP带上方括号，参考：<a href="http://lamp.linux.gov.cn/Apache/ApacheMenu/mod/core.html#virtualhost">http://lamp.linux.gov.cn/Apache/ApacheMenu/mod/core.html#virtualhost</a></p><pre><code>&lt;VirtualHost [2404:6800:8005::68]:80&gt;ServerAdmin webmaster@ipv6.google.comDocumentRoot /var/www/html/ipv6.google.com/ServerName ipv6.google.com&lt;/VirtualHost&gt;IPv4内网用户如何使用IPv6：</code></pre><p>安装Teredo隧道即可。访问IPv6网站通过Teredo服务器转发，速度受影响。</p><ul><li>注意：</li></ul><p>Teredo隧道与PPPOE冲突，解决方法：使用路由拨号，本机只有一个本地连接即可。</p><p>Teredo隧道与多网卡冲突，比如virtualbox的虚拟网卡，解决办法：禁用别的网卡，只留一个本地连接。</p><ul><li><p>参考：</p></li><li><p>在IPv4网络下接入IPv6网络的方法：<a href="http://www.ipv6bbs.cn/thread-151-1-1.html">http://www.ipv6bbs.cn/thread-151-1-1.html</a></p></li><li><p>资料：<a href="http://felixcat.net/2010/04/install-teredo-ipv6/">http://felixcat.net/2010/04/install-teredo-ipv6/</a></p></li><li><p><a href="http://www.ipv6home.cn/html/63/t-17563.html">http://www.ipv6home.cn/html/63/t-17563.html</a></p></li><li><p>Win 7下用Teredo隧道接入IPv6后，操作系统默认还是直接走IPv4：<a href="http://social.technet.microsoft.com/Forums/zh-CN/window7betacn/thread/ae1f7d47-aa19-493d-a10d-f8032441a147/">http://social.technet.microsoft.com/Forums/zh-CN/window7betacn/thread/ae1f7d47-aa19-493d-a10d-f8032441a147/</a></p></li><li><p>teredo IPv6 配置hosts后无法使用gtalk客户端（解决办法：使用Pidgin）：<a href="http://www.google.com/support/forum/p/other/thread?tid=4f65f26a7da1785f&amp;hl=zh-CN">http://www.google.com/support/forum/p/other/thread?tid=4f65f26a7da1785f&amp;hl=zh-CN</a></p></li></ul><h2 id="IPv4外网用户如何使用IPv6："><a href="#IPv4外网用户如何使用IPv6：" class="headerlink" title="IPv4外网用户如何使用IPv6："></a>IPv4外网用户如何使用IPv6：</h2><p>安装isatap隧道即可。访问IPv6网站通过isatap网关转发，速度受影响。</p><p>如何设置浏览器默认使用IPv6：</p><p>1、真实IPv4 + 真实IPv6</p><p>操作系统会优先使用IPv6（未测试）。</p><p>2、真实IPv4内网+ IPv6 Teredo隧道</p><p>当域名同时有A和AAAA记录时，Windows 7、Ubuntu优先使用真实IPv4内网，所以需要修改hosts加入IPv6。</p><p>当域名只有AAAA记录时，Ubuntu可直接访问（比如ipv6.google.com），不用配hosts。</p><p>2、真实IPv4外网+ IPv6 isatap隧道</p><p>XP可以直接访问ipv6.google.com，不能直接访问docs.google.com，需要配hosts。</p><p>IPv6路由器：</p><p>D-Link一百元的家用路由器国外版本支持IPv6：<a href="http://www.dlink.com/ipv6%EF%BC%8C%E6%AF%94%E5%A6%82DIR-615%EF%BC%8C%E6%88%AA%E5%9B%BE%E5%9C%A8%E6%9C%80%E5%90%8E%E3%80%82%E4%BD%86%E5%9B%BD%E5%86%85%E7%89%88%E6%9C%AC%E4%B8%8D%E7%9F%A5%E6%98%AF%E5%90%A6%E6%94%AF%E6%8C%81IPv6%EF%BC%8C%E4%BA%AC%E4%B8%9C%E5%AE%A2%E6%9C%8D%E8%AF%B4%E4%B8%8D%E6%94%AF%E6%8C%81%E3%80%82">http://www.dlink.com/ipv6，比如DIR-615，截图在最后。但国内版本不知是否支持IPv6，京东客服说不支持。</a></p><p>TP-Link家用路由器不支持IPv6。</p><p>是不是刷了dd-wrt完整版操作系统的路由器都支持IPv6，还待确认。</p><ul><li><p>参考资料：</p></li><li><p>google的工具 ： <a href="https://toolbox.googleapps.com/apps/dig/">https://toolbox.googleapps.com/apps/dig/</a></p></li><li><p>IPv6 隧道 ： <a href="https://tunnelbroker.net/">https://tunnelbroker.net/</a></p></li><li><p>测试浏览器是否支持IPv6：<a href="http://test-ipv6.com/">http://test-ipv6.com/</a></p></li><li><p>测试浏览器是否默认使用IPv6：<a href="http://www.kame.net/">http://www.kame.net/</a></p></li><li><p>火狐扩展，显示正在访问的网站IP，可以看出是否是IPv6：<a href="https://addons.mozilla.org/zh-CN/firefox/addon/worldip-flag-and-datacenter-pi/">https://addons.mozilla.org/zh-CN/firefox/addon/worldip-flag-and-datacenter-pi/</a></p></li></ul>]]></content>
+        <content type="html"><![CDATA[<ul><li>原文出处 <a href="https://devthinking.com/ios-apple-review%E8%A2%AB%E6%8B%92-app-server-%E5%AE%8C%E5%85%A8%E9%80%82%E9%85%8D-ipv6/">ios-apple-review被拒-app-server-完全适配-ipv6</a></li></ul><p>感谢作者分享</p>]]></content>
       
       
       <categories>
@@ -4129,11 +4229,11 @@
     
     
     <entry>
-      <title>ios-apple-review被拒-app-server-完全适配-ipv6（转载）</title>
-      <link href="/2016/11/16/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20ios-apple-review%E8%A2%AB%E6%8B%92-app-server-%E5%AE%8C%E5%85%A8%E9%80%82%E9%85%8D-ipv6%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89/"/>
-      <url>/2016/11/16/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20ios-apple-review%E8%A2%AB%E6%8B%92-app-server-%E5%AE%8C%E5%85%A8%E9%80%82%E9%85%8D-ipv6%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89/</url>
+      <title>IPv6相关总结</title>
+      <link href="/2016/11/16/%E7%BD%91%E7%BB%9C/%20IPv6%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/"/>
+      <url>/2016/11/16/%E7%BD%91%E7%BB%9C/%20IPv6%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/</url>
       
-        <content type="html"><![CDATA[<ul><li>原文出处 <a href="https://devthinking.com/ios-apple-review%E8%A2%AB%E6%8B%92-app-server-%E5%AE%8C%E5%85%A8%E9%80%82%E9%85%8D-ipv6/">ios-apple-review被拒-app-server-完全适配-ipv6</a></li></ul><p>感谢作者分享</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><blockquote><p>ios上架AppStore时，被驳回，要求必须支持IPv6,在此总结一些IPv6相关的知识点</p></blockquote><h2 id="IPv6格式"><a href="#IPv6格式" class="headerlink" title="IPv6格式"></a>IPv6格式</h2><blockquote><p>IPv6是128bit</p></blockquote><h2 id="IPv6-DNS"><a href="#IPv6-DNS" class="headerlink" title="IPv6 DNS:"></a>IPv6 DNS:</h2><p>未知国家<br>2001:470:20::2</p><p>加拿大<br>2001:478:6:0:230:48ff:fe22:6a29</p><p>英国<br>2001:7fd::1</p><p>日本<br>2001:dc4::1</p><h2 id="Linux命令-ping-IPv6："><a href="#Linux命令-ping-IPv6：" class="headerlink" title="Linux命令 ping IPv6："></a>Linux命令 ping IPv6：</h2><p>Linux下ping IPv6需要使用ping6，如果使用ping，则会提示ping: unknown host。</p><p>ping6 ipv6.google.com</p><p>ping6 2001:470:20::2</p><p>PING 2001:470:20::2(2001:470:20::2) 56 data bytes</p><p>64 bytes from 2001:470:20::2: icmp_seq&#x3D;11 ttl&#x3D;60 time&#x3D;714 ms</p><p>64 bytes from 2001:470:20::2: icmp_seq&#x3D;12 ttl&#x3D;60 time&#x3D;4.65 ms</p><p>ping 2001:470:20::2</p><p>ping: unknown host 2001:470:20::2</p><h2 id="Windows命令-ping-IPv6："><a href="#Windows命令-ping-IPv6：" class="headerlink" title="Windows命令 ping IPv6："></a>Windows命令 ping IPv6：</h2><p>ping -6 ipv6.google.com</p><h2 id="Linux命令-wget-IPv6："><a href="#Linux命令-wget-IPv6：" class="headerlink" title="Linux命令 wget IPv6："></a>Linux命令 wget IPv6：</h2><p>wget -6 <a href="http://ipv6.google.com/">http://ipv6.google.com</a></p><h2 id="Linux和Windows命令查询域名AAAA记录，是否支持IPv6："><a href="#Linux和Windows命令查询域名AAAA记录，是否支持IPv6：" class="headerlink" title="Linux和Windows命令查询域名AAAA记录，是否支持IPv6："></a>Linux和Windows命令查询域名AAAA记录，是否支持IPv6：</h2><p>Linux和Windows都是使用nslookup程序查询dns。</p><pre><code>$ nslookup&gt;set querytype=aaaa&gt;ipv6.google.comServer:8.8.8.8Address:8.8.8.8#53Non-authoritative answer:ipv6.google.comcanonical name = ipv6.l.google.com.ipv6.l.google.comhas AAAA address 2404:6800:8005::6a</code></pre><p>由此可知，IPv4的DNS也能返回域名的IPv6记录，即AAAA记录。</p><pre><code>$ nslookup&gt; set querytype=aaaa&gt; google.comServer:2001:470:20::2Address:2001:470:20::2#53Non-authoritative answer:google.comhas AAAA address 2001:4860:800b::69</code></pre><p>配置域名同时支持IPv6和IPv4：</p><p>领先的域名注册商同时支持IPv6和IPv4，比如godaddy、namesilo，在注册商这里购买了域名之后，登录到域名管理界面，可以设置A记录和AAAA记录。</p><p>假设购买了example.com，希望example.com同时支持IPv6和IPv4，则添加一条A记录指向192.0.32.10，添加一条AAAA记录，指向2620:0:2d0:200::10，等待一段时间即可生效（等待时间与TTL有关）。结果如下：</p><pre><code>$ nslookup&gt; example.comServer:8.8.8.8Address:8.8.8.8#53Non-authoritative answer:Name:example.comAddress: 192.0.32.10&gt; set querytype=aaaa&gt; example.comServer:8.8.8.8Address:8.8.8.8#53Non-authoritative answer:example.comhas AAAA address 2620:0:2d0:200::10</code></pre><p>配置域名只支持IPv6：</p><p>假设购买了google.com，希望ipv6.google.com只支持IPv6，不支持IPv4，则不添加A记录，只添加一条AAAA记录，指向2404:6800:8005::68。结果如下：</p><pre><code>$ nslookup&gt; ipv6.google.comServer:8.8.8.8Address:8.8.8.8#53Non-authoritative answer:ipv6.google.comcanonical name = ipv6.l.google.com.&gt; ipv6.l.google.comServer:8.8.8.8Address:8.8.8.8#53Non-authoritative answer:*** Can&#39;t find ipv6.l.google.com: No answer&gt; set querytype=aaaa&gt; ipv6.google.comServer:8.8.8.8Address:8.8.8.8#53Non-authoritative answer:ipv6.google.comcanonical name = ipv6.l.google.com.ipv6.l.google.comhas AAAA address 2404:6800:8005::68</code></pre><h2 id="Apache-httpd配置IPv6："><a href="#Apache-httpd配置IPv6：" class="headerlink" title="Apache httpd配置IPv6："></a>Apache httpd配置IPv6：</h2><p>Apache httpd配置支持IPv6，需要给IP带上方括号，参考：<a href="http://lamp.linux.gov.cn/Apache/ApacheMenu/mod/core.html#virtualhost">http://lamp.linux.gov.cn/Apache/ApacheMenu/mod/core.html#virtualhost</a></p><pre><code>&lt;VirtualHost [2404:6800:8005::68]:80&gt;ServerAdmin webmaster@ipv6.google.comDocumentRoot /var/www/html/ipv6.google.com/ServerName ipv6.google.com&lt;/VirtualHost&gt;IPv4内网用户如何使用IPv6：</code></pre><p>安装Teredo隧道即可。访问IPv6网站通过Teredo服务器转发，速度受影响。</p><ul><li>注意：</li></ul><p>Teredo隧道与PPPOE冲突，解决方法：使用路由拨号，本机只有一个本地连接即可。</p><p>Teredo隧道与多网卡冲突，比如virtualbox的虚拟网卡，解决办法：禁用别的网卡，只留一个本地连接。</p><ul><li><p>参考：</p></li><li><p>在IPv4网络下接入IPv6网络的方法：<a href="http://www.ipv6bbs.cn/thread-151-1-1.html">http://www.ipv6bbs.cn/thread-151-1-1.html</a></p></li><li><p>资料：<a href="http://felixcat.net/2010/04/install-teredo-ipv6/">http://felixcat.net/2010/04/install-teredo-ipv6/</a></p></li><li><p><a href="http://www.ipv6home.cn/html/63/t-17563.html">http://www.ipv6home.cn/html/63/t-17563.html</a></p></li><li><p>Win 7下用Teredo隧道接入IPv6后，操作系统默认还是直接走IPv4：<a href="http://social.technet.microsoft.com/Forums/zh-CN/window7betacn/thread/ae1f7d47-aa19-493d-a10d-f8032441a147/">http://social.technet.microsoft.com/Forums/zh-CN/window7betacn/thread/ae1f7d47-aa19-493d-a10d-f8032441a147/</a></p></li><li><p>teredo IPv6 配置hosts后无法使用gtalk客户端（解决办法：使用Pidgin）：<a href="http://www.google.com/support/forum/p/other/thread?tid=4f65f26a7da1785f&amp;hl=zh-CN">http://www.google.com/support/forum/p/other/thread?tid=4f65f26a7da1785f&amp;hl=zh-CN</a></p></li></ul><h2 id="IPv4外网用户如何使用IPv6："><a href="#IPv4外网用户如何使用IPv6：" class="headerlink" title="IPv4外网用户如何使用IPv6："></a>IPv4外网用户如何使用IPv6：</h2><p>安装isatap隧道即可。访问IPv6网站通过isatap网关转发，速度受影响。</p><p>如何设置浏览器默认使用IPv6：</p><p>1、真实IPv4 + 真实IPv6</p><p>操作系统会优先使用IPv6（未测试）。</p><p>2、真实IPv4内网+ IPv6 Teredo隧道</p><p>当域名同时有A和AAAA记录时，Windows 7、Ubuntu优先使用真实IPv4内网，所以需要修改hosts加入IPv6。</p><p>当域名只有AAAA记录时，Ubuntu可直接访问（比如ipv6.google.com），不用配hosts。</p><p>2、真实IPv4外网+ IPv6 isatap隧道</p><p>XP可以直接访问ipv6.google.com，不能直接访问docs.google.com，需要配hosts。</p><p>IPv6路由器：</p><p>D-Link一百元的家用路由器国外版本支持IPv6：<a href="http://www.dlink.com/ipv6%EF%BC%8C%E6%AF%94%E5%A6%82DIR-615%EF%BC%8C%E6%88%AA%E5%9B%BE%E5%9C%A8%E6%9C%80%E5%90%8E%E3%80%82%E4%BD%86%E5%9B%BD%E5%86%85%E7%89%88%E6%9C%AC%E4%B8%8D%E7%9F%A5%E6%98%AF%E5%90%A6%E6%94%AF%E6%8C%81IPv6%EF%BC%8C%E4%BA%AC%E4%B8%9C%E5%AE%A2%E6%9C%8D%E8%AF%B4%E4%B8%8D%E6%94%AF%E6%8C%81%E3%80%82">http://www.dlink.com/ipv6，比如DIR-615，截图在最后。但国内版本不知是否支持IPv6，京东客服说不支持。</a></p><p>TP-Link家用路由器不支持IPv6。</p><p>是不是刷了dd-wrt完整版操作系统的路由器都支持IPv6，还待确认。</p><ul><li><p>参考资料：</p></li><li><p>google的工具 ： <a href="https://toolbox.googleapps.com/apps/dig/">https://toolbox.googleapps.com/apps/dig/</a></p></li><li><p>IPv6 隧道 ： <a href="https://tunnelbroker.net/">https://tunnelbroker.net/</a></p></li><li><p>测试浏览器是否支持IPv6：<a href="http://test-ipv6.com/">http://test-ipv6.com/</a></p></li><li><p>测试浏览器是否默认使用IPv6：<a href="http://www.kame.net/">http://www.kame.net/</a></p></li><li><p>火狐扩展，显示正在访问的网站IP，可以看出是否是IPv6：<a href="https://addons.mozilla.org/zh-CN/firefox/addon/worldip-flag-and-datacenter-pi/">https://addons.mozilla.org/zh-CN/firefox/addon/worldip-flag-and-datacenter-pi/</a></p></li></ul>]]></content>
       
       
       <categories>
@@ -4179,31 +4279,6 @@
     
     
     <entry>
-      <title>Chrome 效率插件</title>
-      <link href="/2016/11/01/%E5%B7%A5%E5%85%B7/Chrome%20%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/"/>
-      <url>/2016/11/01/%E5%B7%A5%E5%85%B7/Chrome%20%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/</url>
-      
-        <content type="html"><![CDATA[<p>整理收集一些Chrome的好用的插件</p><h3 id="RESTFUL"><a href="#RESTFUL" class="headerlink" title="RESTFUL"></a>RESTFUL</h3><ul><li><p>Postman</p><pre><code>  RESTFUL的客户端调式工具，可以分类保存</code></pre></li></ul><h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3><ul><li><p>Octotree</p><pre><code>  在github上 树形展示</code></pre></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 工具 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Chrome 效率插件 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>JAVA 文章收藏</title>
       <link href="/2016/11/01/java/%20JAVA%20%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/"/>
       <url>/2016/11/01/java/%20JAVA%20%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/</url>
@@ -4221,6 +4296,31 @@
         <tags>
             
             <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Chrome 效率插件</title>
+      <link href="/2016/11/01/%E5%B7%A5%E5%85%B7/Chrome%20%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/"/>
+      <url>/2016/11/01/%E5%B7%A5%E5%85%B7/Chrome%20%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<p>整理收集一些Chrome的好用的插件</p><h3 id="RESTFUL"><a href="#RESTFUL" class="headerlink" title="RESTFUL"></a>RESTFUL</h3><ul><li><p>Postman</p><pre><code>  RESTFUL的客户端调式工具，可以分类保存</code></pre></li></ul><h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3><ul><li><p>Octotree</p><pre><code>  在github上 树形展示</code></pre></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Chrome 效率插件 </tag>
             
         </tags>
       
@@ -4554,31 +4654,6 @@
     
     
     <entry>
-      <title>Druid 简述</title>
-      <link href="/2016/09/05/%E6%95%B0%E6%8D%AE%E5%BA%93/Druid%20%E7%AE%80%E8%BF%B0/"/>
-      <url>/2016/09/05/%E6%95%B0%E6%8D%AE%E5%BA%93/Druid%20%E7%AE%80%E8%BF%B0/</url>
-      
-        <content type="html"><![CDATA[<h2 id="简述："><a href="#简述：" class="headerlink" title="简述："></a>简述：</h2><blockquote><p>Druid是什么? <span id="more"></span><br>Druid是Java语言中最好的数据库连接池。Druid能够提供强大的监控和扩展功能。</p></blockquote><ul><li>Druid首先是一个数据库连接池。Druid是目前最好的数据库连接池，在功能、性能、扩展性方面，都超过其他数据库连接池，包括DBCP、C3P0、BoneCP、Proxool、JBoss DataSource。Druid已经在阿里巴巴部署了超过600个应用，经过一年多生产环境大规模部署的严苛考验。</li></ul><p>同时Druid不仅仅是一个数据库连接池</p><p><strong>它包括三部分：</strong> </p><ul><li>DruidDriver 代理Driver，能够提供基于Filter－Chain模式的插件体系。 </li><li>DruidDataSource 高效可管理的数据库连接池。 </li><li>SQLParser</li></ul><h2 id="Druid-的主要作用："><a href="#Druid-的主要作用：" class="headerlink" title="Druid 的主要作用："></a>Druid 的主要作用：</h2><ul><li><p>1.替换DBCP和C3P0。Druid提供了一个高效、功能强大、可扩展性好的数据库连接池。</p></li><li><p>2.可以监控数据库访问性能，Druid内置提供了一个功能强大的StatFilter插件，能够详细统计SQL的执行性能，这对于线上分析数据库访问性能有帮助。</p></li><li><p>3.数据库密码加密。直接把数据库密码写在配置文件中，这是不好的行为，容易导致安全问题。DruidDruiver和DruidDataSource都支持PasswordCallback。</p></li><li><p>4.SQL执行日志，Druid提供了不同的LogFilter，能够支持Common-Logging、Log4j和JdkLog，你可以按需要选择相应的LogFilter，监控你应用的数据库访问情况。</p></li><li><p>5.扩展JDBC，如果你要对JDBC层有编程的需求，可以通过Druid提供的Filter机制，很方便编写JDBC层的扩展插件。</p></li></ul><h1 id="druid的项目路径及介绍"><a href="#druid的项目路径及介绍" class="headerlink" title="druid的项目路径及介绍"></a>druid的项目路径及介绍</h1><p><a href="https://github.com/alibaba/druid/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">Druid github地址</a> </p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 数据库 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>性能测试相关</title>
       <link href="/2016/09/05/%E6%B5%8B%E8%AF%95/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3/"/>
       <url>/2016/09/05/%E6%B5%8B%E8%AF%95/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3/</url>
@@ -4596,6 +4671,31 @@
         <tags>
             
             <tag> 测试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Druid 简述</title>
+      <link href="/2016/09/05/%E6%95%B0%E6%8D%AE%E5%BA%93/Druid%20%E7%AE%80%E8%BF%B0/"/>
+      <url>/2016/09/05/%E6%95%B0%E6%8D%AE%E5%BA%93/Druid%20%E7%AE%80%E8%BF%B0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="简述："><a href="#简述：" class="headerlink" title="简述："></a>简述：</h2><blockquote><p>Druid是什么? <span id="more"></span><br>Druid是Java语言中最好的数据库连接池。Druid能够提供强大的监控和扩展功能。</p></blockquote><ul><li>Druid首先是一个数据库连接池。Druid是目前最好的数据库连接池，在功能、性能、扩展性方面，都超过其他数据库连接池，包括DBCP、C3P0、BoneCP、Proxool、JBoss DataSource。Druid已经在阿里巴巴部署了超过600个应用，经过一年多生产环境大规模部署的严苛考验。</li></ul><p>同时Druid不仅仅是一个数据库连接池</p><p><strong>它包括三部分：</strong> </p><ul><li>DruidDriver 代理Driver，能够提供基于Filter－Chain模式的插件体系。 </li><li>DruidDataSource 高效可管理的数据库连接池。 </li><li>SQLParser</li></ul><h2 id="Druid-的主要作用："><a href="#Druid-的主要作用：" class="headerlink" title="Druid 的主要作用："></a>Druid 的主要作用：</h2><ul><li><p>1.替换DBCP和C3P0。Druid提供了一个高效、功能强大、可扩展性好的数据库连接池。</p></li><li><p>2.可以监控数据库访问性能，Druid内置提供了一个功能强大的StatFilter插件，能够详细统计SQL的执行性能，这对于线上分析数据库访问性能有帮助。</p></li><li><p>3.数据库密码加密。直接把数据库密码写在配置文件中，这是不好的行为，容易导致安全问题。DruidDruiver和DruidDataSource都支持PasswordCallback。</p></li><li><p>4.SQL执行日志，Druid提供了不同的LogFilter，能够支持Common-Logging、Log4j和JdkLog，你可以按需要选择相应的LogFilter，监控你应用的数据库访问情况。</p></li><li><p>5.扩展JDBC，如果你要对JDBC层有编程的需求，可以通过Druid提供的Filter机制，很方便编写JDBC层的扩展插件。</p></li></ul><h1 id="druid的项目路径及介绍"><a href="#druid的项目路径及介绍" class="headerlink" title="druid的项目路径及介绍"></a>druid的项目路径及介绍</h1><p><a href="https://github.com/alibaba/druid/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">Druid github地址</a> </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
             
         </tags>
       
