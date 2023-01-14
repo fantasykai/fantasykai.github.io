@@ -379,6 +379,56 @@
     
     
     <entry>
+      <title>10种常见的软件架构模式</title>
+      <link href="/2020/10/06/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/10%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/"/>
+      <url>/2020/10/06/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/10%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<p>有没有想过要设计多大的企业规模系统？在主要的软件开发开始之前，我们必须选择一个合适的体系结构，它将为我们提供所需的功能和质量属性。因此，在将它们应用到我们的设计之前，我们应该了解不同的体系结构。</p><p><img src="https://inews.gtimg.com/newsapp_bt/0/13211785157/1000" alt="img"></p><p>什么是架构模式？</p><p>根据维基百科中的定义：</p><p>架构模式是一个通用的、可重用的解决方案，用于在给定上下文中的软件体系结构中经常出现的问题。架构模式与软件设计模式类似，但具有更广泛的范围。</p><p>在本文中，将简要地解释以下10种常见的体系架构模式，以及它们的用法、优缺点。</p><p>分层模式</p><p>客户端-服务器模式</p><p>主从设备模式</p><p>管道-过滤器模式</p><p>代理模式</p><p>点对点模式</p><p>事件总线模式</p><p>模型-视图-控制器模式</p><p>黑板模式</p><p>解释器模式</p><p>一. 分层模式</p><p>这种模式也称为多层体系架构模式。它可以用来构造可以分解为子任务组的程序，每个子任务都处于一个特定的抽象级别。每个层都为下一个提供更高层次服务。</p><p>一般信息系统中最常见的是如下所列的4层。</p><p>表示层(也称为UI层)</p><p>应用层(也称为服务层)</p><p>业务逻辑层(也称为领域层)</p><p>数据访问层(也称为持久化层)</p><p>使用场景：</p><p>一般的桌面应用程序</p><p>电子商务Web应用程序</p><p><img src="https://inews.gtimg.com/newsapp_bt/0/13211785133/1000" alt="img"></p><p>二. 客户端-服务器模式</p><p>这种模式由两部分组成：一个服务器和多个客户端。服务器组件将为多个客户端组件提供服务。客户端从服务器请求服务，服务器为这些客户端提供相关服务。此外，服务器持续侦听客户机请求。</p><p>使用场景：</p><p>电子邮件，文件共享和银行等在线应用程序</p><p><img src="https://inews.gtimg.com/newsapp_bt/0/13211785144/1000" alt="img"></p><p>三. 主从设备模式</p><p>这种模式由两方组成;主设备和从设备。主设备组件在相同的从设备组件中分配工作，并计算最终结果，这些结果是由从设备返回的结果。</p><p>使用场景：</p><p>在数据库复制中，主数据库被认为是权威的来源，并且要与之同步</p><p>在计算机系统中与总线连接的外围设备(主和从驱动器)</p><p><img src="https://inews.gtimg.com/newsapp_bt/0/13211785136/1000" alt="img"></p><p>四. 管道-过滤器模式</p><p>此模式可用于构造生成和处理数据流的系统。每个处理步骤都封装在一个过滤器组件内。要处理的数据是通过管道传递的。这些管道可以用于缓冲或用于同步。</p><p>使用场景：</p><p>编译器。连续的过滤器执行词法分析、解析、语义分析和代码生成</p><p>生物信息学的工作流</p><p><img src="https://inews.gtimg.com/newsapp_bt/0/13211785139/1000" alt="img"></p><p>五. 代理模式</p><p>此模式用于构造具有解耦组件的分布式系统。这些组件可以通过远程服务调用彼此交互。代理组件负责组件之间的通信协调。</p><p>服务器将其功能(服务和特征)发布给代理。客户端从代理请求服务，然后代理将客户端重定向到其注册中心的适当服务。</p><p>使用场景：</p><p>消息代理软件，如Apache ActiveMQ，Apache Kafka，RabbitMQ和JBoss Messaging</p><p><img src="https://inews.gtimg.com/newsapp_bt/0/13211785137/1000" alt="img"></p><p>六. 点对点模式</p><p>在这种模式中，单个组件被称为对等点。对等点可以作为客户端，从其他对等点请求服务，作为服务器，为其他对等点提供服务。对等点可以充当客户端或服务器或两者的角色，并且可以随时间动态地更改其角色。</p><p>使用场景：</p><p>像Gnutella和G2这样的文件共享网络</p><p>多媒体协议，如P2PTV和PDTP</p><p>像Spotify这样的专有多媒体应用程序</p><p><img src="https://inews.gtimg.com/newsapp_bt/0/13211785140/1000" alt="img"></p><p>七. 事件总线模式</p><p>这种模式主要是处理事件，包括4个主要组件：事件源、事件监听器、通道和事件总线。消息源将消息发布到事件总线上的特定通道上。侦听器订阅特定的通道。侦听器会被通知消息，这些消息被发布到它们之前订阅的一个通道上。</p><p>使用场景：</p><p>安卓开发</p><p>通知服务</p><p><img src="https://inews.gtimg.com/newsapp_bt/0/13211785148/1000" alt="img"></p><p>八. 模型-视图-控制器模式</p><p>这种模式，也称为MVC模式，把一个交互式应用程序划分为3个部分，</p><p>模型：包含核心功能和数据</p><p>视图：将信息显示给用户(可以定义多个视图)</p><p>控制器：处理用户输入的信息</p><p>这样做是为了将信息的内部表示与信息的呈现方式分离开来，并接受用户的请求。它分离了组件，并允许有效的代码重用。</p><p>使用场景：</p><p>在主要编程语言中互联网应用程序的体系架构</p><p>像Django和Rails这样的Web框架</p><p><img src="https://inews.gtimg.com/newsapp_bt/0/13211785143/1000" alt="img"></p><p>九. 黑板模式</p><p>这种模式对于没有确定解决方案策略的问题是有用的。黑板模式由3个主要组成部分组成。</p><p>黑板——包含来自解决方案空间的对象的结构化全局内存</p><p>知识源——专门的模块和它们自己的表示</p><p>控制组件——选择、配置和执行模块</p><p>所有的组件都可以访问黑板。组件可以生成添加到黑板上的新数据对象。组件在黑板上查找特定类型的数据，并通过与现有知识源的模式匹配来查找这些数据。</p><p>使用场景：</p><p>语音识别</p><p>车辆识别和跟踪</p><p>蛋白质结构识别</p><p>声纳信号的解释</p><p><img src="https://inews.gtimg.com/newsapp_bt/0/13211785141/1000" alt="img"></p><p>十. 解释器模式</p><p>这个模式用于设计一个解释用专用语言编写的程序的组件。它主要指定如何评估程序的行数，即以特定的语言编写的句子或表达式。其基本思想是为每种语言的符号都有一个分类。</p><p>使用场景：</p><p>数据库查询语言，比如SQL</p><p>用于描述通信协议的语言</p><p><img src="https://inews.gtimg.com/newsapp_bt/0/13211785135/1000" alt="img"></p><p>下面给出的表格总结了每种体系架构模式的优缺点。</p><p><img src="https://inews.gtimg.com/newsapp_bt/0/13211787148/1000" alt="img"></p><p><img src="https://inews.gtimg.com/newsapp_bt/0/13211788404/1000" alt="img"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术小栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PMO </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>如何利用计划管理提升团队效率和产能</title>
+      <link href="/2020/09/27/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8%E8%AE%A1%E5%88%92%E7%AE%A1%E7%90%86%E6%8F%90%E5%8D%87%E5%9B%A2%E9%98%9F%E6%95%88%E7%8E%87%E5%92%8C%E4%BA%A7%E8%83%BD%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8%E8%AE%A1%E5%88%92%E7%AE%A1%E7%90%86%E6%8F%90%E5%8D%87%E5%9B%A2%E9%98%9F%E6%95%88%E7%8E%87%E5%92%8C%E4%BA%A7%E8%83%BD/"/>
+      <url>/2020/09/27/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8%E8%AE%A1%E5%88%92%E7%AE%A1%E7%90%86%E6%8F%90%E5%8D%87%E5%9B%A2%E9%98%9F%E6%95%88%E7%8E%87%E5%92%8C%E4%BA%A7%E8%83%BD%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8%E8%AE%A1%E5%88%92%E7%AE%A1%E7%90%86%E6%8F%90%E5%8D%87%E5%9B%A2%E9%98%9F%E6%95%88%E7%8E%87%E5%92%8C%E4%BA%A7%E8%83%BD/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p> 本文根据沈剑老师在〖deeplus直播第237期〗线上分享演讲内容整理而成。</p></blockquote><p>大家好，我是快狗打车的产品技术设计团队的负责人沈剑，可能很多人通过“架构师之路”认识了我。在这些年里我身上肩负着架构师和团队领导者的身份，完成了不少系统的产品设计，也从一线管理者晋升到现在整个产研团队的总负责人。</p><p>其实在这个过程中需要设定很多目标，包括团队的目标、业务项目的目标和技术项目的目标。今天分享主要集中在让大家了解，作为一个管理者或项目经理可以通过哪些方法和工具去达成既定的目标。</p><p>如果你是一个团队的负责人，或者未来也希望成为团队负责人，又或者你正在带领业务和技术项目、正在参与项目且未来希望能够带领项目，那么我希望通过今天的分享能够帮助大家解决以下三个问题：</p><ul><li>如何达成既定目标；</li><li>如何制定计划；</li><li>实现团队目标。</li></ul><p><strong>前言</strong></p><p>在开始分享前，我在这里先抛出两个问题：</p><ul><li><strong>管理者的职责是什么？</strong></li></ul><p>我的理念是，作为一个管理者在面对上级、同事和下属的时候职责都是不一样的。</p><p>面对老板，我们必须完成给定的业务目标或者项目目标；面对同事，我们就要为队友赋能；而面对下属，我们不仅要帮助他们解决问题，还有帮助他们成长和提升，也就是帮他们搭舞台唱戏。以上是我认为，作为一个管理者要尽到的核心职责。</p><p>然而究其根本，管理者的职责其实是实现自己承诺的目标。面对老板就是要实现承诺的业务目标，对同事是实现对合作的承诺，对下属则是对你实现承诺的方法和资源。管理者并没有拥有很大的权力，多大程度上实现了承诺过的目标才是岗位价值的体现。分层次说的话，CEO要实现自己对业务总体目标的承诺，CTO要实现对产研项目、产品系统交付的承诺，而总监经理要实现对交付质量、技术体系建设、组织能力建设的承诺，员工也要实现对自己在项目、在系统中负责的稳定性、迭代、效率和质量的承诺。</p><p><strong>我们对管理者基本的要求，就是实现自己承诺的目标</strong>。如果目标没有达成，那这个管理者就是不合格的。</p><ul><li><strong>管理者如何实现目标？</strong></li></ul><p>达成目标的要素有老板的支持、清晰的目标、下属的能力、到位的监督等等，可能每个管理者实现自己目标的关键要素都不一样。</p><p>回想一下，我们在做项目的过程，是不是先定下项目目标，然后是项目负责人，接着拆解、监督跟进、风险评估和改进、过程改进？这个流程可能大家没有一个系统的说法，但它就是使用计划管理去实现目标的。整个定目标、做计划、行动、复盘、调整行动、达成目标的过程其实就是计划管理。特别是在效率交付这个方面，对负责的相关研发部门来说，计划管理极其重要。</p><p><strong>一、什么是计划管理</strong></p><p>1、计划管理</p><p>要做计划管理，那就要先说说什么是计划。计划就是目标及一步步实现目标的步骤。想看一个企业做得好不好，带领一个团队带得好不好，我们要重点看其是否养成了做计划的习惯，因为做计划是一个主动规划的过程。</p><p>但是很多人会说：“很多时候我只是被动地被安排工作啊，老板让我做什么我就做什么。”</p><p>被动安排工作，很可能是你的老板在做计划而你只是执行他的计划。很多的时候，业务变复杂了，团队也扩张了，很多管理者就不会做计划了，或者做好的计划就乱套了，这样对项目推进有很大的影响，所以我们必须养成做计划的习惯。</p><p>计划管理是我们做一切管理的基础，是达成目标的一个工具。</p><p>2、流程管理</p><p>我们知道做产研项目的项目流程是提需求、接需求、需求设计和评审、研发设计和评审、研发链条测试上线部署。</p><p>那么流程管理能解决什么问题呢？重点解决的问题不是说哪个人在哪个环节进行审批，而是大家的分工问题。我们要知道整个流程需要哪些岗位来配合工作，借此设置产品、研发、测试和运维的岗位。流程管理是用来确保人人有事做，事事有人做，并且在整个项目、业务流程中，每一个岗位都是明确的。</p><p>3、组织管理</p><p>组织管理的内容是确定权责，它主要解决了负责人必须有权，有权的人必须负责的这个问题。</p><p>在实际落地的管理工作过程中，如果推进流程清晰、岗位分工明确，那么组织管理的工作就会比较少；反之如果推进流程模糊、岗位分工也含糊，那么管理者就需要投入大量精力去解决关于流程的问题，去解决组织上需要权责清晰分明的问题。</p><p>实际工作中，花费在流程管理和组织管理的时间还是比较少的，更多的时间用在计划管理上，需要做好设定和达成目标的工作。计划管理、流程管理、组织管理分别解决不同的问题：</p><ul><li><strong>计划管理，</strong> 解决设计计划、明确目标、合理分解任务和达成目标的问题；</li><li><strong>流程管理，</strong> 解决流程和岗位要清晰，人人有事做，事事有人做的问题；</li><li><strong>组织管理，</strong> 解决权责问题，确保组织合理，做事的人有权、有权的人承担责任。</li></ul><p>这是基础管理最重要的三项内容，如果你要做更高阶的管理，往总监、VP、CTO的方向走的话，那么在管理工作中你还需要思考高阶的管理，比如说战略管理，我们要建设怎样的能力，又比如说文化管理，我们如何能够持续地建设能力并且在各个方向上文化都拥有战斗力。</p><p><strong>计划管理是我们做好一切的基础，是达成目标的方法。</strong>做好计划管理，基本上你就是一个80分的一线或者二线管理者。</p><p><strong>二、计划管理最佳适用范围</strong></p><p>问题：销售的目标是一个需要达成的销售额，销售额按月度考核，有的时候目标达成了而有的时候没有，那么我这个月需要怎样制定怎样销售额度。以上算不算计划管理？</p><p>答案：不算，这个例子更偏向于绩效管理。</p><p>对于直接为业务结果负责的部门，会特别注重绩效管理。但是对于不直接背负绩效管理指标的部门，绩效管理就不是这个部门的管理者最关注的的事情。像是最典型的研发部，它们为交付服务而存在，是一个注重效率的部门，要求快速、高质、高效地交付产品和系统。</p><p><strong>计划管理适合关注效率而非绩效的部门。</strong> 对这样的部门来说，其核心管理方法论就是计划管理。</p><p>还是典型的例子，对技术部门来说，他们的主要职责不是技术驱动业务的部分（少数公司例外），更多的是为交付而负责，确保高质量、高效、安全、低成本地做系统交付，十分注重过程和效率。所以计划管理非常适合像研发这样的团队去做管理。</p><p><strong>三、计划管理也是一个过程管理</strong></p><p>有一些团队拍着胸脯说：“你就不用管啦，我季度末给你结果！”</p><p>这不算过程管理，它虽然有目标有结果，但是却没有关注过程，所以它其实就是绩效管理。像这样“不用管，到时候保证给出结果”的情况在很多公司和团队中都存在，这种管理方式极其容易出现管理失控。</p><p>结果团队，例如销售的KPI管理的review周期比较短，通常以周或者月为维度来review销售结果，这严重依赖个人能力而不是制度或者流程。过程管理运用到研发团队身上的话，绩效考核一般来说粒度更粗，以季或者年为维度review结果，也就不大会出现“拍胸脯”的现象，以避免管理失控。</p><p>既然计划管理是一种方法和工具，想要做好管理就需要去多学习、多练习。那么如何培养好好的管理习惯？大家回想一下自己的编码习惯是怎么培养出来的，应该就是通过不断写代码而训练出来的。所以类比一下，对于计划管理也是一样的，我们需要养成做计划的习惯，刻意训练自己运用这种管理方式的习惯。</p><p>举个例子，比如我负责58到家的技术部，而且在2020年有一个“提效、为效率负责、为项目交付吞吐量负责”目标。首先我会和技术团队解释我们有这样的目标是因为它与我们的职责相关，然后明确目标的内容是“本季度或者本年的交付吞吐量要提升到20%，线上线下bug要降低多少”等等。</p><p>其实这就是要向你带领的团队明确我们<strong>为什么做、做什么和怎么做</strong>，以及其他细节：</p><ul><li><strong>为什么做？</strong> 为了提高效率；</li><li><strong>做什么？</strong> 建设技术体系；</li><li><strong>怎么做？</strong> 讨论现在效率的瓶颈是什么，找出项目流程中的主要矛盾到底是需求评审阶段、项目设计阶段、研发阶段、链条阶段还是上线阶段。哪个过程最耗时间，如果是需求评审阶段很低效，产品没想清楚，那么我们这个季度就会主要抓这个部分来提高效率；如果是上线阶段，我们没有好的工具和平台，都是依赖于人肉，整个过程都是主要矛盾的话就重点抓这一块；</li><li><strong>时间节点？</strong> 季度；</li><li><strong>负责人？</strong> 我，沈剑。</li></ul><p><strong>四、计划管理五要素</strong></p><p>看完之后其实会发现，上面说的<strong>做什么、为什么、怎么做、时间节点、责任人</strong>这些要素，不管是带领团队做产品项目、业务项目还是技术项目，在计划管理中就是最重要的五要素。为了方便大家记忆，计划管理五要素可以记成“他问我为何”，也就是<strong>Target、Why、When、Who、How（TWWWH）</strong>。</p><p>1、 <strong>T（Target）：</strong></p><ul><li>首先设定好目标；</li><li>其次这个目标必须承接战略和部门职责，比如说部门职责是提高效率、高质量、低成本、安全地交付。目标必须和职责相关。为什么要建设技术体系，一定是更高效、更高质量的和交付相关的。</li></ul><p><strong>2、W（Why）：</strong></p><ul><li>项目成立原因，比如研发团队的职责相关，所以要提高效率、建设技术体系、改进上线流程、改进产品协作流程等等；</li><li>这个点是负责人和管理者在做计划、传达的过程中最容易忽略的一个点。很多时候我们只跟大家同步业务目标和结果、项目目标和结果，但是没有传达为什么要做这件事情，这就导致了很多员工执行不到位。是因为他们在做这件事情的时候，本身就不认同这件事情的目标，也不知道为什么要做；</li><li>比如目标是技术体系建设，有些运维人员会觉得自动化运维工具会取代自己的岗位，他不认可这个目标。但是这个工具在平台建设中和部门职责息息相关，是必须要完成的事情。所以，在传达的时候要解释清楚这个工具会帮助运维团队提高工作效率，让他们有时间专注在其他关于自动化的工作上，而不是不断重复上线操作。这样，一旦他们认可你的目标之后，执行计划和配合工作才会更加顺畅。</li></ul><p><strong>3、W（When）：</strong></p><ul><li><p>时间点很重要，比如本季度或者今年要提升多少；</p></li><li><p>如果你说今年要完成5、6个项目，员工听着就会觉得时间粒度非常粗且不可控，会导致他们完成的信心指数非常低。如果把这个时间节点进一步细化和拆解，今年要完成5、6个项目，其中容器化项目实现需要12个步骤，并且每个动作需要1个月来完成。这样将时间点做了细致的拆解，听着相对可控，员工对于完成这个指标的信心指数就会比较高。又比如说这个项目需要2个星期上线，时间粒度粗所以项目风险也高，如果你说项目需要研发几个接口、每个链条和自测需要多长时间，时间拆解越细，老板对你完成这个计划的信心指数就高；</p></li><li><p>对于时间这一块想要强调的是，在做计划时尽可能将时间粒度拆解得细、最大程度明确动作，这样老板看完你的计划之后信心指数比较高，会觉得项目交给你之后他就不需要实时和你同步项目，他可以把精力放在别的项目上。</p></li></ul><p><strong>4、W（Who）：</strong></p><ul><li><p>在计划和管理中，责任人要对整个项目负责；</p></li><li><p>项目成功，就要奖励；项目失败，责任人就需要对项目负责。</p></li></ul><p><strong>5、H（How）：</strong></p><ul><li><p>分解、实施、review、复盘、改进行动计划以达成目标；</p></li><li><p>需要完成计划、明确目标、上传下达、提高老板信心指数；</p></li><li><p>举一个很粗粒度的例子，2019年我负责58到家的技术中心，当时老板向我提了一个要求，就是要提升团队的效率。提升团队的效率是在明确职责的前提下，相同的事情能够让更少的人去做，或者是人数不变的情况下承担更多的职责。我会首先，按季度粗粒度地将计划进行拆解：</p></li><li><p><strong>Q1：</strong> 在架构侧、中台侧、基础服务侧和企业平台侧，可能要做效能的提升；而运维侧和IT侧可能需要成立虚拟的组织，让更少的人能去做更多的事情。Q1要成立一个创新的部门，去做一些创新的事情，Q1可能只完成了一部分，等我把这一块拆解之后，就把这个目标给相关的总监，由他做更细化的拆解；</p></li><li><p><strong>Q2：</strong> 可能有两个部门的人效比较低，有人员的汰换或者质量部、效能部的重组架构调整，那我Q2主要抓这一块的矛盾；</p></li><li><p><strong>Q3：</strong> 有些部门反馈到数据部，觉得效率比较低，那么就要对大数据进行调整。同时创新的方面，又孵化出了一个保险业务；</p></li><li><p><strong>Q4：</strong> 我做了一级的拆解之后递归给下面的总监和经理做二级的拆解，可能最终年效提升了10%，节省40%的人完成过去相同的工作，又或者在人数不变的情况下，我还孵化了两个创新的产品。</p></li><li><p>我必须确保在我的管理范围内，所有人都知道我们的年度总目标是什么、为什么要做、计划是什么、每一块的负责人是谁、初步的规划怎么做。</p></li></ul><p>大家可以想想，你们的团队是否明确了今年整个技术部的目标，或者你们部门是否明确了目标，又或者你们最近一个项目的目标是什么。你的团队人员究竟是清清楚楚，还是简单地被分配和执行工作。</p><p>如果他们对目标不清楚或者不认可这个目标，在执行的过程中就很有可能出现很大的阻力，也会有很多的问题。</p><p>还有就是，你们到底有没有和他们讨论怎么做。很多人会这样说，“人效要提升40%”，那你没有具体拆解过的行动计划，如果没有那最后就是靠天看这个目标能不能达成。</p><p>有没有负责人和明确的时间点，在怎样的时间节点要达成怎样的目标。</p><p>所以TWWWH（他问我为何），目标、为什么、时间节点、负责人、怎么做这五项因素在做计划管理中非常重要。</p><p><strong>五、计划管理核心讨论什么</strong></p><p>1、怎么做很重要</p><p><strong>计划管理最核心应该讨论：怎么做。</strong></p><p>举个具体的例子，比如我所负责的快狗的技术中心的部门，Q2的项目吞吐量中一个效率指标要提升30%。我们初步定的目标是30%，挑战点的目标是50%，其实我们并没有花多大的精力去讨论目标是30%还是50%。但是很多同学在做计划的时候会很精细地计算到，“我要提升15%，我算过了，做A可以提升5%，做B可以提升5%，做C和做D可以提升5%，所以总体可以提升15%。”</p><p>我不知道大家在定OKR的时候是不是这样细算出来的。我们知道，制定OKR的时候要制定有挑战的目标，而且最好50%概率能够完成，也就是跳一跳能够得到的目标。</p><p>所以你要把效能提升30%还是35%还是50%，其实没那么重要。甚至很多业务，你问他的业务增长目标是怎么做出来的，这很有可能就是老大拍板的。</p><p>怎么做非常重要，在做计划管理的过程中我们应该把时间放在讨论怎么做上面，重点应该讨论行动计划的制定。</p><p>我们重点需要花时间去想，执行中可能会有的潜在困难、这些困难的解决方案，再配合定期的执行、校验和行动计划的更新。</p><p>2、如何复盘</p><p>定期的执行和检查，我也不知道大家会不会定期复盘项目，你们的项目复盘会怎么开，重点说什么，但你们想一想是不是下面这个样子：</p><p>首先摆数据，我们订单增长了多少、效能提升了多少、体系化项目进度是多少；然后找原因，解释这个地方为什么没有达成预期，去做各种各样的解释。这是一种非常错误的复盘会。当然找原因是必须的，但是你会发现你找到原因解释，对后续的改进没有任何意义，所以复盘会上要重点讨论什么呢？</p><p><strong>要重点讨论后续的行动计划、潜在风险、解决方案和行动的变更。</strong> 制定计划的时候要讨论行动计划和怎么做，复盘的时候也要重点讨论行动计划。之前做对了的我们要继续做，什么行动要保持，之前做错了什么或者什么没有做对，我们也要纠偏回来。</p><p>但是我参加过很多复盘会，这些会可能都和追责有关。很多复盘会做这样的工作，通篇都在解释为什么这个项目没有达成预期，不是我的原因而是别人的原因。</p><p>我又举个例子，我对Q2产品效能的提升定了一个50%的目标，最终目标完成了80%。Q2过去之后，我们要怎样复盘？</p><p>我们做对了什么？可能是组织架构调整了，目标更清晰了。原来一开会大家都在扯皮，说测试是瓶颈所以要加测试，说前端是瓶颈所以要加前端。我将组织架构调整成相对闭环的部门，业务里有一个研发小组，包含了测试、研发、前端和后端，那么原来沟通的成本就降低了，大家都看齐同一个业务目标，背一个业务指标，扯皮就减少了，沟通就更高效了，这样对项目提升可能有帮助。</p><p>最简单的方法，比如说五、六月份是战略重心，有几个战略项目都要上线。有些老大会说，“这两个技术团队的同学辛苦辛苦，周六来冲个刺。”这样可能团队多工作一天就提升了20%的效能，但我特别反对长期通过这种方式来提升迭代速度。我们还是要通过优化流程和工具去优化、提升速度。</p><p>又像刚刚说到的流程这一块，在项目流程过程中，原来在需求阶段可能存在问题但我没有改进，所以最终只提升了5个点。</p><p>或者说，原来上线都是通过人工，而现在用自动化的上线工具；原来搭建测试环境需要很长时间，现在通过自动化的方式去搭建测试环境，这样对效能的提升是肯定有帮助的。这方面就需要管理者了解当前的主要矛盾，并去解决这些主要矛盾。</p><p>如果你觉得人员技能不到位，那你就能要去做培训；你觉得不靠谱，那你就要做汰换。反正到了季度末我们复盘的时候，做对了的事情在下个季度就继续做，做错了的事情就要停止做，能够继续迭代的空间，我们就要去优化。</p><p>在计划管理的过程中，大家要多花时间去讨论行动计划，在复盘中讨论做对了什么、行动计划要改变什么，而不是单纯的质量和数字，以及解释、推脱或者甩锅，这样对后续达成目标没有什么帮助。所以我想表达的是，花时间的重头戏应该是制定行动计划。</p><p><strong>六、计划管理的两大特点</strong></p><p>1、目标不合理性</p><p>前面提到了怎样的OKR是好的OKR，如果你达成的概率是50%，50%概率不能达成，这个目标跳一跳就可以够得到，那这样的目标是好目标。</p><p>再举一个例子，Q2有一个项目是IDC或者叫集群，快狗侧可能有几百个集群原来做了过度的设计，微服务化拆分出了太多细粒度的服务，导致维护起来成本很高。那我们说Q2可能要做一些集群的合并和架构的优化。</p><p>当时项目有一个负责人，我让他提一个目标，他纠结了很长的时间，说我不知道集群要减少10%，还是15%，还是8%。但其实你会发现，不管这个值是多少，后面重点要花时间去讨论的是行动计划、怎么样合并集群、架构怎样更合理、以什么样的节奏去执行。其实目标是10%还是30%，和后面讨论的行动计划是没有关系的。所以后来我就说，那我定下20%这个值，然后Q2就按照这个目标去走，看Q2能不能达成20%的OKR。</p><p>OKR和KPI不一样。KPI达成与否跟你的涨薪或者跟你的绩效有关，但是OKR指定的是有挑战的OKR，所以你的leader一定要综合实现难度系数去打分。虽然说我拍了一个目标，但是因为我是一个技术专家，所以我在拍的过程中是有所谓的专业手感的，我并不是瞎拍的。</p><p>我实际是想了一下，20%的目标去做工作有一定的挑战，但就是能够实现的。在这个拍目标的过程中，能够体现我的专业手感。在一个专业领域里浸淫久了，拍目标的时候其实能够体现专业手感，IDC减少多少、效能提升多少、订单增长多少更合理，这些都能够体现你的专业手感。</p><p>总之，计划管理有一项特点是目标不合理，因为目标本身是一个预测，目标要符合战略的要求，而且目标更重要的是体现你对某一部分的决心。很多时候项目目标定下来了，团队管理反而简单了。有些团队之所以不出成果，是因为花了大量时间放在目标讨论上，而且在制定目标的过程中往往也提出了很多困难，去强调达成目标非常有挑战，并持续降低自己的目标，直到目标降低到自己有把握的程度。这个不是OKR，也不是计划管理。OKR不是在制定目标的时候有大概率能完成的感觉，而是一个有挑战的目标。</p><p>未来也希望大家在做计划管理的过程中，能够制定一个有50%概率能够完成的目标，这就是一个好的OKR目标。目标在制定的过程中也能够体现你的专业手感，所以如果你让一线的同学来这个事情会更不靠谱，因为一线的同学更多思考自己怎么才能不出错，所以你让他去定目标，一定是自己能够实现的。他们关注的更多是自己，可能不是业务或者公司的压力。</p><p>我们作为leader，有一项非常重要的要求，你要同时具备内外部视角。外部怎么看问题，你的老板希望你能达成什么目标。而很多一线的员工可能缺乏外部视角，他们可能更多思考的是做什么能够不出错，所以我要制定一个我能够完成的目标，这样我就能拿到奖金。这就是典型的KPI或者自我的思维。</p><p>计划管理的第一个特点，也是不必花太多时间精准地制定目标。很多时候大家精准地讨论目标，就会强调这个事情有多难、多有挑战，会持续地降低目标，直到降到一个自己有把握的目标。你想想，这样对团队的发展和对业务的发展，都是非常不利的。</p><p>2、行动计划的合理性</p><p>行动计划必须合理，你要花最多的时间在讨论行动计划上。</p><p>资源匹配要合理，如果你没有给我那么多的预算，我拿不到那么多的市场费用和流量，你也没有足够的研发团队，那你让我在一个月之内干出那么多系统，我做不到。所以行动计划的拆解必须是合理的。</p><p>下面举一个例子，快狗打车在做Q2的容器化项目来提升的自动化程度时有一个负责人，负责人是我们这边运维的总监，目标是Q2整个测试环境容器化全覆盖。</p><p>他就解释给团队听：</p><ul><li>为什么要做这件事情，你要提高效率，跟我们的职责相关；</li><li>时间节点是一个季度，我们要达成测试环境的覆盖，他就进行拆解，总共有200个集群，第一个月要覆盖80个，第一个星期要覆盖哪10个集群完成容器化；</li><li>每一块工作继续拆细，研发和运维团队要负责哪部分；</li><li>在季度初，他就做了一个计划管理，然后在每个月执行的过程中，以月为单位进行review。上个月我计划完成三分之一，那我有没有80个集群测试环境的三分之一Docker容器化覆盖？如果项目delay了，我要发现为什么项目delay了；如果有一块技术方案我们想得简单了，那有什么解决方案？如果我们后续的行动计划可能要改变，我们就得加进人手，让大家更重视或者晚上加一个小时班，这样去不断地调整自己的行动计划，不断复盘之前哪一块工作做得好，做对的要继续做，做错的要停止做，迭代优化要继续改进。</li></ul><p><strong>总结</strong></p><p><strong>1、</strong> <strong>对管理者最基本的要求，是对目标的承诺</strong></p><p>你能够承诺多大的目标，你的岗位就有多大的价值。</p><p>大家想一想，你能跟你的老板举手说我愿意背什么样的指标。你这句话承诺的指标，项目、系统、团队或者业务的一个指标，你都会发现跟你的岗位有关。你的职位越高你承诺的指标和负责的范围会越大。</p><p><strong>2、</strong> <strong>计划管理是一切管理的基础，计划管理也是目标达成的一个工具</strong></p><p>基础管理非常重要的几项：</p><ul><li>计划管理解决的是目标及目标达成工具的问题；</li><li>流程管理要确定核心的业务流程。产研侧的话就是项目流程，确定实现过程中的岗位、解决事事有人做，人人有事做的问题。大家可以去看看，你们的团队是不是缺某些岗位，观察有没有PMO岗等等；</li><li>组织管理确定权责的关系，解决负责的人必须有权，有权的人必须为结果负责的问题。</li></ul><p>流程管理，一旦流程确定岗位确定之后，我们在日常管理的过程中，再改流程的概率就会变小，你花在这个上面的比重也会小。组织管理也是一样的，一旦权责明确，组织架构明确。其实你调整的频率也是很小的，</p><p>所以基本上作为一个管理者，不管你是做项目管理还是团队管理，无论你是做业务项目还是技术项目，绝大部分的工作都应该花在计划管理上。</p><p>设定目标、设定行动计划、追踪行动计划，做好了计划管理就能做一个80分的管理者。</p><p><strong>3、</strong> <strong>计划管理，非常适合关注过程和效能的“非绩效部门”</strong></p><p>研发团队是典型的为交付、产品负责的“非绩效部门”。部门的职责是高效、高质、低成本、安全性地进行交付，这样的部门非常适合计划管理。所以理论上，这种部门的管理者绝大部分做计划管理都是定目标、做行动计划、review和达成。</p><p><strong>4、</strong> <strong>计划管理是一个过程管理</strong></p><p>过程管理对销售部门来说更多的是KPI导向，要完成多少的销售业绩，每个大区有每个大区的玩法，每个城市经理有每个城市经理的玩法，每个团队的执行过程都是不一样的。如果通过拍胸脯的方式，这样的团队review的频率或者是绩效考核频率可能会比较高，会以周或者月为单位。</p><p><strong>5、</strong> <strong>计划管理五要素：他问我为何（TWWWH）</strong></p><ul><li><strong>目标（T）；</strong></li><li><strong>为什么（W）：</strong> 这是Leader在管理的过程中很容易忽略的和下属和团队成员进行沟通的问题。Leader的职责是上传下达，很多时候你只是告诉他们业务目标是这个，项目交付时间是这个，但你没有告诉他，他为什么要做这个业务和项目，这样可能会引发团队成员的归属感或者疑虑。当他不认同这件事情的时候，他可能就会成为达成目标的一个反推力，所以这个部分非常重要；</li><li><strong>时间节点（W）：</strong> SMART法则，要有时间概念；</li><li><strong>责任人（W）：</strong> 责任人很重要。负责的人要有权，有权的人要负责，你有没有授予他协调资源和完成目标的权力也很重要；</li><li><strong>怎么做（H）：</strong> 为什么很多团队的目标无法达成，可能是在制定目标的时候只提到这个季度要提升50%，但是没有提及怎么提升50%。如果就这样做了再说吧，那到了季度末的时候整个管理是会是失控的，整个项目和业务达成也是失控的。整个过程的初期中最核心要讨论的就是怎么达成，而不是你的目标到底是10%还是15%。</li></ul><p><strong>6、</strong> <strong>计划管理中，核心要讨论怎么做</strong></p><p><strong>7、</strong> <strong>计划管理两大特点：</strong></p><ul><li><strong>目标的不合理性：</strong> 不要花太多时间在讨论目标上，定一个50%概率能达成的、跳一跳就能够达成的目标是最合适的；</li><li><strong>行动计划的合理性：</strong> 行动计划和资源匹配必须是合理的，不能是不切实际的。</li></ul><p><strong>团队管得好不好，可以看大家有没有养成“计划管理”的习惯！</strong> 如果你做的不好，大概率是季度初制定了目标，但不做行动计划、不做review复盘，季度末达成还是不达成，就全靠天。所以我也要求我的团队在各块工作都需要做计划管理，初期讨论行动计划，review整个过程，而不是找借口和做推脱，并且季度末也会根据他工作的难度系数给予他应得的东西。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术小栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PMO </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>什么是 VLAN、三层交换机、网关、DNS、子网掩码、MAC地址</title>
       <link href="/2020/08/26/%E7%BD%91%E7%BB%9C/%E4%B8%80%E6%96%87%E8%AE%B2%E6%87%82%E4%BB%80%E4%B9%88%E6%98%AF%20VLAN%E3%80%81%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA%E3%80%81%E7%BD%91%E5%85%B3%E3%80%81DNS%E3%80%81%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E3%80%81MAC%E5%9C%B0%E5%9D%80/"/>
       <url>/2020/08/26/%E7%BD%91%E7%BB%9C/%E4%B8%80%E6%96%87%E8%AE%B2%E6%87%82%E4%BB%80%E4%B9%88%E6%98%AF%20VLAN%E3%80%81%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA%E3%80%81%E7%BD%91%E5%85%B3%E3%80%81DNS%E3%80%81%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E3%80%81MAC%E5%9C%B0%E5%9D%80/</url>
@@ -1454,31 +1504,6 @@
     
     
     <entry>
-      <title>技术团队的4个难题</title>
-      <link href="/2019/03/17/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%844%E4%B8%AA%E9%9A%BE%E9%A2%98/"/>
-      <url>/2019/03/17/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%844%E4%B8%AA%E9%9A%BE%E9%A2%98/</url>
-      
-        <content type="html"><![CDATA[<p>以下文章来源于阿里巴巴中间件</p><p>从单个应用到多个应用，从百千级别的访问流量到十万、百万级别，从两三个人的创业技术团队到上千人的技术团队矩阵，这些过程中，技术团队都避不开了以下 4 个问题：</p><ul><li><p>如何预测业务峰值时的容量</p></li><li><p>如何提升业务的稳定性</p></li><li><p>如何提高业务的监控能力</p></li><li><p>如何提高开发效率</p></li></ul><p><strong>如何预测业务峰值时的容量</strong></p><hr><p>早期的做法是在开发测试环境进行压测，来评估线上容量，但线下环境的机器规模，和线上差距很大，很难通过线下推导线上。根据经验，将采购的机器加入不同的应用里面，这时候就会遇到一个问题： <strong>最大业务峰值容量是多少？</strong></p><p>这个问题，其实挺难回答的。这个应用多加几台，那个应用少加几台，整体的业务峰值承受能力就会不一样，加减的规则很难通过人的经验来确定，最多只能作为一些辅助判断。另外，核心交易链路的梳理，也是一个体力活，如果依赖人为处理，有可能会漏掉一些看起来不那么重要的”分支”，这是整个容量不确定的地方，可变的因子很多。</p><p>比较有效的方式， <strong>是在生产系统部署全链路压测</strong>，来验证各个生产环节是否能经受住各类流量的访问，让真实的流量来访问生产环境，实现全方位的真实业务场景模拟，确保各个环节的性能、容量和稳定性均可做到万无一失。</p><p><strong>如何提升业务的稳定性</strong></p><hr><p>日常的各种运营活动，都有可能带来巨大的流量高峰，除了通过引入全链路压测来验证各个生产环节是否能经受住各类流量的访问， <strong>构建系统的高可用保障能力也很关键</strong>，涉及多个组件或模块，例如<strong>软负载和配置中心、服务接入和调度编排、消息接收和发送、容器和调度、限流和降级</strong> 等。</p><p>运营一次活动，最大的流量峰值是可以预测的，这就是服务的最大接待能力，比如50万笔的交易创建峰值，那超过的怎么办？这时候，采用限流的方式，被限流的客户在某一段时间内无法进行购物，一旦系统恢复服务能力，就可以继续服务被限流的客户，从而避免因流量超过上限，而影响整个平台的客户。</p><p><strong>如何提高业务的监控能力</strong></p><hr><p>分布式应用系统在协作性，扩展性和一定的容错性方面，体现出了优势，但是<strong>在监控、运维和诊断层面，面临相当大的挑战。</strong></p><p>早期，架构师可以画出整个应用系统的交互架构图，随着业务的发展，当拥有大量的应用、微服务和容器，即便整理了一幅交互架构关系图，也会因为应用系统的变更，新需求的实现，整个应用系统的交互又会发生变化，这种变化无处不在，每天都在发生。因此，随着业务量的增加，需要覆盖面广且深的<strong>全链路跟踪监控系统</strong> ，来诊断调用链的问题。</p><p>越是复杂的业务形态，定位的难度越大，就越需要全方位、360度无死角的监控，因此，建立一个平台化、跨领域和立体化的监控，能极大的缩短业务遇到问题时的恢复时间。</p><p><strong>如何提高开发效率</strong></p><hr><p>开发效率是一个很广泛的话题。不同的开发岗位，不同的使用场景，会有不一样的开发效率工具。这里，我们介绍几款后端工程师经常会用到的效率工具。</p><p>云端部署效率工具：</p><p>Cloud Toolkit 是一款 IDE插件，可以帮助开发者更高效地开发、测试、诊断并部署应用。借助这个工具，开发者能够方便地将本地应用一键部署到任意机器，或 ECS、EDAS、Kubernetes，并支持高效执行终端命令和 SQL 等。<a href="http://mp.weixin.qq.com/s?__biz=MzU4NzU0MDIzOQ==&mid=2247485392&idx=3&sn=113a67be48740443b9a29d172da48b12&chksm=fdeb35b0ca9cbca6f48b61c8c333683b6acbaac4f1e8101ff54546d9256347bff629e0e513c5&scene=21#wechat_redirect">点此了解详情。</a></p><p>MacOS 搜索利器：</p><p>MacOS 自带的聚焦搜索（Spotlight），可以将文稿、邮件、应用等整合在一起，通过关键词匹配来进行搜索。Alfred 可以看作是Spotlight的增强版，是计算机依赖者的效率神器，支持添加自定义网络搜索引擎，指定规则精准定位本地文件，以及在命令框内使用计算器、词典等实用工具。</p><p>画图效率工具：</p><p>系统架构图是为了抽象的表示软件系统的整体轮廓和各个组件之间的相互关系和约束边界，以及软件系统的物理部署和软件系统的演进方向的整体视图。通过架构图，可以让干系人理解、遵循架构决策，就需要把架构信息传递出去。架构图就是一个很好的载体，所谓一图胜千言。<a href="http://mp.weixin.qq.com/s?__biz=MzU4NzU0MDIzOQ==&mid=2247485842&idx=2&sn=39bf21a40e810d8993aaeb6054f4cada&chksm=fdeb3bf2ca9cb2e4e40442c80fc833372686f373c3c0e23f5b3cf438d00ebd6586bd4772f36c&scene=21#wechat_redirect">点此了解详情。</a></p><p>JSON 浏览效率插件</p><p>对于 JSON 的数据，如果不编排，格式查看起来会很费劲。JSON-handle 是一款对 JSON 格式的内容进行浏览和编辑，以树形图样式展现 JSON 文档的插件，支持实时编辑。</p><p>Java 代码规约扫描效率插件</p><p>这是一款 Java 代码规约扫描工具，旨在以工具的手段进行代码规约的落地，项目包含三部分：PMD规则实现、IntelliJ IDEA 插件、Eclipse 插件，帮助开发人员在工程研发的多个阶段进行代码规约检查， 降低故障率、提升编码效率和质量。<a href="https://mp.weixin.qq.com/s?__biz=MzAxNDU0MTE0OA==&mid=2661009238&idx=1&sn=3813042bae641ce8cac04ff57bf30ee2&chksm=80feaf65b789267361c560cb2b134e325343a927925b985642cba95210fe9222aaf2f006c90b&token=2107695414&lang=zh_CN&scene=21#wechat_redirect">点此了解详情。</a></p><p>当然，除了这些现成的效率工具，提升整个技术团队的开发效率，需要单独开发或改造一些系统，例如团队协作平台、服务化改造等，当你以实习生的身份加入公司后，若有机会参与到这些提升开发效率的项目过程中。由此形成的效率意识，将会影响到你今后的工作习惯和理念。</p><blockquote><p>本文部分内容来源于阿里巴巴中间件资深产品专家丹臣的内部分享《阿里巴巴中间件上云实践》。</p></blockquote>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术小栈 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 开发效率 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>哪怕1%的提升，效益都非常大 | 当传统拥抱互联网</title>
       <link href="/2019/03/17/%E6%9D%82%E8%AE%B0/%E5%BD%93%E4%BC%A0%E7%BB%9F%E6%8B%A5%E6%8A%B1%E4%BA%92%E8%81%94%E7%BD%91/"/>
       <url>/2019/03/17/%E6%9D%82%E8%AE%B0/%E5%BD%93%E4%BC%A0%E7%BB%9F%E6%8B%A5%E6%8A%B1%E4%BA%92%E8%81%94%E7%BD%91/</url>
@@ -1496,6 +1521,31 @@
         <tags>
             
             <tag> 杂记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>技术团队的4个难题</title>
+      <link href="/2019/03/17/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%844%E4%B8%AA%E9%9A%BE%E9%A2%98/"/>
+      <url>/2019/03/17/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%844%E4%B8%AA%E9%9A%BE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>以下文章来源于阿里巴巴中间件</p><p>从单个应用到多个应用，从百千级别的访问流量到十万、百万级别，从两三个人的创业技术团队到上千人的技术团队矩阵，这些过程中，技术团队都避不开了以下 4 个问题：</p><ul><li><p>如何预测业务峰值时的容量</p></li><li><p>如何提升业务的稳定性</p></li><li><p>如何提高业务的监控能力</p></li><li><p>如何提高开发效率</p></li></ul><p><strong>如何预测业务峰值时的容量</strong></p><hr><p>早期的做法是在开发测试环境进行压测，来评估线上容量，但线下环境的机器规模，和线上差距很大，很难通过线下推导线上。根据经验，将采购的机器加入不同的应用里面，这时候就会遇到一个问题： <strong>最大业务峰值容量是多少？</strong></p><p>这个问题，其实挺难回答的。这个应用多加几台，那个应用少加几台，整体的业务峰值承受能力就会不一样，加减的规则很难通过人的经验来确定，最多只能作为一些辅助判断。另外，核心交易链路的梳理，也是一个体力活，如果依赖人为处理，有可能会漏掉一些看起来不那么重要的”分支”，这是整个容量不确定的地方，可变的因子很多。</p><p>比较有效的方式， <strong>是在生产系统部署全链路压测</strong>，来验证各个生产环节是否能经受住各类流量的访问，让真实的流量来访问生产环境，实现全方位的真实业务场景模拟，确保各个环节的性能、容量和稳定性均可做到万无一失。</p><p><strong>如何提升业务的稳定性</strong></p><hr><p>日常的各种运营活动，都有可能带来巨大的流量高峰，除了通过引入全链路压测来验证各个生产环节是否能经受住各类流量的访问， <strong>构建系统的高可用保障能力也很关键</strong>，涉及多个组件或模块，例如<strong>软负载和配置中心、服务接入和调度编排、消息接收和发送、容器和调度、限流和降级</strong> 等。</p><p>运营一次活动，最大的流量峰值是可以预测的，这就是服务的最大接待能力，比如50万笔的交易创建峰值，那超过的怎么办？这时候，采用限流的方式，被限流的客户在某一段时间内无法进行购物，一旦系统恢复服务能力，就可以继续服务被限流的客户，从而避免因流量超过上限，而影响整个平台的客户。</p><p><strong>如何提高业务的监控能力</strong></p><hr><p>分布式应用系统在协作性，扩展性和一定的容错性方面，体现出了优势，但是<strong>在监控、运维和诊断层面，面临相当大的挑战。</strong></p><p>早期，架构师可以画出整个应用系统的交互架构图，随着业务的发展，当拥有大量的应用、微服务和容器，即便整理了一幅交互架构关系图，也会因为应用系统的变更，新需求的实现，整个应用系统的交互又会发生变化，这种变化无处不在，每天都在发生。因此，随着业务量的增加，需要覆盖面广且深的<strong>全链路跟踪监控系统</strong> ，来诊断调用链的问题。</p><p>越是复杂的业务形态，定位的难度越大，就越需要全方位、360度无死角的监控，因此，建立一个平台化、跨领域和立体化的监控，能极大的缩短业务遇到问题时的恢复时间。</p><p><strong>如何提高开发效率</strong></p><hr><p>开发效率是一个很广泛的话题。不同的开发岗位，不同的使用场景，会有不一样的开发效率工具。这里，我们介绍几款后端工程师经常会用到的效率工具。</p><p>云端部署效率工具：</p><p>Cloud Toolkit 是一款 IDE插件，可以帮助开发者更高效地开发、测试、诊断并部署应用。借助这个工具，开发者能够方便地将本地应用一键部署到任意机器，或 ECS、EDAS、Kubernetes，并支持高效执行终端命令和 SQL 等。<a href="http://mp.weixin.qq.com/s?__biz=MzU4NzU0MDIzOQ==&mid=2247485392&idx=3&sn=113a67be48740443b9a29d172da48b12&chksm=fdeb35b0ca9cbca6f48b61c8c333683b6acbaac4f1e8101ff54546d9256347bff629e0e513c5&scene=21#wechat_redirect">点此了解详情。</a></p><p>MacOS 搜索利器：</p><p>MacOS 自带的聚焦搜索（Spotlight），可以将文稿、邮件、应用等整合在一起，通过关键词匹配来进行搜索。Alfred 可以看作是Spotlight的增强版，是计算机依赖者的效率神器，支持添加自定义网络搜索引擎，指定规则精准定位本地文件，以及在命令框内使用计算器、词典等实用工具。</p><p>画图效率工具：</p><p>系统架构图是为了抽象的表示软件系统的整体轮廓和各个组件之间的相互关系和约束边界，以及软件系统的物理部署和软件系统的演进方向的整体视图。通过架构图，可以让干系人理解、遵循架构决策，就需要把架构信息传递出去。架构图就是一个很好的载体，所谓一图胜千言。<a href="http://mp.weixin.qq.com/s?__biz=MzU4NzU0MDIzOQ==&mid=2247485842&idx=2&sn=39bf21a40e810d8993aaeb6054f4cada&chksm=fdeb3bf2ca9cb2e4e40442c80fc833372686f373c3c0e23f5b3cf438d00ebd6586bd4772f36c&scene=21#wechat_redirect">点此了解详情。</a></p><p>JSON 浏览效率插件</p><p>对于 JSON 的数据，如果不编排，格式查看起来会很费劲。JSON-handle 是一款对 JSON 格式的内容进行浏览和编辑，以树形图样式展现 JSON 文档的插件，支持实时编辑。</p><p>Java 代码规约扫描效率插件</p><p>这是一款 Java 代码规约扫描工具，旨在以工具的手段进行代码规约的落地，项目包含三部分：PMD规则实现、IntelliJ IDEA 插件、Eclipse 插件，帮助开发人员在工程研发的多个阶段进行代码规约检查， 降低故障率、提升编码效率和质量。<a href="https://mp.weixin.qq.com/s?__biz=MzAxNDU0MTE0OA==&mid=2661009238&idx=1&sn=3813042bae641ce8cac04ff57bf30ee2&chksm=80feaf65b789267361c560cb2b134e325343a927925b985642cba95210fe9222aaf2f006c90b&token=2107695414&lang=zh_CN&scene=21#wechat_redirect">点此了解详情。</a></p><p>当然，除了这些现成的效率工具，提升整个技术团队的开发效率，需要单独开发或改造一些系统，例如团队协作平台、服务化改造等，当你以实习生的身份加入公司后，若有机会参与到这些提升开发效率的项目过程中。由此形成的效率意识，将会影响到你今后的工作习惯和理念。</p><blockquote><p>本文部分内容来源于阿里巴巴中间件资深产品专家丹臣的内部分享《阿里巴巴中间件上云实践》。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术小栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 开发效率 </tag>
             
         </tags>
       
@@ -3258,7 +3308,7 @@
       <link href="/2017/09/07/%E5%B7%A5%E5%85%B7/%20ssh%20%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
       <url>/2017/09/07/%E5%B7%A5%E5%85%B7/%20ssh%20%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。<span id="more"></span> 一般在终端上通过 ssh 命令进行远程服务器登录。</p></blockquote><h3 id="远程登录服务器命令-ssh"><a href="#远程登录服务器命令-ssh" class="headerlink" title="远程登录服务器命令 ssh"></a>远程登录服务器命令 ssh</h3><ul><li>ssh username@ip地址</li></ul><p>例如： ssh <a href="mailto:&#114;&#111;&#x6f;&#116;&#x40;&#49;&#x39;&#x32;&#x2e;&#49;&#x36;&#x38;&#46;&#49;&#x31;&#46;&#50;">&#114;&#111;&#x6f;&#116;&#x40;&#49;&#x39;&#x32;&#x2e;&#49;&#x36;&#x38;&#46;&#49;&#x31;&#46;&#50;</a></p><p>but 服务端一般多台服务器，好几个ip地址，记住这么多ip地址好难，但是根据不同服务器的用途给他们起个别名，就方便多了，能想到自然能实现，这里简述下具体玩法~</p><h3 id="给服务器起个别名"><a href="#给服务器起个别名" class="headerlink" title="给服务器起个别名"></a>给服务器起个别名</h3><ol><li><p>在 <code>~/.ssh/</code> 目录下，新建一个config（有的话，就不用建了噻）</p></li><li><p>vim config 文件，进行编辑</p></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host dev</span><br><span class="line">HostName xxx.xx.xx.xx</span><br><span class="line">User root</span><br><span class="line">IdentitiesOnly <span class="built_in">yes</span></span><br></pre></td></tr></table></figure><ul><li>Host 别名 起一个自己记得住的，比如开发环境 dev 测试环境 test  ..</li><li>HostName 服务器的ip address    </li><li>User 远程登录的用户名</li><li>IdentitiesOnly yes 反正这个就配置yes</li></ul><h3 id="ssh-别名-走起"><a href="#ssh-别名-走起" class="headerlink" title="ssh 别名 走起"></a>ssh 别名 走起</h3><p>配置好文件后，直接 键入 ssh dev 就玩起来了</p>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。<span id="more"></span> 一般在终端上通过 ssh 命令进行远程服务器登录。</p></blockquote><h3 id="远程登录服务器命令-ssh"><a href="#远程登录服务器命令-ssh" class="headerlink" title="远程登录服务器命令 ssh"></a>远程登录服务器命令 ssh</h3><ul><li>ssh username@ip地址</li></ul><p>例如： ssh <a href="mailto:&#x72;&#111;&#111;&#116;&#x40;&#x31;&#x39;&#x32;&#x2e;&#49;&#x36;&#56;&#x2e;&#x31;&#x31;&#x2e;&#50;">&#x72;&#111;&#111;&#116;&#x40;&#x31;&#x39;&#x32;&#x2e;&#49;&#x36;&#56;&#x2e;&#x31;&#x31;&#x2e;&#50;</a></p><p>but 服务端一般多台服务器，好几个ip地址，记住这么多ip地址好难，但是根据不同服务器的用途给他们起个别名，就方便多了，能想到自然能实现，这里简述下具体玩法~</p><h3 id="给服务器起个别名"><a href="#给服务器起个别名" class="headerlink" title="给服务器起个别名"></a>给服务器起个别名</h3><ol><li><p>在 <code>~/.ssh/</code> 目录下，新建一个config（有的话，就不用建了噻）</p></li><li><p>vim config 文件，进行编辑</p></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host dev</span><br><span class="line">HostName xxx.xx.xx.xx</span><br><span class="line">User root</span><br><span class="line">IdentitiesOnly <span class="built_in">yes</span></span><br></pre></td></tr></table></figure><ul><li>Host 别名 起一个自己记得住的，比如开发环境 dev 测试环境 test  ..</li><li>HostName 服务器的ip address    </li><li>User 远程登录的用户名</li><li>IdentitiesOnly yes 反正这个就配置yes</li></ul><h3 id="ssh-别名-走起"><a href="#ssh-别名-走起" class="headerlink" title="ssh 别名 走起"></a>ssh 别名 走起</h3><p>配置好文件后，直接 键入 ssh dev 就玩起来了</p>]]></content>
       
       
       <categories>
@@ -3333,7 +3383,32 @@
       <link href="/2017/08/25/%E6%9D%82%E8%AE%B0/%20hexo%20%E4%BB%8EWindows%20%E8%BF%81%E7%A7%BB%E5%88%B0Mac%20%E4%B8%8A%E7%BB%A7%E7%BB%AD%E7%8E%A9%E8%80%8D/"/>
       <url>/2017/08/25/%E6%9D%82%E8%AE%B0/%20hexo%20%E4%BB%8EWindows%20%E8%BF%81%E7%A7%BB%E5%88%B0Mac%20%E4%B8%8A%E7%BB%A7%E7%BB%AD%E7%8E%A9%E8%80%8D/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>最近刚刚入手Mac，各种体验Mac的妙处，后面有时间把总结的各种坑记录下，这次先把基本的工具搬迁过来~</p><p>hexo 的搬家路： windows -&gt; mac </p></blockquote><h2 id="迁移思路"><a href="#迁移思路" class="headerlink" title="迁移思路"></a>迁移思路</h2><ul><li>在mac上安装好 <code>hexo</code>，初始化根目录；</li><li>然后生成新的 <code>SSH key</code>，并将其添加到 <code>github</code>；</li><li>将Windows上的资源、配置复制、直接粘贴覆盖Mac上对应的目录。</li></ul><h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p><strong>安装 node&#x2F;git</strong></p><p>homebrew 安装：</p><p>​brew install node</p><p>​brew install git</p><p><strong>安装 hexo</strong></p><p>用 node 的 npm 安装 hexo：</p><pre><code>    npm install hexo-cli -g</code></pre><ul><li><p>每个版本安装方式可能不一样，这一步需要异步到 官网 </p></li><li><p><a href="https://hexo.io/">hexo 官网</a></p></li></ul><p><strong>初始化 hexo</strong></p><p>hexo init blog<br>cd blog<br>npm install<br>hexo server</p><p>启动成功</p><pre><code>    INFO  Start processing    INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</code></pre><p><strong>生成 SSH key</strong><br>先检查一下本机的 SSH key：<code>cd ~/.ssh</code>；<br>生成 SSH key：<code>ssh-keygen -t rsa -C &quot;xxxx@xxxx.com&quot;</code>，<a href="mailto:&#120;&#x78;&#x78;&#x78;&#64;&#120;&#120;&#120;&#x78;&#46;&#99;&#x6f;&#109;">&#120;&#x78;&#x78;&#x78;&#64;&#120;&#120;&#120;&#x78;&#46;&#99;&#x6f;&#109;</a> 为自己注册 github 的邮箱；</p><p><strong>添加 SSH key 至 github</strong><br>进入.ssh文件夹： <code>cd ~/.ssh</code>，然后打开里面的 id_rsa.pub文件，里面的内容就是 SSH key，复制全部内容；</p><p>网页打开 github 的设置：<em>Settings -&gt; SSH and GPG keys</em>，点击绿色的按钮 <em>New SSH key</em>，然后在输入框中输入刚才复制的内容；</p><p>使用coding的，同理</p><p>测试一下是否成功：<code>ssh git@github.com</code>，<br>看到以下即成功：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PTY allocation request failed on channel 0</span><br><span class="line">Hi gjincai! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line">Connection to github.com closed.</span><br></pre></td></tr></table></figure><p><strong>文件配置转移</strong><br>windows 下的博客根目录 hexo，复制该目录下的：_config.yml, scaffolds, source, themes；<br>把这几个文件复制到mac的目录下，直接覆盖替换相同的文件文件夹。</p><p>哦了！在mac上愉快的玩耍 <code>hexo</code> 吧！</p><ul><li>注意： 如果在 <code>hexo d</code> 部署不成功，有可能是缺少了模块，</li></ul><p>安装以下再尝试：<code>npm install hexo-deployer-git --save</code></p>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>最近刚刚入手Mac，各种体验Mac的妙处，后面有时间把总结的各种坑记录下，这次先把基本的工具搬迁过来~</p><p>hexo 的搬家路： windows -&gt; mac </p></blockquote><h2 id="迁移思路"><a href="#迁移思路" class="headerlink" title="迁移思路"></a>迁移思路</h2><ul><li>在mac上安装好 <code>hexo</code>，初始化根目录；</li><li>然后生成新的 <code>SSH key</code>，并将其添加到 <code>github</code>；</li><li>将Windows上的资源、配置复制、直接粘贴覆盖Mac上对应的目录。</li></ul><h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p><strong>安装 node&#x2F;git</strong></p><p>homebrew 安装：</p><p>​brew install node</p><p>​brew install git</p><p><strong>安装 hexo</strong></p><p>用 node 的 npm 安装 hexo：</p><pre><code>    npm install hexo-cli -g</code></pre><ul><li><p>每个版本安装方式可能不一样，这一步需要异步到 官网 </p></li><li><p><a href="https://hexo.io/">hexo 官网</a></p></li></ul><p><strong>初始化 hexo</strong></p><p>hexo init blog<br>cd blog<br>npm install<br>hexo server</p><p>启动成功</p><pre><code>    INFO  Start processing    INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</code></pre><p><strong>生成 SSH key</strong><br>先检查一下本机的 SSH key：<code>cd ~/.ssh</code>；<br>生成 SSH key：<code>ssh-keygen -t rsa -C &quot;xxxx@xxxx.com&quot;</code>，<a href="mailto:&#120;&#x78;&#x78;&#120;&#x40;&#120;&#x78;&#x78;&#120;&#x2e;&#x63;&#x6f;&#x6d;">&#120;&#x78;&#x78;&#120;&#x40;&#120;&#x78;&#x78;&#120;&#x2e;&#x63;&#x6f;&#x6d;</a> 为自己注册 github 的邮箱；</p><p><strong>添加 SSH key 至 github</strong><br>进入.ssh文件夹： <code>cd ~/.ssh</code>，然后打开里面的 id_rsa.pub文件，里面的内容就是 SSH key，复制全部内容；</p><p>网页打开 github 的设置：<em>Settings -&gt; SSH and GPG keys</em>，点击绿色的按钮 <em>New SSH key</em>，然后在输入框中输入刚才复制的内容；</p><p>使用coding的，同理</p><p>测试一下是否成功：<code>ssh git@github.com</code>，<br>看到以下即成功：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PTY allocation request failed on channel 0</span><br><span class="line">Hi gjincai! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line">Connection to github.com closed.</span><br></pre></td></tr></table></figure><p><strong>文件配置转移</strong><br>windows 下的博客根目录 hexo，复制该目录下的：_config.yml, scaffolds, source, themes；<br>把这几个文件复制到mac的目录下，直接覆盖替换相同的文件文件夹。</p><p>哦了！在mac上愉快的玩耍 <code>hexo</code> 吧！</p><ul><li>注意： 如果在 <code>hexo d</code> 部署不成功，有可能是缺少了模块，</li></ul><p>安装以下再尝试：<code>npm install hexo-deployer-git --save</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mac </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Mac OX上安装MongoDb</title>
+      <link href="/2017/08/24/%E6%9D%82%E8%AE%B0/%20Mac%20OX%E4%B8%8A%E5%AE%89%E8%A3%85MongoDb/"/>
+      <url>/2017/08/24/%E6%9D%82%E8%AE%B0/%20Mac%20OX%E4%B8%8A%E5%AE%89%E8%A3%85MongoDb/</url>
+      
+        <content type="html"><![CDATA[<p>在mac上安装mongodb有很多方式，HomeBrew 安装 MongoDB是最快速简洁的，也方便后面的维护，这次主要记录使用brew安装的方式</p><ul><li><a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/">官方安装文档</a></li></ul><p>更新Homebrew的package源，在Mac的终端中输入：</p><pre><code>$ brew update</code></pre><h2 id="开始安装MongoDB"><a href="#开始安装MongoDB" class="headerlink" title="开始安装MongoDB"></a>开始安装MongoDB</h2><pre><code>$ brew install mongodb</code></pre><p>然后等待MongoDB下载完成。</p><pre><code>==&gt; Downloading https://homebrew.bintray.com/bottles/mongodb-3.4.7.sierra.bottle.1.tar.gz######################################################################## 100.0%==&gt; Pouring mongodb-3.4.7.sierra.bottle.1.tar.gz==&gt; CaveatsTo have launchd start mongodb now and restart at login:  brew services start mongodbOr, if you don&#39;t want/need a background service you can just run:  mongod --config /usr/local/etc/mongod.conf==&gt; Summary🍺  /usr/local/Cellar/mongodb/3.4.7: 19 files, 281.9MB</code></pre><h2 id="启动MongoDB"><a href="#启动MongoDB" class="headerlink" title="启动MongoDB"></a>启动MongoDB</h2><p>上面最后提示的直接启动MongoDb的方法.</p><pre><code>mongod —config /usr/local/etc/mongod.conf</code></pre><p>后台方式启动</p><p>   nohup mongod —config &#x2F;usr&#x2F;local&#x2F;etc&#x2F;mongod.conf &amp;</p><h2 id="关闭MongoDB服务"><a href="#关闭MongoDB服务" class="headerlink" title="关闭MongoDB服务"></a>关闭MongoDB服务</h2><p>在 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongo.html#bin.mongo"><code>mongo</code></a> shell中使用 <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer"><code>db.shutdownServer()</code></a> 方法来关闭 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> ，如下所示：</p><pre><code>use admindb.shutdownServer()</code></pre><p>对于启用 <a href="http://docs.mongoing.com/manual-zh/reference/configuration-options.html#security.authorization"><code>authorization</code></a> 的系统，通过验证登陆到 <code>admin</code> 数据库，或者在为开启验证的情况下经由本地主机的系统接口登陆到 <code>admin</code> 数据库时，用户可以仅仅通过发送 <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer"><code>db.shutdownServer()</code></a> 来关闭实例。</p><p>For systems with <a href="http://docs.mongoing.com/manual-zh/reference/configuration-options.html#security.authorization"><code>authorization</code></a> enabled, users may only issue <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer"><code>db.shutdownServer()</code></a> when authenticated to the <code>admin</code> database or via the localhost interface on systems without authentication enabled.</p><h3 id="使用-shutdown"><a href="#使用-shutdown" class="headerlink" title="使用 --shutdown"></a>使用 <code>--shutdown</code></h3><p>从Linux命令行关闭 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> ，可以使用 <em>–shutdown</em> 选项 如下所示：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mongod --shutdown</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="使用-CTRL-C"><a href="#使用-CTRL-C" class="headerlink" title="使用 CTRL-C"></a>使用 <code>CTRL-C</code></h3><p>当正在运行一个交互模式 (i.e. without <em>–fork</em>) 的 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> 实例时，发送 <code>Control-C</code> 来进行正常关闭。</p><h3 id="使用-kill"><a href="#使用-kill" class="headerlink" title="使用 kill"></a>使用 <code>kill</code></h3><p>From the Linux command line, shut down a specific <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> instance using one of the following commands:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kill &lt;mongod process ID&gt;</span><br><span class="line">kill -2 &lt;mongod process ID&gt;</span><br></pre></td></tr></table></figure><h2 id="连接到MongoDb-直接在命令行使用mongo连接："><a href="#连接到MongoDb-直接在命令行使用mongo连接：" class="headerlink" title="连接到MongoDb,直接在命令行使用mongo连接："></a>连接到MongoDb,直接在命令行使用mongo连接：</h2><p>$ mongo</p><pre><code>MongoDB shell version v3.4.7connecting to: mongodb://127.0.0.1:27017MongoDB server version: 3.4.7Server has startup warnings:2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten]2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten]&gt;</code></pre>]]></content>
       
       
       <categories>
@@ -3371,31 +3446,6 @@
         <tags>
             
             <tag> Linux </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Mac OX上安装MongoDb</title>
-      <link href="/2017/08/24/%E6%9D%82%E8%AE%B0/%20Mac%20OX%E4%B8%8A%E5%AE%89%E8%A3%85MongoDb/"/>
-      <url>/2017/08/24/%E6%9D%82%E8%AE%B0/%20Mac%20OX%E4%B8%8A%E5%AE%89%E8%A3%85MongoDb/</url>
-      
-        <content type="html"><![CDATA[<p>在mac上安装mongodb有很多方式，HomeBrew 安装 MongoDB是最快速简洁的，也方便后面的维护，这次主要记录使用brew安装的方式</p><ul><li><a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/">官方安装文档</a></li></ul><p>更新Homebrew的package源，在Mac的终端中输入：</p><pre><code>$ brew update</code></pre><h2 id="开始安装MongoDB"><a href="#开始安装MongoDB" class="headerlink" title="开始安装MongoDB"></a>开始安装MongoDB</h2><pre><code>$ brew install mongodb</code></pre><p>然后等待MongoDB下载完成。</p><pre><code>==&gt; Downloading https://homebrew.bintray.com/bottles/mongodb-3.4.7.sierra.bottle.1.tar.gz######################################################################## 100.0%==&gt; Pouring mongodb-3.4.7.sierra.bottle.1.tar.gz==&gt; CaveatsTo have launchd start mongodb now and restart at login:  brew services start mongodbOr, if you don&#39;t want/need a background service you can just run:  mongod --config /usr/local/etc/mongod.conf==&gt; Summary🍺  /usr/local/Cellar/mongodb/3.4.7: 19 files, 281.9MB</code></pre><h2 id="启动MongoDB"><a href="#启动MongoDB" class="headerlink" title="启动MongoDB"></a>启动MongoDB</h2><p>上面最后提示的直接启动MongoDb的方法.</p><pre><code>mongod —config /usr/local/etc/mongod.conf</code></pre><p>后台方式启动</p><p>   nohup mongod —config &#x2F;usr&#x2F;local&#x2F;etc&#x2F;mongod.conf &amp;</p><h2 id="关闭MongoDB服务"><a href="#关闭MongoDB服务" class="headerlink" title="关闭MongoDB服务"></a>关闭MongoDB服务</h2><p>在 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongo.html#bin.mongo"><code>mongo</code></a> shell中使用 <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer"><code>db.shutdownServer()</code></a> 方法来关闭 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> ，如下所示：</p><pre><code>use admindb.shutdownServer()</code></pre><p>对于启用 <a href="http://docs.mongoing.com/manual-zh/reference/configuration-options.html#security.authorization"><code>authorization</code></a> 的系统，通过验证登陆到 <code>admin</code> 数据库，或者在为开启验证的情况下经由本地主机的系统接口登陆到 <code>admin</code> 数据库时，用户可以仅仅通过发送 <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer"><code>db.shutdownServer()</code></a> 来关闭实例。</p><p>For systems with <a href="http://docs.mongoing.com/manual-zh/reference/configuration-options.html#security.authorization"><code>authorization</code></a> enabled, users may only issue <a href="http://docs.mongoing.com/manual-zh/reference/method/db.shutdownServer.html#db.shutdownServer"><code>db.shutdownServer()</code></a> when authenticated to the <code>admin</code> database or via the localhost interface on systems without authentication enabled.</p><h3 id="使用-shutdown"><a href="#使用-shutdown" class="headerlink" title="使用 --shutdown"></a>使用 <code>--shutdown</code></h3><p>从Linux命令行关闭 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> ，可以使用 <em>–shutdown</em> 选项 如下所示：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mongod --shutdown</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="使用-CTRL-C"><a href="#使用-CTRL-C" class="headerlink" title="使用 CTRL-C"></a>使用 <code>CTRL-C</code></h3><p>当正在运行一个交互模式 (i.e. without <em>–fork</em>) 的 <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> 实例时，发送 <code>Control-C</code> 来进行正常关闭。</p><h3 id="使用-kill"><a href="#使用-kill" class="headerlink" title="使用 kill"></a>使用 <code>kill</code></h3><p>From the Linux command line, shut down a specific <a href="http://docs.mongoing.com/manual-zh/reference/program/mongod.html#bin.mongod"><code>mongod</code></a> instance using one of the following commands:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kill &lt;mongod process ID&gt;</span><br><span class="line">kill -2 &lt;mongod process ID&gt;</span><br></pre></td></tr></table></figure><h2 id="连接到MongoDb-直接在命令行使用mongo连接："><a href="#连接到MongoDb-直接在命令行使用mongo连接：" class="headerlink" title="连接到MongoDb,直接在命令行使用mongo连接："></a>连接到MongoDb,直接在命令行使用mongo连接：</h2><p>$ mongo</p><pre><code>MongoDB shell version v3.4.7connecting to: mongodb://127.0.0.1:27017MongoDB server version: 3.4.7Server has startup warnings:2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten]2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.2017-08-24T09:47:55.554+0800 I CONTROL  [initandlisten]&gt;</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 工具 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> mac </tag>
             
         </tags>
       
@@ -3604,11 +3654,11 @@
     
     
     <entry>
-      <title>留意开源项目的变更记录</title>
-      <link href="/2017/05/19/%E6%9D%82%E8%AE%B0/%E7%95%99%E6%84%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%8F%98%E6%9B%B4%E8%AE%B0%E5%BD%95/"/>
-      <url>/2017/05/19/%E6%9D%82%E8%AE%B0/%E7%95%99%E6%84%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%8F%98%E6%9B%B4%E8%AE%B0%E5%BD%95/</url>
+      <title>js 指纹信息相关</title>
+      <link href="/2017/05/19/%E5%89%8D%E7%AB%AF/%20js%20%E6%8C%87%E7%BA%B9%E4%BF%A1%E6%81%AF%E7%9B%B8%E5%85%B3/"/>
+      <url>/2017/05/19/%E5%89%8D%E7%AB%AF/%20js%20%E6%8C%87%E7%BA%B9%E4%BF%A1%E6%81%AF%E7%9B%B8%E5%85%B3/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>使用开源的东东，其版本更新后一定得多看更新记录</p></blockquote><p>今天下午打算把vue的一个项目从私有coding上提交到github上（提取一些组件，毕竟来源于开源，也要回馈开源）。以为只是简单的复制粘贴。提交下<br>提交前，验证下。发现所有引用echarts的地方都显示不了了<br>直接报 Can’t get dom width or height<br>仔细对比代码，一毛一样，一个没问题，一个有问题，又各种google了半天。还是看不出问题。后来想新环境我更新了依赖。echarts3只是有小小版本0.3-升级到0.4 感觉应该没啥，查了下github上的记录，引用方式变了。</p><pre><code>import IEcharts from &#39;vue-echarts-v3&#39;;更新为import IEcharts from &#39;vue-echarts-v3/src/full.vue&#39;;</code></pre><p>经常总结工作的方式，方法，经验，不断提高自己</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="js-浏览器指纹信息相关"><a href="#js-浏览器指纹信息相关" class="headerlink" title="js 浏览器指纹信息相关"></a>js 浏览器指纹信息相关</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote><p>近期的一个需求，app做第三方分享时，用微信，或QQ邀请好友，下载app，<span id="more"></span>在被邀请方从分享页面获取app信息及下载app，安装，注册后，希望<br>可以关联到邀请方信息，可用于在后端统计，及被邀请方注册登录后，直接提示用户是否 添加 邀请方为好友。一般做法为生成邀请码，在注册时，用户填写邀请码，但这种方式，大多数用户不用在注册时，填写难记的邀请码信息。</p></blockquote><blockquote><p>与同事们讨论后，讨论了一种方案，第三方分享是H5页面，用户在点开分享页面时，记录用户的信息（网络，手机设备等），生成一个唯一标识与分享者uid关联。新用户在注册时，关联用户的机型，网络，关联到分享者信息。</p></blockquote><blockquote><p>js一般只能获取到浏览器的信息，浏览器的userAgent中可以获取部分设备信息（手机型号，品牌之类），虽然碰撞率很高，但目前也基本可以满足需求，最终浏览器指纹起到了一些辅助作用，也借此机会了解下相关概念，熟悉下js可以获取哪些用户信息，这里做个简单的记录</p></blockquote><h3 id="js指纹的概念理解"><a href="#js指纹的概念理解" class="headerlink" title="js指纹的概念理解"></a>js指纹的概念理解</h3><blockquote><p>JS浏览器指纹的相关内容。浏览器指纹指的是通过JS采集用户的各种浏览器和设备信息，借此希望能生成相对唯一的uuid，用于区分用户</p></blockquote><h3 id="fingerprintjs2"><a href="#fingerprintjs2" class="headerlink" title="fingerprintjs2"></a>fingerprintjs2</h3><ul><li><a href="https://github.com/Valve/fingerprintjs2">fingerprintjs2 github地址</a></li></ul><blockquote><p>Fingerprintjs2是github上开源的设备指纹采集器。最初的fingerprintjs库创建于2012年，但是由于新版本的开发很难保持向后兼容，因此Fingerprintjs2项目中增加了很多的新内容。</p></blockquote><blockquote><p>该项目将更多、更有效的来源用于指纹识别，并且可配置，也就是说用户可以选择性地开启其中的选项。该项目还将重点关注IE插件，尤其是在中国流行的QQ、Baidu等。另外，该项目使用了semver（语义化的版本控制系统）。</p></blockquote><blockquote><p>Fingerprintjs2的原理是根据所能获取到的设备相关信息：比如系统字体、ua、帆布指纹等数据，筛选计算出一个（94%情况下）近似唯一的24位哈希值，可以作为设备的唯一性标识。它的特点是不依赖cookie，用户无法通过清除缓存来删除。设备指纹现在被很多互联网反欺诈公司拿来作为用户特征识别的方法，也被一些广告公司用来跟踪用户数据。</p></blockquote><h4 id="Fingerprintjs2-源码列出目前可以采集到的信息"><a href="#Fingerprintjs2-源码列出目前可以采集到的信息" class="headerlink" title="Fingerprintjs2 源码列出目前可以采集到的信息"></a>Fingerprintjs2 源码列出目前可以采集到的信息</h4><pre><code>    keys = this.userAgentKey(keys);    keys = this.languageKey(keys);    keys = this.colorDepthKey(keys);    keys = this.pixelRatioKey(keys);    keys = this.hardwareConcurrencyKey(keys);    keys = this.screenResolutionKey(keys);    keys = this.availableScreenResolutionKey(keys);    keys = this.timezoneOffsetKey(keys);    keys = this.sessionStorageKey(keys);    keys = this.localStorageKey(keys);    keys = this.indexedDbKey(keys);    keys = this.addBehaviorKey(keys);    keys = this.openDatabaseKey(keys);    keys = this.cpuClassKey(keys);    keys = this.platformKey(keys);    keys = this.doNotTrackKey(keys);    keys = this.pluginsKey(keys);    keys = this.canvasKey(keys);    keys = this.webglKey(keys);    keys = this.adBlockKey(keys);    keys = this.hasLiedLanguagesKey(keys);    keys = this.hasLiedResolutionKey(keys);    keys = this.hasLiedOsKey(keys);    keys = this.hasLiedBrowserKey(keys);    keys = this.touchSupportKey(keys);    keys = this.customEntropyFunction(keys);    var that = this;</code></pre><p>fingerprintjs的源码已经列出了目前能够收集到的几乎所有API，其中浏览器UA，语言，浏览器所在CPU等级（cpuclass，仅支持IE，chrome和firefox反回undefined），浏览器版本，等都是通过<code>navigator</code>对象获得，还有 <code>window.indexedDB</code> ， <code>window.sessionStorage</code> 和 <code>window.localStorage</code> 这一类h5新增的特性是否存在也被用作区分值</p><p>Fingerprintjs2还考虑到了一些比较特殊的自定义区分值，比如时区，或者是否在浏览器层做了一些UA欺骗，比如 hasLiedLanguagesKey ， HasLiedBrowser ， HasLiedOs 。以 hasliedLanguageKey 为例，通过判断navigator.language和navigator.languages中第一个方法是否相同来实现：</p><pre><code>try &#123;      var firstLanguages = navigator.languages[0].substr(0, 2);      if(firstLanguages !== navigator.language.substr(0, 2))&#123;        return true;      &#125;    &#125; catch(err)&#123;      return true;    &#125;</code></pre><p>其中区分度最高的应该就是浏览器插件检测了，因为它还涉及到了一个插件安装顺序的唯独，也是通过navigator对象获得，需要对IE单独处理，关键代码：</p><pre><code>var plugins = [];      for(var i = 0, l = navigator.plugins.length; i &lt; l; i++) &#123;        plugins.push(navigator.plugins[i]);      &#125;      // sorting plugins only for those user agents, that we know randomize the plugins      // every time we try to enumerate them      if(this.pluginsShouldBeSorted()) &#123;        plugins = plugins.sort(function(a, b) &#123;          if(a.name &gt; b.name)&#123; return 1; &#125;          if(a.name &lt; b.name)&#123; return -1; &#125;          return 0;        &#125;);      &#125;      return this.map(plugins, function (p) &#123;        var mimeTypes = this.map(p, function(mt)&#123;          return [mt.type, mt.suffixes].join(&quot;~&quot;);        &#125;).join(&quot;,&quot;);        return [p.name, p.description, mimeTypes].join(&quot;::&quot;);      &#125;, this);</code></pre><h3 id="其他一些资源获取"><a href="#其他一些资源获取" class="headerlink" title="其他一些资源获取"></a>其他一些资源获取</h3><h4 id="检测字体"><a href="#检测字体" class="headerlink" title="检测字体"></a>检测字体</h4><p>传统的方式是flash读取系统安装的字体，这里面还增加了一个通过css和js检测字体的方法，实现原理非常有趣。<br>以var text &#x3D; ‘mmmmmmmmmmlli’；举例，不同的字体在同一大小的fontsize情况下，这段字体的长度和宽度是不同的，通过比较css的width和height，既可以判断用户是否有安装了相应的字体。实现的时候，可以在页面中动态插入一个span，讲fontsize设置为较大的值便于比较。这个手段也可以用在平常前端开发中，用以判断某种特定字体用户是否安装</p><h4 id="Canvas-画布指纹"><a href="#Canvas-画布指纹" class="headerlink" title="Canvas 画布指纹"></a>Canvas 画布指纹</h4><p>canvas是Html5中非常重要的一个特性，它同时也可以用语js指纹的一个重要熵值。其中的原因是因为同一个canvas图像在不同的设备上（不同的GPU），由于不同的渲染引擎、压缩比例，输出格式，以及同一系统字体安装不同，导致最后输出也不相同。通过在canvas画布上画字体，最后由toDataURL()方法专为64位格式。这一方法实现成本低，无法被禁用，立刻收到了广泛关注，目前这一方法被认为是浏览器指纹中十分重要的一种方法。不过在我的测试中，我发现还是很容易产生碰撞的，最简单的例子是在移动端上，比如高度统一的iPhone上面，同一代机型由于硬件相同，且ios在不越狱的情况下无法自定义字体，这就导致了的任意两台iphone6s通过safari判断画笔指纹会百分之百的获得同样的64位编码….</p><p>相关：</p><p><a href="https://github.com/Valve/fingerprintjs2/wiki/List-of-options">List of options</a></p><p><a href="http://jcarlosnorte.com/security/2016/03/06/advanced-tor-browser-fingerprinting.html">Advanced Tor Browser Fingerprinting</a></p>]]></content>
       
       
       <categories>
@@ -3629,11 +3679,11 @@
     
     
     <entry>
-      <title>js 指纹信息相关</title>
-      <link href="/2017/05/19/%E5%89%8D%E7%AB%AF/%20js%20%E6%8C%87%E7%BA%B9%E4%BF%A1%E6%81%AF%E7%9B%B8%E5%85%B3/"/>
-      <url>/2017/05/19/%E5%89%8D%E7%AB%AF/%20js%20%E6%8C%87%E7%BA%B9%E4%BF%A1%E6%81%AF%E7%9B%B8%E5%85%B3/</url>
+      <title>留意开源项目的变更记录</title>
+      <link href="/2017/05/19/%E6%9D%82%E8%AE%B0/%E7%95%99%E6%84%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%8F%98%E6%9B%B4%E8%AE%B0%E5%BD%95/"/>
+      <url>/2017/05/19/%E6%9D%82%E8%AE%B0/%E7%95%99%E6%84%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%8F%98%E6%9B%B4%E8%AE%B0%E5%BD%95/</url>
       
-        <content type="html"><![CDATA[<h2 id="js-浏览器指纹信息相关"><a href="#js-浏览器指纹信息相关" class="headerlink" title="js 浏览器指纹信息相关"></a>js 浏览器指纹信息相关</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote><p>近期的一个需求，app做第三方分享时，用微信，或QQ邀请好友，下载app，<span id="more"></span>在被邀请方从分享页面获取app信息及下载app，安装，注册后，希望<br>可以关联到邀请方信息，可用于在后端统计，及被邀请方注册登录后，直接提示用户是否 添加 邀请方为好友。一般做法为生成邀请码，在注册时，用户填写邀请码，但这种方式，大多数用户不用在注册时，填写难记的邀请码信息。</p></blockquote><blockquote><p>与同事们讨论后，讨论了一种方案，第三方分享是H5页面，用户在点开分享页面时，记录用户的信息（网络，手机设备等），生成一个唯一标识与分享者uid关联。新用户在注册时，关联用户的机型，网络，关联到分享者信息。</p></blockquote><blockquote><p>js一般只能获取到浏览器的信息，浏览器的userAgent中可以获取部分设备信息（手机型号，品牌之类），虽然碰撞率很高，但目前也基本可以满足需求，最终浏览器指纹起到了一些辅助作用，也借此机会了解下相关概念，熟悉下js可以获取哪些用户信息，这里做个简单的记录</p></blockquote><h3 id="js指纹的概念理解"><a href="#js指纹的概念理解" class="headerlink" title="js指纹的概念理解"></a>js指纹的概念理解</h3><blockquote><p>JS浏览器指纹的相关内容。浏览器指纹指的是通过JS采集用户的各种浏览器和设备信息，借此希望能生成相对唯一的uuid，用于区分用户</p></blockquote><h3 id="fingerprintjs2"><a href="#fingerprintjs2" class="headerlink" title="fingerprintjs2"></a>fingerprintjs2</h3><ul><li><a href="https://github.com/Valve/fingerprintjs2">fingerprintjs2 github地址</a></li></ul><blockquote><p>Fingerprintjs2是github上开源的设备指纹采集器。最初的fingerprintjs库创建于2012年，但是由于新版本的开发很难保持向后兼容，因此Fingerprintjs2项目中增加了很多的新内容。</p></blockquote><blockquote><p>该项目将更多、更有效的来源用于指纹识别，并且可配置，也就是说用户可以选择性地开启其中的选项。该项目还将重点关注IE插件，尤其是在中国流行的QQ、Baidu等。另外，该项目使用了semver（语义化的版本控制系统）。</p></blockquote><blockquote><p>Fingerprintjs2的原理是根据所能获取到的设备相关信息：比如系统字体、ua、帆布指纹等数据，筛选计算出一个（94%情况下）近似唯一的24位哈希值，可以作为设备的唯一性标识。它的特点是不依赖cookie，用户无法通过清除缓存来删除。设备指纹现在被很多互联网反欺诈公司拿来作为用户特征识别的方法，也被一些广告公司用来跟踪用户数据。</p></blockquote><h4 id="Fingerprintjs2-源码列出目前可以采集到的信息"><a href="#Fingerprintjs2-源码列出目前可以采集到的信息" class="headerlink" title="Fingerprintjs2 源码列出目前可以采集到的信息"></a>Fingerprintjs2 源码列出目前可以采集到的信息</h4><pre><code>    keys = this.userAgentKey(keys);    keys = this.languageKey(keys);    keys = this.colorDepthKey(keys);    keys = this.pixelRatioKey(keys);    keys = this.hardwareConcurrencyKey(keys);    keys = this.screenResolutionKey(keys);    keys = this.availableScreenResolutionKey(keys);    keys = this.timezoneOffsetKey(keys);    keys = this.sessionStorageKey(keys);    keys = this.localStorageKey(keys);    keys = this.indexedDbKey(keys);    keys = this.addBehaviorKey(keys);    keys = this.openDatabaseKey(keys);    keys = this.cpuClassKey(keys);    keys = this.platformKey(keys);    keys = this.doNotTrackKey(keys);    keys = this.pluginsKey(keys);    keys = this.canvasKey(keys);    keys = this.webglKey(keys);    keys = this.adBlockKey(keys);    keys = this.hasLiedLanguagesKey(keys);    keys = this.hasLiedResolutionKey(keys);    keys = this.hasLiedOsKey(keys);    keys = this.hasLiedBrowserKey(keys);    keys = this.touchSupportKey(keys);    keys = this.customEntropyFunction(keys);    var that = this;</code></pre><p>fingerprintjs的源码已经列出了目前能够收集到的几乎所有API，其中浏览器UA，语言，浏览器所在CPU等级（cpuclass，仅支持IE，chrome和firefox反回undefined），浏览器版本，等都是通过<code>navigator</code>对象获得，还有 <code>window.indexedDB</code> ， <code>window.sessionStorage</code> 和 <code>window.localStorage</code> 这一类h5新增的特性是否存在也被用作区分值</p><p>Fingerprintjs2还考虑到了一些比较特殊的自定义区分值，比如时区，或者是否在浏览器层做了一些UA欺骗，比如 hasLiedLanguagesKey ， HasLiedBrowser ， HasLiedOs 。以 hasliedLanguageKey 为例，通过判断navigator.language和navigator.languages中第一个方法是否相同来实现：</p><pre><code>try &#123;      var firstLanguages = navigator.languages[0].substr(0, 2);      if(firstLanguages !== navigator.language.substr(0, 2))&#123;        return true;      &#125;    &#125; catch(err)&#123;      return true;    &#125;</code></pre><p>其中区分度最高的应该就是浏览器插件检测了，因为它还涉及到了一个插件安装顺序的唯独，也是通过navigator对象获得，需要对IE单独处理，关键代码：</p><pre><code>var plugins = [];      for(var i = 0, l = navigator.plugins.length; i &lt; l; i++) &#123;        plugins.push(navigator.plugins[i]);      &#125;      // sorting plugins only for those user agents, that we know randomize the plugins      // every time we try to enumerate them      if(this.pluginsShouldBeSorted()) &#123;        plugins = plugins.sort(function(a, b) &#123;          if(a.name &gt; b.name)&#123; return 1; &#125;          if(a.name &lt; b.name)&#123; return -1; &#125;          return 0;        &#125;);      &#125;      return this.map(plugins, function (p) &#123;        var mimeTypes = this.map(p, function(mt)&#123;          return [mt.type, mt.suffixes].join(&quot;~&quot;);        &#125;).join(&quot;,&quot;);        return [p.name, p.description, mimeTypes].join(&quot;::&quot;);      &#125;, this);</code></pre><h3 id="其他一些资源获取"><a href="#其他一些资源获取" class="headerlink" title="其他一些资源获取"></a>其他一些资源获取</h3><h4 id="检测字体"><a href="#检测字体" class="headerlink" title="检测字体"></a>检测字体</h4><p>传统的方式是flash读取系统安装的字体，这里面还增加了一个通过css和js检测字体的方法，实现原理非常有趣。<br>以var text &#x3D; ‘mmmmmmmmmmlli’；举例，不同的字体在同一大小的fontsize情况下，这段字体的长度和宽度是不同的，通过比较css的width和height，既可以判断用户是否有安装了相应的字体。实现的时候，可以在页面中动态插入一个span，讲fontsize设置为较大的值便于比较。这个手段也可以用在平常前端开发中，用以判断某种特定字体用户是否安装</p><h4 id="Canvas-画布指纹"><a href="#Canvas-画布指纹" class="headerlink" title="Canvas 画布指纹"></a>Canvas 画布指纹</h4><p>canvas是Html5中非常重要的一个特性，它同时也可以用语js指纹的一个重要熵值。其中的原因是因为同一个canvas图像在不同的设备上（不同的GPU），由于不同的渲染引擎、压缩比例，输出格式，以及同一系统字体安装不同，导致最后输出也不相同。通过在canvas画布上画字体，最后由toDataURL()方法专为64位格式。这一方法实现成本低，无法被禁用，立刻收到了广泛关注，目前这一方法被认为是浏览器指纹中十分重要的一种方法。不过在我的测试中，我发现还是很容易产生碰撞的，最简单的例子是在移动端上，比如高度统一的iPhone上面，同一代机型由于硬件相同，且ios在不越狱的情况下无法自定义字体，这就导致了的任意两台iphone6s通过safari判断画笔指纹会百分之百的获得同样的64位编码….</p><p>相关：</p><p><a href="https://github.com/Valve/fingerprintjs2/wiki/List-of-options">List of options</a></p><p><a href="http://jcarlosnorte.com/security/2016/03/06/advanced-tor-browser-fingerprinting.html">Advanced Tor Browser Fingerprinting</a></p>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>使用开源的东东，其版本更新后一定得多看更新记录</p></blockquote><p>今天下午打算把vue的一个项目从私有coding上提交到github上（提取一些组件，毕竟来源于开源，也要回馈开源）。以为只是简单的复制粘贴。提交下<br>提交前，验证下。发现所有引用echarts的地方都显示不了了<br>直接报 Can’t get dom width or height<br>仔细对比代码，一毛一样，一个没问题，一个有问题，又各种google了半天。还是看不出问题。后来想新环境我更新了依赖。echarts3只是有小小版本0.3-升级到0.4 感觉应该没啥，查了下github上的记录，引用方式变了。</p><pre><code>import IEcharts from &#39;vue-echarts-v3&#39;;更新为import IEcharts from &#39;vue-echarts-v3/src/full.vue&#39;;</code></pre><p>经常总结工作的方式，方法，经验，不断提高自己</p>]]></content>
       
       
       <categories>
@@ -4129,31 +4179,6 @@
     
     
     <entry>
-      <title>brew常用命令</title>
-      <link href="/2016/12/09/%E5%B7%A5%E5%85%B7/brew%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-      <url>/2016/12/09/%E5%B7%A5%E5%85%B7/brew%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-      
-        <content type="html"><![CDATA[<blockquote><p>mac上安装应用的命令，同apt-get，yum一样好使</p></blockquote><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul><li><p>Homebrew安装命令，mac下自带ruby，在终端输入以下命令，按提示安装即可  </p><pre><code>  ruby -e &quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&quot;  </code></pre></li><li><p>参考 <a href="http://brew.sh/index_zh-cn.html">Homebrew</a></p></li></ul><h3 id="brew常用命令："><a href="#brew常用命令：" class="headerlink" title="brew常用命令："></a>brew常用命令：</h3><pre><code>    安装软件:  brew install  ＊（软件名 eg. brew install nginx）    卸载软件:  brew uninstall ＊    搜索软件:  brew search *    显示已经安装软件列表:  brew list    更新软件:  brew update    更新某具体软件: brew upgrade git</code></pre><h3 id="install-brew-cask-管理安装非终端的软件"><a href="#install-brew-cask-管理安装非终端的软件" class="headerlink" title="install brew cask 管理安装非终端的软件"></a>install brew cask 管理安装非终端的软件</h3><pre><code>brew install brew-cask-completion➜  ~ brew cask search qq==&gt; Exact Matchqq==&gt; Partial Matchesqqbrowser           qqinput             qqmacmgr            qqmusic</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 工具 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> mac </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>谷歌开发者大会笔记</title>
       <link href="/2016/12/09/%E6%9D%82%E8%AE%B0/%E8%B0%B7%E6%AD%8C%E5%BC%80%E5%8F%91%E8%80%85%E5%A4%A7%E4%BC%9A%E7%AC%94%E8%AE%B0/"/>
       <url>/2016/12/09/%E6%9D%82%E8%AE%B0/%E8%B0%B7%E6%AD%8C%E5%BC%80%E5%8F%91%E8%80%85%E5%A4%A7%E4%BC%9A%E7%AC%94%E8%AE%B0/</url>
@@ -4171,6 +4196,31 @@
         <tags>
             
             <tag> 杂记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>brew常用命令</title>
+      <link href="/2016/12/09/%E5%B7%A5%E5%85%B7/brew%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+      <url>/2016/12/09/%E5%B7%A5%E5%85%B7/brew%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>mac上安装应用的命令，同apt-get，yum一样好使</p></blockquote><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul><li><p>Homebrew安装命令，mac下自带ruby，在终端输入以下命令，按提示安装即可  </p><pre><code>  ruby -e &quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&quot;  </code></pre></li><li><p>参考 <a href="http://brew.sh/index_zh-cn.html">Homebrew</a></p></li></ul><h3 id="brew常用命令："><a href="#brew常用命令：" class="headerlink" title="brew常用命令："></a>brew常用命令：</h3><pre><code>    安装软件:  brew install  ＊（软件名 eg. brew install nginx）    卸载软件:  brew uninstall ＊    搜索软件:  brew search *    显示已经安装软件列表:  brew list    更新软件:  brew update    更新某具体软件: brew upgrade git</code></pre><h3 id="install-brew-cask-管理安装非终端的软件"><a href="#install-brew-cask-管理安装非终端的软件" class="headerlink" title="install brew cask 管理安装非终端的软件"></a>install brew cask 管理安装非终端的软件</h3><pre><code>brew install brew-cask-completion➜  ~ brew cask search qq==&gt; Exact Matchqq==&gt; Partial Matchesqqbrowser           qqinput             qqmacmgr            qqmusic</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mac </tag>
             
         </tags>
       
@@ -4604,31 +4654,6 @@
     
     
     <entry>
-      <title>CD 持续发布</title>
-      <link href="/2016/09/08/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/CD%20%E6%8C%81%E7%BB%AD%E5%8F%91%E5%B8%83/"/>
-      <url>/2016/09/08/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/CD%20%E6%8C%81%E7%BB%AD%E5%8F%91%E5%B8%83/</url>
-      
-        <content type="html"><![CDATA[<h1 id="关于持续集成，持续交付（CI-x2F-CD）"><a href="#关于持续集成，持续交付（CI-x2F-CD）" class="headerlink" title="关于持续集成，持续交付（CI&#x2F;CD）"></a>关于持续集成，持续交付（CI&#x2F;CD）</h1><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><ul><li><a href="https://bitnami.com/stack/jenkins">jenkins</a></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Jenkins </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>CI 持续集成</title>
       <link href="/2016/09/08/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/CI%20%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/"/>
       <url>/2016/09/08/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/CI%20%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</url>
@@ -4654,23 +4679,23 @@
     
     
     <entry>
-      <title>性能测试相关</title>
-      <link href="/2016/09/05/%E6%B5%8B%E8%AF%95/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3/"/>
-      <url>/2016/09/05/%E6%B5%8B%E8%AF%95/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3/</url>
+      <title>CD 持续发布</title>
+      <link href="/2016/09/08/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/CD%20%E6%8C%81%E7%BB%AD%E5%8F%91%E5%B8%83/"/>
+      <url>/2016/09/08/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/CD%20%E6%8C%81%E7%BB%AD%E5%8F%91%E5%B8%83/</url>
       
-        <content type="html"><![CDATA[<p>#简述</p><blockquote><p>…</p></blockquote><h1 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h1><h3 id="系统吞吐量"><a href="#系统吞吐量" class="headerlink" title="系统吞吐量"></a>系统吞吐量</h3><blockquote><p>一个系统的的吞吐量（承受压力）与请求对CPU的消耗、外部接口、IO等等紧密关联。<span id="more"></span>  单个请求对CPU消耗越高，外部系统接口、IO影响的速度越慢，系统吞吐能力越低，反之越高。  系统吞吐量几个重要参数： QPS(TPS),并发数，响应时间</p></blockquote><ul><li><p>QPS(TPS) : 每秒钟请求&#x2F;事务 数量</p></li><li><p>并发数： 系统同时处理的请求&#x2F;事务数</p></li><li><p>响应时间： 一般取的是平均响应时间</p></li></ul><p>他们之间的关系：</p><p>QPS(TPS) &#x3D; 并发数&#x2F;平均响应时间</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="关于持续集成，持续交付（CI-x2F-CD）"><a href="#关于持续集成，持续交付（CI-x2F-CD）" class="headerlink" title="关于持续集成，持续交付（CI&#x2F;CD）"></a>关于持续集成，持续交付（CI&#x2F;CD）</h1><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><ul><li><a href="https://bitnami.com/stack/jenkins">jenkins</a></li></ul>]]></content>
       
       
       <categories>
           
-          <category> 技术小栈 </category>
+          <category> 笔记 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 测试 </tag>
+            <tag> Jenkins </tag>
             
         </tags>
       
@@ -4696,6 +4721,31 @@
         <tags>
             
             <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>性能测试相关</title>
+      <link href="/2016/09/05/%E6%B5%8B%E8%AF%95/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3/"/>
+      <url>/2016/09/05/%E6%B5%8B%E8%AF%95/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3/</url>
+      
+        <content type="html"><![CDATA[<p>#简述</p><blockquote><p>…</p></blockquote><h1 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h1><h3 id="系统吞吐量"><a href="#系统吞吐量" class="headerlink" title="系统吞吐量"></a>系统吞吐量</h3><blockquote><p>一个系统的的吞吐量（承受压力）与请求对CPU的消耗、外部接口、IO等等紧密关联。<span id="more"></span>  单个请求对CPU消耗越高，外部系统接口、IO影响的速度越慢，系统吞吐能力越低，反之越高。  系统吞吐量几个重要参数： QPS(TPS),并发数，响应时间</p></blockquote><ul><li><p>QPS(TPS) : 每秒钟请求&#x2F;事务 数量</p></li><li><p>并发数： 系统同时处理的请求&#x2F;事务数</p></li><li><p>响应时间： 一般取的是平均响应时间</p></li></ul><p>他们之间的关系：</p><p>QPS(TPS) &#x3D; 并发数&#x2F;平均响应时间</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术小栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 测试 </tag>
             
         </tags>
       
