@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>如何实现一个连接池 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2bb92548008bd1f1f88213efd40c8dad';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">如何实现一个连接池</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">如何实现一个连接池</h1><div class="post-meta">2020-11-13<span> | </span><span class="category"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a></span></div><a class="disqus-comment-count" href="/2020/11/13/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%BF%9E%E6%8E%A5%E6%B1%A0/#vcomment"><span class="waline-comment-count" id="/2020/11/13/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%BF%9E%E6%8E%A5%E6%B1%A0/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div></div></div><div class="post-content"><p><strong>什么是连接池？</strong></p>
+<p><strong>深入思考连接池的本质，但不要思考的过于复杂！</strong></p>
+<p>“池”是一种非常形象化的描述，它是一种容器，做储存之用；在编程中我们往往使用数组、链表、队列、map来表达。</p>
+<p>“连接”是网络中用于传输数据的通道；“连接”才是我们要真正去使用的对象，而“池”是用来管理“多个连接”的一种方式。</p>
+<p>如果没有用“池”来统一管理“连接”，“连接”将散布在程序各处；那为了使用方便，我们往往会在使用时建立连接，使用完毕后，就关闭连接。所以“连接池”给我们提供了使用“连接”的方便。</p>
+<p>同时，池是做储存之用的，所以“连接池”中的“连接”肯定是已经建立好的长连接，比如tcp连接、websocket连接等，即取即用，用完放回。如果没有真正理解“连接池”的本质，在面试中可能会出现“http连接池”的笑话！</p>
+<p><strong>根据下游类型，我们常见有数据库连接池、缓存连接池、服务连接池</strong>，如下图所示：</p>
+<p><img src="https://aimak.cn/blog_img/connection_pool/01.png"></p>
+<p>图一 数据库连接池</p>
+<p><img src="https://aimak.cn/blog_img/connection_pool/02.png"></p>
+<p>图二 缓存连接池</p>
+<p><img src="https://aimak.cn/blog_img/connection_pool/03.png"></p>
+<p>图三 服务连接池</p>
+<p>在编程中，我们还经常会碰到进程池、线程池、协程池、内存池、对象池等。</p>
+<p><strong>为什么需要连接池？</strong></p>
+<p>除了连接池能非常方便的对连接进行管理外，一句话，在高吞吐时连接池大大提高了数据传输的效率。</p>
+<p>从两个方面说：</p>
+<p><strong>1、避免反复的三次握手和四次握手</strong></p>
+<p>长连接的建立需要进行三次握手，而连接的释放需要进行四次握手，这是发生在系统层面的两个动作，对于单条连接来说耗时微乎其微，但在高吞吐场景时，耗时则不能忽略。</p>
+<p>所以连接池的即取即用和用完放回的特性，避免了大量三次握手和四次握手的无效耗时，节省了系统资源。</p>
+<p><strong>2、 增加并行车道，实现全双工并行</strong></p>
+<p>数据通信包括单工、半双工和全双工。单工通信如下图，数据只能从A到B，不符合访问下游服务的场景。</p>
+<p><img src="https://aimak.cn/blog_img/connection_pool/04.png"></p>
+<p>图四 单工通信</p>
+<p>半双工通信如下图，数据可以从A到B，也可从B到A，但是同一时刻只能一个方向上进行数据传输，通道利用率是50%。</p>
+<p><img src="https://aimak.cn/blog_img/connection_pool/05.png"></p>
+<p>图五 半双工通信</p>
+<p>全双工通信如下图，可同时存在从A到B和从B到A的数据传输，通道的利用率是100%。长连接就是全双工通信。</p>
+<p><img src="https://aimak.cn/blog_img/connection_pool/06.png"></p>
+<p>图六 全双工通信</p>
+<p>在IO密集型的互联网应用中，一条全双工通信通道仍然无法满足数据吞吐的需求时，该如何解决？</p>
+<p>在互联网性能测试指标中有这样一个公式：</p>
+<p>QPS(吞吐量) &#x3D; 并发数 &#x2F; 平均响应时间</p>
+<p>在平均响应时间不变的情况下，适度增加并发数可以提升吞吐量；所以采用多条全双工通信的方式可以在一定程度上(平均响应时间没有大幅增加)提高吞吐量，而连接池则就最好的实现方式。</p>
+<p>总结一下：为什么需要连接池？</p>
+<blockquote>
+<p>(1)方便管理连接；</p>
+<p>(2)避免反复三次握手和四次握手；</p>
+<p>(3)更好地实现全双工并行。</p>
+</blockquote>
+<p><strong>怎样做一个连接池？</strong></p>
+<p>实现一个连接池，最关键的是<strong>均衡和保活</strong>，如下图所示：</p>
+<p><img src="https://aimak.cn/blog_img/connection_pool/07.png"></p>
+<p>图七 连接池实现原理</p>
+<p>该连接池的“池”通过队列数据结构进行实现，队列先进先出的特性保证了使用连接的均衡性，每一条连接都可以均匀的被使用到。</p>
+<p>连接池对外提供<strong>get()和free()两个API</strong> <strong>get()用于从队首“出队”获取一条可用连接，free()用于将使用完的连接从对尾“入队”释放到队列中</strong>。</p>
+<p>业务代码在低峰时会降低get()动作，所以连接池中的连接在长时间不用时会导致失效，此时保活线程在监测到get()的使用频率较低时，会模拟业务程序调用get()获取连接后发送心跳包，然后再通过free()将被保活的连接放回队列中，达到连接池中所有连接保活的目的。</p>
+<p>在充分理解上述内容后，可以了解高级连接池的扩展知识！</p>
+<p><strong>高级连接池</strong></p>
+<p>高级连接池通常应用在微服务系统中，如下图：连接池连接下游多个节点。</p>
+<p><img src="https://aimak.cn/blog_img/connection_pool/08.png"></p>
+<p>图八 高级连接池</p>
+<p><strong>高级连接池具备这样几个特性：</strong></p>
+<blockquote>
+<p>1、 高可用：下游任意一个server 宕机时，连接池会关闭相关无效连接，防止被client访问；</p>
+<p>2、 高可扩展：下游增加一个server节点时，连接池会发现并建立到新server节点的连接，供client访问；</p>
+<p>3、 负载均衡：连接池会根据下游server的服务能力的高低分配数据请求；</p>
+<p>4、 中间件：当下游server是类MySQL数据库并分片时，连接池会将请求打在相应的数据节点上，并对数据进行聚合。</p>
+</blockquote>
+<p>古之立大事者，不惟有超世之才，亦必有坚忍不拔之志！</p>
+<p>坚持技术学习，必有所成！</p>
+</div><div class="tags"><a href="/tags/高并发"><i class="fa fa-tag">高并发</i></a></div><div class="post-nav"><a class="pre" href="/2020/11/20/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B8%8B%E7%9A%84%E6%8E%A5%E5%8F%A3%E5%B9%82%E7%AD%89%E6%80%A7%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3/">高并发下的接口幂等性如何解决</a><a class="next" href="/2020/11/11/PMO/%E9%87%8F%E5%8C%96IT%E6%8A%95%E8%B5%84%E6%88%90%E6%95%88%EF%BC%8C%E4%BB%A5%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E5%86%B3%E7%AD%96/">量化IT投资成效，以数据驱动决策</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">94</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/PMO/" style="font-size: 15px;">PMO</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 15px;">工具</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/01/05/ai/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BC%96%E8%BE%91%E5%99%A8%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/">知识图谱编辑器帮助文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/12/09/%E6%9D%82%E8%AE%B0/%E6%9D%8E%E5%8F%94%E5%90%8C%E5%85%AB%E7%84%B6/">八然</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/12/06/%E6%9D%82%E8%AE%B0/%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%BD%E6%B1%82%E6%9E%81%E8%87%B4/">什么是追求极致</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/11/11/%E5%89%8D%E7%AB%AF/qs.stringify%E7%9A%84%E4%BD%BF%E7%94%A8/">qs.stringify的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/19/%E8%AF%AD%E5%BD%95/%E5%9B%BE%E7%9C%8B%E4%BA%8C%E5%8D%81%E5%A4%A7%E6%8A%A5%E5%91%8A/">图看二十大报告</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/18/%E5%B7%A5%E5%85%B7/Cherry%E9%94%AE%E7%9B%98%20win%E9%94%AE%E6%97%A0%E6%95%88/">Cherry键盘 win键无效</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/18/%E8%AF%AD%E5%BD%95/%E4%BA%8C%E5%8D%81%E5%A4%A7%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">二十大手帐</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/07/%E8%AF%AD%E5%BD%95/%E4%BB%80%E4%B9%88%E6%98%AF%E6%88%90%E9%95%BF/">什么是成长</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/09/20/%E6%9D%82%E8%AE%B0/%E6%80%8E%E4%B9%88%E8%AE%A9%E7%8C%AB%E5%90%83%E8%BE%A3%E6%A4%92/">怎么让猫吃辣椒</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/09/08/%E6%9D%82%E8%AE%B0/%E8%80%81%E5%B1%B1%E9%AA%91%E8%A1%8C%E8%B7%AF%E7%BA%BF/">老山骑行路线规划</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2023 <a href="/." rel="nofollow">枫哲's文栖小筑.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

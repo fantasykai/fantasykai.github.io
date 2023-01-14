@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>Arthas 使用简介 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2bb92548008bd1f1f88213efd40c8dad';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Arthas 使用简介</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Arthas 使用简介</h1><div class="post-meta">2022-08-01<span> | </span><span class="category"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a></span></div><a class="disqus-comment-count" href="/2022/08/01/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/arthas%20%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/#vcomment"><span class="waline-comment-count" id="/2022/08/01/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/arthas%20%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">2.</span> <span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BD%93%E5%89%8D%E7%89%88%E6%9C%ACv3-1-4"><span class="toc-number">4.0.1.</span> <span class="toc-text">当前版本v3.1.4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81stack"><span class="toc-number">4.0.2.</span> <span class="toc-text">1、stack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81jad"><span class="toc-number">4.0.3.</span> <span class="toc-text">2、jad</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81sc"><span class="toc-number">4.0.4.</span> <span class="toc-text">3、sc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8E%E4%B9%8B%E7%9B%B8%E5%BA%94%E7%9A%84%E8%BF%98%E6%9C%89sm-%E2%80%9CSearch-Method%E2%80%9D-%EF%BC%8C%E6%9F%A5%E7%9C%8B%E5%B7%B2%E5%8A%A0%E8%BD%BD%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95%E4%BF%A1%E6%81%AF"><span class="toc-number">4.0.5.</span> <span class="toc-text">与之相应的还有sm( “Search-Method” )，查看已加载类的方法信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81watch"><span class="toc-number">4.0.6.</span> <span class="toc-text">4、watch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81trace"><span class="toc-number">4.0.7.</span> <span class="toc-text">5、trace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81jobs"><span class="toc-number">4.0.8.</span> <span class="toc-text">6、jobs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7%E3%80%81logger"><span class="toc-number">4.0.9.</span> <span class="toc-text">7、logger</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8%E3%80%81dashboard"><span class="toc-number">4.0.10.</span> <span class="toc-text">8、dashboard</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9%E3%80%81redefine"><span class="toc-number">4.0.11.</span> <span class="toc-text">9、redefine</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">5.</span> <span class="toc-text">其他</span></a></li></ol></div></div><div class="post-content"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Arthas 是Alibaba开源的Java诊断工具，动态跟踪Java代码；实时监控JVM状态，可以在不中断程序执行的情况下轻松完成JVM相关问题排查工作 。支持JDK 6+，支持Linux&#x2F;Mac&#x2F;Windows。这个工具真的很好用，而且入门超简单，十分推荐。</p>
+<blockquote>
+<p>基于 Spring Boot + MyBatis Plus + Vue &amp; Element 实现的后台管理系统 + 用户小程序，支持 RBAC 动态权限、多租户、数据权限、工作流、三方登录、支付、短信、商城等功能</p>
+<ul>
+<li>项目地址：<a target="_blank" rel="noopener" href="https://gitee.com/zhijiantianya/ruoyi-vue-pro">https://gitee.com/zhijiantianya/ruoyi-vue-pro</a></li>
+<li>视频教程：<a target="_blank" rel="noopener" href="https://doc.iocoder.cn/video/">https://doc.iocoder.cn/video/</a></li>
+</ul>
+</blockquote>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ol>
+<li>这个类从哪个 jar 包加载的？为什么会报各种类相关的 Exception？</li>
+<li>我改的代码为什么没有执行到？难道是我没 commit？分支搞错了？</li>
+<li>遇到问题无法在线上 debug，难道只能通过加日志再重新发布吗？</li>
+<li>线上遇到某个用户的数据处理有问题，但线上同样无法 debug，线下无法重现！</li>
+<li>是否有一个全局视角来查看系统的运行状况？</li>
+<li>有什么办法可以监控到JVM的实时运行状态？</li>
+</ol>
+<p>接下来，围绕这6个问题，学习下Arthas的基本用法。</p>
+<blockquote>
+<p>基于 Spring Cloud Alibaba + Gateway + Nacos + RocketMQ + Vue &amp; Element 实现的后台管理系统 + 用户小程序，支持 RBAC 动态权限、多租户、数据权限、工作流、三方登录、支付、短信、商城等功能</p>
+<ul>
+<li>项目地址：<a target="_blank" rel="noopener" href="https://gitee.com/zhijiantianya/yudao-cloud">https://gitee.com/zhijiantianya/yudao-cloud</a></li>
+<li>视频教程：<a target="_blank" rel="noopener" href="https://doc.iocoder.cn/video/">https://doc.iocoder.cn/video/</a></li>
+</ul>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>执行下面命令下载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://alibaba.github.io/arthas/arthas-boot.jar</span><br></pre></td></tr></table></figure>
+
+<p>用java -jar的方式启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java -jar arthas-boot.jar</span><br><span class="line"></span><br><span class="line">[INFO] Found existing java process, please choose one and hit RETURN.</span><br><span class="line">* [1]: 79952 cn.test.MobileApplication</span><br><span class="line">  [2]: 93872 org.jetbrains.jps.cmdline.Launcher</span><br></pre></td></tr></table></figure>
+
+<p>然后输入数字，选择你想要监听的应用，回车即可</p>
+<p>也可点此下载arthas相关jar：<code>http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&amp;g=com.taobao.arthas&amp;a=arthas-packaging&amp;e=zip&amp;c=bin&amp;v=LATEST</code></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h4 id="当前版本v3-1-4"><a href="#当前版本v3-1-4" class="headerlink" title="当前版本v3.1.4"></a>当前版本v3.1.4</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[arthas@79952]$ version</span><br><span class="line">3.1.4</span><br></pre></td></tr></table></figure>
+
+<h4 id="1、stack"><a href="#1、stack" class="headerlink" title="1、stack"></a>1、stack</h4><p>输出当前方法被调用的调用路径</p>
+<p>很多时候我们都知道一个方法被执行，但是有很多地方调用了它，你并不知道是谁调用了它，此时你需要的是 stack 命令。</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数名称</th>
+<th align="left">参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><em>class-pattern</em></td>
+<td align="left">类名表达式匹配</td>
+</tr>
+<tr>
+<td align="left"><em>method-pattern</em></td>
+<td align="left">方法名表达式匹配</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[arthas@79952]$ stack com.baomidou.mybatisplus.extension.service.IService getOne</span><br><span class="line">Press Q or Ctrl+C to abort.</span><br><span class="line">Affect(class-cnt:202 , method-cnt:209) cost in 10761 ms.</span><br><span class="line">ts=2019-11-13 11:49:13;thread_name=http-nio-8801-exec-6;id=2d;is_daemon=true;priority=5;TCCL=org.springframework.boot.web.embedded.tomcat.TomcatEmbeddedWebappClassLoader@a6c54c3</span><br><span class="line">    @com.baomidou.mybatisplus.extension.service.impl.ServiceImpl.getOne()</span><br><span class="line">        at com.baomidou.mybatisplus.extension.service.IService.getOne(IService.java:230)</span><br><span class="line">        ...... ......</span><br><span class="line">        at cn.test.mobile.controller.order.OrderController.getOrderInfo(OrderController.java:500)</span><br></pre></td></tr></table></figure>
+
+<p>可以看到OrderController.java的第500行调用了这个getOne接口。</p>
+<p><em>注意这个命令需要调用后才会触发日志，相似的还有watch、trace等</em></p>
+<h4 id="2、jad"><a href="#2、jad" class="headerlink" title="2、jad"></a>2、jad</h4><p>反编译指定已加载类的源码</p>
+<p>有时候，版本发布后，代码竟然没有执行，代码是最新的吗，这时可以使用jad反编译相应的class。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jad cn.test.mobile.controller.order.OrderController</span><br></pre></td></tr></table></figure>
+
+<p>仅编译指定的方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">jad cn.test.mobile.controller.order.OrderController getOrderInfo</span><br><span class="line"></span><br><span class="line">ClassLoader:</span><br><span class="line">@RequestMapping(value=&#123;&quot;getOrderInfo&quot;&#125;, method=&#123;RequestMethod.POST&#125;)</span><br><span class="line">public Object getOrderInfo(HttpServletRequest request, @RequestBody Map map) &#123;</span><br><span class="line">    ResponseVo responseVo = new ResponseVo();</span><br><span class="line">    ... ... ...  ...</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、sc"><a href="#3、sc" class="headerlink" title="3、sc"></a>3、sc</h4><p>“Search-Class” 的简写 ，查看JVM已加载的类信息 有的时候，你只记得类的部分关键词，你可以用sc获取完整名称 当你碰到这个错的时候“ClassNotFoundException”或者“ClassDefNotFoundException”，你可以用这个命令验证下</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数名称</th>
+<th align="left">参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><em>class-pattern</em></td>
+<td align="left">类名表达式匹配</td>
+</tr>
+<tr>
+<td align="left"><em>method-pattern</em></td>
+<td align="left">方法名表达式匹配</td>
+</tr>
+<tr>
+<td align="left">[d]</td>
+<td align="left">输出当前类的详细信息，包括这个类所加载的原始文件来源、类的声明、加载的ClassLoader等详细信息。如果一个类被多个ClassLoader所加载，则会出现多次</td>
+</tr>
+</tbody></table>
+<p>模糊搜索</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sc *OrderController*</span><br><span class="line">cn.test.mobile.controller.order.OrderController</span><br></pre></td></tr></table></figure>
+
+<p>打印类的详细信息 sc -d</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">sc -d cn.test.mobile.controller.order.OrderController</span><br><span class="line"></span><br><span class="line"> class-info        cn.test.mobile.controller.order.OrderController</span><br><span class="line"> code-source       /F:/IDEA-WORKSPACE-TEST-qyb/trunk/BE/mobile/target/classes/</span><br><span class="line"> name              cn.test.mobile.controller.order.OrderController</span><br><span class="line"> isInterface       false</span><br><span class="line"> isAnnotation      false</span><br><span class="line"> isEnum            false</span><br><span class="line"> isAnonymousClass  false</span><br><span class="line"> isArray           false</span><br><span class="line"> isLocalClass      false</span><br><span class="line"> isMemberClass     false</span><br><span class="line"> isPrimitive       false</span><br><span class="line"> isSynthetic       false</span><br><span class="line"> simple-name       OrderController</span><br><span class="line"> modifier          public</span><br><span class="line"> annotation        org.springframework.web.bind.annotation.RestController,org.springframework.web.bind.annotation.Requ</span><br><span class="line">                   estMapping</span><br><span class="line"> interfaces</span><br><span class="line"> super-class       +-cn.test.mobile.controller.BaseController</span><br><span class="line">                     +-java.lang.Object</span><br><span class="line"> class-loader      +-sun.misc.Launcher$AppClassLoader@18b4aac2</span><br><span class="line">                     +-sun.misc.Launcher$ExtClassLoader@480bdb19</span><br><span class="line"> classLoaderHash   18b4aac2</span><br></pre></td></tr></table></figure>
+
+<h4 id="与之相应的还有sm-“Search-Method”-，查看已加载类的方法信息"><a href="#与之相应的还有sm-“Search-Method”-，查看已加载类的方法信息" class="headerlink" title="与之相应的还有sm( “Search-Method” )，查看已加载类的方法信息"></a>与之相应的还有sm( “Search-Method” )，查看已加载类的方法信息</h4><p>查看String里的方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sm java.lang.String</span><br><span class="line">java.lang.String &lt;init&gt;([BII)V</span><br><span class="line">java.lang.String &lt;init&gt;([BLjava/nio/charset/Charset;)V</span><br><span class="line">java.lang.String &lt;init&gt;([BLjava/lang/String;)V</span><br><span class="line">java.lang.String &lt;init&gt;([BIILjava/nio/charset/Charset;)V</span><br><span class="line">java.lang.String &lt;init&gt;([BIILjava/lang/String;)V</span><br><span class="line">... ... ... ...</span><br></pre></td></tr></table></figure>
+
+<p>查看String中toString的详细信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sm -d java.lang.String toString</span><br><span class="line">declaring-class  java.lang.String</span><br><span class="line"> method-name      toString</span><br><span class="line"> modifier         public</span><br><span class="line"> annotation</span><br><span class="line"> parameters</span><br><span class="line"> return           java.lang.String</span><br><span class="line"> exceptions</span><br><span class="line"> classLoaderHash  null</span><br></pre></td></tr></table></figure>
+
+<h4 id="4、watch"><a href="#4、watch" class="headerlink" title="4、watch"></a>4、watch</h4><p>可以监测一个方法的入参和返回值</p>
+<p>有些问题线上会出现，本地重现不了，这时这个命令就有用了</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数名称</th>
+<th align="left">参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><em>class-pattern</em></td>
+<td align="left">类名表达式匹配</td>
+</tr>
+<tr>
+<td align="left"><em>method-pattern</em></td>
+<td align="left">方法名表达式匹配</td>
+</tr>
+<tr>
+<td align="left"><em>express</em></td>
+<td align="left">观察表达式</td>
+</tr>
+<tr>
+<td align="left"><em>condition-express</em></td>
+<td align="left">条件表达式</td>
+</tr>
+<tr>
+<td align="left">[b]</td>
+<td align="left">在<strong>「方法调用之前」</strong> 观察</td>
+</tr>
+<tr>
+<td align="left">[e]</td>
+<td align="left">在<strong>「方法异常之后」</strong> 观察</td>
+</tr>
+<tr>
+<td align="left">[s]</td>
+<td align="left">在<strong>「方法返回之后」</strong> 观察</td>
+</tr>
+<tr>
+<td align="left">[f]</td>
+<td align="left">在<strong>「方法结束之后」</strong> (正常返回和异常返回)观察，<strong>「默认选项」</strong></td>
+</tr>
+<tr>
+<td align="left">[E]</td>
+<td align="left">开启正则表达式匹配，默认为通配符匹配</td>
+</tr>
+<tr>
+<td align="left">[x:]</td>
+<td align="left">指定输出结果的属性遍历深度，默认为 1</td>
+</tr>
+</tbody></table>
+<p>观察getOrderInfo的出参和返回值，出参就是方法结束后的入参</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">watch cn.test.mobile.controller.order.OrderController getOrderInfo &quot;&#123;params,returnObj&#125;&quot; -x 2</span><br><span class="line"></span><br><span class="line">Press Q or Ctrl+C to abort.</span><br><span class="line">Affect(class-cnt:1 , method-cnt:1) cost in 456 ms.</span><br><span class="line">ts=2019-11-13 15:30:18; [cost=18.48307ms] result=@ArrayList[</span><br><span class="line">    @Object[][  # 这个就是出参，params</span><br><span class="line">        @RequestFacade[org.apache.catalina.connector.RequestFacade@1d81dbd7],</span><br><span class="line">        @LinkedHashMap[isEmpty=false;size=2], # 把遍历深度x改为3就可以查看map里的值了</span><br><span class="line">    ],</span><br><span class="line">    @ResponseVo[ # 这个就是返回值 returnObj</span><br><span class="line">        log=@Logger[Logger[cn.test.db.common.vo.ResponseVo]],</span><br><span class="line">        success=@Boolean[true],</span><br><span class="line">        message=@String[Ok],</span><br><span class="line">        count=@Integer[0],</span><br><span class="line">        code=@Integer[1000],</span><br><span class="line">        data=@HashMap[isEmpty=false;size=1],</span><br><span class="line">    ],</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>观察getOrderInfo的入参和返回值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">watch cn.test.mobile.controller.order.OrderController getOrderInfo &quot;&#123;params,returnObj&#125;&quot; -x 3 -b</span><br><span class="line"></span><br><span class="line">Press Q or Ctrl+C to abort.</span><br><span class="line">Affect(class-cnt:1 , method-cnt:1) cost in 93 ms.</span><br><span class="line">ts=2019-11-13 15:37:38; [cost=0.012479ms] result=@ArrayList[</span><br><span class="line">    @Object[][</span><br><span class="line">        @RequestFacade[</span><br><span class="line">            request=@Request[org.apache.catalina.connector.Request@d04e652],</span><br><span class="line">            sm=@StringManager[org.apache.tomcat.util.res.StringManager@7ae7a97b],</span><br><span class="line">        ],</span><br><span class="line">        @LinkedHashMap[</span><br><span class="line">            @String[payNo]:@String[190911173713755288],</span><br><span class="line">            @String[catalogId]:@String[6],</span><br><span class="line">        ],</span><br><span class="line">    ],</span><br><span class="line">    null,# -b是方法调用之前观察，所以还没有返回值</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>如果需要捕捉异常的话，使用throwExp，如{params,returnObj,throwExp}</p>
+<h4 id="5、trace"><a href="#5、trace" class="headerlink" title="5、trace"></a>5、trace</h4><p>输出方法内部调用路径，和路径上每个节点的耗时</p>
+<p>可以通过这个命令，查看哪些方法耗性能，从而找出导致性能缺陷的代码，这个耗时还包含了arthas执行的时间哦。</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数名称</th>
+<th align="left">参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><em>class-pattern</em></td>
+<td align="left">类名表达式匹配</td>
+</tr>
+<tr>
+<td align="left"><em>method-pattern</em></td>
+<td align="left">方法名表达式匹配</td>
+</tr>
+<tr>
+<td align="left"><em>condition-express</em></td>
+<td align="left">条件表达式</td>
+</tr>
+<tr>
+<td align="left">[E]</td>
+<td align="left">开启正则表达式匹配，默认为通配符匹配</td>
+</tr>
+<tr>
+<td align="left"><code>[n:]</code></td>
+<td align="left">命令执行次数</td>
+</tr>
+<tr>
+<td align="left"><code>#cost</code></td>
+<td align="left">方法执行耗时</td>
+</tr>
+</tbody></table>
+<p>输出getOrderInfo的调用路径</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">trace -j cn.test.mobile.controller.order.OrderController getOrderInfo</span><br><span class="line"></span><br><span class="line">Press Q or Ctrl+C to abort.</span><br><span class="line">Affect(class-cnt:1 , method-cnt:1) cost in 92 ms.</span><br><span class="line">---ts=2019-11-13 15:46:59;thread_name=http-nio-8801-exec-4;id=2b;is_daemon=true;priority=5;TCCL=org.springframework.boot.web.embedded.tomcat.TomcatEmbeddedWebappClassLoader@a6c54c3</span><br><span class="line">    ---[15.509011ms] cn.test.mobile.controller.order.OrderController:getOrderInfo()</span><br><span class="line">        +---[0.03584ms] cn.test.db.common.vo.ResponseVo:&lt;init&gt;() #472</span><br><span class="line">        +---[0.00992ms] java.util.HashMap:&lt;init&gt;() #473</span><br><span class="line">        +---[0.02176ms] cn.test.mobile.controller.order.OrderController:getUserInfo() #478</span><br><span class="line">        +---[0.024ms] java.util.Map:get() #483</span><br><span class="line">        +---[0.00896ms] java.lang.Object:toString() #483</span><br><span class="line">        +---[0.00864ms] java.lang.Integer:parseInt() #483</span><br><span class="line">        +---[0.019199ms] com.baomidou.mybatisplus.core.conditions.query.QueryWrapper:&lt;init&gt;() #500</span><br><span class="line">        +---[0.135679ms] com.baomidou.mybatisplus.core.conditions.query.QueryWrapper:allEq() #500</span><br><span class="line">        +---[12.476072ms] cn.test.db.service.IOrderMediaService:getOne() #500</span><br><span class="line">        +---[0.0128ms] java.util.HashMap:put() #501</span><br><span class="line">        +---[0.443517ms] cn.test.db.common.vo.ResponseVo:setSuccess() #503</span><br><span class="line">        `---[0.03488ms] java.util.Map:put() #504</span><br></pre></td></tr></table></figure>
+
+<p>输出getOrderInfo的调用路径，且cost大于10ms，-j是指过滤掉jdk中的方法，可以看到输出少了很多</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">trace -j cn.test.mobile.controller.order.OrderController getOrderInfo &#x27;#cost &gt; 10&#x27;</span><br><span class="line"></span><br><span class="line">Press Q or Ctrl+C to abort.</span><br><span class="line">Affect(class-cnt:1 , method-cnt:1) cost in 96 ms.</span><br><span class="line">---ts=2019-11-13 15:53:42;thread_name=http-nio-8801-exec-2;id=29;is_daemon=true;priority=5;TCCL=org.springframework.boot.web.embedded.tomcat.TomcatEmbeddedWebappClassLoader@a6c54c3</span><br><span class="line">    ---[13.803743ms] cn.test.mobile.controller.order.OrderController:getOrderInfo()</span><br><span class="line">        +---[0.01312ms] cn.test.db.common.vo.ResponseVo:&lt;init&gt;() #472</span><br><span class="line">        +---[0.01408ms] cn.test.mobile.controller.order.OrderController:getUserInfo() #478</span><br><span class="line">        +---[0.0128ms] com.baomidou.mybatisplus.core.conditions.query.QueryWrapper:&lt;init&gt;() #500</span><br><span class="line">        +---[0.303998ms] com.baomidou.mybatisplus.core.conditions.query.QueryWrapper:allEq() #500</span><br><span class="line">        +---[12.675431ms] cn.test.db.service.IOrderMediaService:getOne() #500</span><br><span class="line">        `---[0.409917ms] cn.test.db.common.vo.ResponseVo:setSuccess() #503</span><br></pre></td></tr></table></figure>
+
+<h4 id="6、jobs"><a href="#6、jobs" class="headerlink" title="6、jobs"></a>6、jobs</h4><p>执行后台异步任务</p>
+<p>线上有些问题是偶然发生的，这时就需要使用异步任务，把信息写入文件。</p>
+<p>使用 &amp; 指定命令去后台运行，使用 &gt; 将结果重写到日志文件，以trace为例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trace -j cn.test.mobile.controller.order.OrderController getOrderInfo &gt; test.out &amp;</span><br></pre></td></tr></table></figure>
+
+<p>jobs——列出所有job</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> jobs</span><br><span class="line">[76]*  </span><br><span class="line">       Running           trace -j cn.test.mobile.controller.order.OrderController getOrderInfo &gt;&gt; test.out &amp;</span><br><span class="line">       execution count : 0</span><br><span class="line">       start time      : Wed Nov 13 16:13:23 CST 2019</span><br><span class="line">       timeout date    : Thu Nov 14 16:13:23 CST 2019</span><br><span class="line">       session         : f4fba846-e90b-4234-959e-e78ad0a5db8c (current)</span><br></pre></td></tr></table></figure>
+
+<p>job id是76, * 表示此job是当前session创建，状态是Running，execution count是执行次数，timeout date是超时时间</p>
+<p>异步执行时间，默认为1天，如果要修改，使用options命令,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options job-timeout 2d</span><br></pre></td></tr></table></figure>
+
+<p>options可选参数 1d, 2h, 3m, 25s，分别代表天、小时、分、秒</p>
+<p>kill——强制终止任务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kill 76</span><br><span class="line">kill job 76 success</span><br></pre></td></tr></table></figure>
+
+<p>最多同时支持8个命令使用重定向将结果写日志</p>
+<p>请勿同时开启过多的后台异步命令，以免对目标JVM性能造成影响</p>
+<h4 id="7、logger"><a href="#7、logger" class="headerlink" title="7、logger"></a>7、logger</h4><p>查看logger信息，更新logger level</p>
+<p>查看</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">logger</span><br><span class="line"> name                ROOT</span><br><span class="line"> class               ch.qos.logback.classic.Logger</span><br><span class="line"> classLoader         sun.misc.Launcher$AppClassLoader@18b4aac2</span><br><span class="line"> classLoaderHash     18b4aac2 #改日志级别时要用到它</span><br><span class="line"> level               INFO</span><br><span class="line"> effectiveLevel      INFO</span><br><span class="line"> ... ... ... ...</span><br></pre></td></tr></table></figure>
+
+<p>更新日志级别</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logger --name ROOT --level debug</span><br><span class="line">update logger level success.</span><br></pre></td></tr></table></figure>
+
+<p>如果执行这个命令时出错：update logger level fail.</p>
+<p>指定classLoaderHash重试一下试试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logger -c 18b4aac2 --name ROOT --level debug</span><br><span class="line">update logger level success.</span><br></pre></td></tr></table></figure>
+
+<h4 id="8、dashboard"><a href="#8、dashboard" class="headerlink" title="8、dashboard"></a>8、dashboard</h4><p>查看当前系统的实时数据面板 这个命令可以全局的查看jvm运行状态，比如内存和cpu占用情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">dashboard</span><br><span class="line">ID        NAME                          GROUP               PRIORITY STATE     %CPU      TIME      INTERRUPT DAEMON</span><br><span class="line">17        Abandoned connection cleanup  main                5        TIMED_WAI 0         0:0       false     true</span><br><span class="line">1009      AsyncAppender-Worker-arthas-c system              5        WAITING   0         0:0       false     true</span><br><span class="line">5         Attach Listener               system              5        RUNNABLE  0         0:0       false     true</span><br><span class="line">23        ContainerBackgroundProcessor[ main                5        TIMED_WAI 0         0:0       false     true</span><br><span class="line">55        DestroyJavaVM                 main                5        RUNNABLE  0         0:11      false     false</span><br><span class="line">3         Finalizer                     system              8        WAITING   0         0:0       false     true</span><br><span class="line">18        HikariPool-1 housekeeper      main                5        TIMED_WAI 0         0:0       false     true</span><br><span class="line">39        NioBlockingSelector.BlockPoll main                5        RUNNABLE  0         0:0       false     true</span><br><span class="line">2         Reference Handler             system              10       WAITING   0         0:0       false     true</span><br><span class="line">4         Signal Dispatcher             system              9        RUNNABLE  0         0:0       false     true</span><br><span class="line">69        System Clock                  main                5        TIMED_WAI 0         0:34      false     true</span><br><span class="line">25        Thread-2                      main                5        TIMED_WAI 0         0:0       false     false</span><br><span class="line">37        Timer-0                       main                5        TIMED_WAI 0         0:0       false     true</span><br><span class="line">Memory                    used    total    max     usage    GC</span><br><span class="line">heap                      216M    415M     3614M   5.99%    gc.ps_scavenge.count          96</span><br><span class="line">ps_eden_space             36M     78M      1276M   2.90%    gc.ps_scavenge.time(ms)       3054</span><br><span class="line">ps_survivor_space         17M     38M      38M     46.53%   gc.ps_marksweep.count         4</span><br><span class="line">ps_old_gen                161M    298M     2711M   5.97%    gc.ps_marksweep.time(ms)      804</span><br><span class="line">nonheap                   175M    180M     -1      97.09%</span><br><span class="line">code_cache                35M     35M      240M    14.85%</span><br></pre></td></tr></table></figure>
+
+<p>ID: Java级别的线程ID，注意这个ID不能跟jstack中的nativeID一一对应 我们可以通过 thread id 查看线程的堆栈 信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">thread 2</span><br><span class="line">&quot;Reference Handler&quot; Id=2 WAITING on java.lang.ref.Reference$Lock@66ad4272</span><br><span class="line">    at java.lang.Object.wait(Native Method)</span><br><span class="line">    -  waiting on java.lang.ref.Reference$Lock@66ad4272</span><br><span class="line">    at java.lang.Object.wait(Object.java:502)</span><br><span class="line">    at java.lang.ref.Reference.tryHandlePending(Reference.java:191)</span><br><span class="line">    at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:153)</span><br></pre></td></tr></table></figure>
+
+<p>NAME: 线程名</p>
+<p>GROUP: 线程组名</p>
+<p>PRIORITY: 线程优先级, 1~10之间的数字，越大表示优先级越高</p>
+<p>STATE: 线程的状态</p>
+<p>CPU%: 线程消耗的cpu占比，采样100ms，将所有线程在这100ms内的cpu使用量求和，再算出每个线程的cpu使用占比。</p>
+<p>TIME: 线程运行总时间，数据格式为分：秒</p>
+<p>INTERRUPTED: 线程当前的中断位状态</p>
+<p>DAEMON: 是否是daemon线程</p>
+<h4 id="9、redefine"><a href="#9、redefine" class="headerlink" title="9、redefine"></a>9、redefine</h4><p>redefine jvm已加载的类 ，可以在不重启项目的情况下，热更新类。</p>
+<p>这个功能真的很强大，但是命令不一定会成功</p>
+<p>下面我们来模拟：假设我想修改OrderController里的某几行代码，然后热更新至jvm：</p>
+<p>a. 反编译OrderController，默认情况下，反编译结果里会带有ClassLoader信息，通过–source-only选项，可以只打印源代码。方便和mc&#x2F;redefine命令结合使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jad --source-only cn.test.mobile.controller.order.OrderController &gt; OrderController.java</span><br></pre></td></tr></table></figure>
+
+<p>生成的OrderController.java在哪呢，执行pwd就知道在哪个目录了</p>
+<p>b. 查找加载OrderController的ClassLoader</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sc -d cn.test.mobile.controller.order.OrderController | grep classLoaderHash</span><br><span class="line">classLoaderHash   18b4aac2</span><br></pre></td></tr></table></figure>
+
+<p>c. 修改保存好OrderController.java之后，使用mc(Memory Compiler)命令来编译成字节码，并且通过-c参数指定ClassLoader</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mc -c 18b4aac2 OrderController.java -d ./</span><br></pre></td></tr></table></figure>
+
+<p>d. 热更新刚才修改后的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redefine -c 18b4aac2 OrderController.class</span><br><span class="line">redefine success, size: 1</span><br></pre></td></tr></table></figure>
+
+<p>然后代码就更新成功了。</p>
+<p>redefine 我参考了这篇文档<code>https://github.com/alibaba/arthas/issues/537</code>。</p>
+<p>更多高级的功能请移步Arthas官网文档<code>https://alibaba.github.io/arthas/quick-start.html</code>。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>如果java -jar选择启动某个应用的时候，报下面的错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">java -jar arthas-boot.jar</span><br><span class="line">[INFO] arthas-boot version: 3.1.4</span><br><span class="line">[INFO] Process 11544 already using port 3658</span><br><span class="line">[INFO] Process 11544 already using port 8563</span><br><span class="line">[INFO] Found existing java process, please choose one and hit RETURN.</span><br><span class="line">* [1]: 11544</span><br><span class="line">  [2]: 119504 cn.test.MobileApplication</span><br><span class="line">  [3]: 136340 org.jetbrains.jps.cmdline.Launcher</span><br><span class="line">  [4]: 3068</span><br><span class="line">2 #选择第2个启动</span><br><span class="line">[ERROR] Target process 119504 is not the process using port 3658, you will connect to an unexpected process.</span><br><span class="line">[ERROR] 1. Try to restart arthas-boot, select process 11544, shutdown it first with running the &#x27;shutdown&#x27; command.</span><br><span class="line">[ERROR] 2. Or try to use different telnet port, for example: java -jar arthas-boot.jar --telnet-port 9998 --http-port -1</span><br></pre></td></tr></table></figure>
+
+<p>注意提示<code>[ERROR] 1</code>，只需要进入11544这个应用，然后执行shutdown关闭这个应用就可以启动了。</p>
+</div><div class="tags"><a href="/tags/PMO"><i class="fa fa-tag">PMO</i></a></div><div class="post-nav"><a class="pre" href="/2022/08/09/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20nacos%E4%BB%A5mysql%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%BA%90%E8%BF%9B%E8%A1%8C%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%8C%E6%8A%A5%E2%80%9CNo%20DataSource%20set%E2%80%9D%E9%94%99%E8%AF%AF/">nacos以mysql为数据源进行持久化，报“No DataSource set”错误</a><a class="next" href="/2022/07/23/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E4%B8%80%E4%B8%AA%E4%BC%98%E7%A7%80%E7%9A%84Controller%E5%B1%82%E9%80%BB%E8%BE%91/">一个优秀的 Controller 层逻辑</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">94</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/PMO/" style="font-size: 15px;">PMO</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 15px;">工具</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/01/05/ai/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BC%96%E8%BE%91%E5%99%A8%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/">知识图谱编辑器帮助文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/12/09/%E6%9D%82%E8%AE%B0/%E6%9D%8E%E5%8F%94%E5%90%8C%E5%85%AB%E7%84%B6/">八然</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/12/06/%E6%9D%82%E8%AE%B0/%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%BD%E6%B1%82%E6%9E%81%E8%87%B4/">什么是追求极致</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/11/11/%E5%89%8D%E7%AB%AF/qs.stringify%E7%9A%84%E4%BD%BF%E7%94%A8/">qs.stringify的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/19/%E8%AF%AD%E5%BD%95/%E5%9B%BE%E7%9C%8B%E4%BA%8C%E5%8D%81%E5%A4%A7%E6%8A%A5%E5%91%8A/">图看二十大报告</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/18/%E5%B7%A5%E5%85%B7/Cherry%E9%94%AE%E7%9B%98%20win%E9%94%AE%E6%97%A0%E6%95%88/">Cherry键盘 win键无效</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/18/%E8%AF%AD%E5%BD%95/%E4%BA%8C%E5%8D%81%E5%A4%A7%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">二十大手帐</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/07/%E8%AF%AD%E5%BD%95/%E4%BB%80%E4%B9%88%E6%98%AF%E6%88%90%E9%95%BF/">什么是成长</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/09/20/%E6%9D%82%E8%AE%B0/%E6%80%8E%E4%B9%88%E8%AE%A9%E7%8C%AB%E5%90%83%E8%BE%A3%E6%A4%92/">怎么让猫吃辣椒</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/09/08/%E6%9D%82%E8%AE%B0/%E8%80%81%E5%B1%B1%E9%AA%91%E8%A1%8C%E8%B7%AF%E7%BA%BF/">老山骑行路线规划</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2023 <a href="/." rel="nofollow">枫哲's文栖小筑.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
