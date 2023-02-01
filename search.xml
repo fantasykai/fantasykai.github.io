@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>使用图数据库 Nebula Graph 数据导入快速体验知识图谱 OwnThink</title>
+      <link href="/2023/01/28/ai/%E4%BD%BF%E7%94%A8%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%20Nebula%20Graph%20%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%BF%AB%E9%80%9F%E4%BD%93%E9%AA%8C%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%20OwnThink/"/>
+      <url>/2023/01/28/ai/%E4%BD%BF%E7%94%A8%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%20Nebula%20Graph%20%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%BF%AB%E9%80%9F%E4%BD%93%E9%AA%8C%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%20OwnThink/</url>
+      
+        <content type="html"><![CDATA[<p>本文由 Nebula Graph 实习生@王杰贡献。</p><p>最近 @Yener 开源了史上最大规模的中文知识图谱——OwnThink（链接：<a href="https://github.com/ownthink/KnowledgeGraphData">https://github.com/ownthink/KnowledgeGraphData</a> ），数据量为 1.4 亿条。</p><p>本文介绍如何将这份数据快速导入图数据库 Nebula Graph，全过程大约需要 30 分钟。</p><h2 id="中文知识图谱-OwnThink-简介"><a href="#中文知识图谱-OwnThink-简介" class="headerlink" title="中文知识图谱 OwnThink 简介"></a>中文知识图谱 OwnThink 简介</h2><h3 id="思知（OwnThink）"><a href="#思知（OwnThink）" class="headerlink" title="思知（OwnThink）"></a>思知（OwnThink）</h3><p>知识图谱是由 Google 在 2012 年提出来的一个概念。主要是用来<strong>描述真实世界中存在的各种实体和概念，以及他们之间的关系</strong>。在搜索引擎、问答机器人、知识抽取等多个领域有着诸多应用。</p><p>最近 Yener 开源了史上最大规模的中文知识图谱—— OwnThink（链接：<a href="https://github.com/ownthink/KnowledgeGraphData%EF%BC%89%EF%BC%8C%E6%95%B0%E6%8D%AE%E9%87%8F%E4%B8%BA">https://github.com/ownthink/KnowledgeGraphData），数据量为</a> 1.4 亿条。数据以 (实体, 属性, 值) 和 (实体, 关系, 实体) 混合的<strong>三元组</strong>形式存储，数据格式为 csv。</p><p>可以点击这里下载：<a href="https://nebula-graph.oss-accelerate.aliyuncs.com/ownthink/kg_v2.tar.gz">https://nebula-graph.oss-accelerate.aliyuncs.com/ownthink/kg_v2.tar.gz</a></p><h3 id="查看原始文件"><a href="#查看原始文件" class="headerlink" title="查看原始文件"></a>查看原始文件</h3><p>由于 ownthink_v2.csv 数据过多，摘录部分数据为例：</p><table><thead><tr><th>1 2 3 4 5 6 7 8 9 10</th><th>红色食品,描述,红色食品是指食品为红色、橙红色或棕红色的食品。 红色食品,是否含防腐剂,否 红色食品,主要食用功效,预防感冒，缓解疲劳 红色食品,用途,增强表皮细胞再生和防止皮肤衰老 大龙湫,描述,雁荡山景区分散，东起羊角洞，西至锯板岭；南起筋竹溪，北至六坪山。 大龙湫,中文名称,大龙湫 大龙湫,外文名称,big dragon autrum 大龙湫,门票价格,50元 大龙湫,著名景点,芙蓉峰 姚明[中国篮球协会主席、中职联公司董事长],妻子,叶莉</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>这里的 (红色食品,是否含防腐剂,否) 就是典型的 (实体, 属性, 值) 形式的三元组数据; 而 (姚明[中国篮球协会主席、中职联公司董事长],妻子,叶莉) 是典型的 (实体, 关系, 实体) 形式的三元组数据。</p><h2 id="Step-1-数据建模与清洗准备"><a href="#Step-1-数据建模与清洗准备" class="headerlink" title="Step 1. 数据建模与清洗准备"></a>Step 1. 数据建模与清洗准备</h2><h3 id="建模"><a href="#建模" class="headerlink" title="建模"></a>建模</h3><p>Nebula Graph 是一个开源的分布式图数据库（链接：<a href="https://github.com/vesoft-inc/nebula%EF%BC%89%EF%BC%8C%E7%9B%B8%E6%AF%94">https://github.com/vesoft-inc/nebula），相比</a> Neo4j 来说，它的主要特点是完全的分布式，因此<strong>图数据库 Nebula Graph 适合处理数据量超过单机的场景</strong>。</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69341543-b9d2ef00-0ca4-11ea-8615-bb9d0e33c74a.png" alt="GitHub 主页"></p><p>图数据库<strong>通常支持的数据模型为有向属性图（directed property graph）</strong>。图中的每个顶点（vertex）可以用标签（tag）来表示类型（Neo4j 叫做 Label），顶点和顶点之间的关系用边（edge）连接起来。每种 tag 和 edge 还可以带有属性。——然而，这些功能对于知识图谱的三元组数据没什么意义:</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69324280-263cf680-0c83-11ea-8195-3facde5c0bcd.png" alt="image"></p><p>分析上图的三元组数据，发现无论是 (实体, 属性, 值) 形式的三元组数据，还是 (实体, 关系, 实体) 形式的三元组数据，每条三元组数据均可以建模成<strong>两个点</strong>和<strong>一条边</strong>的形式。前者三元组中的“<strong>实体</strong>”和“<strong>值</strong>”建模为<strong>两个点</strong>（起点、终点），“<strong>属性</strong>”建模为<strong>一条边</strong>，后者三元组中的两个“<strong>实体</strong>”也建模为<strong>两个点</strong>（起点、终点），“<strong>关系</strong>”建模为<strong>一条边</strong>.</p><p>而且，所有的点都是相同类型（取名叫entity ），只需要一个属性（叫 name )，所有的边也都是同一类型(取名叫 relation ），边上也只有一个属性（叫 name ）。</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69324336-3bb22080-0c83-11ea-9672-a0eb3a355f97.png" alt="image"></p><p>比如 (大龙湫,著名景点,芙蓉峰) 可以表示成下图这个样子：</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69324347-3f45a780-0c83-11ea-94bb-a1dd0df6ebef.png" alt="image"></p><h3 id="数据清洗和预处理"><a href="#数据清洗和预处理" class="headerlink" title="数据清洗和预处理"></a>数据清洗和预处理</h3><p>按照前一节的分析，原始的每条<strong>三元组数据</strong>，还需要清洗<strong>转换为两个点和一条边</strong>才能变成属性图的模型。</p><h4 id="下载清洗工具"><a href="#下载清洗工具" class="headerlink" title="下载清洗工具"></a>下载清洗工具</h4><p>本文测试的时候，使用的操作系统是 CentOS 7.5，工具由 Golang 语言编写而成。</p><p>你可以在这里 (链接：<a href="https://github.com/jievince/rdf-converter">https://github.com/jievince/rdf-converter</a>) 下载这个简单的清洗工具源代码并编译使用。</p><p>该工具会把转换后的顶点的数据写入到 vertex.csv 文件、边数据写入到 edge.csv 文件。</p><p>说明：在测试过程中，发现有大量的重复点数据，所以工具里面也做了去重。完全去重后的点的数据大概是 4600 万条，完全去重后的边的数据大概是 1 亿 4000 万条。</p><p>清洗完的 vertex.csv 文件长这样：</p><table><thead><tr><th>1 2 3 4 5 6 7 8</th><th>-2469395383949115281,过度包装 -5567206714840433083,Over  Package 3836323934884101628,有的商品故意增加包装层数 1185893106173039861,很多采用实木、金属制品 3455734391170888430,非科学 9183164258636124946,教育 5258679239570815125,成熟市场 -8062106589304861485,”成熟市场是指低增长率,高占有率的市场。”</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>说明：每一行是一个顶点，第一列整型 -2469395383949115281 是顶点的 ID（叫做 VID），它是由第二列文字通过 hash 计算出来的，例如 -2469395383949115281 就是由 std::hash(“过度包装”) 计算出来的值。</p><p>清洗完的 edge.csv 文件:</p><table><thead><tr><th>1 2 3 4 5 6 7 8 9 10</th><th>3413383836870836248,-948987595135324087,含义 3413383836870836248,8037179844375033188,定义 3413383836870836248,-2559124418148243756,标签 3413383836870836248,8108596883039039864,标签 2587975790775251569,-4666568475926279810,描述 2587975790775251569,2587975790775251569,中文名称 2587975790775251569,3771551033890875715,外文名称 2587975790775251569,2900555761857775043,地理位置 2587975790775251569,-1913521037799946160,占地面积 2587975790775251569,-1374607753051283066,开放时间</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>说明：第一列是起点的 VID，第二列是终点的 VID，第三列是这条边的”<strong>属性</strong>“或者”<strong>描述</strong>“。</p><p>在本机完全去重的清洗程序运行时间大约是 6 分钟。</p><h2 id="Step-2-Nebula-Graph-启动准备"><a href="#Step-2-Nebula-Graph-启动准备" class="headerlink" title="Step 2. Nebula Graph 启动准备"></a>Step 2. Nebula Graph 启动准备</h2><h3 id="下载和安装"><a href="#下载和安装" class="headerlink" title="下载和安装"></a>下载和安装</h3><p>登陆 GitHub 后，在这里 (链接：<a href="https://github.com/vesoft-inc/nebula/actions">https://github.com/vesoft-inc/nebula/actions</a>) 找到 Nebula 的安装包。</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69341796-3239b000-0ca5-11ea-8050-30d4d85c4e4d.png" alt="action"></p><p>找到你所用系统对应的下载链接：</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69344341-32887a00-0caa-11ea-9065-b4a4ec6154ba.png" alt="package"></p><p>笔者系统是 CentOS 7.5，下载 CentOS 7.5 最新的压缩包，解压后能找到 rpm 安装包 nebula-5ace754.el7-5.x86_64.rpm，注意 5ace754 是 git commit 号，使用时可能会有所不同。下载好后解压，输入下面命令进行安装，记得替换成新的 git commit：</p><table><thead><tr><th>1</th><th>$ rpm -ivh nebula-5ace754.el7-5.x86_64.rpm</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><h3 id="启动-Nebula-Graph-服务"><a href="#启动-Nebula-Graph-服务" class="headerlink" title="启动 Nebula Graph 服务"></a>启动 Nebula Graph 服务</h3><p>在 命令行 CLI 输入下面命令启动服务</p><table><thead><tr><th>1</th><th>$ &#x2F;usr&#x2F;local&#x2F;nebula&#x2F;scripts&#x2F;nebula.service start all</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>命令执行结果如下：</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69324527-99df0380-0c83-11ea-9887-148143c18641.png" alt="image"></p><p>可以执行以下命令检查服务是否成功启动</p><table><thead><tr><th>1</th><th>$ &#x2F;usr&#x2F;local&#x2F;nebula&#x2F;scripts&#x2F;nebula.service status all</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>命令执行结果如下：</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69324588-b24f1e00-0c83-11ea-9f58-30f205bce272.png" alt="image"></p><h3 id="连接-Nebula-Graph-服务"><a href="#连接-Nebula-Graph-服务" class="headerlink" title="连接 Nebula Graph 服务"></a>连接 Nebula Graph 服务</h3><p>输入下面命令连接 Nebula Graph：</p><table><thead><tr><th>1</th><th>$ &#x2F;usr&#x2F;local&#x2F;nebula&#x2F;bin&#x2F;nebula -u user -p password</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>命令执行结果如下：</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69324631-c72bb180-0c83-11ea-9c32-ac349f9e3c9f.png" alt="image"></p><h3 id="准备-schema-等元数据"><a href="#准备-schema-等元数据" class="headerlink" title="准备 schema 等元数据"></a>准备 schema 等元数据</h3><p>Nebula Graph 的使用风格有点接近 MySQL，需要先准备各种元信息。</p><h4 id="新建图空间-space"><a href="#新建图空间-space" class="headerlink" title="新建图空间 space"></a>新建图空间 space</h4><p>create space 的概念接近 MySQL 里面 create database。在 nebula console 里面输入下面这个命令。</p><table><thead><tr><th>1</th><th>nebula&gt; CREATE SPACE test;</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><h4 id="进入-test-space"><a href="#进入-test-space" class="headerlink" title="进入 test space"></a>进入 test space</h4><table><thead><tr><th>1</th><th>nebula&gt; USE test;</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><h4 id="创建点类型（entity）"><a href="#创建点类型（entity）" class="headerlink" title="创建点类型（entity）"></a>创建点类型（entity）</h4><table><thead><tr><th>1</th><th>nebula&gt; CREATE TAG entity(name string);</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><h4 id="创建边类型-relation"><a href="#创建边类型-relation" class="headerlink" title="创建边类型 (relation)"></a>创建边类型 (relation)</h4><table><thead><tr><th>1</th><th>nebula&gt; CREATE EDGE relation(name string);</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>最后简单确认下元数据是不是正确。</p><p><strong>查看 entity 标签的属性</strong>：</p><table><thead><tr><th>1</th><th>nebula&gt; DESCRIBE TAG entity;</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>结果如下：</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69324705-e591ad00-0c83-11ea-9d5c-4172b146b762.png" alt="image"></p><p><strong>查看 relation 边类型的属性</strong>：</p><table><thead><tr><th>1</th><th>nebula&gt; DESCRIBE EDGE relation;</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>结果如下：</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69324702-e4f91680-0c83-11ea-80f8-293680b4a630.png" alt="image"></p><h2 id="Step-3-使用-nebula-importer-导入数据"><a href="#Step-3-使用-nebula-importer-导入数据" class="headerlink" title="Step 3. 使用 nebula-importer 导入数据"></a>Step 3. 使用 nebula-importer 导入数据</h2><p>登陆 GitHub 进入 <a href="https://github.com/vesoft-inc/nebula-importer">https://github.com/vesoft-inc/nebula-importer</a> ，nebula-importer 这个工具也是 Golang 语言写的，在这里下载并编译源代码。</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69342573-cb1cfb00-0ca6-11ea-8761-b5acbdcec5ae.png" alt="importer"></p><p>另外，准备一个 YAML 配置文件，告诉这个 importer 工具去哪里找 csv 文件。（可直接复制下面这段）</p><table><thead><tr><th>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42</th><th>version: v1rc1 description: example clientSettings:  concurrency: 10 # number of graph clients  channelBufferSize: 128  space: test  connection:   user: user   password: password   address: 127.0.0.1:3699 logPath: .&#x2F;err&#x2F;test.log files: - path: .&#x2F;vertex.csv   failDataPath: .&#x2F;err&#x2F;vertex.csv   batchSize: 100   type: csv   csv:    withHeader: false    withLabel: false   schema:    type: vertex    vertex:     tags:      - name: entity       props:        - name: name         type: string  - path: .&#x2F;edge.csv   failDataPath: .&#x2F;err&#x2F;edge.csv   batchSize: 100   type: csv   csv:    withHeader: false    withLabel: false   schema:    type: edge    edge:     name: relation     withRanking: false     props:      - name: name       type: string</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>说明：测试时候发现 csv 数据文件中有大量转义字符 () 和换行字符 (<br>)，nebula-importer 也做了处理。</p><p>最后：开始导入数据 ????</p><table><thead><tr><th>1</th><th>go run importer.go –config .&#x2F;config.yaml</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>执行过程如下：</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69324800-15d94b80-0c84-11ea-9d0e-6e1428c2de84.png" alt="image"></p><p>可以看到, 本次导入 QPS 大约在 40 w&#x2F;s。全部导入总耗时大约 15 min。</p><h2 id="Step-4-随便读点什么试试"><a href="#Step-4-随便读点什么试试" class="headerlink" title="Step 4. 随便读点什么试试"></a>Step 4. 随便读点什么试试</h2><p>导入完毕后，我们可以使用 Nebula Graph 服务做一些简单的查询。回到 Nebula Graph 的命令行 CLI ：</p><table><thead><tr><th>1</th><th>$ &#x2F;usr&#x2F;local&#x2F;nebula&#x2F;bin&#x2F;nebula -u user -p password</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>进入刚才导入的三元组数据的 test 空间：</p><table><thead><tr><th>1</th><th>nebula&gt; USE test;</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>现在，我们可以做一些简单查询</p><ul><li>例 1：与姚明有直接关联的边的类型和点的属性</li></ul><table><thead><tr><th>1</th><th>(<a href="mailto:&#117;&#115;&#x65;&#114;&#x40;&#x31;&#x32;&#55;&#x2e;&#48;&#x2e;&#x30;&#46;&#49;">&#117;&#115;&#x65;&#114;&#x40;&#x31;&#x32;&#55;&#x2e;&#48;&#x2e;&#x30;&#46;&#49;</a>) [test]&gt; GO FROM hash(“姚明[中国篮球协会主席、中职联公司董事长]”) OVER relation  YIELD relation.name AS Name, $$.entity.name AS Value;</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>执行结果如下：</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69342925-834aa380-0ca7-11ea-8e71-1d7620320187.png" alt="result"></p><p>可以看到：本次查询返回 51 条数据，耗时 3 ms 左右；</p><ul><li>例2：查询姚明和其妻子叶莉在三跳之内的所有路径</li></ul><table><thead><tr><th>1</th><th>(<a href="mailto:&#117;&#x73;&#101;&#114;&#x40;&#49;&#x32;&#55;&#x2e;&#48;&#x2e;&#x30;&#46;&#x31;">&#117;&#x73;&#101;&#114;&#x40;&#49;&#x32;&#55;&#x2e;&#48;&#x2e;&#x30;&#46;&#x31;</a>) [test]&gt; FIND ALL PATH FROM hash(“姚明[中国篮球协会主席、中职联公司董事长]”)  TO hash(“叶莉”) OVER relation UPTO 3 STEPS;</th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p>执行结果如下：</p><p><img src="https://www.codenong.com/getimg.php?url=https://user-images.githubusercontent.com/56643819/69324938-520cac00-0c84-11ea-97e5-956f8c739f89.png" alt="image"></p><p>当数据量较大时，查找全路径&#x2F;最短经之类的操作会比较耗时。可以看到：本次查询返回 8 条数据，说明姚明和其妻子叶莉在三跳之内共有 8 条直接或间接的关系。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本篇文章涉及到的一些概念和链接：</p><ul><li>OwnThink 的中文知识图谱数据：<a href="https://github.com/ownthink/KnowledgeGraphData%E3%80%82%E5%AE%83%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A5%E4%B8%89%E5%85%83%E7%BB%84%E5%BD%A2%E5%BC%8F%E4%BF%9D%E5%AD%98%E4%B8%BA">https://github.com/ownthink/KnowledgeGraphData。它的数据以三元组形式保存为</a> csv</li><li>Nebula Graph 是一个开源的图数据库，GitHub 地址：<a href="https://github.com/vesoft-inc/nebula%EF%BC%8C%E5%92%8C">https://github.com/vesoft-inc/nebula，和</a> Neo4j 相比，它是分布式的</li><li>数据清洗工具，GitHub 地址：<a href="https://github.com/jievince/rdf-converter%E3%80%82%E5%9B%A0%E4%B8%BA%E5%8E%9F%E5%A7%8B%E7%9A%84%E5%9B%BE%E8%B0%B1">https://github.com/jievince/rdf-converter。因为原始的图谱</a> ownthink_v2.csv 数据以三元组形式保存，并和一般图数据库的属性图模型略微有些不同，所以写了一个 Go 语言工具将原始 ownthink_v2.csv 变成 vertex.csv 和 edge.csv</li><li>数据导入工具，GitHub 地址：<a href="https://github.com/vesoft-inc/nebula-importer%E3%80%82%E5%B0%86%E6%B8%85%E6%B4%97%E5%AE%8C%E7%9A%84">https://github.com/vesoft-inc/nebula-importer。将清洗完的</a> vertex.csv 和 edge.csv 批量写入到 Nebula Graph。</li></ul><h3 id="后面的工作"><a href="#后面的工作" class="headerlink" title="后面的工作"></a>后面的工作</h3><ul><li>调整 Nebula 的参数。似乎默认的日志级别和内存都不是很好，可以用下面这个命令关闭日志，这样导入性能可以好很多。</li></ul><table><thead><tr><th>1</th><th>curl “<a href="http://127.0.0.1:12000/set_flags?flag=minloglevel&amp;value=4&quot;">http://127.0.0.1:12000/set_flags?flag=minloglevel&amp;value=4&quot;</a></th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><ul><li>写个对应的 Python 版本示例</li></ul><h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>Nebula Graph GitHub 地址：<a href="https://github.com/vesoft-inc/nebula">https://github.com/vesoft-inc/nebula</a> ，加入 Nebula Graph 交流群，请联系 Nebula Graph 官方小助手微信号：NebulaGraphbot</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 知识图谱 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>知识图谱编辑器帮助文档</title>
       <link href="/2023/01/05/ai/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BC%96%E8%BE%91%E5%99%A8%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/"/>
       <url>/2023/01/05/ai/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%BC%96%E8%BE%91%E5%99%A8%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/</url>
@@ -20,7 +45,7 @@
       
         <tags>
             
-            <tag> AI </tag>
+            <tag> 知识图谱 </tag>
             
         </tags>
       
@@ -804,31 +829,6 @@
     
     
     <entry>
-      <title>文件在线预览-kkFileView</title>
-      <link href="/2022/05/01/java/%E6%96%87%E4%BB%B6%E5%9C%A8%E7%BA%BF%E9%A2%84%E8%A7%88%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
-      <url>/2022/05/01/java/%E6%96%87%E4%BB%B6%E5%9C%A8%E7%BA%BF%E9%A2%84%E8%A7%88%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/</url>
-      
-        <content type="html"><![CDATA[<p>此项目为文件文档在线预览项目解决方案，对标业内付费产品有【<a href="https://gitee.com/link?target=http://dcs.yozosoft.com/">永中office</a>】【<a href="https://gitee.com/link?target=http://www.officeweb365.com/">office365</a>】【<a href="https://gitee.com/link?target=https://www.idocv.com/">idocv</a>】等，在取得公司高层同意后以Apache协议开源出来反哺社区，在此特别感谢@唐老大的支持以及@端木详笑的贡献。该项目使用流行的spring boot搭建，易上手和部署，基本支持主流办公文档的在线预览，如doc,docx,Excel,pdf,txt,zip,rar,图片等等</p><h3 id="项目特性"><a href="#项目特性" class="headerlink" title="项目特性"></a>项目特性</h3><ol><li>支持 office, pdf, cad 等办公文档</li><li>支持 txt, xml(渲染), md(渲染), java, php, py, js, css 等所有纯文本</li><li>支持 zip, rar, jar, tar, gzip 等压缩包</li><li>支持 jpg, jpeg, png, gif, tif, tiff 等图片预览（翻转，缩放，镜像）</li><li>使用 spring-boot 开发，预览服务搭建部署非常简便</li><li>rest 接口提供服务，跨语言、跨平台特性(java,php,python,go,php，….)都支持，应用接入简单方便</li><li>抽象预览服务接口，方便二次开发，非常方便添加其他类型文件预览支持</li><li>最最重要 Apache 协议开源，代码 pull 下来想干嘛就干嘛</li></ol><h3 id="官网及文档"><a href="#官网及文档" class="headerlink" title="官网及文档"></a>官网及文档</h3><p>地址：<a href="https://gitee.com/link?target=https://kkfileview.keking.cn">https://kkfileview.keking.cn</a></p><h3 id="在线体验"><a href="#在线体验" class="headerlink" title="在线体验"></a>在线体验</h3><blockquote><p>请善待公共服务，会不定时停用</p></blockquote><p>地址：<a href="https://gitee.com/link?target=https://file.keking.cn">https://file.keking.cn</a></p><h3 id="项目文档（Project-documentation）"><a href="#项目文档（Project-documentation）" class="headerlink" title="项目文档（Project documentation）"></a>项目文档（Project documentation）</h3><ol><li>详细wiki文档：<a href="https://gitee.com/kekingcn/file-online-preview/wikis/pages">https://gitee.com/kekingcn/file-online-preview/wikis/pages</a></li><li>中文文档：<a href="https://gitee.com/kekingcn/file-online-preview/blob/master/README.md">https://gitee.com/kekingcn/file-online-preview/blob/master/README.md</a></li><li>English document：<a href="https://gitee.com/kekingcn/file-online-preview/blob/master/README.en.md">https://gitee.com/kekingcn/file-online-preview/blob/master/README.en.md</a></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术小栈 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> spring </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>软件架构的23个基本原则</title>
       <link href="/2022/05/01/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E7%9A%8423%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99/"/>
       <url>/2022/05/01/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E7%9A%8423%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99/</url>
@@ -846,6 +846,31 @@
         <tags>
             
             <tag> PMO </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>文件在线预览-kkFileView</title>
+      <link href="/2022/05/01/java/%E6%96%87%E4%BB%B6%E5%9C%A8%E7%BA%BF%E9%A2%84%E8%A7%88%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+      <url>/2022/05/01/java/%E6%96%87%E4%BB%B6%E5%9C%A8%E7%BA%BF%E9%A2%84%E8%A7%88%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/</url>
+      
+        <content type="html"><![CDATA[<p>此项目为文件文档在线预览项目解决方案，对标业内付费产品有【<a href="https://gitee.com/link?target=http://dcs.yozosoft.com/">永中office</a>】【<a href="https://gitee.com/link?target=http://www.officeweb365.com/">office365</a>】【<a href="https://gitee.com/link?target=https://www.idocv.com/">idocv</a>】等，在取得公司高层同意后以Apache协议开源出来反哺社区，在此特别感谢@唐老大的支持以及@端木详笑的贡献。该项目使用流行的spring boot搭建，易上手和部署，基本支持主流办公文档的在线预览，如doc,docx,Excel,pdf,txt,zip,rar,图片等等</p><h3 id="项目特性"><a href="#项目特性" class="headerlink" title="项目特性"></a>项目特性</h3><ol><li>支持 office, pdf, cad 等办公文档</li><li>支持 txt, xml(渲染), md(渲染), java, php, py, js, css 等所有纯文本</li><li>支持 zip, rar, jar, tar, gzip 等压缩包</li><li>支持 jpg, jpeg, png, gif, tif, tiff 等图片预览（翻转，缩放，镜像）</li><li>使用 spring-boot 开发，预览服务搭建部署非常简便</li><li>rest 接口提供服务，跨语言、跨平台特性(java,php,python,go,php，….)都支持，应用接入简单方便</li><li>抽象预览服务接口，方便二次开发，非常方便添加其他类型文件预览支持</li><li>最最重要 Apache 协议开源，代码 pull 下来想干嘛就干嘛</li></ol><h3 id="官网及文档"><a href="#官网及文档" class="headerlink" title="官网及文档"></a>官网及文档</h3><p>地址：<a href="https://gitee.com/link?target=https://kkfileview.keking.cn">https://kkfileview.keking.cn</a></p><h3 id="在线体验"><a href="#在线体验" class="headerlink" title="在线体验"></a>在线体验</h3><blockquote><p>请善待公共服务，会不定时停用</p></blockquote><p>地址：<a href="https://gitee.com/link?target=https://file.keking.cn">https://file.keking.cn</a></p><h3 id="项目文档（Project-documentation）"><a href="#项目文档（Project-documentation）" class="headerlink" title="项目文档（Project documentation）"></a>项目文档（Project documentation）</h3><ol><li>详细wiki文档：<a href="https://gitee.com/kekingcn/file-online-preview/wikis/pages">https://gitee.com/kekingcn/file-online-preview/wikis/pages</a></li><li>中文文档：<a href="https://gitee.com/kekingcn/file-online-preview/blob/master/README.md">https://gitee.com/kekingcn/file-online-preview/blob/master/README.md</a></li><li>English document：<a href="https://gitee.com/kekingcn/file-online-preview/blob/master/README.en.md">https://gitee.com/kekingcn/file-online-preview/blob/master/README.en.md</a></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术小栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> spring </tag>
             
         </tags>
       
@@ -1059,6 +1084,31 @@
       <url>/2021/10/12/%E8%AF%AD%E5%BD%95/%E6%B2%A1%E6%9C%89%E4%BA%BA%E5%8F%AF%E4%BB%A5%E6%8A%B5%E6%8C%A1%E5%B2%81%E6%9C%88%EF%BC%8C%E4%BD%86%E6%80%BB%E6%9C%89%E4%BA%BA%E6%B0%B8%E8%BF%9C%E5%B9%B4%E8%BD%BB/</url>
       
         <content type="html"><![CDATA[<p><strong>1</strong></p><p>前几日，在浙江杭州第17届中国国际动漫节上，一位身着汉服的奶奶一经亮相便惊艳全场。这位“汉服奶奶”名叫刘维秀，今年已经77岁。起初，奶奶只是配合她的学生拍摄了一组身着汉服的视频，收获了不少网友点赞后，奶奶专门创建了账号，用于记录自己的生活。</p><p>“汉服奶奶”年轻时曾是一名京剧演员，她13岁开始学习京剧，19岁进入中国戏曲学校进修，数十年的京剧功底让奶奶的一颦一笑、举手投足都展露着古典风韵。奶奶退休之后，戏服被放进衣柜深处。如今，汉服不仅重新让她找回舞台表演的感觉，还给予了她全新的生活体验。</p><p>岁月从不败美人。在大家往日的印象中，动漫节、汉服似乎是年轻人的专利。可“汉服奶奶”凭借优雅的气质、经典的造型和年轻的心态，收获了众多粉丝。她说：“只要喜欢，只要想穿，热爱汉服没有年龄的限制！”</p><p><strong>谁说年龄是人生的分野？对于热爱生活的人来讲，年龄只是一个数字而已。有热爱、*<em>有追求、有希望，不论任何年龄，都可以把日子过得有声有色。*</em></strong></p><p><strong>2</strong></p><p>曾认识一位跳独舞的姑娘。彼时的年纪，对她来说并不友好。前有父母催婚的压力，后有同龄人竞争的焦灼，但每次看她的朋友圈都会由衷地感叹：这姑娘，也太励志了吧。</p><p>　　她曾穷到只剩八块钱，还能边写书边旅行；也曾在异国他乡工作，后来成了项目合伙人，甚至做起跨界旅游业……从一开始的忧虑、困惑和迷茫，再到如今的自由、独立和无畏，成熟之于她，是遇见更加真实的自己。看似迂回曲折，却绵延成了坦途。</p><p>　　同事里还有一位二胎妈妈。别人一听说她已经有两个孩子，都会问一句：那一定很辛苦吧？但事实是，她越活越像少女。每天跑步五千米，坚持练瑜伽和跳肚皮舞十几年，会煲汤、会乐器、会去听演唱会、会买花儿给自己，把平常日子过得热气腾腾。</p><p><strong>总有些人始终怀揣着热忱和所爱，拥抱着勇气和初心，不惧怕告别，也不惧怕未知，随时停下，也可随时出发。他们并不拘泥于年龄大小、钱财多寡，更在乎时间的意义。</strong></p><p><strong>3</strong></p><p>也常听到二三十岁的朋友说自己很慌。他们慌的是，如果遇上了自己的意中人给不了对方任何承诺；他们慌的是，自己成长的进度赶不上父母老去的速度；他们慌的是自己还没来得及考虑“理想的人生”这件事情，生活压力就已经让他们力不从心。</p><p>其实，慌乱并不可怕，可怕的是我们不肯相信自己，怕的是我们把“没意思”和“算了吧”挂在嘴边，怕的是我们明明还年轻，就老老实实接受了生活预先设定好的答案。</p><p>你要相信，我们慌乱，并不是因为我们变得更加脆弱和无力，而是我们有了自己想爱的人和想要的生活。这份爱和期待是我们的软肋，击中我们柔弱的心扉；但也是我们的铠甲和武器，促使我们变得更加独立和强大。一边慌乱，一边成长，这不就是青春本身吗？</p><p><strong>所以，别再害怕未知和陌生，别拒绝那个本应更加丰盈的自己。愿你，眼里有星光，心头有向往，脚下步履不停，无惧年岁增长。</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 杂记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>怎样不出远门带好娃？</title>
+      <link href="/2021/10/03/%E6%9D%82%E8%AE%B0/%E5%BE%97%E5%88%B0%E5%A4%B4%E6%9D%A1%20076%EF%BD%9C%E5%9B%BD%E5%BA%86%E7%89%B9%E5%88%8A%EF%BC%9A%E6%80%8E%E6%A0%B7%E4%B8%8D%E5%87%BA%E8%BF%9C%E9%97%A8%E5%B8%A6%E5%A5%BD%E5%A8%83%EF%BC%9F/"/>
+      <url>/2021/10/03/%E6%9D%82%E8%AE%B0/%E5%BE%97%E5%88%B0%E5%A4%B4%E6%9D%A1%20076%EF%BD%9C%E5%9B%BD%E5%BA%86%E7%89%B9%E5%88%8A%EF%BC%9A%E6%80%8E%E6%A0%B7%E4%B8%8D%E5%87%BA%E8%BF%9C%E9%97%A8%E5%B8%A6%E5%A5%BD%E5%A8%83%EF%BC%9F/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>节选自：得到头条 | 076｜国庆特刊：怎样不出远门带好娃？</p></blockquote><p>读者,你好</p><p>你好，这里是《得到头条》，我是徐玲。</p><p>在长假期间，很多家长面临一个大难题，就是假期里孩子特别容易沉迷电子产品。不开电视，孩子就不吃饭；不让玩手机，孩子就哭闹不止；一玩起电子游戏，又谁叫都不搭理。你知道，孩子沉迷电子游戏，不但容易造成近视，而且电子游戏的过度刺激还会影响孩子的注意力，让他在课堂上很难集中精神。</p><p>怎么办？<strong>教育研究发现，让孩子远离电子产品的最好办法，就是把他们带到大自然中去，通过亲近自然，把他一步步拉回真实世界</strong>。你可能会问：那是不是得特意带孩子去远足、去自然景区才行呢？其实不用。只要用对了方法，在家附近的公园，甚至是不出小区，就能让孩子体会到大自然的魅力。</p><p>今天，我带你刷的课程就是《如何培养亲近自然的孩子》，课程主理人是资深的自然体验引导师徐佳老师。我从课程里精选了几个亲近自然的小游戏，让你不出小区，就能和孩子开心地玩儿上一整天，打开孩子感受自然的开关。</p><p>好，我们开始。</p><p>第一个小游戏，叫“自然大发现”。</p><p>现在是上午十点，秋高气爽，阳光明媚。你带着孩子来到楼下小区里，找一块开阔的地方，给他设置一个挑战：在规定的时间内，必须找到5种不同的形状、7种不同的颜色、9种不同的声音、4种不同的质地和3种不同的气味。要是任务顺利完成，可以有一个小奖励。</p><p>孩子在寻找、探索的过程中，就可以充分调动起视觉、听觉、触觉和嗅觉。你可以在旁边鼓励他，也可以和他一起寻找。比如关于颜色，孩子可能会说：这个果子是红色的，这朵小花儿是红色的。那你就继续引导：“不错哦，观察得挺仔细，还有别的颜色吗？”孩子可能会回答：“黄色！秋天的叶子是黄色的；还有那个小朋友戴的帽子，也是黄色的！”</p><p>在搜集声音时，你可以问孩子：这是什么发出的声音？它在哪里？在做什么？想让孩子感受不同的质地，你可以一边让他摸叶子，一边问他：叶子的表面是光滑的，还是凹凸不平的？叶子握在手里，是温暖的，还是冰冷的？</p><p>你看，<strong>通过这个游戏，孩子会体会到认识世界除了用眼睛看，还可以用耳朵听，用手摸，用鼻子闻，他感受自然的开关就被打开了</strong>。</p><p>接下来，你可以把这个游戏升级，让孩子找一些不那么具体的东西，比如：有力气的东西、会跑的东西、会变形的东西。这个升级版的游戏，叫做“自然猎人”。</p><p>徐佳老师说，你会发现，孩子的答案跟你预料的完全不同。比如，说到会跑的东西，我们通常想到的是猫猫狗狗。但孩子可能会指着路边的水流说：我知道了，水！水在跑！</p><p>你还可以把任务进一步变成更加主观的东西，比如，让孩子去找他觉得重要的东西、让人哈哈大笑的东西，等等。这样孩子提升的就不仅仅是感觉，还有理解力。</p><p>你可能想不到，去寻找重要的东西时，有的孩子会说：爸爸和妈妈的关系，对我来说很重要。而在大自然里，可能没那么容易找到“让人哈哈大笑的”东西，那你就可以拿一把松针，去挠孩子的手心，孩子忍不住哈哈大笑，你的目的就达到了。如果孩子实在找不着什么让人哈哈大笑的东西，就朝你做了一个鬼脸，结果把你逗得大笑。你看，他这已经是在创造了，绝对值得鼓励。</p><p>好，现在差不多快到中午了，你们在小区也玩儿累了，准备回家。回家之前，记得在小区里捡点落叶，大概二十片不同形状的落叶，然后再挖点土，为下午的活动做准备。等孩子睡完午觉之后，下午你们可以在家进行一番“植物大战”。怎么做呢？</p><p>来看第三个小游戏，“叶子变形记”。也就是拿捡回的落叶，来做拼贴创作。</p><p>首先，可以跟孩子一起确认想要创造什么东西。如果孩子没什么想法，你可以启发他说：你看，这片叶子细细的，像不像人的眉毛？然后再拿一片稍微宽点的叶子在眼睛上比比，接着问他：这片叶子像不像眼睛？接着，再举起一片弯弯的绿叶，不等你开口，孩子可能高兴地接过来说：这是嘴巴！这样一来，叶子变形记的目标就有了，就是拼贴一个人脸。</p><p>接下来，你们就可以动手了。孩子可能会拼个外星人的眼罩，也可能用捡到的小红花给面具化妆，得到一个有粉红脸蛋的树叶娃娃。当然了，你可以启发孩子拼出各种各样的东西，比如印第安酋长的帽子、蜗牛、人的脚印等等。这样一来，孩子的创作思路就被打开了。<strong>他会惊讶地发现，平时被当作垃圾的落叶此刻竟然变成了乐高玩具。<br>**<br>下面，我们来个更复杂的动手游戏，把挖回来的泥土也用上。这就是在家搭建一个阳台菜园。说它复杂，是因为这中间需要完成的步骤可就多了，从空间设计，到挑选工具、品种，再到浇水施肥。</strong>在这个过程里，孩子会经历一次完整的产品开发闭环。<br>**<br>所以，“阳台菜园”这个游戏，不是光让孩子动手种菜这一下，而是要让他从一开始就参与进来。</p><p>比如，在搭建菜园前，你可以先问他几个问题：家里能放一个多大的菜园？打算做成圆形还是方形？想种哪几种菜？在这个讨论中，孩子可以学习到，怎么把一件看起来很大的事情拆解成一系列小步骤，然后分步完成。</p><p>接着，你要带着孩子上网挑选栽培的工具、选择栽培的品种。栽培蔬菜，可以从比较简单的生菜、小白菜、小萝卜开始尝试，水果可以从圣女果、柠檬开始尝试。</p><p>选好品种，就可以和孩子一起了解植物的栽培方法了，比如多长时间浇一次水？每次浇多少水合适？哪些蔬菜和瓜果更喜欢阳光？</p><p>最后，才到了你们今天挖好土，回来种菜这个环节。</p><p>种好之后还没完。在之后几十天，你要一有空就带着孩子观察，尤其是像种子破土而出、开第一朵花、结第一个果，这种里程碑式的事件，一定要提醒孩子做记录。当然，有时可能你还没注意到，孩子就跑来提醒你了：爸爸妈妈，快看，我的草莓开花啦！</p><p>这其实也是给孩子做生命教育的好机会，<strong>因为他在亲手栽培、亲眼观察、亲手记录的过程里，真实地感受着一个生命的成长、结果、衰败和消亡</strong>。而对于平时挑食的孩子，阳台菜园也能让孩子了解到一蔬一饭来之不易，从而更懂得感恩和珍惜。</p><p>好，折腾了一天，估计你和孩子都累了。晚上你躺在床上和娃聊天的时候，还可以玩最后一个小游戏，叫“叶子的旅行”。</p><p>你可以问孩子，咱们今天捡了这么多落叶，那叶子怎么会在地上呢？孩子可能会回答：今天风吹得特别大，叶子就掉到地上了呗。这个时候你就要开始启发他，一步步想象叶子的生命过程。比如你可以问，那再之前呢？孩子可能会回答：嗯，再之前，大树经历了春天，再之前是冬天。你再进一步地引导他：春天，是不是好多叶子都长出来了？那你觉得叶子怎样才能发芽呢？孩子也许会想起他种菜的经历，说：有风吹，有雨淋，还有太阳晒，叶子就发芽了！</p><p>到这里，故事情节已经开始完整了。你要把孩子刚才说的都串起来：嗯，很棒！经过了一个寒冷的冬天，大树终于迎来了春天。春风吹过，春雨洒下来，阳光照一照，叶子就发芽了。说完之后，你要请孩子把这个句子复述一遍。这并不是浪费时间，这其实是在非常高效地温习孩子刚才展现的观察、想象、关联和表达的能力。</p><p>当然，这个故事可以一直丰富下去。比方说你可以继续提示孩子：那你觉得叶子在长大的过程中，有没有遇到什么小动物呢？孩子这时可能会歪着脑袋说：我觉得叶子遇到了松鼠。你进一步引导：很好，还有吗？孩子可能会回答：还有我啊！后来叶子掉到地上，就遇到了我！</p><p>你可以把孩子之前说的全都串起来说一遍：经过一个寒冷的冬天，大树终于迎来了春天，春风过后，春雨洒下来，阳光再照一照，叶子就发芽了。后来，叶子渐渐长大，它遇见了松鼠，再后来，叶子被大风吹落在地上，就遇到了你！接着再请孩子试着完整复述一遍。孩子的逻辑力、联想力、表达力就在这一遍遍的叙述中被培养出来了。当然更有可能的是，和你聊着聊着，孩子就已经带着甜甜的笑睡着了。</p><p>好，以上就是我们从徐佳老师《如何培养亲近自然的孩子》这门课里，挑选出的五个小游戏，让你带着孩子在家门口就能亲近自然。这五个游戏分别是“自然大发现”“自然猎人”“叶子变形记”“阳台菜园”和“叶子的旅行”。</p><p>你有没有发现，这几个游戏在带领孩子迈向越来越高的能力台阶。自然大发现和自然猎人，培养的是孩子的感受力，这是其他能力的基础；叶子变形记和阳台菜园，培养的是孩子的动手力，这让孩子由单向的感受自然，进阶为与自然互动的模式；而叶子的旅行培养的是孩子的故事力，到这里，孩子不仅可以跟自然互动，而且可以用想象和逻辑虚构一个世界。</p><p>另外，课程中还有关于如何带孩子逛动物园、植物园、天文馆，如何带孩子走进山野等很多游戏，如果你家有“神兽”，推荐你学习这门课。</p><p>徐佳老师说，<strong>带孩子亲近自然，是为了让孩子学会认识世界，认识生命，但最最重要的，是让孩子学会在没有电子产品时，如何和自己相处</strong>。这是一种一旦学会了就很难失去的能力，也是让孩子亲近自然的意义所在。</p><p>今天就聊到这儿，《得到头条》，明天见。</p><p>撰稿：徐玲、李方圆、马慧、张兵<br>讲述：徐玲</p>]]></content>
       
       
       <categories>
@@ -2579,31 +2629,6 @@
     
     
     <entry>
-      <title>哪怕1%的提升，效益都非常大 | 当传统拥抱互联网</title>
-      <link href="/2019/03/17/%E6%9D%82%E8%AE%B0/%E5%BD%93%E4%BC%A0%E7%BB%9F%E6%8B%A5%E6%8A%B1%E4%BA%92%E8%81%94%E7%BD%91/"/>
-      <url>/2019/03/17/%E6%9D%82%E8%AE%B0/%E5%BD%93%E4%BC%A0%E7%BB%9F%E6%8B%A5%E6%8A%B1%E4%BA%92%E8%81%94%E7%BD%91/</url>
-      
-        <content type="html"><![CDATA[<p>文章来自笔记侠，一直关注笔记侠的文章，分享</p><p><a href="https://mp.weixin.qq.com/s/D4mg4iNNgeSc8jpWcNKrpg">https://mp.weixin.qq.com/s/D4mg4iNNgeSc8jpWcNKrpg</a></p><p>故事硬核《独家深访：腾讯变革150天全记录》中有这样一个细节。2016年腾讯云峰会，马化腾出现在会场，给云站台。</p><p>他的鲜明风格之一就是不给腾讯任何产品站台——一个例行邀请，“竟然来了”，汤道生回忆，云团队像过节一样开心，“关键他不仅仅是给云的团队看，他出来是给整个行业看”。</p><p>最终，腾讯在2018年“香港总办会议”的共识中达成了最重要的几项：</p><p>一、进行组织架构调整，成立云与智慧产业事业群（CSIG），主攻产业互联网；</p><p>二、从TO C 到 TO B，继续巩固消费互联网，重兵投入产业互联网。</p><p>国家在发生深刻转型，全面的数字化、智能化时代已经来临，每个产业都在拥抱云、大数据与人工智能，“跟以前拥抱电一样”。</p><p>早在2013年底，马化腾就提出互联网+的概念。他当时去国家发改委演讲，向主任、各司局局长、处长将近600人，讲用互联网去“+”传统的各行各业。两场重要演讲之后，这个概念流行开来。</p><p>2015年两会前，马化腾受邀向政府智库提交了“互联网+”的意见。这个概念被写入了政府工作报告。</p><p>那正是“互联网+”如日中天的时候，“互联网+打车”颠覆出行，“互联网外卖”改写餐饮，“互联网支付”影响金融……一时间互联网人都在说赋能、颠覆，仿佛新的大革命已然来临，正大刀阔斧重组重造。</p><p>但互联网当主角，传统行业不服气，说“我+你还差不多” 。他们的忧虑在于，一旦开门欢迎互联网，下场会不会是把自个儿颠覆了。</p><p>行至深水区，“+”的对象变成了那些有着高壁垒的行业——教育、医疗、能源、制造业……腾讯2B前方团队突然发现“+”不了了，许多产业的核心技术，互联网公司不懂，人家也不可能把自己的命脉交到别人手上。</p><p>僵局之中，马化腾捕捉到一个奇特的变化信号。</p><p>2016年两会期间，他去拜访链家CEO左晖，了解到了全新的故事样本：一个线下传统中介机构不仅没有被互联网企业入侵、颠覆，还倒攻线上，成功逆袭，“最终成了老大”。</p><p><strong>一、拥抱互联网，如火如荼</strong></p><p>王兴在2016年就新美大公司上半年工作进行了一次内部讲话，他说：“往后看，‘互联网＋’要做的是各个行业从上游到下游的产业互联网化。</p><p>不是仅仅停留在最末端做营销、做交易那一小段，而是真正能够用互联网、用IT全面提升整个行业的效率…</p><p>‘互联网＋’根本上还是要靠创新服务于各行各业，靠互联网、靠IT技术为各行各业的各个环节提升体验、提高效率、降低成本。”</p><p>正如王兴所言：“从最宏大的角度来讲，整个中国经济也进入了‘下半场’。党和政府讲‘新常态’差不多要两年了，从去年年底到现在，也在反复讲‘供给侧结构性改革’。</p><p>如果你去细看这些提法背后的论述，你就能看到这些论述并不是中央领导的‘拍脑袋’和‘心血来潮’，而是中国经济发展到了这个阶段，确实是需要转变增长模式。</p><p>过去那种粗放的高速增长已经一去不复返了，不能再简单追求GDP的数字，中国经济也是进入了‘下半场’的状态。”</p><p>▲ 长按图片保存可分享至朋友圈</p><p>投资了新美大、优步、Airbnb等的宽带资本，也在2016年就已经提出有一个更广阔的市场叫“互联网+”（“互联网+”正是马化腾过去重点在公开场合提及的），也就是“产业互联网”。各种各样的企业，都得拥抱互联网，不拥抱互联网，就会面临着各种问题。</p><p>最先和互联网碰撞的一批是零售行业。</p><p>1.食</p><p>2017年末，2018年初，随着电商红利见底，阿里、京东等线上巨头开始大举进军线下市场，纷纷开设实体店。</p><p>如此一来，零售企业的生存环境便遭到进一步挤压。为求生存发展，零售企业开启转型之路，纷纷推出智慧门店，如沃尔玛的惠选超市、家乐福的Le Marche、优衣库的数字体验馆、苏宁的苏宁极物……</p><p>不同于传统零售门店，这些智慧门店引入了各种“黑科技”，如用自助收银机、“扫码购”等减少排队结账的时间，利用VR技术提供虚拟试装、试衣等。</p><p>永辉超市收到了腾讯集结全公司能力定制的智慧解决方案包——以选址为例，不再凭经验，而是在腾讯云预测销量前提下科学布局。市场占有率前十的超市品牌5家变成了腾讯的盟友。</p><p>永辉超市的互联网升级做得相对较快，其中一个原因是在传统行业基础上，创始人张轩宁非常重视人，重视年轻的高精尖团队，并从互联网挖过去人，发展非常快。</p><p>《第三次零售革命》作者、盛景网联合伙人颜艳春研究了7-11的损益表，发现7-11日本公司8000名员工创造了接近100亿人民币的净利润，人均创造利润为120万元，人效比肩世界上最赚钱的电商平台公司阿里巴巴。</p><p>这背后，是一个快消品行业的产业共同体和命运共同体，90%的参与方，无论上游、中游还是下游都获得了3-5倍的成长。</p><p>之前，在很多人的眼里，7-11是一个传统的连锁便利店，实际上，对7-11的这个认知是错误的。</p><p>它的模型：7-11总部着手把在日本每一个商圈里头部、碎片化的需求连接起来，团结进来。</p><p>就像三峡大坝一样，把需求端2万家夫妻老婆店团结起来，通过产业路由器，把供给端的178个工厂，还有140个物流中心连接起来，但这都不是它自己的资产，全部是这些头牌供给。</p><p>它根本就不是一家传统商业模式的零售公司，7-11将自己打造成为产业路由器平台，将这些小店与这些物流中心和所有工厂实时连接起来。</p><p>将自己唯一一个中介去中介化，4个不赚（不赚差价，不赚通道费，不赚佣金，不赚广告费）。</p><p>通过共享采购、共享配送、共享制造、共享研发、共享库存，共享供应链，为小店、小工厂提供了三大赋能（从商品赋能、经营赋能到基础设施赋能），成就了他们，每家的投资都得到了很大的回报。</p><p>7-11创造了一种新的利他经济模型，把实体经济和电商经济所有的商业逻辑彻底摧毁。</p><p>其实不只是智慧零售，各行各业的盟友越来越多。</p><p>2.衣</p><p>2018年3月30日，优衣库全新独栋概念店将在深圳万象天地正式开业。</p><p>优衣库在这家门店首次推出融合线上线下、打通实体与虚拟的“数字体验馆”，在店内的货架侧面和四方立柱的单面墙上安装了两款智能科技。</p><p>四方立柱上安装的是一款智能语音集成设备“智能小U”：顾客站在智能小U面前，设备自动完成对顾客的五官识别。</p><p>顾客可触摸屏幕商品清单，点击自己喜欢的服饰，然后进入4D虚拟试穿画面。</p><p>货架侧面的电子大屏则主要突出广告功能，只要顾客打开手机QQ的扫一扫功能，对着大屏上的静态海报扫描一遍，手机屏幕立即出现海报对应的TVC广告。</p><p>据悉，3月30日起，数字体验馆将在优衣库全国近600家门店陆续上市。</p><p>3.住</p><p>我们从衣食走到住房。</p><p>有人把近两年疯狂扩张的链家称为现象级公司，这家原本盘踞在北京的房地产中介公司在2015年进行了如火如荼的并购，把业务扩展到了全国。</p><p>链家长期以来就是一家跨界企业，从最初的房地产网站起家，到后来转向线下，再到现在的互联网化，链家既不在互联网圈，也不完全是传统意义上的地产中介公司。</p><p>之前，链家的高管们被分为势均力敌的两队，一队负责用互联网思维来干掉链家(简称“互联网派”)，一队作为传统中介琢磨如何应对(简称“传统派”)。这是左晖一直拷问管理层的一个问题。　</p><p>“当时思路没有现在这么清晰。”链家地产副总裁林倩回忆道。</p><p>管理层们脑洞大开，在讨论互联网到底能在多大程度上取代传统中介时，“互联网派”几乎取得了压倒性的胜利。</p><p>事实上，这直接影响了链家地产之后在线上的布局。从彼时起，每年投在链家在线上的资金都在亿元左右。</p><p>多年布局下来，链家在线促成的二手房买卖成交占到其整体成交量的30%左右，这一数字已经高出链家在其它互联网公司购买端口来促成成交的比例。</p><p>而在链家董事长左晖心目中，链家一直是一个由数据驱动的房地产平台。</p><p>他称自己2013年发微博吹牛说链家已经有100TB的数据。但两年时间后，数据库的规模已经增至1000TB，并且还在不断增长。</p><p>在二手房领域，不仅仅是信息分散，且没有被电子化，定义不够标准和统一。</p><p>贝壳找房和链家网CEO彭永东举例说，北京有700多万套二手房，有10万种户型。</p><p>每套房子的户型图，长、宽、高的尺寸，一个小区到底有多少这样的户型，同样户型能卖多少钱，不同用户定价是多少，都要被整理到数据库中去，以供决策参考。</p><p><strong>二、干不倒的实体店</strong></p><p>开篇，我们就讲到了零售行业。零售行业拥抱互联网的速度更快、也更容易。</p><p>2015年初，盒马鲜生的创始人侯毅，用一个下午的时间改变了阿里对线下店的认知。</p><p>过去，阿里认为电商遇上实体店，就像端机关枪的遇上了冷兵器，简直所向无敌。</p><p>但是，市场是在不断变化的，那时阿里高管第一次意识到，实体店是不可取代的。正因如此，阿里悄悄的布下了一个局，开始正式涉足线下经济。</p><p>两年前，知道盒马鲜生隶属阿里公司的人寥寥无几。</p><p>当这个信息被众人周知的时候，很多人感慨，零售市场到处都是京东和阿里的身影，作为一个零售行业的人，除非加入京东或者阿里，否则没有出路了。</p><p>颜艳春认为，未来相当长的一段时间里，70%的生意仍然是在线下场景完成的。</p><p>▲ 长按图片保存可分享至朋友圈</p><p>米兰有一家超市叫Eataly，在超市里可以坐下来休息、听音乐，甚至点两份牛排，十分受欢迎。</p><p>占地6500平米，一年可以营收4000万欧元。他们在美国纽约的分店，据说一年可以营收5000万美金。</p><p>这家店为什么可以取得成功呢？</p><p>因为互联网没有办法颠覆人性，线下的体验、人类情感的连接和宣泄是美妙的，不可取代的场景。</p><p>所以颜艳春大胆预言：<strong>得实体店者得天下，得头牌实体店，得天下第一</strong>。</p><p>再拿孩子王（”孩子王”是五星控股集团旗下零售事业，总部位于江苏南京。专业从事孕婴童商品一站式购物及提供全方位增值服务）为例。</p><p>孩子王在妈妈圈里拥有200家店、2000万用户，平均每家店拥有10万用户，每一个店每年举办100场线下活动直接连接起来的。将低频的交易场景转变成高频的约会场景，这个模式获得了巨大的成功。</p><p>聚焦到一个领域的实体店做得尤其漂亮。</p><p>包括Costco、Airbnb、7-11在内的公司，都只关注一个领域，亚马逊只卖最畅销的1000本书。</p><p>盒马鲜生只做吃这个品类，并将其发挥到极致，承诺不卖隔夜肉，只卖当天的肉和菜。光上海的10家店铺就拥有200万用户，店铺里面热闹的氛围是很棒的高频场景。</p><p>这些店都有一个共同的特征，它们不是传统的实体店，而是经过互联网加工过的实体店。</p><p>在实体店这个高度碎片化的市场里，即便投资100家公司，也不一定能够控制10%的市场份额。</p><p>这对于创业者来说，是一种机会，不是大家一起集中开喜茶，而是应该去思考如何去团结存量，如何用互联网(数字化)手段，让实体店过得更滋润。</p><p><strong>三、哪怕1%的收益，效益都非常大</strong></p><p>许多大型企业在使用互联网的过程当中迭代速度很快，因为互联网化过程带给它们很多有用的信息数据，让企业经营者能够更深层地理解自己所处的行业，这是互联网带来很重要的变化。</p><p>BAT之后诞生的新型企业，并不依赖简单的商业模式，而是学会驾驭了一种新型工具，对于人工智能更是如此。人工智能出现，会有一批更加新型的企业崛起，BAT很难在商业模式上跟它们直面竞争。</p><p>给大家举几个例子。</p><p>心上，现在是全国最大的二手奢侈品交易平台。最开始的业务全部是线下进行的，进行—、二手奢侈品的洗涤和养护，有4家直营店，40家加盟店。</p><p>在2014年时，创始人董博文决定做线上转型，这个过程势必有很大的困难。她一开始不清楚互联网商业逻辑，于是开始招兵买马一点一点构建互联网团队。</p><p>使用互联网工具之后，她发现很多客户是可以量化的，原来的用户定位和商品定位不够准确。</p><p>转型初期，她认为线上互联网奢侈品的交易平台应该是高端奢侈品，客单价是5000块钱左右，后来通过调整数据定位客户类型后发现，价格越低成交量越大，1750元是最优点。</p><p>二手奢侈品交易平台面对的是小康人群或者是中产人群，在消费过程中的认知应该是：我需要刚需品，而我不需要为了这东西付很多钱。所以她在数据调整过程当中理解到之前的用户定位是错误的。</p><p>同样的，她在供应链里也发现了一些问题。比如公司买的洗涤养护液和面辅料，这些东西可能是通过A公司去买，物流过程很复杂，账期很长，价格很高。</p><p>搭起整个互联网控制结构以后，她发现进货环节、产品特性、用户类型存在问题，然后开始不断地进行迭代。</p><p>这个过程中能非常明显地感觉到她在驾驭工具，最开始使用互联网工具后，她认为只是搭建了一个网站而已，后来这个工具给她带来了大量的数据和参考依据，她也越来越了解自己的商业模式。</p><p>任何一个公司都是倾向于产业升级和企业升级，把企业原来的那套理论体系逐渐的总结成新的规律去推动，把公司做得越来越规范的过程。</p><p>这是一个从经验走向规范化、走向数据化、走向结构化的过程，互联网只是其中一个推动的工具，只是使某一些企业在从信息化走向数据结构化的过程中，让它的数据变得更加标准，所以才能更深刻地理解自己的商业模式过程。</p><p>比如像农业和工业企业也能受到互联网影响，是因为原来他们的管理都是依靠于人进行管理的，依靠于自己的经验进行管理的。</p><p>而突然有了互联网之后，多出了一种数据化、量化的工具，使得整个行业更加标准化。</p><p>比如农业公司甲加由，一个在河南的农业公司，它很快从工业化衍生出了金融属性化，原因是它非常注重量化管理，他们对所有农户的工作状态用信用评级、用数据化衡量，做到了很多村镇银行很难办到的一步。</p><p>通过量化管理，它能给农户进行评级，对接银行、金融产品，给农户发放贷款做保险、卖期货。</p><p><strong>传统行业拥抱互联网，哪怕有1%的提升，都会产生非常高的效益。不管是农业、电力、航空、铁路还是石油。</strong></p><p>中国宽带产业基金合伙人周耘认为，产业互联网产生的经济效益，会有几个方面：</p><p>① 工业升级：</p><p>生产设备和物联网相结合，不管是物联网，还是供应链、工单、流程再造，都跟提升效益相关；</p><p>② 服务升级：</p><p>比如想知道外出人员，去哪了？做什么？你无从了解，现在可以通过移动互联网，通过位置服务，通过跟客户交互，都能知道了，也能提高效率。</p><p>在当前的国家经济形势下，正好赶上下一个浪潮：产业互联网，2B企业越来越多，<strong>传统行业和互联网的相互结合，会孕育着更多的投资和机会。</strong></p><p><strong>四、用对姿势，很关键</strong></p><p>企业的成长其实跟人的进化是很像的，都是不断使用新工具的过程。</p><p>但在工具的使用过程中，一些公司并没有利用得恰如其分。</p><p>2016年，投资了特斯拉、推特、百度的德丰杰，其中国的德丰杰龙脉基金合伙人王岳华指出，消费互联网时代已是过去，产业互联网时代才是未来。</p><p>当时他就已经看到消费者互联网的渗透增长变慢，变为稳定。国内传统制造业很多产业比如陶瓷业、家装业，很多传统产业没有很好地应用互联网化。</p><p>我们来看这样一个故事，古代打仗都用冷兵器，近代打仗用热兵器，这两种兵器的更迭是在什么时候？</p><p>在19世纪美国南北战争中。在那个时候刚配备枪炮的军队根本不知道怎么用，于是两边军队各站成一排，两边的军官在短暂沟通后下令开打，两边就开始相互扫射，这是一个令人啼笑皆非的故事。</p><p>为什么会出现这种问题？</p><p>因为对于军官和士兵来讲，他们使用了新的工具，但是没有更新战术和方法。方法论、战术是非常重要的，当时的枪怎么用，大家都不知道，还是处于拿着枪互相肉搏的状态，这是典型的用工具和战术的更迭过程。</p><p>我们每天都需要接触大量的互联网公司，大多数公司都声称自己的产品是互联网化的，但其实它们并不是标准的互联网公司。</p><p><strong>他们虽然有了新的互联网工具，但却不知道如何使用。</strong></p><p>还有一种情况是，有些科技公司想赋能传统行业，却找不到正确的路径，拿金融客户举例。</p><p>当前，随着经济增速放缓，息差收窄，监管趋严，互联网金融科技企业全面跨界渗透，中小银行的生存环境日益严峻，转型求变已成必然之势。</p><p>行业实践证明，金融科技的运用可以帮助银行提升核心业务能力、业务效率、用户体验，降低风险与成本，是中小银行实现转型的必备能力。</p><p>除了一些大型银行和全国性股份制银行，一些小型的农商行们普遍存在资产规模小、业务区域受限、风险控制能力弱等短板。</p><p>因此，为这类客户服务的供应商也特别多，其中既有各种国际巨头IOE、MBB、四大……，它们把这里视为自己的利润主战场；也有N多本土化的服务商，想进来分一杯羹。</p><p>总之，蛇有蛇路，鼠有鼠道，八仙过海，各显神通。但其中，真正能做到，理解金融类客户业务本质的并不多。</p><p>传统产业的升级，有时需要自己内向成长，有时需要借助外力，当外力的操作姿势不对时，也需要传统产业和外力打成一片，两者真正融合到一起。</p><p>当然，也有一些行业可能真的不适合互联网，这也需要我们警惕。</p><p>很多人认为很多To B的行业可以做线上化，于是出现了找木网、找纱线、纺织、建材这些细分类目的网站，这其实并不算严格意义上的互联网企业。</p><p>比如一家建材公司想把所有的建材、石料板材都放到线上，创始人的网站构想也非常清楚，团队干劲也比较足，每年有几个亿的成交量，开始觉得做得不错。</p><p>最后到公司一看，发现公司的工作状态是什么？虽然有网站，但没有人运营维护，所有人都在打销售电话，这是完全依赖于人和客户进行沟通的一种商业模式，它不能算是一个互联网化的公司。</p><p>互联网化公司最开始的时候要能看到商品是标准的，而不依赖于人和客户沟通，这是很重要的一点。</p><p>再比一个纱线公司，前端的研发和后端的布局是很完善的，以为对于纱这一品类是可以互联网化的。因为这个行业可能是50个SKU（库存进出计量单位），然后把它们全部标准化放到线上，大家在线上进行交易。</p><p>结果到公司去看的时候，很让人震惊的是，纱线有12000到15000种SKU，每一年下雨的雨水不一样，纱线韧性弹性不一样，边纹不一样，口径粗细不一样，颜色不一样，每一种纱线SKU有50多种标签，出来之后有几万种SKU，买方就没有办法在网上选择。</p><p>所有的人买纱线都是要亲自根据手感来挑选——“这种纱线对我有效，以后不要麻烦看别的了，以后我只进货这一种”。它是高度依赖于线下体验的产品，这种产品非常难以互联网化。</p><p>在供应链中从生产过程、到仓储流转、到分销，有很多的企业，比如第二产业中建材类等行业，都是如此。</p><p>并不是所有的行业都可以互联网化，并不是所有的企业用同一种方式进行转型都是可以升级的，完全不是的。</p><p>很多行业没有办法进行互联网转型升级，只能拿它作为辅助性工具管理公司。</p><p>产业互联网的大潮下，行人急匆匆，审时度势很重要，不忘初心更要紧。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 杂记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 杂记 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>技术团队的4个难题</title>
       <link href="/2019/03/17/PMO/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%844%E4%B8%AA%E9%9A%BE%E9%A2%98/"/>
       <url>/2019/03/17/PMO/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%844%E4%B8%AA%E9%9A%BE%E9%A2%98/</url>
@@ -2621,6 +2646,31 @@
         <tags>
             
             <tag> 开发效率 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>哪怕1%的提升，效益都非常大 | 当传统拥抱互联网</title>
+      <link href="/2019/03/17/%E6%9D%82%E8%AE%B0/%E5%BD%93%E4%BC%A0%E7%BB%9F%E6%8B%A5%E6%8A%B1%E4%BA%92%E8%81%94%E7%BD%91/"/>
+      <url>/2019/03/17/%E6%9D%82%E8%AE%B0/%E5%BD%93%E4%BC%A0%E7%BB%9F%E6%8B%A5%E6%8A%B1%E4%BA%92%E8%81%94%E7%BD%91/</url>
+      
+        <content type="html"><![CDATA[<p>文章来自笔记侠，一直关注笔记侠的文章，分享</p><p><a href="https://mp.weixin.qq.com/s/D4mg4iNNgeSc8jpWcNKrpg">https://mp.weixin.qq.com/s/D4mg4iNNgeSc8jpWcNKrpg</a></p><p>故事硬核《独家深访：腾讯变革150天全记录》中有这样一个细节。2016年腾讯云峰会，马化腾出现在会场，给云站台。</p><p>他的鲜明风格之一就是不给腾讯任何产品站台——一个例行邀请，“竟然来了”，汤道生回忆，云团队像过节一样开心，“关键他不仅仅是给云的团队看，他出来是给整个行业看”。</p><p>最终，腾讯在2018年“香港总办会议”的共识中达成了最重要的几项：</p><p>一、进行组织架构调整，成立云与智慧产业事业群（CSIG），主攻产业互联网；</p><p>二、从TO C 到 TO B，继续巩固消费互联网，重兵投入产业互联网。</p><p>国家在发生深刻转型，全面的数字化、智能化时代已经来临，每个产业都在拥抱云、大数据与人工智能，“跟以前拥抱电一样”。</p><p>早在2013年底，马化腾就提出互联网+的概念。他当时去国家发改委演讲，向主任、各司局局长、处长将近600人，讲用互联网去“+”传统的各行各业。两场重要演讲之后，这个概念流行开来。</p><p>2015年两会前，马化腾受邀向政府智库提交了“互联网+”的意见。这个概念被写入了政府工作报告。</p><p>那正是“互联网+”如日中天的时候，“互联网+打车”颠覆出行，“互联网外卖”改写餐饮，“互联网支付”影响金融……一时间互联网人都在说赋能、颠覆，仿佛新的大革命已然来临，正大刀阔斧重组重造。</p><p>但互联网当主角，传统行业不服气，说“我+你还差不多” 。他们的忧虑在于，一旦开门欢迎互联网，下场会不会是把自个儿颠覆了。</p><p>行至深水区，“+”的对象变成了那些有着高壁垒的行业——教育、医疗、能源、制造业……腾讯2B前方团队突然发现“+”不了了，许多产业的核心技术，互联网公司不懂，人家也不可能把自己的命脉交到别人手上。</p><p>僵局之中，马化腾捕捉到一个奇特的变化信号。</p><p>2016年两会期间，他去拜访链家CEO左晖，了解到了全新的故事样本：一个线下传统中介机构不仅没有被互联网企业入侵、颠覆，还倒攻线上，成功逆袭，“最终成了老大”。</p><p><strong>一、拥抱互联网，如火如荼</strong></p><p>王兴在2016年就新美大公司上半年工作进行了一次内部讲话，他说：“往后看，‘互联网＋’要做的是各个行业从上游到下游的产业互联网化。</p><p>不是仅仅停留在最末端做营销、做交易那一小段，而是真正能够用互联网、用IT全面提升整个行业的效率…</p><p>‘互联网＋’根本上还是要靠创新服务于各行各业，靠互联网、靠IT技术为各行各业的各个环节提升体验、提高效率、降低成本。”</p><p>正如王兴所言：“从最宏大的角度来讲，整个中国经济也进入了‘下半场’。党和政府讲‘新常态’差不多要两年了，从去年年底到现在，也在反复讲‘供给侧结构性改革’。</p><p>如果你去细看这些提法背后的论述，你就能看到这些论述并不是中央领导的‘拍脑袋’和‘心血来潮’，而是中国经济发展到了这个阶段，确实是需要转变增长模式。</p><p>过去那种粗放的高速增长已经一去不复返了，不能再简单追求GDP的数字，中国经济也是进入了‘下半场’的状态。”</p><p>▲ 长按图片保存可分享至朋友圈</p><p>投资了新美大、优步、Airbnb等的宽带资本，也在2016年就已经提出有一个更广阔的市场叫“互联网+”（“互联网+”正是马化腾过去重点在公开场合提及的），也就是“产业互联网”。各种各样的企业，都得拥抱互联网，不拥抱互联网，就会面临着各种问题。</p><p>最先和互联网碰撞的一批是零售行业。</p><p>1.食</p><p>2017年末，2018年初，随着电商红利见底，阿里、京东等线上巨头开始大举进军线下市场，纷纷开设实体店。</p><p>如此一来，零售企业的生存环境便遭到进一步挤压。为求生存发展，零售企业开启转型之路，纷纷推出智慧门店，如沃尔玛的惠选超市、家乐福的Le Marche、优衣库的数字体验馆、苏宁的苏宁极物……</p><p>不同于传统零售门店，这些智慧门店引入了各种“黑科技”，如用自助收银机、“扫码购”等减少排队结账的时间，利用VR技术提供虚拟试装、试衣等。</p><p>永辉超市收到了腾讯集结全公司能力定制的智慧解决方案包——以选址为例，不再凭经验，而是在腾讯云预测销量前提下科学布局。市场占有率前十的超市品牌5家变成了腾讯的盟友。</p><p>永辉超市的互联网升级做得相对较快，其中一个原因是在传统行业基础上，创始人张轩宁非常重视人，重视年轻的高精尖团队，并从互联网挖过去人，发展非常快。</p><p>《第三次零售革命》作者、盛景网联合伙人颜艳春研究了7-11的损益表，发现7-11日本公司8000名员工创造了接近100亿人民币的净利润，人均创造利润为120万元，人效比肩世界上最赚钱的电商平台公司阿里巴巴。</p><p>这背后，是一个快消品行业的产业共同体和命运共同体，90%的参与方，无论上游、中游还是下游都获得了3-5倍的成长。</p><p>之前，在很多人的眼里，7-11是一个传统的连锁便利店，实际上，对7-11的这个认知是错误的。</p><p>它的模型：7-11总部着手把在日本每一个商圈里头部、碎片化的需求连接起来，团结进来。</p><p>就像三峡大坝一样，把需求端2万家夫妻老婆店团结起来，通过产业路由器，把供给端的178个工厂，还有140个物流中心连接起来，但这都不是它自己的资产，全部是这些头牌供给。</p><p>它根本就不是一家传统商业模式的零售公司，7-11将自己打造成为产业路由器平台，将这些小店与这些物流中心和所有工厂实时连接起来。</p><p>将自己唯一一个中介去中介化，4个不赚（不赚差价，不赚通道费，不赚佣金，不赚广告费）。</p><p>通过共享采购、共享配送、共享制造、共享研发、共享库存，共享供应链，为小店、小工厂提供了三大赋能（从商品赋能、经营赋能到基础设施赋能），成就了他们，每家的投资都得到了很大的回报。</p><p>7-11创造了一种新的利他经济模型，把实体经济和电商经济所有的商业逻辑彻底摧毁。</p><p>其实不只是智慧零售，各行各业的盟友越来越多。</p><p>2.衣</p><p>2018年3月30日，优衣库全新独栋概念店将在深圳万象天地正式开业。</p><p>优衣库在这家门店首次推出融合线上线下、打通实体与虚拟的“数字体验馆”，在店内的货架侧面和四方立柱的单面墙上安装了两款智能科技。</p><p>四方立柱上安装的是一款智能语音集成设备“智能小U”：顾客站在智能小U面前，设备自动完成对顾客的五官识别。</p><p>顾客可触摸屏幕商品清单，点击自己喜欢的服饰，然后进入4D虚拟试穿画面。</p><p>货架侧面的电子大屏则主要突出广告功能，只要顾客打开手机QQ的扫一扫功能，对着大屏上的静态海报扫描一遍，手机屏幕立即出现海报对应的TVC广告。</p><p>据悉，3月30日起，数字体验馆将在优衣库全国近600家门店陆续上市。</p><p>3.住</p><p>我们从衣食走到住房。</p><p>有人把近两年疯狂扩张的链家称为现象级公司，这家原本盘踞在北京的房地产中介公司在2015年进行了如火如荼的并购，把业务扩展到了全国。</p><p>链家长期以来就是一家跨界企业，从最初的房地产网站起家，到后来转向线下，再到现在的互联网化，链家既不在互联网圈，也不完全是传统意义上的地产中介公司。</p><p>之前，链家的高管们被分为势均力敌的两队，一队负责用互联网思维来干掉链家(简称“互联网派”)，一队作为传统中介琢磨如何应对(简称“传统派”)。这是左晖一直拷问管理层的一个问题。　</p><p>“当时思路没有现在这么清晰。”链家地产副总裁林倩回忆道。</p><p>管理层们脑洞大开，在讨论互联网到底能在多大程度上取代传统中介时，“互联网派”几乎取得了压倒性的胜利。</p><p>事实上，这直接影响了链家地产之后在线上的布局。从彼时起，每年投在链家在线上的资金都在亿元左右。</p><p>多年布局下来，链家在线促成的二手房买卖成交占到其整体成交量的30%左右，这一数字已经高出链家在其它互联网公司购买端口来促成成交的比例。</p><p>而在链家董事长左晖心目中，链家一直是一个由数据驱动的房地产平台。</p><p>他称自己2013年发微博吹牛说链家已经有100TB的数据。但两年时间后，数据库的规模已经增至1000TB，并且还在不断增长。</p><p>在二手房领域，不仅仅是信息分散，且没有被电子化，定义不够标准和统一。</p><p>贝壳找房和链家网CEO彭永东举例说，北京有700多万套二手房，有10万种户型。</p><p>每套房子的户型图，长、宽、高的尺寸，一个小区到底有多少这样的户型，同样户型能卖多少钱，不同用户定价是多少，都要被整理到数据库中去，以供决策参考。</p><p><strong>二、干不倒的实体店</strong></p><p>开篇，我们就讲到了零售行业。零售行业拥抱互联网的速度更快、也更容易。</p><p>2015年初，盒马鲜生的创始人侯毅，用一个下午的时间改变了阿里对线下店的认知。</p><p>过去，阿里认为电商遇上实体店，就像端机关枪的遇上了冷兵器，简直所向无敌。</p><p>但是，市场是在不断变化的，那时阿里高管第一次意识到，实体店是不可取代的。正因如此，阿里悄悄的布下了一个局，开始正式涉足线下经济。</p><p>两年前，知道盒马鲜生隶属阿里公司的人寥寥无几。</p><p>当这个信息被众人周知的时候，很多人感慨，零售市场到处都是京东和阿里的身影，作为一个零售行业的人，除非加入京东或者阿里，否则没有出路了。</p><p>颜艳春认为，未来相当长的一段时间里，70%的生意仍然是在线下场景完成的。</p><p>▲ 长按图片保存可分享至朋友圈</p><p>米兰有一家超市叫Eataly，在超市里可以坐下来休息、听音乐，甚至点两份牛排，十分受欢迎。</p><p>占地6500平米，一年可以营收4000万欧元。他们在美国纽约的分店，据说一年可以营收5000万美金。</p><p>这家店为什么可以取得成功呢？</p><p>因为互联网没有办法颠覆人性，线下的体验、人类情感的连接和宣泄是美妙的，不可取代的场景。</p><p>所以颜艳春大胆预言：<strong>得实体店者得天下，得头牌实体店，得天下第一</strong>。</p><p>再拿孩子王（”孩子王”是五星控股集团旗下零售事业，总部位于江苏南京。专业从事孕婴童商品一站式购物及提供全方位增值服务）为例。</p><p>孩子王在妈妈圈里拥有200家店、2000万用户，平均每家店拥有10万用户，每一个店每年举办100场线下活动直接连接起来的。将低频的交易场景转变成高频的约会场景，这个模式获得了巨大的成功。</p><p>聚焦到一个领域的实体店做得尤其漂亮。</p><p>包括Costco、Airbnb、7-11在内的公司，都只关注一个领域，亚马逊只卖最畅销的1000本书。</p><p>盒马鲜生只做吃这个品类，并将其发挥到极致，承诺不卖隔夜肉，只卖当天的肉和菜。光上海的10家店铺就拥有200万用户，店铺里面热闹的氛围是很棒的高频场景。</p><p>这些店都有一个共同的特征，它们不是传统的实体店，而是经过互联网加工过的实体店。</p><p>在实体店这个高度碎片化的市场里，即便投资100家公司，也不一定能够控制10%的市场份额。</p><p>这对于创业者来说，是一种机会，不是大家一起集中开喜茶，而是应该去思考如何去团结存量，如何用互联网(数字化)手段，让实体店过得更滋润。</p><p><strong>三、哪怕1%的收益，效益都非常大</strong></p><p>许多大型企业在使用互联网的过程当中迭代速度很快，因为互联网化过程带给它们很多有用的信息数据，让企业经营者能够更深层地理解自己所处的行业，这是互联网带来很重要的变化。</p><p>BAT之后诞生的新型企业，并不依赖简单的商业模式，而是学会驾驭了一种新型工具，对于人工智能更是如此。人工智能出现，会有一批更加新型的企业崛起，BAT很难在商业模式上跟它们直面竞争。</p><p>给大家举几个例子。</p><p>心上，现在是全国最大的二手奢侈品交易平台。最开始的业务全部是线下进行的，进行—、二手奢侈品的洗涤和养护，有4家直营店，40家加盟店。</p><p>在2014年时，创始人董博文决定做线上转型，这个过程势必有很大的困难。她一开始不清楚互联网商业逻辑，于是开始招兵买马一点一点构建互联网团队。</p><p>使用互联网工具之后，她发现很多客户是可以量化的，原来的用户定位和商品定位不够准确。</p><p>转型初期，她认为线上互联网奢侈品的交易平台应该是高端奢侈品，客单价是5000块钱左右，后来通过调整数据定位客户类型后发现，价格越低成交量越大，1750元是最优点。</p><p>二手奢侈品交易平台面对的是小康人群或者是中产人群，在消费过程中的认知应该是：我需要刚需品，而我不需要为了这东西付很多钱。所以她在数据调整过程当中理解到之前的用户定位是错误的。</p><p>同样的，她在供应链里也发现了一些问题。比如公司买的洗涤养护液和面辅料，这些东西可能是通过A公司去买，物流过程很复杂，账期很长，价格很高。</p><p>搭起整个互联网控制结构以后，她发现进货环节、产品特性、用户类型存在问题，然后开始不断地进行迭代。</p><p>这个过程中能非常明显地感觉到她在驾驭工具，最开始使用互联网工具后，她认为只是搭建了一个网站而已，后来这个工具给她带来了大量的数据和参考依据，她也越来越了解自己的商业模式。</p><p>任何一个公司都是倾向于产业升级和企业升级，把企业原来的那套理论体系逐渐的总结成新的规律去推动，把公司做得越来越规范的过程。</p><p>这是一个从经验走向规范化、走向数据化、走向结构化的过程，互联网只是其中一个推动的工具，只是使某一些企业在从信息化走向数据结构化的过程中，让它的数据变得更加标准，所以才能更深刻地理解自己的商业模式过程。</p><p>比如像农业和工业企业也能受到互联网影响，是因为原来他们的管理都是依靠于人进行管理的，依靠于自己的经验进行管理的。</p><p>而突然有了互联网之后，多出了一种数据化、量化的工具，使得整个行业更加标准化。</p><p>比如农业公司甲加由，一个在河南的农业公司，它很快从工业化衍生出了金融属性化，原因是它非常注重量化管理，他们对所有农户的工作状态用信用评级、用数据化衡量，做到了很多村镇银行很难办到的一步。</p><p>通过量化管理，它能给农户进行评级，对接银行、金融产品，给农户发放贷款做保险、卖期货。</p><p><strong>传统行业拥抱互联网，哪怕有1%的提升，都会产生非常高的效益。不管是农业、电力、航空、铁路还是石油。</strong></p><p>中国宽带产业基金合伙人周耘认为，产业互联网产生的经济效益，会有几个方面：</p><p>① 工业升级：</p><p>生产设备和物联网相结合，不管是物联网，还是供应链、工单、流程再造，都跟提升效益相关；</p><p>② 服务升级：</p><p>比如想知道外出人员，去哪了？做什么？你无从了解，现在可以通过移动互联网，通过位置服务，通过跟客户交互，都能知道了，也能提高效率。</p><p>在当前的国家经济形势下，正好赶上下一个浪潮：产业互联网，2B企业越来越多，<strong>传统行业和互联网的相互结合，会孕育着更多的投资和机会。</strong></p><p><strong>四、用对姿势，很关键</strong></p><p>企业的成长其实跟人的进化是很像的，都是不断使用新工具的过程。</p><p>但在工具的使用过程中，一些公司并没有利用得恰如其分。</p><p>2016年，投资了特斯拉、推特、百度的德丰杰，其中国的德丰杰龙脉基金合伙人王岳华指出，消费互联网时代已是过去，产业互联网时代才是未来。</p><p>当时他就已经看到消费者互联网的渗透增长变慢，变为稳定。国内传统制造业很多产业比如陶瓷业、家装业，很多传统产业没有很好地应用互联网化。</p><p>我们来看这样一个故事，古代打仗都用冷兵器，近代打仗用热兵器，这两种兵器的更迭是在什么时候？</p><p>在19世纪美国南北战争中。在那个时候刚配备枪炮的军队根本不知道怎么用，于是两边军队各站成一排，两边的军官在短暂沟通后下令开打，两边就开始相互扫射，这是一个令人啼笑皆非的故事。</p><p>为什么会出现这种问题？</p><p>因为对于军官和士兵来讲，他们使用了新的工具，但是没有更新战术和方法。方法论、战术是非常重要的，当时的枪怎么用，大家都不知道，还是处于拿着枪互相肉搏的状态，这是典型的用工具和战术的更迭过程。</p><p>我们每天都需要接触大量的互联网公司，大多数公司都声称自己的产品是互联网化的，但其实它们并不是标准的互联网公司。</p><p><strong>他们虽然有了新的互联网工具，但却不知道如何使用。</strong></p><p>还有一种情况是，有些科技公司想赋能传统行业，却找不到正确的路径，拿金融客户举例。</p><p>当前，随着经济增速放缓，息差收窄，监管趋严，互联网金融科技企业全面跨界渗透，中小银行的生存环境日益严峻，转型求变已成必然之势。</p><p>行业实践证明，金融科技的运用可以帮助银行提升核心业务能力、业务效率、用户体验，降低风险与成本，是中小银行实现转型的必备能力。</p><p>除了一些大型银行和全国性股份制银行，一些小型的农商行们普遍存在资产规模小、业务区域受限、风险控制能力弱等短板。</p><p>因此，为这类客户服务的供应商也特别多，其中既有各种国际巨头IOE、MBB、四大……，它们把这里视为自己的利润主战场；也有N多本土化的服务商，想进来分一杯羹。</p><p>总之，蛇有蛇路，鼠有鼠道，八仙过海，各显神通。但其中，真正能做到，理解金融类客户业务本质的并不多。</p><p>传统产业的升级，有时需要自己内向成长，有时需要借助外力，当外力的操作姿势不对时，也需要传统产业和外力打成一片，两者真正融合到一起。</p><p>当然，也有一些行业可能真的不适合互联网，这也需要我们警惕。</p><p>很多人认为很多To B的行业可以做线上化，于是出现了找木网、找纱线、纺织、建材这些细分类目的网站，这其实并不算严格意义上的互联网企业。</p><p>比如一家建材公司想把所有的建材、石料板材都放到线上，创始人的网站构想也非常清楚，团队干劲也比较足，每年有几个亿的成交量，开始觉得做得不错。</p><p>最后到公司一看，发现公司的工作状态是什么？虽然有网站，但没有人运营维护，所有人都在打销售电话，这是完全依赖于人和客户进行沟通的一种商业模式，它不能算是一个互联网化的公司。</p><p>互联网化公司最开始的时候要能看到商品是标准的，而不依赖于人和客户沟通，这是很重要的一点。</p><p>再比一个纱线公司，前端的研发和后端的布局是很完善的，以为对于纱这一品类是可以互联网化的。因为这个行业可能是50个SKU（库存进出计量单位），然后把它们全部标准化放到线上，大家在线上进行交易。</p><p>结果到公司去看的时候，很让人震惊的是，纱线有12000到15000种SKU，每一年下雨的雨水不一样，纱线韧性弹性不一样，边纹不一样，口径粗细不一样，颜色不一样，每一种纱线SKU有50多种标签，出来之后有几万种SKU，买方就没有办法在网上选择。</p><p>所有的人买纱线都是要亲自根据手感来挑选——“这种纱线对我有效，以后不要麻烦看别的了，以后我只进货这一种”。它是高度依赖于线下体验的产品，这种产品非常难以互联网化。</p><p>在供应链中从生产过程、到仓储流转、到分销，有很多的企业，比如第二产业中建材类等行业，都是如此。</p><p>并不是所有的行业都可以互联网化，并不是所有的企业用同一种方式进行转型都是可以升级的，完全不是的。</p><p>很多行业没有办法进行互联网转型升级，只能拿它作为辅助性工具管理公司。</p><p>产业互联网的大潮下，行人急匆匆，审时度势很重要，不忘初心更要紧。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 杂记 </tag>
             
         </tags>
       
@@ -3054,31 +3104,6 @@
     
     
     <entry>
-      <title>Java代码优化总结</title>
-      <link href="/2018/11/04/java/%20Java%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93-1/"/>
-      <url>/2018/11/04/java/%20Java%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93-1/</url>
-      
-        <content type="html"><![CDATA[<p>来源：王韵菲 </p><p><a href="http://www.evget.com/article/2015/11/16/22990.html">www.evget.com/article/2015/11/16/22990.html</a></p><p>本文中，小编搜集了7个最有影响的衡量标注，让你可以不依赖日志文件来了解应用程序。现在，让我们看看这些性能指标，并了解如何查看并收集它们：</p><p><strong>1.响应时间和吞吐量</strong></p><p>根据应用程序的响应时间可以知道程序完成传输数据所用的时间。也可以从HTTP请求级别，或者成为数据库级别来看。对那些缓慢的查询你需要做一些优化来缩短时间。吞吐量是另一个角度衡量传输数据的指标，是指单位时间内系统处理的客户请求的数量。</p><p>我们可以使用APMs（例如New Relic或AppDynamics）来衡量这些指标。使用这些工具，你可以在主报告仪表板中将平均响应时间与昨天的甚至上周的直接进行对比。这有助于我们观察新的部署是否会影响到我们的应用程序。你可以看到网络传输的百分比，测量HTTP完成请求需要多长时间。</p><p>推荐工具：</p><ul><li>AppDynamics</li><li>New Relic</li><li>Ruxit</li></ul><p>New Relic报告：Web传输百分比和吞吐量</p><p><strong>2.平均负载</strong></p><p>第二个应用广泛的指标是平均负载。我们习惯上会把平均负载分为这三步测量，分别是第5分钟、第15分钟和最后1分钟。要保证数量低于机器的内核数。一旦超过内核数，机器就会运行在压力状态下。</p><p>除了简单测量CPU使用率，还需要关注每个内核的队列中有多少进程。在内核使用率都是100%的情况下，队列中只有1个任务和有6个任务有很大不同。因此，平均负载不能只考虑CPU使用率。</p><p>推荐工具：</p><ul><li>htop</li></ul><p><strong>3.错误率</strong></p><p>大多数开发人员判断错误率是根据HTTP传输总失败百分比。但是他们忽略了一个更深层的东西：特定传输的错误率。这直接影响到您应用程序的运行状况。这可以显示出代码方法的错误以及错误或异常出现的次数。</p><p>但单纯的错误率数据对我们没有多大帮助。最重要的是我们要找到它们的根源并解决问题。随着Takipi的运行，我们要在日志文件中需找线索。你可以找到所有关于服务器状态的信息，包括堆栈跟踪、源代码和变量值。</p><p>推荐工具：</p><ul><li>Takipi</li></ul><p><strong>4.GC率和暂停时间</strong></p><p>异常行为垃圾收集器应用程序的吞吐量和响应时间采取深潜的主要原因之一。了解GC暂停频率和持续时间的关键是分析GC日志文件。要分析它们，你需要收集GC日志和JVM参数。你要注意观察不同指标之间的数据是如何相互影响的。</p><p>推荐工具：</p><ul><li>jClarity Censum</li><li>GCViewer</li></ul><p><strong>5.业务指标</strong></p><p>应用程序的性能不完全取决于响应时间和错误率。业务指标也是一方面，例如收益、用户数。</p><p>推荐工具：</p><ul><li>Grafana</li><li>The ELK stack</li><li>Datadog</li><li>Librato</li></ul><p><strong>6.正常运行时间和服务运行状态</strong></p><p>这一指标奠定了整个应用程序性能的基础。不仅可以当做一个提醒指标，也可以让你定义一段时间内的SKA。我们可以使用Pingdom的servlet功能进行运行状态检查。我们可以查到应用程序的所有传输，包括数据库和S3。</p><p>推荐工具：</p><ul><li>Pingdom</li></ul><p><strong>7.日志大小</strong></p><p>日志有一个缺点，它是一直在增加的。当您的服务器启动塞满了垃圾，一切都慢下来。因此，我们需要密切的关注日志大小。</p><p>目前通常的解决办法是使用logstash划分使用日志，并将它们发送并存储在Splunk、ELK或其他的日志管理工具中。</p><p>推荐工具：</p><ul><li>Splunk</li><li>Sumo Logic</li><li>Loggly</li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术小栈 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>一部震撼人心的电影——《人类》</title>
       <link href="/2018/11/04/%E6%9D%82%E8%AE%B0/%E4%B8%80%E9%83%A8%E9%9C%87%E6%92%BC%E4%BA%BA%E5%BF%83%E7%9A%84%E7%94%B5%E5%BD%B1%E2%80%94%E2%80%94%E3%80%8A%E4%BA%BA%E7%B1%BB%E3%80%8B/"/>
       <url>/2018/11/04/%E6%9D%82%E8%AE%B0/%E4%B8%80%E9%83%A8%E9%9C%87%E6%92%BC%E4%BA%BA%E5%BF%83%E7%9A%84%E7%94%B5%E5%BD%B1%E2%80%94%E2%80%94%E3%80%8A%E4%BA%BA%E7%B1%BB%E3%80%8B/</url>
@@ -3096,6 +3121,31 @@
         <tags>
             
             <tag> 杂记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java代码优化总结</title>
+      <link href="/2018/11/04/java/%20Java%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93-1/"/>
+      <url>/2018/11/04/java/%20Java%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93-1/</url>
+      
+        <content type="html"><![CDATA[<p>来源：王韵菲 </p><p><a href="http://www.evget.com/article/2015/11/16/22990.html">www.evget.com/article/2015/11/16/22990.html</a></p><p>本文中，小编搜集了7个最有影响的衡量标注，让你可以不依赖日志文件来了解应用程序。现在，让我们看看这些性能指标，并了解如何查看并收集它们：</p><p><strong>1.响应时间和吞吐量</strong></p><p>根据应用程序的响应时间可以知道程序完成传输数据所用的时间。也可以从HTTP请求级别，或者成为数据库级别来看。对那些缓慢的查询你需要做一些优化来缩短时间。吞吐量是另一个角度衡量传输数据的指标，是指单位时间内系统处理的客户请求的数量。</p><p>我们可以使用APMs（例如New Relic或AppDynamics）来衡量这些指标。使用这些工具，你可以在主报告仪表板中将平均响应时间与昨天的甚至上周的直接进行对比。这有助于我们观察新的部署是否会影响到我们的应用程序。你可以看到网络传输的百分比，测量HTTP完成请求需要多长时间。</p><p>推荐工具：</p><ul><li>AppDynamics</li><li>New Relic</li><li>Ruxit</li></ul><p>New Relic报告：Web传输百分比和吞吐量</p><p><strong>2.平均负载</strong></p><p>第二个应用广泛的指标是平均负载。我们习惯上会把平均负载分为这三步测量，分别是第5分钟、第15分钟和最后1分钟。要保证数量低于机器的内核数。一旦超过内核数，机器就会运行在压力状态下。</p><p>除了简单测量CPU使用率，还需要关注每个内核的队列中有多少进程。在内核使用率都是100%的情况下，队列中只有1个任务和有6个任务有很大不同。因此，平均负载不能只考虑CPU使用率。</p><p>推荐工具：</p><ul><li>htop</li></ul><p><strong>3.错误率</strong></p><p>大多数开发人员判断错误率是根据HTTP传输总失败百分比。但是他们忽略了一个更深层的东西：特定传输的错误率。这直接影响到您应用程序的运行状况。这可以显示出代码方法的错误以及错误或异常出现的次数。</p><p>但单纯的错误率数据对我们没有多大帮助。最重要的是我们要找到它们的根源并解决问题。随着Takipi的运行，我们要在日志文件中需找线索。你可以找到所有关于服务器状态的信息，包括堆栈跟踪、源代码和变量值。</p><p>推荐工具：</p><ul><li>Takipi</li></ul><p><strong>4.GC率和暂停时间</strong></p><p>异常行为垃圾收集器应用程序的吞吐量和响应时间采取深潜的主要原因之一。了解GC暂停频率和持续时间的关键是分析GC日志文件。要分析它们，你需要收集GC日志和JVM参数。你要注意观察不同指标之间的数据是如何相互影响的。</p><p>推荐工具：</p><ul><li>jClarity Censum</li><li>GCViewer</li></ul><p><strong>5.业务指标</strong></p><p>应用程序的性能不完全取决于响应时间和错误率。业务指标也是一方面，例如收益、用户数。</p><p>推荐工具：</p><ul><li>Grafana</li><li>The ELK stack</li><li>Datadog</li><li>Librato</li></ul><p><strong>6.正常运行时间和服务运行状态</strong></p><p>这一指标奠定了整个应用程序性能的基础。不仅可以当做一个提醒指标，也可以让你定义一段时间内的SKA。我们可以使用Pingdom的servlet功能进行运行状态检查。我们可以查到应用程序的所有传输，包括数据库和S3。</p><p>推荐工具：</p><ul><li>Pingdom</li></ul><p><strong>7.日志大小</strong></p><p>日志有一个缺点，它是一直在增加的。当您的服务器启动塞满了垃圾，一切都慢下来。因此，我们需要密切的关注日志大小。</p><p>目前通常的解决办法是使用logstash划分使用日志，并将它们发送并存储在Splunk、ELK或其他的日志管理工具中。</p><p>推荐工具：</p><ul><li>Splunk</li><li>Sumo Logic</li><li>Loggly</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术小栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
             
         </tags>
       
@@ -3379,31 +3429,6 @@
     
     
     <entry>
-      <title>Java内存模型总结</title>
-      <link href="/2018/07/08/java/%20Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/"/>
-      <url>/2018/07/08/java/%20Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/</url>
-      
-        <content type="html"><![CDATA[<h2 id="Java内存模型总结"><a href="#Java内存模型总结" class="headerlink" title="Java内存模型总结"></a>Java内存模型总结</h2><p>Hollis <a href="javascript:void(0);">架构师小秘圈</a> <em>7月5日</em></p><p>作者：Hollis，阿里资深攻城狮</p><p>来自：Hollis</p><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>为什么要有内存模型</p><p>在介绍Java内存模型之前，先来看一下到底什么是计算机内存模型，然后再来看Java内存模型在计算机内存模型的基础上做了哪些事情。要说计算机的内存模型，就要说一下一段古老的历史，看一下为什么要有内存模型。</p><p><strong>内存模型，英文名Memory Model，他是一个很老的老古董了。他是与计算机硬件有关的一个概念。那么我先给你介绍下他和硬件到底有啥关系。</strong></p><h3 id="CPU和缓存一致性"><a href="#CPU和缓存一致性" class="headerlink" title="CPU和缓存一致性"></a>CPU和缓存一致性</h3><p>我们应该都知道，计算机在执行程序的时候，每条指令都是在CPU中执行的，而执行的时候，又免不了要和数据打交道。而计算机上面的数据，是存放在主存当中的，也就是计算机的物理内存啦。</p><p>刚开始，还相安无事的，但是随着CPU技术的发展，CPU的执行速度越来越快。而由于内存的技术并没有太大的变化，所以从内存中读取和写入数据的过程和CPU的执行速度比起来差距就会越来越大,这就导致CPU每次操作内存都要耗费很多等待时间。</p><blockquote><p>这就像一家创业公司，刚开始，创始人和员工之间工作关系其乐融融，但是随着创始人的能力和野心越来越大，逐渐和员工之间出现了差距，普通员工原来越跟不上CEO的脚步。老板的每一个命令，传到到基层员工之后，由于基层员工的理解能力、执行能力的欠缺，就会耗费很多时间。这也就无形中拖慢了整家公司的工作效率。</p></blockquote><p>可是，不能因为内存的读写速度慢，就不发展CPU技术了吧，总不能让内存成为计算机处理的瓶颈吧。</p><p>所以，人们想出来了一个好的办法，就是在CPU和内存之间增加高速缓存。缓存的概念大家都知道，就是保存一份数据拷贝。他的特点是速度快，内存小，并且昂贵。</p><p>那么，程序的执行过程就变成了：</p><p><strong>当程序在运行过程中，会将运算需要的数据从主存复制一份到CPU的高速缓存当中，那么CPU进行计算时就可以直接从它的高速缓存读取数据和向其中写入数据，当运算结束之后，再将高速缓存中的数据刷新到主存当中。</strong></p><blockquote><p>之后，这家公司开始设立中层管理人员，管理人员直接归CEO领导，领导有什么指示，直接告诉管理人员，然后就可以去做自己的事情了。管理人员负责去协调底层员工的工作。因为管理人员是了解手下的人员以及自己负责的事情的。所以，大多数时候，公司的各种决策，通知等，CEO只要和管理人员之间沟通就够了。</p></blockquote><p>而随着CPU能力的不断提升，一层缓存就慢慢的无法满足要求了，就逐渐的衍生出多级缓存。</p><p>按照数据读取顺序和与CPU结合的紧密程度，CPU缓存可以分为一级缓存（L1），二级缓存（L3），部分高端CPU还具有三级缓存（L3），每一级缓存中所储存的全部数据都是下一级缓存的一部分。</p><p>这三种缓存的技术难度和制造成本是相对递减的，所以其容量也是相对递增的。</p><p>那么，在有了多级缓存之后，程序的执行就变成了：</p><p><strong>当CPU要读取一个数据时，首先从一级缓存中查找，如果没有找到再从二级缓存中查找，如果还是没有就从三级缓存或内存中查找。</strong></p><blockquote><p>随着公司越来越大，老板要管的事情越来越多，公司的管理部门开始改革，开始出现高层，中层，底层等管理者。一级一级之间逐层管理。</p></blockquote><p>单核CPU只含有一套L1，L2，L3缓存；</p><p>如果CPU含有多个核心，即多核CPU，则每个核心都含有一套L1（甚至和L2）缓存，而共享L3（或者和L2）缓存。</p><blockquote><p>公司也分很多种，有些公司只有一个大Boss，他一个人说了算。但是有些公司有比如联席总经理、合伙人等机制。</p><p>单核CPU就像一家公司只有一个老板，所有命令都来自于他，那么就只需要一套管理班底就够了。</p><p>多核CPU就像一家公司是由多个合伙人共同创办的，那么，就需要给每个合伙人都设立一套供自己直接领导的高层管理人员，多个合伙人共享使用的是公司的底层员工。</p><p>还有的公司，不断壮大，开始差分出各个子公司。各个子公司就是多个CPU了，互相之前没有共用的资源。互不影响。</p></blockquote><p>下图为一个单CPU双核的缓存结构。</p><p><img src="https://ws1.sinaimg.cn/large/7108d6c2gy1fyjacnr9mmj20ly0bd7wh.jpg"></p><p>随着计算机能力不断提升，开始支持多线程。那么问题就来了。我们分别来分析下单线程、多线程在单核CPU、多核CPU中的影响。</p><p><strong>单线程。</strong>cpu核心的缓存只被一个线程访问。缓存独占，不会出现访问冲突等问题。</p><p><strong>单核CPU，多线程。</strong>进程中的多个线程会同时访问进程中的共享数据，CPU将某块内存加载到缓存后，不同线程在访问相同的物理地址的时候，都会映射到相同的缓存位置，这样即使发生线程的切换，缓存仍然不会失效。但由于任何时刻只能有一个线程在执行，因此不会出现缓存访问冲突。</p><p><strong>多核CPU，多线程。</strong>每个核都至少有一个L1 缓存。多个线程访问进程中的某个共享内存，且这多个线程分别在不同的核心上执行，则每个核心都会在各自的caehe中保留一份共享内存的缓冲。由于多核是可以并行的，可能会出现多个线程同时写各自的缓存的情况，而各自的cache之间的数据就有可能不同。</p><p>在CPU和主存之间增加缓存，在多线程场景下就可能存在<strong>缓存一致性问题</strong>，也就是说，在多核CPU中，每个核的自己的缓存中，关于同一个数据的缓存内容可能不一致。</p><blockquote><p>如果这家公司的命令都是串行下发的话，那么就没有任何问题。</p><p>如果这家公司的命令都是并行下发的话，并且这些命令都是由同一个CEO下发的，这种机制是也没有什么问题。因为他的命令执行者只有一套管理体系。</p><p>如果这家公司的命令都是并行下发的话，并且这些命令是由多个合伙人下发的，这就有问题了。因为每个合伙人只会把命令下达给自己直属的管理人员，而多个管理人员管理的底层员工可能是公用的。</p><p>比如，合伙人1要辞退员工a，合伙人2要给员工a升职，升职后的话他再被辞退需要多个合伙人开会决议。两个合伙人分别把命令下发给了自己的管理人员。合伙人1命令下达后，管理人员a在辞退了员工后，他就知道这个员工被开除了。而合伙人2的管理人员2这时候在没得到消息之前，还认为员工a是在职的，他就欣然的接收了合伙人给他的升职a的命令。</p></blockquote><p><img src="https://ws1.sinaimg.cn/large/7108d6c2gy1fyjaeger4aj20mj0am7wh.jpg"></p><h3 id="处理器优化和指令重排"><a href="#处理器优化和指令重排" class="headerlink" title="处理器优化和指令重排"></a>处理器优化和指令重排</h3><p>上面提到在在CPU和主存之间增加缓存，在多线程场景下会存在<strong>缓存一致性问题</strong>。除了这种情况，还有一种硬件问题也比较重要。那就是为了使处理器内部的运算单元能够尽量的被充分利用，处理器可能会对输入代码进行乱序执行处理。这就是<strong>处理器优化</strong>。</p><p>除了现在很多流行的处理器会对代码进行优化乱序处理，很多编程语言的编译器也会有类似的优化，比如Java虚拟机的即时编译器（JIT）也会做<strong>指令重排</strong>。</p><p>可想而知，如果任由处理器优化和编译器对指令重排的话，就可能导致各种各样的问题。</p><blockquote><p>关于员工组织调整的情况，如果允许人事部在接到多个命令后进行随意拆分乱序执行或者重排的话，那么对于这个员工以及这家公司的影响是非常大的。</p></blockquote><p>并发编程的问题</p><p>前面说的和硬件有关的概念你可能听得有点蒙，还不知道他到底和软件有啥关系。但是关于并发编程的问题你应该有所了解，比如原子性问题，可见性问题和有序性问题。</p><p>其实，原子性问题，可见性问题和有序性问题。是人们抽象定义出来的。而这个抽象的底层问题就是前面提到的缓存一致性问题、处理器优化问题和指令重排问题等。</p><p>这里简单回顾下这三个问题，并不准备深入展开，感兴趣的读者可以自行学习。我们说，并发编程，为了保证数据的安全，需要满足以下三个特性：</p><p><strong>原子性</strong>是指在一个操作中就是cpu不可以在中途暂停然后再调度，既不被中断操作，要不执行完成，要不就不执行。</p><p><strong>可见性</strong>是指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值。</p><p><strong>有序性</strong>即程序执行的顺序按照代码的先后顺序执行。</p><p>有没有发现，<strong>缓存一致性问题</strong>其实就是<strong>可见性问题</strong>。而<strong>处理器优化</strong>是可以导致<strong>原子性问题</strong>的。<strong>指令重排</strong>即会导致<strong>有序性问题</strong>。所以，后文将不再提起硬件层面的那些概念，而是直接使用大家熟悉的原子性、可见性和有序性。</p><h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><p>什么是内存模型</p><p>前面提到的，缓存一致性问题、处理器器优化的指令重排问题是硬件的不断升级导致的。那么，有没有什么机制可以很好的解决上面的这些问题呢？</p><h2 id="-2"><a href="#-2" class="headerlink" title=""></a></h2><p>最简单直接的做法就是废除处理器和处理器的优化技术、废除CPU缓存，让CPU直接和主存交互。但是，这么做虽然可以保证多线程下的并发问题。但是，这就有点因噎废食了。</p><p>所以，为了保证并发编程中可以满足原子性、可见性及有序性。有一个重要的概念，那就是——内存模型。</p><p><strong>为了保证共享内存的正确性（可见性、有序性、原子性），内存模型定义了共享内存系统中多线程程序读写操作行为的规范。</strong>通过这些规则来规范对内存的读写操作，从而保证指令执行的正确性。它与处理器有关、与缓存有关、与并发有关、与编译器也有关。他解决了CPU多级缓存、处理器优化、指令重排等导致的内存访问问题，保证了并发场景下的一致性、原子性和有序性。</p><p>内存模型解决并发问题主要采用两种方式：<strong>限制处理器优化</strong>和<strong>使用内存屏障</strong>。本文就不深入底层原理来展开介绍了，感兴趣的朋友可以自行学习。</p><h2 id="-3"><a href="#-3" class="headerlink" title=""></a></h2><p>什么是Java内存模型</p><p>前面介绍过了计算机内存模型，这是解决多线程场景下并发问题的一个重要规范。那么具体的实现是如何的呢，不同的编程语言，在实现上可能有所不同。</p><p>我们知道，Java程序是需要运行在Java虚拟机上面的，<strong>Java内存模型（Java Memory Model ,JMM）就是一种符合内存模型规范的，屏蔽了各种硬件和操作系统的访问差异的，保证了Java程序在各种平台下对内存的访问都能保证效果一致的机制及规范。</strong></p><p>提到Java内存模型，一般指的是JDK 5 开始使用的新的内存模型，主要由JSR-133: JavaTM Memory Model and Thread Specification 描述。感兴趣的可以参看下这份PDF文档（<a href="http://www.cs.umd.edu/~pugh/java/memoryModel/jsr133.pdf%EF%BC%89">http://www.cs.umd.edu/~pugh/java/memoryModel/jsr133.pdf）</a></p><p>Java内存模型规定了所有的变量都存储在主内存中，每条线程还有自己的工作内存，线程的工作内存中保存了该线程中是用到的变量的主内存副本拷贝，线程对变量的所有操作都必须在工作内存中进行，而不能直接读写主内存。不同的线程之间也无法直接访问对方工作内存中的变量，线程间变量的传递均需要自己的工作内存和主存之间进行数据同步进行。</p><p>而JMM就作用于工作内存和主存之间数据同步过程。他规定了如何做数据同步以及什么时候做数据同步。</p><p><img src="https://ws1.sinaimg.cn/large/7108d6c2gy1fyjafgo4uoj20b10abh1f.jpg"></p><p>这里面提到的主内存和工作内存，读者可以简单的类比成计算机内存模型中的主存和缓存的概念。特别需要注意的是，主内存和工作内存与JVM内存结构中的Java堆、栈、方法区等并不是同一个层次的内存划分，无法直接类比。《深入理解Java虚拟机》中认为，如果一定要勉强对应起来的话，从变量、主内存、工作内存的定义来看，主内存主要对应于Java堆中的对象实例数据部分。工作内存则对应于虚拟机栈中的部分区域。</p><p><strong>所以，再来总结下，JMM是一种规范，目的是解决由于多线程通过共享内存进行通信时，存在的本地内存数据不一致、编译器会对代码指令重排序、处理器会对代码乱序执行等带来的问题。目的是保证并发编程场景中的原子性、可见性和有序性。</strong></p><h2 id="-4"><a href="#-4" class="headerlink" title=""></a></h2><p>Java内存模型的实现</p><p>了解Java多线程的朋友都知道，在Java中提供了一系列和并发处理相关的关键字，比如<code>volatile</code>、<code>synchronized</code>、<code>final</code>、<code>concurren</code>包等。其实这些就是Java内存模型封装了底层的实现后提供给程序员使用的一些关键字。</p><p>在开发多线程的代码的时候，我们可以直接使用<code>synchronized</code>等关键字来控制并发，从来就不需要关心底层的编译器优化、缓存一致性等问题。所以，<strong>Java内存模型，除了定义了一套规范，还提供了一系列原语，封装了底层实现后，供开发者直接使用。</strong></p><p>本文并不准备把所有的关键字逐一介绍其用法，因为关于各个关键字的用法，网上有很多资料。读者可以自行学习。本文还有一个重点要介绍的就是，我们前面提到，并发编程要解决原子性、有序性和一致性的问题，我们就再来看下，在Java中，分别使用什么方式来保证。</p><h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>在Java中，为了保证原子性，提供了两个高级的字节码指令<code>monitorenter</code>和<code>monitorexit</code>。在<a href="http://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650120537&idx=1&sn=f56201217c0ca6fde45ee12965b56296&chksm=f36bbc78c41c356ee363367addcdc0b311afb2f9df86a7ee20d21348b3332fd64f273d6028ca&scene=21#wechat_redirect">synchronized的实现原理</a>文章中，介绍过，这两个字节码，在Java中对应的关键字就是<code>synchronized</code>。</p><p>因此，在Java中可以使用<code>synchronized</code>来保证方法和代码块内的操作是原子性的。</p><h3 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h3><p>Java内存模型是通过在变量修改后将新值同步回主内存，在变量读取前从主内存刷新变量值的这种依赖主内存作为传递媒介的方式来实现的。</p><p>Java中的<code>volatile</code>关键字提供了一个功能，那就是被其修饰的变量在被修改后可以立即同步到主内存，被其修饰的变量在每次是用之前都从主内存刷新。因此，可以使用<code>volatile</code>来保证多线程操作时变量的可见性。</p><p>除了<code>volatile</code>，Java中的<code>synchronized</code>和<code>final</code>两个关键字也可以实现可见性。只不过实现方式不同，这里不再展开了。</p><h3 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h3><p>在Java中，可以使用<code>synchronized</code>和<code>volatile</code>来保证多线程之间操作的有序性。实现方式有所区别：</p><p><code>volatile</code>关键字会禁止指令重排。<code>synchronized</code>关键字保证同一时刻只允许一条线程操作。</p><p>好了，这里简单的介绍完了Java并发编程中解决原子性、可见性以及有序性可以使用的关键字。读者可能发现了，好像<code>synchronized</code>关键字是万能的，他可以同时满足以上三种特性，这其实也是很多人滥用<code>synchronized</code>的原因。</p><p>但是<code>synchronized</code>是比较影响性能的，虽然编译器提供了很多锁优化技术，但是也不建议过度使用。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术小栈 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>语录摘要-互联网4个关键词</title>
       <link href="/2018/07/08/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B00708/"/>
       <url>/2018/07/08/%E6%9D%82%E8%AE%B0/%E7%AC%94%E8%AE%B00708/</url>
@@ -3421,6 +3446,31 @@
         <tags>
             
             <tag> 杂记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java内存模型总结</title>
+      <link href="/2018/07/08/java/%20Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/"/>
+      <url>/2018/07/08/java/%20Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Java内存模型总结"><a href="#Java内存模型总结" class="headerlink" title="Java内存模型总结"></a>Java内存模型总结</h2><p>Hollis <a href="javascript:void(0);">架构师小秘圈</a> <em>7月5日</em></p><p>作者：Hollis，阿里资深攻城狮</p><p>来自：Hollis</p><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>为什么要有内存模型</p><p>在介绍Java内存模型之前，先来看一下到底什么是计算机内存模型，然后再来看Java内存模型在计算机内存模型的基础上做了哪些事情。要说计算机的内存模型，就要说一下一段古老的历史，看一下为什么要有内存模型。</p><p><strong>内存模型，英文名Memory Model，他是一个很老的老古董了。他是与计算机硬件有关的一个概念。那么我先给你介绍下他和硬件到底有啥关系。</strong></p><h3 id="CPU和缓存一致性"><a href="#CPU和缓存一致性" class="headerlink" title="CPU和缓存一致性"></a>CPU和缓存一致性</h3><p>我们应该都知道，计算机在执行程序的时候，每条指令都是在CPU中执行的，而执行的时候，又免不了要和数据打交道。而计算机上面的数据，是存放在主存当中的，也就是计算机的物理内存啦。</p><p>刚开始，还相安无事的，但是随着CPU技术的发展，CPU的执行速度越来越快。而由于内存的技术并没有太大的变化，所以从内存中读取和写入数据的过程和CPU的执行速度比起来差距就会越来越大,这就导致CPU每次操作内存都要耗费很多等待时间。</p><blockquote><p>这就像一家创业公司，刚开始，创始人和员工之间工作关系其乐融融，但是随着创始人的能力和野心越来越大，逐渐和员工之间出现了差距，普通员工原来越跟不上CEO的脚步。老板的每一个命令，传到到基层员工之后，由于基层员工的理解能力、执行能力的欠缺，就会耗费很多时间。这也就无形中拖慢了整家公司的工作效率。</p></blockquote><p>可是，不能因为内存的读写速度慢，就不发展CPU技术了吧，总不能让内存成为计算机处理的瓶颈吧。</p><p>所以，人们想出来了一个好的办法，就是在CPU和内存之间增加高速缓存。缓存的概念大家都知道，就是保存一份数据拷贝。他的特点是速度快，内存小，并且昂贵。</p><p>那么，程序的执行过程就变成了：</p><p><strong>当程序在运行过程中，会将运算需要的数据从主存复制一份到CPU的高速缓存当中，那么CPU进行计算时就可以直接从它的高速缓存读取数据和向其中写入数据，当运算结束之后，再将高速缓存中的数据刷新到主存当中。</strong></p><blockquote><p>之后，这家公司开始设立中层管理人员，管理人员直接归CEO领导，领导有什么指示，直接告诉管理人员，然后就可以去做自己的事情了。管理人员负责去协调底层员工的工作。因为管理人员是了解手下的人员以及自己负责的事情的。所以，大多数时候，公司的各种决策，通知等，CEO只要和管理人员之间沟通就够了。</p></blockquote><p>而随着CPU能力的不断提升，一层缓存就慢慢的无法满足要求了，就逐渐的衍生出多级缓存。</p><p>按照数据读取顺序和与CPU结合的紧密程度，CPU缓存可以分为一级缓存（L1），二级缓存（L3），部分高端CPU还具有三级缓存（L3），每一级缓存中所储存的全部数据都是下一级缓存的一部分。</p><p>这三种缓存的技术难度和制造成本是相对递减的，所以其容量也是相对递增的。</p><p>那么，在有了多级缓存之后，程序的执行就变成了：</p><p><strong>当CPU要读取一个数据时，首先从一级缓存中查找，如果没有找到再从二级缓存中查找，如果还是没有就从三级缓存或内存中查找。</strong></p><blockquote><p>随着公司越来越大，老板要管的事情越来越多，公司的管理部门开始改革，开始出现高层，中层，底层等管理者。一级一级之间逐层管理。</p></blockquote><p>单核CPU只含有一套L1，L2，L3缓存；</p><p>如果CPU含有多个核心，即多核CPU，则每个核心都含有一套L1（甚至和L2）缓存，而共享L3（或者和L2）缓存。</p><blockquote><p>公司也分很多种，有些公司只有一个大Boss，他一个人说了算。但是有些公司有比如联席总经理、合伙人等机制。</p><p>单核CPU就像一家公司只有一个老板，所有命令都来自于他，那么就只需要一套管理班底就够了。</p><p>多核CPU就像一家公司是由多个合伙人共同创办的，那么，就需要给每个合伙人都设立一套供自己直接领导的高层管理人员，多个合伙人共享使用的是公司的底层员工。</p><p>还有的公司，不断壮大，开始差分出各个子公司。各个子公司就是多个CPU了，互相之前没有共用的资源。互不影响。</p></blockquote><p>下图为一个单CPU双核的缓存结构。</p><p><img src="https://ws1.sinaimg.cn/large/7108d6c2gy1fyjacnr9mmj20ly0bd7wh.jpg"></p><p>随着计算机能力不断提升，开始支持多线程。那么问题就来了。我们分别来分析下单线程、多线程在单核CPU、多核CPU中的影响。</p><p><strong>单线程。</strong>cpu核心的缓存只被一个线程访问。缓存独占，不会出现访问冲突等问题。</p><p><strong>单核CPU，多线程。</strong>进程中的多个线程会同时访问进程中的共享数据，CPU将某块内存加载到缓存后，不同线程在访问相同的物理地址的时候，都会映射到相同的缓存位置，这样即使发生线程的切换，缓存仍然不会失效。但由于任何时刻只能有一个线程在执行，因此不会出现缓存访问冲突。</p><p><strong>多核CPU，多线程。</strong>每个核都至少有一个L1 缓存。多个线程访问进程中的某个共享内存，且这多个线程分别在不同的核心上执行，则每个核心都会在各自的caehe中保留一份共享内存的缓冲。由于多核是可以并行的，可能会出现多个线程同时写各自的缓存的情况，而各自的cache之间的数据就有可能不同。</p><p>在CPU和主存之间增加缓存，在多线程场景下就可能存在<strong>缓存一致性问题</strong>，也就是说，在多核CPU中，每个核的自己的缓存中，关于同一个数据的缓存内容可能不一致。</p><blockquote><p>如果这家公司的命令都是串行下发的话，那么就没有任何问题。</p><p>如果这家公司的命令都是并行下发的话，并且这些命令都是由同一个CEO下发的，这种机制是也没有什么问题。因为他的命令执行者只有一套管理体系。</p><p>如果这家公司的命令都是并行下发的话，并且这些命令是由多个合伙人下发的，这就有问题了。因为每个合伙人只会把命令下达给自己直属的管理人员，而多个管理人员管理的底层员工可能是公用的。</p><p>比如，合伙人1要辞退员工a，合伙人2要给员工a升职，升职后的话他再被辞退需要多个合伙人开会决议。两个合伙人分别把命令下发给了自己的管理人员。合伙人1命令下达后，管理人员a在辞退了员工后，他就知道这个员工被开除了。而合伙人2的管理人员2这时候在没得到消息之前，还认为员工a是在职的，他就欣然的接收了合伙人给他的升职a的命令。</p></blockquote><p><img src="https://ws1.sinaimg.cn/large/7108d6c2gy1fyjaeger4aj20mj0am7wh.jpg"></p><h3 id="处理器优化和指令重排"><a href="#处理器优化和指令重排" class="headerlink" title="处理器优化和指令重排"></a>处理器优化和指令重排</h3><p>上面提到在在CPU和主存之间增加缓存，在多线程场景下会存在<strong>缓存一致性问题</strong>。除了这种情况，还有一种硬件问题也比较重要。那就是为了使处理器内部的运算单元能够尽量的被充分利用，处理器可能会对输入代码进行乱序执行处理。这就是<strong>处理器优化</strong>。</p><p>除了现在很多流行的处理器会对代码进行优化乱序处理，很多编程语言的编译器也会有类似的优化，比如Java虚拟机的即时编译器（JIT）也会做<strong>指令重排</strong>。</p><p>可想而知，如果任由处理器优化和编译器对指令重排的话，就可能导致各种各样的问题。</p><blockquote><p>关于员工组织调整的情况，如果允许人事部在接到多个命令后进行随意拆分乱序执行或者重排的话，那么对于这个员工以及这家公司的影响是非常大的。</p></blockquote><p>并发编程的问题</p><p>前面说的和硬件有关的概念你可能听得有点蒙，还不知道他到底和软件有啥关系。但是关于并发编程的问题你应该有所了解，比如原子性问题，可见性问题和有序性问题。</p><p>其实，原子性问题，可见性问题和有序性问题。是人们抽象定义出来的。而这个抽象的底层问题就是前面提到的缓存一致性问题、处理器优化问题和指令重排问题等。</p><p>这里简单回顾下这三个问题，并不准备深入展开，感兴趣的读者可以自行学习。我们说，并发编程，为了保证数据的安全，需要满足以下三个特性：</p><p><strong>原子性</strong>是指在一个操作中就是cpu不可以在中途暂停然后再调度，既不被中断操作，要不执行完成，要不就不执行。</p><p><strong>可见性</strong>是指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值。</p><p><strong>有序性</strong>即程序执行的顺序按照代码的先后顺序执行。</p><p>有没有发现，<strong>缓存一致性问题</strong>其实就是<strong>可见性问题</strong>。而<strong>处理器优化</strong>是可以导致<strong>原子性问题</strong>的。<strong>指令重排</strong>即会导致<strong>有序性问题</strong>。所以，后文将不再提起硬件层面的那些概念，而是直接使用大家熟悉的原子性、可见性和有序性。</p><h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><p>什么是内存模型</p><p>前面提到的，缓存一致性问题、处理器器优化的指令重排问题是硬件的不断升级导致的。那么，有没有什么机制可以很好的解决上面的这些问题呢？</p><h2 id="-2"><a href="#-2" class="headerlink" title=""></a></h2><p>最简单直接的做法就是废除处理器和处理器的优化技术、废除CPU缓存，让CPU直接和主存交互。但是，这么做虽然可以保证多线程下的并发问题。但是，这就有点因噎废食了。</p><p>所以，为了保证并发编程中可以满足原子性、可见性及有序性。有一个重要的概念，那就是——内存模型。</p><p><strong>为了保证共享内存的正确性（可见性、有序性、原子性），内存模型定义了共享内存系统中多线程程序读写操作行为的规范。</strong>通过这些规则来规范对内存的读写操作，从而保证指令执行的正确性。它与处理器有关、与缓存有关、与并发有关、与编译器也有关。他解决了CPU多级缓存、处理器优化、指令重排等导致的内存访问问题，保证了并发场景下的一致性、原子性和有序性。</p><p>内存模型解决并发问题主要采用两种方式：<strong>限制处理器优化</strong>和<strong>使用内存屏障</strong>。本文就不深入底层原理来展开介绍了，感兴趣的朋友可以自行学习。</p><h2 id="-3"><a href="#-3" class="headerlink" title=""></a></h2><p>什么是Java内存模型</p><p>前面介绍过了计算机内存模型，这是解决多线程场景下并发问题的一个重要规范。那么具体的实现是如何的呢，不同的编程语言，在实现上可能有所不同。</p><p>我们知道，Java程序是需要运行在Java虚拟机上面的，<strong>Java内存模型（Java Memory Model ,JMM）就是一种符合内存模型规范的，屏蔽了各种硬件和操作系统的访问差异的，保证了Java程序在各种平台下对内存的访问都能保证效果一致的机制及规范。</strong></p><p>提到Java内存模型，一般指的是JDK 5 开始使用的新的内存模型，主要由JSR-133: JavaTM Memory Model and Thread Specification 描述。感兴趣的可以参看下这份PDF文档（<a href="http://www.cs.umd.edu/~pugh/java/memoryModel/jsr133.pdf%EF%BC%89">http://www.cs.umd.edu/~pugh/java/memoryModel/jsr133.pdf）</a></p><p>Java内存模型规定了所有的变量都存储在主内存中，每条线程还有自己的工作内存，线程的工作内存中保存了该线程中是用到的变量的主内存副本拷贝，线程对变量的所有操作都必须在工作内存中进行，而不能直接读写主内存。不同的线程之间也无法直接访问对方工作内存中的变量，线程间变量的传递均需要自己的工作内存和主存之间进行数据同步进行。</p><p>而JMM就作用于工作内存和主存之间数据同步过程。他规定了如何做数据同步以及什么时候做数据同步。</p><p><img src="https://ws1.sinaimg.cn/large/7108d6c2gy1fyjafgo4uoj20b10abh1f.jpg"></p><p>这里面提到的主内存和工作内存，读者可以简单的类比成计算机内存模型中的主存和缓存的概念。特别需要注意的是，主内存和工作内存与JVM内存结构中的Java堆、栈、方法区等并不是同一个层次的内存划分，无法直接类比。《深入理解Java虚拟机》中认为，如果一定要勉强对应起来的话，从变量、主内存、工作内存的定义来看，主内存主要对应于Java堆中的对象实例数据部分。工作内存则对应于虚拟机栈中的部分区域。</p><p><strong>所以，再来总结下，JMM是一种规范，目的是解决由于多线程通过共享内存进行通信时，存在的本地内存数据不一致、编译器会对代码指令重排序、处理器会对代码乱序执行等带来的问题。目的是保证并发编程场景中的原子性、可见性和有序性。</strong></p><h2 id="-4"><a href="#-4" class="headerlink" title=""></a></h2><p>Java内存模型的实现</p><p>了解Java多线程的朋友都知道，在Java中提供了一系列和并发处理相关的关键字，比如<code>volatile</code>、<code>synchronized</code>、<code>final</code>、<code>concurren</code>包等。其实这些就是Java内存模型封装了底层的实现后提供给程序员使用的一些关键字。</p><p>在开发多线程的代码的时候，我们可以直接使用<code>synchronized</code>等关键字来控制并发，从来就不需要关心底层的编译器优化、缓存一致性等问题。所以，<strong>Java内存模型，除了定义了一套规范，还提供了一系列原语，封装了底层实现后，供开发者直接使用。</strong></p><p>本文并不准备把所有的关键字逐一介绍其用法，因为关于各个关键字的用法，网上有很多资料。读者可以自行学习。本文还有一个重点要介绍的就是，我们前面提到，并发编程要解决原子性、有序性和一致性的问题，我们就再来看下，在Java中，分别使用什么方式来保证。</p><h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>在Java中，为了保证原子性，提供了两个高级的字节码指令<code>monitorenter</code>和<code>monitorexit</code>。在<a href="http://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650120537&idx=1&sn=f56201217c0ca6fde45ee12965b56296&chksm=f36bbc78c41c356ee363367addcdc0b311afb2f9df86a7ee20d21348b3332fd64f273d6028ca&scene=21#wechat_redirect">synchronized的实现原理</a>文章中，介绍过，这两个字节码，在Java中对应的关键字就是<code>synchronized</code>。</p><p>因此，在Java中可以使用<code>synchronized</code>来保证方法和代码块内的操作是原子性的。</p><h3 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h3><p>Java内存模型是通过在变量修改后将新值同步回主内存，在变量读取前从主内存刷新变量值的这种依赖主内存作为传递媒介的方式来实现的。</p><p>Java中的<code>volatile</code>关键字提供了一个功能，那就是被其修饰的变量在被修改后可以立即同步到主内存，被其修饰的变量在每次是用之前都从主内存刷新。因此，可以使用<code>volatile</code>来保证多线程操作时变量的可见性。</p><p>除了<code>volatile</code>，Java中的<code>synchronized</code>和<code>final</code>两个关键字也可以实现可见性。只不过实现方式不同，这里不再展开了。</p><h3 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h3><p>在Java中，可以使用<code>synchronized</code>和<code>volatile</code>来保证多线程之间操作的有序性。实现方式有所区别：</p><p><code>volatile</code>关键字会禁止指令重排。<code>synchronized</code>关键字保证同一时刻只允许一条线程操作。</p><p>好了，这里简单的介绍完了Java并发编程中解决原子性、可见性以及有序性可以使用的关键字。读者可能发现了，好像<code>synchronized</code>关键字是万能的，他可以同时满足以上三种特性，这其实也是很多人滥用<code>synchronized</code>的原因。</p><p>但是<code>synchronized</code>是比较影响性能的，虽然编译器提供了很多锁优化技术，但是也不建议过度使用。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术小栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
             
         </tags>
       
@@ -4433,7 +4483,7 @@
       <link href="/2017/09/07/%E5%B7%A5%E5%85%B7/%20ssh%20%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
       <url>/2017/09/07/%E5%B7%A5%E5%85%B7/%20ssh%20%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。<span id="more"></span> 一般在终端上通过 ssh 命令进行远程服务器登录。</p></blockquote><h3 id="远程登录服务器命令-ssh"><a href="#远程登录服务器命令-ssh" class="headerlink" title="远程登录服务器命令 ssh"></a>远程登录服务器命令 ssh</h3><ul><li>ssh username@ip地址</li></ul><p>例如： ssh <a href="mailto:&#114;&#111;&#111;&#x74;&#x40;&#x31;&#x39;&#x32;&#x2e;&#49;&#54;&#x38;&#46;&#49;&#x31;&#x2e;&#50;">&#114;&#111;&#111;&#x74;&#x40;&#x31;&#x39;&#x32;&#x2e;&#49;&#54;&#x38;&#46;&#49;&#x31;&#x2e;&#50;</a></p><p>but 服务端一般多台服务器，好几个ip地址，记住这么多ip地址好难，但是根据不同服务器的用途给他们起个别名，就方便多了，能想到自然能实现，这里简述下具体玩法~</p><h3 id="给服务器起个别名"><a href="#给服务器起个别名" class="headerlink" title="给服务器起个别名"></a>给服务器起个别名</h3><ol><li><p>在 <code>~/.ssh/</code> 目录下，新建一个config（有的话，就不用建了噻）</p></li><li><p>vim config 文件，进行编辑</p></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host dev</span><br><span class="line">HostName xxx.xx.xx.xx</span><br><span class="line">User root</span><br><span class="line">IdentitiesOnly <span class="built_in">yes</span></span><br></pre></td></tr></table></figure><ul><li>Host 别名 起一个自己记得住的，比如开发环境 dev 测试环境 test  ..</li><li>HostName 服务器的ip address    </li><li>User 远程登录的用户名</li><li>IdentitiesOnly yes 反正这个就配置yes</li></ul><h3 id="ssh-别名-走起"><a href="#ssh-别名-走起" class="headerlink" title="ssh 别名 走起"></a>ssh 别名 走起</h3><p>配置好文件后，直接 键入 ssh dev 就玩起来了</p>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>在Windows上时，一般通过各种客户端(putty、SecureCRT等)连接到远程服务器，而切换到了Mac上，有了强大的终端，自然要好好用起来了。<span id="more"></span> 一般在终端上通过 ssh 命令进行远程服务器登录。</p></blockquote><h3 id="远程登录服务器命令-ssh"><a href="#远程登录服务器命令-ssh" class="headerlink" title="远程登录服务器命令 ssh"></a>远程登录服务器命令 ssh</h3><ul><li>ssh username@ip地址</li></ul><p>例如： ssh <a href="mailto:&#x72;&#x6f;&#111;&#116;&#64;&#x31;&#57;&#50;&#46;&#x31;&#x36;&#x38;&#x2e;&#49;&#49;&#46;&#50;">&#x72;&#x6f;&#111;&#116;&#64;&#x31;&#57;&#50;&#46;&#x31;&#x36;&#x38;&#x2e;&#49;&#49;&#46;&#50;</a></p><p>but 服务端一般多台服务器，好几个ip地址，记住这么多ip地址好难，但是根据不同服务器的用途给他们起个别名，就方便多了，能想到自然能实现，这里简述下具体玩法~</p><h3 id="给服务器起个别名"><a href="#给服务器起个别名" class="headerlink" title="给服务器起个别名"></a>给服务器起个别名</h3><ol><li><p>在 <code>~/.ssh/</code> 目录下，新建一个config（有的话，就不用建了噻）</p></li><li><p>vim config 文件，进行编辑</p></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host dev</span><br><span class="line">HostName xxx.xx.xx.xx</span><br><span class="line">User root</span><br><span class="line">IdentitiesOnly <span class="built_in">yes</span></span><br></pre></td></tr></table></figure><ul><li>Host 别名 起一个自己记得住的，比如开发环境 dev 测试环境 test  ..</li><li>HostName 服务器的ip address    </li><li>User 远程登录的用户名</li><li>IdentitiesOnly yes 反正这个就配置yes</li></ul><h3 id="ssh-别名-走起"><a href="#ssh-别名-走起" class="headerlink" title="ssh 别名 走起"></a>ssh 别名 走起</h3><p>配置好文件后，直接 键入 ssh dev 就玩起来了</p>]]></content>
       
       
       <categories>
@@ -4508,7 +4558,7 @@
       <link href="/2017/08/25/%E6%9D%82%E8%AE%B0/%20hexo%20%E4%BB%8EWindows%20%E8%BF%81%E7%A7%BB%E5%88%B0Mac%20%E4%B8%8A%E7%BB%A7%E7%BB%AD%E7%8E%A9%E8%80%8D/"/>
       <url>/2017/08/25/%E6%9D%82%E8%AE%B0/%20hexo%20%E4%BB%8EWindows%20%E8%BF%81%E7%A7%BB%E5%88%B0Mac%20%E4%B8%8A%E7%BB%A7%E7%BB%AD%E7%8E%A9%E8%80%8D/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>最近刚刚入手Mac，各种体验Mac的妙处，后面有时间把总结的各种坑记录下，这次先把基本的工具搬迁过来~</p><p>hexo 的搬家路： windows -&gt; mac </p></blockquote><h2 id="迁移思路"><a href="#迁移思路" class="headerlink" title="迁移思路"></a>迁移思路</h2><ul><li>在mac上安装好 <code>hexo</code>，初始化根目录；</li><li>然后生成新的 <code>SSH key</code>，并将其添加到 <code>github</code>；</li><li>将Windows上的资源、配置复制、直接粘贴覆盖Mac上对应的目录。</li></ul><h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p><strong>安装 node&#x2F;git</strong></p><p>homebrew 安装：</p><p>​brew install node</p><p>​brew install git</p><p><strong>安装 hexo</strong></p><p>用 node 的 npm 安装 hexo：</p><pre><code>    npm install hexo-cli -g</code></pre><ul><li><p>每个版本安装方式可能不一样，这一步需要异步到 官网 </p></li><li><p><a href="https://hexo.io/">hexo 官网</a></p></li></ul><p><strong>初始化 hexo</strong></p><p>hexo init blog<br>cd blog<br>npm install<br>hexo server</p><p>启动成功</p><pre><code>    INFO  Start processing    INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</code></pre><p><strong>生成 SSH key</strong><br>先检查一下本机的 SSH key：<code>cd ~/.ssh</code>；<br>生成 SSH key：<code>ssh-keygen -t rsa -C &quot;xxxx@xxxx.com&quot;</code>，<a href="mailto:&#x78;&#x78;&#120;&#x78;&#x40;&#x78;&#120;&#x78;&#120;&#x2e;&#99;&#x6f;&#109;">&#x78;&#x78;&#120;&#x78;&#x40;&#x78;&#120;&#x78;&#120;&#x2e;&#99;&#x6f;&#109;</a> 为自己注册 github 的邮箱；</p><p><strong>添加 SSH key 至 github</strong><br>进入.ssh文件夹： <code>cd ~/.ssh</code>，然后打开里面的 id_rsa.pub文件，里面的内容就是 SSH key，复制全部内容；</p><p>网页打开 github 的设置：<em>Settings -&gt; SSH and GPG keys</em>，点击绿色的按钮 <em>New SSH key</em>，然后在输入框中输入刚才复制的内容；</p><p>使用coding的，同理</p><p>测试一下是否成功：<code>ssh git@github.com</code>，<br>看到以下即成功：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PTY allocation request failed on channel 0</span><br><span class="line">Hi gjincai! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line">Connection to github.com closed.</span><br></pre></td></tr></table></figure><p><strong>文件配置转移</strong><br>windows 下的博客根目录 hexo，复制该目录下的：_config.yml, scaffolds, source, themes；<br>把这几个文件复制到mac的目录下，直接覆盖替换相同的文件文件夹。</p><p>哦了！在mac上愉快的玩耍 <code>hexo</code> 吧！</p><ul><li>注意： 如果在 <code>hexo d</code> 部署不成功，有可能是缺少了模块，</li></ul><p>安装以下再尝试：<code>npm install hexo-deployer-git --save</code></p>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>最近刚刚入手Mac，各种体验Mac的妙处，后面有时间把总结的各种坑记录下，这次先把基本的工具搬迁过来~</p><p>hexo 的搬家路： windows -&gt; mac </p></blockquote><h2 id="迁移思路"><a href="#迁移思路" class="headerlink" title="迁移思路"></a>迁移思路</h2><ul><li>在mac上安装好 <code>hexo</code>，初始化根目录；</li><li>然后生成新的 <code>SSH key</code>，并将其添加到 <code>github</code>；</li><li>将Windows上的资源、配置复制、直接粘贴覆盖Mac上对应的目录。</li></ul><h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p><strong>安装 node&#x2F;git</strong></p><p>homebrew 安装：</p><p>​brew install node</p><p>​brew install git</p><p><strong>安装 hexo</strong></p><p>用 node 的 npm 安装 hexo：</p><pre><code>    npm install hexo-cli -g</code></pre><ul><li><p>每个版本安装方式可能不一样，这一步需要异步到 官网 </p></li><li><p><a href="https://hexo.io/">hexo 官网</a></p></li></ul><p><strong>初始化 hexo</strong></p><p>hexo init blog<br>cd blog<br>npm install<br>hexo server</p><p>启动成功</p><pre><code>    INFO  Start processing    INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</code></pre><p><strong>生成 SSH key</strong><br>先检查一下本机的 SSH key：<code>cd ~/.ssh</code>；<br>生成 SSH key：<code>ssh-keygen -t rsa -C &quot;xxxx@xxxx.com&quot;</code>，<a href="mailto:&#x78;&#120;&#x78;&#x78;&#x40;&#x78;&#120;&#x78;&#x78;&#x2e;&#99;&#x6f;&#109;">&#x78;&#120;&#x78;&#x78;&#x40;&#x78;&#120;&#x78;&#x78;&#x2e;&#99;&#x6f;&#109;</a> 为自己注册 github 的邮箱；</p><p><strong>添加 SSH key 至 github</strong><br>进入.ssh文件夹： <code>cd ~/.ssh</code>，然后打开里面的 id_rsa.pub文件，里面的内容就是 SSH key，复制全部内容；</p><p>网页打开 github 的设置：<em>Settings -&gt; SSH and GPG keys</em>，点击绿色的按钮 <em>New SSH key</em>，然后在输入框中输入刚才复制的内容；</p><p>使用coding的，同理</p><p>测试一下是否成功：<code>ssh git@github.com</code>，<br>看到以下即成功：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PTY allocation request failed on channel 0</span><br><span class="line">Hi gjincai! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line">Connection to github.com closed.</span><br></pre></td></tr></table></figure><p><strong>文件配置转移</strong><br>windows 下的博客根目录 hexo，复制该目录下的：_config.yml, scaffolds, source, themes；<br>把这几个文件复制到mac的目录下，直接覆盖替换相同的文件文件夹。</p><p>哦了！在mac上愉快的玩耍 <code>hexo</code> 吧！</p><ul><li>注意： 如果在 <code>hexo d</code> 部署不成功，有可能是缺少了模块，</li></ul><p>安装以下再尝试：<code>npm install hexo-deployer-git --save</code></p>]]></content>
       
       
       <categories>
@@ -5479,31 +5529,6 @@
     
     
     <entry>
-      <title>JAVA 文章收藏</title>
-      <link href="/2016/11/01/java/%20JAVA%20%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/"/>
-      <url>/2016/11/01/java/%20JAVA%20%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/</url>
-      
-        <content type="html"><![CDATA[<p>整理了一些不错的java文章，感谢作者们的贡献</p><ul><li><a href="http://www.importnew.com/15605.html#impl_equals">Java习惯用法总结</a></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术小栈 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Chrome 效率插件</title>
       <link href="/2016/11/01/%E5%B7%A5%E5%85%B7/Chrome%20%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/"/>
       <url>/2016/11/01/%E5%B7%A5%E5%85%B7/Chrome%20%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/</url>
@@ -5521,6 +5546,31 @@
         <tags>
             
             <tag> Chrome 效率插件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JAVA 文章收藏</title>
+      <link href="/2016/11/01/java/%20JAVA%20%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/"/>
+      <url>/2016/11/01/java/%20JAVA%20%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/</url>
+      
+        <content type="html"><![CDATA[<p>整理了一些不错的java文章，感谢作者们的贡献</p><ul><li><a href="http://www.importnew.com/15605.html#impl_equals">Java习惯用法总结</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术小栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
             
         </tags>
       
@@ -5804,9 +5854,9 @@
     
     
     <entry>
-      <title>CI 持续集成</title>
-      <link href="/2016/09/08/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/CI%20%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/"/>
-      <url>/2016/09/08/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/CI%20%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</url>
+      <title>CD 持续发布</title>
+      <link href="/2016/09/08/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/CD%20%E6%8C%81%E7%BB%AD%E5%8F%91%E5%B8%83/"/>
+      <url>/2016/09/08/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/CD%20%E6%8C%81%E7%BB%AD%E5%8F%91%E5%B8%83/</url>
       
         <content type="html"><![CDATA[<h1 id="关于持续集成，持续交付（CI-x2F-CD）"><a href="#关于持续集成，持续交付（CI-x2F-CD）" class="headerlink" title="关于持续集成，持续交付（CI&#x2F;CD）"></a>关于持续集成，持续交付（CI&#x2F;CD）</h1><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><ul><li><a href="https://bitnami.com/stack/jenkins">jenkins</a></li></ul>]]></content>
       
@@ -5829,9 +5879,9 @@
     
     
     <entry>
-      <title>CD 持续发布</title>
-      <link href="/2016/09/08/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/CD%20%E6%8C%81%E7%BB%AD%E5%8F%91%E5%B8%83/"/>
-      <url>/2016/09/08/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/CD%20%E6%8C%81%E7%BB%AD%E5%8F%91%E5%B8%83/</url>
+      <title>CI 持续集成</title>
+      <link href="/2016/09/08/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/CI%20%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/"/>
+      <url>/2016/09/08/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/CI%20%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</url>
       
         <content type="html"><![CDATA[<h1 id="关于持续集成，持续交付（CI-x2F-CD）"><a href="#关于持续集成，持续交付（CI-x2F-CD）" class="headerlink" title="关于持续集成，持续交付（CI&#x2F;CD）"></a>关于持续集成，持续交付（CI&#x2F;CD）</h1><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><ul><li><a href="https://bitnami.com/stack/jenkins">jenkins</a></li></ul>]]></content>
       
@@ -5904,31 +5954,6 @@
     
     
     <entry>
-      <title>Linux sz 与 rz 命令</title>
-      <link href="/2016/09/01/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20Linux%20sz%20%E4%B8%8E%20rz%20%E5%91%BD%E4%BB%A4/"/>
-      <url>/2016/09/01/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20Linux%20sz%20%E4%B8%8E%20rz%20%E5%91%BD%E4%BB%A4/</url>
-      
-        <content type="html"><![CDATA[<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><blockquote><p>Linux 使用过程中，避免不了 上传，下载这样的操作，在没有FTP 工具时，通过 sz 、rz命令就可以实现上传，下载的需求。<span id="more"></span><br>但多数Linux系统默认未初始该命令，这里简单记录下sz、rz命令的安装与使用。</p></blockquote><h2 id="命令用途"><a href="#命令用途" class="headerlink" title="命令用途"></a>命令用途</h2><blockquote><p>已陈述sz 、rz可以完成上传，下载的这样的操作，具体对应为：</p></blockquote><pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sz：（send） 将选定的文件发送（send）到本地机器</span><br><span class="line">rz：（receive）从本地选择文件上传到Linux服务器</span><br></pre></td></tr></table></figure></code></pre><h2 id="命令安装"><a href="#命令安装" class="headerlink" title="命令安装"></a>命令安装</h2><h3 id="1-编译安装"><a href="#1-编译安装" class="headerlink" title="1.编译安装"></a>1.编译安装</h3><p>root 账号登陆后，依次执行以下命令：</p><pre><code>cd /tmpwget http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gztar zxvf lrzsz-0.12.20.tar.gz &amp;&amp; cd lrzsz-0.12.20./configure &amp;&amp; make &amp;&amp; make install</code></pre><ul><li><p>安装过程默认把lsz和lrz安装到了&#x2F;usr&#x2F;local&#x2F;bin&#x2F;目录下，现在我们并不能直接使用，下面创建软链接，并命名为rz&#x2F;sz：</p><p>  cd &#x2F;usr&#x2F;bin<br>  ln -s &#x2F;usr&#x2F;local&#x2F;bin&#x2F;lrz rz<br>  ln -s &#x2F;usr&#x2F;local&#x2F;bin&#x2F;lsz sz</p></li></ul><h3 id="2-yum安装"><a href="#2-yum安装" class="headerlink" title="2.yum安装"></a>2.yum安装</h3><p>root 账号登陆后执行以下命令：</p><pre><code>yum install -y lrzsz</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul><li><p>sz将文件发送到本地：</p><pre><code>   # sz filename</code></pre></li><li><p>rz 将本地的文件上传至Linux环境上：</p><pre><code>  # rz</code></pre></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术小栈 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Linux </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>idea 跳转到资源管理器的几种方式</title>
       <link href="/2016/09/01/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20idea%20%E8%B7%B3%E8%BD%AC%E5%88%B0%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"/>
       <url>/2016/09/01/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20idea%20%E8%B7%B3%E8%BD%AC%E5%88%B0%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
@@ -5946,6 +5971,31 @@
         <tags>
             
             <tag> idea </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux sz 与 rz 命令</title>
+      <link href="/2016/09/01/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20Linux%20sz%20%E4%B8%8E%20rz%20%E5%91%BD%E4%BB%A4/"/>
+      <url>/2016/09/01/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%20Linux%20sz%20%E4%B8%8E%20rz%20%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><blockquote><p>Linux 使用过程中，避免不了 上传，下载这样的操作，在没有FTP 工具时，通过 sz 、rz命令就可以实现上传，下载的需求。<span id="more"></span><br>但多数Linux系统默认未初始该命令，这里简单记录下sz、rz命令的安装与使用。</p></blockquote><h2 id="命令用途"><a href="#命令用途" class="headerlink" title="命令用途"></a>命令用途</h2><blockquote><p>已陈述sz 、rz可以完成上传，下载的这样的操作，具体对应为：</p></blockquote><pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sz：（send） 将选定的文件发送（send）到本地机器</span><br><span class="line">rz：（receive）从本地选择文件上传到Linux服务器</span><br></pre></td></tr></table></figure></code></pre><h2 id="命令安装"><a href="#命令安装" class="headerlink" title="命令安装"></a>命令安装</h2><h3 id="1-编译安装"><a href="#1-编译安装" class="headerlink" title="1.编译安装"></a>1.编译安装</h3><p>root 账号登陆后，依次执行以下命令：</p><pre><code>cd /tmpwget http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gztar zxvf lrzsz-0.12.20.tar.gz &amp;&amp; cd lrzsz-0.12.20./configure &amp;&amp; make &amp;&amp; make install</code></pre><ul><li><p>安装过程默认把lsz和lrz安装到了&#x2F;usr&#x2F;local&#x2F;bin&#x2F;目录下，现在我们并不能直接使用，下面创建软链接，并命名为rz&#x2F;sz：</p><p>  cd &#x2F;usr&#x2F;bin<br>  ln -s &#x2F;usr&#x2F;local&#x2F;bin&#x2F;lrz rz<br>  ln -s &#x2F;usr&#x2F;local&#x2F;bin&#x2F;lsz sz</p></li></ul><h3 id="2-yum安装"><a href="#2-yum安装" class="headerlink" title="2.yum安装"></a>2.yum安装</h3><p>root 账号登陆后执行以下命令：</p><pre><code>yum install -y lrzsz</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul><li><p>sz将文件发送到本地：</p><pre><code>   # sz filename</code></pre></li><li><p>rz 将本地的文件上传至Linux环境上：</p><pre><code>  # rz</code></pre></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术小栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
             
         </tags>
       
