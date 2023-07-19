@@ -6,7 +6,7 @@
   <link href="http://ai.mak.cn/atom.xml" rel="self"/>
   
   <link href="http://ai.mak.cn/"/>
-  <updated>2023-06-19T01:00:36.187Z</updated>
+  <updated>2023-07-19T00:50:43.267Z</updated>
   <id>http://ai.mak.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows Server 默认只能2个用户远程桌面登录</title>
+    <link href="http://ai.mak.cn/2023/07/18/%E5%B7%A5%E5%85%B7/Windows%20Server%20%E9%BB%98%E8%AE%A4%E5%8F%AA%E8%83%BD2%E4%B8%AA%E7%94%A8%E6%88%B7%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E7%99%BB%E5%BD%95/"/>
+    <id>http://ai.mak.cn/2023/07/18/%E5%B7%A5%E5%85%B7/Windows%20Server%20%E9%BB%98%E8%AE%A4%E5%8F%AA%E8%83%BD2%E4%B8%AA%E7%94%A8%E6%88%B7%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E7%99%BB%E5%BD%95/</id>
+    <published>2023-07-17T16:00:00.000Z</published>
+    <updated>2023-07-19T00:50:43.267Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>Windows Server默认情况下，只能同时登录2个用户，如果第3个用户远程登录，则必须要踢掉1个才能继续登录。</p></blockquote><p>解决办法：</p><p>1、  gpedit.msc,回车打开组策略编辑器,依次展开计算机配置-&gt;管理模板-&gt;windows组件-&gt;终端服务,选中终端服务,在窗口右边找到【限制连接数量】修改为合适的数量</p><p>2、【将远程桌面服务用户限制到单独的远程桌面服务会话】修改为禁用</p><p>3、 执行命令 gpupdate &#x2F;Force  更新组策略</p><blockquote><p><strong>注意</strong> win 套娃问题，win + R 等快捷键打开运行窗口输入的命令，配置成本机的策略组。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Windows Server默认情况下，只能同时登录2个用户，如果第3个用户远程登录，则必须要踢掉1个才能继续登录。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;解决办法：&lt;/p&gt;
+&lt;p&gt;1、  gpedit.msc,回车打开组策略编辑器,依次展开计</summary>
+      
+    
+    
+    
+    <category term="工具" scheme="http://ai.mak.cn/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="运维" scheme="http://ai.mak.cn/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>离线安装 sysbench</title>
@@ -506,30 +534,6 @@
     
     
     <category term="Linux" scheme="http://ai.mak.cn/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>浦口龙虎巷</title>
-    <link href="http://ai.mak.cn/2023/02/05/%E6%9D%82%E8%AE%B0/%E6%B5%A6%E5%8F%A3%E9%BE%99%E8%99%8E%E5%B7%B7/"/>
-    <id>http://ai.mak.cn/2023/02/05/%E6%9D%82%E8%AE%B0/%E6%B5%A6%E5%8F%A3%E9%BE%99%E8%99%8E%E5%B7%B7/</id>
-    <published>2023-02-04T16:00:00.000Z</published>
-    <updated>2023-02-07T12:38:40.378Z</updated>
-    
-    <content type="html"><![CDATA[<p>偶然路过这条街巷，很多建筑像北方的风格，游览一番，也了解了一段历史～龙虎巷，沿线是津派建筑，最早的建筑建于清光绪三十四年，清末民初时期随着浦镇车辆厂在南门建立，职工在此在原有明清建筑(徽派）的基础上改建后用于办公居住，逐步形成了北方津派建筑群，是近现代南京大工业初始期产业形成的重要证物，这里住民北方籍居多（天津、唐山人等），老南门话也夹杂了许多天津味，显得比较俏皮，历史的车轮缓缓前进，往日的喧闹已经回归平淡与平静，一座座老房子已经挂上了文保的标牌与简介，就像老房子里的一盆盆小花，一树树盆景，宁静而安详。</p><iframe height=498 width=510 src='' frameborder=0 'allowfullscreen'></iframe>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;偶然路过这条街巷，很多建筑像北方的风格，游览一番，也了解了一段历史～龙虎巷，沿线是津派建筑，最早的建筑建于清光绪三十四年，清末民初时期随着浦镇车辆厂在南门建立，职工在此在原有明清建筑(徽派）的基础上改建后用于办公居住，逐步形成了北方津派建筑群，是近现代南京大工业初始期产业形</summary>
-      
-    
-    
-    
-    <category term="杂记" scheme="http://ai.mak.cn/categories/%E6%9D%82%E8%AE%B0/"/>
-    
-    
-    <category term="杂记" scheme="http://ai.mak.cn/tags/%E6%9D%82%E8%AE%B0/"/>
     
   </entry>
   
