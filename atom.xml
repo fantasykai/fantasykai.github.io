@@ -6,7 +6,7 @@
   <link href="http://ai.mak.cn/atom.xml" rel="self"/>
   
   <link href="http://ai.mak.cn/"/>
-  <updated>2023-09-09T15:46:12.334Z</updated>
+  <updated>2023-10-08T07:14:41.915Z</updated>
   <id>http://ai.mak.cn/</id>
   
   <author>
@@ -15,6 +15,57 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>运营商的网络架构</title>
+    <link href="http://ai.mak.cn/2023/10/08/%E7%BD%91%E7%BB%9C/%E8%BF%90%E8%90%A5%E5%95%86%E7%9A%84%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E6%98%AF%E4%BB%80%E4%B9%88/"/>
+    <id>http://ai.mak.cn/2023/10/08/%E7%BD%91%E7%BB%9C/%E8%BF%90%E8%90%A5%E5%95%86%E7%9A%84%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E6%98%AF%E4%BB%80%E4%B9%88/</id>
+    <published>2023-10-07T16:00:00.000Z</published>
+    <updated>2023-10-08T07:14:41.915Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="http://www.jx-ev.com/info/4004.html">转载自</a></p></blockquote><h2 id="本文目录一览："><a href="#本文目录一览：" class="headerlink" title="本文目录一览："></a>本文目录一览：</h2><ul><li>1、<a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%EF%BC%9F">什么是网络架构？</a></li><li>2、<a href="#NSA%E5%92%8CSA%E7%BD%91%E7%BB%9C%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB?">NSA和SA网络有什么区别？</a></li><li>3、<a href="#%E7%A7%BB%E5%8A%A8%E7%BD%91%E7%BB%9C%E4%B8%8E%E8%81%94%E9%80%9A%E6%9E%84%E9%80%A0%E5%8E%9F%E7%90%86">移动网络与联通构造原理</a></li><li>4、<a href="#%E4%B8%89%E5%A4%A7%E8%BF%90%E8%90%A5%E5%95%86%EF%BC%88%E7%A7%BB%E5%8A%A8%E3%80%81%E7%94%B5%E4%BF%A1%E3%80%81%E8%81%94%E9%80%9A%EF%BC%89%E7%9A%84%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84%E8%A7%A3%E6%9E%90">三大运营商（移动、电信、联通）的组织架构解析</a></li><li>5、<a href="#%E7%94%B5%E4%BF%A1%E8%BF%90%E8%90%A5%E5%95%86%E7%9A%84%E7%BD%91%E7%BB%9C%E5%B1%82%E6%AC%A1">电信运营商的网络层次</a></li></ul><h2 id="什么是网络架构？"><a href="#什么是网络架构？" class="headerlink" title="什么是网络架构？"></a>什么是网络架构？</h2><p>网络架构是进行通信连接的一种网络结构。</p><p>网络架构是为设计、构建和管理一个通信网络提供一个构架和技术基础的蓝图。网络构架定义了数据网络通信系统的每个方面，包括但不限于用户使用的接口类型、使用的网络协议和可能使用的网络布线的类型。</p><p>网络架构典型的有一个分层结构。分层是一种现代的网络设计原理，它将通信任务划分成很多更小的部分，每个部分完成一个特定的子任务和用小数量良好定义的方式与其它部分相结合。</p><p>扩展资料：</p><p>使用网络架构注意事项：</p><p>1、动态多路径</p><p>能够通过多个WAN链路对流量进行负载均衡并不是一项新功能。但是，在传统的WAN中，此功能很难配置，并且通常以静态方式将流量分配给给定的WAN链路。即使面对诸如拥塞链路之类的负面拥塞，也不能改变给定WAN链路的流量分配。</p><p>2、应用程序级别</p><p>如果应用程序的性能开始下降，因为该应用程序使用的托管虚拟化网络功能（VNF）的物理服务器的CPU利用率过高，则VNF可能会移动到利用率较低的服务器中。</p><p>3、能见度</p><p>有许多工具声称可以为网络组织提供对传统WAN的完全可见性，以便解决与网络和&#x2F;或应用程序性能相关的问题。但是，无论是这些工具的缺陷还是网络组织使用的故障排除流程，采用新的WAN架构将使故障排除任务变得更加复杂。</p><p>参考资料来源：百度百科：LTE网络架构</p><h2 id="NSA和SA网络有什么区别？"><a href="#NSA和SA网络有什么区别？" class="headerlink" title="NSA和SA网络有什么区别？"></a>NSA和SA网络有什么区别？</h2><p>1、核心不同：</p><p>NSA新建5G基站，采用4G核心网或新建5G核心网；SA新建5G基站和5G核心网。</p><p>2、运营商不同：</p><p>从运营商的角度来说，NSA（非独立组网）可以看做是5G初期的一种过渡方案，而SA（独立组网）才是5G的完全体。</p><p>由于NSA组网需要4G、5G公用核心网，因此这种方式将不能支持5G低时延的特性。随着5G网络的建设，绝大多数运营商都将逐渐转向SA组网，或采用SA&#x2F;NSA混合组网的方式。</p><p>3、网络架构不同：</p><p>NSA是融合现在4G基站和网络架构部署的5G网络。因此，其建设速度非常快，直接利用4G基站加装5G基站。</p><p>即可实现5G网络覆盖。但由于架构使用的还是4G网络架构，导致5G网络的海量物联网接入和低时延特性无法发挥。而SA组网被称为独立组网。换言之就是重新建设5G基站和后端5G网络，从而完全实现5G网络的所有特性和功能。</p><h2 id="移动网络与联通构造原理"><a href="#移动网络与联通构造原理" class="headerlink" title="移动网络与联通构造原理"></a>移动网络与联通构造原理</h2><p>移动网络和联通网络构造原理都属于移动通信网络体系架构：网络架构，该架构可分为三大模块：网络部署场景、接入网和核心网。</p><p>具体的构造原理和试验如下：</p><p>3.1.1中国移动黑龙江公司网络部署场景设计方案</p><p>1.室外借助分布式天线（distributedantennasystem，DAS）和大规模MIMO（multipleinputmulti-pleoutput）配备基站，天线元件分散放置在小区，且通过光纤与基站连接。移动事物（如终端）部署Mo-bileFemtocell，可以动态地改变其到运营商核心网络的连接。同时，部署虚拟蜂窝作为宏蜂窝的补充，提升了室外覆盖率。</p><p>2.室内用户需要与安装在室外建筑的大型天线阵列的室内AP进行通信，这样就可以利用多种适用于短距离通信的技术实现高速率传输，比如60GHz毫米波通信，可以解决频谱稀缺问题。</p><p>3.1.2 中国移动黑龙江公司接入网设计方案</p><p>5G通信网络接入网部署中，采用新型的分布式基站进行组网把宏基站的部分载波通过标准的CPRI接口拉远实现分布式组网，也就是将传统基站的基带处理部分（BBU）和射频收发信机部分（RRU）设计成单独的模块。分布式基站不仅带来快速、便捷的网络部署，而且有利于大幅降低运营商建网的成本。由于无线频谱资源的高价格、高频通信技术的使用，使原有基站覆盖密度越来越大，因此必须对无线接入侧的网络做相应的调整，才能保证5G网络下的无线带宽及物联需求的应用。</p><p>CoP(CPRI over Packet)承载技术是承接5G通信网络接入网中的研究和部署重点。为满足业务需求和基站承载，需要建立一种新的承载技术架构来满足云通信的需求，现通过以下几点方案进行接入网部署：</p><p>在RRU增加的情况下使其满足免机房需要，新的CoP FO 设备能跟RRU供址部署，建立成一个新的前传网络（Fronthanl）,通过CoP FO 设备将RRU进行汇聚传给接入侧的A设备。该方式针对现有IP RAN设备基本无需改动，只需要在原有的设备中插入带有CRPI协议的新增板卡就可以工作。</p><p>对于Fronthanl接入侧的保护机制有CPRI接口和ETH接口；网络侧保护机制可以采用线性“1+1”保护或环网Wrapping、Steering保护。</p><p>对于无线侧RRU的接入点模块FO是全室外模式，易部署、省机房，满足于大网络容量要求。</p><p>在组网类型上，优先选用环型拓扑结构，可以实现RRU任意的部署，实现接入设备A无源CWDM解决方案。</p><p>3.1.2 中国移动黑龙江公司核心网设计方案</p><p>1.现有核心网网元由传统平台向云平台演进</p><p>（1）RCS在互联网基地部署应用，IMS AS、CSCF&#x2F;BGCF等网元进行技术试点；</p><p>（2）控制类网元（MME、PCRF）、数据类网元（HSS、HLR）、信令转接网元（DRA）等正在研究设计阶段，成熟后马上推动现网引入；</p><p>（3）媒体转发面网元（MGW&#x2F;SBC）,根据SDN技术进行进行部署；</p><p>（4）2G、3G电路域相关网元正逐步融合、替换和退网，不再考虑运化升级。</p><p>构建以DC为中心的网络云化平台，部署基于云化架构的NFV（网络功能虚拟化），引入跨DC部署与无状态设计，并将传统核心网业务搬迁至此云化平台；</p><p>2.控制面网元功能重构</p><p>（1）业务处理节点：承接传统核心网GW&#x2F;SBC等媒体接入处理类网元的功能；</p><p>（2）融合控制接节点：承接传统核心网MME&#x2F;CSCF&#x2F;HSS等管理控制类网元和HSS的等用户数据类网元的功能；</p><p>（3）业务能力节点：承接传统核心网应用服务AS&#x2F;业务平台类网元的功能层次，同时支持提供网络能力开放和网络拓扑设置功能。</p><p>3.引入C&#x2F;U分离，并利用MEC技术构建分布式网络，保障低时延业务应用。</p><p>4.引入SBA架构、网络切片Slicing、接入无关技术Access Agnostic，为各式各样差异化需求提供on demand服务，以支撑5G业务。</p><p>3.2 5G关键技术</p><p>3.2.1 CoP(CPRI over Packet)承载技术</p><p>CoP承载技术是集成前传承载和后传承载的中心枢纽模块，采用的是高效装载技术，其由于CRPI结构化和非结构化是的数据成帧灵活，便于整个网络调节，采用光承载，继承了原有波分承载的有点，也能进一步节省传输光缆。CPRI over Packet的NGFI承载方案，具体对比指标比较如下:</p><p>3.2.2 网络功能虚拟化（net-workfunctionvirtualization，NFV）</p><p>NFV（网络功能虚拟化）利用软硬件解耦及功能抽象，以虚拟化技术降低昂贵的设备成本费，根据业务需求进行自动部署、弹性伸缩、故障隔离等步骤，让运营商可通过此极速将承载各种网络功能的通用硬件与云计算虚拟化技术相结合，实现网元虚拟化和虚拟网络可编程，简化网络升级的步骤和降低购买新专用网络硬件的成本，把网络技术重点放到部署新的网络软件上。</p><p>3.2.3 基于OFDM优化的波形和多址接入</p><p>5G NR设计过程中最重要的一项决定，就是采用基于OFDM优化的波形和多址接入技术，因为OFDM 技术被当今的 4G LTE 和 Wi-Fi 系统广泛采用，因其可扩展至大带宽应用，而具有高频谱效率和较低的数据复杂性，因此能够很好地满足 5G 要求。 OFDM 技术家族可实现多种增强功能，例如通过加窗或滤波增强频率本地化、在不同用户与服务间提高多路传输效率，以及创建单载波 OFDM 波形，实现高能效上行链路传输。</p><p>不过OFDM体系也需要创新改造，才能满足5G的需求：</p><p>\1. 通过子载波间隔扩展实现可扩展的OFDM参数配置；</p><p>\2. 通过OFDM加窗提高多路传输效率。</p><p>3.2.4 灵活的框架设计</p><p>5G NR灵活的框架设计：</p><p>\1. 可扩展的时间间隔（Scalable Transmission Time Interval (TTI)）</p><p>相比当前的 4G LTE网络，5G NR将使时延降低一个数量级。目前LTE网络中，TTI（时间间隔）固定在1 ms（毫秒）。为此，3GPP在4G演进的过程中提出一个降低时延的项目。尽管技术细节还不得而知，但这一项目的规划目标就是要将一次傅里叶变换的时延降低为目前的1&#x2F;8（即从1.14ms降低至143µs（微秒）。</p><p>\2. 自包含集成子帧（Self-contained integrated subframe）</p><p>自包含集成子帧是另一项关键技术，对降低时延、向前兼容和其他一系列5G特性意义重大。通过把数据的传输（transmission）和确认（acknowledgement）包含在一个子帧内，时延可显著降低。</p><p>\3. 先进的新型无线技术（Advanced wireless technologies）</p><p>5G必然是在充分利用现有技术的基础之上，充分创新才能实现的，而4G LTE正是目前最先进的移动网络平台，5G在演进的同时，LTE本身也还在不断进化（比如最近实现的千兆级4G+），5G不可避免地要利用目前用在4G LTE上的先进技术，如载波聚合，MIMO技术，非共享频谱的利用等等。</p><p>大规模MIMO：</p><p>MIMO（Multiple-Input Multiple-Output）技术是目前无线通信领域的一个重要创新研究项目，通过智能使用多根天线（设备端或基站端），发射或接受更多的信号空间流，能显著提高信道容量；而通过智能波束成型，将射频的能量集中在一个方向上，可以提高信号的覆盖范围。</p><p>毫米波：</p><p>全新 5G 技术正首次将频率大于 24 GHz 以上频段（通常称为毫米波）应用于移动宽带通信。大量可用的高频段频谱可提供极致数据传输速度和容量，这将重塑移动体验。但毫米波的利用并非易事，使用毫米波频段传输更容易造成路径受阻与损耗（信号衍射能力有限）。通常情况下，毫米波频段传输的信号甚至无法穿透墙体，此外，它还面临着波形和能量消耗等问题。</p><h2 id="三大运营商（移动、电信、联通）的组织架构解析"><a href="#三大运营商（移动、电信、联通）的组织架构解析" class="headerlink" title="三大运营商（移动、电信、联通）的组织架构解析"></a>三大运营商（移动、电信、联通）的组织架构解析</h2><p>1949年11月1日，国家宣布成立邮电部，中国的邮政和电信业务都被邮电部垄断。</p><p>自此至1973年期间，邮电部，邮政和电信经历多次分离、合并。</p><p>1994年7月19日，由电子部、电力部、铁道部等15家单位出资，成立了中国联合通讯有限公司。</p><p>1997年，邮电部做出在全国实施“邮电分营”的决定。同年，从邮电部分离出来的电信在纽约和香港成功上市。</p><p>2000年4月20日，中国移动通信集团公司正式成立，负责原中国电信的移动通信网络业务。</p><p>自2001年开始，国内电信业又开始了新一轮的重组，原来的卫通、铁通、网通、吉通这几家不断被兼并，最终变成了现在的移动、电信、联通三家全业务牌照运营商共存的状态。</p><p>了解完中国运营商的发展史后，大家应该都清楚了现在的三大运营商都是国资委下面的国企。</p><p>而每年暑假开始，各家运营商都会陆续开展校园招聘，以中国电信2021年春季招聘为例，招聘单位包含公司总部、全国各省公司以及各控股子公司等，分布在全国各地。之前主要由各省公司和省级子公司统一组织，近几年逐渐将招聘下放到各个地市公司。</p><p>而招聘的岗位分类和专业要求举例如下：</p><p>一般而言，招聘面向的是当年应届的国内外普通高等院校毕业的本科生和硕士，总部部门和研究院会有少量研究岗位面向博士，同时有些公司在招聘公告上也会对学校、英语、计算机等提出相应的要求。</p><p>自从2009年我国正式进入3G时代开始，就开始了中国移动、中国电信和中国联通三家运营商三分天下的格局。 随着技术的发展，除了固话、移动电话、短信、宽带等这些传统业务，运营商近些年也开始在云业务、视频业务、IT系统等新业务上发力，组织架构也随之更新。</p><p>运营商都属于重资产的国有企业，均为 集团总公司 —— 各省公司（包括同级子公司和分支机构） —— 各市公司 —— 各县公司 的架构模式，主要以地域划分，同时兼顾业务分类。例如，集团总部统筹管理全国多个省份公司，其部门和某个省公司部门的大致对应关系图如下：</p><p>举一些具体业务部门的例子来说。</p><p>市场口和客服口的相关部门：</p><p>市场部：负责各类市场政策制定和策划安排</p><p>政企客户部：针对政府、企业、商业场所等大客户提供解决方案和营销</p><p>公众客户部：针对公众客户进行市场营销，拓展家庭和个人客户市场</p><p>客服&#x2F;用户调度中心：主要负责各类客户的售后服务、以及部分售前咨询、售中业务变更等</p><p>建设维护口的部门：</p><p>负责网络规划、设备采购、建设，以及有线&#x2F;无线网络的维护、优化，保障网络平稳高效运行</p><p>信息化口的部门：</p><p>负责IT系统（BSS、OSS、MSS、EDW）的运营维护</p><p>管控相关部门：</p><p>人事、行政、法律、财务等行政管理部门</p><p>具体到三家运营商目前的组织架构划分情况来看：</p><p>一、其中目前体量最大的 中国移动： 中国移动全资拥有中国移动（香港）集团有限公司，由其控股的中国移动有限公司在国内31个省（自治区、直辖市）和香港设立全资子公司，并在香港和纽约上市。</p><p>二、 中国电信集团公司： 总部拥有22个职能部门；管辖有31个省级子分公司；另有中电信欧洲公司、澳门公司、股份公司、通信服公司、信元公司、中英海底光缆公司等。另外还包括其它一些参股公司、三产公司、物业公司等。</p><p>中国电信2005年将组织结构转变成平衡独立的前端和后端结构：前端部门包括政企客户、家庭客户以及个人客户部门；而后端部门包括其他支持和行政单位。</p><p>三、 中国联合网络通信集团有限公司： 现在的联通于2009年1月6日由原中国网通和原中国联通合并重组而成，公司在国内31个省（自治区、直辖市）和境外多个国家和地区设有分支机构。</p><p>中国联通作为第一家央企集团层面的“混改”试点企业，混改成效众说纷纭，同时在5G时代，和电信共建共享的战略成效也有待时间的检验。</p><h2 id="电信运营商的网络层次"><a href="#电信运营商的网络层次" class="headerlink" title="电信运营商的网络层次"></a>电信运营商的网络层次</h2><p>现在网络分七层分别为</p><p><strong>物理层</strong> 为数据链路层提供物理连接，在其上串行传送比特流，即所传送数据的单位是比特。此外，该层中还具有确定连接设备的电气特性和物理特性等功能。</p><p><strong>数据链路层</strong> 负责在网络节点间的线路上通过检测、流量控制和重发等手段，无差错地传送以帧为单位的数据。为做到这一点，在每一帧中必须同时带有同步、地址、差错控制及流量控制等控制信息。</p><p><strong>网络层</strong> 为了将数据分组从源（源端系统）送到目的地（目标端系统），网络层的任务就是选择合适的路由和交换节点，使源的传输层传下来的分组信息能够正确无误地按照地址找到目的地，并交付给相应的传输层，即完成网络的寻址功能。</p><p><strong>传输层</strong> 传输层是高低层之间衔接的接口层。数据传输的单位是报文，当报文较长时将它分割成若干分组,然后交给网络层进行传输。传输层是计算机网络协议分层中的最关键一层，该层以上各层将不再管理信息传输问题。</p><p><strong>会话层</strong> 该层对传输的报文提供同步管理服务。在两个不同系统的互相通信的应用进程之间建立、组织和协调交互。例如，确定是双工还是半双工工作。</p><p><strong>表示层</strong> 该层的主要任务是把所传送的数据的抽象语法变换为传送语法，即把不同计算机内部的不同表示形式转换成网络通信中的标准表示形式。此外，对传送的数据加密（或解密）、正文压缩（或还原）也是表示层的任务。</p><p><strong>应用层</strong> 该层直接面向用户，是OSI中的最高层。它的主要任务是为用户提供应用的接口，即提供不同计算机间的文件传送、访问与管理，电子邮件的内容处理，不同计算机通过网络交互访问的虚拟终端功能等。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.jx-ev.com/info/4004.html&quot;&gt;转载自&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;本文目录一览：&quot;&gt;&lt;a href=&quot;#本文目录一览：&quot; class=&quot;headerlin</summary>
+      
+    
+    
+    
+    <category term="网络" scheme="http://ai.mak.cn/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+    <category term="网络" scheme="http://ai.mak.cn/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用脚本掩盖MBP闪烁问题</title>
+    <link href="http://ai.mak.cn/2023/09/21/%E5%B7%A5%E5%85%B7/%E4%BD%BF%E7%94%A8%E8%84%9A%E6%9C%AC%E6%8E%A9%E7%9B%96MBP%E9%97%AA%E7%83%81%E9%97%AE%E9%A2%98/"/>
+    <id>http://ai.mak.cn/2023/09/21/%E5%B7%A5%E5%85%B7/%E4%BD%BF%E7%94%A8%E8%84%9A%E6%9C%AC%E6%8E%A9%E7%9B%96MBP%E9%97%AA%E7%83%81%E9%97%AE%E9%A2%98/</id>
+    <published>2023-09-20T16:00:00.000Z</published>
+    <updated>2023-09-21T06:28:55.816Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="使用脚本掩盖MBP闪烁问题"><a href="#使用脚本掩盖MBP闪烁问题" class="headerlink" title="使用脚本掩盖MBP闪烁问题"></a>使用脚本掩盖MBP闪烁问题</h2><p>如果实在维修不了，可以选择通过脚本掩盖触控栏的剧烈闪烁。</p><p>该方法参考了以下文章：</p><p><a href="https://link.zhihu.com/?target=https://medium.com/macoclock/macbook-touchbar-flicker-fix-bafa754aae13">https://medium.com/macoclock/macbook-touchbar-flicker-fix-bafa754aae13medium.com/macoclock/macbook-touchbar-flicker-fix-bafa754aae13</a></p><p>对触控栏的闪烁情况进行了观察，发现触控栏存在三种状态：</p><ul><li><strong>工作状态</strong>：不断操作电脑时，触控栏处于工作状态，闪烁轻微，影响很小；</li><li><strong>中间状态</strong>：停止操作电脑1分钟后，触控栏进入中间状态，显示内容与工作状态相同，但闪烁明显，影响较大；</li><li><strong>闲置状态</strong>：进入中间状态15秒后，触控栏进入闲置状态，不再显示内容，却闪烁剧烈，影响很大。</li></ul><h3 id="①-编辑脚本"><a href="#①-编辑脚本" class="headerlink" title="① 编辑脚本"></a>① 编辑脚本</h3><p>打开程序 <code>脚本编辑器</code>，选择 <code>新建文稿</code>，编辑脚本如下：</p><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">on</span> idle</span><br><span class="line"><span class="comment">-- 设置触控栏重置时间为59秒</span></span><br><span class="line"><span class="keyword">set</span> resetTime <span class="keyword">to</span> <span class="number">59</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 获取电脑闲置时间（纳秒，1E9纳秒=1秒）</span></span><br><span class="line"><span class="keyword">set</span> idleTime <span class="keyword">to</span> (<span class="built_in">do shell script</span> <span class="string">&quot;ioreg -c IOHIDSystem | sed -nE &#x27;s/.*\&quot;HIDIdleTime\&quot; = //p&#x27;&quot;</span>) <span class="keyword">as</span> <span class="built_in">integer</span></span><br><span class="line"><span class="comment">-- 将电脑闲置时间转换为秒</span></span><br><span class="line"><span class="keyword">set</span> idleTime <span class="keyword">to</span> idleTime / <span class="number">1.0E+9</span> <span class="keyword">as</span> <span class="built_in">integer</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 如果电脑闲置时间大于等于重置时间，进行触控栏重置</span></span><br><span class="line"><span class="keyword">if</span> idleTime ≥ resetTime <span class="keyword">then</span></span><br><span class="line"><span class="comment">-- 重置触控栏</span></span><br><span class="line"><span class="built_in">do shell script</span> <span class="string">&quot;pkill TouchBarServer&quot;</span> user <span class="built_in">name</span> <span class="string">&quot;[用户名]&quot;</span> password <span class="string">&quot;[密码]&quot;</span> <span class="keyword">with</span> administrator privileges</span><br><span class="line"><span class="comment">-- 等待重置时间后执行</span></span><br><span class="line"><span class="built_in">return</span> resetTime</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 当电脑闲置时间等于重置时间时执行</span></span><br><span class="line"><span class="built_in">return</span> resetTime - idleTime</span><br><span class="line"><span class="keyword">end</span> idle</span><br></pre></td></tr></table></figure><p>⚠️ 注意修改以下内容：</p><ul><li>修改常量重置时间 <code>resetTime</code> 的值。<br>当电脑闲置时间达到该值后，就重启触控栏。<br>该值应小于从停止操作电脑开始到触控栏发生闪烁的时间。<br>由于我的触控栏处于中间状态时，也有明显的闪烁，所以将该值设置为 <code>59</code> 秒，在触控栏进入中间状态前就对其重启。<br>若您的触控栏中间状态闪烁不明显，则可将该值设置为 <code>74</code> 秒，在触控栏进入闲置状态前对其重启即可。</li><li>设置系统用户名和密码。<br>在重置触控栏时，需使用系统用户名和密码进行授权，所以需将脚本中的 <code>[用户名]</code> 和 <code>[密码]</code> 分别替换为您的用户名和密码。</li></ul><h3 id="②-导出程序"><a href="#②-导出程序" class="headerlink" title="② 导出程序"></a>② 导出程序</h3><p>在 <code>脚本编辑器</code> 菜单中选择 <code>文件 → 导出</code>，在导出对话框中进行以下设置后，选择 <code>存储</code> 按钮。</p><ul><li>导出为：触控<a href="https://www.zhihu.com/search?q=%E6%A0%8F%E9%97%AA%E7%83%81%E4%BF%AE%E5%A4%8D&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:2844450021%7D">栏闪烁修复</a>.app</li><li>位置：应用程序</li><li>文件格式：应用程序</li><li>选项：☑︎ 运行处理程序后保持打开</li><li><a href="https://www.zhihu.com/search?q=%E4%BB%A3%E7%A0%81%E7%AD%BE%E5%90%8D&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:2844450021%7D">代码签名</a>：签名以在本地运行</li></ul><p><img src="https://picx.zhimg.com/80/v2-ec3f7e55a91080e7171fab06527df33b_1440w.webp?source=1940ef5c" alt="img"></p><p>导出程序</p><h3 id="③-隐藏程序的运行痕迹（不介意可跳过）"><a href="#③-隐藏程序的运行痕迹（不介意可跳过）" class="headerlink" title="③ 隐藏程序的运行痕迹（不介意可跳过）"></a>③ 隐藏程序的运行痕迹（不介意可跳过）</h3><p>右键生成的 <code>触控栏闪烁修复.app</code>，选择 <code>显示包内容</code>，在 <code>Contents/Info.plist</code> <a href="https://www.zhihu.com/search?q=%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:2844450021%7D">配置文件</a>中加入配置项 <code>LSUIElement</code>，以隐藏该程序的运行痕迹。</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">&quot;1.0&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">key</span>&gt;</span>LSUIElement<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure><p>配置项 <a href="https://link.zhihu.com/?target=https://developer.apple.com/documentation/bundleresources/information_property_list/lsuielement">LSUIElement</a> 的描述名称为 <code>Application is agent (UIElement)</code>，类型为<a href="https://www.zhihu.com/search?q=%E5%B8%83%E5%B0%94%E5%9E%8B&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:2844450021%7D">布尔型</a>，指示该应用程序是否为在<a href="https://www.zhihu.com/search?q=%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:2844450021%7D">后台运行</a>且不显示在程序坞中的<a href="https://www.zhihu.com/search?q=%E4%BB%A3%E7%90%86%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:2844450021%7D">代理应用程序</a>。</p><p>当然，如果可以接受该程序运行时在屏幕顶部显示的菜单栏和在<a href="https://www.zhihu.com/search?q=%E7%A8%8B%E5%BA%8F%E5%9D%9E&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:2844450021%7D">程序坞</a>中显示的图标，可跳过这一步。</p><h3 id="④-设置程序开机自启动"><a href="#④-设置程序开机自启动" class="headerlink" title="④ 设置程序开机自启动"></a>④ 设置程序开机自启动</h3><p>打开 <code>系统设置 → 设置登录项 → 通用 → 登录项 → 登录时打开</code>，选择程序 <code>触控栏闪烁修复.app</code>。</p><p>作者：Jqgsninimo<br>链接：<a href="https://www.zhihu.com/question/327169975/answer/2844450021">https://www.zhihu.com/question/327169975/answer/2844450021</a><br>来源：知乎</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;使用脚本掩盖MBP闪烁问题&quot;&gt;&lt;a href=&quot;#使用脚本掩盖MBP闪烁问题&quot; class=&quot;headerlink&quot; title=&quot;使用脚本掩盖MBP闪烁问题&quot;&gt;&lt;/a&gt;使用脚本掩盖MBP闪烁问题&lt;/h2&gt;&lt;p&gt;如果实在维修不了，可以选择通过脚本掩盖触控栏的剧烈闪</summary>
+      
+    
+    
+    
+    <category term="工具" scheme="http://ai.mak.cn/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="Mac" scheme="http://ai.mak.cn/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>史铁生语录02</title>
@@ -470,63 +521,6 @@
       
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;真正坚持到最后的人，&lt;br&gt;靠的都不是激情，而是恰到好处的喜欢和投入。&lt;br&gt;葡萄藤上开不出百合花，找不到答案的时候就找自己。&lt;br&gt;那从什么时候开始呢？比如今天&lt;/p&gt;
-&lt;/blockquote&gt;
-</summary>
-      
-    
-    
-    
-    <category term="语录" scheme="http://ai.mak.cn/categories/%E8%AF%AD%E5%BD%95/"/>
-    
-    
-    <category term="语录" scheme="http://ai.mak.cn/tags/%E8%AF%AD%E5%BD%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何通过写计划，赢得工作掌控感</title>
-    <link href="http://ai.mak.cn/2023/03/20/%E8%AF%AD%E5%BD%95/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E5%86%99%E8%AE%A1%E5%88%92%EF%BC%8C%E8%B5%A2%E5%BE%97%E5%B7%A5%E4%BD%9C%E6%8E%8C%E6%8E%A7%E6%84%9F/"/>
-    <id>http://ai.mak.cn/2023/03/20/%E8%AF%AD%E5%BD%95/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E5%86%99%E8%AE%A1%E5%88%92%EF%BC%8C%E8%B5%A2%E5%BE%97%E5%B7%A5%E4%BD%9C%E6%8E%8C%E6%8E%A7%E6%84%9F/</id>
-    <published>2023-03-19T16:00:00.000Z</published>
-    <updated>2023-04-05T10:53:05.302Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>目标刻在钢板上，计划写在沙滩上。</p></blockquote><ul><li>工作计划公式：对标对表<ul><li>对目标：将自己的小目标与组织的大目标相融合对进程表：<br>考虑队友的时间安排，上下左右对齐，完善计划可行性</li><li>目标写作技巧“卡路里写作法”。<ul><li>卡点：要达到这个目标，会有什么问题呢？</li><li>路径：要通过什么路径去实现目标？</li><li>里程碑：在过程中，取得什么阶段性成果，可以作为里程碑？</li></ul></li></ul></li><li>目标工具SMART原则：具体、可衡量、可达成、有相关性和可实现性</li></ul><p>光事前做计划，是为了把控全局，让自己在以后可能出现的变化中提前做准备。计划是可以根据具体情况而随时变化。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;目标刻在钢板上，计划写在沙滩上。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;工作计划公式：对标对表&lt;ul&gt;
-&lt;li&gt;对目标：将自己的小目标与组织的大目标相融合对进程表：&lt;br&gt;考虑队友的时间安排，上下左右对齐，完善计划可行性&lt;/li&gt;
-</summary>
-      
-    
-    
-    
-    <category term="语录" scheme="http://ai.mak.cn/categories/%E8%AF%AD%E5%BD%95/"/>
-    
-    
-    <category term="语录" scheme="http://ai.mak.cn/tags/%E8%AF%AD%E5%BD%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>早安</title>
-    <link href="http://ai.mak.cn/2023/03/10/%E8%AF%AD%E5%BD%95/%E6%97%A9%E5%AE%890310/"/>
-    <id>http://ai.mak.cn/2023/03/10/%E8%AF%AD%E5%BD%95/%E6%97%A9%E5%AE%890310/</id>
-    <published>2023-03-09T16:00:00.000Z</published>
-    <updated>2023-04-05T10:40:53.785Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>看见别人聚沙成塔的过程，就知道不应该小看自己手里的这捧土。”努力必有结果！</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;看见别人聚沙成塔的过程，就知道不应该小看自己手里的这捧土。”努力必有结果！&lt;/p&gt;
 &lt;/blockquote&gt;
 </summary>
       
