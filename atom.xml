@@ -6,7 +6,7 @@
   <link href="http://ai.mak.cn/atom.xml" rel="self"/>
   
   <link href="http://ai.mak.cn/"/>
-  <updated>2024-02-18T06:45:32.894Z</updated>
+  <updated>2024-02-18T08:45:31.232Z</updated>
   <id>http://ai.mak.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2023 中国开源开发者报告</title>
+    <link href="http://ai.mak.cn/2023/12/28/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/2023%20%E4%B8%AD%E5%9B%BD%E5%BC%80%E6%BA%90%E5%BC%80%E5%8F%91%E8%80%85%E6%8A%A5%E5%91%8A/"/>
+    <id>http://ai.mak.cn/2023/12/28/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/2023%20%E4%B8%AD%E5%9B%BD%E5%BC%80%E6%BA%90%E5%BC%80%E5%8F%91%E8%80%85%E6%8A%A5%E5%91%8A/</id>
+    <published>2023-12-27T16:00:00.000Z</published>
+    <updated>2024-02-18T08:45:31.232Z</updated>
+    
+    <content type="html"><![CDATA[<p>《2023 中国开源开发者报告》正式发布。</p><p><img src="https://p8.itc.cn/q_70/images01/20231230/4281dad4482343a5ab5ff8d45e000974.png" alt="img"></p><p>此报告由开源中国与 Gitee 发布，整体分为三章，分别是：</p><ul><li>第一章《开源开发者事件回顾》</li><li>第二章《2023 LLM 技术报告》</li><li>第三章《&lt;Gitee × OSS Compass&gt; Insight：中国开发者开源新动向》</li></ul><p>开源开发者圈子来看，2023 年是大模型 LLM 年、生成式 AI GenAI 年。</p><p>LLM 领域大放异彩，此报告浓墨重彩地在《2023 LLM 技术报告》中梳理了 2023 年 LLM 的技术行情。报告整体围绕 LLM Tech Map 梳理逻辑来展开，从基础设施、大模型、Agent、AI 编程、工具和平台，以及算力几个方面，为开发者整理了当前 LLM 中最为热门和硬核的技术领域以及相关的软件产品和开源项目。</p><p><img src="https://p1.itc.cn/q_70/images01/20231229/d2cac718b89b4e5e93fb59eec81d34ac.png" alt="img"></p><p><strong>《2023 LLM 技术报告》详情可查看（这是子报告）：</strong><br><strong><a href="https://talk.gitee.com/report/china-open-source-2023-llm-report.pdf?fr=media">https://talk.gitee.com/report/china-open-source-2023-llm-report.pdf?fr=media</a></strong></p><p>除了 LLM，开源开发者圈当然还有更多高亮事件，此次年度报告中整理成了另一篇章《开源开发者事件回顾》，这一篇章梳理成了 9 个大块：</p><ul><li>【AIGC】回顾 2023 大语言模型 LLM 元年的重磅事件。</li><li><strong>【1024 黄金眼】关注 IT 相关民生事件，以老百姓的眼睛看 IT 圈，和开发者零距离接触。</strong></li><li>【项目停更】到了该说 “再见” 的时候了，江湖有缘再见。</li><li><strong>【生产事故】冥场面！速来围观 2023 十大生产事故 “名场面”。</strong></li><li>【开源治理】开源健康发展必不可少的一环。</li><li><strong>【硬核发版】最硬核、最极客的年度发版汇总！</strong></li><li>【热门话题】回顾 2023 年度热门开发者事件！</li><li><strong>【重磅官宣】2023 年度开源官宣。</strong></li><li>【R.I.P.】谨以此篇纪念今年离我们而去的行业巨擘。</li></ul><p>这些事件，作为圈内人的你还有印象吗？</p><p>第三章《&lt;Gitee × OSS Compass&gt; Insight：中国开发者开源新动向》中，采用 Gitee 与 OSS Compass 作为数据来源，试图通过数据来反映 2023 年开源开发者圈子的相关情况。亮点数据：</p><ul><li>TypeScript 是增长最快的编程语言，增长率达到 49.04%</li><li>MulanPSL-2.0 在 “2023 年使用增长率最快的开源许可证” 中排行第二，增长率为 18.34%</li><li>较为活跃的社区代表：OpenHarmony、openEuler 与 MindSpore</li></ul><p><strong>详情请查看完整报告：</strong><br><strong><a href="https://tal****k.gitee.com/report/china-open-source-2023-annual-report.pdf?fr=media">https://tal****k.gitee.com/report/china-open-source-2023-annual-report.pdf?fr=media</a></strong></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;《2023 中国开源开发者报告》正式发布。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://p8.itc.cn/q_70/images01/20231230/4281dad4482343a5ab5ff8d45e000974.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
+&lt;p&gt;此</summary>
+      
+    
+    
+    
+    <category term="技术小栈" scheme="http://ai.mak.cn/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
+    
+    
+    <category term="技术小栈" scheme="http://ai.mak.cn/tags/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
+    
+  </entry>
   
   <entry>
     <title>系统性能指标规范</title>
@@ -497,33 +523,6 @@
       
       
     <summary type="html">&lt;h2 id=&quot;容器中Java应用PID为1的问题&quot;&gt;&lt;a href=&quot;#容器中Java应用PID为1的问题&quot; class=&quot;headerlink&quot; title=&quot;容器中Java应用PID为1的问题&quot;&gt;&lt;/a&gt;容器中Java应用PID为1的问题&lt;/h2&gt;&lt;h3 id=&quot;背景&quot;&gt;&lt;</summary>
-      
-    
-    
-    
-    <category term="容器" scheme="http://ai.mak.cn/categories/%E5%AE%B9%E5%99%A8/"/>
-    
-    
-    <category term="Linux" scheme="http://ai.mak.cn/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>rocketmq单机命令</title>
-    <link href="http://ai.mak.cn/2023/04/06/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/rocketmq%E5%8D%95%E6%9C%BA%E5%91%BD%E4%BB%A4/"/>
-    <id>http://ai.mak.cn/2023/04/06/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/rocketmq%E5%8D%95%E6%9C%BA%E5%91%BD%E4%BB%A4/</id>
-    <published>2023-04-05T16:00:00.000Z</published>
-    <updated>2023-04-07T14:30:45.873Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="rocketmq单机"><a href="#rocketmq单机" class="headerlink" title="rocketmq单机"></a>rocketmq单机</h2><ul><li>启动</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nohup sh mqnamesrv &amp;</span><br><span class="line">nohup sh mqbroker -n localhost:9876 &amp;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># dashboard</span></span></span><br><span class="line">nohup java -jar rocketmq-dashboard-1.0.0.jar --rocketmq.config.namesrvAddr=localhost:9876 --server.port=7000 &amp;</span><br><span class="line"></span><br></pre></td></tr></table></figure><ul><li>停止</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">先停止 broker</span></span><br><span class="line">sh bin/mqshutdown broker</span><br><span class="line">The mqbroker(243199) is running...</span><br><span class="line">Send shutdown request to mqbroker(243199) OK</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">后停止 namesrv</span></span><br><span class="line">sh bin/mqshutdown namesrv</span><br><span class="line">The mqnamesrv(242743) is running...</span><br><span class="line">Send shutdown request to mqnamesrv(242743) OK</span><br><span class="line"></span><br></pre></td></tr></table></figure><ul><li>修改存储路径</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">自动创建Topic</span></span><br><span class="line">autoCreateTopicEnable=true</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">存储路径</span></span><br><span class="line">storePathRootDir=/data/rocketmq/data/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">commitLog路径</span></span><br><span class="line">storePathCommitLog=/data/rocketmq/data/commitlog</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">消息队列存储路径</span></span><br><span class="line">storePathConsumeQueue=/data/rocketmq/data/consumequeue</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">消息索引存储路径</span></span><br><span class="line">storePathIndex=/data/rocketmq/data/index</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">checkpoint文件路径</span></span><br><span class="line">storeCheckpoint=/data/rocketmq/data/checkpoint</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">abort文件存储路径</span></span><br><span class="line">abortFile=/data/rocketmq/data/abort</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;rocketmq单机&quot;&gt;&lt;a href=&quot;#rocketmq单机&quot; class=&quot;headerlink&quot; title=&quot;rocketmq单机&quot;&gt;&lt;/a&gt;rocketmq单机&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;启动&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;hig</summary>
       
     
     
