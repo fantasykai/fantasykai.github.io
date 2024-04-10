@@ -6,7 +6,7 @@
   <link href="http://ai.mak.cn/atom.xml" rel="self"/>
   
   <link href="http://ai.mak.cn/"/>
-  <updated>2024-03-29T07:32:30.409Z</updated>
+  <updated>2024-04-10T06:21:03.061Z</updated>
   <id>http://ai.mak.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac安装多个JDK版本</title>
+    <link href="http://ai.mak.cn/2024/04/10/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/Mac%20%E5%90%8C%E6%97%B6%E5%AE%89%E8%A3%85JDK%E5%A4%9A%E7%89%88%E6%9C%AC/"/>
+    <id>http://ai.mak.cn/2024/04/10/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/Mac%20%E5%90%8C%E6%97%B6%E5%AE%89%E8%A3%85JDK%E5%A4%9A%E7%89%88%E6%9C%AC/</id>
+    <published>2024-04-09T16:00:00.000Z</published>
+    <updated>2024-04-10T06:21:03.061Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>目前很多java应用使用到了jdk8，jdk11，jdk17等不同的版本，Mac上需要安装多个版本，并方便切换</p></blockquote><h3 id="下载JDK"><a href="#下载JDK" class="headerlink" title="下载JDK"></a>下载JDK</h3><p>官方网站：<a href="https://www.oracle.com/cn/java/technologies/downloads/#jdk17-mac">Java Downloads</a> | Oracle</p><p>根据mac芯片是intel还是apple进行不同版本下载：</p><ul><li>ARM64 DMG Installer 苹果M，芯片</li><li>x64 DMG Installer Intel 芯片</li></ul><h3 id="查看安装目录"><a href="#查看安装目录" class="headerlink" title="查看安装目录"></a>查看安装目录</h3><p>安装pkg文件后，打开终端窗口，查看我们安装的 JDK 版本</p><ul><li><p>访问 JDK 安装目录</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /Library/Java/JavaVirtualMachines</span><br></pre></td></tr></table></figure></li><li><p>查看安装的 JDK 版本</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al</span><br></pre></td></tr></table></figure></li></ul><p>可以看到安装了两个版本 </p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -lrt</span><br><span class="line">drwxr-xr-x  3 root  wheel  96  8 22  2017 jdk1.8.0_144.jdk</span><br><span class="line">drwxr-xr-x  3 root  wheel  96  4 10 10:25 jdk-17.jdk</span><br></pre></td></tr></table></figure><h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><p>3.1 打开环境变量文件</p><ul><li><p>输入</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br></pre></td></tr></table></figure></li><li><p>打开环境变量配置文件</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi/subl等 .bash_profile</span><br></pre></td></tr></table></figure><p>3.2 配置 JDK 多版本环境变量</p></li><li><p>复制如下内容粘贴到.bash_profile中，</p></li><li><p>因为我是安装了三个，所以配置了三个版本</p></li><li><p>自己是安装了几个版本就配置几个</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)</span><br><span class="line">export JAVA_11_HOME=$(/usr/libexec/java_home -v11)</span><br><span class="line">export JAVA_17_HOME=$(/usr/libexec/java_home -v17)</span><br><span class="line"></span><br><span class="line">alias java8=&#x27;export JAVA_HOME=$JAVA_8_HOME&#x27;</span><br><span class="line">alias java11=&#x27;export JAVA_HOME=$JAVA_11_HOME&#x27;</span><br><span class="line">alias java17=&#x27;export JAVA_HOME=$JAVA_17_HOME&#x27;</span><br><span class="line"></span><br><span class="line">export JAVA_HOME=$JAVA_11_HOME</span><br></pre></td></tr></table></figure></li><li><p>保存</p></li><li><p>3.3 检查环境变量</p></li><li><p>配置文件立即生效</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source .bash_profile</span><br></pre></td></tr></table></figure></li><li><p>查看 JAVA_HOME 目录</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $JAVA_HOME</span><br></pre></td></tr></table></figure></li><li><p>查看 JDK 版本信息</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure></li></ul><ol start="4"><li>JDK 版本切换<br>我们定义了个别名：java8，和java17，其中默认配置为 jdk11。</li></ol><p>相互切换，在终端中输入命令即可，如下</p><ul><li><p>切换到JDK8：<br>java8 </p></li><li><p>查看 JDK 版本信息</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure></li><li><p>切换到JDK11：<br>java11</p></li></ul><h1 id="查看-JDK-版本信息"><a href="#查看-JDK-版本信息" class="headerlink" title="查看 JDK 版本信息"></a>查看 JDK 版本信息</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure><ul><li>切换到JDK17：<br>java17</li></ul><h1 id="查看-JDK-版本信息-1"><a href="#查看-JDK-版本信息-1" class="headerlink" title="查看 JDK 版本信息"></a>查看 JDK 版本信息</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure><p>————————————————</p><p>原文链接：<a href="https://blog.csdn.net/Zhaoruifeng158/article/details/135832564">https://blog.csdn.net/Zhaoruifeng158/article/details/135832564</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;目前很多java应用使用到了jdk8，jdk11，jdk17等不同的版本，Mac上需要安装多个版本，并方便切换&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;下载JDK&quot;&gt;&lt;a href=&quot;#下载JDK&quot; class=&quot;headerlink&quot;</summary>
+      
+    
+    
+    
+    <category term="工具" scheme="http://ai.mak.cn/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="mac" scheme="http://ai.mak.cn/tags/mac/"/>
+    
+  </entry>
   
   <entry>
     <title>基于神经网络的网络流量预测</title>
@@ -504,33 +531,6 @@
     
     
     <category term="杂记" scheme="http://ai.mak.cn/tags/%E6%9D%82%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>-Djava.security.egd=file:/dev/./urandom参数的作用</title>
-    <link href="http://ai.mak.cn/2023/05/21/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/java%20%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0urandom%E7%9A%84%E4%BD%9C%E7%94%A8/"/>
-    <id>http://ai.mak.cn/2023/05/21/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/java%20%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0urandom%E7%9A%84%E4%BD%9C%E7%94%A8/</id>
-    <published>2023-05-20T16:00:00.000Z</published>
-    <updated>2023-06-01T09:20:22.573Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>-Djava.security.egd&#x3D;file:&#x2F;dev&#x2F;.&#x2F;urandom参数的作用</p></blockquote><h3 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h3><p>tomcat部署项目发现卡在Root WebApplicationContext : initialization completed in xxxms</p><p>1.整个过程没有报错，但是启动时间很长。</p><p>2.查阅资料发现由于tomcat启动时产生随机数导致jvm阻塞，可能是多次启动tomcat导致熵池被用空造成阻塞。</p><p>在apache-tomcat官方文档：如何让tomcat启动更快里面提到了一些启动时的优化项，其中一项是关于随机数生成时，采用“熵源”（entropy source）的策略。他提到tomcat7的session id的生成主要是通过java.security.SecureRandom生成随机数来实现的，随机数算法使用的是“SHA1PRANG”。</p><p>3.在sun&#x2F;oracle的jdk里，这个算法的提供者在底层依赖到操作系统提供的随机数，在linux上，与之相关的是&#x2F;dev&#x2F;random和dev&#x2F;urandom&#x2F;</p><h3 id="使用方法："><a href="#使用方法：" class="headerlink" title="使用方法："></a>使用方法：</h3><p>1.将$JAVA_HOME&#x2F;jre&#x2F;lib&#x2F;security&#x2F;Java.security内,将securerandom.source的内容改为file:&#x2F;dev&#x2F;.&#x2F;urandom即可</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2.java -jar -Djava.security.egd=file:/dev/./urandom</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;-Djava.security.egd&amp;#x3D;file:&amp;#x2F;dev&amp;#x2F;.&amp;#x2F;urandom参数的作用&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;作用：&quot;&gt;&lt;a href=&quot;#作用：&quot; class=&quot;header</summary>
-      
-    
-    
-    
-    <category term="java" scheme="http://ai.mak.cn/categories/java/"/>
-    
-    
-    <category term="技术小栈" scheme="http://ai.mak.cn/tags/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/"/>
     
   </entry>
   
