@@ -68,6 +68,31 @@
   </entry>
   
   <entry>
+    <title>LSTM神经网络模型</title>
+    <link href="http://ai.mak.cn/2024/02/27/ai/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%20LSTM%20%E7%BD%91%E7%BB%9C/"/>
+    <id>http://ai.mak.cn/2024/02/27/ai/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%20LSTM%20%E7%BD%91%E7%BB%9C/</id>
+    <published>2024-02-26T16:00:00.000Z</published>
+    <updated>2024-05-24T03:35:13.833Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>转载 <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">https://colah.github.io/posts/2015-08-Understanding-LSTMs/</a></p></blockquote><h1 id="如何理解-LSTM神经网络模型"><a href="#如何理解-LSTM神经网络模型" class="headerlink" title="如何理解 LSTM神经网络模型"></a>如何理解 LSTM神经网络模型</h1><h2 id="循环神经网络"><a href="#循环神经网络" class="headerlink" title="循环神经网络"></a>循环神经网络</h2><p>人类不会每分每秒都从头开始思考。当你阅读这篇文章时，你会根据对前面单词的理解来理解每个单词。你不会抛弃一切，重新从头开始思考。你的思想具有持久性。</p><p>传统的神经网络无法做到这一点，这似乎是一个重大缺陷。例如，假设你想对电影中每个时刻发生的事件进行分类。目前还不清楚传统的神经网络如何利用其对电影中先前事件的推理来指导后续事件。</p><p>循环神经网络解决了这个问题。它们是具有循环的网络，可使信息持久存在。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-rolled.png" alt="img"></p><p><strong>循环神经网络有循环。</strong></p><p>在上图中，神经网络的一个部分，A𝐴，查看一些输入X吨𝑋吨并输出一个值H吨𝐻吨. 循环允许信息从网络的一个步骤传递到下一个步骤。</p><p>这些循环使得循环神经网络看起来有些神秘。但是，如果你再仔细想想，就会发现它们与普通神经网络并没有太大区别。循环神经网络可以看作是同一网络的多个副本，每个副本都会向后继者传递一条消息。考虑一下如果我们展开循环会发生什么：</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png" alt="展开的循环神经网络。"></p><p><strong>展开的循环神经网络。</strong></p><p>这种链式特性表明循环神经网络与序列和列表密切相关。它们是用于此类数据的神经网络的自然架构。</p><p>而且它们确实被使用！在过去的几年中，RNN 在各种问题上的应用取得了令人难以置信的成功：语音识别、语言建模、翻译、图像字幕……等等。我将在 Andrej Karpathy 的优秀博客文章《循环<a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">神经网络的不合理有效性》</a>中讨论使用 RNN 可以实现的惊人成就。但它们确实非常了不起。</p><p>这些成功的关键在于使用“LSTM”，这是一种非常特殊的循环神经网络，在许多任务中，它的效果比标准版本好得多。几乎所有基于循环神经网络的令人兴奋的结果都是通过它们实现的。本文将探讨的就是这些 LSTM。</p><h2 id="长期依赖的问题"><a href="#长期依赖的问题" class="headerlink" title="长期依赖的问题"></a>长期依赖的问题</h2><p>RNN 的吸引力之一是它们可能能够将先前的信息与当前任务联系起来，例如使用先前的视频帧可能有助于理解当前帧。如果 RNN 能够做到这一点，它们将非常有用。但它们能做到吗？这取决于情况。</p><p>有时，我们只需要查看最近的信息即可执行当前任务。例如，考虑一个语言模型，它试图根据前面的单词预测下一个单词。如果我们试图预测“云在天空中<em>”</em>中的最后一个单词，我们不需要任何其他上下文——很明显下一个单词将是天空。在这种情况下，相关信息与需要它的地方之间的差距很小，RNN 可以学习使用过去的信息。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-shorttermdepdencies.png" alt="img"></p><p>但也有需要更多背景信息的情况。考虑尝试预测文本“我在法国长大……我能说一口流利的<em>法语</em>”中的最后一个单词。最近的信息表明下一个单词可能是一种语言的名称，但如果我们想缩小范围，确定是哪种语言，我们需要更早的法国背景信息。相关信息与需要信息点之间的差距完全有可能变得非常大。</p><p>不幸的是，随着差距的扩大，RNN 无法学会连接信息。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-longtermdependencies.png" alt="神经网络难以应对长期依赖关系。"></p><p>理论上，RNN 绝对有能力处理这种“长期依赖关系”。人类可以仔细挑选参数来解决这种形式的小问题。遗憾的是，在实践中，RNN 似乎无法学习它们。Hochreiter [(1991) <a href="http://people.idsia.ch/~juergen/SeppHochreiter1991ThesisAdvisorSchmidhuber.pdf">德语]</a>和<a href="http://www-dsi.ing.unifi.it/~paolo/ps/tnn-94-gradient.pdf">Bengio 等人 (1994)</a>深入探讨了这个问题，他们发现了一些非常根本的原因，说明这个问题可能很难解决。</p><p>值得庆幸的是，LSTM 没有这个问题！</p><h2 id="LSTM-网络"><a href="#LSTM-网络" class="headerlink" title="LSTM 网络"></a>LSTM 网络</h2><p>长短期记忆网络（通常简称为“LSTM”）是一种特殊的 RNN，能够学习长期依赖关系。它们由<a href="http://www.bioinf.jku.at/publications/older/2604.pdf">Hochreiter 和 Schmidhuber（1997 年）</a>提出，并在后续工作中被许多人改进和推广。1<a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/#fn1">它们</a>在解决各种问题方面都表现出色，目前已被广泛使用。</p><p>LSTM 的设计明确地避免了长期依赖问题。长时间记忆信息实际上是它们的默认行为，而不是它们需要努力学习的事情！</p><p>所有循环神经网络都具有神经网络重复模块链的形式。在标准 RNN 中，此重复模块将具有非常简单的结构，例如单个 tanh 层。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-SimpleRNN.png" alt="img"></p><p><strong>标准 RNN 中的重复模块包含单层。</strong></p><p>LSTM 也具有这种链式结构，但重复模块的结构不同。它不是只有一个神经网络层，而是有四个，并以非常特殊的方式相互作用。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-chain.png" alt="LSTM 神经网络。"></p><p><strong>LSTM 中的重复模块包含四个交互层。</strong></p><p>不必担心细节。稍后我们将逐步介绍 LSTM 图。现在，我们先熟悉一下我们将要使用的符号。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM2-notation.png" alt="img"></p><p>在上图中，每条线都承载着一个完整的向量，从一个节点的输出到其他节点的输入。粉色圆圈表示逐点运算，如向量加法，而黄色框表示学习到的神经网络层。线合并表示连接，而线分叉表示其内容被复制，副本被发送到不同的位置。</p><h2 id="LSTM-背后的核心思想"><a href="#LSTM-背后的核心思想" class="headerlink" title="LSTM 背后的核心思想"></a>LSTM 背后的核心思想</h2><p>LSTM 的关键是细胞状态，即贯穿图表顶部的水平线。</p><p>细胞状态有点像传送带。它沿着整个链条笔直运行，只有一些微小的线性相互作用。信息很容易不加改变地沿着它流动。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-C-line.png" alt="img"></p><p>LSTM 确实有能力从细胞状态中删除或添加信息，并由称为门的结构严格调节。</p><p>门是一种选择性地让信息通过的方式。它们由 S 型神经网络层和逐点乘法运算组成。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-gate.png" alt="img"></p><p>S 型层输出介于 0 和 1 之间的数字，描述每个组件应通过的量。值为 0 表示“不让任何组件通过”，而值为 1 表示“让所有组件通过！”</p><p>LSTM 有三个这样的门，用于保护和控制单元状态。</p><h2 id="逐步了解-LSTM"><a href="#逐步了解-LSTM" class="headerlink" title="逐步了解 LSTM"></a>逐步了解 LSTM</h2><p>我们的 LSTM 的第一步是决定要从细胞状态中丢弃哪些信息。这个决定是由一个叫做“遗忘门层”的 S 型层做出的。它查看H吨− 1𝐻吨−1和X吨𝑋吨，并输出一个介于00和11对于细胞状态中的每个数字C吨− 1𝐶吨−1。 A11代表“完全保留这一点”，而00代表“彻底摆脱这个。”</p><p>让我们回到语言模型的示例，该模型尝试根据所有先前的单词预测下一个单词。在这样的问题中，单元状态可能包括当前主语的性别，以便可以使用正确的代词。当我们看到一个新主语时，我们希望忘记旧主语的性别。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-f.png" alt="img"></p><p>下一步是决定我们要在单元状态中存储哪些新信息。这分为两部分。首先，一个称为“输入门层”的 S 型层决定我们要更新哪些值。接下来，一个 tanh 层创建一个新候选值的向量，C̃ 吨𝐶~吨，可以将其添加到状态中。在下一步中，我们将把这两者结合起来，以创建对状态的更新。</p><p>在我们的语言模型示例中，我们希望将新主语的性别添加到单元状态中，以替换我们忘记的旧主语。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-i.png" alt="img"></p><p>现在是时候更新旧的细胞状态了，C吨− 1𝐶吨−1，进入新的细胞状态C吨𝐶吨前面的步骤已经决定了要做什么，我们只需要实际去做。</p><p>我们将旧状态乘以F吨𝐹吨，忘记我们之前决定忘记的事情。然后我们添加我吨∗C̃ 吨我吨∗𝐶~吨。这是新的候选值，根据我们决定更新每个状态值的程度进行缩放。</p><p>在语言模型的情况下，我们实际上会删除有关旧主题性别的信息并添加新信息，正如我们在前面的步骤中所决定的那样。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-C.png" alt="img"></p><p>最后，我们需要决定要输出什么。此输出将基于我们的细胞状态，但将是一个经过过滤的版本。首先，我们运行一个 S 型层，它决定要输出细胞状态的哪些部分。然后，我们将细胞状态通过双曲函数双曲函数（将值推至− 1−1和11）并将其乘以 S 型门的输出，这样我们就只输出我们决定的部分。</p><p>对于语言模型示例，由于它刚刚看到一个主语，因此它可能需要输出与动词相关的信息，以防接下来是动词。例如，它可能会输出主语是单数还是复数，这样我们就知道如果接下来是动词，动词应该变位成什么形式。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-focus-o.png" alt="img"></p><h2 id="长期短期记忆的变体"><a href="#长期短期记忆的变体" class="headerlink" title="长期短期记忆的变体"></a>长期短期记忆的变体</h2><p>到目前为止，我所描述的是一个非常普通的 LSTM。但并非所有 LSTM 都与上面的相同。事实上，几乎每篇涉及 LSTM 的论文似乎都使用了略有不同的版本。这些差异很小，但值得一提的是其中的一些。</p><p><a href="ftp://ftp.idsia.ch/pub/juergen/TimeCount-IJCNN2000.pdf">Gers 和 Schmidhuber (2000)</a>提出的一种流行的 LSTM 变体是添加“窥孔连接”。这意味着我们让门层查看单元状态。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-var-peepholes.png" alt="img"></p><p>上图为所有门添加了窥视孔，但许多论文只会给出一些窥视孔，而不会给出其他窥视孔。</p><p>另一种变体是使用耦合的遗忘门和输入门。我们不是分别决定遗忘什么以及应该向什么添加新信息，而是一起做出这些决定。我们只会在要输入某些东西来代替它时才会忘记。我们只会在忘记旧东西时向状态输入新值。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-var-tied.png" alt="img"></p><p><a href="http://arxiv.org/pdf/1406.1078v3.pdf">LSTM 的一个稍微更戏剧性的变体是Cho 等人（2014 年）</a>提出的门控循环单元（GRU ）。它将遗忘门和输入门合并为一个“更新门”。它还合并了单元状态和隐藏状态，并做了一些其他更改。由此产生的模型比标准 LSTM 模型更简单，而且越来越受欢迎。</p><p><img src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-var-GRU.png" alt="门控循环单元神经网络。"></p><p>这些只是最值得注意的 LSTM 变体中的一小部分。还有很多其他的变体，例如<a href="http://arxiv.org/pdf/1508.03790v2.pdf">Yao 等人 (2015)</a>提出的深度门控 RNN 。还有一些完全不同的方法来解决长期依赖关系，例如<a href="http://arxiv.org/pdf/1402.3511v1.pdf">Koutnik 等人 (2014)</a>提出的 Clockwork RNN 。</p><p>这些变体中哪一个最好？差异重要吗？<a href="http://arxiv.org/pdf/1503.04069.pdf">Greff 等人（2015 年）</a>对流行的变体进行了很好的比较，发现它们都差不多。Jozefowicz<a href="http://jmlr.org/proceedings/papers/v37/jozefowicz15.pdf">等人（2015 年）</a>测试了超过一万个 RNN 架构，发现有些架构在某些任务上比 LSTM 效果更好。</p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>之前，我提到了人们使用 RNN 取得的显著成果。基本上，所有这些都是使用 LSTM 实现的。它们在大多数任务上确实表现更好！</p><p>LSTM 写成一组方程式后，看起来相当吓人。希望本文一步步介绍它们能让你更容易理解。</p><p>LSTM 是我们利用 RNN 实现的一大进步。人们自然会想：还有另一大进步吗？研究人员的普遍看法是：“是的！还有下一步，那就是注意力！”这个想法是让 RNN 的每一步都从更大的信息集合中挑选信息来查看。例如，如果您使用 RNN 创建描述图像的标题，它可能会挑选图像的一部分来查看它输出的每个单词。事实上，<a href="http://arxiv.org/pdf/1502.03044v2.pdf">Xu<em>等人</em>(2015)</a>就是这么做的——如果您想探索注意力，这可能是一个有趣的起点！使用注意力已经取得了许多非常令人兴奋的成果，而且似乎还有更多的成果即将面世……</p><p>注意力并不是 RNN 研究中唯一令人兴奋的线索。例如，<a href="http://arxiv.org/pdf/1507.01526v1.pdf">Kalchbrenner<em>等人</em>(2015)</a>的网格 LSTM看起来非常有前景。在生成模型中使用 RNN 的工作 - 例如<a href="http://arxiv.org/pdf/1502.04623.pdf">Gregor<em>等人</em>(2015)</a>、<a href="http://arxiv.org/pdf/1506.02216v3.pdf">Chung<em>等人</em>(2015)</a>或<a href="http://arxiv.org/pdf/1411.7610v3.pdf">Bayer &amp; Osendorfer (2015)</a> - 也看起来非常有趣。过去几年对于循环神经网络来说是激动人心的几年，而未来的几年只会更加激动人心！</p><h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>我非常感谢许多人帮助我更好地理解 LSTM、对可视化效果发表评论并对这篇文章提供反馈。</p><p>我非常感谢 Google 的同事们提供的有益反馈，特别是<a href="http://research.google.com/pubs/OriolVinyals.html">Oriol Vinyals</a>、<a href="http://research.google.com/pubs/GregCorrado.html">Greg Corrado</a>、<a href="http://research.google.com/pubs/JonathonShlens.html">Jon Shlens</a>、<a href="http://people.cs.umass.edu/~luke/">Luke Vilnis</a>和<a href="http://www.cs.toronto.edu/~ilya/">Ilya Sutskever</a>。我还要感谢许多其他朋友和同事抽出时间帮助我，包括<a href="https://www.linkedin.com/pub/dario-amodei/4/493/393">Dario Amodei</a>和<a href="http://cs.stanford.edu/~jsteinhardt/">Jacob Steinhardt</a>。我特别感谢<a href="http://www.kyunghyuncho.me/">Kyunghyun Cho</a>对我的图表的极其周到的反馈。</p><p>在写这篇文章之前，我在两个关于神经网络的研讨会系列中练习解释 LSTM。感谢所有参加研讨会的人对我的耐心和反馈。</p><hr><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;转载 &lt;a href=&quot;https://colah.github.io/posts/2015-08-Understanding-LSTMs/&quot;&gt;https://colah.github.io/posts/2015-08-Understanding-</summary>
+      
+    
+    
+    
+    <category term="AI" scheme="http://ai.mak.cn/categories/AI/"/>
+    
+    
+    <category term="深度学习" scheme="http://ai.mak.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>2023 哔哩哔哩技术精选技术干货</title>
     <link href="http://ai.mak.cn/2024/01/06/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/2023%20%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89%E6%8A%80%E6%9C%AF%E5%B9%B2%E8%B4%A7/"/>
     <id>http://ai.mak.cn/2024/01/06/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/2023%20%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E6%8A%80%E6%9C%AF%E7%B2%BE%E9%80%89%E6%8A%80%E6%9C%AF%E5%B9%B2%E8%B4%A7/</id>
@@ -504,33 +529,6 @@
     
     
     <category term="Linux" scheme="http://ai.mak.cn/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>word的表格复制到另外的表格样式变化</title>
-    <link href="http://ai.mak.cn/2023/05/25/%E6%9D%82%E8%AE%B0/word%E7%9A%84%E8%A1%A8%E6%A0%BC%E5%A4%8D%E5%88%B6%E5%88%B0%E5%8F%A6%E5%A4%96%E7%9A%84%E8%A1%A8%E6%A0%BC%E6%A0%B7%E5%BC%8F%E5%8F%98%E5%8C%96/"/>
-    <id>http://ai.mak.cn/2023/05/25/%E6%9D%82%E8%AE%B0/word%E7%9A%84%E8%A1%A8%E6%A0%BC%E5%A4%8D%E5%88%B6%E5%88%B0%E5%8F%A6%E5%A4%96%E7%9A%84%E8%A1%A8%E6%A0%BC%E6%A0%B7%E5%BC%8F%E5%8F%98%E5%8C%96/</id>
-    <published>2023-05-24T16:00:00.000Z</published>
-    <updated>2023-06-08T12:33:15.701Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>从一个word文档中复制一个表格，粘贴到另外的文档，一直各种样式错乱，原来有个<br><strong>保留源格式粘贴</strong>，跟PPT复制粘贴一样的</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;从一个word文档中复制一个表格，粘贴到另外的文档，一直各种样式错乱，原来有个&lt;br&gt;&lt;strong&gt;保留源格式粘贴&lt;/strong&gt;，跟PPT复制粘贴一样的&lt;/p&gt;
-&lt;/blockquote&gt;
-</summary>
-      
-    
-    
-    
-    <category term="杂记" scheme="http://ai.mak.cn/categories/%E6%9D%82%E8%AE%B0/"/>
-    
-    
-    <category term="杂记" scheme="http://ai.mak.cn/tags/%E6%9D%82%E8%AE%B0/"/>
     
   </entry>
   
