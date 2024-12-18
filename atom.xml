@@ -6,7 +6,7 @@
   <link href="http://ai.mak.cn/atom.xml" rel="self"/>
   
   <link href="http://ai.mak.cn/"/>
-  <updated>2024-12-17T09:56:05.262Z</updated>
+  <updated>2024-12-18T01:31:10.176Z</updated>
   <id>http://ai.mak.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Three.js 开源组件</title>
+    <link href="http://ai.mak.cn/2024/06/02/%E5%89%8D%E7%AB%AF/Three.js%20%E5%BC%80%E6%BA%90%E7%BB%84%E4%BB%B6/"/>
+    <id>http://ai.mak.cn/2024/06/02/%E5%89%8D%E7%AB%AF/Three.js%20%E5%BC%80%E6%BA%90%E7%BB%84%E4%BB%B6/</id>
+    <published>2024-06-01T16:00:00.000Z</published>
+    <updated>2024-12-18T01:31:10.176Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Three-js-开源组件"><a href="#Three-js-开源组件" class="headerlink" title="Three.js 开源组件"></a>Three.js 开源组件</h1><p><code>Three.js</code> 是一款基于 <code>WebGL</code> 的强大 <code>JavaScript</code> 库，让浏览器中的 <code>3D</code> 图形创建与显示变得前所未有的简单。</p><p>通过精心设计的 API，Three.js 成功地降低了 <code>WebGL</code> 的<code>复杂性</code>，使得即使是没有深厚技术背景的开发者也能轻松打造出令人惊艳的 <code>3D 场景</code>、<code>模型</code>、<code>动画</code>以及<code>粒子系统</code>。</p><p>虽然 Three.js 目的是为了简化开发者创建和显示 3D 图形的难度，但对于初学者来说，上手仍然可能会有一定的<code>挑战性</code>。这主要是因为以下几个方面的原因：</p><ul><li><strong>技术门槛</strong>：尽管 Three.js 简化了 WebGL 的复杂性，但它仍然涉及到<code>图形学</code>、&#96;&#96;线性代数、<code>3D 编程</code>等相对复杂的概念。对于没有相关背景知识的开发者来说，理解这些概念可能需要一定的时间和努力。</li><li><strong>API 学习曲线</strong>：Three.js 提供了一个<code>庞大的 API</code>，涵盖了从场景创建、物体渲染到光照、动画等多个方面。初学者需要花费一定的时间去熟悉这些 API，并了解它们的使用方法和最佳实践。</li><li><strong>编程经验</strong>：编写 3D 应用程序通常比编写传统的 2D 应用程序&#96;&#96;更加复杂，需要处理更多的数据和对象。因此，具备一定的编程经验和逻辑思维能力会更有助于上手 Three.js。</li><li><strong>资源获取</strong>：找到高质量的<code>教程</code>、<code>示例代码</code>和<code>项目模板</code>对于初学者来说非常重要。然而，网络上的资源可能质量参差不齐，需要花费一定的时间和精力进行筛选和学习。</li></ul><p>今天就来给大家推荐两个开源项目合集，带你快速入门 <code>Three.js</code>！！！</p><h2 id="vis-three"><a href="#vis-three" class="headerlink" title="vis-three"></a><strong>vis-three</strong></h2><blockquote><p>开源地址：<code>https://github.com/vis-three</code></p></blockquote><p><code>vis-three</code> 是一款基于 three.js 的<code>组装式</code>前端 3D 开发框架，为了解决 three.js 相关项目开发的<code>代码组织</code>问题，降低功能代码间的耦合，提高功能复用性，提高扩展能力，vis-three 提出了<code>功能插件</code>化概念，采用了<code>插件化</code>的组织形式，vis-three 的核心引擎提供功能插件的拔插能力，对各模块各功能进行解耦开发，持续集成，兼容拓展。</p><blockquote><ul><li>演示地址：<code>https://vis-three.github.io/exhibition-hall//SimpleSmartCity/index.html</code></li></ul></blockquote><blockquote><ul><li>演示地址：<code>https://vis-three.github.io/exhibition-hall//easyFactory/index.html</code></li></ul></blockquote><h2 id="icegl-three-vue-tres"><a href="#icegl-three-vue-tres" class="headerlink" title="icegl-three-vue-tres"></a><strong>icegl-three-vue-tres</strong></h2><blockquote><p>开源地址：<code>https://gitee.com/ice-gl/icegl-three-vue-tres</code></p></blockquote><p><code>icegl-three-vue-tres</code> 是 <code>icegl 图形学社区</code> 出品，一款让你的三维可视化项目快速落地的开源框架并且永久开源免费商用。</p><p>icegl 图形学社区提供了上百个 Threejs <code>可视化案例</code>供开发者学习，并且有免费完善的 WebGL 从入门到实战的<code>教程</code>，帮助大家快速上手。</p><p>案例展示：</p><blockquote><ul><li>演示地址：<code>https://opensource.icegl.cn/#/plugins/digitalCity/roadLines</code></li></ul></blockquote><blockquote><ul><li>演示地址：<code>https://opensource.icegl.cn/#/plugins/simpleGIS/mapBuildings</code></li></ul></blockquote><blockquote><ul><li>演示地址：<code>https://opensource.icegl.cn/#/plugins/industry4/deviceLightReflector</code></li></ul></blockquote><p>参考连接:</p><ul><li><a href="https://github.com/vis-three/vis-three">https://github.com/vis-three/vis-three</a></li><li><a href="https://gitee.com/ice-gl/icegl-three-vue-tres">https://gitee.com/ice-gl/icegl-three-vue-tres</a></li><li><a href="https://icegl.cn/">https://icegl.cn/</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Three-js-开源组件&quot;&gt;&lt;a href=&quot;#Three-js-开源组件&quot; class=&quot;headerlink&quot; title=&quot;Three.js 开源组件&quot;&gt;&lt;/a&gt;Three.js 开源组件&lt;/h1&gt;&lt;p&gt;&lt;code&gt;Three.js&lt;/code&gt; 是一款基</summary>
+      
+    
+    
+    
+    <category term="前端" scheme="http://ai.mak.cn/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+    <category term="js" scheme="http://ai.mak.cn/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>深入理解Transformer</title>
@@ -493,33 +517,6 @@
     
     
     <category term="mac" scheme="http://ai.mak.cn/tags/mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>创新</title>
-    <link href="http://ai.mak.cn/2023/08/18/%E8%AF%AD%E5%BD%95/%E5%88%9B%E6%96%B0/"/>
-    <id>http://ai.mak.cn/2023/08/18/%E8%AF%AD%E5%BD%95/%E5%88%9B%E6%96%B0/</id>
-    <published>2023-08-17T16:00:00.000Z</published>
-    <updated>2023-08-20T13:24:51.927Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>鸡蛋从外打破叫破碎，从内部打破叫新生</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">连续式创新</span><br><span class="line">平台式创建</span><br><span class="line">颠覆式创新</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;鸡蛋从外打破叫破碎，从内部打破叫新生&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;lin</summary>
-      
-    
-    
-    
-    <category term="语录" scheme="http://ai.mak.cn/categories/%E8%AF%AD%E5%BD%95/"/>
-    
-    
-    <category term="语录" scheme="http://ai.mak.cn/tags/%E8%AF%AD%E5%BD%95/"/>
     
   </entry>
   
