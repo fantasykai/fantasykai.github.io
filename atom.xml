@@ -6,7 +6,7 @@
   <link href="http://ai.mak.cn/atom.xml" rel="self"/>
   
   <link href="http://ai.mak.cn/"/>
-  <updated>2024-12-18T01:44:14.565Z</updated>
+  <updated>2024-12-18T07:11:19.488Z</updated>
   <id>http://ai.mak.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>大模型概念总结</title>
+    <link href="http://ai.mak.cn/2024/06/30/ai/Langchain-Chatchat%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93/"/>
+    <id>http://ai.mak.cn/2024/06/30/ai/Langchain-Chatchat%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93/</id>
+    <published>2024-06-29T16:00:00.000Z</published>
+    <updated>2024-12-18T07:11:19.488Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Langchain-Chatchat大语言模型本地知识库"><a href="#Langchain-Chatchat大语言模型本地知识库" class="headerlink" title="Langchain-Chatchat大语言模型本地知识库"></a>Langchain-Chatchat大语言模型本地知识库</h2><blockquote><p>链接：<a href="https://juejin.cn/post/7305572311812751371">https://juejin.cn/post/7305572311812751371</a> 来源：稀土掘金</p></blockquote><ul><li><a href="https://github.com/chatchat-space/Langchain-Chatchat">https://github.com/chatchat-space/Langchain-Chatchat</a></li></ul><p>Langchain-Chatchat是一种利用 langchain 思想实现的基于本地知识库的问答应用，目标期望建立一套对中文场景与开源模型支持友好、可离线运行的知识库问答解决方案。</p><p>💡Langchain-Chatchat建立了全流程可使用开源模型实现的本地知识库问答应用，使用基于 Streamlit 的 WebUI 进行操作。 <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fd0aeef1d58043b5acb630ea8ca82b2c~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=1664&h=904&s=154826&e=png&b=fcfcfc" alt="img"></p><p>⛓️ Langchain-Chatchat实现原理如下图所示，过程包括加载文件 -&gt; 读取文本 -&gt; 文本分割 -&gt; 文本向量化 -&gt; 问句向量化 -&gt; 在文本向量中匹配出与问句向量最相似的 top k个 -&gt; 匹配出的文本作为上下文和问题一起添加到 prompt中 -&gt; 提交给 LLM生成回答。 <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/602aad3c063343f9859e3218f2faebb9~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=1262&h=792&s=42649&e=png&b=fefefe" alt="img"></p><p>学术Fun将上述工具制作成一键启动包，内置chatglm3模型，点击即可使用，避免大家配置Python环境出现各种问题，下载地址： <a href="https://link.juejin.cn/?target=https://xueshu.fun/3278/">xueshu.fun&#x2F;3278&#x2F;</a>，<code>在此页面右侧区域点击下载！</code></p><p><code>注意电脑配置如下</code>：</p><ul><li>windows 10&#x2F;11</li><li><code>8G显存以上英伟达显卡</code></li></ul><h2 id="下载使用教程"><a href="#下载使用教程" class="headerlink" title="下载使用教程"></a>下载使用教程</h2><ul><li>下载压缩包 下载地址： <a href="https://link.juejin.cn/?target=https://xueshu.fun/3278/">xueshu.fun&#x2F;3278&#x2F;</a>，<code>在此页面右侧区域点击下载！</code></li><li>解压，解压后，最好路径和我的保持一致，<code>D:\AI\Langchain-ChatGLM</code>,如下图所示，双击<code>启动.exe</code>文件运行</li></ul><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ed68fff2413c46f1be2df610c5fc952e~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=1647&h=1957&s=124411&e=png&b=ffffff" alt="img"></p><ul><li>启动过程中，会联网更新streamlit包，包很小只有10几兆，更新streamlit包是防止有的同学没有解压到和我本地一致的目录，会出现streamlit命令找不到的错误，启动完成后浏览器会自动打开使用界面，如下所示，本地访问地127.0.0.1:8501</li></ul><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7a759e002a934b128e2eabfbaad968b8~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=3164&h=1825&s=124939&e=png&b=fdfdfd" alt="img"></p><h3 id="本地知识库使用"><a href="#本地知识库使用" class="headerlink" title="本地知识库使用"></a>本地知识库使用</h3><ul><li>按照下图步骤，建立本地知识库</li></ul><ol><li>点击知识库管理</li><li>新建知识库</li></ol><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0ac324e79d0a4c4b8853ab9ecedb8b85~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=3240&h=1177&s=128148&e=png&b=fbfbfb" alt="img"></p><ol><li>新建知识库名称，不支持中文</li><li>填写知识库简介</li><li>点击新建 <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/643bce05021443c08da606786bea686d~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=3135&h=1168&s=102393&e=png&b=fbfbfb" alt="img"></li><li>上传知识库文件，支持格式如图中所示</li><li>点击添加文件到知识库</li></ol><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c7ca0ed6c95445379f3d13bac5539b4e~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=3268&h=1474&s=150063&e=png&b=fbfbfb" alt="img"></p><h3 id="使用知识库问答"><a href="#使用知识库问答" class="headerlink" title="使用知识库问答"></a>使用知识库问答</h3><ol><li>选择对话</li><li>选择知识库问题对话模式</li><li>选择刚刚建立的知识库名称</li><li>输入内容进行知识库对话，对话内容会从上传的知识库文件中索引 <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c42e87581e22479d991e0a09225108e7~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=3085&h=1606&s=166025&e=png&b=fdfdfd" alt="img"></li></ol><h3 id="联网问答功能"><a href="#联网问答功能" class="headerlink" title="联网问答功能"></a>联网问答功能</h3><p>还支持联网在线搜索问答，使用方式见下图： <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/32de74065e5747eeb73d72b67a21522a~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=3312&h=1752&s=388767&e=png&b=fcfcfc" alt="img"></p><p>)</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Langchain-Chatchat大语言模型本地知识库&quot;&gt;&lt;a href=&quot;#Langchain-Chatchat大语言模型本地知识库&quot; class=&quot;headerlink&quot; title=&quot;Langchain-Chatchat大语言模型本地知识库&quot;&gt;&lt;/a&gt;La</summary>
+      
+    
+    
+    
+    <category term="AI" scheme="http://ai.mak.cn/categories/AI/"/>
+    
+    
+    <category term="深度学习" scheme="http://ai.mak.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>基于大模型的智能问答 - LangChain</title>
@@ -478,30 +502,6 @@
     <updated>2023-09-09T15:46:12.334Z</updated>
     
     <content type="html"><![CDATA[<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">拖延的最大坏处还不是耽误，</span><br><span class="line">而是会使自已变得犹豫，</span><br><span class="line">甚至丧失信心。</span><br><span class="line">不管什么事，决定了，</span><br><span class="line">就立刻去做，</span><br><span class="line">这本身就能使人生气勃勃，</span><br><span class="line">保持一种主动和快乐的心情。</span><br><span class="line"></span><br><span class="line">史铁生《最有用的事》</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;figure class=&quot;highlight text&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=</summary>
-      
-    
-    
-    
-    <category term="语录" scheme="http://ai.mak.cn/categories/%E8%AF%AD%E5%BD%95/"/>
-    
-    
-    <category term="语录" scheme="http://ai.mak.cn/tags/%E8%AF%AD%E5%BD%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>史铁生语录01</title>
-    <link href="http://ai.mak.cn/2023/09/07/%E8%AF%AD%E5%BD%95/%E5%8F%B2%E9%93%81%E7%94%9F%E8%AF%AD%E5%BD%9501/"/>
-    <id>http://ai.mak.cn/2023/09/07/%E8%AF%AD%E5%BD%95/%E5%8F%B2%E9%93%81%E7%94%9F%E8%AF%AD%E5%BD%9501/</id>
-    <published>2023-09-06T16:00:00.000Z</published>
-    <updated>2023-09-09T15:46:14.969Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> 步步都是走在回去的路上。</span><br><span class="line"> 当牵牛花初开的时节，</span><br><span class="line"> 葬礼的号角就已吹响。</span><br><span class="line"> 但是太阳，他每时每刻都是夕阳也都是旭日。</span><br><span class="line"> 当他熄灭着走下山去收尽苍凉残照之际，</span><br><span class="line"> 正是他在另一面燃烧着爬上山巅布散烈烈朝辉之时。</span><br><span class="line"> 有一天，我也将沉静着走下山去，扶着我的拐杖。</span><br><span class="line"> 那一天.在某一处山洼里，</span><br><span class="line"> 势必会跑上来一个欢蹦的孩子，抱着他的玩具。</span><br><span class="line">当然，那不是我。</span><br><span class="line">但是，那不是我吗?</span><br><span class="line">宇宙以其不息的欲望将一个歌舞炼为永恒。</span><br><span class="line">这欲望有怎样一个人间的姓名，大可忽略不计。</span><br><span class="line">                   </span><br><span class="line">                                     写于一九八九年五月五日</span><br><span class="line">                                     修改于一九九O年一月七日</span><br></pre></td></tr></table></figure>]]></content>
     
     
       
