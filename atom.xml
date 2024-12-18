@@ -6,7 +6,7 @@
   <link href="http://ai.mak.cn/atom.xml" rel="self"/>
   
   <link href="http://ai.mak.cn/"/>
-  <updated>2024-12-18T01:31:10.176Z</updated>
+  <updated>2024-12-18T01:44:14.565Z</updated>
   <id>http://ai.mak.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于大模型的智能问答 - LangChain</title>
+    <link href="http://ai.mak.cn/2024/06/15/ai/LangChain%20%E5%9F%BA%E4%BA%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%99%BA%E8%83%BD%E9%97%AE%E7%AD%94/"/>
+    <id>http://ai.mak.cn/2024/06/15/ai/LangChain%20%E5%9F%BA%E4%BA%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%99%BA%E8%83%BD%E9%97%AE%E7%AD%94/</id>
+    <published>2024-06-14T16:00:00.000Z</published>
+    <updated>2024-12-18T01:44:14.565Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="LangChain-基于大模型的智能问答"><a href="#LangChain-基于大模型的智能问答" class="headerlink" title="LangChain 基于大模型的智能问答"></a>LangChain 基于大模型的智能问答</h1><p> 在构建基于大模型的智能问答系统时，LangChain 提供了一个强大的框架，支持各种模块来帮助开发者构建更复杂、更智能的语言处理应用。以下是构建此类系统的一些关键组件和步骤。</p><p>模型接入：使用 LangChain 支持的模型，通过 API 接入外部模型，或利用 <strong>api-for-open-llm</strong> 框架调用 本地llm模型。</p><p>向量库与嵌入模型：利用 Milvus 向量库和嵌入模型（如 m3e 向量模型）来增强问答系统的检索能力，使其能够从大量文本数据中快速检索相关信息。</p><p>链式调用和代理行动决策：使用 LangChain 的链（Chains）和代理（Agents）模块来构建复杂的问答逻辑，使系统能够根据用户输入做出连贯的决策并提供相关的回答。</p><p>提示词写法：根据需要编写适当的提示词，以引导模型提供准确的回答。可以使用 XML 标记来定义上下文和历史记录，以便模型更好地理解问题和背景。</p><p>通过以上步骤，可以构建一个基于大模型的智能问答系统，该系统能够理解用户的问题并提供准确、相关的回答。此外，通过不断优化模型、提示词和检索策略，可以进一步提高问答系统的性能和用户体验。</p><p><strong>langchain&#x2F;dify的智能体</strong></p><p>**<br>**</p><p>Langchain支持各种模型的接入、提示词管理、基于向量库的检索增强、索引优化、链式调用和代理行动决策，适用于创建自治代理、模拟、个人助理、问答系统、聊天机器人、数据查询、代码理解、API交互、信息提取、文本摘要和模型评估等多种应用场景。</p><p>dify则是国内开源的一个agent平台，类似于带界面的Langchain。</p><p><strong>m﻿ilvus向量库</strong></p><p>Milvus是在2019年创建的，其唯一目标是存储、索引和管理由深度神经网络和其他机器学习（ML）模型生成的大规模嵌入向量。</p><p>作为一个专门设计用于处理输入向量查询的数据库，它能够处理万亿级别的向量索引。与现有的关系型数据库主要处理遵循预定义模式的结构化数据不同，Milvus从底层设计用于处理从非结构化数据转换而来的嵌入向量。Milvus使得向应用中添加相似性搜索变得容易。</p><p><strong>嵌入模型</strong></p><p>**<br>**</p><p>嵌入模型（Embedding Model）是一种在自然语言处理（NLP）和机器学习中广泛使用的技术，旨在将高维的稀疏数据（如单词、句子或图像）转换为低维的密集向量表示。这种向量表示能够捕捉到数据的语义信息和结构特征，使得计算机能够更有效地处理和分析数据。</p><p>在NLP中，单词嵌入（Word Embedding）是最常见的嵌入模型之一。它将每个单词映射到一个固定长度的实数向量，使得语义上相似的单词在向量空间中也相互接近。这种表示方式可以有效地减少数据的维度，并捕捉单词之间的语义关系，如同义词、反义词和上下文相关性。</p><p>嵌入模型通常通过无监督学习方法从大量文本数据中学习得到，如Word2Vec、GloVe和fastText等。这些模型利用单词的共现信息和上下文关系来学习单词的向量表示。</p><p>除了单词嵌入，还有句子嵌入（Sentence Embedding）、段落嵌入（Paragraph Embedding）和图像嵌入（Image Embedding）等，它们分别用于将句子、段落和图像转换为密集向量表示，以便进行后续的机器学习任务，如文本分类、情感分析、图像识别等。</p><p>目前中文嵌入模型效果较好的推荐m3e向量模型。</p><p><strong>本地自有模型&#x2F;外部模型接口</strong></p><p>**<br>**</p><p>本地部署可以使用api-for-open-llm，该项目是一个开源框架，提供了统一的后端接口，使得以 OpenAI ChatGPT API 的方式调用各类开源大模型变得简单。</p><p>它支持流式响应、文本嵌入模型、langchain 的各类功能，并允许通过简单修改环境变量将开源模型作为 ChatGPT 的替代模型。此外，该项目还支持加载自行训练的 lora 模型，以及 vLLM 推理加速和处理并发请求，为各类应用提供强大的后端支持。</p><p>接口的话推荐使用gemini，在今年5月份之前gemini还是可以免费使用的。</p><p><strong>提示词写法</strong></p><p>以基于知识库的官网问答系统的提示词为例，下面是一个写好的提示词样例：</p><p>在XML标记中使用以下上下文作为您学到的知识。{上下文}</p><p>当回答用户:-如果你不知道，就说你不知道。</p><p>-如果你不知道，当你不确定，要求澄清。</p><p>避免提到你是从上下文中获得信息的。并根据用户提问的语言进行回答。</p><p>下面是人与助手之间的聊天历史记录，位于&lt;历史&gt;{聊天记录} XML标记中。</p><p><strong>总结</strong></p><p>**<br>**</p><p>基于大模型的智能问答系统利用 LangChain 框架和相关技术，如 Milvus 向量库和嵌入模型，提供了一个强大的解决方案，用于构建理解自然语言并提供准确回答的系统。通过集成不同的模型、管理提示词、利用向量检索和链式调用，这个系统能够处理复杂的用户查询，并根据上下文提供相关的信息。此外，系统的灵活性和可扩展性使得开发者可以根据特定需求定制和优化问答逻辑，从而提高用户体验和满意度。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;LangChain-基于大模型的智能问答&quot;&gt;&lt;a href=&quot;#LangChain-基于大模型的智能问答&quot; class=&quot;headerlink&quot; title=&quot;LangChain 基于大模型的智能问答&quot;&gt;&lt;/a&gt;LangChain 基于大模型的智能问答&lt;/h1&gt;&lt;</summary>
+      
+    
+    
+    
+    <category term="AI" scheme="http://ai.mak.cn/categories/AI/"/>
+    
+    
+    <category term="深度学习" scheme="http://ai.mak.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>Three.js 开源组件</title>
@@ -110,6 +134,31 @@
     
     
     <category term="js" scheme="http://ai.mak.cn/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大模型概念总结</title>
+    <link href="http://ai.mak.cn/2024/04/21/ai/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/"/>
+    <id>http://ai.mak.cn/2024/04/21/ai/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/</id>
+    <published>2024-04-20T16:00:00.000Z</published>
+    <updated>2024-12-18T02:30:38.543Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="大模型概念总结"><a href="#大模型概念总结" class="headerlink" title="大模型概念总结"></a>大模型概念总结</h1><blockquote><p>链接：<a href="https://juejin.cn/post/7282944006674776124">https://juejin.cn/post/7282944006674776124</a><br>来源：稀土掘金</p></blockquote><blockquote><p>主要介绍了大模型相关的众多知识，包括小白学大模型需掌握的基础知识，如机器学习、深度学习、数据预处理等；还阐述了概率统计中的概念，如期望值、方差、标准差等；介绍了多种分布、损失函数及其作用和降低方法，以及不同神经网络的区别，如 CNN 和 RNN；还讲解了模型蒸馏、压缩量化、模型加速、多模态大模型等内容。</p></blockquote><h2 id="学大模型应该要学什么？"><a href="#学大模型应该要学什么？" class="headerlink" title="学大模型应该要学什么？"></a>学大模型应该要学什么？</h2><ol><li>机器学习基础知识：学习大模型的前提是对机器学习的基本概念和原理有一定的了解。需要了解什么是监督学习、无监督学习、强化学习等基本概念，以及常见的机器学习算法，如线性回归、逻辑回归、决策树、支持向量机等。</li><li>深度学习基础知识：在学习大模型中，深度学习是一种常用的技术。小白需要了解深度学习的基本概念和原理，如神经网络的结构和训练方法，常用的深度学习框架，如TensorFlow、Keras、PyTorch等。</li><li>数据预处理：在使用大模型之前，通常需要对数据进行预处理。小白需要了解常见的数据预处理方法，如数据清洗、特征选择、特征转换等。还需要了解如何处理缺失值、异常值等常见的数据问题。</li><li>模型选择和评估：在学习大模型时，需要选择适合的模型来解决具体的问题。小白需要了解不同模型之间的优缺点，并能根据具体情况选择合适的模型。此外，还需要了解如何评估模型的性能，如准确率、召回率、F1值等指标。</li><li>模型调优：学习大模型时，模型的调优是非常重要的一步。小白需要了解常见的模型调优方法，如网格搜索、随机搜索、交叉验证等。还需要了解如何调整模型的超参数，如学习率、正则化参数等。</li><li>模型部署：在学习大模型之后，还需要将模型部署到实际的应用中。小白需要了解如何将训练好的模型保存，并能够加载模型进行预测。还需要了解如何优化模型的计算速度和内存占用等问题。</li></ol><h2 id="期望值-均值-、方差、标准差之间的区别是什么"><a href="#期望值-均值-、方差、标准差之间的区别是什么" class="headerlink" title="期望值(均值)、方差、标准差之间的区别是什么"></a>期望值(均值)、方差、标准差之间的区别是什么</h2><p>期望值: 是指随机变量的平均值或长期平均值。它通过考虑随机变量的所有可能结果，并根据它们各自的概率进行加权计算得到。</p><p>均值: 则是一组数字的算术平均值。它通过将集合中的所有数字相加，然后将总和除以数字的总数来计算得到。</p><blockquote><p>总结起来，期望值是概率论中用于描述随机变量平均值的概念，而均值是一个更一般的术语，用于描述一组数字的平均值。</p></blockquote><p>方差: 方差衡量随机变量或一组数据点的分散程度或离散程度。它量化了数据集中每个值与均值之间的差异程度。通过取每个数据点与均值之间差的平方的平均值来计算。</p><p>标准差: 标准差是随机变量或一组数据点的另一种衡量分散程度或离散程度的指标。它是方差的平方根，并提供了对分散程度的更直观理解。它表示数据点偏离均值的平均量。</p><h2 id="均匀分布、正态分布、多项分布的概念"><a href="#均匀分布、正态分布、多项分布的概念" class="headerlink" title="均匀分布、正态分布、多项分布的概念"></a>均匀分布、正态分布、多项分布的概念</h2><ol><li>均匀分布：均匀分布是指在一定范围内，所有的数值具有相同的概率密度。换句话说，每个数值发生的概率是相等的。在均匀分布中，每个数据点都有相同的可能性出现。</li></ol><p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/95d0a0d372d140bdaee6461f83cbded6~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=500&h=357&s=13688&e=png&a=1&b=000000" alt="image.png"></p><ol><li>正态分布：正态分布，也称为高斯分布，是自然界中最常见的分布之一。在正态分布中，数据呈现出钟形曲线的形状，均值位于中心，对称分布。大部分数据集中在均值附近，而离均值越远，数据出现的概率越小。</li></ol><p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fede817d0b4741c0b6d46312043283eb~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=500&h=319&s=39640&e=png&a=1&b=000000" alt="image.png"></p><ol><li>多项分布：多项分布是一种离散概率分布，用于描述在多个类别中的多次独立试验的结果。每个试验有多个可能的结果，并且每个结果发生的概率可能不同。多项分布可以用于模拟掷骰子、投票结果等多种情况。</li></ol><h2 id="损失函数在深度学习中的作用是什么？"><a href="#损失函数在深度学习中的作用是什么？" class="headerlink" title="损失函数在深度学习中的作用是什么？"></a>损失函数在深度学习中的作用是什么？</h2><p>损失函数在深度学习中起着至关重要的作用。损失函数用于衡量模型的预测输出与实际标签之间的差异，即模型的性能好坏。通过最小化损失函数，我们可以训练模型以更准确地预测目标变量。</p><p>深度学习中常用的损失函数有多种，根据任务类型和数据特点选择不同的损失函数。以下是几种常见的损失函数：</p><ol><li>均方误差（Mean Squared Error，MSE）：适用于回归任务，计算预测值与真实值之间的平均平方差，用于衡量预测值与真实值之间的距离。</li><li>交叉熵损失（Cross-Entropy Loss）：适用于分类任务，衡量模型输出的概率分布与真实标签之间的差异。常见的交叉熵损失函数包括二元交叉熵和多类交叉熵。</li><li>KL 散度（Kullback-Leibler Divergence）：用于衡量两个概率分布之间的差异，常用于生成模型中。</li></ol><p>损失函数的选择对模型的训练和性能影响巨大。通过优化损失函数，我们可以调整模型的参数以最小化预测误差，从而提高模型的准确性和泛化能力。</p><h2 id="如何降低损失函数？"><a href="#如何降低损失函数？" class="headerlink" title="如何降低损失函数？"></a>如何降低损失函数？</h2><p>降低损失函数是深度学习中优化模型性能的关键目标之一。</p><p>以下是一些常用的方法来降低损失函数：</p><ol><li>调整模型架构：通过改变模型的结构，增加或减少神经网络的层数、神经元的数量等，可以改善模型的表示能力，从而降低损失函数。</li><li>调整学习率：学习率控制了参数更新的步长。如果学习率设置得过大，可能导致训练不稳定；如果学习率设置得过小，可能导致训练收敛速度过慢。通过选择适当的学习率，可以更好地降低损失函数。</li><li>数据预处理：对输入数据进行预处理可以改善数据的质量，有助于降低损失函数。例如，对数据进行归一化、标准化、缺失值处理等。</li><li>增加训练数据量：增加更多的训练数据可以提供更多的样本信息，有助于提高模型的泛化能力，从而降低损失函数。</li><li>正则化技术：正则化方法可以通过限制模型的复杂度来减少过拟合，从而降低损失函数。常见的正则化技术包括L1正则化、L2正则化等。</li><li>批次归一化：批次归一化是一种常用的技术，可以加速模型的训练过程并提高模型的性能。它通过对每个小批次的数据进行归一化，有助于减少梯度消失和爆炸问题。</li><li>调整优化器：优化器选择对模型的性能有很大影响。常用的优化器包括随机梯度下降（SGD）、Adam、RMSProp等。通过选择合适的优化器和调整其超参数，可以帮助降低损失函数。</li></ol><p>请注意，降低损失函数是一个复杂的过程，需要根据具体的问题和数据来选择适当的方法。通常需要进行实验和调优，以找到最佳的方式来降低损失函数</p><h2 id="卷积神经网络（CNN）和递归神经网络（RNN）区别是什么？"><a href="#卷积神经网络（CNN）和递归神经网络（RNN）区别是什么？" class="headerlink" title="卷积神经网络（CNN）和递归神经网络（RNN）区别是什么？"></a>卷积神经网络（CNN）和递归神经网络（RNN）区别是什么？</h2><p>卷积神经网络（CNN）和递归神经网络（RNN）是两种常见的神经网络架构，用于处理不同类型的数据。</p><p>主要区别如下：</p><ol><li>数据处理方式：CNN主要用于处理网格状结构的数据，如图像。它通过卷积操作来提取局部特征，并通过池化操作来减少参数数量。而RNN则适用于序列数据，如文本和语音。它通过循环连接来处理序列中的时序信息。</li><li>网络结构：CNN通常由多个卷积层和池化层组成，最后通过全连接层进行分类或回归。每个卷积层都可以检测不同的特征，逐渐提取更高级别的特征。RNN由一个或多个循环单元组成，可以捕捉序列中的上下文信息。</li><li>参数共享：CNN具有参数共享的特性，即在整个图像中使用相同的过滤器来提取特征。这样可以减少参数数量，提高模型的效率。而RNN在每个时间步都使用相同的参数，以处理序列中的不同位置的输入。</li><li>上下文理解：由于RNN的循环连接结构，它能够捕捉到序列数据中的上下文信息和长期依赖关系。而CNN主要关注局部特征，对于长期依赖的序列数据处理可能相对困难。</li></ol><p>综上所述，CNN适用于处理网格状数据，如图像，而RNN适用于处理序列数据，如文本和语音。它们在数据处理方式、网络结构、参数共享和上下文理解等方面存在明显的区别。</p><h2 id="模型蒸馏是什么？"><a href="#模型蒸馏是什么？" class="headerlink" title="模型蒸馏是什么？"></a>模型蒸馏是什么？</h2><p>模型蒸馏（Model Distillation）是一种用于训练模型的方法，它通过将一个大型模型转换为一个较小的模型，从而实现更高效地部署和优化。模型蒸馏通常用于解决训练集不足的问题，特别是在数据量较少的场景下。</p><p>模型蒸馏的主要思想是将一个大型模型的输出映射到一个较小的模型，以便较小的模型能够更好地拟合较大的模型。具体步骤如下：</p><ol><li>选择一个大型模型：首先，从大量数据中训练一个大型模型。这个模型通常包含多个层，每层都有一个特定的权重。</li><li>选择一个较小的模型：为了实现模型蒸馏，需 要创建一个较小的模型，该模型具有与大型模型相同的层结构，但权重较小。这可以通过使用较少的参数和较小的神经网络结构来实现。</li><li>输出层：为了将大型模型的输出映射到较小的模型，需要将大型模型的输出层转换为较小的模型可以理解的格式。这通常是通过将大型模型的输出层转换为多个较小的输出层来实现。每个较小的输出层都可以被视为一个分类器，它将输入特征映射到相应的类别。</li><li>训练较小的模型：使用较小的数据集对较小的模型进行训练。训练的目标是使较小的模型的权重与大型模型的权重接近，从而实现模型蒸馏。</li><li>评估模型：使用测试集评估较小的模型的性能，并与大型模型的性能进行比较。通过比较性能，可以评估模型蒸馏的效果。</li></ol><p>模型蒸馏是一种有效的训练方法，特别是在数据量较少的场景下，可以帮助训练较小的模型，从而提高性能并提高模型在实际应用中的可移植性。</p><h2 id="压缩量化是什么？"><a href="#压缩量化是什么？" class="headerlink" title="压缩量化是什么？"></a>压缩量化是什么？</h2><p>压缩量化是一种优化技术，用于减少神经网络模型的参数量，同时保持模型的性能。它通过减少权重系数的大小来减少模型的大小，从而降低计算量，提高存储空间和传输速度。通常，压缩量化方法包括以下几个步骤：</p><ol><li>初始化：首先，随机初始化模型的权重系数。</li><li>训练：使用训练数据对模型进行训练，同时更新权重系数。</li><li>量化：将权重系数转换为整数表示，从而减少其大小。通常，使用固定点精度或浮点精度来量化权重系数。</li><li>微调：根据训练过程中的性能指标对权重系数进行微调，以优化模型的性能。</li><li>评估：使用测试数据对模型进行评估，以评估压缩量化后的性能。</li></ol><p>压缩量化方法在神经网络模型压缩和优化方面取得了很好的效果，特别是在资源有限的场景下。然而，在实际应用中，压缩量化可能会导致模型的性能损失，因此需要谨慎应用。</p><h2 id="模型加速是什么？"><a href="#模型加速是什么？" class="headerlink" title="模型加速是什么？"></a>模型加速是什么？</h2><p>模型加速（Model Acceleration）是一种用于加速神经网络模型训练的方法。它通过优化模型结构、优化算法和并行处理技术来提高模型的训练速度。通常，模型加速方法包括以下几个步骤：</p><ol><li>初始化：首先，随机初始化模型的权重系数。</li><li>训练：使用训练数据对模型进行训练，同时更新权重系数。在训练过程中，使用加速标志来记录模型权重系数的变化。</li><li>优化：根据训练过程中的性能指标对模型结构进行优化，以提高模型的训练速度。</li><li>并行处理：使用并行处理技术提高模型的训练速度。这可以通过使用多线程、多进程或分布式计算来并行处理多个样本，从而提高训练速度。</li><li>评估：使用测试数据对模型进行评估，以评估加速后的性能。在评估过程中，确保加速标志保持不变。</li></ol><p>模型加速方法在提高神经网络模型训练速度方面取得了很好的效果，特别是在资源有限的场景下。然而，在实际应用中，模型加速可能会导致模型的性能损失，因此需要谨慎应用。</p><h2 id="什么是多模态大模型？"><a href="#什么是多模态大模型？" class="headerlink" title="什么是多模态大模型？"></a>什么是多模态大模型？</h2><p>多模态大模型（Multimodal Large Model）是一种结合了多种任务（如文本、图像、音频等）的通用预训练模型。它通过学习多种任务的数据来提高在多种任务上的性能，从而提高模型的通用性。多模态大模型通常使用深度学习技术来实现，包括卷积神经网络（CNN）和递归神经网络（RNN）。</p><p>多模态大模型通常具有以下特点：</p><ol><li>large：模型参数规模较大，需要大量训练数据和计算资源。</li><li>multi-task：模型同时学习多种任务，提高模型的通用性。</li><li>multi-modality：模型处理不同类型的输入，如文本、图像、音频等，提高模型的适应性。</li><li>deep：模型内部结构复杂，包含多个层次的神经网络。</li></ol><p>当前的多模态大模型有：</p><ol><li>谷歌的 GLM（General Language Modeling）模型，一种基于 Transformer 的通用语言模型。</li><li>百度的 PaddleNLP 模型，一种基于 Transformer 的通用语言模型。</li><li>清华大学的 GLM-130B 模型，一种基于 Transformer 的通用语言模型。</li><li>清华大学的 Im2txt 模型，一种基于 CNN 的通用文本生成模型。</li><li>清华大学的 Audio2Text 模型，一种基于 CNN 的通用音频转文本模型。</li></ol><p>总之，多模态大模型是一种结合了多种任务（如文本、图像、音频等）的通用预训练模型，通过学习多种任务的数据来提高在多种任务上的性能，从而提高模型的通用性。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;大模型概念总结&quot;&gt;&lt;a href=&quot;#大模型概念总结&quot; class=&quot;headerlink&quot; title=&quot;大模型概念总结&quot;&gt;&lt;/a&gt;大模型概念总结&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;链接：&lt;a href=&quot;https://juejin.cn/post/72</summary>
+      
+    
+    
+    
+    <category term="AI" scheme="http://ai.mak.cn/categories/AI/"/>
+    
+    
+    <category term="深度学习" scheme="http://ai.mak.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -466,57 +515,6 @@
     
     
     <category term="语录" scheme="http://ai.mak.cn/tags/%E8%AF%AD%E5%BD%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>骑起来</title>
-    <link href="http://ai.mak.cn/2023/08/30/%E8%AF%AD%E5%BD%95/%E9%AA%91%E8%B5%B7%E6%9D%A5/"/>
-    <id>http://ai.mak.cn/2023/08/30/%E8%AF%AD%E5%BD%95/%E9%AA%91%E8%B5%B7%E6%9D%A5/</id>
-    <published>2023-08-29T16:00:00.000Z</published>
-    <updated>2023-09-10T00:53:13.991Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>白天归顺生活，夜晚臣服于灵魂，生活原本沉闷，但骑起来就会有风……</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;白天归顺生活，夜晚臣服于灵魂，生活原本沉闷，但骑起来就会有风……&lt;/p&gt;
-&lt;/blockquote&gt;
-</summary>
-      
-    
-    
-    
-    <category term="语录" scheme="http://ai.mak.cn/categories/%E8%AF%AD%E5%BD%95/"/>
-    
-    
-    <category term="语录" scheme="http://ai.mak.cn/tags/%E8%AF%AD%E5%BD%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MAC移动硬盘非正常断开连接后硬盘无法识别</title>
-    <link href="http://ai.mak.cn/2023/08/20/%E5%B7%A5%E5%85%B7/MAC%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E9%9D%9E%E6%AD%A3%E5%B8%B8%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5%E5%90%8E%E7%A1%AC%E7%9B%98%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB/"/>
-    <id>http://ai.mak.cn/2023/08/20/%E5%B7%A5%E5%85%B7/MAC%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E9%9D%9E%E6%AD%A3%E5%B8%B8%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5%E5%90%8E%E7%A1%AC%E7%9B%98%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB/</id>
-    <published>2023-08-19T16:00:00.000Z</published>
-    <updated>2023-08-20T11:42:55.892Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="MAC移动硬盘非正常断开连接后硬盘无法识别"><a href="#MAC移动硬盘非正常断开连接后硬盘无法识别" class="headerlink" title="MAC移动硬盘非正常断开连接后硬盘无法识别"></a>MAC移动硬盘非正常断开连接后硬盘无法识别</h1><p>步骤1：先找到外接移动硬盘，在 Mac “终端”执行命令</p><p>步骤2：加载移动硬盘，可以在终端执行以下两个命令之一</p><p>步骤3：终止后台自动执行的“磁盘修复进程”</p><p>步骤4：手动执行磁盘修复命令</p><p>步骤5：Windows系统的磁盘修复</p><p>参考6：修复方案及相关命令详解</p><hr><p>  MAC 的移动硬盘非正常退出后（断电、直接拔掉等），重新连接后无法在“Finder桌面”或“磁盘工具”里正常看到移动硬盘的图标。</p><p>  每次出现这个问题都是在网上搜索一番，敲几行命令，有实话敲完就OK，，有时候不管，放一段时间自动修复了，还是在一次成功解决后，记录下来吧</p><h1 id="步骤1：先找到外接移动硬盘，在-Mac-“终端”执行命令"><a href="#步骤1：先找到外接移动硬盘，在-Mac-“终端”执行命令" class="headerlink" title="步骤1：先找到外接移动硬盘，在 Mac “终端”执行命令"></a><strong>步骤1：先找到外接移动硬盘，在 Mac “终端”执行命令</strong></h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diskutil list</span><br></pre></td></tr></table></figure><p>  执行后，显示的信息：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/dev/disk0 (internal, physical):</span><br><span class="line"><span class="meta prompt_">   #</span><span class="language-bash">:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:      GUID_partition_scheme                        *500.3 GB   disk0</span><br><span class="line">   1:                        EFI ⁨EFI⁩                     314.6 MB   disk0s1</span><br><span class="line">   2:                 Apple_APFS ⁨Container disk1⁩         500.0 GB   disk0s2</span><br><span class="line"></span><br><span class="line">/dev/disk1 (synthesized):</span><br><span class="line"><span class="meta prompt_">   #</span><span class="language-bash">:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:      APFS Container Scheme -                      +500.0 GB   disk1</span><br><span class="line">                                 Physical Store disk0s2</span><br><span class="line">   1:                APFS Volume ⁨Macintosh HD - 数据⁩     278.7 GB   disk1s1</span><br><span class="line">   2:                APFS Volume ⁨Preboot⁩                 301.7 MB   disk1s2</span><br><span class="line">   3:                APFS Volume ⁨Recovery⁩                1.1 GB     disk1s3</span><br><span class="line">   4:                APFS Volume ⁨VM⁩                      1.1 GB     disk1s4</span><br><span class="line">   5:                APFS Volume ⁨Macintosh HD⁩            15.4 GB    disk1s5</span><br><span class="line">   6:              APFS Snapshot ⁨com.apple.os.update-...⁩ 15.4 GB    disk1s5s1</span><br><span class="line"></span><br><span class="line">/dev/disk2 (external, physical):</span><br><span class="line"><span class="meta prompt_">   #</span><span class="language-bash">:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:     FDisk_partition_scheme                        *1.0 TB     disk2</span><br><span class="line">   1:               Windows_NTFS ⁨Elements⁩                1.0 TB     disk2s1</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>  从终端提示内容可以看到，外接移动硬盘（external, physical）名称是：disk2, 容量1TB，硬盘的文件格式没有明确标注，从microsoft Basic Data 几个字样推断，再加上之前在 Windows 系统也能正常使用，应该是能兼容 Windows 和 Mac 系统的 exFAT 格式（<em>不同的文件格式，请参考文末链接</em>），当然从后面运行命令后，系统提示的信息也能看到。</p><p>  另外，disk2 下面包括两个盘符标记：disk2s1 和 disk2s2, 多个盘符表示硬盘包括多个分区，可以看到disk2s1的 TYPE NAME 是 EFI ：</p><blockquote><p>EFI系统分区中存放了可供引导启动的文件，作用是引导操作系统正常启动。EFI系统分区是一个使用FAT32格式化的小分区，该分区在Windows操作系统下一般是不可见的，其中存储已安装系统的EFI引导加载程序以及启动时固件使用的应用程序。</p></blockquote><p>  因为 EFI 分区在这里对我们没有什么意义，我们实际存储数据的的硬盘分区是 disk2s2，后面命令的操作对象和执行结果也是针对的硬盘分区 disk2s2 来说的。</p><h1 id="步骤2：加载移动硬盘，可以在终端执行以下两个命令之一"><a href="#步骤2：加载移动硬盘，可以在终端执行以下两个命令之一" class="headerlink" title="步骤2：加载移动硬盘，可以在终端执行以下两个命令之一"></a><strong>步骤2：加载移动硬盘，可以在终端执行以下两个命令之一</strong></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># mount命令可以只挂载硬盘的某个分区</span><br><span class="line">diskutil mount /dev/disk2s2# mountdisk命令可以实现挂载整个硬盘（包括所有分区）</span><br><span class="line">diskutil mountdisk /dev/disk2</span><br></pre></td></tr></table></figure><p>  通常异常退出的移动硬盘，执行这两个命令都会提示错误信息：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 执行 sudo diskutil mount /dev/disk2s2 命令报错</span><br><span class="line">Volume on disk2 timed out waiting to mount# 执行 sudo diskutil mountDisk /dev/disk2 命令报错：</span><br><span class="line">One or more volume(s) failed to mount</span><br></pre></td></tr></table></figure><p>  <strong>为什么会提示等待超时呢？</strong>其实是因为你把硬盘的数据线重新接上电脑时，系统检测到硬盘异常，Mac 系统会在“<strong>后台自动运行</strong>” 磁盘修复进程: <strong>fsck</strong>，从而导致 <strong>diskutil mount</strong> 命令运行超时。</p><blockquote><p><strong>如果你刚接上硬盘不能识别，不要着急反复拔掉和重新连接，可以稍微耐心等待系统的自动修复完成。如果等待时间过长还没有恢复，可以继续执行下面的步骤。</strong></p></blockquote><h1 id="步骤3：终止后台自动执行的“磁盘修复进程”"><a href="#步骤3：终止后台自动执行的“磁盘修复进程”" class="headerlink" title="步骤3：终止后台自动执行的“磁盘修复进程”"></a><strong>步骤3：终止后台自动执行的“磁盘修复进程”</strong></h1><p>  先执行下面命令，找到后台运行的 fsck 进程的PID：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep fsck</span><br></pre></td></tr></table></figure><p>  显示后台正在运行的 fsck 进程，从下面截图能看到：<strong>fsck_exfat -y -x &#x2F;dev&#x2F;rdisk2s2</strong> ，从这里也能判断硬盘文件格式应该是：<strong>exfat</strong>。</p><p>  执行命令 kill fsck，终止自动修复进程：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 21364 是 PID 进程号</span><br><span class="line">sudo pkill -f fsck 或 sudo kill -9 21364</span><br></pre></td></tr></table></figure><p>  注意：执行完毕后，再次执行【步骤2】的磁盘加载命令，一般都能装载成功，桌面上会出现移动硬盘盘符标志。但是运气比较差的话，杀死 fsck 进程后，硬盘会自动以”<strong>只读状态</strong>“完成加载，并弹出提示对话框，如下图所示。接下来可以继续尝试后面的步骤来进行硬盘修复。</p><h1 id="步骤4：手动执行磁盘修复命令"><a href="#步骤4：手动执行磁盘修复命令" class="headerlink" title="步骤4：手动执行磁盘修复命令"></a><strong>步骤4：手动执行磁盘修复命令</strong></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fsck_exfat -y -x /dev/disk2s2</span><br></pre></td></tr></table></figure><p>  一般常用的磁盘修复命令有： <strong>fsck_hfs、fsck_exfat、fsck_apfs</strong> 等，<strong>fsck</strong> 代表磁盘修复命令，下划线后面 <strong>hfs，exfat，apfs</strong> 代表硬盘的文件格式。（<em>fsck 命令详解，请参考文末链接</em>）。 </p><p>  注意，<strong>fask_[文件格式]</strong> 命令要正确，另外，“手动执行修复命令”与“系统提供【磁盘工具】- 【急救】”是一样的原理和效果，在终端手动执行修复命令后，会显示修复过程中的详细信息，例如那些文件是问题的</p><p>  【步骤4】如果能顺利执行完毕就可以加载硬盘成功，但是【步骤4】的时长不好判断，从几分钟到半个小时的都有，甚至还有人等待十几个小时最后放弃的。笔者碰到的情况是：“手动修复方式”和“磁盘工具-急救”两种方案都试过了，都是等待几个小时也没有等到修复结束的时刻。虽然“磁盘工具 - 急救”对话框有个“详情”标签展开可以检测到错误文件的信息，对话框页面也有一个进度条，但是一直都只显示空空进度条，没有任何进度更新，只好放弃！</p><h1 id="步骤5：Windows系统的磁盘修复"><a href="#步骤5：Windows系统的磁盘修复" class="headerlink" title="步骤5：Windows系统的磁盘修复"></a><strong>步骤5：Windows系统的磁盘修复</strong></h1><p>  如果【步骤四】不幸失败了，但是你必须要拯救这块硬盘的话，就去找一台 Windows 系统的电脑，<strong>既然 Mac 系统修复失败，那么为什么不试试 Windows 系统的磁盘修复功能呢？</strong>前面提到过，这块硬盘文件格式是 exFAT，兼容两个系统。</p><p>  在接上安装有 Windows 10 系统的笔记本电脑后，系统提示：“磁盘错误，需要扫描和修复”，于是点击“确认”，开始修复和修复结束的对话框如图所示:</p><p>  这次等待时间接近3个小时，虽然时间很长，但是进度条在缓慢移动，相比 Mac 系统，至少让你还有等待下去的期待。这个时间可能跟硬盘大小、速度、文件数量有关系（笔者的硬盘是机械硬盘，2T，剩余空间60G）。以上是 Win10 的提供的磁盘修复对话框，如果接上硬盘后，系统没有任何提示，你可以在 DOS 窗口手动输入命令来实现相同的修复过程。（<em>Windows Dos磁盘修复方法，参考文末链接</em>）。</p><p>  如果最终没有成功的话，可能真的是磁盘数据损坏无法修复了，需要及时备份以防数据丢失。</p><h1 id="参考6：修复方案及相关命令详解"><a href="#参考6：修复方案及相关命令详解" class="headerlink" title="参考6：修复方案及相关命令详解"></a><strong>参考6：修复方案及相关命令详解</strong></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># mac下移动硬盘异常退出修复方法</span><br><span class="line">https://zhuanlan.zhihu.com/p/83542978</span><br><span class="line">https://blog.csdn.net/Bobdragery/article/details/95086132</span><br><span class="line">https://apple.stackexchange.com/questions/235309/external-drive-does-not-mount-after-plug-off-without-eject# Windows Dos磁盘修复方法</span><br><span class="line">https://blog.csdn.net/qq_26834611/article/details/107968650# MacOS 磁盘管理工具 diskutil 介绍</span><br><span class="line">https://www.jianshu.com/p/6a1f365617ad# Linux fsck命令介绍：检测和修复文件系统</span><br><span class="line">http://c.biancheng.net/view/887.html# unmount, unmountdisk, eject命令的区别</span><br><span class="line">http://newsn.com.cn/say/mac-umount.html</span><br><span class="line"># mount与mountdisk命令的区别</span><br><span class="line">https://newsn.net/say/mac-mount-2.html# Fat32、NTFS、exFAT、HFS+、APFS文件系统的区别</span><br><span class="line">https://blog.csdn.net/qq_39111085/article/details/103800464</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;MAC移动硬盘非正常断开连接后硬盘无法识别&quot;&gt;&lt;a href=&quot;#MAC移动硬盘非正常断开连接后硬盘无法识别&quot; class=&quot;headerlink&quot; title=&quot;MAC移动硬盘非正常断开连接后硬盘无法识别&quot;&gt;&lt;/a&gt;MAC移动硬盘非正常断开连接后硬盘无法识别&lt;/</summary>
-      
-    
-    
-    
-    <category term="工具" scheme="http://ai.mak.cn/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-    <category term="mac" scheme="http://ai.mak.cn/tags/mac/"/>
     
   </entry>
   
