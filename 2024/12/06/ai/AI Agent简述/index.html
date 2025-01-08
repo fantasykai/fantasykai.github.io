@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>大模型概念总结 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2bb92548008bd1f1f88213efd40c8dad';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">大模型概念总结</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">大模型概念总结</h1><div class="post-meta">2024-12-06<span> | </span><span class="category"><a href="/categories/AI/">AI</a></span></div><a class="disqus-comment-count" href="/2024/12/06/ai/AI%20Agent%E7%AE%80%E8%BF%B0/#vcomment"><span class="waline-comment-count" id="/2024/12/06/ai/AI%20Agent%E7%AE%80%E8%BF%B0/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div></div></div><div class="post-content"><p><strong>尽管大部分人是在LLM（大语言模型）兴起后才接触AI Agent，但它并不是一个完全新生的概念（RAG也是一样），只是因为LLM给AI Agent带来了全新的可能与突破。所以本文的</strong> <strong>AI Agent也是特指基于LLM的自主型人工智能实体。</strong></p>
+<p>01</p>
+<p>为什么需要Agent？</p>
+<p>大模型已经非常强大，能够生成内容、回答问题甚至协助编程。那为什么我们还需要 AI Agent？</p>
+<p>简单的说，大模型就像一个“超级大脑”，知识丰富、能力强大，但它的问题是“只懂回答，不懂行动”。你可以让它生成一篇文章、回答一个问题，但如果你希望它主动完成一系列复杂任务，仅靠大模型自身是不够的。 比如，你可以问大模型：</p>
+<p><em><strong>“如何调查与获取竞争对手产品的信息？”</strong></em></p>
+<p>甚至也可以结合RAG让大模型来回答：</p>
+<p><em><strong>“总结我们公司最新某某产品的特点？”</strong></em></p>
+<p>但是如果你让大模型来帮你完成如下任务：</p>
+<p><em><strong>“对比A公司竞品与我公司产品的差异，把结果发送到我邮箱。“</strong></em></p>
+<p>这时候大模型就无能为力了。原因是它只有聪明的”大脑“，但却没有”手脚“、也没有”工具“，因此无法自主的完成任务。所以AI需要这样的进化：</p>
+<p><img src="https://p6-volc-community-sign.byteimg.com/tos-cn-i-tlddhu82om/f2d2298685fb486ebde35a1df8d8435a~tplv-tlddhu82om-image.image?=&rk3s=8031ce6d&x-expires=1736404376&x-signature=ZGp+KKOm/CRCSpLlBSuTVYBc1pA=" alt="picture.image"></p>
+<p>这就是为什么需要Agent —— 因为我们需要AI <strong>不 *<em>仅*</em></strong> <strong>是被动的回答问题，更需要能够主动的解决问题。</strong></p>
+<p>02</p>
+<p>什么是Agent？</p>
+<p>所以，AI Agent（智能体） 是一种能利用大模型进行自主的任务规划、决策与执行的系统。 <strong>它的核心思路是让人工智能不仅能回答问题，还能像人一样主动完成一系列关联性的任务；不仅有聪明的“大脑”，还有灵活的“手脚”，必要的时候还会使用“工具”。</strong></p>
+<p><img src="https://p6-volc-community-sign.byteimg.com/tos-cn-i-tlddhu82om/2605f5e64e1e40b0a0b61e3fd897f235~tplv-tlddhu82om-image.image?=&rk3s=8031ce6d&x-expires=1736404376&x-signature=WCt4ivDAQtu/YkpUYKjgmcScL6A=" alt="picture.image"></p>
+<p>如果说大模型像一位百科全书式的学者，而AI Agent就像一个“办事能力强的大管家”。这位管家会根据你的需求，把任务拆解成多个步骤，并主动找到资源或工具来完成。比如这个任务：</p>
+<p>“对比A公司与我公司产品的差异，把结果发送到我邮箱。“</p>
+<p>Agent会借助大模型规划任务步骤并执行：</p>
+<ol>
+<li>先从互联网搜索A公司产品信息（使用Web搜索工具）</li>
+<li>再从企业知识库检索我公司信息（使用本地查询工具）</li>
+<li>生成对比报告（让大模型完成）</li>
+<li>发送邮件到邮箱（使用邮件发送工具）</li>
+</ol>
+<p>可以看到，基于大模型的AI Agent，就是把强大的语言模型和一套可以主动行动的机制结合起来，让它不仅能“懂”能“想”，还会“做”。</p>
+<p>所以 <strong>Agent与大模型之间的区别</strong> 可以总结为：</p>
+<ul>
+<li>大模型只是一个大脑，而Agent是一个完整体</li>
+<li>大模型只会告诉你怎么做，而Agent会帮你做</li>
+<li>模型本身不会使用工具，而Agent会使用工具</li>
+<li>大模型通常不会记忆，而Agent则具备记忆能力</li>
+<li>Agent借助大模型来实现理解与规划能力</li>
+</ul>
+<p>03</p>
+<p>Agent的常见应用场景？</p>
+<p>AI Agent可以在大量的领域与场景下展现出非凡的能力，包括但不限于个人助理、客户服务、市场营销、决策支持、游戏仿真、智能家居、无人驾驶、机器人等。以下是一些实际的例子：</p>
+<p><strong>1.智能客服</strong></p>
+<p>比如一家公司需要全天候解答客户问题。AI Agent可以根据客户问题调用大模型生成答案，还能主动查询库存信息、处理订单甚至提供物流状态。</p>
+<p><strong>2.编程助手</strong></p>
+<p>开发人员需要解决某个技术问题，AI Agent不仅能提供代码示例，还能直接运行代码，调试错误，甚至优化性能。</p>
+<p><strong>3.个人助理</strong></p>
+<p>Agent可以帮你管理日程、订餐、处理邮件、监控股票市场，并根据你的偏好提供个性化建议，而不只是回答问题。</p>
+<p><strong>4.智能家居</strong></p>
+<p>家庭中的Agent可以连接灯光、空调、安防摄像头等设备，根据家庭成员的指令与设定，主动调节环境，控制家具设备。</p>
+<p><strong>5.科学研究</strong></p>
+<p>在科研领域，AI Agent可以自动收集最新文献、设计实验流程、分析实验数据，并生成总结报告。</p>
+<p>04</p>
+<p>Agent的基本工作原理？</p>
+<p>AI Agent的工作原理可以总结为以下几个步骤：</p>
+<p><img src="https://p6-volc-community-sign.byteimg.com/tos-cn-i-tlddhu82om/7dd44afc14c747c58b06a9818cfb967f~tplv-tlddhu82om-image.image?=&rk3s=8031ce6d&x-expires=1736404376&x-signature=B/I/jLELGQw5pXIknqfUVDvIwbY=" alt="picture.image"></p>
+<p><strong>1.输入理解：</strong> 用户提出一个任务（比如发送一份产品对比报告），Agent首先借助大模型对用户输入指令进行理解和解析，识别任务目标和约束条件。</p>
+<p><strong>2.任务规划：</strong> 基于理解的目标，Agent 会规划完成任务的步骤，并决定采取哪些行动。这可能涉及将目标分解成多个子任务，确定任务优先级与执行顺序等（如获取竞品信息、查询企业产品信息、生成对比报告、发送电子邮件）。</p>
+<p><strong>3.任务执行与反馈：</strong> 通过大模型或外部工具完成每个子任务（如调用搜索引擎、查询数据库、生成对比结果、调用电子邮件发送服务）；在此过程中，Agent会搜集与观察子任务结果，及时处理问题，必要时对任务进行调整（如任务执行发生了错误，可能会进行多次迭代尝试）。</p>
+<p><strong>4.任务完成与交付：</strong> 将任务的结果汇总并输出（如生成对比报告与邮件发送回执）。</p>
+<p>当然，这只是Agent的核心处理流程。在实际应用中，根据环境与需求的差异，可能存在高度定制且复杂Agent工作流。</p>
+<p>05</p>
+<p>Agent系统的基本组成？</p>
+<p>获得广泛认可的Agent架构来自于OpenAI公司的总结：</p>
+<p><img src="https://p6-volc-community-sign.byteimg.com/tos-cn-i-tlddhu82om/2481f33663cc452b847e51789dc6659d~tplv-tlddhu82om-image.image?=&rk3s=8031ce6d&x-expires=1736404376&x-signature=4QZRFK0up8P6l6ERZQtZP47QnGE=" alt="picture.image"></p>
+<p>可以总结成：</p>
+<p><strong>Agent &#x3D; LLM + 记忆 + 规划技能 + 工具使用</strong></p>
+<ol>
+<li><strong>大模型：</strong> 提供核心的语言理解、推理与生成能力，是整个Agent的“大脑”。</li>
+<li><strong>任务规划：</strong> 对复杂任务借助大模型进行分解、规划和调度，并及时观察子任务执行的结果与反馈，对任务及时调整。</li>
+<li><strong>工具使用：</strong> 与外部工具（如API、数据库、硬件设备）进行交互，扩展智能体的能力，执行任务，相当于Agent的“手脚”。</li>
+<li><strong>记忆：</strong> 这是Agent的“存储器”，可用来存储短期的记忆（如一次任务过程中的多次人类交互）或长期记忆（如记录使用者的任务历史、个人信息、兴趣便好等）。</li>
+</ol>
+<p>除此之外，通常Agent还需要提供 一个直观的入口，让用户可以方便地给Agent下达指令或查看结果，这个入口可以是可视化的文字输入、语音输入，或者对外开放的API接口。</p>
+<p>05</p>
+<p>Agent面临最大的挑战？</p>
+<p>尽管LLM的横空出世与爆炸式发展给Agent开辟了新的天地，但必须看到，当前AI Agent仍然处于技术积累与实验阶段，尽管很多大模型厂家推出了Agent平台甚至商店，但主要集中在个人助理、娱乐、写作等对可靠性与确定性相对较低的领域，而在真正的生产力场景，还面临众多挑战。而最主要的问题来自：</p>
+<p>AI Agent将LLM作为核心组件，用于理解用户需求、计划任务、生成响应并执行操作。但在一些对准确性、可预测性、可追溯性要求极高的场景中，LLM的不确定性会带来一些潜在问题。</p>
+<ul>
+<li><strong>错误的任务规划</strong></li>
+</ul>
+<p>LLM误解了用户的意图或语义，可能会导致错误的计划与结果</p>
+<ul>
+<li><strong>错误的工具调用</strong></li>
+</ul>
+<p>如果LLM生成了错误的工具调用逻辑，可能会导致任务失败</p>
+<ul>
+<li><strong>生成错误的建议</strong></li>
+</ul>
+<p>在医疗、法律、金融等需要高度准确的领域，不确定性可能带来严重后果</p>
+<ul>
+<li><strong>安全与伦理问题</strong></li>
+</ul>
+<p>LLM可能会根据不完整的上下文生成带有潜在风险甚至违反伦理的建议</p>
+<ul>
+<li><strong>稳定性和可重复性</strong></li>
+</ul>
+<p>在工业应用中，系统的行为需要可重复且稳定，而LLM由于其生成概率特性，可能在相同条件下输出不同的结果</p>
+<p>在模型厂家、开发工具提供商、应用开发商的共同努力下，这些问题正在不断得到优化与改善。</p>
+<p>06</p>
+<p>Agent未来的发展趋势？</p>
+<p>AI Agent虽然还处于发展的初期，但未来潜力巨大，简单展望其发展趋势：</p>
+<p><strong>1.更强的自主性与智能化</strong></p>
+<p>随着技术进步，AI Agent将拥有更强的人类意图理解、逻辑推理和复杂任务处理能力，能够在更多场景下自主决策，执行多样的任务。</p>
+<p><strong>2.深度行业化与定制化</strong></p>
+<p>更多的领域与行业会定制化自己的AI Agent，比如IT领域的开发助手、医疗领域的诊断助手、智能家居的家庭助手、智能实体机器人等。</p>
+<p><strong>3.更强的个性化，人性化</strong></p>
+<p>AI Agent会具备更强的个性化能力，能够在与使用者的长期交互中学习使用者的习惯、个人信息与兴趣偏好等，以提供更贴心的服务。</p>
+<p><strong>4. 持续学习和自适应能力</strong></p>
+<p>AI Agent将具备持续学习的能力，能够根据环境变化和新数据进行自我调整和优化，持续提升自身的智能水平。</p>
+<p><strong>5. 伦理与法规考量更受重视</strong></p>
+<p>随着AI Agent的普及，对隐私、安全和伦理的关注将促使相关法规和标准的制定，确保AI技术的负责任发展。</p>
+<p>AI Agent的出现，为人工智能技术赋予了主动行动的能力，让它从“被动回答问题”进化到“主动完成任务”。无论是个人生活、企业运营还是科学研究，AI Agent都在逐步展现它的潜力。可以预见，随着技术的不断进步，AI Agent将成为我们工作和生活中不可或缺的助手。</p>
+</div><div class="tags"><a href="/tags/深度学习"><i class="fa fa-tag">深度学习</i></a></div><div class="post-nav"><a class="next" href="/2024/10/02/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E7%B3%BB%E7%BB%9F%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/">系统稳定性建设</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">36</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">118</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">73</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B7%91%E6%AD%A5/">跑步</a><span class="category-list-count">2</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">深度学习</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 15px;">知识图谱</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">运维</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 15px;">工具</a> <a href="/tags/%E6%8A%A5%E5%91%8A%E5%88%86%E4%BA%AB/" style="font-size: 15px;">报告分享</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/SDN/" style="font-size: 15px;">SDN</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a> <a href="/tags/%E5%81%A5%E5%BA%B7/" style="font-size: 15px;">健康</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/PMO/" style="font-size: 15px;">PMO</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/" style="font-size: 15px;">技术小栈</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2024/12/06/ai/AI%20Agent%E7%AE%80%E8%BF%B0/">大模型概念总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/10/02/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E7%B3%BB%E7%BB%9F%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/">系统稳定性建设</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/09/15/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E5%AE%9E%E6%97%B6%E9%80%9A%E4%BF%A1%E7%9A%84%E5%85%B3%E9%94%AE%E5%B7%AE%E5%BC%82%E8%A7%A3%E6%9E%90/">实时通信的关键差异解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/09/08/ai/%E8%AE%B2%E9%80%8F%E4%B8%80%E4%B8%AA%E5%BC%BA%E5%A4%A7%E7%AE%97%E6%B3%95%E6%A8%A1%E5%9E%8B%EF%BC%8CLSTM%20%EF%BC%81%EF%BC%81/">LSTM详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/08/25/%E8%B7%91%E6%AD%A5/5%E5%85%AC%E9%87%8C%E6%88%90%E7%BB%A9%E8%B7%91%E8%BF%9B20%E5%88%86%E9%92%9F%EF%BC%81/">5公里成绩跑进20分钟！</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/08/11/%E8%B7%91%E6%AD%A5/%E6%8F%90%E5%8D%87%E8%B7%91%E6%AD%A5%E8%83%BD%E5%8A%9B%EF%BC%8C%E8%BF%99%E4%B8%89%E9%A1%B9%E8%AE%AD%E7%BB%83%E7%BC%BA%E4%B8%80%E4%B8%8D%E5%8F%AF/">提升跑步能力，这三项训练缺一不可</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/08/03/%E6%9D%82%E8%AE%B0/%E4%B8%80%E7%B1%B3%E5%A5%87%E8%BF%B9%EF%BC%9A%E6%80%8E%E6%A0%B7%E8%AE%A9%E4%BD%A0%E7%9A%84%E5%B7%A5%E4%BD%8D%E6%9B%B4%E5%81%A5%E5%BA%B7%EF%BC%9F/">一米奇迹：怎样让你的工位更健康？</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/07/28/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E9%80%9A%E7%94%A8%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">微服务核心架构梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/07/14/python/conda%E3%80%81pip%E3%80%81anaconda%E3%80%81miniconda%E3%80%81miniforge%E3%80%81mambaforge%20%E5%8C%BA%E5%88%86/">conda、pip、anaconda、miniconda、miniforge、mambaforge 区分</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/07/07/%E6%9D%82%E8%AE%B0/%E6%80%8E%E6%A0%B7%E8%AF%BB%E4%B9%A6%EF%BC%8C%E6%89%8D%E7%AE%97%E5%AF%B9%E5%BE%97%E8%B5%B7%E8%87%AA%E5%B7%B1%EF%BC%9F/">怎样读书，才算对得起自己？</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a><ul></ul><a href="https://excalidraw.com/" title="excalidraw" target="_blank">excalidraw</a><ul></ul><a href="https://tudan.blog.csdn.net/?type=lately" title="王坦" target="_blank">王坦</a><ul></ul><a href="https://aspoem.com/zh-Hans" target="_blank"></a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">枫哲's文栖小筑.</a><a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn/">｜苏ICP备18013756号-1</a><!--a(rel='nofollow', target='_blank', href='https://github.com/tufu9441/maupassant-hexo')  Theme--><!--|  by--><!--a(rel='nofollow', target='_blank', href='https://github.com/pagecho')  Cho.--></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

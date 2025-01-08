@@ -6,7 +6,7 @@
   <link href="http://ai.mak.cn/atom.xml" rel="self"/>
   
   <link href="http://ai.mak.cn/"/>
-  <updated>2024-12-20T08:44:02.941Z</updated>
+  <updated>2025-01-08T06:36:54.570Z</updated>
   <id>http://ai.mak.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>大模型概念总结</title>
+    <link href="http://ai.mak.cn/2024/12/06/ai/AI%20Agent%E7%AE%80%E8%BF%B0/"/>
+    <id>http://ai.mak.cn/2024/12/06/ai/AI%20Agent%E7%AE%80%E8%BF%B0/</id>
+    <published>2024-12-05T16:00:00.000Z</published>
+    <updated>2025-01-08T06:36:54.570Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>尽管大部分人是在LLM（大语言模型）兴起后才接触AI Agent，但它并不是一个完全新生的概念（RAG也是一样），只是因为LLM给AI Agent带来了全新的可能与突破。所以本文的</strong> <strong>AI Agent也是特指基于LLM的自主型人工智能实体。</strong></p><p>01</p><p>为什么需要Agent？</p><p>大模型已经非常强大，能够生成内容、回答问题甚至协助编程。那为什么我们还需要 AI Agent？</p><p>简单的说，大模型就像一个“超级大脑”，知识丰富、能力强大，但它的问题是“只懂回答，不懂行动”。你可以让它生成一篇文章、回答一个问题，但如果你希望它主动完成一系列复杂任务，仅靠大模型自身是不够的。 比如，你可以问大模型：</p><p><em><strong>“如何调查与获取竞争对手产品的信息？”</strong></em></p><p>甚至也可以结合RAG让大模型来回答：</p><p><em><strong>“总结我们公司最新某某产品的特点？”</strong></em></p><p>但是如果你让大模型来帮你完成如下任务：</p><p><em><strong>“对比A公司竞品与我公司产品的差异，把结果发送到我邮箱。“</strong></em></p><p>这时候大模型就无能为力了。原因是它只有聪明的”大脑“，但却没有”手脚“、也没有”工具“，因此无法自主的完成任务。所以AI需要这样的进化：</p><p><img src="https://p6-volc-community-sign.byteimg.com/tos-cn-i-tlddhu82om/f2d2298685fb486ebde35a1df8d8435a~tplv-tlddhu82om-image.image?=&rk3s=8031ce6d&x-expires=1736404376&x-signature=ZGp+KKOm/CRCSpLlBSuTVYBc1pA=" alt="picture.image"></p><p>这就是为什么需要Agent —— 因为我们需要AI <strong>不 *<em>仅*</em></strong> <strong>是被动的回答问题，更需要能够主动的解决问题。</strong></p><p>02</p><p>什么是Agent？</p><p>所以，AI Agent（智能体） 是一种能利用大模型进行自主的任务规划、决策与执行的系统。 <strong>它的核心思路是让人工智能不仅能回答问题，还能像人一样主动完成一系列关联性的任务；不仅有聪明的“大脑”，还有灵活的“手脚”，必要的时候还会使用“工具”。</strong></p><p><img src="https://p6-volc-community-sign.byteimg.com/tos-cn-i-tlddhu82om/2605f5e64e1e40b0a0b61e3fd897f235~tplv-tlddhu82om-image.image?=&rk3s=8031ce6d&x-expires=1736404376&x-signature=WCt4ivDAQtu/YkpUYKjgmcScL6A=" alt="picture.image"></p><p>如果说大模型像一位百科全书式的学者，而AI Agent就像一个“办事能力强的大管家”。这位管家会根据你的需求，把任务拆解成多个步骤，并主动找到资源或工具来完成。比如这个任务：</p><p>“对比A公司与我公司产品的差异，把结果发送到我邮箱。“</p><p>Agent会借助大模型规划任务步骤并执行：</p><ol><li>先从互联网搜索A公司产品信息（使用Web搜索工具）</li><li>再从企业知识库检索我公司信息（使用本地查询工具）</li><li>生成对比报告（让大模型完成）</li><li>发送邮件到邮箱（使用邮件发送工具）</li></ol><p>可以看到，基于大模型的AI Agent，就是把强大的语言模型和一套可以主动行动的机制结合起来，让它不仅能“懂”能“想”，还会“做”。</p><p>所以 <strong>Agent与大模型之间的区别</strong> 可以总结为：</p><ul><li>大模型只是一个大脑，而Agent是一个完整体</li><li>大模型只会告诉你怎么做，而Agent会帮你做</li><li>模型本身不会使用工具，而Agent会使用工具</li><li>大模型通常不会记忆，而Agent则具备记忆能力</li><li>Agent借助大模型来实现理解与规划能力</li></ul><p>03</p><p>Agent的常见应用场景？</p><p>AI Agent可以在大量的领域与场景下展现出非凡的能力，包括但不限于个人助理、客户服务、市场营销、决策支持、游戏仿真、智能家居、无人驾驶、机器人等。以下是一些实际的例子：</p><p><strong>1.智能客服</strong></p><p>比如一家公司需要全天候解答客户问题。AI Agent可以根据客户问题调用大模型生成答案，还能主动查询库存信息、处理订单甚至提供物流状态。</p><p><strong>2.编程助手</strong></p><p>开发人员需要解决某个技术问题，AI Agent不仅能提供代码示例，还能直接运行代码，调试错误，甚至优化性能。</p><p><strong>3.个人助理</strong></p><p>Agent可以帮你管理日程、订餐、处理邮件、监控股票市场，并根据你的偏好提供个性化建议，而不只是回答问题。</p><p><strong>4.智能家居</strong></p><p>家庭中的Agent可以连接灯光、空调、安防摄像头等设备，根据家庭成员的指令与设定，主动调节环境，控制家具设备。</p><p><strong>5.科学研究</strong></p><p>在科研领域，AI Agent可以自动收集最新文献、设计实验流程、分析实验数据，并生成总结报告。</p><p>04</p><p>Agent的基本工作原理？</p><p>AI Agent的工作原理可以总结为以下几个步骤：</p><p><img src="https://p6-volc-community-sign.byteimg.com/tos-cn-i-tlddhu82om/7dd44afc14c747c58b06a9818cfb967f~tplv-tlddhu82om-image.image?=&rk3s=8031ce6d&x-expires=1736404376&x-signature=B/I/jLELGQw5pXIknqfUVDvIwbY=" alt="picture.image"></p><p><strong>1.输入理解：</strong> 用户提出一个任务（比如发送一份产品对比报告），Agent首先借助大模型对用户输入指令进行理解和解析，识别任务目标和约束条件。</p><p><strong>2.任务规划：</strong> 基于理解的目标，Agent 会规划完成任务的步骤，并决定采取哪些行动。这可能涉及将目标分解成多个子任务，确定任务优先级与执行顺序等（如获取竞品信息、查询企业产品信息、生成对比报告、发送电子邮件）。</p><p><strong>3.任务执行与反馈：</strong> 通过大模型或外部工具完成每个子任务（如调用搜索引擎、查询数据库、生成对比结果、调用电子邮件发送服务）；在此过程中，Agent会搜集与观察子任务结果，及时处理问题，必要时对任务进行调整（如任务执行发生了错误，可能会进行多次迭代尝试）。</p><p><strong>4.任务完成与交付：</strong> 将任务的结果汇总并输出（如生成对比报告与邮件发送回执）。</p><p>当然，这只是Agent的核心处理流程。在实际应用中，根据环境与需求的差异，可能存在高度定制且复杂Agent工作流。</p><p>05</p><p>Agent系统的基本组成？</p><p>获得广泛认可的Agent架构来自于OpenAI公司的总结：</p><p><img src="https://p6-volc-community-sign.byteimg.com/tos-cn-i-tlddhu82om/2481f33663cc452b847e51789dc6659d~tplv-tlddhu82om-image.image?=&rk3s=8031ce6d&x-expires=1736404376&x-signature=4QZRFK0up8P6l6ERZQtZP47QnGE=" alt="picture.image"></p><p>可以总结成：</p><p><strong>Agent &#x3D; LLM + 记忆 + 规划技能 + 工具使用</strong></p><ol><li><strong>大模型：</strong> 提供核心的语言理解、推理与生成能力，是整个Agent的“大脑”。</li><li><strong>任务规划：</strong> 对复杂任务借助大模型进行分解、规划和调度，并及时观察子任务执行的结果与反馈，对任务及时调整。</li><li><strong>工具使用：</strong> 与外部工具（如API、数据库、硬件设备）进行交互，扩展智能体的能力，执行任务，相当于Agent的“手脚”。</li><li><strong>记忆：</strong> 这是Agent的“存储器”，可用来存储短期的记忆（如一次任务过程中的多次人类交互）或长期记忆（如记录使用者的任务历史、个人信息、兴趣便好等）。</li></ol><p>除此之外，通常Agent还需要提供 一个直观的入口，让用户可以方便地给Agent下达指令或查看结果，这个入口可以是可视化的文字输入、语音输入，或者对外开放的API接口。</p><p>05</p><p>Agent面临最大的挑战？</p><p>尽管LLM的横空出世与爆炸式发展给Agent开辟了新的天地，但必须看到，当前AI Agent仍然处于技术积累与实验阶段，尽管很多大模型厂家推出了Agent平台甚至商店，但主要集中在个人助理、娱乐、写作等对可靠性与确定性相对较低的领域，而在真正的生产力场景，还面临众多挑战。而最主要的问题来自：</p><p>AI Agent将LLM作为核心组件，用于理解用户需求、计划任务、生成响应并执行操作。但在一些对准确性、可预测性、可追溯性要求极高的场景中，LLM的不确定性会带来一些潜在问题。</p><ul><li><strong>错误的任务规划</strong></li></ul><p>LLM误解了用户的意图或语义，可能会导致错误的计划与结果</p><ul><li><strong>错误的工具调用</strong></li></ul><p>如果LLM生成了错误的工具调用逻辑，可能会导致任务失败</p><ul><li><strong>生成错误的建议</strong></li></ul><p>在医疗、法律、金融等需要高度准确的领域，不确定性可能带来严重后果</p><ul><li><strong>安全与伦理问题</strong></li></ul><p>LLM可能会根据不完整的上下文生成带有潜在风险甚至违反伦理的建议</p><ul><li><strong>稳定性和可重复性</strong></li></ul><p>在工业应用中，系统的行为需要可重复且稳定，而LLM由于其生成概率特性，可能在相同条件下输出不同的结果</p><p>在模型厂家、开发工具提供商、应用开发商的共同努力下，这些问题正在不断得到优化与改善。</p><p>06</p><p>Agent未来的发展趋势？</p><p>AI Agent虽然还处于发展的初期，但未来潜力巨大，简单展望其发展趋势：</p><p><strong>1.更强的自主性与智能化</strong></p><p>随着技术进步，AI Agent将拥有更强的人类意图理解、逻辑推理和复杂任务处理能力，能够在更多场景下自主决策，执行多样的任务。</p><p><strong>2.深度行业化与定制化</strong></p><p>更多的领域与行业会定制化自己的AI Agent，比如IT领域的开发助手、医疗领域的诊断助手、智能家居的家庭助手、智能实体机器人等。</p><p><strong>3.更强的个性化，人性化</strong></p><p>AI Agent会具备更强的个性化能力，能够在与使用者的长期交互中学习使用者的习惯、个人信息与兴趣偏好等，以提供更贴心的服务。</p><p><strong>4. 持续学习和自适应能力</strong></p><p>AI Agent将具备持续学习的能力，能够根据环境变化和新数据进行自我调整和优化，持续提升自身的智能水平。</p><p><strong>5. 伦理与法规考量更受重视</strong></p><p>随着AI Agent的普及，对隐私、安全和伦理的关注将促使相关法规和标准的制定，确保AI技术的负责任发展。</p><p>AI Agent的出现，为人工智能技术赋予了主动行动的能力，让它从“被动回答问题”进化到“主动完成任务”。无论是个人生活、企业运营还是科学研究，AI Agent都在逐步展现它的潜力。可以预见，随着技术的不断进步，AI Agent将成为我们工作和生活中不可或缺的助手。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;strong&gt;尽管大部分人是在LLM（大语言模型）兴起后才接触AI Agent，但它并不是一个完全新生的概念（RAG也是一样），只是因为LLM给AI Agent带来了全新的可能与突破。所以本文的&lt;/strong&gt; &lt;strong&gt;AI Agent也是特指基于LLM的自主型</summary>
+      
+    
+    
+    
+    <category term="AI" scheme="http://ai.mak.cn/categories/AI/"/>
+    
+    
+    <category term="深度学习" scheme="http://ai.mak.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>系统稳定性建设</title>
@@ -483,30 +507,6 @@
       
       
     <summary type="html">&lt;h1 id=&quot;解读-CNCF-推出的云原生-AI-白皮书&quot;&gt;&lt;a href=&quot;#解读-CNCF-推出的云原生-AI-白皮书&quot; class=&quot;headerlink&quot; title=&quot;解读 CNCF 推出的云原生 AI 白皮书&quot;&gt;&lt;/a&gt;解读 CNCF 推出的云原生 AI 白皮书&lt;/</summary>
-      
-    
-    
-    
-    <category term="AI" scheme="http://ai.mak.cn/categories/AI/"/>
-    
-    
-    <category term="深度学习" scheme="http://ai.mak.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>机器学习-调参总结</title>
-    <link href="http://ai.mak.cn/2024/04/14/ai/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E8%B0%83%E5%8F%82%E6%80%BB%E7%BB%93/"/>
-    <id>http://ai.mak.cn/2024/04/14/ai/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E8%B0%83%E5%8F%82%E6%80%BB%E7%BB%93/</id>
-    <published>2024-04-13T16:00:00.000Z</published>
-    <updated>2024-12-17T09:20:18.392Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="机器学习-调参总结"><a href="#机器学习-调参总结" class="headerlink" title="机器学习-调参总结"></a>机器学习-调参总结</h1><p><code>超参数调优</code>是机器学习例程中的基本步骤之一。该方法也称为<code>超参数优化</code>，需要搜索超参数的最佳配置以实现最佳性能。</p><p>机器学习算法需要用户定义的输入来实现准确性和通用性之间的平衡。这个过程称为超参数调整。有多种工具和方法可用于调整超参数。</p><blockquote><p>原文出处：<a href="https://analyticsindiamag.com/top-8-approaches-for-tuning-hyperparameters-of-machine-learning-models/">https://analyticsindiamag.com/top-8-approaches-for-tuning-hyperparameters-of-machine-learning-models/</a></p></blockquote><p>本文整理了一份用于调整机器学习模型超参数的前八种方法的列表。</p><h2 id="1-贝叶斯优化"><a href="#1-贝叶斯优化" class="headerlink" title="1 贝叶斯优化"></a>1 贝叶斯优化</h2><p>贝叶斯优化已成为机器学习算法超参数调整的有效工具，更具体地说，适用于深度神经网络等复杂模型。</p><p>它提供了一个有效的框架来优化昂贵的黑盒功能，而无需知道它的形式。它已应用于多个领域，包括学习最优机器人力学、序列实验设计和合成基因设计。</p><h2 id="2-遗传算法"><a href="#2-遗传算法" class="headerlink" title="2 遗传算法"></a>2 遗传算法</h2><p>遗传算法 (EA) 是一种优化算法，它通过根据称为算子的某些规则修改一组候选解决方案（种群）来工作。</p><p>EA 的主要优势之一是它们的通用性：这意味着 EA 可以在广泛的条件下使用，因为它们简单且独立于潜在问题。在超参数调整问题中，遗传算法已被证明比基于精度&#x2F;速度的网格搜索技术表现更好。</p><h2 id="3-基于梯度的优化"><a href="#3-基于梯度的优化" class="headerlink" title="3 基于梯度的优化"></a>3 基于梯度的优化</h2><p>基于梯度的优化是一种优化多个超参数的方法，基于机器学习模型选择标准相对于超参数的梯度计算。</p><p>当满足训练标准的一些可微性和连续性条件时，可以应用这种超参数调整方法。</p><h2 id="4-网格搜索"><a href="#4-网格搜索" class="headerlink" title="4 网格搜索"></a>4 网格搜索</h2><p>网格搜索是超参数调优的基本方法。它对用户指定的超参数集执行详尽的搜索。这种方法是最直接的导致最准确的预测。</p><p>使用这种调优方法，用户可以找到最佳组合。网格搜索适用于几个超参数，但是搜索空间有限。</p><h2 id="5-Keras-Tuner"><a href="#5-Keras-Tuner" class="headerlink" title="5 Keras Tuner"></a>5 Keras Tuner</h2><p>Keras Tuner是一个库，允许用户为机器学习或深度学习模型找到最佳超参数。</p><p>该库有助于查找内核大小、优化学习率和不同的超参数。Keras Tuner可用于为各种深度学习模型获取最佳参数，以实现最高精度。</p><h2 id="6-基于种群的优化"><a href="#6-基于种群的优化" class="headerlink" title="6 基于种群的优化"></a>6 基于种群的优化</h2><p>基于种群的方法本质上是一系列基于随机搜索（如遗传算法）的方法。</p><p>最广泛使用的基于种群的方法之一是 DeepMind 提出的基于种群的训练（PBT）。PBT在两个方面，是一种独特的方法：</p><ul><li>它允许在训练期间使用自适应超参数</li><li>它结合了并行搜索和顺序优化</li></ul><h2 id="7-ParamILS"><a href="#7-ParamILS" class="headerlink" title="7 ParamILS"></a>7 ParamILS</h2><p>ParamILS（参数配置空间中的迭代局部搜索）是一种用于自动算法配置的通用随机局部搜索方法。ParamILS 是一种自动算法配置方法，有助于开发高性能算法及其应用程序。</p><p>ParamILS 使用默认和随机设置进行初始化，并采用迭代第一改进作为辅助本地搜索过程。它还使用固定数量的随机移动来进行扰动，并且总是接受更好或同样好的参数配置，但会随机重新初始化搜索。</p><h2 id="8-随机搜索"><a href="#8-随机搜索" class="headerlink" title="8 随机搜索"></a>8 随机搜索</h2><p>随机搜索可以说是对网格搜索的基本改进。该方法是指对可能参数值的某些分布的超参数进行随机搜索。</p><p>搜索过程继续进行，直到达到所需的精度。随机搜索类似于网格搜索，但已证明比后者创建更好的结果。</p><p>该方法通常被用作 HPO 的基线来衡量新设计算法的效率。尽管随机搜索比网格搜索更有效，但它仍然是一种计算密集型方法。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;机器学习-调参总结&quot;&gt;&lt;a href=&quot;#机器学习-调参总结&quot; class=&quot;headerlink&quot; title=&quot;机器学习-调参总结&quot;&gt;&lt;/a&gt;机器学习-调参总结&lt;/h1&gt;&lt;p&gt;&lt;code&gt;超参数调优&lt;/code&gt;是机器学习例程中的基本步骤之一。该方法也称为&lt;c</summary>
       
     
     
