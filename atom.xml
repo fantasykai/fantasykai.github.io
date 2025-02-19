@@ -6,7 +6,7 @@
   <link href="http://ai.mak.cn/atom.xml" rel="self"/>
   
   <link href="http://ai.mak.cn/"/>
-  <updated>2025-02-18T02:46:27.931Z</updated>
+  <updated>2025-02-19T01:11:30.152Z</updated>
   <id>http://ai.mak.cn/</id>
   
   <author>
@@ -18,10 +18,34 @@
   
   <entry>
     <title>每日资讯</title>
-    <link href="http://ai.mak.cn/2025/02/18/ai/%E6%AF%8F%E6%97%A5%E8%B5%84%E8%AE%AF-0218/"/>
-    <id>http://ai.mak.cn/2025/02/18/ai/%E6%AF%8F%E6%97%A5%E8%B5%84%E8%AE%AF-0218/</id>
+    <link href="http://ai.mak.cn/posts/63200/"/>
+    <id>http://ai.mak.cn/posts/63200/</id>
+    <published>2025-02-18T16:00:00.000Z</published>
+    <updated>2025-02-19T01:11:30.152Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="2025年2月18日-AI领域动态与深度洞察"><a href="#2025年2月18日-AI领域动态与深度洞察" class="headerlink" title="2025年2月18日 AI领域动态与深度洞察"></a>2025年2月18日 AI领域动态与深度洞察</h1><h2 id="一、国际AI前沿速递"><a href="#一、国际AI前沿速递" class="headerlink" title="一、国际AI前沿速递"></a>一、国际AI前沿速递</h2><h3 id="1-马斯克发布Grok-3，训练成本创纪录"><a href="#1-马斯克发布Grok-3，训练成本创纪录" class="headerlink" title="1. 马斯克发布Grok 3，训练成本创纪录"></a>1. <strong>马斯克发布Grok 3，训练成本创纪录</strong></h3><p>马斯克旗下xAI公司正式推出新一代大模型Grok 3，宣称其“具备令人不安的创造力”。该模型训练消耗了20万块英伟达GPU，创下AI训练资源投入的新高。同期，OpenAI计划推出开源项目，探索手机端优化的轻量级模型，进一步降低AI应用门槛。<br><strong>点评</strong>：算力军备竞赛持续升级，但训练成本的陡增可能加剧行业垄断。开源策略或成破局关键，但需警惕技术伦理风险。</p><h3 id="2-欧洲AI差异化竞争"><a href="#2-欧洲AI差异化竞争" class="headerlink" title="2. 欧洲AI差异化竞争"></a>2. <strong>欧洲AI差异化竞争</strong></h3><p>法国公司Mistral发布专精阿拉伯语的AI大模型，避开与DeepSeek、谷歌的通用模型竞争，聚焦垂类市场。此举呼应了全球AI应用从“大而全”转向“小而精”的趋势。<br><strong>建议</strong>：垂类模型开发需结合本地化需求，如语言、文化适配，可参考Mistral路径。</p><h3 id="3-医疗AI突破"><a href="#3-医疗AI突破" class="headerlink" title="3. 医疗AI突破"></a>3. <strong>医疗AI突破</strong></h3><p>美国医疗科技公司Innovaccer推出AI健康智能体，帮助医生处理低价值重复工作，预计提升诊疗效率30%。<br><strong>意义</strong>：AI在医疗场景的渗透从辅助诊断向流程优化深化，但数据隐私和责任界定仍需政策配套。</p><hr><h2 id="二、国内AI核心进展"><a href="#二、国内AI核心进展" class="headerlink" title="二、国内AI核心进展"></a>二、国内AI核心进展</h2><h3 id="1-DeepSeek生态持续扩张"><a href="#1-DeepSeek生态持续扩张" class="headerlink" title="1. DeepSeek生态持续扩张"></a>1. <strong>DeepSeek生态持续扩张</strong></h3><ul><li><strong>资本层面</strong>：DeepSeek技术突破推动外资加速流入中国AI资产，对冲基金近一月增持速度创年内新高。  </li><li><strong>应用场景</strong>：网易云音乐接入DeepSeek-R1模型，优化音乐播客生成工具；香港创新科技局确认DeepSeek在港子公司成立，助力本地语言模型研发。<br><strong>趋势</strong>：国产大模型通过“开源+场景适配”构建生态护城河，但需警惕过度依赖单一厂商的生态风险。</li></ul><h3 id="2-算力基建新突破"><a href="#2-算力基建新突破" class="headerlink" title="2. 算力基建新突破"></a>2. <strong>算力基建新突破</strong></h3><p>海南海底智算中心集群启用，单秒支持7000次智能会话，采用海底数据中心节能技术，能耗降低40%。<br><strong>解读</strong>：边缘计算与绿色算力结合，为AI大规模落地提供基础设施保障，可关注液冷、模块化数据中心技术。</p><h3 id="3-行业动态"><a href="#3-行业动态" class="headerlink" title="3. 行业动态"></a>3. <strong>行业动态</strong></h3><ul><li>月之暗面（Kimi）因DeepSeek竞争压力，暂缓市场投放，转向技术优化。  </li><li>比亚迪王传福称中国新能源汽车技术领先3-5年，AI与汽车智能化融合或成下一增长极。</li></ul><hr><h2 id="三、技术趋势与争议"><a href="#三、技术趋势与争议" class="headerlink" title="三、技术趋势与争议"></a>三、技术趋势与争议</h2><h3 id="1-垂类应用爆发"><a href="#1-垂类应用爆发" class="headerlink" title="1. 垂类应用爆发"></a>1. <strong>垂类应用爆发</strong></h3><p>2025年被视为“AI应用落地元年”，市场规模预计从2024年51亿美元增至2030年471亿美元。全球科技巨头计划投资超3200亿美元，同比增长40%，但资本从算力硬件转向应用层趋势明显。<br><strong>案例</strong>：阿里Qwen2.5-Max在编程、数学能力领跑国内榜单；百度Comate已编写内部1&#x2F;4代码。</p><h3 id="2-模型架构革新"><a href="#2-模型架构革新" class="headerlink" title="2. 模型架构革新"></a>2. <strong>模型架构革新</strong></h3><ul><li><strong>白盒模型</strong>：香港大学马毅团队提出可解释的“白盒大模型”，通过清晰框架设计降低试错成本，试图突破数据与算力瓶颈。  </li><li><strong>密度定律</strong>：清华团队发现模型能力密度每100天翻倍，预示终端设备未来可运行更高效模型。<br><strong>挑战</strong>：当前大模型演绎能力随规模扩大反降，需探索新架构突破Scaling Law天花板。</li></ul><hr><h2 id="四、政策与资本动向"><a href="#四、政策与资本动向" class="headerlink" title="四、政策与资本动向"></a>四、政策与资本动向</h2><h3 id="1-政策支持"><a href="#1-政策支持" class="headerlink" title="1. 政策支持"></a>1. <strong>政策支持</strong></h3><ul><li>国家发改委明确支持民营企业参与“两重两新”（重大工程、重点项目；新基建、新型城镇化），优化AI产业准入环境。  </li><li>最高法发布企业名誉权保护案例，规范AI时代的舆情管理。</li></ul><h3 id="2-投资风向"><a href="#2-投资风向" class="headerlink" title="2. 投资风向"></a>2. <strong>投资风向</strong></h3><ul><li><strong>短期</strong>：算力基建仍受关注，中科曙光、浪潮信息等因DeepSeek合作股价走强。  </li><li><strong>长期</strong>：AI编程（年复合增长38%）、多模态应用（如书生万象2.5突破MMMU测试70%）、终端智能（2025年AI手机出货量预计1.18亿部）成焦点。</li></ul><hr><h2 id="五、深度思考与建议"><a href="#五、深度思考与建议" class="headerlink" title="五、深度思考与建议"></a>五、深度思考与建议</h2><h3 id="1-技术路线选择"><a href="#1-技术路线选择" class="headerlink" title="1. 技术路线选择"></a>1. <strong>技术路线选择</strong></h3><ul><li><strong>垂类优先</strong>：企业应结合自身数据优势，深耕医疗、教育等垂直领域，避免与通用模型正面竞争。  </li><li><strong>能效优化</strong>：关注密度定律与终端适配技术，探索“小模型+高精度”路径，降低部署成本。</li></ul><h3 id="2-风险应对"><a href="#2-风险应对" class="headerlink" title="2. 风险应对"></a>2. <strong>风险应对</strong></h3><ul><li><strong>伦理治理</strong>：MIT研究指出39%岗位面临自动化风险，需建立职业转型基金与数据主权框架。  </li><li><strong>供应链安全</strong>：国产GPU替代加速，但需防范美国对量子计算等前沿技术的出口管制。</li></ul><h3 id="3-投资策略"><a href="#3-投资策略" class="headerlink" title="3. 投资策略"></a>3. <strong>投资策略</strong></h3><ul><li><strong>关注标的</strong>：AI编程（恒生电子）、多模态（拓尔思）、算力（寒武纪）。  </li><li><strong>规避领域</strong>：过度依赖开源生态且缺乏自主迭代能力的应用厂商。</li></ul><hr><p><strong>总结</strong><br>2025年AI行业呈现“三足鼎立”格局：<strong>国际巨头竞逐通用模型，国内厂商深耕垂类生态，新兴力量探索差异化创新</strong>。建议从业者把握“场景化、能效化、合规化”三大原则，在技术爆发与伦理约束间寻找平衡点。未来3个月，AI+政务、AI编程、多模态生成等领域或出现标志性突破。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;2025年2月18日-AI领域动态与深度洞察&quot;&gt;&lt;a href=&quot;#2025年2月18日-AI领域动态与深度洞察&quot; class=&quot;headerlink&quot; title=&quot;2025年2月18日 AI领域动态与深度洞察&quot;&gt;&lt;/a&gt;2025年2月18日 AI领域动态与深度</summary>
+      
+    
+    
+    
+    <category term="AI" scheme="http://ai.mak.cn/categories/AI/"/>
+    
+    
+    <category term="人工智能, 技术趋势, 行业动态" scheme="http://ai.mak.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%8A%80%E6%9C%AF%E8%B6%8B%E5%8A%BF-%E8%A1%8C%E4%B8%9A%E5%8A%A8%E6%80%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日资讯</title>
+    <link href="http://ai.mak.cn/posts/63199/"/>
+    <id>http://ai.mak.cn/posts/63199/</id>
     <published>2025-02-17T16:00:00.000Z</published>
-    <updated>2025-02-18T02:46:27.931Z</updated>
+    <updated>2025-02-19T00:57:57.048Z</updated>
     
     <content type="html"><![CDATA[<hr><h2 id="2025年2月17日-AI与人工智能领域动态速览"><a href="#2025年2月17日-AI与人工智能领域动态速览" class="headerlink" title="2025年2月17日 AI与人工智能领域动态速览"></a>2025年2月17日 AI与人工智能领域动态速览</h2><h3 id="一、国内AI领域核心进展"><a href="#一、国内AI领域核心进展" class="headerlink" title="一、国内AI领域核心进展"></a>一、国内AI领域核心进展</h3><ol><li><p><strong>DeepSeek大模型生态持续扩展</strong><br>国产大模型DeepSeek在政务、医疗、教育等领域快速落地。深圳市通过政务云向全市提供DeepSeek服务，龙岗区上线34个政务AI应用，福田区推出覆盖240个场景的AI数智员工；深圳大学附属华南医院利用DeepSeek实现实时诊断提示和医院管理优化。微信接入DeepSeek后，用户可通过“AI搜索”整合腾讯生态内容，推动商业化潜力释放。</p></li><li><p><strong>教育场景创新</strong><br>南宁市多所学校在开学典礼中融入AI元素，如机器人迎新、AI生成职业画像、无人机表演等。滨湖路小学通过仿生机器人设计项目激发学生创造力，东葛路小学利用AI工具生成未来职业画像，强化生涯教育。</p></li><li><p><strong>算力需求激增</strong><br>根据《2025年中国人工智能计算力发展评估报告》，中国智能算力规模预计2025年增长43%，达1037.3EFLOPS。DeepSeek推动的算法效率提升与场景扩展，加速数据中心和边缘算力建设，国产GPU需求迎来黄金发展期。</p></li></ol><hr><h3 id="二、国际AI前沿动态"><a href="#二、国际AI前沿动态" class="headerlink" title="二、国际AI前沿动态"></a>二、国际AI前沿动态</h3><ol><li><p><strong>大模型竞争白热化</strong>  </p><ul><li>特斯拉CEO马斯克宣布Grok 3将于2月18日发布，称其性能超越现有公开模型，甚至具备“令人不安的创造力”。</li><li>OpenAI计划未来几周推出GPT-4.5（代号Orion）和GPT-5，整合更复杂的技术（如o3框架），应用于ChatGPT及API平台。</li><li>谷歌Gemini 2.0全面开放，多模态能力进一步升级。</li></ul></li><li><p><strong>技术趋势与挑战</strong>  </p><ul><li><strong>合成数据</strong>成为大模型迭代关键，微软、Anthropic等公司通过生成数据降低成本并提升多样性。</li><li><strong>AI安全治理</strong>被多国重视，OpenAI、蚂蚁集团等提出安全框架，应对模型滥用与伦理风险。</li></ul></li></ol><hr><h3 id="三、政策与行业动向"><a href="#三、政策与行业动向" class="headerlink" title="三、政策与行业动向"></a>三、政策与行业动向</h3><ol><li><p><strong>“人工智能+消费”政策扶持</strong><br>国务院常务会议提出支持“人工智能+消费”，山东、安徽等省推动直播电商与AI融合，打造新型消费场景。商务部强调AI技术对消费升级的驱动作用，计划通过补贴和税收优惠激发市场活力。</p></li><li><p><strong>投资方向切换</strong><br>金鹰基金指出，AI投资主线正从算力硬件转向中下游应用。随着模型成本降低，AI应用渗透率加速提升，教育、医疗、政务等垂直领域成重点方向。</p></li></ol><hr><h3 id="四、深度点评与建议"><a href="#四、深度点评与建议" class="headerlink" title="四、深度点评与建议"></a>四、深度点评与建议</h3><ol><li><p><strong>技术突破与产业机遇</strong>  </p><ul><li><strong>应用端爆发条件成熟</strong>：DeepSeek的推理成本优化和开源策略降低了开发者门槛，结合微信等超级入口的流量优势，AI应用商业化闭环加速形成。</li><li><strong>算力“扩容+提效”并重</strong>：需关注国产算力链（如浪潮信息、华工科技）和边缘计算场景，应对高性能算力短缺问题。</li></ul></li><li><p><strong>风险与挑战</strong>  </p><ul><li><strong>数据安全与就业冲击</strong>：MIT讨论指出，AI普及可能引发数据所有权争议和39%岗位的自动化风险，需强化数据保护法规并探索职业转型路径。</li><li><strong>技术与社会鸿沟</strong>：制造业全流程智能化仍面临软硬件适配难题，需加强产学研合作，推动技术下沉。</li></ul></li><li><p><strong>投资建议</strong>  </p><ul><li><strong>短期关注算力基建</strong>：IDC预测2025年全球AI服务器市场规模达1587亿美元，国产GPU和光模块企业（如紫光股份、光迅科技）或受益。</li><li><strong>长期布局超级应用</strong>：生成式AI与终端设备结合（如Apple Intelligence）可能催生C端爆款，建议跟踪教育、医疗领域的场景创新。</li></ul></li></ol><hr><p><strong>总结</strong><br>2025年AI行业呈现“技术迭代加速、应用场景爆发、政策密集支持”的特征。国内以DeepSeek为核心的生态闭环初现，国际大厂则通过多模态和具身智能争夺技术高地。投资者需平衡短期算力需求与长期应用潜力，同时警惕伦理与就业风险。未来半年，AI+政务、AI+教育等领域的落地案例或成市场焦点。</p>]]></content>
     
@@ -43,8 +67,8 @@
   
   <entry>
     <title>每日资讯</title>
-    <link href="http://ai.mak.cn/2025/02/17/ai/%E6%AF%8F%E6%97%A5%E8%B5%84%E8%AE%AF-0217/"/>
-    <id>http://ai.mak.cn/2025/02/17/ai/%E6%AF%8F%E6%97%A5%E8%B5%84%E8%AE%AF-0217/</id>
+    <link href="http://ai.mak.cn/posts/63198/"/>
+    <id>http://ai.mak.cn/posts/63198/</id>
     <published>2025-02-16T16:00:00.000Z</published>
     <updated>2025-02-17T09:22:21.616Z</updated>
     
@@ -67,8 +91,8 @@
   
   <entry>
     <title>Deepseek 技术分析总结</title>
-    <link href="http://ai.mak.cn/2025/02/15/ai/Deepseek%20%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E6%80%BB%E7%BB%93/"/>
-    <id>http://ai.mak.cn/2025/02/15/ai/Deepseek%20%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E6%80%BB%E7%BB%93/</id>
+    <link href="http://ai.mak.cn/posts/55960/"/>
+    <id>http://ai.mak.cn/posts/55960/</id>
     <published>2025-02-14T16:00:00.000Z</published>
     <updated>2025-02-17T09:12:46.163Z</updated>
     
@@ -91,8 +115,8 @@
   
   <entry>
     <title>3月份马拉松计划</title>
-    <link href="http://ai.mak.cn/2025/01/30/%E8%B7%91%E6%AD%A5/3%E6%9C%88%E4%BB%BD%E9%A9%AC%E6%8B%89%E6%9D%BE%E8%AE%A1%E5%88%92/"/>
-    <id>http://ai.mak.cn/2025/01/30/%E8%B7%91%E6%AD%A5/3%E6%9C%88%E4%BB%BD%E9%A9%AC%E6%8B%89%E6%9D%BE%E8%AE%A1%E5%88%92/</id>
+    <link href="http://ai.mak.cn/posts/17232/"/>
+    <id>http://ai.mak.cn/posts/17232/</id>
     <published>2025-01-29T16:00:00.000Z</published>
     <updated>2025-02-17T09:24:22.068Z</updated>
     
@@ -115,8 +139,8 @@
   
   <entry>
     <title>2024年人工智能进展及展望</title>
-    <link href="http://ai.mak.cn/2024/12/31/ai/2024%E5%B9%B4%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E8%BF%9B%E5%B1%95%E4%B8%8E2025%E5%B9%B4%E5%B1%95%E6%9C%9B/"/>
-    <id>http://ai.mak.cn/2024/12/31/ai/2024%E5%B9%B4%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E8%BF%9B%E5%B1%95%E4%B8%8E2025%E5%B9%B4%E5%B1%95%E6%9C%9B/</id>
+    <link href="http://ai.mak.cn/posts/16164/"/>
+    <id>http://ai.mak.cn/posts/16164/</id>
     <published>2024-12-30T16:00:00.000Z</published>
     <updated>2025-02-11T07:46:37.048Z</updated>
     
@@ -139,8 +163,8 @@
   
   <entry>
     <title>大模型概念总结</title>
-    <link href="http://ai.mak.cn/2024/12/06/ai/AI%20Agent%E7%AE%80%E8%BF%B0/"/>
-    <id>http://ai.mak.cn/2024/12/06/ai/AI%20Agent%E7%AE%80%E8%BF%B0/</id>
+    <link href="http://ai.mak.cn/posts/57547/"/>
+    <id>http://ai.mak.cn/posts/57547/</id>
     <published>2024-12-05T16:00:00.000Z</published>
     <updated>2025-02-11T03:10:23.311Z</updated>
     
@@ -163,8 +187,8 @@
   
   <entry>
     <title>系统稳定性建设</title>
-    <link href="http://ai.mak.cn/2024/10/02/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E7%B3%BB%E7%BB%9F%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/"/>
-    <id>http://ai.mak.cn/2024/10/02/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E7%B3%BB%E7%BB%9F%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/</id>
+    <link href="http://ai.mak.cn/posts/47183/"/>
+    <id>http://ai.mak.cn/posts/47183/</id>
     <published>2024-10-01T16:00:00.000Z</published>
     <updated>2025-02-11T03:10:23.679Z</updated>
     
@@ -188,8 +212,8 @@
   
   <entry>
     <title>实时通信的关键差异解析</title>
-    <link href="http://ai.mak.cn/2024/09/15/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E5%AE%9E%E6%97%B6%E9%80%9A%E4%BF%A1%E7%9A%84%E5%85%B3%E9%94%AE%E5%B7%AE%E5%BC%82%E8%A7%A3%E6%9E%90/"/>
-    <id>http://ai.mak.cn/2024/09/15/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E5%AE%9E%E6%97%B6%E9%80%9A%E4%BF%A1%E7%9A%84%E5%85%B3%E9%94%AE%E5%B7%AE%E5%BC%82%E8%A7%A3%E6%9E%90/</id>
+    <link href="http://ai.mak.cn/posts/24447/"/>
+    <id>http://ai.mak.cn/posts/24447/</id>
     <published>2024-09-14T16:00:00.000Z</published>
     <updated>2025-02-11T03:10:23.667Z</updated>
     
@@ -213,8 +237,8 @@
   
   <entry>
     <title>LSTM详解</title>
-    <link href="http://ai.mak.cn/2024/09/08/ai/%E8%AE%B2%E9%80%8F%E4%B8%80%E4%B8%AA%E5%BC%BA%E5%A4%A7%E7%AE%97%E6%B3%95%E6%A8%A1%E5%9E%8B%EF%BC%8CLSTM%20%EF%BC%81%EF%BC%81/"/>
-    <id>http://ai.mak.cn/2024/09/08/ai/%E8%AE%B2%E9%80%8F%E4%B8%80%E4%B8%AA%E5%BC%BA%E5%A4%A7%E7%AE%97%E6%B3%95%E6%A8%A1%E5%9E%8B%EF%BC%8CLSTM%20%EF%BC%81%EF%BC%81/</id>
+    <link href="http://ai.mak.cn/posts/5864/"/>
+    <id>http://ai.mak.cn/posts/5864/</id>
     <published>2024-09-07T16:00:00.000Z</published>
     <updated>2025-02-11T03:10:23.341Z</updated>
     
@@ -239,8 +263,8 @@
   
   <entry>
     <title>5公里成绩跑进20分钟！</title>
-    <link href="http://ai.mak.cn/2024/08/25/%E8%B7%91%E6%AD%A5/5%E5%85%AC%E9%87%8C%E6%88%90%E7%BB%A9%E8%B7%91%E8%BF%9B20%E5%88%86%E9%92%9F%EF%BC%81/"/>
-    <id>http://ai.mak.cn/2024/08/25/%E8%B7%91%E6%AD%A5/5%E5%85%AC%E9%87%8C%E6%88%90%E7%BB%A9%E8%B7%91%E8%BF%9B20%E5%88%86%E9%92%9F%EF%BC%81/</id>
+    <link href="http://ai.mak.cn/posts/4692/"/>
+    <id>http://ai.mak.cn/posts/4692/</id>
     <published>2024-08-24T16:00:00.000Z</published>
     <updated>2025-02-11T03:10:23.775Z</updated>
     
@@ -264,8 +288,8 @@
   
   <entry>
     <title>提升跑步能力，这三项训练缺一不可</title>
-    <link href="http://ai.mak.cn/2024/08/11/%E8%B7%91%E6%AD%A5/%E6%8F%90%E5%8D%87%E8%B7%91%E6%AD%A5%E8%83%BD%E5%8A%9B%EF%BC%8C%E8%BF%99%E4%B8%89%E9%A1%B9%E8%AE%AD%E7%BB%83%E7%BC%BA%E4%B8%80%E4%B8%8D%E5%8F%AF/"/>
-    <id>http://ai.mak.cn/2024/08/11/%E8%B7%91%E6%AD%A5/%E6%8F%90%E5%8D%87%E8%B7%91%E6%AD%A5%E8%83%BD%E5%8A%9B%EF%BC%8C%E8%BF%99%E4%B8%89%E9%A1%B9%E8%AE%AD%E7%BB%83%E7%BC%BA%E4%B8%80%E4%B8%8D%E5%8F%AF/</id>
+    <link href="http://ai.mak.cn/posts/31560/"/>
+    <id>http://ai.mak.cn/posts/31560/</id>
     <published>2024-08-10T16:00:00.000Z</published>
     <updated>2025-02-11T03:10:23.776Z</updated>
     
@@ -290,8 +314,8 @@
   
   <entry>
     <title>一米奇迹：怎样让你的工位更健康？</title>
-    <link href="http://ai.mak.cn/2024/08/03/%E6%9D%82%E8%AE%B0/%E4%B8%80%E7%B1%B3%E5%A5%87%E8%BF%B9%EF%BC%9A%E6%80%8E%E6%A0%B7%E8%AE%A9%E4%BD%A0%E7%9A%84%E5%B7%A5%E4%BD%8D%E6%9B%B4%E5%81%A5%E5%BA%B7%EF%BC%9F/"/>
-    <id>http://ai.mak.cn/2024/08/03/%E6%9D%82%E8%AE%B0/%E4%B8%80%E7%B1%B3%E5%A5%87%E8%BF%B9%EF%BC%9A%E6%80%8E%E6%A0%B7%E8%AE%A9%E4%BD%A0%E7%9A%84%E5%B7%A5%E4%BD%8D%E6%9B%B4%E5%81%A5%E5%BA%B7%EF%BC%9F/</id>
+    <link href="http://ai.mak.cn/posts/7721/"/>
+    <id>http://ai.mak.cn/posts/7721/</id>
     <published>2024-08-02T16:00:00.000Z</published>
     <updated>2025-02-11T03:10:23.704Z</updated>
     
@@ -318,8 +342,8 @@
   
   <entry>
     <title>微服务核心架构梳理</title>
-    <link href="http://ai.mak.cn/2024/07/28/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E9%80%9A%E7%94%A8%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
-    <id>http://ai.mak.cn/2024/07/28/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/%E9%80%9A%E7%94%A8%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/</id>
+    <link href="http://ai.mak.cn/posts/3999/"/>
+    <id>http://ai.mak.cn/posts/3999/</id>
     <published>2024-07-27T16:00:00.000Z</published>
     <updated>2025-02-11T03:10:23.687Z</updated>
     
@@ -342,8 +366,8 @@
   
   <entry>
     <title>conda、pip、anaconda、miniconda、miniforge、mambaforge 区分</title>
-    <link href="http://ai.mak.cn/2024/07/14/python/conda%E3%80%81pip%E3%80%81anaconda%E3%80%81miniconda%E3%80%81miniforge%E3%80%81mambaforge%20%E5%8C%BA%E5%88%86/"/>
-    <id>http://ai.mak.cn/2024/07/14/python/conda%E3%80%81pip%E3%80%81anaconda%E3%80%81miniconda%E3%80%81miniforge%E3%80%81mambaforge%20%E5%8C%BA%E5%88%86/</id>
+    <link href="http://ai.mak.cn/posts/40058/"/>
+    <id>http://ai.mak.cn/posts/40058/</id>
     <published>2024-07-13T16:00:00.000Z</published>
     <updated>2025-02-11T03:10:23.349Z</updated>
     
@@ -366,8 +390,8 @@
   
   <entry>
     <title>怎样读书，才算对得起自己？</title>
-    <link href="http://ai.mak.cn/2024/07/07/%E6%9D%82%E8%AE%B0/%E6%80%8E%E6%A0%B7%E8%AF%BB%E4%B9%A6%EF%BC%8C%E6%89%8D%E7%AE%97%E5%AF%B9%E5%BE%97%E8%B5%B7%E8%87%AA%E5%B7%B1%EF%BC%9F/"/>
-    <id>http://ai.mak.cn/2024/07/07/%E6%9D%82%E8%AE%B0/%E6%80%8E%E6%A0%B7%E8%AF%BB%E4%B9%A6%EF%BC%8C%E6%89%8D%E7%AE%97%E5%AF%B9%E5%BE%97%E8%B5%B7%E8%87%AA%E5%B7%B1%EF%BC%9F/</id>
+    <link href="http://ai.mak.cn/posts/626/"/>
+    <id>http://ai.mak.cn/posts/626/</id>
     <published>2024-07-06T16:00:00.000Z</published>
     <updated>2025-02-11T03:10:23.732Z</updated>
     
@@ -395,8 +419,8 @@
   
   <entry>
     <title>针对不同层次进行性能测试的监控</title>
-    <link href="http://ai.mak.cn/2024/07/06/%E6%B5%8B%E8%AF%95/%E9%92%88%E5%AF%B9%E4%B8%8D%E5%90%8C%E5%B1%82%E6%AC%A1%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%9A%84%E7%9B%91%E6%8E%A7/"/>
-    <id>http://ai.mak.cn/2024/07/06/%E6%B5%8B%E8%AF%95/%E9%92%88%E5%AF%B9%E4%B8%8D%E5%90%8C%E5%B1%82%E6%AC%A1%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%9A%84%E7%9B%91%E6%8E%A7/</id>
+    <link href="http://ai.mak.cn/posts/46880/"/>
+    <id>http://ai.mak.cn/posts/46880/</id>
     <published>2024-07-05T16:00:00.000Z</published>
     <updated>2025-02-11T03:10:23.532Z</updated>
     
@@ -419,8 +443,8 @@
   
   <entry>
     <title>Langchain-Chatchat大语言模型本地知识库</title>
-    <link href="http://ai.mak.cn/2024/06/30/ai/Langchain-Chatchat%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93/"/>
-    <id>http://ai.mak.cn/2024/06/30/ai/Langchain-Chatchat%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93/</id>
+    <link href="http://ai.mak.cn/posts/16811/"/>
+    <id>http://ai.mak.cn/posts/16811/</id>
     <published>2024-06-29T16:00:00.000Z</published>
     <updated>2025-02-11T03:10:23.316Z</updated>
     
@@ -443,8 +467,8 @@
   
   <entry>
     <title>基于大模型的智能问答 - LangChain</title>
-    <link href="http://ai.mak.cn/2024/06/15/ai/LangChain%20%E5%9F%BA%E4%BA%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%99%BA%E8%83%BD%E9%97%AE%E7%AD%94/"/>
-    <id>http://ai.mak.cn/2024/06/15/ai/LangChain%20%E5%9F%BA%E4%BA%8E%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%99%BA%E8%83%BD%E9%97%AE%E7%AD%94/</id>
+    <link href="http://ai.mak.cn/posts/9170/"/>
+    <id>http://ai.mak.cn/posts/9170/</id>
     <published>2024-06-14T16:00:00.000Z</published>
     <updated>2025-02-11T03:10:23.315Z</updated>
     
@@ -467,8 +491,8 @@
   
   <entry>
     <title>怎样拥有不缺席的力量</title>
-    <link href="http://ai.mak.cn/2024/06/14/%E6%9D%82%E8%AE%B0/%E6%80%8E%E6%A0%B7%E6%8B%A5%E6%9C%89%E4%B8%8D%E7%BC%BA%E5%B8%AD%E7%9A%84%E5%8A%9B%E9%87%8F/"/>
-    <id>http://ai.mak.cn/2024/06/14/%E6%9D%82%E8%AE%B0/%E6%80%8E%E6%A0%B7%E6%8B%A5%E6%9C%89%E4%B8%8D%E7%BC%BA%E5%B8%AD%E7%9A%84%E5%8A%9B%E9%87%8F/</id>
+    <link href="http://ai.mak.cn/posts/38284/"/>
+    <id>http://ai.mak.cn/posts/38284/</id>
     <published>2024-06-13T16:00:00.000Z</published>
     <updated>2025-02-11T03:10:23.731Z</updated>
     
@@ -490,30 +514,6 @@
     
     
     <category term="杂记" scheme="http://ai.mak.cn/tags/%E6%9D%82%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Three.js 开源组件</title>
-    <link href="http://ai.mak.cn/2024/06/02/%E5%89%8D%E7%AB%AF/Three.js%20%E5%BC%80%E6%BA%90%E7%BB%84%E4%BB%B6/"/>
-    <id>http://ai.mak.cn/2024/06/02/%E5%89%8D%E7%AB%AF/Three.js%20%E5%BC%80%E6%BA%90%E7%BB%84%E4%BB%B6/</id>
-    <published>2024-06-01T16:00:00.000Z</published>
-    <updated>2025-02-11T03:10:23.520Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Three-js-开源组件"><a href="#Three-js-开源组件" class="headerlink" title="Three.js 开源组件"></a>Three.js 开源组件</h1><p><code>Three.js</code> 是一款基于 <code>WebGL</code> 的强大 <code>JavaScript</code> 库，让浏览器中的 <code>3D</code> 图形创建与显示变得前所未有的简单。</p><p>通过精心设计的 API，Three.js 成功地降低了 <code>WebGL</code> 的<code>复杂性</code>，使得即使是没有深厚技术背景的开发者也能轻松打造出令人惊艳的 <code>3D 场景</code>、<code>模型</code>、<code>动画</code>以及<code>粒子系统</code>。</p><p>虽然 Three.js 目的是为了简化开发者创建和显示 3D 图形的难度，但对于初学者来说，上手仍然可能会有一定的<code>挑战性</code>。这主要是因为以下几个方面的原因：</p><ul><li><strong>技术门槛</strong>：尽管 Three.js 简化了 WebGL 的复杂性，但它仍然涉及到<code>图形学</code>、&#96;&#96;线性代数、<code>3D 编程</code>等相对复杂的概念。对于没有相关背景知识的开发者来说，理解这些概念可能需要一定的时间和努力。</li><li><strong>API 学习曲线</strong>：Three.js 提供了一个<code>庞大的 API</code>，涵盖了从场景创建、物体渲染到光照、动画等多个方面。初学者需要花费一定的时间去熟悉这些 API，并了解它们的使用方法和最佳实践。</li><li><strong>编程经验</strong>：编写 3D 应用程序通常比编写传统的 2D 应用程序&#96;&#96;更加复杂，需要处理更多的数据和对象。因此，具备一定的编程经验和逻辑思维能力会更有助于上手 Three.js。</li><li><strong>资源获取</strong>：找到高质量的<code>教程</code>、<code>示例代码</code>和<code>项目模板</code>对于初学者来说非常重要。然而，网络上的资源可能质量参差不齐，需要花费一定的时间和精力进行筛选和学习。</li></ul><p>今天就来给大家推荐两个开源项目合集，带你快速入门 <code>Three.js</code>！！！</p><h2 id="vis-three"><a href="#vis-three" class="headerlink" title="vis-three"></a><strong>vis-three</strong></h2><blockquote><p>开源地址：<code>https://github.com/vis-three</code></p></blockquote><p><code>vis-three</code> 是一款基于 three.js 的<code>组装式</code>前端 3D 开发框架，为了解决 three.js 相关项目开发的<code>代码组织</code>问题，降低功能代码间的耦合，提高功能复用性，提高扩展能力，vis-three 提出了<code>功能插件</code>化概念，采用了<code>插件化</code>的组织形式，vis-three 的核心引擎提供功能插件的拔插能力，对各模块各功能进行解耦开发，持续集成，兼容拓展。</p><blockquote><ul><li>演示地址：<code>https://vis-three.github.io/exhibition-hall//SimpleSmartCity/index.html</code></li></ul></blockquote><blockquote><ul><li>演示地址：<code>https://vis-three.github.io/exhibition-hall//easyFactory/index.html</code></li></ul></blockquote><h2 id="icegl-three-vue-tres"><a href="#icegl-three-vue-tres" class="headerlink" title="icegl-three-vue-tres"></a><strong>icegl-three-vue-tres</strong></h2><blockquote><p>开源地址：<code>https://gitee.com/ice-gl/icegl-three-vue-tres</code></p></blockquote><p><code>icegl-three-vue-tres</code> 是 <code>icegl 图形学社区</code> 出品，一款让你的三维可视化项目快速落地的开源框架并且永久开源免费商用。</p><p>icegl 图形学社区提供了上百个 Threejs <code>可视化案例</code>供开发者学习，并且有免费完善的 WebGL 从入门到实战的<code>教程</code>，帮助大家快速上手。</p><p>案例展示：</p><blockquote><ul><li>演示地址：<code>https://opensource.icegl.cn/#/plugins/digitalCity/roadLines</code></li></ul></blockquote><blockquote><ul><li>演示地址：<code>https://opensource.icegl.cn/#/plugins/simpleGIS/mapBuildings</code></li></ul></blockquote><blockquote><ul><li>演示地址：<code>https://opensource.icegl.cn/#/plugins/industry4/deviceLightReflector</code></li></ul></blockquote><p>参考连接:</p><ul><li><a href="https://github.com/vis-three/vis-three">https://github.com/vis-three/vis-three</a></li><li><a href="https://gitee.com/ice-gl/icegl-three-vue-tres">https://gitee.com/ice-gl/icegl-three-vue-tres</a></li><li><a href="https://icegl.cn/">https://icegl.cn/</a></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;Three-js-开源组件&quot;&gt;&lt;a href=&quot;#Three-js-开源组件&quot; class=&quot;headerlink&quot; title=&quot;Three.js 开源组件&quot;&gt;&lt;/a&gt;Three.js 开源组件&lt;/h1&gt;&lt;p&gt;&lt;code&gt;Three.js&lt;/code&gt; 是一款基</summary>
-      
-    
-    
-    
-    <category term="前端" scheme="http://ai.mak.cn/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-    <category term="js" scheme="http://ai.mak.cn/tags/js/"/>
     
   </entry>
   

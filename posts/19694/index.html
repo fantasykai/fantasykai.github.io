@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>Java 9新特性解读 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2bb92548008bd1f1f88213efd40c8dad';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Java 9新特性解读</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Java 9新特性解读</h1><div class="post-meta">2017-09-24<span> | </span><span class="category"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a></span></div><a class="disqus-comment-count" href="/posts/19694/#vcomment"><span class="waline-comment-count" id="/posts/19694/"></span><span> 条评论</span></a><div class="post-content"><blockquote>
+<p>转载：<em>杨晓峰</em> <a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s/Onj9ZJYbV5pLTAPcYBJREA##">InfoQ</a></p>
+</blockquote>
+<p>在历经多次跳票之后，Java 9 终于在千呼万唤中正式发布。从这个版本开始，Java 将每半年发布一个版本。作为霸占编程语言排行榜鳌头多年的老牌语言，Java 9 中有哪些不得不说的新特性？Java 语言的未来又将如何？</p>
+<blockquote>
+<p>针对 Java 9 新特性的介绍已经非常多了，我这里不想再做一个百科全书一样的列表，希望从不同角度简要点评部分特性。</p>
+</blockquote>
+<p>Jigsaw</p>
+<p>首先，谈到 Java 9 大家往往第一个想到的就是 Jigsaw 项目，这是一个雄心勃勃的项目。</p>
+<p>大家知道，Java 已经发展超过 20 年（95 年最初发布），Java 和相关生态在不断丰富的同时也越来越暴露出一些问题，比如 Java 运行环境的膨胀和臃肿，各种类库和工具在提供强大功能的同时，也越来越复杂，不同版本的类库交叉依赖导致 Jar Hell 等让人头疼的问题，这些都阻碍了 Java 开发和运行效率的提升。</p>
+<p>但是由于兼容性等各方面的掣肘，对 Java 进行大刀阔斧的革新越来越困难，Jigsaw 从 Java 7 阶段就开始筹备，Java 8 阶段进行了大量工作，终于在 Java 9 里落地，有种千呼万唤始出来的意味。</p>
+<p>Jigsaw 项目的目标是改进 Java SE 平台，使其可以适应不同大小的计算设备；改进其安全性，可维护性，提高性能；简化各种类库和大型应用的开发和维护。</p>
+<p>这个项目的工作量和难度大大超出了初始规划。JSR 376 Java 平台模块化系统（JPMS, Java Platform Module System）作为 Jigsaw 项目的核心, 其主体部分被分解成 6 个 JEP(JDK Enhancement Proposals)</p>
+<ul>
+<li>200: The Modular JDK</li>
+<li>201: Modular Source Code</li>
+<li>220: Modular Run-Time Images</li>
+<li>260: Encapsulate Most Internal APIs</li>
+<li>261: Module System</li>
+<li>282: jlink: The Java Linker</li>
+</ul>
+<p>可以看到这是一个庞大的系统工程，Java 的方方面面，包括 JDK 编译工具，运行时，Java 公共 API 和私有代码等等，完全是一个整体性的改变。</p>
+<p>随着 Java 平台模块化系统的落地，开发人员无需再为不断膨胀的 Java 平台苦恼，例如，您可以使用 jlink 工具，根据需要定制运行时环境。这对于拥有大量镜像的容器应用场景或复杂依赖关系的大型应用等，都具有非常重要的意义。</p>
+<p>从软件开发实践的角度，Java 语言层面提供对模块的支持，可以鼓励（当然在某种程度上也可以看作强制）更加规范的开发实践，利用业界在开发领域几十年的经验、教训总结出的最佳实践，促进 Java 生态的健康发展。比如，更加完善的隐藏实现细节，这不仅可以促进面向接口、约定的编程，也可以避免可能的安全风险等。</p>
+<p>不过，换个角度来说，天下没有免费的午餐，由于 JPMS 是语言平台层面的支持，它并不是完全透明的，也就是说不管用户是否真的需要或从中收益，都会或多或少的受其影响。</p>
+<p>对此，我们可以从 JPMS 评审中针对类似深度反射限制之类的激烈争吵中，深刻体会到。比如，针对反射访问控制，最终 Java 9 开发团队，采取了相对折中的办法，在反射领域默认保持 Java 8 的默认行为。Java 9 在兼容性方面，相比于过往的版本，采取了更大的容忍度。</p>
+<p>不过，Java 9 的相当一部分特性仍然是对用户透明的。只要升级到 Java 9，不需要或者很少需要用户参与动作就能获益。比如，更加紧凑的字符串实现；改进的竞争锁机制；改进安全应用性能 ；利用特定 CPU 指令优化 GHASH 和 RSA 等等，这些都是开箱即用、触手可得的改进。</p>
+<p>Java 9 值得关注的新特性</p>
+<p>对于部分开发者来说，探究 Java 内部 API 或者平台底层能力是一件非常酷的事情，但这往往并不是非常容易，比如部分能力可能并没有在历史版本的公共 API 中暴露出来（比如 Unsafe 相关），或者需要特定领域的知识。在 Java 9 中，不要错过 JEP 193: Variable Handles 和 JEP 274: Enhanced Method Handles，JEP 259: Stack-Walking API，JEP 285: Spin-Wait Hints 等特性。</p>
+<p>另外，Java 9 中还有很多承上启下的特性，为未来创新打下基础或者整合、规范现有碎片化的功能，我会介绍一些有代表性的新特性。</p>
+<p>在 Java 虚拟机领域，JEP 271: Unified GC Logging 和 JEP 158：Unified JVM Logging，对各种 JVM 日志进行了统一，大家终于不用为各种碎片化的日志选项苦恼了。</p>
+<p>Oracle 一直在努力提高 Java 启动和运行时性能，希望其能够在更广泛的场景达到或接近本地语言的性能。但是，直到今天，谈到 Java，很多 C&#x2F;C++ 开发者还是会不屑地评价为启动慢，吃内存。</p>
+<p>简单说，这主要是因为 Java 编译产生的类文件是 Java 虚拟机可以理解的二进制代码，而不是真正的可执行的本地代码，需要 Java 虚拟机进行解释和编译，这带来了额外的开销。</p>
+<p>JIT（Just-in-time）编译器可以在运行时将热点编译成本地代码，但是实际应用可能非常庞大，大型 Java 应用的预热往往非常耗时，而且非热点代码可能根本没有机会被 JIT 编译。</p>
+<p>在 JDK 9 中， AOT（JEP 295: Ahead-of-Time Compilation）作为实验特性被引入进来，开发者可以利用新的 jaotc 工具将重点代码转换成类似类库一样的文件，这样会大大降低启动开销。</p>
+<p>另外 JVMCI （JEP 243: Java-Level JVM Compiler Interface）等特性，对于整个编程语言的发展，可能都具有非常重要的意义，虽然未必引起了广泛关注。目前 Graal Core API 已经被集成进入 Java 9，虽然还只是初始一小步，但是完全用 Java 语言来实现的可靠的、高性能的动态编译器，似乎不再是遥不可及，这是 Java 虚拟机开发工程师的福音。</p>
+<p>与此同时，随着 Truffle 框架和 Substrate VM 的发展，已经让个别信心满满的工程师高呼“One VM to Rule Them All!”， 也许就在不远的将来 Ploygot 以一种另类的方式成为现实。</p>
+<p>谈谈 Java 的未来</p>
+<p>前面简短地谈了谈 Java 9 中的一些令人激动的特性，Java 9 在取得这些进步的同时，那么在其的研发过程中有哪些教训，当前和未来遇到了那些挑战呢？</p>
+<p>首先，就是如何更加快速、敏捷地进行创新。在 Java 9 的开发过程中, 非常突出的一点就是，由于 Jigsaw 项目的延期，导致 Java 9 的发布一再推迟，这带来了很多负面影响。大批特性已经完成多时，却无法及时被实际应用采纳，开发者无法及时地从中获益，也很难尽早发现和反馈可能存在的问题或改进。这不禁让人反思 Java 传统的研发模式的局限性。</p>
+<p>针对这些情况，Java 首席架构师 Mark Reinhold 已经发出倡议，建议从传统的以特性驱动的发布周期，转变为以时间驱动的（6 个月为周期）发布模式，并逐步的将 Oracle JDK 原有商业特性进行开源，Java Flight Recorder 等杀手级工具和特性，一定会大受开发者的欢迎。针对企业客户的需求，Oracle 将以三年为周期发布长期支持版本（long term support）。</p>
+<p>第二，随着云计算和 AI 等技术浪潮，当前的计算模式和场景正在发生翻天覆地的变化，不仅对 Java 的发展速度提出了更高要求，也深刻影响着 Java 技术的发展方向。传统的大型企业或互联网应用，正在被云端，容器化应用、模块化的微服务甚至是函数（FaaS， Function-as-a-Service）所替代。</p>
+<p>Java 需要在新的计算场景下，改进开发效率。这话说的有点笼统，我谈一些自己的体会，Java 代码虽然进行了一些类型推断等改进，更易用的集合 API 等，但仍然给开发者留下了过于刻板、形式主义的印象，这是一个长期的改进方向，例如，JEP 286: Local-Variable Type Inference；持续改进并发计算框架，Java 的并发特性非常强大和系统，但某种程度上过于复杂，在今年的 JVMLS 上，阿里巴巴 AJDK 组介绍了利用协程改进并发的实践，这是一个令人眼前一亮的创新；Java 非常需要更加友好的本地代码支持，相关的特性有很多好的想法和尝试，比如 Panama 项目；Value Types 和改进的泛型，有兴趣可以参考 Valhalla 项目。</p>
+<p>最后，进一步改进启动和运行性能、优化计算资源使用。目前，相当一部分的 Java 类库和虚拟机特性都是针对长时间、大数据量、高并发等复杂任务进行的优化，但是在部分云计算场景中，比如越来越引起大家关注的 FaaS 应用，短时间、无状态的函数正在成为常见的计算单元。那么在这种场景下，Java 必须进行相应的改进和创新，才能保持和强化目前在软件开发领域的竞争力。比如，提高 Java 运行时启动速度，尤其是在容器环境的初始化表现；保证 CPU 等计算资源调度能力能够适应容器环境的新情况，最直接的就是 Java 平台需要支持基于 cgroup 等技术的资源管理；针对新场景下的 GC 优化；如何提高数据密度和计算效率等等。</p>
+<p>以上很多方面往往不是孤立的，也不是非常简单就可以完成的，很多改进都是依赖于相关语言基础技术的进步和突破，Java 的进步需要持之以恒的耐心和持续的努力与投入。</p>
+<blockquote>
+<p>我们再来看看java成立到现在的所有版本。</p>
+</blockquote>
+<p>    1990年初，最初被命名为Oak；</p>
+<p>    1995年5月23日，Java语言诞生；</p>
+<p>    1996年1月，第一个JDK-JDK1.0诞生；</p>
+<p>    1996年4月，10个最主要的操作系统供应商申明将在其产品中嵌入Java技术；</p>
+<p>    1996年9月，约8.3万个网页应用了Java技术来制作；</p>
+<p>    1997年2月18日，JDK1.1发布；</p>
+<p>    1997年4月2日，JavaOne会议召开，参与者逾一万人，创当时全球同类会议纪录；</p>
+<p>    1997年9月，JavaDeveloperConnection社区成员超过十万；</p>
+<p>    1998年2月，JDK1.1被下载超过2,000,000次；</p>
+<p>    1998年12月8日，Java 2企业平台J2EE发布；</p>
+<p>    1999年6月，SUN公司发布Java三个版本：标准版（J2SE）、企业版（J2EE）和微型版（J2ME）；</p>
+<p>    2000年5月8日，JDK1.3发布；</p>
+<p>    2000年5月29日，JDK1.4发布；</p>
+<p>    2001年6月5日，Nokia宣布到2003年将出售1亿部支持Java的手机；</p>
+<p>    2001年9月24日，J2EE1.3发布；</p>
+<p>    2002年2月26日，J2SE1.4发布，此后Java的计算能力有了大幅提升；</p>
+<p>    2004年9月30日，J2SE1.5发布，成为Java语言发展史上的又一里程碑。为了表示该版本的重要性，J2SE1.5更名为Java SE 5.0；</p>
+<p>    2005年6月，JavaOne大会召开，SUN公司公开Java SE 6。此时，Java的各种版本已经更名，以取消其中的数字“2”：J2EE更名为Java EE，J2SE更名为Java SE，J2ME更名为Java ME；</p>
+<p>    2006年12月，SUN公司发布JRE6.0；</p>
+<p>    2009年4月20日，甲骨文以74亿美元的价格收购SUN公司，取得java的版权，业界传闻说这对Java程序员是个坏消息（其实恰恰相反）；</p>
+<p>    2010年11月，由于甲骨文对Java社区的不友善，因此Apache扬言将退出JCP；</p>
+<p>    2011年7月28日，甲骨文发布Java SE 7；</p>
+<p>    2014年3月18日，甲骨文发表Java SE 8；</p>
+<p>    2017年7月，甲骨文发表Java SE 9。</p>
+</div><div class="tags"><a href="/tags/java"><i class="fa fa-tag">java</i></a></div><div class="post-nav"><a class="pre" href="/posts/53075/">Kubernetes概览</a><a class="next" href="/posts/58027/">Springmvc总结</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/AI-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/">AI, 网络运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">36</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">117</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">72</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B7%91%E6%AD%A5/">跑步</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/PMO/" style="font-size: 15px;">PMO</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 15px;">人工智能</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">深度学习</a> <a href="/tags/Deepseek-%E8%87%AA%E6%99%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%90%A5%E5%95%86-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">Deepseek, 自智网络, 运营商, 网络运维</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 15px;">知识图谱</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%8A%80%E6%9C%AF%E8%B6%8B%E5%8A%BF-%E8%A1%8C%E4%B8%9A%E5%8A%A8%E6%80%81/" style="font-size: 15px;">人工智能, 技术趋势, 行业动态</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">运维</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/SDN/" style="font-size: 15px;">SDN</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a> <a href="/tags/%E9%A9%AC%E6%8B%89%E6%9D%BE/" style="font-size: 15px;">马拉松</a> <a href="/tags/%E5%81%A5%E5%BA%B7/" style="font-size: 15px;">健康</a> <a href="/tags/%E6%8A%A5%E5%91%8A%E5%88%86%E4%BA%AB/" style="font-size: 15px;">报告分享</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/" style="font-size: 15px;">技术小栈</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/63200/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63199/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63198/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/55960/">Deepseek 技术分析总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/17232/">3月份马拉松计划</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/16164/">2024年人工智能进展及展望</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/57547/">大模型概念总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/47183/">系统稳定性建设</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/24447/">实时通信的关键差异解析</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/5864/">LSTM详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a><ul></ul><a href="https://excalidraw.com/" title="excalidraw" target="_blank">excalidraw</a><ul></ul><a href="https://tudan.blog.csdn.net/?type=lately" title="王坦" target="_blank">王坦</a><ul></ul><a href="https://aspoem.com/zh-Hans" target="_blank"></a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">枫哲's文栖小筑.</a><a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn/">｜苏ICP备18013756号-1</a><!--a(rel='nofollow', target='_blank', href='https://github.com/tufu9441/maupassant-hexo')  Theme--><!--|  by--><!--a(rel='nofollow', target='_blank', href='https://github.com/pagecho')  Cho.--></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

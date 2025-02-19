@@ -1,0 +1,1001 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>Makedown数学公式参考 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2bb92548008bd1f1f88213efd40c8dad';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Makedown数学公式参考</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Makedown数学公式参考</h1><div class="post-meta">2024-02-27<span> | </span><span class="category"><a href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span></div><a class="disqus-comment-count" href="/posts/53000/#vcomment"><span class="waline-comment-count" id="/posts/53000/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%AC%E5%BC%8F%E4%BD%BF%E7%94%A8%E5%8F%82%E8%80%83"><span class="toc-number">1.</span> <span class="toc-text">一、公式使用参考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%8E%E5%A6%82%E4%BD%95%E6%8F%92%E5%85%A5%E5%85%AC%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text">1．如何插入公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%BC%8E%E5%A6%82%E4%BD%95%E8%BE%93%E5%85%A5%E4%B8%8A%E4%B8%8B%E6%A0%87"><span class="toc-number">1.2.</span> <span class="toc-text">2．如何输入上下标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%EF%BC%8E%E5%A6%82%E4%BD%95%E8%BE%93%E5%85%A5%E6%8B%AC%E5%8F%B7%E5%92%8C%E5%88%86%E9%9A%94%E7%AC%A6"><span class="toc-number">1.3.</span> <span class="toc-text">3．如何输入括号和分隔符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%EF%BC%8E%E5%A6%82%E4%BD%95%E8%BE%93%E5%85%A5%E5%88%86%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">4．如何输入分数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%EF%BC%8E%E5%A6%82%E4%BD%95%E8%BE%93%E5%85%A5%E5%BC%80%E6%96%B9"><span class="toc-number">1.5.</span> <span class="toc-text">5．如何输入开方</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%EF%BC%8E%E5%A6%82%E4%BD%95%E8%BE%93%E5%85%A5%E7%9C%81%E7%95%A5%E5%8F%B7"><span class="toc-number">1.6.</span> <span class="toc-text">6．如何输入省略号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%EF%BC%8E%E5%A6%82%E4%BD%95%E8%BE%93%E5%85%A5%E5%90%91%E9%87%8F"><span class="toc-number">1.7.</span> <span class="toc-text">7．如何输入向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%EF%BC%8E%E5%A6%82%E4%BD%95%E8%BE%93%E5%85%A5%E7%A7%AF%E5%88%86"><span class="toc-number">1.8.</span> <span class="toc-text">8．如何输入积分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%EF%BC%8E%E5%A6%82%E4%BD%95%E8%BE%93%E5%85%A5%E6%9E%81%E9%99%90%E8%BF%90%E7%AE%97"><span class="toc-number">1.9.</span> <span class="toc-text">9．如何输入极限运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%EF%BC%8E%E5%A6%82%E4%BD%95%E8%BE%93%E5%85%A5%E7%B4%AF%E5%8A%A0%E3%80%81%E7%B4%AF%E4%B9%98%E8%BF%90%E7%AE%97"><span class="toc-number">1.10.</span> <span class="toc-text">10．如何输入累加、累乘运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%EF%BC%8E%E5%A6%82%E4%BD%95%E8%BE%93%E5%85%A5%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D"><span class="toc-number">1.11.</span> <span class="toc-text">11．如何输入希腊字母</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%EF%BC%8E%E5%A6%82%E4%BD%95%E8%BE%93%E5%85%A5%E5%85%B6%E5%AE%83%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="toc-number">1.12.</span> <span class="toc-text">12．如何输入其它特殊字符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%EF%BC%8E%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.12.1.</span> <span class="toc-text">(1)．关系运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%EF%BC%8E%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.12.2.</span> <span class="toc-text">(2)．集合运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%EF%BC%8E%E5%AF%B9%E6%95%B0%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.12.3.</span> <span class="toc-text">(3)．对数运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%EF%BC%8E%E4%B8%89%E8%A7%92%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.12.4.</span> <span class="toc-text">(4)．三角运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%EF%BC%8E%E5%BE%AE%E7%A7%AF%E5%88%86%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.12.5.</span> <span class="toc-text">(5)．微积分运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%EF%BC%8E%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.12.6.</span> <span class="toc-text">(6)．逻辑运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%EF%BC%8E%E6%88%B4%E5%B8%BD%E7%AC%A6%E5%8F%B7"><span class="toc-number">1.12.7.</span> <span class="toc-text">(7)．戴帽符号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-%EF%BC%8E%E8%BF%9E%E7%BA%BF%E7%AC%A6%E5%8F%B7"><span class="toc-number">1.12.8.</span> <span class="toc-text">(8)．连线符号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%EF%BC%8E%E7%AE%AD%E5%A4%B4%E7%AC%A6%E5%8F%B7"><span class="toc-number">1.12.9.</span> <span class="toc-text">(9)．箭头符号</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%EF%BC%8E%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E5%AD%97%E4%BD%93%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.13.</span> <span class="toc-text">13．如何进行字体转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%EF%BC%8E%E5%A6%82%E4%BD%95%E9%AB%98%E4%BA%AE%E4%B8%80%E8%A1%8C%E5%85%AC%E5%BC%8F"><span class="toc-number">1.14.</span> <span class="toc-text">14．如何高亮一行公式</span></a></li></ol></li></ol></div></div><div class="post-content"><p>转载：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042253190">https://segmentfault.com/a/1190000042253190</a></p>
+<h2 id="一、公式使用参考"><a href="#一、公式使用参考" class="headerlink" title="一、公式使用参考"></a>一、公式使用参考</h2><h3 id="1．如何插入公式"><a href="#1．如何插入公式" class="headerlink" title="1．如何插入公式"></a>1．如何插入公式</h3><p>$\TeX$ 可使用行中公式放在文中与其它文字混编，或单独成行的独立公式。</p>
+<p><strong>（1）行中公式</strong></p>
+<p>可以用如下方法表示：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span> 表达式 <span class="symbol">$</span></span><br></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ J_<span class="string">\alpha(x)</span> = <span class="string">\sum_&#123;m=0&#125;^\infty</span> <span class="string">\frac&#123;(-1)^m&#125;&#123;m!</span> <span class="string">\Gamma</span> (m + <span class="string">\alpha</span> + <span class="number">1</span>)&#125; &#123;<span class="string">\left(&#123;</span> <span class="string">\frac&#123;x&#125;&#123;2&#125;</span> &#125;<span class="string">\right)&#125;^&#123;2m</span> + <span class="string">\alpha&#125;</span> <span class="string">\text</span> &#123;，行内公式示例&#125; $</span><br></pre></td></tr></table></figure>
+
+<p>显示：<br>$ J_\alpha(x) &#x3D; \sum_{m&#x3D;0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\left({ \frac{x}{2} }\right)}^{2m + \alpha} \text {，行内公式示例} $</p>
+<p><strong>（2）独立公式</strong></p>
+<p>可以用如下方法表示：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span> 表达式 <span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ J_<span class="string">\alpha(x)</span> = <span class="string">\sum_&#123;m=0&#125;^\infty</span> <span class="string">\frac&#123;(-1)^m&#125;&#123;m!</span> <span class="string">\Gamma</span> (m + <span class="string">\alpha</span> + <span class="number">1</span>)&#125; &#123;<span class="string">\left(&#123;</span> <span class="string">\frac&#123;x&#125;&#123;2&#125;</span> &#125;<span class="string">\right)&#125;^&#123;2m</span> + <span class="string">\alpha&#125;</span> <span class="string">\text&#123;，独立公式示例&#125;</span> $$</span><br></pre></td></tr></table></figure>
+
+<p>显示：</p>
+<p>𝐽𝛼(𝑥)&#x3D;∑𝑚&#x3D;0∞(−1)𝑚𝑚!Γ(𝑚+𝛼+1)(𝑥2)2𝑚+𝛼，独立公式示例<em>J**α</em>(<em>x</em>)&#x3D;<em>m</em>&#x3D;0∑∞<em>m</em>!Γ(<em>m</em>+<em>α</em>+1)(−1)<em>m</em>(2<em>x</em>)2<em>m</em>+<em>α</em>，独立公式示例</p>
+<p><strong>（3）自动编号</strong></p>
+<p>公式可以用如下方法表示：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml">\begin</span><span class="template-variable">&#123;equation&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">    表达式</span></span><br><span class="line"><span class="language-xml">    \label</span><span class="template-variable">&#123;<span class="keyword">eq</span>:当前公式名&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">\end</span><span class="template-variable">&#123;equation&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>自动编号后的公式可在全文任意处使用 <code>\eqref&#123;eq:公式名&#125;</code> 语句引用。</p>
+<p>例子：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml">$$ 在公式 \eqref</span><span class="template-variable">&#123;<span class="keyword">eq</span>:sample&#125;</span><span class="language-xml"> 中，我们看到了这个被自动编号的公式。$$</span></span><br><span class="line"><span class="language-xml">\begin</span><span class="template-variable">&#123;equation&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">    E=mc^2 \text</span><span class="template-variable">&#123;，自动编号公式示例&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">    \label</span><span class="template-variable">&#123;<span class="keyword">eq</span>:sample&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">\end</span><span class="template-variable">&#123;equation&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>显示：</p>
+<p>$$ \begin{equation} E&#x3D;mc^2 \text{，自动编号公式示例} \label{eq:sample7} \end{equation} $$</p>
+<p>$$ 在公式 \eqref{eq:sample6} 中，我们看到了这个被自动编号的公式。$$</p>
+<p><strong>（4）手动编号</strong></p>
+<p>若需要手动编号，可在公式后使用 <code>\tag&#123;编号&#125;</code> 语句。</p>
+<p>例子：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ J_<span class="string">\alpha(x)</span> = <span class="string">\sum_&#123;m=0&#125;^\infty</span> <span class="string">\frac&#123;(-1)^m&#125;&#123;m!</span> <span class="string">\Gamma</span> (m + <span class="string">\alpha</span> + <span class="number">1</span>)&#125; &#123;<span class="string">\left(&#123;</span> <span class="string">\frac&#123;x&#125;&#123;2&#125;</span> &#125;<span class="string">\right)&#125;^&#123;2m</span> + <span class="string">\alpha&#125;</span> <span class="string">\text&#123;，使用</span> <span class="string">\tag</span> 手动编号&#125; <span class="string">\tag&#123;0.1&#125;</span> $$</span><br></pre></td></tr></table></figure>
+
+<p>显示：</p>
+<p>$$ J_\alpha(x) &#x3D; \sum_{m&#x3D;0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\left({ \frac{x}{2} }\right)}^{2m + \alpha} \text{，使用 \tag 手动编号} \tag{0.1} $$</p>
+<p><strong>（5）不自动编号</strong></p>
+<p>公式可以用如下方法表示：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\<span class="keyword">begin</span>&#123;equation*&#125;</span><br><span class="line">    表达式</span><br><span class="line">\<span class="keyword">end</span>&#123;equation*&#125;</span><br></pre></td></tr></table></figure>
+
+<p>显示：</p>
+<p>表达式表达式</p>
+<h3 id="2．如何输入上下标"><a href="#2．如何输入上下标" class="headerlink" title="2．如何输入上下标"></a>2．如何输入上下标</h3><p><code>^</code> 表示上标，<code>_</code> 表示下标。如果上下标的内容多于一个字符，需要用 <code>&#123;&#125;</code> 将这些内容括成一个整体。<br>上下标可以嵌套，也可以同时使用。</p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span> x^&#123;y^z&#125;=(<span class="number">1</span>+&#123;\rm e&#125;^x)^&#123;<span class="number">-2</span>xy^w&#125; <span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+</li>
+</ul>
+<p>𝑥𝑦𝑧&#x3D;(1+e𝑥)−2𝑥𝑦𝑤<em>x<strong>y</strong>z</em>&#x3D;(1+e<em>x</em>)−2<em>x<strong>y</strong>w</em></p>
+<p>如果要在左右两边都有上下标，可以使用 <code>\sideset</code> 命令；也可以简单地在符号前面多打一个上下标，此时会以行内公式渲染。<br>本例内 <code>\quad</code> 均为空格符号，为方便公式格式对比而添加，请注意辨别。详见<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042253190#">在字符间加入空格</a>。</p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml">$$ \sideset</span><span class="template-variable">&#123;^1_2&#125;</span><span class="template-variable">&#123;^3_4&#125;</span><span class="language-xml">\bigotimes \quad or \quad </span><span class="template-variable">&#123;^1_2&#125;</span><span class="language-xml">\bigotimes </span><span class="template-variable">&#123;^3_4&#125;</span><span class="language-xml"> $$</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+</li>
+</ul>
+<p>$$ \sideset{^1_2}{^3_4}\bigotimes \quad or \quad {^1_2}\bigotimes {^3_4} $$</p>
+<h3 id="3．如何输入括号和分隔符"><a href="#3．如何输入括号和分隔符" class="headerlink" title="3．如何输入括号和分隔符"></a>3．如何输入括号和分隔符</h3><p><code>()</code>、<code>[]</code> 和 <code>|</code> 表示符号本身，使用 <code>\&#123;\&#125;</code> 来表示 <code>&#123;&#125;</code> 。当要显示大号的括号或分隔符时，要用 <code>\left</code> 和 <code>\right</code> 命令。</p>
+<p>一些特殊的括号：</p>
+<table>
+<thead>
+<tr>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\langle</td>
+<td align="center">$\langle$</td>
+<td align="center">\rangle</td>
+<td align="center">$\rangle$</td>
+</tr>
+<tr>
+<td align="center">\lceil</td>
+<td align="center">$\lceil$</td>
+<td align="center">\rceil</td>
+<td align="center">$\rceil$</td>
+</tr>
+<tr>
+<td align="center">\lfloor</td>
+<td align="center">$\lfloor$</td>
+<td align="center">\rfloor</td>
+<td align="center">$\rfloor$</td>
+</tr>
+<tr>
+<td align="center">\lbrace</td>
+<td align="center">$\lbrace$</td>
+<td align="center">\rbrace</td>
+<td align="center">$\rbrace$</td>
+</tr>
+<tr>
+<td align="center">\lvert</td>
+<td align="center">$\lvert$</td>
+<td align="center">\rvert</td>
+<td align="center">$\rvert$</td>
+</tr>
+<tr>
+<td align="center">\lVert</td>
+<td align="center">$\lVert$</td>
+<td align="center">\rVert</td>
+<td align="center">$\rVert$</td>
+</tr>
+</tbody></table>
+<p>有时，我们需要在行内使用两个竖杠表示向量间的某种空间距离，可以这样写：<br><span style="text-align: center; display: block"> <code>\lVert \boldsymbol&#123;X&#125;_i - \boldsymbol&#123;S&#125;_j \rVert^2</code> → $\lVert \boldsymbol{X}_i - \boldsymbol{S}_j \rVert^2$ </span></p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span> f(x,y,z) = <span class="number">3</span>y^<span class="number">2</span>z \left( <span class="number">3</span>+\<span class="built_in">frac</span>&#123;<span class="number">7</span>x+<span class="number">5</span>&#125;&#123;<span class="number">1</span>+y^<span class="number">2</span>&#125; \right) <span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+</li>
+</ul>
+<p>𝑓(𝑥,𝑦,𝑧)&#x3D;3𝑦2𝑧(3+7𝑥+51+𝑦2)<em>f</em>(<em>x</em>,<em>y</em>,<em>z</em>)&#x3D;3<em>y</em>2<em>z</em>(3+1+<em>y</em>27<em>x</em>+5)</p>
+<p>有时要用 <code>\left.</code> 或 <code>\right.</code> 进行匹配而不显示本身。</p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml">$$ \left. \frac</span><span class="template-variable">&#123;&#123;\<span class="name">rm</span> d&#125;u&#125;&#123;&#123;\rm d&#125;x&#125; \right| _&#123;<span class="attr">x</span>=<span class="number">0</span>&#125; $$</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+</li>
+</ul>
+<p>d𝑢d𝑥∣𝑥&#x3D;0d<em>x</em>d<em>u</em>∣∣<em>x</em>&#x3D;0</p>
+<h3 id="4．如何输入分数"><a href="#4．如何输入分数" class="headerlink" title="4．如何输入分数"></a>4．如何输入分数</h3><p>通常使用 <code>\frac &#123;分子&#125; &#123;分母&#125;</code> 来生成一个分数，分数可多层嵌套。<br>若分数只有一层，也可使用 <code>分子 \over 分母</code> 命令。<br>例内 <code>\quad</code> <code>\mid</code> <code>\,</code> 等均为空格或分隔符号，为方便公式格式对比而添加，请注意辨别。详见<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042253190#">在字符间加入空格</a>。</p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span> \<span class="built_in">frac</span>&#123;a<span class="number">-1</span>&#125;&#123;b<span class="number">-1</span>&#125; \quad <span class="keyword">or</span> \quad &#123;a+<span class="number">1</span> \over b+<span class="number">1</span>&#125; <span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+</li>
+</ul>
+<p>𝑎−1𝑏−1𝑜𝑟𝑎+1𝑏+1<em>b</em>−1<em>a</em>−1<em>or**b</em>+1<em>a</em>+1</p>
+<p>当分式 <strong>仅有两个字符时</strong> 可直接输入 <code>\frac ab</code> 来快速生成一个 $\Large\frac ab$ 。</p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ <span class="string">\frac</span> <span class="number">12</span>,<span class="string">\frac</span> <span class="number">1a</span>,<span class="string">\frac</span> a2 <span class="string">\quad</span> <span class="string">\mid</span> <span class="string">\quad</span> <span class="string">\text&#123;2</span> letters only:&#125; <span class="string">\quad</span> <span class="string">\frac</span> <span class="number">12a</span> <span class="string">\,,</span> k<span class="string">\frac</span> q&#123;r^<span class="number">2</span>&#125; $$</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+</li>
+</ul>
+<p>12,1𝑎,𝑎2∣2 letters only:12𝑎,𝑘𝑞𝑟221,<em>a</em>1,2<em>a</em>∣2 letters only:21<em>a</em>,<em>k**r</em>2<em>q</em></p>
+<h3 id="5．如何输入开方"><a href="#5．如何输入开方" class="headerlink" title="5．如何输入开方"></a>5．如何输入开方</h3><p>使用 <code>\sqrt [根指数，省略时为2] &#123;被开方数&#125;</code> 命令输入开方。<br>本例内 <code>\quad</code> 均为空格符号，为方便公式格式对比而添加，请注意辨别。详见<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042253190#">在字符间加入空格</a>。</p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span> \<span class="built_in">sqrt</span>&#123;<span class="number">2</span>&#125; \quad <span class="keyword">or</span> \quad \<span class="built_in">sqrt</span>[n]&#123;<span class="number">3</span>&#125; <span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+</li>
+</ul>
+<p>2𝑜𝑟3𝑛2<em>or**n</em>3</p>
+<h3 id="6．如何输入省略号"><a href="#6．如何输入省略号" class="headerlink" title="6．如何输入省略号"></a>6．如何输入省略号</h3><p>数学公式中常见的省略号有两种，<code>\ldots</code> 表示与 <strong>文本底线</strong> 对齐的省略号，<code>\cdots</code> 表示与 <strong>文本中线</strong> 对齐的省略号。</p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml">$$ f(x_1,x_2,\underbrace</span><span class="template-variable">&#123;\ldots&#125;</span><span class="language-xml">_</span><span class="template-variable">&#123;\rm ldots&#125;</span><span class="language-xml"> ,x_n) = x_1^2 + x_2^2 + \underbrace</span><span class="template-variable">&#123;\cdots&#125;</span><span class="language-xml">_</span><span class="template-variable">&#123;\rm cdots&#125;</span><span class="language-xml"> + x_n^2 $$</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+</li>
+</ul>
+<p>𝑓(𝑥1,𝑥2,…⏟ldots,𝑥𝑛)&#x3D;𝑥12+𝑥22+⋯⏟cdots+𝑥𝑛2<em>f</em>(<em>x</em>1,<em>x</em>2,ldots…,<em>x**n</em>)&#x3D;<em>x</em>12+<em>x</em>22+cdots⋯+<em>x**n</em>2</p>
+<h3 id="7．如何输入向量"><a href="#7．如何输入向量" class="headerlink" title="7．如何输入向量"></a>7．如何输入向量</h3><p>使用 <code>\vec&#123;向量&#125;</code> 来自动产生一个向量。也可以使用 <code>\overrightarrow</code> 等命令自定义字母上方的符号。<br>例内 <code>\quad</code> <code>\mid</code> <code>\,</code> 等均为空格或分隔符号，为方便公式格式对比而添加，请注意辨别。详见<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042253190#">在字符间加入空格</a>。</p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span> \vec&#123;a&#125; \cdot \vec&#123;b&#125;=<span class="number">0</span> <span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+</li>
+</ul>
+<p>𝑎⃗⋅𝑏⃗&#x3D;0<em>a</em>⋅<em>b</em>&#x3D;0</p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ xy <span class="string">\text&#123;</span> <span class="keyword">with</span> arrows:&#125; <span class="string">\quad</span> <span class="string">\overleftarrow&#123;xy&#125;</span> <span class="string">\;</span> <span class="string">\mid</span> <span class="string">\;</span> <span class="string">\overleftrightarrow&#123;xy&#125;</span> <span class="string">\;</span> <span class="string">\mid</span> <span class="string">\;</span> <span class="string">\overrightarrow&#123;xy&#125;</span> $$</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+</li>
+</ul>
+<p>𝑥𝑦 with arrows:𝑥𝑦←∣𝑥𝑦↔∣𝑥𝑦→<em>x**y</em> with arrows:<em>x**y</em>∣<em>x**y</em>∣<em>x**y</em></p>
+<h3 id="8．如何输入积分"><a href="#8．如何输入积分" class="headerlink" title="8．如何输入积分"></a>8．如何输入积分</h3><p>使用 <code>\int_积分下限^积分上限 &#123;被积表达式&#125;</code> 来输入一个积分。</p>
+<p>例子：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span> \int_0^<span class="number">1</span> &#123;x^<span class="number">2</span>&#125; \,&#123;\rm d&#125;x <span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure>
+
+<p>显示：</p>
+<p>∫01𝑥2d𝑥∫01<em>x</em>2d<em>x</em></p>
+<p>本例中 <code>\,</code> 和 <code>&#123;\rm d&#125;</code> 部分可省略，但加入能使式子更美观，详见<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042253190#">在字符间加入空格</a>及<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042253190#">如何进行字体转换</a>。</p>
+<h3 id="9．如何输入极限运算"><a href="#9．如何输入极限运算" class="headerlink" title="9．如何输入极限运算"></a>9．如何输入极限运算</h3><p>使用 <code>\lim_&#123;变量 \to 表达式&#125; 表达式</code> 来输入一个极限。如有需求，可以更改 <code>\to</code> 符号至任意符号。</p>
+<p>例子：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ <span class="string">\lim_&#123;n</span> <span class="string">\to</span> <span class="string">\infty&#125;</span> <span class="string">\frac&#123;1&#125;&#123;n(n+1)&#125;</span> <span class="string">\quad</span> <span class="keyword">and</span> <span class="string">\quad</span> <span class="string">\lim_&#123;x\leftarrow&#123;示例&#125;&#125;</span> <span class="string">\frac&#123;1&#125;&#123;n(n+1)&#125;</span> $$</span><br></pre></td></tr></table></figure>
+
+<p>显示：</p>
+<p>lim⁡𝑛→∞1𝑛(𝑛+1)𝑎𝑛𝑑lim⁡𝑥←示例1𝑛(𝑛+1)<em>n</em>→∞lim<em>n</em>(<em>n</em>+1)1<em>an<strong>d</strong>x</em>←示例lim<em>n</em>(<em>n</em>+1)1</p>
+<h3 id="10．如何输入累加、累乘运算"><a href="#10．如何输入累加、累乘运算" class="headerlink" title="10．如何输入累加、累乘运算"></a>10．如何输入累加、累乘运算</h3><p>使用 <code>\sum_&#123;下标表达式&#125;^&#123;上标表达式&#125; &#123;累加表达式&#125;</code> 来输入一个累加。与之类似，使用 <code>\prod</code> <code>\bigcup</code> <code>\bigcap</code> 来分别输入累乘、并集和交集，更多符号可参考“<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042253190#">其它特殊字符</a>”。</p>
+<p>此类符号在行内显示时上下标表达式将会移至右上角和右下角，如 <code>\sum_&#123;i=1&#125;^n \frac&#123;1&#125;&#123;i^2&#125;</code> 显示为 $\sum_{i&#x3D;1}^n \frac{1}{i^2}$ ；</p>
+<p>或在行内可使用 <code>\sum\limits_&#123;下标表达式&#125;^&#123;上标表达式&#125; &#123;累加表达式&#125;</code> 使上下标仍在正上正下方。<br><span style="text-align: center; display: block;"> 如 <code>\sum\limits_&#123;i=1&#125;^n \frac&#123;1&#125;&#123;i^2&#125;</code> 显示为 $\sum\limits_{i&#x3D;1}^n \frac{1}{i^2}$ 。</span></p>
+<p>本例内 <code>\quad</code> 均为空格符号，为方便公式格式对比而添加，请注意辨别。详见<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042253190#">在字符间加入空格</a>。</p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ <span class="string">\sum_&#123;i=1&#125;^n</span> <span class="string">\frac&#123;1&#125;&#123;i^2&#125;</span> <span class="string">\quad</span> <span class="keyword">and</span> <span class="string">\quad</span> <span class="string">\prod_&#123;i=1&#125;^n</span> <span class="string">\frac&#123;1&#125;&#123;i^2&#125;</span> <span class="string">\quad</span> <span class="keyword">and</span> <span class="string">\quad</span> <span class="string">\bigcup_&#123;i=1&#125;^&#123;2&#125;</span> <span class="string">\Bbb&#123;R&#125;</span> $$</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+</li>
+</ul>
+<p>∑𝑖&#x3D;1𝑛1𝑖2𝑎𝑛𝑑∏𝑖&#x3D;1𝑛1𝑖2𝑎𝑛𝑑⋃𝑖&#x3D;12𝑅<em>i</em>&#x3D;1∑<em>n**i</em>21<em>an<strong>d</strong>i</em>&#x3D;1∏<em>n**i</em>21<em>an<strong>d</strong>i</em>&#x3D;1⋃2R</p>
+<h3 id="11．如何输入希腊字母"><a href="#11．如何输入希腊字母" class="headerlink" title="11．如何输入希腊字母"></a>11．如何输入希腊字母</h3><p>输入 <code>\小写希腊字母英文全称</code> 和 <code>\首字母大写希腊字母英文全称</code> 来分别输入小写和大写希腊字母。<br><strong>对于大写希腊字母与现有字母相同的，直接输入大写字母即可。</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\alpha</td>
+<td align="center">$\alpha$</td>
+<td align="center">A</td>
+<td align="center">$A$</td>
+<td align="center">\beta</td>
+<td align="center">$\beta$</td>
+<td align="center">B</td>
+<td align="center">$B$</td>
+</tr>
+<tr>
+<td align="center">\gamma</td>
+<td align="center">$\gamma$</td>
+<td align="center">\Gamma</td>
+<td align="center">$\Gamma$</td>
+<td align="center">\delta</td>
+<td align="center">$\delta$</td>
+<td align="center">\Delta</td>
+<td align="center">$\Delta$</td>
+</tr>
+<tr>
+<td align="center">\epsilon</td>
+<td align="center">$\epsilon$</td>
+<td align="center">E</td>
+<td align="center">$E$</td>
+<td align="center">\zeta</td>
+<td align="center">$\zeta$</td>
+<td align="center">Z</td>
+<td align="center">$Z$</td>
+</tr>
+<tr>
+<td align="center">\eta</td>
+<td align="center">$\eta$</td>
+<td align="center">H</td>
+<td align="center">$H$</td>
+<td align="center">\theta</td>
+<td align="center">$\theta$</td>
+<td align="center">\Theta</td>
+<td align="center">$\Theta$</td>
+</tr>
+<tr>
+<td align="center">\iota</td>
+<td align="center">$\iota$</td>
+<td align="center">I</td>
+<td align="center">$I$</td>
+<td align="center">\kappa</td>
+<td align="center">$\kappa$</td>
+<td align="center">K</td>
+<td align="center">$K$</td>
+</tr>
+<tr>
+<td align="center">\lambda</td>
+<td align="center">$\lambda$</td>
+<td align="center">\Lambda</td>
+<td align="center">$\Lambda$</td>
+<td align="center">\mu</td>
+<td align="center">$\mu$</td>
+<td align="center">M</td>
+<td align="center">$M$</td>
+</tr>
+<tr>
+<td align="center">\nu</td>
+<td align="center">$\nu$</td>
+<td align="center">N</td>
+<td align="center">$N$</td>
+<td align="center">\xi</td>
+<td align="center">$\xi$</td>
+<td align="center">\Xi</td>
+<td align="center">$\Xi$</td>
+</tr>
+<tr>
+<td align="center">o</td>
+<td align="center">$o$</td>
+<td align="center">O</td>
+<td align="center">$O$</td>
+<td align="center">\pi</td>
+<td align="center">$\pi$</td>
+<td align="center">\Pi</td>
+<td align="center">$\Pi$</td>
+</tr>
+<tr>
+<td align="center">\rho</td>
+<td align="center">$\rho$</td>
+<td align="center">P</td>
+<td align="center">$P$</td>
+<td align="center">\sigma</td>
+<td align="center">$\sigma$</td>
+<td align="center">\Sigma</td>
+<td align="center">$\Sigma$</td>
+</tr>
+<tr>
+<td align="center">\tau</td>
+<td align="center">$\tau$</td>
+<td align="center">T</td>
+<td align="center">$T$</td>
+<td align="center">\upsilon</td>
+<td align="center">$\upsilon$</td>
+<td align="center">\Upsilon</td>
+<td align="center">$\Upsilon$</td>
+</tr>
+<tr>
+<td align="center">\phi</td>
+<td align="center">$\phi$</td>
+<td align="center">\Phi</td>
+<td align="center">$\Phi$</td>
+<td align="center">\chi</td>
+<td align="center">$\chi$</td>
+<td align="center">X</td>
+<td align="center">$X$</td>
+</tr>
+<tr>
+<td align="center">\psi</td>
+<td align="center">$\psi$</td>
+<td align="center">\Psi</td>
+<td align="center">$\Psi$</td>
+<td align="center">\omega</td>
+<td align="center">$\omega$</td>
+<td align="center">\Omega</td>
+<td align="center">$\Omega$</td>
+</tr>
+<tr>
+<td align="center">\partial</td>
+<td align="center">$\partial$</td>
+<td align="center">\nabla</td>
+<td align="center">$\nabla$</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p><strong>部分字母有变量专用形式，以 <code>\var-</code> 开头。</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">小写形式</th>
+<th align="center">大写形式</th>
+<th align="center">变量形式</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\epsilon</td>
+<td align="center">E</td>
+<td align="center">\varepsilon</td>
+<td align="center">$\epsilon \mid E \mid \varepsilon$</td>
+</tr>
+<tr>
+<td align="center">\theta</td>
+<td align="center">\Theta</td>
+<td align="center">\vartheta</td>
+<td align="center">$\theta \mid \Theta \mid \vartheta$</td>
+</tr>
+<tr>
+<td align="center">\rho</td>
+<td align="center">P</td>
+<td align="center">\varrho</td>
+<td align="center">$\rho \mid P \mid \varrho$</td>
+</tr>
+<tr>
+<td align="center">\sigma</td>
+<td align="center">\Sigma</td>
+<td align="center">\varsigma</td>
+<td align="center">$\sigma \mid \Sigma \mid \varsigma$</td>
+</tr>
+<tr>
+<td align="center">\phi</td>
+<td align="center">\Phi</td>
+<td align="center">\varphi</td>
+<td align="center">$\phi \mid \Phi \mid \varphi$</td>
+</tr>
+</tbody></table>
+<h3 id="12．如何输入其它特殊字符"><a href="#12．如何输入其它特殊字符" class="headerlink" title="12．如何输入其它特殊字符"></a>12．如何输入其它特殊字符</h3><h4 id="1-．关系运算符"><a href="#1-．关系运算符" class="headerlink" title="(1)．关系运算符"></a>(1)．关系运算符</h4><table>
+<thead>
+<tr>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\pm</td>
+<td align="center">$\pm$</td>
+<td align="center">\times</td>
+<td align="center">$\times$</td>
+<td align="center">\div</td>
+<td align="center">$\div$</td>
+<td align="center">\mid</td>
+<td align="center">$\mid$</td>
+</tr>
+<tr>
+<td align="center">\nmid</td>
+<td align="center">$\nmid$</td>
+<td align="center">\cdot</td>
+<td align="center">$\cdot$</td>
+<td align="center">\circ</td>
+<td align="center">$\circ$</td>
+<td align="center">\ast</td>
+<td align="center">$\ast$</td>
+</tr>
+<tr>
+<td align="center">\odot</td>
+<td align="center">$\odot$</td>
+<td align="center">\otimes</td>
+<td align="center">$\otimes$</td>
+<td align="center">\oplus</td>
+<td align="center">$\oplus$</td>
+<td align="center">\leq</td>
+<td align="center">$\leq$</td>
+</tr>
+<tr>
+<td align="center">\geq</td>
+<td align="center">$\geq$</td>
+<td align="center">\neq</td>
+<td align="center">$\neq$</td>
+<td align="center">\approx</td>
+<td align="center">$\approx$</td>
+<td align="center">\equiv</td>
+<td align="center">$\equiv$</td>
+</tr>
+<tr>
+<td align="center">\sum</td>
+<td align="center">$\sum$</td>
+<td align="center">\prod</td>
+<td align="center">$\prod$</td>
+<td align="center">\coprod</td>
+<td align="center">$\coprod$</td>
+<td align="center">\backslash</td>
+<td align="center">$\backslash$</td>
+</tr>
+</tbody></table>
+<h4 id="2-．集合运算符"><a href="#2-．集合运算符" class="headerlink" title="(2)．集合运算符"></a>(2)．集合运算符</h4><table>
+<thead>
+<tr>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\emptyset</td>
+<td align="center">$\emptyset$</td>
+<td align="center">\in</td>
+<td align="center">$\in$</td>
+<td align="center">\notin</td>
+<td align="center">$\notin$</td>
+</tr>
+<tr>
+<td align="center">\subset</td>
+<td align="center">$\subset$</td>
+<td align="center">\supset</td>
+<td align="center">$\supset$</td>
+<td align="center">\subseteq</td>
+<td align="center">$\subseteq$</td>
+</tr>
+<tr>
+<td align="center">\supseteq</td>
+<td align="center">$\supseteq$</td>
+<td align="center">\cap</td>
+<td align="center">$\cap$</td>
+<td align="center">\cup</td>
+<td align="center">$\cup$</td>
+</tr>
+<tr>
+<td align="center">\vee</td>
+<td align="center">$\vee$</td>
+<td align="center">\wedge</td>
+<td align="center">$\wedge$</td>
+<td align="center">\uplus</td>
+<td align="center">$\uplus$</td>
+</tr>
+<tr>
+<td align="center">\top</td>
+<td align="center">$\top$</td>
+<td align="center">\bot</td>
+<td align="center">$\bot$</td>
+<td align="center">\complement</td>
+<td align="center">$\complement$</td>
+</tr>
+</tbody></table>
+<h4 id="3-．对数运算符"><a href="#3-．对数运算符" class="headerlink" title="(3)．对数运算符"></a>(3)．对数运算符</h4><table>
+<thead>
+<tr>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\log</td>
+<td align="center">$\log$</td>
+<td align="center">\lg</td>
+<td align="center">$\lg$</td>
+<td align="center">\ln</td>
+<td align="center">$\ln$</td>
+</tr>
+</tbody></table>
+<h4 id="4-．三角运算符"><a href="#4-．三角运算符" class="headerlink" title="(4)．三角运算符"></a>(4)．三角运算符</h4><table>
+<thead>
+<tr>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\backsim</td>
+<td align="center">$\backsim$</td>
+<td align="center">\cong</td>
+<td align="center">$\cong$</td>
+<td align="center">\angle A</td>
+<td align="center">$\angle A$</td>
+</tr>
+<tr>
+<td align="center">\sin</td>
+<td align="center">$\sin$</td>
+<td align="center">\cos</td>
+<td align="center">$\cos$</td>
+<td align="center">\tan</td>
+<td align="center">$\tan$</td>
+</tr>
+<tr>
+<td align="center">\csc</td>
+<td align="center">$\csc$</td>
+<td align="center">\sec</td>
+<td align="center">$\sec$</td>
+<td align="center">\cot</td>
+<td align="center">$\cot$</td>
+</tr>
+</tbody></table>
+<h4 id="5-．微积分运算符"><a href="#5-．微积分运算符" class="headerlink" title="(5)．微积分运算符"></a>(5)．微积分运算符</h4><table>
+<thead>
+<tr>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\int</td>
+<td align="center">$\int$</td>
+<td align="center">\iint</td>
+<td align="center">$\iint$</td>
+<td align="center">\iiint</td>
+<td align="center">$\iiint$</td>
+</tr>
+<tr>
+<td align="center">\partial</td>
+<td align="center">$\partial$</td>
+<td align="center">\oint</td>
+<td align="center">$\oint$</td>
+<td align="center">\prime</td>
+<td align="center">$\prime$</td>
+</tr>
+<tr>
+<td align="center">\lim</td>
+<td align="center">$\lim$</td>
+<td align="center">\infty</td>
+<td align="center">$\infty$</td>
+<td align="center">\nabla</td>
+<td align="center">$\nabla$</td>
+</tr>
+</tbody></table>
+<h4 id="6-．逻辑运算符"><a href="#6-．逻辑运算符" class="headerlink" title="(6)．逻辑运算符"></a>(6)．逻辑运算符</h4><table>
+<thead>
+<tr>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\because</td>
+<td align="center">$\because$</td>
+<td align="center">\therefore</td>
+<td align="center">$\therefore$</td>
+<td align="center">\neg</td>
+<td align="center">$\neg$</td>
+</tr>
+<tr>
+<td align="center">\forall</td>
+<td align="center">$\forall$</td>
+<td align="center">\exists</td>
+<td align="center">$\exists$</td>
+<td align="center">\not\subset</td>
+<td align="center">$\not\subset$</td>
+</tr>
+<tr>
+<td align="center">\not&lt;</td>
+<td align="center">$\not&lt;$</td>
+<td align="center">\not&gt;</td>
+<td align="center">$\not&gt;$</td>
+<td align="center">\not&#x3D;</td>
+<td align="center">$\not&#x3D;$</td>
+</tr>
+<tr>
+<td align="center">\vdash</td>
+<td align="center">$\vdash$</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h4 id="7-．戴帽符号"><a href="#7-．戴帽符号" class="headerlink" title="(7)．戴帽符号"></a>(7)．戴帽符号</h4><table>
+<thead>
+<tr>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\hat{xy}</td>
+<td align="center">$\hat{xy}$</td>
+<td align="center">\widehat{xyz}</td>
+<td align="center">$\widehat{xyz}$</td>
+<td align="center">\bar{y}</td>
+<td align="center">$\bar{y}$</td>
+</tr>
+<tr>
+<td align="center">\tilde{xy}</td>
+<td align="center">$\tilde{xy}$</td>
+<td align="center">\widetilde{xyz}</td>
+<td align="center">$\widetilde{xyz}$</td>
+<td align="center">\acute{y}</td>
+<td align="center">$\acute{y}$</td>
+</tr>
+<tr>
+<td align="center">\breve{y}</td>
+<td align="center">$\breve{y}$</td>
+<td align="center">\check{y}</td>
+<td align="center">$\check{y}$</td>
+<td align="center">\grave{y}</td>
+<td align="center">$\grave{y}$</td>
+</tr>
+<tr>
+<td align="center">\dot{x}</td>
+<td align="center">$\dot{x}$</td>
+<td align="center">\ddot{x}</td>
+<td align="center">$\ddot{x}$</td>
+<td align="center">\dddot{x}</td>
+<td align="center">$\dddot{x}$</td>
+</tr>
+</tbody></table>
+<p>若需要在特定文字顶部\底部放置内容，可使用 <code>\overset&#123;顶部内容&#125;&#123;正常内容&#125;</code> 和 <code>\underset&#123;底部内容&#125;&#123;正常内容&#125;</code> 命令。<br>例内 <code>\qquad</code> <code>\quad</code> <code>\mid</code> <code>\;</code> <code>\,</code> 等均为空格或分隔符号，为方便公式格式对比而添加，请注意辨别。详见<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042253190#">在字符间加入空格</a>。</p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ <span class="string">\verb+\overset&#123;above&#125;&#123;level&#125;+</span> <span class="string">\qquad</span> <span class="string">\overset&#123;xx&#125;&#123;ABC&#125;</span> <span class="string">\;\;</span> <span class="string">\mid</span> <span class="string">\quad</span> <span class="string">\overset&#123;x^2&#125;&#123;\longmapsto&#125;\</span> <span class="string">\,</span> <span class="string">\mid</span> <span class="string">\quad</span> <span class="string">\overset&#123;\bullet\circ\circ\bullet&#125;&#123;T&#125;</span> $$</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+</li>
+</ul>
+<p>\overset{above}{level}𝐴𝐵𝐶𝑥𝑥∣⟼𝑥2 ∣𝑇∙∘∘∙\overset{above}{level}<em>A<strong>BC</strong>xx</em>∣⟼<em>x</em>2 ∣<em>T</em>∙∘∘∙</p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ <span class="string">\verb+\underset&#123;below&#125;&#123;level&#125;+</span> <span class="string">\qquad</span> <span class="string">\underset&#123;xx&#125;&#123;ABC&#125;</span> <span class="string">\;\;</span> <span class="string">\mid</span> <span class="string">\quad</span> <span class="string">\underset&#123;x^2&#125;&#123;\longmapsto&#125;\</span> <span class="string">\,</span> <span class="string">\mid</span> <span class="string">\quad</span> <span class="string">\underset&#123;\bullet\circ\circ\bullet&#125;&#123;T&#125;</span> $$</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+</li>
+</ul>
+<p>\underset{below}{level}𝐴𝐵𝐶𝑥𝑥∣⟼𝑥2 ∣𝑇∙∘∘∙\underset{below}{level}<em>xx<strong>A</strong>BC</em>∣<em>x</em>2⟼ ∣∙∘∘∙<em>T</em></p>
+<p>此命令可叠加嵌套使用，生成类似化学反应式的多重条件符号，<br>如 <code>\overset&#123;H_2&#125;&#123;\underset&#123;1300℃&#125;&#123;\Longleftrightarrow&#125;&#125;</code>：<br>SrO+VSr′′⟺1300℃H2SrSr×+2e′+12O2(g)SrO+VSr′′​1300℃⟺​H2​​SrSr×​+2e′+21​O2​(g)</p>
+<p>和 <code>\overset&#123;Surface/bulk&#125;&#123;\underset&#123;diffusion&#125;&#123;\longleftrightarrow&#125;&#125;</code>：<br>2OHO(STN)∘+2OO(YSZ)×⟷diffusionSurface&#x2F;bulk2OHO(YSZ)∘+2OO(STN)×2OHO(STN)∘​+2OO(YSZ)×​diffusion⟷​Surface&#x2F;bulk​2OHO(YSZ)∘​+2OO(STN)×​</p>
+<p>在书写化学方程式时可声明 <code>\require&#123;AMDcd&#125;</code> 语句，使用 MathJax 内置的交换图表功能，具体例子可<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042253190#1%E5%A6%82%E4%BD%95%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA%E4%BA%A4%E6%8D%A2%E5%9B%BE%E8%A1%A8">参见下文</a>。</p>
+<h4 id="8-．连线符号"><a href="#8-．连线符号" class="headerlink" title="(8)．连线符号"></a>(8)．连线符号</h4><p>其它可用的文字修饰符可参见官方文档 <a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=/HSJ3WSU0CTgZfNy5Yf78g==.R0WMMPY+9yDpdC3N2hOE4e25sOmj2pHTKz4+FOaaXMG8xcfQKCdeVlqbAUoyrmpRA1V8jXEgDaLKWFrqG6c04kNh/d7J1B2mKW4TrxU7OJwBvBY3jkNVBBo7dhaw2q4ao3XoT+1+a2w08WIsGYa/ew==">“Additional decorations”</a>。</p>
+<table>
+<thead>
+<tr>
+<th align="center">输入</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\fbox{a+b+c+d}</td>
+<td align="center">$\fbox{a+b+c+d}$</td>
+</tr>
+<tr>
+<td align="center">\overleftarrow{a+b+c+d}</td>
+<td align="center">$\overleftarrow{a+b+c+d}$</td>
+</tr>
+<tr>
+<td align="center">\overrightarrow{a+b+c+d}</td>
+<td align="center">$\overrightarrow{a+b+c+d}$</td>
+</tr>
+<tr>
+<td align="center">\overleftrightarrow{a+b+c+d}</td>
+<td align="center">$\overleftrightarrow{a+b+c+d}$</td>
+</tr>
+<tr>
+<td align="center">\underleftarrow{a+b+c+d}</td>
+<td align="center">$\underleftarrow{a+b+c+d}$</td>
+</tr>
+<tr>
+<td align="center">\underrightarrow{a+b+c+d}</td>
+<td align="center">$\underrightarrow{a+b+c+d}$</td>
+</tr>
+<tr>
+<td align="center">\underleftrightarrow{a+b+c+d}</td>
+<td align="center">$\underleftrightarrow{a+b+c+d}$</td>
+</tr>
+<tr>
+<td align="center">\overline{a+b+c+d}</td>
+<td align="center">$\overline{a+b+c+d}$</td>
+</tr>
+<tr>
+<td align="center">\underline{a+b+c+d}</td>
+<td align="center">$\underline{a+b+c+d}$</td>
+</tr>
+<tr>
+<td align="center">\overbrace{a+b+c+d}^{Sample}</td>
+<td align="center">$\overbrace{a+b+c+d}^{Sample}$</td>
+</tr>
+<tr>
+<td align="center">\underbrace{a+b+c+d}_{Sample}</td>
+<td align="center">$\underbrace{a+b+c+d}_{Sample}$</td>
+</tr>
+<tr>
+<td align="center">\overbrace{a+\underbrace{b+c}_{1.0}+d}^{2.0}</td>
+<td align="center">$\overbrace{a+\underbrace{b+c}_{1.0}+d}^{2.0}$</td>
+</tr>
+<tr>
+<td align="center">\underbrace{a\cdot a\cdots a}_{b\text{ times}}</td>
+<td align="center">$\underbrace{a\cdot a\cdots a}_{b\text{ times}}$</td>
+</tr>
+</tbody></table>
+<h4 id="9-．箭头符号"><a href="#9-．箭头符号" class="headerlink" title="(9)．箭头符号"></a>(9)．箭头符号</h4><ul>
+<li>推荐使用符号：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\to</td>
+<td align="center">$\to$</td>
+<td align="center">\mapsto</td>
+<td align="center">$\mapsto$</td>
+<td align="center">\underrightarrow{1℃&#x2F;min}</td>
+<td align="center">$\underrightarrow{1℃&#x2F;min}$</td>
+</tr>
+<tr>
+<td align="center">\implies</td>
+<td align="center">$\implies$</td>
+<td align="center">\iff</td>
+<td align="center">$\iff$</td>
+<td align="center">\impliedby</td>
+<td align="center">$\impliedby$</td>
+</tr>
+</tbody></table>
+<ul>
+<li>其它可用符号：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">输入</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\uparrow</td>
+<td align="center">$\uparrow$</td>
+<td align="center">\Uparrow</td>
+<td align="center">$\Uparrow$</td>
+</tr>
+<tr>
+<td align="center">\downarrow</td>
+<td align="center">$\downarrow$</td>
+<td align="center">\Downarrow</td>
+<td align="center">$\Downarrow$</td>
+</tr>
+<tr>
+<td align="center">\leftarrow</td>
+<td align="center">$\leftarrow$</td>
+<td align="center">\Leftarrow</td>
+<td align="center">$\Leftarrow$</td>
+</tr>
+<tr>
+<td align="center">\rightarrow</td>
+<td align="center">$\rightarrow$</td>
+<td align="center">\Rightarrow</td>
+<td align="center">$\Rightarrow$</td>
+</tr>
+<tr>
+<td align="center">\leftrightarrow</td>
+<td align="center">$\leftrightarrow$</td>
+<td align="center">\Leftrightarrow</td>
+<td align="center">$\Leftrightarrow$</td>
+</tr>
+<tr>
+<td align="center">\longleftarrow</td>
+<td align="center">$\longleftarrow$</td>
+<td align="center">\Longleftarrow</td>
+<td align="center">$\Longleftarrow$</td>
+</tr>
+<tr>
+<td align="center">\longrightarrow</td>
+<td align="center">$\longrightarrow$</td>
+<td align="center">\Longrightarrow</td>
+<td align="center">$\Longrightarrow$</td>
+</tr>
+<tr>
+<td align="center">\longleftrightarrow</td>
+<td align="center">$\longleftrightarrow$</td>
+<td align="center">\Longleftrightarrow</td>
+<td align="center">$\Longleftrightarrow$</td>
+</tr>
+</tbody></table>
+<h3 id="13．如何进行字体转换"><a href="#13．如何进行字体转换" class="headerlink" title="13．如何进行字体转换"></a>13．如何进行字体转换</h3><p>若要对公式的某一部分字符进行字体转换，可以用 <code>&#123;\字体 &#123;需转换的部分字符&#125;&#125;</code> 命令，其中 <code>\字体</code> 部分可以参照下表选择合适的字体。一般情况下，公式默认为斜体字 $italic$ 。</p>
+<p>示例中 <strong>全部大写</strong> 的字体仅大写可用。</p>
+<table>
+<thead>
+<tr>
+<th align="center">输入</th>
+<th align="center">全字母可用</th>
+<th align="center">显示</th>
+<th align="center">输入</th>
+<th align="center">仅大写可用</th>
+<th align="center">显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\rm</td>
+<td align="center">罗马体</td>
+<td align="center">$\rm{Sample}$</td>
+<td align="center"><strong>\mathcal</strong></td>
+<td align="center"><strong>花体（数学符号等）</strong></td>
+<td align="center">$\mathcal{SAMPLE}$</td>
+</tr>
+<tr>
+<td align="center">\it</td>
+<td align="center">斜体</td>
+<td align="center">$\it{Sample}$</td>
+<td align="center"><strong>\mathbb</strong></td>
+<td align="center"><strong>黑板粗体（定义域等）</strong></td>
+<td align="center">$\mathbb{SAMPLE}$</td>
+</tr>
+<tr>
+<td align="center">\bf</td>
+<td align="center">粗体</td>
+<td align="center">$\bf{Sample}$</td>
+<td align="center">\mit</td>
+<td align="center">数学斜体</td>
+<td align="center">$\mit{SAMPLE}$</td>
+</tr>
+<tr>
+<td align="center">\sf</td>
+<td align="center">等线体</td>
+<td align="center">$\sf{Sample}$</td>
+<td align="center">\scr</td>
+<td align="center">手写体</td>
+<td align="center">$\scr{SAMPLE}$</td>
+</tr>
+<tr>
+<td align="center">\tt</td>
+<td align="center">打字机体</td>
+<td align="center">$\tt{Sample}$</td>
+<td align="center">\cal</td>
+<td align="center">等同于 <code>\mathcal</code></td>
+<td align="center">$\cal{ABCXYZ}$</td>
+</tr>
+<tr>
+<td align="center">\frak</td>
+<td align="center">旧德式字体</td>
+<td align="center">$\frak{Sample}$</td>
+<td align="center">\Bbb</td>
+<td align="center">等同于 <code>\mathbb</code></td>
+<td align="center">$\Bbb{ABCXYZ}$</td>
+</tr>
+<tr>
+<td align="center">\boldsymbol</td>
+<td align="center">向量或者矩阵的加粗斜体</td>
+<td align="center">$\boldsymbol{\vec\alpha}$</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>转换字体十分常用，例如在积分中：</p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">\begin&#123;array&#125;&#123;cc&#125;</span></span><br><span class="line">  <span class="string">\mathrm&#123;Bad&#125;</span> &amp; <span class="string">\mathrm&#123;Better&#125;</span> <span class="string">\\</span></span><br><span class="line">  <span class="string">\hline</span> <span class="string">\\</span></span><br><span class="line">  <span class="string">\int_0^1</span> x^<span class="number">2</span> dx &amp; <span class="string">\int_0^1</span> x^<span class="number">2</span> <span class="string">\,&#123;\rm</span> d&#125;x</span><br><span class="line"><span class="string">\end&#123;array&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+<p>BadBetter∫01𝑥2𝑑𝑥∫01𝑥2d𝑥Bad∫01<em>x</em>2<em>d**x</em>Better∫01<em>x</em>2d<em>x</em></p>
+</li>
+</ul>
+<p>注意比较两个式子间 $dx$ 与 ${\rm d} x$ 的不同。<br>使用 <code>\operatorname</code> 命令也可以达到相同的效果，详见<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042253190#">定义新的运算符</a>。</p>
+<h3 id="14．如何高亮一行公式"><a href="#14．如何高亮一行公式" class="headerlink" title="14．如何高亮一行公式"></a>14．如何高亮一行公式</h3><p>使用 <code>\bbox[底色, (可选)边距, (可选)边框 border: 框宽度 框类型 框颜色]</code> 命令来高亮一行公式。<br>底色和框颜色支持详见“<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042253190#">更改文字颜色</a>”，边距及框宽度支持 <code>绝对像素 px</code> 或 <code>相对大小 em</code>，框类型支持 <code>实线 solid</code> 或 <code>虚线 dashed</code>。</p>
+<ul>
+<li><p>例子：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line"><span class="string">\bbox[yellow]&#123;</span></span><br><span class="line">  e^x=<span class="string">\lim_&#123;n\to\infty&#125;</span> <span class="string">\left(</span> <span class="number">1</span>+<span class="string">\frac&#123;x&#125;&#123;n&#125;</span> <span class="string">\right)^n</span> <span class="string">\qquad</span> (<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+</li>
+</ul>
+<p>$$ \bbox[yellow]{ e^x&#x3D;\lim_{n\to\infty} \left( 1+\frac{x}{n} \right)^n \qquad (1) } $$</p>
+<ul>
+<li>例子：</li>
+</ul>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line"><span class="string">\bbox[#9ff,</span> <span class="number">5px</span>]&#123; % 此处向外添加 <span class="number">5</span> 像素的边距</span><br><span class="line">    e^x=<span class="string">\lim_&#123;n\to\infty&#125;</span> <span class="string">\left(</span> <span class="number">1</span>+<span class="string">\frac&#123;x&#125;&#123;n&#125;</span> <span class="string">\right)^n</span> <span class="string">\qquad</span> (<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>显示：</li>
+</ul>
+<p>$$ \bbox[#9ff, 5px]{ e^x&#x3D;\lim_{n\to\infty} \left( 1+\frac{x}{n} \right)^n \qquad (1) } $$</p>
+<ul>
+<li>例子：</li>
+</ul>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">% 此处使用 <span class="number">0.5</span> 倍行高作为边距，附加 <span class="number">2</span> 像素的实线边框（Ctrl+Alt+Y 可见）</span><br><span class="line"><span class="string">\bbox[#2f3542,</span> <span class="number">0.5em</span>, border:<span class="number">2px</span> solid <span class="comment">#f1f2f6]&#123;</span></span><br><span class="line">    <span class="string">\color&#123;#f1f2f6&#125;&#123;e^x=\lim_&#123;n\to\infty&#125;</span> <span class="string">\left(</span> <span class="number">1</span>+<span class="string">\frac&#123;x&#125;&#123;n&#125;</span> <span class="string">\right)^n</span> <span class="string">\qquad</span> (<span class="number">1</span>)&#125;</span><br><span class="line">&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>显示：</li>
+</ul>
+<p>$$ \bbox[#2f3542, 0.5em, border:2px solid #f1f2f6]{ \color</p>
+</div><div class="tags"><a href="/tags/Markdown"><i class="fa fa-tag">Markdown</i></a></div><div class="post-nav"><a class="pre" href="/posts/63195/">如何理解 LSTM神经网络模型</a><a class="next" href="/posts/36854/">2023 哔哩哔哩技术精选技术干货</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/AI-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/">AI, 网络运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">36</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">117</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">72</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B7%91%E6%AD%A5/">跑步</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/PMO/" style="font-size: 15px;">PMO</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 15px;">人工智能</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">深度学习</a> <a href="/tags/Deepseek-%E8%87%AA%E6%99%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%90%A5%E5%95%86-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">Deepseek, 自智网络, 运营商, 网络运维</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 15px;">知识图谱</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%8A%80%E6%9C%AF%E8%B6%8B%E5%8A%BF-%E8%A1%8C%E4%B8%9A%E5%8A%A8%E6%80%81/" style="font-size: 15px;">人工智能, 技术趋势, 行业动态</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">运维</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/SDN/" style="font-size: 15px;">SDN</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a> <a href="/tags/%E9%A9%AC%E6%8B%89%E6%9D%BE/" style="font-size: 15px;">马拉松</a> <a href="/tags/%E5%81%A5%E5%BA%B7/" style="font-size: 15px;">健康</a> <a href="/tags/%E6%8A%A5%E5%91%8A%E5%88%86%E4%BA%AB/" style="font-size: 15px;">报告分享</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/" style="font-size: 15px;">技术小栈</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/63200/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63199/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63198/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/55960/">Deepseek 技术分析总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/17232/">3月份马拉松计划</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/16164/">2024年人工智能进展及展望</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/57547/">大模型概念总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/47183/">系统稳定性建设</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/24447/">实时通信的关键差异解析</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/5864/">LSTM详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a><ul></ul><a href="https://excalidraw.com/" title="excalidraw" target="_blank">excalidraw</a><ul></ul><a href="https://tudan.blog.csdn.net/?type=lately" title="王坦" target="_blank">王坦</a><ul></ul><a href="https://aspoem.com/zh-Hans" target="_blank"></a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">枫哲's文栖小筑.</a><a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn/">｜苏ICP备18013756号-1</a><!--a(rel='nofollow', target='_blank', href='https://github.com/tufu9441/maupassant-hexo')  Theme--><!--|  by--><!--a(rel='nofollow', target='_blank', href='https://github.com/pagecho')  Cho.--></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

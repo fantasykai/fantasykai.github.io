@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>从零开始k8s | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2bb92548008bd1f1f88213efd40c8dad';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">从零开始k8s</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">从零开始k8s</h1><div class="post-meta">2020-04-17<span> | </span><span class="category"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a></span></div><a class="disqus-comment-count" href="/posts/65344/#vcomment"><span class="waline-comment-count" id="/posts/65344/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8Bk8s"><span class="toc-number">1.</span> <span class="toc-text">从零开始k8s</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%87%86%E5%A4%87"><span class="toc-number">1.1.</span> <span class="toc-text">设计和准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.1.1.</span> <span class="toc-text">学习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cloud-Provider"><span class="toc-number">1.2.</span> <span class="toc-text">Cloud Provider</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#node%EF%BC%88%E8%8A%82%E7%82%B9%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">node（节点）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-number">1.2.2.</span> <span class="toc-text">网络</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4%E5%91%BD%E5%90%8D"><span class="toc-number">1.3.</span> <span class="toc-text">集群命名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-number">1.4.</span> <span class="toc-text">软件安装包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%BC%A9Kubernetes%E5%AE%89%E8%A3%85"><span class="toc-number">1.5.</span> <span class="toc-text">下载和解压缩Kubernetes安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%AE%89%E8%A3%85%E9%95%9C%E5%83%8F"><span class="toc-number">1.6.</span> <span class="toc-text">选择安装镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.7.</span> <span class="toc-text">安全模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%AE%89%E5%85%A8%E8%AF%81%E4%B9%A6"><span class="toc-number">1.7.1.</span> <span class="toc-text">准备安全证书</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E7%99%BB%E5%BD%95%E4%BF%A1%E6%81%AF"><span class="toc-number">1.8.</span> <span class="toc-text">准备登录信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E8%8A%82%E7%82%B9%E4%B8%8A%E9%85%8D%E7%BD%AE%E5%92%8C%E5%AE%89%E8%A3%85%E5%9F%BA%E7%A1%80%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.9.</span> <span class="toc-text">在节点上配置和安装基础软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E5%AE%B9%E5%99%A8"><span class="toc-number">1.10.</span> <span class="toc-text">Docker容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rkt"><span class="toc-number">1.11.</span> <span class="toc-text">rkt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kubelet"><span class="toc-number">1.12.</span> <span class="toc-text">kubelet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kube-proxy"><span class="toc-number">1.13.</span> <span class="toc-text">kube-proxy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C-1"><span class="toc-number">1.14.</span> <span class="toc-text">网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">1.14.1.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">1.14.2.</span> <span class="toc-text">使用配置管理工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%AF%BC%E5%AE%89%E8%A3%85%E9%9B%86%E7%BE%A4"><span class="toc-number">1.15.</span> <span class="toc-text">引导安装集群</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#etcd"><span class="toc-number">1.16.</span> <span class="toc-text">etcd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apiserver%EF%BC%8CController-Manager%E5%92%8CScheduler"><span class="toc-number">1.17.</span> <span class="toc-text">Apiserver，Controller Manager和Scheduler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apiserver-pod%E6%A8%A1%E7%89%88"><span class="toc-number">1.18.</span> <span class="toc-text">Apiserver pod模版</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cloud-Providers"><span class="toc-number">1.18.1.</span> <span class="toc-text">Cloud Providers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scheduler-pod-template"><span class="toc-number">1.19.</span> <span class="toc-text">Scheduler pod template</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Controller-Manager-Template"><span class="toc-number">1.20.</span> <span class="toc-text">Controller Manager Template</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E5%92%8C%E9%AA%8C%E8%AF%81Apiserver%EF%BC%8CScheduler%E5%92%8CController-Manager"><span class="toc-number">1.21.</span> <span class="toc-text">运行和验证Apiserver，Scheduler和Controller Manager</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97"><span class="toc-number">1.21.1.</span> <span class="toc-text">日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%91%E6%8E%A7"><span class="toc-number">1.21.2.</span> <span class="toc-text">监控</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS"><span class="toc-number">1.21.3.</span> <span class="toc-text">DNS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%85%E9%9A%9C%E6%8E%92%E9%99%A4"><span class="toc-number">1.22.</span> <span class="toc-text">故障排除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8Cvalidate-cluster"><span class="toc-number">1.22.1.</span> <span class="toc-text">运行validate-cluster</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5pods%E5%92%8Cservices"><span class="toc-number">1.22.2.</span> <span class="toc-text">检查pods和services</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">1.23.</span> <span class="toc-text">例子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%B5%8B%E8%AF%95"><span class="toc-number">1.23.1.</span> <span class="toc-text">运行测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C-2"><span class="toc-number">1.23.2.</span> <span class="toc-text">网络</span></a></li></ol></li></ol></li></ol></div></div><div class="post-content"><h1 id="从零开始k8s"><a href="#从零开始k8s" class="headerlink" title="从零开始k8s"></a>从零开始k8s</h1><p>译者：王乐</p>
+<p>这部文档是面对想要学习Kubernetes集群的读者。如果你对入门指南已经可以满足你对这个列表上所列的需求，我们建议你继续阅读这个，因为他是根据前人积累经验所写的新手指南。当然如果除了学习入门指南知识外还希望学习IaaS，网络，配置管理或对操作系统有特殊要求，这个指南将会提供给学习者一个指导性的概述及思路。</p>
+<h2 id="设计和准备"><a href="#设计和准备" class="headerlink" title="设计和准备"></a>设计和准备</h2><h3 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h3><ol>
+<li><p>你应该已经熟悉Kubernetes了。我们建议根据 其他入门指南架设一个临时的集群。这样可以帮助你先熟悉Kubernetes命令行(kubectl)和一些概念(pods, services, 等等)。</p>
+</li>
+<li><p>当你浏览完其他入门指南的时候，你应该已经安装好了 kubectl 。如果没有，你可以根据这个说明安装。</p>
+</li>
+</ol>
+<h2 id="Cloud-Provider"><a href="#Cloud-Provider" class="headerlink" title="Cloud Provider"></a>Cloud Provider</h2><p>Kubernetes有一个概念叫Cloud Provider，是指一个提供管理TCP负载均衡，节点（实例）和路由器接口的模块。 pkg&#x2F;cloudprovider&#x2F;cloud.go 里具体定义了这个接口。 当然，你也可以不用实现这个Cloud Provider去新建一个自定义的聚群（例如，使用裸机集群）。取决于不同部件是如何设置的，并不是所有接口都需要实现的。</p>
+<h3 id="node（节点）"><a href="#node（节点）" class="headerlink" title="node（节点）"></a>node（节点）</h3><ul>
+<li>你可以使用虚拟机或物理机。</li>
+<li>为了运行本指南给出的例子和测试用例，你最好有4个节点以上。</li>
+<li>虽说很多入门指南讲主节点和普通节点做了区分，但严格意义上讲，这不是必要的。</li>
+<li>节点需要运行在x86_64的Linux系统上。当然也可能运行在其他的系统和CPU架构上，但这个指南不会提供相关的帮助。</li>
+<li>对于一个拥有10个以上节点的集群来说，Apiserver和etcd可以一起安装在一台1核和1GB内存的机子上。</li>
+<li>你可以给其他节点可以分配合理的内存和CPU内核。不是所有节点需要同样的配置。</li>
+</ul>
+<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><p>Kubernetes有一个独特的网络模型.</p>
+<p>Kubernetes给每一个pod分配IP地址。当你新建一个集群，为了保证Pod获得IP地址，你需要给Kubernetes分配一个IP地址池。最简单的做法是每当节点与节点之间的通信可以以一下两种方式实现：</p>
+<p><strong>（1）配置网络完成Pod的IP地址路由</strong></p>
+<ul>
+<li>因为一切从头开始，所以难度会大一些。</li>
+<li>Google Compute Engine (GCE) 和 AWS会指导如何使用这种方式</li>
+<li>需要编程配置路由器和交换机去实现Pod的IP地址路由。</li>
+<li>可在Kubernetes环境外配置或者通过在Cloud Provider模块的“路由”接口里实现。</li>
+<li>通常情况下，提供最优网络性能。</li>
+</ul>
+<p><strong>（2）建立一个拓扑网络</strong></p>
+<ul>
+<li>较容易建立</li>
+<li>因为数据流量被封装，所以每个Pod的IP地址是可以路由的。</li>
+<li>例如：<br>Flannel<br>Weave<br>Open vSwitch (OVS)</li>
+<li>不需要CLoud Provider模块里的“路由”部分</li>
+<li>较为不太理想的性能（具体的性能弱化取决于你的实际情况）</li>
+</ul>
+<p>你需要为Pod所需要的IP地址选一个IP地址范围。</p>
+<p>（3）一些可选择配置方式：</p>
+<ul>
+<li>GCE：每一个项目有一个自己的IP子网“10.0.0.0&#x2F;8”。项目中的每一个Kubernetes集群从中获得一个“&#x2F;16”的子网。每一个节点从’&#x2F;16’的子网里获IP地址。</li>
+<li>AWS：在一个组织内使用一个VPC。从中分配地址给每一个聚群或者使用给不同的集群分配不同的VPC。</li>
+<li>暂不支持支持IPv6</li>
+</ul>
+<p>（4）给每一的node的Pod地址分配一个CIDR子网或者一个</p>
+<ul>
+<li>你总共需要max-pods-per-node * max-number-of-nodes个IP地址。一个“&#x2F;24” 如果缺少IP地址，一个“&#x2F;26”（62个节点）或者“&#x2F;27”（30个节点）也能满足。</li>
+<li>例如，使用“10.10.0.0&#x2F;16” “10.10.0.0&#x2F;24” “10.10.255.0&#x2F;24”</li>
+<li>需要路由设置或连接到拓扑网络</li>
+</ul>
+<p>Kubernetes 会给每个service分配一个IP地址。 但是service的地址并不一定是可路由的。当数据离开节点时，kube-proxy需要将Service IP地址翻译成Pod IP地址。因此，你需要给Service也分配一个地址段。这个网段叫做“SERVICE_CLUSTER_IP_RANGE”。例如，你可以这样设置“SERVICE_CLUSTER_IP_RANGE&#x3D;”10.0.0.0&#x2F;16”，这样的话就会允许65534个不同的Service同时运行。请注意，你可以调整这个IP地址段。但不允许在Service和Pod运行的时候移除这个网段。</p>
+<p>同样，你需要为主节点选一个静态IP地址。 －命名这个IP地址为“MASTER_IP”。 －配置防火墙，从而允许访问apiserver端口80和443。 －使用sysctl设置”net.ipv4.ip_forward &#x3D; 1“从而开启IPv4 forwarding。</p>
+<h2 id="集群命名"><a href="#集群命名" class="headerlink" title="集群命名"></a>集群命名</h2><p>为你的集群选个名字。要选一个简短不会和其他服务重复的名字。</p>
+<ul>
+<li>用kubectl来访问不同的集群。比如当你想在其他的区域测试新的Kubernetes版本。</li>
+<li>Kubernetes集群可以建立一个Cloud Provider资源（例如，AWS ELB）。所以不同的集群要能区分他们之间的相关资源，这个名字叫做“CLUSTERNAME”。</li>
+</ul>
+<h2 id="软件安装包"><a href="#软件安装包" class="headerlink" title="软件安装包"></a>软件安装包</h2><p>你需要以下安装包</p>
+<ul>
+<li>etcd</li>
+<li>以下容器二选一:<br>docker<br>rkt</li>
+<li>Kubernetes<br>kubelet<br>kube-proxy<br>kube-apiserver<br>kube-controller-manager<br>kube-scheduler</li>
+</ul>
+<h2 id="下载和解压缩Kubernetes安装"><a href="#下载和解压缩Kubernetes安装" class="headerlink" title="下载和解压缩Kubernetes安装"></a>下载和解压缩Kubernetes安装</h2><p>Kubernets安装版本包包含所有Kuberentes的二进制发行版本和所对应的etcd。你可使直接使用这个二进制发行版本（推荐）或者按照开发者文档说明编译这些Kubernetes的二进制文件。 本指南只讲述了如何直接使用二进制发行版本。 下载最新安装版本并解压缩。之后找到你下载“.&#x2F;kubernetes&#x2F;server&#x2F;kubernetes-server-linux-amd64.tar.gz”的路径， 并解压缩这个压缩包。然后在其中找到“.&#x2F;kubernetes&#x2F;server&#x2F;bin”文件夹。里面有所所需的可运行的二进制文件。</p>
+<h2 id="选择安装镜像"><a href="#选择安装镜像" class="headerlink" title="选择安装镜像"></a>选择安装镜像</h2><p>在容器外运行docker，kuberlet和kube-proxy，就像你运行任何后台系统程序。所以你只需要这些基本的二进制运行文件。etcd， kube-apiserver， kube-controller-manager和kubescheduler，我们建议你在容器里运行etcd， kube-apiserver， kube-controller-manager和kube-scheduler。所以你需要他们的容器镜像。 你可以选择不同的Kubernetes镜像：</p>
+<p><strong>你可以使用Google Container Registry (GCR)上的镜像文件：</strong></p>
+<ul>
+<li>例如“gcr.io&#x2F;google_containers&#x2F;hyperkube:$TAG”。这里的“TAG”是指最新的发行版本的标示。这个表示可以从最新发行说明找到。</li>
+<li>确定$TAG和你使用的kubelet，kube-proxy的标签是一致的。</li>
+<li>hyperkube是一个集成二进制运行文件</li>
+<li>你可以使用“hyperkube kubelet …”来启动kubelet ，用“hyperkube apiserver …”运行apiserver， 等等。</li>
+</ul>
+<p><strong>生成你自己的镜像：</strong></p>
+<ul>
+<li>使用私有镜像服务器。</li>
+<li>例如，可以使用“docker load -i kube-apiserver.tar”将“.&#x2F;kubernetes&#x2F;server&#x2F;bin&#x2F;kubeapiserver.tar”文件转化成dokcer镜像。</li>
+<li>之后可使用“docker images”来验证镜像是否从制定的镜像服务器加载成功。</li>
+</ul>
+<p><strong>对于etcd，你可以：</strong></p>
+<ul>
+<li>使用上Google Container Registry (GCR)的镜像，例如“gcr.io&#x2F;google_containers&#x2F;etcd:2.0.12”</li>
+<li>使用Docker Hub或着Quay.io上的镜像，例如“quay.io&#x2F;coreos&#x2F;etcd:v2.2.0”</li>
+<li>使用你操作系统自带的etcd</li>
+<li>自己编译<br>你可以使用这个命令行“cd kubernetes&#x2F;cluster&#x2F;images&#x2F;etcd; make”</li>
+</ul>
+<p>我们建议你使用Kubernetes发行版本里提供的etcd版本。Kubernetes发行版本里的二进制运行文件只是和这个版本的etcd测试过。你可以在“kubernetes&#x2F;cluster&#x2F;images&#x2F;etcd&#x2F;Makefile”里“ETCD_VERSION”所对应的值找到所推荐的版本号。 接下来本文档会假设你已经选好镜像标示并设置了对应的环境变量。 设置好了最新的标示和正确的镜像服务器：</p>
+<ul>
+<li>“HYPERKUBE_IMAGE&#x3D;&#x3D;gcr.io&#x2F;google_containers&#x2F;hyperkube:$TAG”</li>
+<li>“ETCD_IMAGE&#x3D;gcr.io&#x2F;google_containers&#x2F;etcd:$ETCD_VERSION”</li>
+</ul>
+<h2 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h2><p>这里有两种主要的安全选项：</p>
+<p><strong>使用HTTP访问apiserver</strong></p>
+<ul>
+<li>配合使用防火墙。</li>
+<li>这种方法比较易用。</li>
+</ul>
+<p><strong>使用HTTPS访问apiserver</strong></p>
+<ul>
+<li>配合电子证书和用户登录信息使用。</li>
+<li>推荐使用</li>
+<li>设置电子证书较为复杂。</li>
+</ul>
+<p>如果要用HTTPS这个方式，你需要准备电子证书和用户登录信息。</p>
+<h3 id="准备安全证书"><a href="#准备安全证书" class="headerlink" title="准备安全证书"></a>准备安全证书</h3><p>你需要准备多个证书：</p>
+<ul>
+<li>主节点会是一个HTTPS服务器，所以需要一个证书。</li>
+<li>如果Kuberlets需要通过HTTPS提供API服务时，这些kuberlets需要出示证书向主节点证明主从关系。</li>
+</ul>
+<p>除非你决定要一个真正CA来生成这些证书的话，你需要一个根证书，并用这个证书来给主节点，kuberlet和kubectl的证书签名。</p>
+<ul>
+<li>参见“cluster&#x2F;gce&#x2F;util.sh”脚本里的“create-certs”</li>
+<li>并参见“cluster&#x2F;saltbase&#x2F;salt&#x2F;generate-cert&#x2F;make-ca-cert.sh”和cluster&#x2F;saltbase&#x2F;salt&#x2F;generate-cert&#x2F;make-cert.sh“</li>
+</ul>
+<p><strong>你需要修改以下部分(我们之后也会用到这些参数的)</strong></p>
+<p>”CA_CERT“</p>
+<ul>
+<li>放置在apiserver所运行的节点上，比如“&#x2F;srv&#x2F;kubernetes&#x2F;ca.crt”。</li>
+</ul>
+<p>“MASTER_CERT”</p>
+<ul>
+<li>用CA_CERT来签名</li>
+<li>放置在apiserver所运行的节点上，比如”&#x2F;srv&#x2F;kubernetes&#x2F;server.crt”。</li>
+</ul>
+<p>“MASTER_KEY“</p>
+<ul>
+<li>放置在apiserver所运行的节点上，比如”&#x2F;srv&#x2F;kubernetes&#x2F;server.key“。</li>
+</ul>
+<p>“KUBELET_CERT”</p>
+<ul>
+<li>可选配置</li>
+</ul>
+<p>”KUBELET_KEY“</p>
+<ul>
+<li>可选配置</li>
+</ul>
+<h2 id="准备登录信息"><a href="#准备登录信息" class="headerlink" title="准备登录信息"></a>准备登录信息</h2><p>管理员（及任何用户）需要：</p>
+<ul>
+<li>对应验证身份的令牌或密码。</li>
+<li>令牌可以是长字符串，比如 32个字符<br>可参见”TOKEN&#x3D;$(dd if&#x3D;&#x2F;dev&#x2F;urandom bs&#x3D;128 count&#x3D;1 2&gt;&#x2F;dev&#x2F;null | base64 | tr -d”&#x3D;+&#x2F;” | dd bs&#x3D;32 count&#x3D;1 2&gt;&#x2F;dev&#x2F;null)““</li>
+</ul>
+<p>你的令牌和密码需要保存在apiserver上的一个文件里。本指南使用这个文件”&#x2F;var&#x2F;lib&#x2F;kubeapiserver&#x2F;known_tokens.csv“。文件的具体格式在认证文档里描述了。 至于如何把登录信息分发给用户，Kubernetes是将登录信息放入kubeconfig文件里。</p>
+<p>管理员可以按如下步骤创建kubeconfig文件：</p>
+<ul>
+<li>如果你已经在非客制化的集群上运行过Kubernetes(例如，按照入门指南架设过Kubernetes)，那么你已经有“$HOME&#x2F;.kube&#x2F;config&#96;”文件了。</li>
+<li>你需要在kuberconfig文件里添加证书，密钥和主节点IP：<br>1、如果你选择了“firewall-only”的安全设置，你需要按如下设置apiserver：<br>2、“kubectl config set-cluster $CLUSTER_NAME –server&#x3D;http:&#x2F;&#x2F;$MASTER_IP –insecure-skip-tls-verify&#x3D;true”<br>3、否则，按如下设置你的apiserver的IP，证书，用户登录信息：<br>4、“kubectl config set-cluster $CLUSTER_NAME –certificate-authority&#x3D;$CA_CERT –embed-certs&#x3D;true –server&#x3D;https:&#x2F;&#x2F;$MASTER_IP”<br>5、“kubectl config set-credentials $USER –client-certificate&#x3D;$CLI_CERT –clientkey&#x3D;$CLI_KEY –embed-certs&#x3D;true –token&#x3D;$TOKEN”<br>6、设置你的集群为缺省集群：<br>7、“kubectl config set-context $CONTEXT_NAME –cluster&#x3D;$CLUSTER_NAME –user&#x3D;$USER”<br>8、“kubectl config use-context $CONTEXT_NAME”</li>
+</ul>
+<p>接下来，为kubelets和kube-proxy准备kubeconfig文件。至于要准备多少不同的文件，这里有几个选项：</p>
+<p>\1. 使用和管理员同样的登陆账号</p>
+<ul>
+<li>这是最简单的建设方法。</li>
+</ul>
+<p>\2. 所有的kubelet使用同一个令牌和kubeconfig文件，另外一套给所有的kube-proxy使用，在一套给管理员使用。</p>
+<ul>
+<li>这个设置和GCE的配置类似。</li>
+</ul>
+<p>\3. 为每一个kubelet，kube-proxy和管理员准备不同的登陆账号。</p>
+<ul>
+<li>这个配置在实现中，目前还不支持。</li>
+</ul>
+<p>为了生成这个文件，你可以参照“cluster&#x2F;gce&#x2F;configure-vm.sh”中的代码直接从“$HOME&#x2F;.kube&#x2F;config”拷贝过去或者参考以下模版：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Config</span><br><span class="line">users:</span><br><span class="line">- name: kubelet</span><br><span class="line">user:</span><br><span class="line">token: $&#123;KUBELET_TOKEN&#125;</span><br><span class="line">clusters:</span><br><span class="line">- name: local</span><br><span class="line">cluster:</span><br><span class="line">certificate-authority-data: $&#123;CA_CERT_BASE64_ENCODED&#125;</span><br><span class="line">contexts:</span><br><span class="line">- context:</span><br><span class="line">cluster: local</span><br><span class="line">user: kubelet</span><br><span class="line">name: service-account-context</span><br><span class="line">current-context: service-account-context</span><br></pre></td></tr></table></figure>
+
+<p>把kubeconfig文件放置到每一个节点上。本章节之后的事例会假设kubeconfig文件已经放置在“&#x2F;var&#x2F;lib&#x2F;kube-proxy&#x2F;kubeconfig”和“&#x2F;var&#x2F;lib&#x2F;kubelet&#x2F;kubeconfig”里。</p>
+<h2 id="在节点上配置和安装基础软件"><a href="#在节点上配置和安装基础软件" class="headerlink" title="在节点上配置和安装基础软件"></a>在节点上配置和安装基础软件</h2><p>这个章节讨论的是如歌配置Kubernetes节点。 你应该在每个节点运行三个后台进程：</p>
+<ul>
+<li>docker or rkt</li>
+<li>kubelet *kube-proxy</li>
+</ul>
+<h2 id="Docker容器"><a href="#Docker容器" class="headerlink" title="Docker容器"></a>Docker容器</h2><p>对最低Docker版本的要求是随着kubelet的版本变化的。最新的稳定版本通常是个好选择。如果版本太低，Kubelet记录下警报并拒绝运行pod，所以你可以选择个版本试一下。</p>
+<p>如果你之前安装Docker的节点没有Kubernetes相关的配置，你可能已经有Docker新建的网桥和iptables的规则。所以你或许希望在为Kubernetes配置Docker前根据以下命令移除之前的配置。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -F</span><br><span class="line">ifconfig docker0 down</span><br><span class="line">brctl delbr docker0</span><br></pre></td></tr></table></figure>
+
+<p>如何配置Docker取决于你网络是基于routable-vip还是overlay-network。 这里有一些建议的Docker选项：</p>
+<ul>
+<li>为每一个节点的CIDR网断建立你自己的网桥，命名为cbr0并为docker设置 –bridge&#x3D;cbr0 。</li>
+<li>配置 –iptables&#x3D;false ，所以docker不会为host-port设置iptables(这个控制在docker旧版本不够细致，以后会在新版本里修复)</li>
+</ul>
+<p><strong>所以kube-proxy可以代替docker来设置iptables。</strong></p>
+<ul>
+<li>–ip-masq&#x3D;false<br>如果你将PodIP设置为可路由寻址，你会希望将这个选项设置为false。否则，docker会将NodeIP重写为PodIP的源地址。<br>一些环境(例如,GCE)下需要伪装(masquerade)离开这个云环境的流量。这个配置是取决于具体的云环境的。<br>如果你在使用overlay网络，请参考其他资料。</li>
+<li>–mtu&#x3D;<br>但使用Flannel的时候，需要这个选项。 因为UDP包封装造成过大的数据包。</li>
+<li>–insecure-registry $CLUSTER_SUBNET<br>为链接没有SSL安全链接的私有registry。</li>
+</ul>
+<p><strong>你或许希望为Docker提高可以打开文件的数目：</strong></p>
+<ul>
+<li>DOCKER_NOFILE&#x3D;1000000 这里的设置取决于你的节点的操作系统。比如，GCE上基于Debian的发行版本使用 &#x2F;etc&#x2F;default&#x2F;docker 这个配置文件。</li>
+</ul>
+<p>在进行下一步安装前，可以参考Docker文档里的实例来确保docker在你的系统上正常工作。</p>
+<h2 id="rkt"><a href="#rkt" class="headerlink" title="rkt"></a>rkt</h2><p>rkt是类似Docker的技术。你只需要二选一安装Docker或者rkt。最低的版本是v0.5.6。</p>
+<p>systemd是在节点上运行rkt必须的。与rkt v0.5.6所对应的最低版本是systemd 215。</p>
+<p>rkt metadata service也是必须安装的，来支持rtk的网络部分。你可以用以下命令来运行rkt的metadata服务 sudo systemd-run rkt metadata-service</p>
+<p>接下来你需要来设置kubelet的标记：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--container-runtime=rkt</span><br></pre></td></tr></table></figure>
+
+<h2 id="kubelet"><a href="#kubelet" class="headerlink" title="kubelet"></a>kubelet</h2><p>所有的节点都要运行kubelet。</p>
+<p>可参考的参数：</p>
+<ul>
+<li>如果选择HTTPS的安全配置：<br>–api-servers&#x3D;https:&#x2F;&#x2F;$MASTER_IP<br>–kubeconfig&#x3D;&#x2F;var&#x2F;lib&#x2F;kubelet&#x2F;kubeconfig</li>
+<li>否则，使用防火墙的安全配置：<br>–api-servers&#x3D;http:&#x2F;&#x2F;$MASTER_IP</li>
+<li>–config&#x3D;&#x2F;etc&#x2F;kubernetes&#x2F;manifests</li>
+<li>–cluster-dns&#x3D; 是用来配置DNS服务器的地址(参考Starting Addons.)</li>
+<li>–cluster-domain&#x3D; 是为DNS集群地址使用的DNS域名前缀。</li>
+<li>–docker-root&#x3D;</li>
+<li>–root-dir&#x3D;</li>
+<li>–configure-cbr0&#x3D; (参考之前的介绍)</li>
+<li>–register-node (参考章节<strong>节点</strong>.)</li>
+</ul>
+<h2 id="kube-proxy"><a href="#kube-proxy" class="headerlink" title="kube-proxy"></a>kube-proxy</h2><p>所有的节点都要运行kube-proxy。(并不一定要在主节点上运行kube-proxy，但最好还是与其它节点保持一致) 可参考如何获得kubelet二进制运行包来获得kube-proxy二进制运行包。</p>
+<p>可参考的参数</p>
+<ul>
+<li>如果选择HTTPS的安全配置<br>–api-servers&#x3D;https:&#x2F;&#x2F;$MASTER_IP<br>–kubeconfig&#x3D;&#x2F;var&#x2F;lib&#x2F;kube-proxy&#x2F;kubeconfig</li>
+<li>否则，使用防火墙的安全配置：<br>–api-servers&#x3D;http:&#x2F;&#x2F;$MASTER_IP</li>
+</ul>
+<h2 id="网络-1"><a href="#网络-1" class="headerlink" title="网络"></a>网络</h2><p>为了pod的网络通信，需要给每一个节点分配一个自己的CIDR网段。这个叫做 NODE_X_POD_CIDR 。</p>
+<p>需要给每一个节点新建一个叫 cbr0 网桥。网桥会在networking documentation里做详细介绍。约定俗成，$NODE_X_POD_CIDR 里的第一个IP地址作为这个网桥的IP地址。这个地址叫做 NODE_X_BRIDGE_ADDR 。比如， NODE_X_POD_CIDR 是 10.0.0.0&#x2F;16 ，那么 NODE_X_BRIDGE_ADDR 是 10.0.0.1&#x2F;16 。注意：这里用 &#x2F;16 这个后缀是因为之后也会这么使用。</p>
+<ul>
+<li>推荐的自动化步骤:<br>\1. 在初始化的脚本里，设置kubelet的选项为 –configure-cbr0&#x3D;true ，并重启kubelet服务。Kubelet会自动设置cobr0. 它会一直等待，直到节点controller正确设置Node.Spec.PodCIDR。因为你目前还没有设置好apiserver和节点controller，所以网桥不会马上完成设置。</li>
+<li>人工步骤:<br>\1. 设置kubelet的选项 –configure-cbr0&#x3D;false ，并重启kubelet。<br>\2. 新建网桥比如 brctl addbr cbr0 .<br>\3. 设定合适的MTU<br>比如 ip link set dev cbr0 mtu 1460 (注意: 真实的MTU值是由你的网络环境所决定的)<br>\4. 把集群网络加入网桥(docker会连接在这个网桥的另一端)。<br>比如 ip addr add $NODE_X_BRIDGE_ADDR dev cbr0<br>\5. 开启网桥<br>比如 ip link set dev cbr0 up</li>
+</ul>
+<p>在你关闭了Docker的IP伪装的情况下，为了让pod之间相互通信，你可能需要为去往集群网络外的流量做目的IP地址伪装，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A POSTROUTING ! -d $&#123;CLUSTER_SUBNET&#125; -m addrtype ! --dst-type LOCAL -jMASQUERADE</span><br></pre></td></tr></table></figure>
+
+<p>这样会重写从PodIP到节点IP的数据流量的原地址。内核connection tracking会确保发向节点的回复能够到达pod。</p>
+<p>注意: 需不需要IP地址伪装是视环境而定的。在一些环境下是不需要IP伪装的。例如GCE这样的环境从pod发出的数据是不允许发向Interent的，但如果在同一个GCE项目里是不会有问题的。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>如果需要，为你的系统安装包管理器开启自动升级。</li>
+<li>为所有的节点设置日志轮询(比如，使用logrotate)。</li>
+<li>建立liveness-monitoring (比如，使用monit)。</li>
+<li>建立存储插件的支持(可选)<br>为可选的存储类型安装所需的客户端程序，比如为GlusterFS安装 glusterfsclient。</li>
+</ul>
+<h3 id="使用配置管理工具"><a href="#使用配置管理工具" class="headerlink" title="使用配置管理工具"></a>使用配置管理工具</h3><p>之前架设服务器的步骤都是使用“传统”的系统管理方式。你可以尝试使用系统配置工具来自动化架设流程。你可以参考其他入门指南，比如使用Saltstack， Ansible， Juju和CoreOSCloud Config。</p>
+<h2 id="引导安装集群"><a href="#引导安装集群" class="headerlink" title="引导安装集群"></a>引导安装集群</h2><p>通常情况下，基本的节点服务(kubelet， kube-proxy和docker)都是由传统的系统配置方式完成建立和管理的。其他的Kubernetes的相关部分都是由Kubernetes本身来完成配置和管理的：</p>
+<ul>
+<li>配置和管理的选项在Pod spec(yaml or json)而不是&#x2F;etc&#x2F;init.d文件或systemd unit里定义的。</li>
+<li>他们都是由Kubernetes而不是init来负责运行的。</li>
+</ul>
+<h2 id="etcd"><a href="#etcd" class="headerlink" title="etcd"></a>etcd</h2><p>你需要运行一个或多个etcd实例。</p>
+<ul>
+<li>推荐方式: 运行一个etcd实例，将日志保存在类似RAID，GCE PD的永久存储空间上。</li>
+<li>或者: 运行3个或者5个etcd实例。<br>日志可以保存在 Log can be written to non-durable storage because storage isreplicated.<br>运行一个apiserver，这个apiserver连接到其中一个etc实例上。 参见clustertroubleshooting<br>获取更多的有关集群可用性的信息。</li>
+</ul>
+<p><strong>启动一个etcd实例:</strong></p>
+<p>1.复制 cluster&#x2F;saltbase&#x2F;salt&#x2F;etcd&#x2F;etcd.manifest 2.做有必要的设置修改 3.将这个文件放到kubelet mainfest的文件夹中</p>
+<h2 id="Apiserver，Controller-Manager和Scheduler"><a href="#Apiserver，Controller-Manager和Scheduler" class="headerlink" title="Apiserver，Controller Manager和Scheduler"></a>Apiserver，Controller Manager和Scheduler</h2><p>在主节点上，apiserver，controller manager，scheduler会运行在各自的pod里。</p>
+<p>启动以上三个服务的步骤大同小异：</p>
+<p>\1. 从为pod所提供的template开始。</p>
+<p>\2. 设置 HYPERKUBE_IMAGE 的值为选择安装镜像中所设置的值。</p>
+<p>\3. 可参考以下的template来决定你集群所需的选项。</p>
+<p>\4. 在 commands 列表里设置所需的运行选项（例如，$ARGN）。</p>
+<p>\5. 将完成的template放在kubelet manifest的文件夹内。</p>
+<p>\6. 验证pod是否运行。</p>
+<h2 id="Apiserver-pod模版"><a href="#Apiserver-pod模版" class="headerlink" title="Apiserver pod模版"></a>Apiserver pod模版</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;kind&quot;: &quot;Pod&quot;,</span><br><span class="line">&quot;apiVersion&quot;: &quot;v1&quot;,</span><br><span class="line">&quot;metadata&quot;: &#123;</span><br><span class="line">&quot;name&quot;: &quot;kube-apiserver&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;spec&quot;: &#123;</span><br><span class="line">&quot;hostNetwork&quot;: true,</span><br><span class="line">&quot;containers&quot;: [</span><br><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;kube-apiserver&quot;,</span><br><span class="line">&quot;image&quot;: &quot;$&#123;HYPERKUBE_IMAGE&#125;&quot;,</span><br><span class="line">&quot;command&quot;: [</span><br><span class="line">&quot;/hyperkube&quot;,</span><br><span class="line">&quot;apiserver&quot;,</span><br><span class="line">&quot;$ARG1&quot;,</span><br><span class="line">&quot;$ARG2&quot;,</span><br><span class="line">...</span><br><span class="line">&quot;$ARGN&quot;</span><br><span class="line">],</span><br><span class="line">&quot;ports&quot;: [</span><br><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;https&quot;,</span><br><span class="line">&quot;hostPort&quot;: 443,</span><br><span class="line">&quot;containerPort&quot;: 443</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;local&quot;,</span><br><span class="line">&quot;hostPort&quot;: 8080,</span><br><span class="line">&quot;containerPort&quot;: 8080</span><br><span class="line">&#125;</span><br><span class="line">],</span><br><span class="line">&quot;volumeMounts&quot;: [</span><br><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;srvkube&quot;,</span><br><span class="line">&quot;mountPath&quot;: &quot;/srv/kubernetes&quot;,</span><br><span class="line">&quot;readOnly&quot;: true</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;etcssl&quot;,</span><br><span class="line">&quot;mountPath&quot;: &quot;/etc/ssl&quot;,</span><br><span class="line">&quot;readOnly&quot;: true</span><br><span class="line">&#125;</span><br><span class="line">],</span><br><span class="line">&quot;livenessProbe&quot;: &#123;</span><br><span class="line">&quot;httpGet&quot;: &#123;</span><br><span class="line">&quot;path&quot;: &quot;/healthz&quot;,</span><br><span class="line">&quot;port&quot;: 8080</span><br><span class="line">&#125;,</span><br><span class="line">&quot;initialDelaySeconds&quot;: 15,</span><br><span class="line">&quot;timeoutSeconds&quot;: 15</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">],</span><br><span class="line">&quot;volumes&quot;: [</span><br><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;srvkube&quot;,</span><br><span class="line">&quot;hostPath&quot;: &#123;</span><br><span class="line">&#125;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;etcssl&quot;,</span><br><span class="line">&quot;hostPath&quot;: &#123;</span><br><span class="line">&quot;path&quot;: &quot;/etc/ssl&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可选设置的apiserver的选项：</p>
+<ul>
+<li>–cloud-provider&#x3D; 参见 cloud providers<br>–</li>
+<li>-cloud-config&#x3D; 参见 cloud providers</li>
+<li>如果你想在主节点运行proxy，你需要设置 —address&#x3D;${MASTER_IP} 或者 –bindaddress&#x3D;127.0.0.1 和 –address&#x3D;127.0.0.1 。</li>
+<li>–cluster-name&#x3D;$CLUSTER_NAME</li>
+<li>–service-cluster-ip-range&#x3D;$SERVICE_CLUSTER_IP_RANGE</li>
+<li>–etcd-servers&#x3D;<a target="_blank" rel="noopener" href="http://127.0.0.1:4001/">http://127.0.0.1:4001</a></li>
+<li>–tls-cert-file&#x3D;&#x2F;srv&#x2F;kubernetes&#x2F;server.cert</li>
+<li>–tls-private-key-file&#x3D;&#x2F;srv&#x2F;kubernetes&#x2F;server.key</li>
+<li>–admission-control&#x3D;$RECOMMENDED_LIST<br>参考 admission controllers.</li>
+<li>只有当你相信你的集群用户可以使用root权限来运行pod时，开启这个选项 –allowprivileged&#x3D;true ,</li>
+</ul>
+<p>如果你是按照firewall-only的安全方式来配置的，你需要以下设置：</p>
+<ul>
+<li>–token-auth-file&#x3D;&#x2F;dev&#x2F;null</li>
+<li>—insecure-bind-address&#x3D;$MASTER_IP</li>
+<li>–advertise-address&#x3D;$MASTER_IP</li>
+</ul>
+<p>如果你是按照HTTPS的安全方式来配置的，你需要以下设置：</p>
+<ul>
+<li>–client-ca-file&#x3D;&#x2F;srv&#x2F;kubernetes&#x2F;ca.crt</li>
+<li>–token-auth-file&#x3D;&#x2F;srv&#x2F;kubernetes&#x2F;known_tokens.csv</li>
+<li>–basic-auth-file&#x3D;&#x2F;srv&#x2F;kubernetes&#x2F;basic_auth.csv</li>
+</ul>
+<p>这个pod使用 hostPath 加载多个节点文件系统目录。这些加载的目录的用途是：</p>
+<ul>
+<li>加载 &#x2F;etc&#x2F;ssl 目录可以允许apiserver找到SSL根证书，从而验证例如云服务提供商所提供的外部服务。<br>如果你不使用任何云服务提供商，你就不需要配置这里（比如，只使用物理裸机）。</li>
+<li>加载 &#x2F;srv&#x2F;kubernetes 目录可以允许读取存储在节点磁盘上的证书和认证信息。</li>
+<li>可选, 你也可以加在 &#x2F;var&#x2F;log 目录从而将日志记录在这个目录里(没有在template里举例标明)。<br>如果你想用类似journalctl的工具从根文件系统来访问日志的话，可以加载这个目录。 TODO 描述如何架设proxy-ssh。</li>
+</ul>
+<h3 id="Cloud-Providers"><a href="#Cloud-Providers" class="headerlink" title="Cloud Providers"></a>Cloud Providers</h3><p>Apiserver支持多个cloud providers。</p>
+<ul>
+<li>–cloud-provider 选项的值可以<br>是 aws ， gce ， mesos ， openshift ， ovirt ， rackspace ， vagrant 或者不´未设置。</li>
+<li>未设置选项可以用来设置物理裸机。</li>
+<li>在这里添加新的IaaS。</li>
+</ul>
+<p>一些cloud providers需要配置文件。这种情况下，你需要将配置文件放置在apiserver的镜像中或者通过 hostPath 来加载。</p>
+<ul>
+<li>如果cloud providers需要配置文件，设置 —cloud-config&#x3D; 这个选项。</li>
+<li>aws ， gce ， mesos ， openshift ， ovirt 和 rackspace 会使用到这个选项。</li>
+<li>你必须需要将配置文件放置在apiserver的镜像中或者通过 hostPath 来加载。</li>
+<li>云配置文件的语法Gcfg。</li>
+<li>AWS格式是用类型来定义的AWSCloudConfig。</li>
+<li>其他的云服务提供商也有类似的对应文件。</li>
+<li>比如在GCE里: 在这个文件找 gce.conf 字节。</li>
+</ul>
+<h2 id="Scheduler-pod-template"><a href="#Scheduler-pod-template" class="headerlink" title="Scheduler pod template"></a>Scheduler pod template</h2><p>完成scheduler pod的template：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;kind&quot;: &quot;Pod&quot;,</span><br><span class="line">&quot;apiVersion&quot;: &quot;v1&quot;,</span><br><span class="line">&quot;metadata&quot;: &#123;</span><br><span class="line">&quot;name&quot;: &quot;kube-scheduler&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;spec&quot;: &#123;</span><br><span class="line">&quot;hostNetwork&quot;: true,</span><br><span class="line">&quot;containers&quot;: [</span><br><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;kube-scheduler&quot;,</span><br><span class="line">&quot;image&quot;: &quot;$HYBERKUBE_IMAGE&quot;,</span><br><span class="line">&quot;command&quot;: [</span><br><span class="line">&quot;/hyperkube&quot;,</span><br><span class="line">&quot;scheduler&quot;,</span><br><span class="line">&quot;--master=127.0.0.1:8080&quot;,</span><br><span class="line">&quot;$SCHEDULER_FLAG1&quot;,</span><br><span class="line">...</span><br><span class="line">&quot;$SCHEDULER_FLAGN&quot;</span><br><span class="line">],</span><br><span class="line">&quot;livenessProbe&quot;: &#123;</span><br><span class="line">&quot;httpGet&quot;: &#123;</span><br><span class="line">&quot;host&quot; : &quot;127.0.0.1&quot;,</span><br><span class="line">&quot;path&quot;: &quot;/healthz&quot;,</span><br><span class="line">&quot;port&quot;: 10251</span><br><span class="line">&#125;,</span><br><span class="line">&quot;initialDelaySeconds&quot;: 15,</span><br><span class="line">&quot;timeoutSeconds&quot;: 15</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通常，不需要额外设置scheduler。</p>
+<p>你或许想加载 &#x2F;var&#x2F;log 并将输出记录在这个日志目录里。</p>
+<h2 id="Controller-Manager-Template"><a href="#Controller-Manager-Template" class="headerlink" title="Controller Manager Template"></a>Controller Manager Template</h2><p>完成controller manager pod的template：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;kind&quot;: &quot;Pod&quot;,</span><br><span class="line">&quot;apiVersion&quot;: &quot;v1&quot;,</span><br><span class="line">&quot;metadata&quot;: &#123;</span><br><span class="line">&quot;name&quot;: &quot;kube-controller-manager&quot;</span><br><span class="line">&#125;,&quot;spec&quot;: &#123;</span><br><span class="line">&quot;hostNetwork&quot;: true,</span><br><span class="line">&quot;containers&quot;: [</span><br><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;kube-controller-manager&quot;,</span><br><span class="line">&quot;image&quot;: &quot;$HYPERKUBE_IMAGE&quot;,</span><br><span class="line">&quot;command&quot;: [</span><br><span class="line">&quot;/hyperkube&quot;,</span><br><span class="line">&quot;controller-manager&quot;,</span><br><span class="line">&quot;$CNTRLMNGR_FLAG1&quot;,</span><br><span class="line">...</span><br><span class="line">&quot;$CNTRLMNGR_FLAGN&quot;</span><br><span class="line">],</span><br><span class="line">&quot;volumeMounts&quot;: [</span><br><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;srvkube&quot;,</span><br><span class="line">&quot;mountPath&quot;: &quot;/srv/kubernetes&quot;,</span><br><span class="line">&quot;readOnly&quot;: true</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;etcssl&quot;,</span><br><span class="line">&quot;mountPath&quot;: &quot;/etc/ssl&quot;,</span><br><span class="line">&quot;readOnly&quot;: true</span><br><span class="line">&#125;</span><br><span class="line">],</span><br><span class="line">&quot;livenessProbe&quot;: &#123;</span><br><span class="line">&quot;httpGet&quot;: &#123;</span><br><span class="line">&quot;host&quot;: &quot;127.0.0.1&quot;,</span><br><span class="line">&quot;path&quot;: &quot;/healthz&quot;,</span><br><span class="line">&quot;port&quot;: 10252</span><br><span class="line">&#125;,</span><br><span class="line">&quot;initialDelaySeconds&quot;: 15,</span><br><span class="line">&quot;timeoutSeconds&quot;: 15</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">],</span><br><span class="line">&quot;volumes&quot;: [</span><br><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;srvkube&quot;,</span><br><span class="line">&quot;hostPath&quot;: &#123;</span><br><span class="line">&quot;path&quot;: &quot;/srv/kubernetes&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;etcssl&quot;,</span><br><span class="line">&quot;hostPath&quot;: &#123;</span><br><span class="line">&quot;path&quot;: &quot;/etc/ssl&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配合controller manager所使用的选项：</p>
+<ul>
+<li>–cluster-name&#x3D;$CLUSTER_NAME</li>
+<li>—cluster-cidr&#x3D;<br>TODO: 解释这个选项</li>
+<li>–allocate-node-cidrs&#x3D;<br>TODO: 解释这个选项</li>
+<li>–cloud-provider&#x3D; 和 –cloud-config 在apiserver章节里解释过。</li>
+<li>–service-account-private-key-file&#x3D;&#x2F;srv&#x2F;kubernetes&#x2F;server.key ，这个值是service<br>account功能所使用的。</li>
+<li>–master&#x3D;127.0.0.1:8080</li>
+</ul>
+<h2 id="运行和验证Apiserver，Scheduler和Controller-Manager"><a href="#运行和验证Apiserver，Scheduler和Controller-Manager" class="headerlink" title="运行和验证Apiserver，Scheduler和Controller Manager"></a>运行和验证Apiserver，Scheduler和Controller Manager</h2><p>将每个完成的pod template放置在kubelet的配置文件夹中（文件夹地址是在kubelet的 –config&#x3D; 选项所指向的地址， 通常是 &#x2F;etc&#x2F;kubernetes&#x2F;manifests ）。没有放置顺序关系:scheduler和controller manager会一直尝试连接到apiserver，直到连接成功。</p>
+<p>用 ps 或者 docker ps 来检测每一个进程是否正常运行。 比如，你可以这样看apiserver的容器是否被kubelet启动了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker ps | grep apiserver:</span><br><span class="line">5783290746d5 gcr.io/google_containers/kube-apiserver:e36bf367342b5a80d7467fd7611ad873........</span><br></pre></td></tr></table></figure>
+
+<p>之后尝试连接apiserver:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ echo $(curl -s http://localhost:8080/healthz)</span><br><span class="line">ok</span><br><span class="line">$ curl -s http://localhost:8080/api</span><br><span class="line">&#123;</span><br><span class="line">&quot;versions&quot;: [</span><br><span class="line">&quot;v1&quot;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果kubelets使用 –register-node&#x3D;true 这个选项，他们会开始自动注册到apiserver上。很快，你就可以使用 kubectl get nodes 命令看到所有的节点。否则，你需要手动注册这些节点。</p>
+<h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><p>TODO 如何开启日志。</p>
+<h3 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h3><p>TODO 如何开启监控。</p>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>TODO 如何运行DNS。</p>
+<h2 id="故障排除"><a href="#故障排除" class="headerlink" title="故障排除"></a>故障排除</h2><h3 id="运行validate-cluster"><a href="#运行validate-cluster" class="headerlink" title="运行validate-cluster"></a>运行validate-cluster</h3><p>TODO 解释如何运行“cluster&#x2F;validate-cluster.sh”。</p>
+<h3 id="检查pods和services"><a href="#检查pods和services" class="headerlink" title="检查pods和services"></a>检查pods和services</h3><p>你可以尝试这阅读“检查的集群”这一节，例如GCE。你应该检查Service。通过“mirro pods”去检查apiserver，scehduler和controller-manager以及运行的插件。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>到这里你应该能够运行一些基本的实例了，例如nginx example。</p>
+<h3 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h3><p>你可以试着运行一致性测试. 测试失败的结果可能会给你些排除故障的线索。</p>
+<h3 id="网络-2"><a href="#网络-2" class="headerlink" title="网络"></a>网络</h3><p>节点之间必须用私有IP链接。可以通过ping或者SSH来确定节点之间的联通。</p>
+</div><div class="tags"><a href="/tags/架构"><i class="fa fa-tag">架构</i></a></div><div class="post-nav"><a class="pre" href="/posts/33073/">Servicemesh和API Gateway关系深度探讨</a><a class="next" href="/posts/34359/">Spring Boot 的 16 条实践解读</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/AI-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/">AI, 网络运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">36</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">117</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">72</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B7%91%E6%AD%A5/">跑步</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/PMO/" style="font-size: 15px;">PMO</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 15px;">人工智能</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">深度学习</a> <a href="/tags/Deepseek-%E8%87%AA%E6%99%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%90%A5%E5%95%86-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">Deepseek, 自智网络, 运营商, 网络运维</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 15px;">知识图谱</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%8A%80%E6%9C%AF%E8%B6%8B%E5%8A%BF-%E8%A1%8C%E4%B8%9A%E5%8A%A8%E6%80%81/" style="font-size: 15px;">人工智能, 技术趋势, 行业动态</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">运维</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/SDN/" style="font-size: 15px;">SDN</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a> <a href="/tags/%E9%A9%AC%E6%8B%89%E6%9D%BE/" style="font-size: 15px;">马拉松</a> <a href="/tags/%E5%81%A5%E5%BA%B7/" style="font-size: 15px;">健康</a> <a href="/tags/%E6%8A%A5%E5%91%8A%E5%88%86%E4%BA%AB/" style="font-size: 15px;">报告分享</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/" style="font-size: 15px;">技术小栈</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/63200/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63199/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63198/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/55960/">Deepseek 技术分析总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/17232/">3月份马拉松计划</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/16164/">2024年人工智能进展及展望</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/57547/">大模型概念总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/47183/">系统稳定性建设</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/24447/">实时通信的关键差异解析</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/5864/">LSTM详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a><ul></ul><a href="https://excalidraw.com/" title="excalidraw" target="_blank">excalidraw</a><ul></ul><a href="https://tudan.blog.csdn.net/?type=lately" title="王坦" target="_blank">王坦</a><ul></ul><a href="https://aspoem.com/zh-Hans" target="_blank"></a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">枫哲's文栖小筑.</a><a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn/">｜苏ICP备18013756号-1</a><!--a(rel='nofollow', target='_blank', href='https://github.com/tufu9441/maupassant-hexo')  Theme--><!--|  by--><!--a(rel='nofollow', target='_blank', href='https://github.com/pagecho')  Cho.--></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

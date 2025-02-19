@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>收藏高效的小工具 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2bb92548008bd1f1f88213efd40c8dad';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">收藏高效的小工具</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">收藏高效的小工具</h1><div class="post-meta">2017-10-14<span> | </span><span class="category"><a href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span></div><a class="disqus-comment-count" href="/posts/47786/#vcomment"><span class="waline-comment-count" id="/posts/47786/"></span><span> 条评论</span></a><div class="post-content"><p>此篇讲持续更新，把用着不错的工具整理出来～，提高效率的同时，也方便学习和分享～</p>
+<h4 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h4><p><a target="_blank" rel="noopener" href="https://brew.sh/">Homebrew — The missing package manager for macOS</a>，Mac上非常好用的包管理工具，很多常见的安装都可以通过<code>brew install app</code>或者<code>brew cask install app</code>直接安装，类似apt-get，yum等，之前已经有篇幅记载。</p>
+<h4 id="Oh-My-Zsh"><a href="#Oh-My-Zsh" class="headerlink" title="Oh My Zsh"></a>Oh My Zsh</h4><p><a target="_blank" rel="noopener" href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a> mac上的命令行（bash–&gt;zsh）替代方案，各种强大</p>
+<blockquote>
+<p>Oh My Zsh will not make you a 10x developer…</p>
+</blockquote>
+<p>不管是自动纠错、目录切换、命令补全、参数补全、强大的alias，用起来都很顺手。</p>
+<p>  <img src="http://oioeypcz0.bkt.clouddn.com/oh-my-zsh.png" alt="oh-my-zsh.png"></p>
+<h4 id="tldr"><a href="#tldr" class="headerlink" title="tldr"></a>tldr</h4><p>当简单查询某条命令如何使用时，用man查看简直是噩梦，实在太长了，Too Long Don’t Read!</p>
+<p>  <img src="http://oioeypcz0.bkt.clouddn.com/man.png" alt="man"></p>
+<p>而<a target="_blank" rel="noopener" href="https://github.com/tldr-pages/tldr">tldr: Simplified and community-driven man pages</a>可以快速get到、回忆起命令的常见用法。对比一下：</p>
+<pre><code>![tldr](http://oioeypcz0.bkt.clouddn.com/tldr-tar.png)
+</code></pre>
+<h4 id="Autojump"><a href="#Autojump" class="headerlink" title="Autojump"></a>Autojump</h4><p>有时候cd到某个目录要好几层，用<a target="_blank" rel="noopener" href="https://github.com/wting/autojump">Autojump: A cd command that learns</a>可以一步到位，安装之后，第一次需要手动cd，以后就可以<code>j longdir</code>即可。</p>
+<pre><code>![autojump](http://oioeypcz0.bkt.clouddn.com/autojump.png)
+</code></pre>
+<h4 id="Copy-as-Markdown"><a href="#Copy-as-Markdown" class="headerlink" title="Copy as Markdown"></a>Copy as Markdown</h4><p>对于经常用Markdown写文档的人来说，复制网页链接之后还要插入到<code>[]()</code>里，实在麻烦。<a target="_blank" rel="noopener" href="https://github.com/chitsaou/copy-as-markdown">Copying Link, Image and Tab(s) as Markdown</a>解决这个头疼的问题。</p>
+<p>  <img src="http://oioeypcz0.bkt.clouddn.com/copy-as-markdown.png" alt="copy-as-markdown"></p>
+<h4 id="Github-Hovercard"><a href="#Github-Hovercard" class="headerlink" title="Github Hovercard"></a>Github Hovercard</h4><p>经常混迹于Github人士会浏览无数的Repo，有时候只想大致看看Repo的信息，又懒惰打开那个网页。此时<a target="_blank" rel="noopener" href="https://github.com/Justineo/github-hovercard">Github Hovercard</a>是你的不二之选。</p>
+<p>  <img src="http://oioeypcz0.bkt.clouddn.com/github-hovercard.png" alt="github-hovercard"></p>
+<p>只需要把鼠标悬停在仓库链接即可。</p>
+<h4 id="Octotree"><a href="#Octotree" class="headerlink" title="Octotree"></a>Octotree</h4><p>想看看Github上开源的代码，又不想一层层目录点下去，此时<a target="_blank" rel="noopener" href="https://github.com/buunguyen/octotree">Octotree: Code tree for GitHub</a>正好解决这个难题。</p>
+<p>  <img src="http://oioeypcz0.bkt.clouddn.com/octotree.png" alt="Octotree"></p>
+<h4 id="OctoLinker"><a href="#OctoLinker" class="headerlink" title="OctoLinker"></a>OctoLinker</h4><p>在Github上的代码，经常会看到<code>import ...</code>，习惯了IDE的你，是不是忍不住跳到那个类？<a target="_blank" rel="noopener" href="https://github.com/OctoLinker/browser-extension">OctoLinker</a>满足你的这个需求。</p>
+<p>  <img src="http://oioeypcz0.bkt.clouddn.com/octo-linker.png" alt="octo-linker"></p>
+<p>也支持Python。</p>
+<h4 id="Go2Shell"><a href="#Go2Shell" class="headerlink" title="Go2Shell"></a>Go2Shell</h4><p>Mac下，想直接在某个文件夹下打开Terminal，咋办？去Terminal里打开实在是太麻烦了，试试<a target="_blank" rel="noopener" href="http://zipzapmac.com/Go2Shell">Go2Shell</a>。集成在Finder里之后，一点即可。</p>
+<h4 id="Web-Clipper"><a href="#Web-Clipper" class="headerlink" title="Web Clipper"></a>Web Clipper</h4><p>看到一篇好文章，保存链接不放心，怕链接失效；复制粘贴太麻烦。用<a target="_blank" rel="noopener" href="https://evernote.com/products/webclipper/">Evernote Web Clipper</a>，直接保存富文本格式的文章，还只能去除广告，好用。</p>
+<p>  <img src="http://oioeypcz0.bkt.clouddn.com/web-clipper.png" alt="web-clipper"></p>
+<h4 id="Json-Viewer"><a href="#Json-Viewer" class="headerlink" title="Json Viewer"></a>Json Viewer</h4><p>在浏览器上返回的Json文件，如果没有格式化太难看清其结构，利用<a target="_blank" rel="noopener" href="https://github.com/tulios/json-viewer">Json Viewer</a>插件，就明了多了。</p>
+<p>  <img src="http://oioeypcz0.bkt.clouddn.com/json-viewer.png" alt="json-viewer"></p>
+<h4 id="csvkit"><a href="#csvkit" class="headerlink" title="csvkit"></a>csvkit</h4><p>如果你做数据分析，这个命令行工具<a target="_blank" rel="noopener" href="https://github.com/wireservice/csvkit/tree/1.0.2">csvkit</a>你一定喜欢。《Data Science at Command Line》一书推荐，很好用。</p>
+<h4 id="Quicklook"><a href="#Quicklook" class="headerlink" title="Quicklook"></a>Quicklook</h4><p>工作中会遇到各种各样格式的文件，比如代码、Json、csv、Excel、markdown文档等。很多时候只想看大概信息，就是quicklook一下，不想打开编辑，这时候<a target="_blank" rel="noopener" href="https://github.com/sindresorhus/quick-look-plugins">Quicklook Plugins: List of useful Quick Look plugins for developers</a>特别好用，官网上有很丰富的例子。</p>
+<p>  <img src="http://oioeypcz0.bkt.clouddn.com/quicklook-markdown.png" alt="quicklook-markdown"></p>
+<h4 id="stedolan-x2F-jq"><a href="#stedolan-x2F-jq" class="headerlink" title="stedolan&#x2F;jq"></a>stedolan&#x2F;jq</h4><p>jq是一个轻量级和灵活的命令行JSON处理器,jq 像<code>sed</code> 一样处理json数据，使用起来非常友好，<a target="_blank" rel="noopener" href="https://github.com/stedolan/jq">github 地址</a></p>
+<p>常用的场景：配合curl，命令行，格式化json输出</p>
+<p>curl <a target="_blank" rel="noopener" href="http://127.0.0.1:5000/people">http://127.0.0.1:5000/people</a> | jq</p>
+<pre><code>% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                Dload  Upload   Total   Spent    Left  Speed
+100   168  100   168    0     0  21804      0 --:--:-- --:--:-- --:--:-- 24000
+&#123;
+&quot;_items&quot;: [],
+&quot;_links&quot;: &#123;
+    &quot;parent&quot;: &#123;
+    &quot;title&quot;: &quot;home&quot;,
+    &quot;href&quot;: &quot;/&quot;
+    &#125;,
+    &quot;self&quot;: &#123;
+    &quot;title&quot;: &quot;people&quot;,
+    &quot;href&quot;: &quot;people&quot;
+    &#125;
+&#125;,
+&quot;_meta&quot;: &#123;
+    &quot;page&quot;: 1,
+    &quot;max_results&quot;: 25,
+    &quot;total&quot;: 0
+&#125;
+&#125;
+</code></pre>
+<h4 id="dict-cli"><a href="#dict-cli" class="headerlink" title="dict-cli"></a>dict-cli</h4><p>python的翻译工具，使用pip 安装即可</p>
+<pre><code>sudo pip install dict-cli
+
+     
+</code></pre>
+<p>直接使用 dict 单词</p>
+<pre><code>dict desktop
+###################################
+#  desktop 桌面
+#  (U: &#39;dɛsk&#39;tɑp E: &#39;desktɒp)
+#
+#  n. 桌面；台式机
+#
+#  desktop : 桌面
+#             台式机
+#             桌上型的
+#  Google Desktop : Google桌面
+#                    Google桌面
+#                    桌面搜索
+#  Desktop search : 桌面搜索
+#                    桌面搜索
+#                    桌面搜寻
+###################################
+</code></pre>
+<h4 id="终端跳快速跳转到指定目录的oh-my-zsh插件：z与wd"><a href="#终端跳快速跳转到指定目录的oh-my-zsh插件：z与wd" class="headerlink" title="终端跳快速跳转到指定目录的oh-my-zsh插件：z与wd"></a>终端跳快速跳转到指定目录的oh-my-zsh插件：z与wd</h4><blockquote>
+<p>zsh的z插件可以随意跳转最近经常打开的文件夹<br>zsh的wd插件可以任意跳转你标记过的文件夹</p>
+</blockquote>
+<h5 id="安装-z-和-wd-插件"><a href="#安装-z-和-wd-插件" class="headerlink" title="安装 z 和 wd 插件"></a>安装 <code>z</code> 和 <code>wd</code> 插件</h5><p>打开.zshrc 文件添加插件即可</p>
+<pre><code>subl ~/.zshrc 
+plugins=(git z wd)
+</code></pre>
+<h5 id="使用-z-可查看最近访问最频繁的目录"><a href="#使用-z-可查看最近访问最频繁的目录" class="headerlink" title="使用 z 可查看最近访问最频繁的目录"></a>使用 <code>z</code> 可查看最近访问最频繁的目录</h5><p>z + 目录名部分内容即可跳转到目录</p>
+<h5 id="使用wd插件"><a href="#使用wd插件" class="headerlink" title="使用wd插件"></a>使用wd插件</h5><pre><code>wd                  //查看所有可用命令
+wd add (label_name) //标记目录
+wd rm (label_name)  //去除目录标记
+wd list             //查看所有标记 
+</code></pre>
+<p>在需要添加快捷方式的目录，直接执行 wd add 标签名称即可</p>
+</div><div class="tags"><a href="/tags/mac"><i class="fa fa-tag">mac</i></a></div><div class="post-nav"><a class="pre" href="/posts/17427/">阿里Java开发规约idea插件</a><a class="next" href="/posts/50625/">grep命令的实践例子</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/AI-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/">AI, 网络运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">36</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">117</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">72</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B7%91%E6%AD%A5/">跑步</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/PMO/" style="font-size: 15px;">PMO</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 15px;">人工智能</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">深度学习</a> <a href="/tags/Deepseek-%E8%87%AA%E6%99%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%90%A5%E5%95%86-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">Deepseek, 自智网络, 运营商, 网络运维</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 15px;">知识图谱</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%8A%80%E6%9C%AF%E8%B6%8B%E5%8A%BF-%E8%A1%8C%E4%B8%9A%E5%8A%A8%E6%80%81/" style="font-size: 15px;">人工智能, 技术趋势, 行业动态</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">运维</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/SDN/" style="font-size: 15px;">SDN</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a> <a href="/tags/%E9%A9%AC%E6%8B%89%E6%9D%BE/" style="font-size: 15px;">马拉松</a> <a href="/tags/%E5%81%A5%E5%BA%B7/" style="font-size: 15px;">健康</a> <a href="/tags/%E6%8A%A5%E5%91%8A%E5%88%86%E4%BA%AB/" style="font-size: 15px;">报告分享</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/" style="font-size: 15px;">技术小栈</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/63200/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63199/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63198/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/55960/">Deepseek 技术分析总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/17232/">3月份马拉松计划</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/16164/">2024年人工智能进展及展望</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/57547/">大模型概念总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/47183/">系统稳定性建设</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/24447/">实时通信的关键差异解析</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/5864/">LSTM详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a><ul></ul><a href="https://excalidraw.com/" title="excalidraw" target="_blank">excalidraw</a><ul></ul><a href="https://tudan.blog.csdn.net/?type=lately" title="王坦" target="_blank">王坦</a><ul></ul><a href="https://aspoem.com/zh-Hans" target="_blank"></a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">枫哲's文栖小筑.</a><a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn/">｜苏ICP备18013756号-1</a><!--a(rel='nofollow', target='_blank', href='https://github.com/tufu9441/maupassant-hexo')  Theme--><!--|  by--><!--a(rel='nofollow', target='_blank', href='https://github.com/pagecho')  Cho.--></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

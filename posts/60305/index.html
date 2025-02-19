@@ -1,0 +1,314 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>GraphQL 是真的香 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2bb92548008bd1f1f88213efd40c8dad';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">GraphQL 是真的香</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">GraphQL 是真的香</h1><div class="post-meta">2020-06-03<span> | </span><span class="category"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a></span></div><a class="disqus-comment-count" href="/posts/60305/#vcomment"><span class="waline-comment-count" id="/posts/60305/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GraphQL%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">GraphQL简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GraphQL-%E5%AF%B9%E6%AF%94-REST-API-%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">GraphQL 对比 REST API 有什么好处？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GraphQL-%E6%80%9D%E8%80%83%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">GraphQL 思考模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GraphQL%E6%89%A7%E8%A1%8C%E9%80%BB%E8%BE%91"><span class="toc-number">5.</span> <span class="toc-text">GraphQL执行逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GraphQL%E5%BA%94%E7%94%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84"><span class="toc-number">6.</span> <span class="toc-text">GraphQL应用的基本架构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GraphQL%E7%89%B9%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">GraphQL特点总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GraphQL%E6%94%AF%E6%8C%81%E7%9A%84%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="toc-number">8.</span> <span class="toc-text">GraphQL支持的数据操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GraphQL%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%EF%BC%9A%E5%9B%BE%E8%A1%A8%E6%A8%A1%E5%BC%8F%EF%BC%88Schema%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">GraphQL的核心概念：图表模式（Schema）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%87%E9%87%8F%E7%B1%BB%E5%9E%8B%EF%BC%88Scalar-Type%EF%BC%89"><span class="toc-number">10.</span> <span class="toc-text">标量类型（Scalar Type）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%EF%BC%88Object-Type%EF%BC%89"><span class="toc-number">11.</span> <span class="toc-text">对象类型（Object Type）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E4%BF%AE%E9%A5%B0%E7%AC%A6%EF%BC%88Type-Modifier%EF%BC%89"><span class="toc-number">12.</span> <span class="toc-text">类型修饰符（Type Modifier）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%B1%BB%E5%9E%8B"><span class="toc-number">13.</span> <span class="toc-text">其他类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Graphql-%E6%8A%80%E6%9C%AF%E6%8E%A5%E5%85%A5%E6%9E%B6%E6%9E%84"><span class="toc-number">14.</span> <span class="toc-text">Graphql 技术接入架构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="toc-number">15.</span> <span class="toc-text">服务端实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="toc-number">16.</span> <span class="toc-text">客户端实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Graphql%E7%9A%84%E4%B8%80%E4%BA%9B%E6%9C%8D%E5%8A%A1"><span class="toc-number">17.</span> <span class="toc-text">Graphql的一些服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Graphql%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7"><span class="toc-number">18.</span> <span class="toc-text">Graphql的一些工具</span></a></li></ol></div></div><div class="post-content"><p>转自：toutiao.com&#x2F;i6833818331884028419</p>
+<ul>
+<li>GraphQL简介</li>
+<li>GraphQL 对比 REST API 有什么好处？</li>
+<li>GraphQL 思考模式</li>
+<li>GraphQL执行逻辑</li>
+<li>GraphQL应用的基本架构</li>
+<li>GraphQL特点总结</li>
+<li>GraphQL支持的数据操作</li>
+<li>GraphQL的核心概念：图表模式（Schema）</li>
+<li>标量类型（Scalar Type）</li>
+<li>对象类型（Object Type）</li>
+<li>类型修饰符（Type Modifier）</li>
+<li>其他类型</li>
+<li>Graphql 技术接入架构</li>
+<li>服务端实现</li>
+<li>客户端实现</li>
+<li></li>
+</ul>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>REST作为一种现代网络应用非常流行的软件架构风格，自从Roy Fielding博士在2000年他的博士论文中提出来到现在已经有了20年的历史。它的简单易用性，可扩展性，伸缩性受到广大Web开发者的喜爱。</p>
+<p>REST 的 API 配合JSON格式的数据交换，使得前后端分离、数据交互变得非常容易，而且也已经成为了目前Web领域最受欢迎的软件架构设计模式。</p>
+<p>但随着REST API的流行和发展，它的缺点也暴露了出来：</p>
+<ul>
+<li><strong>滥用REST接口</strong>，导致大量相似度很高（具有重复性）的API越来越冗余。</li>
+<li>对于前端而言：<strong>REST API粒度较粗</strong>，难以一次性符合前端的数据要求，前端需要分多次请求接口数据。增加了前端人员的工作量。</li>
+<li>对于后端而言：<strong>前端需要的数据往往在不同的地方具有相似性，但却又不同</strong>，比如针对同样的用户信息，有的地方只需要用户简要信息（比如头像、昵称），有些地方需要详细的信息，这就需要开发不同的接口来满足这些需求。当这样的相似但又不同的地方多的时候，就需要开发更多的接口来满足前端的需要。增加了后端开发人员的工作量和重复度。</li>
+</ul>
+<p>那我们来分析一下，<strong>当前端需求变化，涉及到改动旧需求时</strong>，会有以下这些情况：</p>
+<p><strong>做加法</strong>：</p>
+<p>产品需求增加，页面需要增加功能，数据也就相应的要增加显示，那么REST接口也需要做增加，这种无可厚非。</p>
+<p><strong>做减法</strong>：</p>
+<p>产品需求减少，页面需要减少功能，或者减少某些信息显示，那么数据就要做减法。</p>
+<p><strong>一种通常懒惰的做法是，前端不与后端沟通，仅在前端对数据选择性显示。</strong></p>
+<p>因为后端接口能够满足数据需要，仅仅是在做显示的时候对数据进行了选择性显示，但接口的数据是存在冗余的，这种情况一个是存在数据泄露风险，另外就是数据量过大时造成网络流量过大，页面加载缓慢，用户流量费白白消耗，用户体验就会下降。</p>
+<p><strong>另外一种做法就是告知后端，要么开发新的接口，要么，修改旧接口，删掉冗余字段。</strong></p>
+<p>但一般来说，开发新接口往往是后端开发人员会选择的方案，因为这个方案对现有系统的影响最低，不会有额外的风险。</p>
+<p>修改旧接口删除冗余数据的方案往往开发人员不会选择，这是为什么呢？</p>
+<p>这就涉及到了系统的稳定性问题了，旧接口往往不止是一个地方在用，很有可能很多页面、设置不同客户端、不同服务都调用了这个接口获取数据，不做详细的调查，是不可能知道到底旧接口被调用了多少次，一旦改动旧接口，涉及范围可能非常大，往往会引起其他地方出现崩溃。改动旧接口成本太高，所以往往不会被采取。</p>
+<p><strong>同时做加减法：</strong></p>
+<p>既有加法，又有减法，其实这种就跟新需求没啥区别，前端需要重做页面，后端需要新写接口满足前端需要，但是旧接口还是不能轻举妄动（除非确定只有这一处调用才可以删除）。</p>
+<p>往往这个时候，其实用到的数据大多都是来自于同一个DO或者DTO，不过是在REST接口组装数据时，用不同的VO来封装不同字段，或者，使用同样的VO，组装数据时做删减。</p>
+<p>看到这些问题是不是觉得令人头大？</p>
+<p>所以<strong>需求频繁改动是万恶之源</strong>，当产品小哥哥改动需求时，程序员小哥哥可能正提着铁锹赶来……</p>
+<p>那么有没有一种方案或者框架，可以使得在用到同一个领域模型（DO或者DTO）的数据时，前端对于这个模型的数据字段需求的改动，后端可以根据前端的改动和需要，自动适配，自动组装需要的字段，返回给前端呢？如果能这样做的话，那么后端程序猿小哥可能要开心死了，前端妹子也不用那么苦口婆心地劝说后端小哥哥了。</p>
+<p>所以<strong>GraphQL</strong>隆重出世了！那么问题来了！</p>
+<hr>
+<p>Part 1 What is GraphQL</p>
+<h1 id="GraphQL简介"><a href="#GraphQL简介" class="headerlink" title="GraphQL简介"></a>GraphQL简介</h1><ul>
+<li>GraphQL是一种新的API标准，它提供了一种比REST更有效、更强大和更灵活的替代方案。</li>
+<li>它是由Facebook开发并开源的，现在由来自世界各地的公司和个人组成的大型社区维护。</li>
+<li>GraphQL本质上是一种基于api的查询语言，现在大多数应用程序都需要从服务器中获取数据，这些数据存储可能存储在数据库中，API的职责是提供与应用程序需求相匹配的存储数据的接口。</li>
+<li>它是数据库无关的，而且可以在使用API的任何环境中有效使用，我们可以理解为GraphQL是基于API之上的一层封装，目的是为了更好，更灵活的适用于业务的需求变化。</li>
+</ul>
+<p>简单的来说，它</p>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235702/1000"></p>
+<p>它的工作模式是这样子的：</p>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235703/1000"></p>
+<h1 id="GraphQL-对比-REST-API-有什么好处？"><a href="#GraphQL-对比-REST-API-有什么好处？" class="headerlink" title="GraphQL 对比 REST API 有什么好处？"></a>GraphQL 对比 REST API 有什么好处？</h1><p><strong>REST API 的接口灵活性差、接口操作流程繁琐，GraphQL 的声明式数据获取，使得接口数据精确返回，数据查询流程简洁，照顾了客户端的灵活性。</strong></p>
+<p><strong>客户端拓展功能时要不断编写新接口（依赖于服务端），GraphQL 中一个服务仅暴露一个 GraphQL 层，消除了服务器对数据格式的硬性规定，客户端按需请求数据，可进行单独维护和改进。</strong></p>
+<p><strong>REST API 基于HTTP协议，不能灵活选择网络协议，而传输层无关、数据库技术无关使得 GraphQL 有更加灵活的技术栈选择，能够实现在网络协议层面优化应用。</strong></p>
+<p>举个经典的例子：前端向后端请求一个book对象的数据及其作者信息。</p>
+<p>我用动图来分别演示下REST和GraphQL是怎么样的一个过程。</p>
+<p>先看REST API的做法：</p>
+<p><img src="https://inews.gtimg.com/newsapp_match/0/13022235704/0"></p>
+<p>REST API获取数据</p>
+<p>再来看GraphQL是怎么做的：</p>
+<p><img src="https://inews.gtimg.com/newsapp_match/0/13022235705/0"></p>
+<p>GraphQL获取数据</p>
+<p>可以看出其中的区别：</p>
+<ul>
+<li>与REST多个endpoint不同，每一个的 GraphQL 服务其实对外只提供了一个用于调用内部接口的端点，所有的请求都访问这个暴露出来的唯一端点。</li>
+</ul>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235706/1000"></p>
+<p>Endpoints对比</p>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235707/1000"></p>
+<p>REST API’s Endpoints</p>
+<ul>
+<li>GraphQL 实际上将多个 HTTP 请求聚合成了一个请求，将多个 restful 请求的资源变成了一个从根资源 POST 访问其他资源的 Comment 和 Author 的图，多个请求变成了一个请求的不同字段，从原有的分散式请求变成了集中式的请求，因此GraphQL又可以被看成是图数据库的形式。</li>
+</ul>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235710/1000"></p>
+<p>图数据库模式的数据查询</p>
+<p>那我们已经能看到GraphQL的先进性，接下来看看它是怎么做的。</p>
+<h1 id="GraphQL-思考模式"><a href="#GraphQL-思考模式" class="headerlink" title="GraphQL 思考模式"></a>GraphQL 思考模式</h1><p>使用GraphQL接口设计获取数据需要三步：</p>
+<p><img src="https://inews.gtimg.com/newsapp_match/0/13022235711/0"></p>
+<p>GraphQL获取数据三步骤</p>
+<ol>
+<li>首先要设计数据模型，用来描述数据对象，它的作用可以看做是VO，用于告知GraphQL如何来描述定义的数据，为下一步查询返回做准备；</li>
+<li>前端使用模式查询语言（Schema）来描述需要请求的数据对象类型和具体需要的字段（称之为声明式数据获取）；</li>
+<li>后端GraphQL通过前端传过来的请求，根据需要，自动组装数据字段，返回给前端。</li>
+</ol>
+<p>GraphQL的这种思考模式是不是完美解决了之前遇到的问题呢？！</p>
+<p>总结它的好处：</p>
+<p>在它的设计思想中，GraphQL 以图的形式将整个 Web 服务中的资源展示出来，客户端可以按照其需求自行调用，类似添加字段的需求其实就不再需要后端多次修改了。</p>
+<p>创建GraphQL服务器的最终目标是：</p>
+<p><strong>允许查询通过图和节点的形式去获取数据。</strong></p>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235712/1000"></p>
+<h1 id="GraphQL执行逻辑"><a href="#GraphQL执行逻辑" class="headerlink" title="GraphQL执行逻辑"></a>GraphQL执行逻辑</h1><p>有人会问：</p>
+<ul>
+<li>使用了GraphQL就要完全抛弃REST了吗？</li>
+<li>GraphQL需要直接对接数据库吗？</li>
+<li>使用GraphQL需要对现有的后端服务进行大刀阔斧的修改吗？</li>
+</ul>
+<p>答案是：NO！不需要！</p>
+<p>它完全可以以一种不侵入的方式来部署，将它作为前后端的中间服务，也就是，现在开始逐渐流行的 <strong>前端 —— 中端 —— 后端</strong> 的三层结构模式来部署！</p>
+<p>那就来看一下这样的部署模式图：</p>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235713/1000"></p>
+<p>GraphQL执行逻辑</p>
+<p>也就是说，完全可以搭建一个GraphQL服务器，专门来处理前端请求，并处理后端服务获取的数据，重新进行组装、筛选、过滤，将完美符合前端需要的数据返回。</p>
+<p>新的开发需求可以直接就使用GraphQL服务来获取数据了，以前已经上线的功能无需改动，还是使用原有请求调用REST接口的方式，最低程度的降低更换GraphQL带来的技术成本问题！</p>
+<p>如果没有那么多成本来支撑改造，那么就不需要改造！</p>
+<p>只有当原有需求发生变化，需要对原功能进行修改时，就可以换成GraphQL了。</p>
+<h1 id="GraphQL应用的基本架构"><a href="#GraphQL应用的基本架构" class="headerlink" title="GraphQL应用的基本架构"></a>GraphQL应用的基本架构</h1><p>下图是一个 GraphQL 应用的基本架构，其中客户端只和 GraphQL 层进行 API 交互，而 GraphQL 层再往后接入各种数据源。这样一来，只要是数据源有的数据， GraphQL 层都可以让客户端按需获取，不必专门再去定接口了。</p>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235714/1000"></p>
+<p>GraphQL应用基本架构</p>
+<p><strong>一个GraphQL服务仅暴露一个 GraphQL Endpoint，可以按照业务来进行区分，部署多个GraphQL服务，分管不同的业务数据，这样就可以避免单服务器压力过大的问题了。</strong></p>
+<h1 id="GraphQL特点总结"><a href="#GraphQL特点总结" class="headerlink" title="GraphQL特点总结"></a>GraphQL特点总结</h1><ul>
+<li><strong>声明式数据获取（可以对API进行查询）:</strong> 声明式的数据查询带来了接口的精确返回，服务器会按数据查询的格式返回同样结构的 JSON 数据、真正照顾了客户端的灵活性。</li>
+<li><strong>一个微服务仅暴露一个 GraphQL 层：</strong>一个微服务只需暴露一个GraphQL endpoint，客户端请求相应数据只通过该端点按需获取，不需要再额外定义其他接口。</li>
+<li><strong>传输层无关、数据库技术无关：</strong>带来了更灵活的技术栈选择，比如我们可以选择对移动设备友好的协议，将网络传输数据量最小化，实现在网络协议层面优化应用。</li>
+</ul>
+<hr>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235716/1000"></p>
+<p>Part 2 Schema &amp; Type</p>
+<h1 id="GraphQL支持的数据操作"><a href="#GraphQL支持的数据操作" class="headerlink" title="GraphQL支持的数据操作"></a>GraphQL支持的数据操作</h1><p>GraphQL对数据支持的操作有：</p>
+<ul>
+<li><strong>查询（Query）：</strong>获取数据的基本查询。</li>
+<li><strong>变更（Mutation）：</strong>支持对数据的增删改等操作。</li>
+<li><strong>订阅（Subscription）：</strong>用于监听数据变动、并靠websocket等协议推送变动的消息给对方。</li>
+</ul>
+<p><img src="https://inews.gtimg.com/newsapp_match/0/13022235717/0"></p>
+<p>GraphQL支持的操作</p>
+<h1 id="GraphQL的核心概念：图表模式（Schema）"><a href="#GraphQL的核心概念：图表模式（Schema）" class="headerlink" title="GraphQL的核心概念：图表模式（Schema）"></a>GraphQL的核心概念：图表模式（Schema）</h1><p>要想要设计GraphQL的数据模型，用来描述你的业务数据，那么就必须要有一套Schema语法来做支撑。</p>
+<p>想要描述数据，就必须离不开数据类型的定义。所以GraphQL设计了一套Schema模式（可以理解为语法），其中最重要的就是数据类型的定义和支持。</p>
+<p>那么类型（Type）就是模式（Schema）最核心的东西了。</p>
+<p><strong>什么是类型？</strong></p>
+<ul>
+<li>对于数据模型的抽象是通过类型（Type）来描述的，每一个类型有若干字段（Field）组成，每个字段又分别指向某个类型（Type）。这很像Java、C#中的类（Class）。</li>
+<li>GraphQL的Type简单可以分为两种，一种叫做Scalar Type(标量类型)，另一种叫做Object Type(对象类型)。</li>
+</ul>
+<p>那么就分别来介绍下两种类型。</p>
+<h1 id="标量类型（Scalar-Type）"><a href="#标量类型（Scalar-Type）" class="headerlink" title="标量类型（Scalar Type）"></a>标量类型（Scalar Type）</h1><p>标量是GraphQL类型系统中最小的颗粒。类似于Java、C#中的基本类型。</p>
+<p>其中内建标量主要有：</p>
+<ul>
+<li><strong>String</strong></li>
+<li><strong>Int</strong></li>
+<li><strong>Float</strong></li>
+<li><strong>Boolean</strong></li>
+<li><strong>Enum</strong></li>
+<li><strong>ID</strong></li>
+</ul>
+<p><img src="https://inews.gtimg.com/newsapp_match/0/13022235718/0"></p>
+<p>Scalar Type</p>
+<p>上面的类型仅仅是GraphQL默认内置的类型，当然，为了保证最大的灵活性，GraphQL还可以很灵活的自行创建标量类型。</p>
+<h1 id="对象类型（Object-Type）"><a href="#对象类型（Object-Type）" class="headerlink" title="对象类型（Object Type）"></a>对象类型（Object Type）</h1><p>仅有标量类型是不能满足复杂抽象数据模型的需要，这时候我们可以使用对象类型。</p>
+<p>通过对象模型来构建GraphQL中关于一个数据模型的形状，同时还可以声明各个模型之间的内在关联（一对多、一对一或多对多）。</p>
+<p>对象类型的定义可以参考下图：</p>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235720/1000"></p>
+<p>对象模型引入关联关系</p>
+<p>是不是很方便呢？我们可以像设计类图一样来设计GraphQL的对象模型。</p>
+<h1 id="类型修饰符（Type-Modifier）"><a href="#类型修饰符（Type-Modifier）" class="headerlink" title="类型修饰符（Type Modifier）"></a>类型修饰符（Type Modifier）</h1><p>那么，类型系统仅仅只有类型定义是不够的，我们还需要对类型进行更广泛性的描述。</p>
+<p>类型修饰符就是用来修饰类型，以达到额外的数据类型要求控制。</p>
+<p>比如：</p>
+<ul>
+<li>列表：[Type]</li>
+<li>非空：Type!</li>
+<li>列表非空：[Type]!</li>
+<li>非空列表，列表内容类型非空：[Type!]!</li>
+</ul>
+<p>在描述数据模型（模式Schema）时，就可以对字段施加限制条件。</p>
+<p>例如定义了一个名为User的对象类型，并对其字段进行定义和施加限制条件：</p>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235721/1000"></p>
+<p>User字段控制</p>
+<p>那么，返回数据时，像下面这种情况就是不允许的：</p>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235722/1000"></p>
+<p>错误的表示</p>
+<p>Graphql会根据Schema Type来自动返回正确的数据：</p>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235723/1000"></p>
+<p>正确的表示</p>
+<h1 id="其他类型"><a href="#其他类型" class="headerlink" title="其他类型"></a>其他类型</h1><p>除了上面的，Graphql还有一些其他类型来更好的引入面向对象的设计思想：</p>
+<ul>
+<li><strong>接口类型（Interfaces）：</strong>其他对象类型实现接口必须包含接口所有的字段，并具有相同的类型修饰符，才算实现接口。</li>
+</ul>
+<p>比如定义了一个接口类型：</p>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235724/1000"></p>
+<p>那么就可以实现该接口：</p>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022235725/1000"></p>
+<ul>
+<li><strong>联合类型（Union Types）：</strong>联合类型和接口十分相似，但是它并不指定类型之间的任何共同字段。几个对象类型共用一个联合类型。</li>
+</ul>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022237705/1000"></p>
+<ul>
+<li><strong>输入类型（Input Types）：</strong>更新数据时有用，与常规对象只有关键字修饰不一样，常规对象时 <strong>type</strong> 修饰，输入类型是 <strong>input</strong> 修饰。</li>
+</ul>
+<p>比如定义了一个输入类型：</p>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022237706/1000"></p>
+<p>前端发送变更请求时就可以使用（通过参数来指定输入的类型）：</p>
+<p><img src="/"></p>
+<p>所以，这样面向对象的设计方式，真的对后端开发人员特别友好！而且前端MVVM框架流行以来，面向对象的设计思想也越来越流行，前端使用Graphql也会得心应手。</p>
+<hr>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022237707/1000"></p>
+<p>Part 3 GraphQL技术接入架构</p>
+<h1 id="Graphql-技术接入架构"><a href="#Graphql-技术接入架构" class="headerlink" title="Graphql 技术接入架构"></a>Graphql 技术接入架构</h1><p>那么，该怎么设计来接入我们现有的系统中呢？</p>
+<ul>
+<li><strong>将Graphql服务直连数据库的方式：</strong>最简洁的配置，直接操作数据库能减少中间环节的性能消耗。</li>
+</ul>
+<p>直连数据库的接入</p>
+<ul>
+<li><strong>集成现有服务的GraphQL层：</strong>这种配置适合于旧服务的改造，尤其是在涉及第三方服务时、依然可以通过原有接口进行交互。</li>
+</ul>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022237708/1000"></p>
+<p>集成现有服务的GraphQL层</p>
+<ul>
+<li><strong>直连数据库和集成服务的混合模式：</strong>前两种方式的混合。</li>
+</ul>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022237709/1000"></p>
+<p>混合接入方式</p>
+<p>可以说是非常灵活了！你都不用担心会给你带来任何的麻烦。</p>
+<hr>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/13022237710/1000"></p>
+<h1 id="服务端实现"><a href="#服务端实现" class="headerlink" title="服务端实现"></a>服务端实现</h1><p>在服务端， GraphQL 服务器可用任何可构建 Web 服务器的语言实现。有以下语言的实现供参考：</p>
+<p>C# &#x2F; .NET</p>
+<p>Clojure</p>
+<p>Elixir</p>
+<p>Erlang</p>
+<p>Go</p>
+<p>Groovy</p>
+<p>Java</p>
+<p>JavaScript</p>
+<p>Julia</p>
+<p>Kotlin</p>
+<p>Perl</p>
+<p>PHP</p>
+<p>Python</p>
+<p>R</p>
+<p>Ruby</p>
+<p>Rust</p>
+<p>Scala</p>
+<p>Swift</p>
+<p>种类繁多，几乎流行的语言都有支持。</p>
+<h1 id="客户端实现"><a href="#客户端实现" class="headerlink" title="客户端实现"></a>客户端实现</h1><p>在客户端，Graphql Client目前有下面的语言支持：</p>
+<p>C# &#x2F; .NET</p>
+<p>Clojurescript</p>
+<p>Elm</p>
+<p>Flutter</p>
+<p>Go</p>
+<p>Java &#x2F; Android</p>
+<p>JavaScript</p>
+<p>Julia</p>
+<p>Swift &#x2F; Objective-C iOS</p>
+<p>Python</p>
+<p>R</p>
+<p>覆盖了众多客户端设计语言，而其他语言的支持也在推进中。</p>
+<h1 id="Graphql的一些服务"><a href="#Graphql的一些服务" class="headerlink" title="Graphql的一些服务"></a>Graphql的一些服务</h1><p>整理了下目前比较流行的服务框架：</p>
+<ul>
+<li>Apollo Engine:一个用于监视 GraphQL 后端的性能和使用的服务。</li>
+<li>Graphcool (github): 一个 BaaS（后端即服务），它为你的应用程序提供了一个 GraphQL 后端，且具有用于管理数据库和存储数据的强大的 web ui。</li>
+<li>Tipe (github): 一个 SaaS（软件即服务）内容管理系统，允许你使用强大的编辑工具创建你 的内容，并通过 GraphQL 或 REST API 从任何地方访问它。</li>
+<li>AWS AppSync：完全托管的 GraphQL 服务，包含实时订阅、离线编程和同步、企业级安全特性以及细粒度的授权控制。</li>
+<li>Hasura：一个 BaaS（后端即服务），允许你在 Postgres 上创建数据表、定义权限并使用 GraphQL 接口查询和操作。</li>
+</ul>
+<h1 id="Graphql的一些工具"><a href="#Graphql的一些工具" class="headerlink" title="Graphql的一些工具"></a>Graphql的一些工具</h1><ul>
+<li>graphiql (npm): 一个交互式的运行于浏览器中的 GraphQL IDE。</li>
+<li>Graphql Language Service: 一个用于构建 IDE 的 GraphQL 语言服务（诊断、自动完成等） 的接口。</li>
+<li>quicktype (github): 在 TypeScript、Swift、golang、C#、C++ 等语言中为 GraphQL 查 询生成类型。</li>
+</ul>
+<p>想要获取更多关于Graphql的一些框架、工具，可以去awesome-graphql：一个神奇的社区，维护一系列库、资源等，地址是</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/chentsulin/awesome-graphql%E3%80%82">https://github.com/chentsulin/awesome-graphql。</a></p>
+<p>想要学习更多Graphql的知识，可以去<strong>GraphQL.cn。</strong></p>
+<hr>
+<p>好了，一个入门级的Graphql介绍篇就这样完结了（尽管篇幅也很大哈哈）。</p>
+<ul>
+<li>不知道你懂得它的原理和优点了吗？</li>
+<li>你对它感兴趣吗？</li>
+<li>看完这篇介绍，有没有想动手尝试一下呢？</li>
+<li>你会在你下一个项目中引入Graphql并使用它吗？</li>
+<li>你对Graphql还有什么疑惑的问题呢？</li>
+</ul>
+<p>或者你有其他问题，都可以在评论区留言或者私信我，大家一起共同探讨。</p>
+<p>Graphql还有更多需要介绍的东西，没有写出来，这仅仅是一个入门介绍哈，后面我会再写一篇文章来详细介绍Graphql在具体的使用方面的总结和在项目中使用的实际感受，如果你也对Graphql感兴趣，可以关注我 @IT研究僧大师兄 下一次的文章介绍。关注我后可以私信我，发送关键字“Graphql PPT”，获取我自己制作的Graphql PPT。</p>
+<p>当然，如果你也和我一样，热衷于技术，热衷于科技、互联网，不妨点个关注吧，我会持续分享干货知识、经验和观点总结。</p>
+</div><div class="tags"><a href="/tags/架构"><i class="fa fa-tag">架构</i></a></div><div class="post-nav"><a class="pre" href="/posts/25683/">云端研发新基建：Serverless 与持续架构服务落地实践</a><a class="next" href="/posts/42628/">如何选择分布式事务解决方案</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/AI-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/">AI, 网络运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">36</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">117</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">72</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B7%91%E6%AD%A5/">跑步</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/PMO/" style="font-size: 15px;">PMO</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 15px;">人工智能</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">深度学习</a> <a href="/tags/Deepseek-%E8%87%AA%E6%99%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%90%A5%E5%95%86-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">Deepseek, 自智网络, 运营商, 网络运维</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 15px;">知识图谱</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%8A%80%E6%9C%AF%E8%B6%8B%E5%8A%BF-%E8%A1%8C%E4%B8%9A%E5%8A%A8%E6%80%81/" style="font-size: 15px;">人工智能, 技术趋势, 行业动态</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">运维</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/SDN/" style="font-size: 15px;">SDN</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a> <a href="/tags/%E9%A9%AC%E6%8B%89%E6%9D%BE/" style="font-size: 15px;">马拉松</a> <a href="/tags/%E5%81%A5%E5%BA%B7/" style="font-size: 15px;">健康</a> <a href="/tags/%E6%8A%A5%E5%91%8A%E5%88%86%E4%BA%AB/" style="font-size: 15px;">报告分享</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/" style="font-size: 15px;">技术小栈</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/63200/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63199/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63198/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/55960/">Deepseek 技术分析总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/17232/">3月份马拉松计划</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/16164/">2024年人工智能进展及展望</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/57547/">大模型概念总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/47183/">系统稳定性建设</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/24447/">实时通信的关键差异解析</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/5864/">LSTM详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a><ul></ul><a href="https://excalidraw.com/" title="excalidraw" target="_blank">excalidraw</a><ul></ul><a href="https://tudan.blog.csdn.net/?type=lately" title="王坦" target="_blank">王坦</a><ul></ul><a href="https://aspoem.com/zh-Hans" target="_blank"></a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">枫哲's文栖小筑.</a><a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn/">｜苏ICP备18013756号-1</a><!--a(rel='nofollow', target='_blank', href='https://github.com/tufu9441/maupassant-hexo')  Theme--><!--|  by--><!--a(rel='nofollow', target='_blank', href='https://github.com/pagecho')  Cho.--></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

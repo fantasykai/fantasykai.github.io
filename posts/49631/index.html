@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>vue-oss-upload 上传到阿里云的oss组件包（npm） | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2bb92548008bd1f1f88213efd40c8dad';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">vue-oss-upload 上传到阿里云的oss组件包（npm）</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">vue-oss-upload 上传到阿里云的oss组件包（npm）</h1><div class="post-meta">2017-06-18<span> | </span><span class="category"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><a class="disqus-comment-count" href="/posts/49631/#vcomment"><span class="waline-comment-count" id="/posts/49631/"></span><span> 条评论</span></a><div class="post-content"><blockquote>
+<p>最近使用vue比较多，项目过程中遇到了，上传图片、视频到阿里云的OSS存储服务，<span id="more"></span>发现目前现成的上传组件，都不太支持，于是自己各种查看阿里云的文档及google，百度，自己写了一套符合自己的业务的上传组件，想到其他小伙伴肯定也会遇到类似的问题，就花了些时间，把组件提取出来，上传到了npm。</p>
+</blockquote>
+<h3 id="基本思路："><a href="#基本思路：" class="headerlink" title="基本思路："></a>基本思路：</h3><p>服务端提供接口，获取阿里云STS临时访问OSS的权限，初始化ossClient，调用oss的sdk进行上传。通过vue2.3重新引入的sync特性返回上传结果</p>
+<p>使用组件时，需要导入Css样式。自己不擅长写样式，写的比较挫，希望可以被改进，哈哈</p>
+<ul>
+<li>TODO: 上传的进度，等尚未实现，只有最终上传结果</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/"><img src="https://img.shields.io/badge/Vue-2.x-brightgreen.svg" alt="Vue 2.3.0+"></a></p>
+<p><a target="_blank" rel="noopener" href="https://nodei.co/npm/vue-oss-upload/"><img src="https://nodei.co/npm/vue-oss-upload.png?downloads=true&downloadRank=true&stars=true" alt="NPM"></a></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/fantasykai/vue-ossUpload">github 地址</a></li>
+</ul>
+<h1 id="vue-oss-upload"><a href="#vue-oss-upload" class="headerlink" title="vue-oss-upload"></a>vue-oss-upload</h1><h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><h3 id="需要依赖阿里云的oss的SDK-可以在index-html中引入"><a href="#需要依赖阿里云的oss的SDK-可以在index-html中引入" class="headerlink" title="需要依赖阿里云的oss的SDK,可以在index.html中引入"></a>需要依赖阿里云的oss的SDK,可以在index.html中引入</h3><p>  <code>&lt;script type=&quot;text/javascript&quot; src=&quot;https://gosspublic.alicdn.com/aliyun-oss-sdk.min.js&quot;&gt;&lt;/script&gt;</code></p>
+<h3 id="组件依赖vue2-3以上的版本"><a href="#组件依赖vue2-3以上的版本" class="headerlink" title="组件依赖vue2.3以上的版本"></a>组件依赖vue2.3以上的版本</h3><p>vue2.3 重新引入了 .sync 修饰符，但是这次它只是作为一个编译时的语法糖存在。它会被扩展为一个自动更新父组件属性的 v-on 侦听器。</p>
+<p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components.html#counter-event-example">.sync 修饰符</a></p>
+<h2 id="Use-Setup"><a href="#Use-Setup" class="headerlink" title="Use Setup"></a>Use Setup</h2><h3 id="Install-vue-oss-upload"><a href="#Install-vue-oss-upload" class="headerlink" title="Install vue-oss-upload"></a>Install vue-oss-upload</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-oss-upload --save</span><br></pre></td></tr></table></figure>
+
+<h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><pre><code> props: &#123;
+      // 需要引入阿里云OSS的SDK，并初始化ossClient
+      ossClient: &#123;
+        type: Object,
+        toWay: false
+      &#125;,
+      // 是非支持多文件上传
+      multiple: &#123;
+        type: Boolean,
+        twoWay: false
+      &#125;,
+      // 上传组件id，区别页面中多次使用上传组件
+      id: &#123;
+        type: String,
+        twoWay: false
+      &#125;,
+      // 上传成功后的uri
+      url: &#123;
+        type: String,
+        twoWay: true
+      &#125;,
+       // 上传结果
+      uploadRes: &#123;
+        type: Boolean,
+        twoWay: true
+      &#125;,
+      // 上传按钮的名称
+      inputName: &#123;
+        type: String,
+      &#125;,
+      // 上传文件的名称
+      uploadFileName: &#123;
+        type: String,
+      &#125;,
+      // 上传到OSS的路径
+      path: &#123;
+        type: String,
+      &#125;,
+    &#125;,
+</code></pre>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><pre><code>&lt;template&gt;
+    &lt;div&gt;
+        &lt;upload-ali-oss :url.sync=&quot;uploadForm.content.path&quot; :multiple=&quot;true&quot;
+                        :id=&quot;uploadForm.id&quot;
+                        :ossClient=&quot;this.ossClient&quot;
+                        :inputName=&quot;uploadForm.inputName&quot;
+                        :uploadFileName=&quot;uploadForm.uploadFileName&quot;
+                        :path=&quot;uploadForm.upload.path&quot;
+                        :uploadRes.sync=&quot;uploadForm.uploadRes&quot;
+        &gt;&lt;/upload-ali-oss&gt;
+        &lt;div v-show=&quot;uploadForm.uploadRes&quot;
+             v-text=&quot;uploadForm.content.path&quot;&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;img v-if=&quot;uploadForm.uploadRes&quot;
+                 :src=&quot;this.imgSrc&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+    import VueUploadAliOSS from &#39;vue-oss-upload&#39;;
+    import Css from &#39;vue-oss-upload/dist/vue-alioss-upload.min.css&#39;
+    export default &#123;
+        name: &#39;app&#39;,
+        components: &#123;
+            &#39;upload-ali-oss&#39;: VueUploadAliOSS
+        &#125;,
+        data() &#123;
+            return &#123;
+                ossClient: Object,
+                uploadForm: &#123;
+                    id: &#39;imgFile&#39;,
+                    inputName: &#39;上传图片&#39;,// 自定义
+                    uploadFileName: &#39;2017063010192023&#39;,// 上传文件的名称
+                    content: &#123;
+                        path: &#39;&#39;,
+                    &#125;,
+                    upload: &#123;
+                        path: &#39;img/test/&#39;,// 自定义路径
+                    &#125;,
+                    uploadRes: false,
+                &#125;,
+                imgSrc: &#39;&#39;
+            &#125;
+        &#125;,
+        methods: &#123;
+            // 需要引入阿里云的ossSDK
+            //初始化OSS 权限, 建议后台提供获取oss临时权限的接口
+            initOSSAuth() &#123;
+
+                let Oss = OSS.Wrapper;
+                this.ossClient = new Oss(&#123;
+                    region: &#39;&#39;,
+                    accessKeyId: &#39;&#39;,
+                    accessKeySecret: &#39;&#39;,
+                    stsToken: &#39;&#39;,
+                    bucket: &#39;&#39;,
+                    endpoint: &#39;&#39;,
+                &#125;);
+            &#125;,
+            // 展示上传的内容（图片）
+            showUploadContent() &#123;
+                if (this.uploadForm.content.path) &#123;
+
+                    let path = this.uploadForm.content.path;
+
+                    var result = this.ossClient.signatureUrl(path, &#123;
+                        response: &#123;
+                            // &#39;content-disposition&#39;: &#39;attachment; filename=&quot;&#39; + filename + &#39;&quot;&#39;
+                            &#39;Content-Type&#39;: &#39;image/jpeg&#39;
+                        &#125;
+                    &#125;);
+                    this.imgSrc = result;
+                &#125;
+            &#125;
+        &#125;,
+        watch: &#123;
+            &#39;uploadForm.content.path&#39; (val, oldVal) &#123;
+//                console.log(&#39;new: %s, old: %s&#39;, val, oldVal)
+                if (&#39;&#39; !== val) &#123;
+                    this.showUploadContent();
+                &#125;
+            &#125;
+        &#125;,
+        mounted() &#123;
+            this.initOSSAuth();
+        &#125;
+    &#125;
+&lt;/script&gt;
+&lt;style&gt;
+&lt;/style&gt;
+</code></pre>
+<h3 id="展示效果"><a href="#展示效果" class="headerlink" title="展示效果"></a>展示效果</h3><p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fgqi3miznuj20kj0l4k4f.jpg"></p>
+<h1 id="Author-Blog"><a href="#Author-Blog" class="headerlink" title="Author Blog"></a>Author Blog</h1><p><a target="_blank" rel="noopener" href="https://fantasykai.cc/">kai.fantasy</a></p>
+</div><div class="tags"><a href="/tags/js"><i class="fa fa-tag">js</i></a></div><div class="post-nav"><a class="pre" href="/posts/41861/">IDEA快捷键大全-Mac 版本</a><a class="next" href="/posts/7005/">理解WebAssembly</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/AI-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/">AI, 网络运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">36</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">117</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">72</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B7%91%E6%AD%A5/">跑步</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/PMO/" style="font-size: 15px;">PMO</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 15px;">人工智能</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">深度学习</a> <a href="/tags/Deepseek-%E8%87%AA%E6%99%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%90%A5%E5%95%86-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">Deepseek, 自智网络, 运营商, 网络运维</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 15px;">知识图谱</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%8A%80%E6%9C%AF%E8%B6%8B%E5%8A%BF-%E8%A1%8C%E4%B8%9A%E5%8A%A8%E6%80%81/" style="font-size: 15px;">人工智能, 技术趋势, 行业动态</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">运维</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/SDN/" style="font-size: 15px;">SDN</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a> <a href="/tags/%E9%A9%AC%E6%8B%89%E6%9D%BE/" style="font-size: 15px;">马拉松</a> <a href="/tags/%E5%81%A5%E5%BA%B7/" style="font-size: 15px;">健康</a> <a href="/tags/%E6%8A%A5%E5%91%8A%E5%88%86%E4%BA%AB/" style="font-size: 15px;">报告分享</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/" style="font-size: 15px;">技术小栈</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/63200/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63199/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63198/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/55960/">Deepseek 技术分析总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/17232/">3月份马拉松计划</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/16164/">2024年人工智能进展及展望</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/57547/">大模型概念总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/47183/">系统稳定性建设</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/24447/">实时通信的关键差异解析</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/5864/">LSTM详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a><ul></ul><a href="https://excalidraw.com/" title="excalidraw" target="_blank">excalidraw</a><ul></ul><a href="https://tudan.blog.csdn.net/?type=lately" title="王坦" target="_blank">王坦</a><ul></ul><a href="https://aspoem.com/zh-Hans" target="_blank"></a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">枫哲's文栖小筑.</a><a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn/">｜苏ICP备18013756号-1</a><!--a(rel='nofollow', target='_blank', href='https://github.com/tufu9441/maupassant-hexo')  Theme--><!--|  by--><!--a(rel='nofollow', target='_blank', href='https://github.com/pagecho')  Cho.--></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

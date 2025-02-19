@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>一篇文章读懂“中台”架构 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2bb92548008bd1f1f88213efd40c8dad';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">一篇文章读懂“中台”架构</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">一篇文章读懂“中台”架构</h1><div class="post-meta">2019-03-19<span> | </span><span class="category"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a></span></div><a class="disqus-comment-count" href="/posts/945/#vcomment"><span class="waline-comment-count" id="/posts/945/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E8%AF%BB%E6%87%82%E2%80%9C%E4%B8%AD%E5%8F%B0%E2%80%9D%E6%9E%B6%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">一篇文章读懂“中台”架构</span></a></li></ol></div></div><div class="post-content"><h1 id="一篇文章读懂“中台”架构"><a href="#一篇文章读懂“中台”架构" class="headerlink" title="一篇文章读懂“中台”架构"></a>一篇文章读懂“中台”架构</h1><p>转载来自微信公众号：  archstudy 架构思轩</p>
+<p><strong>中台是什么</strong></p>
+<p>企业互联网中台架构，简称<strong>中台</strong>，起源于阿里巴巴，不同的人对中台有不同解读。</p>
+<p>我认为，中台可定义为：中台是一套结合互联网技术和行业特性，将企业核心能力以共享服务中心进行沉淀，形成“大中台、小前台“的组织和业务机制，供企业快速低成本的进行业务创新的企业架构。</p>
+<p>中台的目的是 **“提供企业快速低成本创新的能力”，核心是 <strong>“构建企业共享服务中心”</strong>，过程是构建 <strong>“大中台、小前台“</strong> 组织和业务机制。</p>
+<p>其中，前台作为一线业务，更敏捷更快速适应市场，中台将整个企业的数字运营能力、产品技术能力，对各业务前台形成强力支撑。</p>
+<p><strong>阿里巴巴的中台架构</strong></p>
+<p><img src="http://p9.itc.cn/images03/20200526/93023c40ab584738931eae938d9cdca5.jpeg" alt="图片"></p>
+<p><em>阿里中台架构</em> </p>
+<p><em>from 钟华编著《企业IT架构转型之道：阿里巴巴中台战略思想与架构实战》图</em></p>
+<p>上图可以看出，阿里巴巴有超过数十个业务单元（如淘宝、天猫、聚划算、菜鸟）均不是独立构建在阿里云之上，在后端阿里云技术平台和前端业务之间有“共享业务事业部“，将业务中公共、通用的业务沉淀下来，包括用户中心、商品中心、交易中心、评价中心等十几个共享单元，是“厚平台的真正实现“。</p>
+<p>而后端的阿里云提供资源和中间件云服务能力做载体。同时，使用集团近十年的双11、双12的高可靠、可稳定的运维保障能力，对整个系统进行支撑。</p>
+<p>中台的使命是从下到上逐步完善阿里的整个体系，从阿里云、数据、中间件、算法，到上面支撑的各种业务解决方案，构建阿里自己核心的能力。</p>
+<p><strong>中台在阿里巴巴的诞生</strong></p>
+<p>在淘宝初期，主要面向C2C的电商领域，整个系统都是围绕一套“烟囱式”的淘宝技术框架进行。随着业务的不断扩张，集团成立出天猫事业部主抓B2C电商领域，又形成了一套烟囱式发展。</p>
+<p>这种烟囱式的架构体系带来了诸多不足，比如成本的重复投入和维护、数据之间打通复用的难度、几年之后推到重建的风险。</p>
+<p>为了解决这些问题，集团开始构建<strong>共享服务中心体系</strong>，来沉淀和服用业务能力，但是由于没有过多的业务话语权，共享服务体系的建设一开始并不顺利。 </p>
+<p>之后，随着“聚划算”团购项目的启动，各种系统的流量都需要通过聚划算，这时，共享服务中心得以大展手脚，逐步将集团核心的业务能力构建成<strong>用户中心、商品中心、交易中心、评价中心、店铺中心</strong>等等数十个共享服务。</p>
+<p>可以说整个阿里中台的革命也是共享服务中心的革命，各共享服务中心聚焦核心业务单元能力的构建，协助目前集团上百个前台业务的快速创新。</p>
+<p>这里需要强调一下，中台是<strong>去中心化</strong>的，而共享服务中心正是一个个解耦的服务模块，这里的中心有一些特点：</p>
+<ol>
+<li>共享中心以共享<strong>业务+数据</strong>能力为主，比如领域服务层+API接口</li>
+</ol>
+<ul>
+<li>共享中心的目的是沉淀传统行业业务和数据能力，并<strong>开放出去</strong></li>
+<li>共享中心是中台的重要部分，目的是实现前端应用和后台的<strong>彻底解耦</strong></li>
+</ul>
+<p><strong>中台的好处</strong></p>
+<p>没有中台前，企业的<strong>痛点</strong>体现在：</p>
+<p><strong>复杂</strong>：系统庞大、逻辑复杂 （学习理解成本高，每人了解系统全貌，最懂的是程序员，需要翻代码才能知道具体逻辑）</p>
+<p><strong>重复</strong>：系统差异性大、标准不一 （同样的需求在不同系统重复造轮子，对于一个通用功能，没人说清楚是否有，或知道但现有的够不够支持）</p>
+<p><strong>沟通成本高</strong>：团队多，跨部门的沟通多（无用的拉通对齐会太多，沟通需求和信息获取成本极高）</p>
+<p>中台就是为了让企业进行核心能力的<strong>沉淀</strong>，更给予我们快速创新的<strong>机会</strong>，具体包括：</p>
+<p><strong>1、中台赋予业务快速创新和试错能力</strong></p>
+<p>企业可以聚焦核心共享服务的建设，提高服务的重用。</p>
+<p><strong>2、打造数字化运营能力</strong></p>
+<p>中台有助于业务通过共享核心能力的沉淀，进行数字化运营。通过对中心核心数据的分析，更加精确地对业务进行调整和优化，全方位动态调整资源利用。</p>
+<p><strong>3、改变组织阵型带来组织效能提升</strong></p>
+<p>中台的变化也是组织阵型的变化。一方面，对于公司，中台侧重的是跨部门跨团队的深入合作。另一方面，对于个人，中台推荐的是类微服务的小而精团队，员工从事多种岗位，对全局和整体有更深入的锻炼。</p>
+<p><strong>中台是平台化的自然演进</strong></p>
+<p><img src="https://img1.baidu.com/it/u=1775402040,4133540010&fm=253&fmt=auto&app=138&f=PNG?w=674&h=333" alt="图片"></p>
+<p>这里比较一下中心化、平台化、中台化。</p>
+<p>中心化类似烟囱式架构，一个中心解决整个技术堆栈。</p>
+<p>平台的目标为高内聚、低耦合、职责边界清晰，是单一团队、部门、系统的效率提升。</p>
+<p>中台的目标是提升效能、数据化运营、更好支持业务发展和创新，是<strong>多领域、多BU、多系统的负责协同</strong>。</p>
+<p>中台是平台的自然演进：这种演进带来“去中心化“的组织模式，突出对<strong>能力复用、协调控制的能力</strong>，以及业务创新的差异化构建能力。</p>
+<p><strong>企业中台化转型</strong></p>
+<p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic4.zhimg.com%2F80%2Fv2-60d6ae21eb72c390ea7fa74a3b8f955b_1440w.jpg&refer=http%3A%2F%2Fpic4.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1669873642&t=90c9dc8d95deb7e65fd891c37b80d3d0" alt="图片"></p>
+<p>传统企业应用中台战略进行互联网化转型，主要需要关注以下6点。</p>
+<p><strong>1、尽可能拆分，共享中心建设</strong></p>
+<p>企业应该尽可能地拆分自己的应用，进行共享服务中心的建设，将核心的业务能力复用和沉淀。</p>
+<p>共享中心的拆分要注意层次。</p>
+<p>首先，可以从<strong>基础主数据和核心共享数据</strong>出发去定义中心，例如客户中心，订单中心，所有功能目的都是围绕客户或订单数据本身。</p>
+<p>第二，可以围绕<strong>核心业务展开进行中心的定义</strong>，比如交易中心，人事共享服务中心，这种中心的强调核心业务能力，而不是针对某特定数据。</p>
+<p>另外，可以以<strong>核心业务规则和逻辑构建的中心</strong>，比如包调度中心，规则中心等，这些都是实现核心业务逻辑处理为主的中心。</p>
+<p><strong>2、去中心化，线性扩展</strong></p>
+<p>企业需要采用去中心化架构，<strong>没有核心流量汇入点，服务中心尽量无状态</strong>，便于水平扩展。这样平均分担压力，负载均衡，对单个中心带来的负载更小，故障影响的范围也更小。</p>
+<p>同时，也要求我们的数据服务也要进行<strong>分布式改造</strong>，使用<strong>分库分表，读写分离</strong>的思想，便于根据实际情况扩索容。</p>
+<p><strong>3、数据化运营</strong></p>
+<p>当然，去中心化也会面对系统运维和管理成本上升的问题。企业需要对自身的运维运营过程进行积累和沉淀，整理出数据化、<strong>自动化运维</strong>的经验，同时增强<strong>监控告警、限流降级、性能分析诊断</strong>等方面的能力，精准定位目前系统中存在的问题，并提出相应的改善方案。</p>
+<p>另外，数据是企业最宝贵的财富，企业可以通过各中心的数据，今而挖掘新的业务机会，快速创新。</p>
+<p><strong>4、异步化，最终一致</strong></p>
+<p>在大量的实践中，大部分业务流程不需要强一致性，而使用最终一致来平衡。</p>
+<p>我们需要使用<strong>异步解耦</strong>，如使用<strong>消息队列</strong>来完成业务逻辑，缩短相应周期。</p>
+<p>以双11为例，一个交易需要200多个系统，假设每个系统需要10毫秒，再加上一些网络和前端延迟，总时长将超过3秒。而在互联网领域，3秒的RT会造成大量的用户流失。使用异步化，缩短服务主链路可以大大缓解这一问题。</p>
+<p><strong>5、尽可能自动化</strong></p>
+<p>企业进行中台改造，会面临很多机器来负载业务，要求企业尽可能提高自动化能力，比如<strong>自动部署、自动弹性扩容、自动升降级、自动限流降级</strong>，降低运营成本，也提高系统的稳定性和业务连续性。比如消息队列中以自动化的形式实现系统的秒级切换和快速恢复，对应用几乎没有影响。</p>
+<p><strong>6、尽可能使用成熟组件</strong></p>
+<p>中台的建设要求企业将重心放在服务中心上，对于底层组件，尤其是中间件层面，尽量使用成熟的组件来提高系统稳定性和性能。</p>
+<p>目前，阿里巴巴中间件已经将多年经双十一购物狂欢节的严苛考验的技术沉淀，以阿里云标准云服务的方式输出给外部客户，其中包括多款阿里云中间件产品（比如EDAS&#x2F;MQ&#x2F;DRDS&#x2F;ARMS&#x2F;PTS），并提供全方位的互联网化转型的架构咨询、技术支持、交付培训等服务。并不仅仅是技术红利的分享，更重要的是整个阿里中台战略思想的传播。</p>
+<p><strong>Takeaways</strong></p>
+<ul>
+<li><p>中台可以帮助传统企业将企业核心能力<strong>以共享服务形式沉淀，供企业快速低成本的进行业务创新</strong>的企业架构。</p>
+</li>
+<li><p><strong>中台是平台化的自然演进</strong>，是一种体系&#x2F;生态&#x2F;方法论。</p>
+</li>
+<li><p>中台的目的是“<strong>提供企业快速低成本创新的能力</strong>”。中台的核心是“<strong>构建企业共享服务中心</strong>”。</p>
+</li>
+<li><p>企业中台化转型中，需要关注<strong>拆分&#x2F;去中心化&#x2F;数字化&#x2F;异步化&#x2F;自动化&#x2F;成熟组件</strong>等方面。</p>
+</li>
+</ul>
+<p><strong>Reference</strong></p>
+<p>《企业IT架构转型之道：阿里巴巴中台战略思想与架构实战》— 钟华</p>
+<p><a target="_blank" rel="noopener" href="http://www.open-open.com/news/view/1f1f312">http://www.open-open.com/news/view/1f1f312</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.sohu.com/a/166699898_413980">http://www.sohu.com/a/166699898_413980</a></p>
+<p>作者简介</p>
+<p><strong>王思轩</strong>，计算机专业博士，阿里巴巴中间件技术架构师。</p>
+<p>获得加拿大卡尔顿大学计算机博士学位，并获得法国波尔多大学和哈尔滨工业大学双硕士，哈尔滨工业大学本科，发表过10余篇国际学术论文。多年从事于云计算和系统架构设计工作，曾就职于华为，Qlik，Honeywell。现就职于阿里，花名宇升，负责并参与Aliware云产品重点项目的设计和交付，以及企业互联网架构的咨询培训工作。</p>
+</div><div class="tags"><a href="/tags/架构"><i class="fa fa-tag">架构</i></a></div><div class="post-nav"><a class="pre" href="/posts/35166/">Java12 新特性</a><a class="next" href="/posts/13203/">技能，管理，创新随笔总结</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/AI-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/">AI, 网络运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">36</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">117</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">72</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B7%91%E6%AD%A5/">跑步</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/PMO/" style="font-size: 15px;">PMO</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 15px;">人工智能</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">深度学习</a> <a href="/tags/Deepseek-%E8%87%AA%E6%99%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%90%A5%E5%95%86-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">Deepseek, 自智网络, 运营商, 网络运维</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 15px;">知识图谱</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%8A%80%E6%9C%AF%E8%B6%8B%E5%8A%BF-%E8%A1%8C%E4%B8%9A%E5%8A%A8%E6%80%81/" style="font-size: 15px;">人工智能, 技术趋势, 行业动态</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">运维</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/SDN/" style="font-size: 15px;">SDN</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a> <a href="/tags/%E9%A9%AC%E6%8B%89%E6%9D%BE/" style="font-size: 15px;">马拉松</a> <a href="/tags/%E5%81%A5%E5%BA%B7/" style="font-size: 15px;">健康</a> <a href="/tags/%E6%8A%A5%E5%91%8A%E5%88%86%E4%BA%AB/" style="font-size: 15px;">报告分享</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/" style="font-size: 15px;">技术小栈</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/63200/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63199/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63198/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/55960/">Deepseek 技术分析总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/17232/">3月份马拉松计划</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/16164/">2024年人工智能进展及展望</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/57547/">大模型概念总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/47183/">系统稳定性建设</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/24447/">实时通信的关键差异解析</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/5864/">LSTM详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a><ul></ul><a href="https://excalidraw.com/" title="excalidraw" target="_blank">excalidraw</a><ul></ul><a href="https://tudan.blog.csdn.net/?type=lately" title="王坦" target="_blank">王坦</a><ul></ul><a href="https://aspoem.com/zh-Hans" target="_blank"></a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">枫哲's文栖小筑.</a><a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn/">｜苏ICP备18013756号-1</a><!--a(rel='nofollow', target='_blank', href='https://github.com/tufu9441/maupassant-hexo')  Theme--><!--|  by--><!--a(rel='nofollow', target='_blank', href='https://github.com/pagecho')  Cho.--></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

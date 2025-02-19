@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>云端研发新基建：Serverless 与持续架构服务落地实践 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2bb92548008bd1f1f88213efd40c8dad';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">云端研发新基建：Serverless 与持续架构服务落地实践</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">云端研发新基建：Serverless 与持续架构服务落地实践</h1><div class="post-meta">2020-06-09<span> | </span><span class="category"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a></span></div><a class="disqus-comment-count" href="/posts/25683/#vcomment"><span class="waline-comment-count" id="/posts/25683/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div></div></div><div class="post-content"><p><strong>云时代创新核心要素</strong></p>
+<p>首先，让我们快速将视野放大到社会商业爆炸式增长的云时代，无论是创业公司还是发展中的公司，都希望能有一个低成本、可持续支撑的架构服务，帮助自己的业务持续发展，用户流量从小到大，无需变更架构，更不用中断业务。</p>
+<p>这种架构服务诉求背后的核心痛点体现在业务快速试错与流量快速增长之间的矛盾。如果从传统的架构方式去思考，这个问题很难调和：</p>
+<ul>
+<li>如果要快速奔跑，就没有时间好好思考设计架构。</li>
+<li>如果架构设计不好，就无法支撑未来巨大的流量。</li>
+<li>而如果花时间把架构设计好再动手，就没办法快速奔跑，很可能错过一个商业创新的时间窗口。</li>
+<li>另外，还有一个未知的疑问，这个设计好的架构真的够好么？</li>
+</ul>
+<p>结合我们之前的探索实践，我们知道，借助云原生 Serverless 的能力：实时弹性、按量付费，正好可以帮助我们把上述问题提升到一个新的维度去解决：业务完全可以放飞自我快速奔跑，架构服务由云原生 Serverless 矩阵来提供，保证流量再大也不怕。</p>
+<p><strong>中小研发生态现状</strong></p>
+<p>基于上述的一个判断，我们认为，现代商业社会的启动过程：从一个 idea 的诞生，到快速试错，再到上线服务用户的过程，有了一个很好的方案去支撑。但是，就像布道师们经常讲的一句话，人人都在谈云原生 Serverless，实际上并不是人人都知道怎么落地 Serverless。我们不妨来看几个真实的创业公司案例。</p>
+<p><strong>案例一 天猫精灵技能业务</strong></p>
+<p>天猫精灵的技能应用开发本身与天猫精灵开发者平台之前的连接较为松散，技能应用的开发对于一个中小开发者而言，启动成本较高。开发技能应用过程中的技术栈和方案也因人而异，因团队而异，也由于广大的开发者对技能应用背后的大流量没有一个一致的高水位保障，使得天猫精灵平台在做推广的时候也经常遇到阻力，担心在推广之后，很多技能无法承载大量涌入的活动流量，反而影响活动效果。</p>
+<p><strong>案例二 某直播互动健身创业公司</strong></p>
+<p>Y 公司是一家面对面直播互动健身的创业公司，研发团队的构成有 2 个前端、2 个后端、1 个架构师、1 个 iOS、1 个产品经理、1 个设计师，产品的构成有微信小程序、iOS APP、Android APP、PC 端 WEB 应用。</p>
+<p>当前的核心痛点及诉求：</p>
+<ul>
+<li><p>研发成本、架构人员的浪费（这已经算是幸福的烦恼了，很多公司是找不到合格的架构师的）。</p>
+</li>
+<li><p>新人落地的成本（每个新人都有 3 个月的熟悉环境、流程、业务的成本）。</p>
+</li>
+<li><p>自研自建业务架构的成本，要等业务架构确定后才能动手。</p>
+</li>
+<li><p>业务线切换的沉默成本比较高，如新业务启动到上线：技术架构的选型、服务的复用等等都是损耗。</p>
+</li>
+<li><p>运维成本，如：承接推活动来的高峰流量以及平时流量的平均成本。</p>
+</li>
+</ul>
+<p><strong>案例三 某软件外包服务商</strong></p>
+<p>O 公司是一家 base 杭州的软件外包服务商，他们的研发团队构成为：5 个 Java、4 个前端、1 个 iOS、1 个 Android、1 个产品经理、2 个测试、5 个商务、6 个品牌、2 个 UI 设计；</p>
+<p>当前的核心痛点及诉求：</p>
+<ul>
+<li><p>10 人以下规模来什么做什么，没有沉淀，没有办法复用，没有高的盈利回报，人都铺在业务上，没时间学习架构，进入了一个恶性循环，需要一个很低的成本去采用一个先进的技术架构方案，确保不落伍，同时可以继续聚焦业务开发；有了可复用的空间（如架构、组件、服务）才有盈利的空间。10 人以下的外包公司，CTO 是不太可能去招的，40 万一年的话，公司一半的利润就没了。</p>
+</li>
+<li><p>想依托于云，不过每家云厂商都产品众多，围绕自己的业务怎么知道有哪些产品适合，要一个个去挑选、学习，整体成本太高。</p>
+</li>
+</ul>
+<p><strong>核心要解决的问题以及产品化思考</strong></p>
+<p>我们将上述调研的客户反馈诉求进行梳理，可以归纳出以下几点诉求：</p>
+<ul>
+<li><p>人员、业务尽可能做到快速启动，低成本启动。开发人员能够快速进入业务开发，架构师能省就省，业务能够基于行业现有解决方案、基本业务架构、业务模块尽快启动。</p>
+</li>
+<li><p>开发人员的时间尽可能投入到业务开发中，但同时要保证业务所用技术架构的先进性：一个人的时间是恒定的，如何帮助中小企业把人员投入业务的时间从 60% 提高到 99%，同时还能确保业务背后所用的技术栈及技术架构是行业内广受认可的。</p>
+</li>
+<li><p>线上业务能够做到按量付费：1、业务的流量高峰不会成为业务增长的瓶颈；2、类似于外包服务商&#x2F;ISV，可以为他们的客户灵活制定弹性的服务体系。</p>
+</li>
+</ul>
+<p>基于以上三点，我们进一步抽象用户群体以及场景和服务策略：</p>
+<p><strong>主要用户群体</strong></p>
+<ol>
+<li>中小体量研发团队及创业公司研发团队</li>
+<li>要做开发生态的业务或平台</li>
+<li>行业软件&#x2F;解决方案 ISV&#x2F;服务商</li>
+</ol>
+<p><strong>场景和服务策略</strong></p>
+<p>在快速商业化试错的创新创业场景下，通过集成设计以阿里云 Serverless 产品线为矩阵的业务架构，帮助用户快速迭代业务，同时保证业务上线后无需变更架构就可以持续支撑不断增长的流量，确保业务不中断，提高试错效率，降低试错成本。</p>
+<p>在研发人员需要支持多业务线切换调度的场景下，通过集成云效研发协同底座的能力构建在线研发团队，通过设计解决方案实例化的能力构建统一应用开发环境，降低开发者在业务切换中的沉默成本，让开发者可以快速且专注地进入业务逻辑的开发，提高研发效率。</p>
+<p>在需要快速启动业务的场景下，通过构建三套业务环境，帮助用户实现环境在线，降低环境准备的时间成本与投入成本。</p>
+<p>为研发团队提供一种将应用开发方法和结果抽象成标准的格式化的解决方案的能力，用该解决方案统一快速地教育开发者。</p>
+<p>定义了用户群体、问题、场景以及服务策略之后，我们开始尝试去定义这个产品：我们要去打造一个全云端研发工作的平台，以业务、研发任务为用户界面，用户对云产品的感知尽量保持并限制在必要的情况之下，但是平台要在背后为他们提供一系列先进的云原生 Serverless 架构服务，同时，具备让用户的团队、环境、代码、协同等等实现在线的能力，帮助目标用户群体省钱、省时、可持续发展。</p>
+<p><strong>核心技术方案</strong></p>
+<p>作为一个面向用户业务视角而非云产品或任何单项研发能力视角的设计，背后就必不可少的要跟非常多的系统、产品、能力进行集成；并且，要达成与用户业务视角的关联，又需要额外设计一套核心应用模型去支撑。这里，我们通过两个架构设计，向大家阐述我们的实现思路与方式。</p>
+<p>系统集成架构</p>
+<p><img src="https://aimak.cn/blog_img/sys/system_jicheng.png"></p>
+<p>认同在线协同是大趋势。我们把自己定义为大协同领域的一环，最好能够依托于一个更具全局性的团队在线协同底座去建设，我们与云效合作共建，基于一个共同的团队模型以及数据去设计实现不同的领域能力。</p>
+<p>原子研发能力分布广泛，以代码为主线进行串联设计，在开发者用户路径中，我们与 Codeup、Flow 等产品进行集成，与经济体共建 IDE 集成，共同推出 CloudIDE，为开发者提供从云上代码托管到云上研发，再到云上 CICD 的一站式服务。</p>
+<p>解决方案实例化架构</p>
+<p>用技术语言来描述的话，可以把解决方案实例化架构核心要解决的问题理解成将一个行业应用的开发经验进行 “序列化” 与 “反序列化” 的过程。</p>
+<p>我们与 OAM 团队合作，以 OAM 为规范，对构成一个行业应用的研发环境以及依赖资源进行格式化、规范化的描述，生成一个云开发平台所能理解和认识的解决方案，这是“序列化”的过程。</p>
+<p>当云开发平台去解析一个解决方案，核心会做两件事情，一是分析和生成一个基于阿里云产品矩阵构成的云原生 Serverless 架构，另一件事情是将依赖的资源做打包上传等预处理；然后开始生成任务，逐一进行生产、创建、安装，直至一个行业应用被初始化完成，这是“反序列化”的过程。</p>
+<p>通过这种设计，我们实现了云开发平台最为核心的能力：</p>
+<ol>
+<li>帮助行业开发生态格式化、规范化地沉淀经验。</li>
+<li>帮助行业开发生态快速分发、复制行业应用开发经验。</li>
+<li>帮助行业开发生态无缝升级至先进的云原生 Serverless 架构。</li>
+</ol>
+<p><strong>阿里云云开发平台正式上线服务</strong></p>
+<p>2020 年 4 月 23 日，阿里云云开发平台联合天猫精灵智能应用平台共同发布，上线云开发服务功能；2020 年 4 月 28 日，阿里云云开发平台联合阿里前端委员会 Serverless 小组，共同发布基于 Ali Midway FaaS 框架的前后端一体通用 NodeJS 解决方案。2020年5月28日，与阿里巴巴云原生团队合作推出基于 SpringCloud、MSE 的微服务应用开发解决方案，轻松将微服务开发并部署在 Serverless 平台之上，帮助开发者以 0 启动成本、基于云原生 Serverless 架构服务，3 分钟极致效率，完成一个标准技能应用的创建和部署。</p>
+<p>在 Roadmap 中，还有微服务、小程序、大数据等场景解决方案将陆续上线。</p>
+<p>感受云开发平台的极致特性</p>
+<p><strong>1 个开发界面</strong></p>
+<ul>
+<li>打开浏览器就能开发</li>
+<li>不管你用什么设备，电脑、手机、平板</li>
+<li>不管是什么操作系统，Windows、MacOS、Linux、Android、iOS</li>
+</ul>
+<p><strong>1 套统一的业务环境</strong></p>
+<ul>
+<li>统一的云上开发和业务环境（支持 NodeJS，Java，PhP，Python, C# 等主流语言）</li>
+<li>登录即完成配置，无需等待，专注业务创新</li>
+<li>远程协同开发、所测即所得、测完即上线</li>
+</ul>
+<p><strong>1 个领先的架构</strong></p>
+<ul>
+<li>基于业界领先的 Serverless 架构</li>
+<li>最快 1 秒钟部署</li>
+<li>按量付费不浪费，自动扩容不宕机</li>
+</ul>
+<p><strong>N 个行业应用场景</strong></p>
+<ul>
+<li>解决方案模版化</li>
+<li>最快 3 分钟上线一个行业应用（通用 WEB 应用，AIoT 应用，微服务应用等等）</li>
+<li>99% 时间聚焦在业务，开发更专注</li>
+</ul>
+<p>了解云开发平台的运作方式</p>
+<p>云开发平台是一个可以满足开发者、研发团队完全基于「云+浏览器」就能完成日常开发工作的环境。它的设计理念是使自己成为团队大协同中的一环，它会跟阿里云诸多研发能力和工具进行集成，比如：云效企业协同底座、CloudIDE、Codeup、Flow 等等，籍由强大的阿里研发生态，为用户提供更大的协同研发可能，用户可以在使用云开发平台的时候，根据业务的需要，主动选择去开通使用更多类似于项目管理、需求管理、文档管理等其他服务。</p>
+<p>同时，为了帮助用户提供一个无缝应用阿里云服务的环境，云开发平台会跟阿里云的诸多云产品进行集成，随时为用户的使用而准备；用户可以在云开发平台创建基于各种场景解决方案的应用，并为每个应用选用不同的云服务，这些云服务会开通在用户的阿里云主账号之下，用户主动开通的各种云资源会按照用户的使用，正常地计量计费。</p>
+<p>云开发平台鼓励所有的场景解决方案尽可能多的基于阿里云的 Serverless 类型产品去提供服务。Serverless 类型的产品都具有实时弹性以及按量付费的特征，这可以帮助到商业化研发团队，以尽可能低的成本去实现自己的商业价值。</p>
+<p><strong>云开发平台具体如何真实地帮到目标用户群体</strong></p>
+<p>云开发平台如何帮助用户实现线上轻量化团队协同？</p>
+<p>我们联合云效，共同构建了一个在线研发团队的能力，团队规模从 1-10 人 到 1000 人以上，全都免费提供，助力企业快速成长！</p>
+<p>1 分钟完成研发团队的在线化：在云开发平台，团队管理者创建好自己的企业，然后创建一批子账号分配给每一个团队成员，团队即完成了在线化。</p>
+<p>如果用户企业内已经有一套域账号系统，那么通过对接阿里云 SP 的 SAML 配置之后，能够方便实现用域账号的 SSO。</p>
+<p>如果团队并非组织关系型怎么办呢？在云开发平台，团队管理者创建好自己的企业，然后复制邀请链接，发送给那些并非组织关系里的成员，收到邀请的成员确认加入团队即完成团队的在线化。</p>
+<p>云开发平台如何帮助用户实现业务的快速启动呢？</p>
+<p>团队在线之后就要开始启动业务。</p>
+<p><strong>新业务秒级启动</strong></p>
+<p>在云开发平台，团队管理员可以从应用场景中，选择一个成熟的行业应用解决方案，秒级完成应用的创建。</p>
+<p><strong>业务开发人员直接进入业务开发，100% focus 在业务的开发交付</strong></p>
+<p>在云工作台，我们优化了以往传统线下研发模式中人人需要配置开发环境的弊端，将人人要做的事情，交由应用管理员一人执行，业务开发者登录云开发平台即开始业务开发。</p>
+<p>云开发平台如何帮助用户实现研发环境的升级呢？</p>
+<p>团队在线了，应用在线了，还剩下的环节就是代码和研发过程。</p>
+<p><strong>安全可靠且免费的代码托管服务</strong></p>
+<p>云开发平台联合阿里云 Codeup，在云开发平台创建的每一个应用，都会自动分配一个免费的代码仓库，为用户提供安全可靠且免费的代码托管服务，帮助用户实现代码在线。</p>
+<p><strong>功能强大的云端开发环境</strong></p>
+<p>云开发平台联合阿里经济体共建团队推出自研 CloudIDE，为用户提供功能强大，兼容 VS Code 插件生态的云端开发环境，内置 NodeJS，Java，PhP，Python，C# 等主流语言开发环境，开箱即用，体验媲美本地；当然，开发者也可以选择将代码克隆到本地，继续以个人偏好的开发习惯进行开发，之后随时将代码同步到云端，做到云端与本地的实时同步。</p>
+<p><strong>业界领先的 Serverless 架构</strong></p>
+<p>在每一个应用的背后，都有强大的阿里云 Serverless 产品矩阵构成的架构服务在支撑，API Gateway+Function Compute 组合、VPC+ECI+EIP 组合等等，保障每一个应用上线，都能稳稳地支撑，轻松助力用户不断攀登新的业绩高峰。</p>
+<p><strong>0 成本启动</strong></p>
+<p>基于强大的云开发平台服务以及阿里云 Serverless 架构矩阵，我们帮用户把 Serverless 如丝般顺滑落地到他们的业务之中，大胆开发，放心试错，无需为云开发平台支付任何费用。</p>
+<p><strong>回顾</strong></p>
+<p>在这次突如其来的疫情期间，所有人都隔离在家，也许千人规模的企业能够有内部的强大 IT 系统做支撑，整个企业仍然可以进行远程异地运转，但是对于广大的初创及成长中的企业，这种能力无疑是稀缺的，而在线，可能是未来的一个趋势和常态。今天，随着阿里云云开发平台服务的上线，我们可以真正帮助到这些企业，通过用户业务视角、用户研发界面、提供云计算的开箱即用，去释放云上研发，Serverless 架构的技术红利，推动云计算的普惠价值！</p>
+</div><div class="tags"><a href="/tags/架构"><i class="fa fa-tag">架构</i></a></div><div class="post-nav"><a class="pre" href="/posts/58960/">Redis中设置了过期时间的Key，需要注意哪些问题</a><a class="next" href="/posts/60305/">GraphQL 是真的香</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/AI-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/">AI, 网络运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">36</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">117</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">72</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B7%91%E6%AD%A5/">跑步</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/PMO/" style="font-size: 15px;">PMO</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 15px;">人工智能</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">深度学习</a> <a href="/tags/Deepseek-%E8%87%AA%E6%99%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%90%A5%E5%95%86-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">Deepseek, 自智网络, 运营商, 网络运维</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 15px;">知识图谱</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%8A%80%E6%9C%AF%E8%B6%8B%E5%8A%BF-%E8%A1%8C%E4%B8%9A%E5%8A%A8%E6%80%81/" style="font-size: 15px;">人工智能, 技术趋势, 行业动态</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">运维</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/SDN/" style="font-size: 15px;">SDN</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a> <a href="/tags/%E9%A9%AC%E6%8B%89%E6%9D%BE/" style="font-size: 15px;">马拉松</a> <a href="/tags/%E5%81%A5%E5%BA%B7/" style="font-size: 15px;">健康</a> <a href="/tags/%E6%8A%A5%E5%91%8A%E5%88%86%E4%BA%AB/" style="font-size: 15px;">报告分享</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/" style="font-size: 15px;">技术小栈</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/63200/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63199/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63198/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/55960/">Deepseek 技术分析总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/17232/">3月份马拉松计划</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/16164/">2024年人工智能进展及展望</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/57547/">大模型概念总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/47183/">系统稳定性建设</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/24447/">实时通信的关键差异解析</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/5864/">LSTM详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a><ul></ul><a href="https://excalidraw.com/" title="excalidraw" target="_blank">excalidraw</a><ul></ul><a href="https://tudan.blog.csdn.net/?type=lately" title="王坦" target="_blank">王坦</a><ul></ul><a href="https://aspoem.com/zh-Hans" target="_blank"></a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">枫哲's文栖小筑.</a><a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn/">｜苏ICP备18013756号-1</a><!--a(rel='nofollow', target='_blank', href='https://github.com/tufu9441/maupassant-hexo')  Theme--><!--|  by--><!--a(rel='nofollow', target='_blank', href='https://github.com/pagecho')  Cho.--></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

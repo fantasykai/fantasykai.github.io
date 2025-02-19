@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>java性能优化 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2bb92548008bd1f1f88213efd40c8dad';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">java性能优化</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">java性能优化</h1><div class="post-meta">2017-12-17<span> | </span><span class="category"><a href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a></span></div><a class="disqus-comment-count" href="/posts/8312/#vcomment"><span class="waline-comment-count" id="/posts/8312/"></span><span> 条评论</span></a><div class="post-content"><p>你是否正打算优化hashCode()方法？是否想要绕开正则表达式？Lukas Eder介绍了很多简单方便的性能优化小贴士以及扩展程序性能的技巧。</p>
+<p>最近“全网域（Web Scale）”一词被炒得火热，人们也正在通过扩展他们的应用程序架构来使他们的系统变得更加“全网域”。但是究竟什么是全网域？或者说如何确保全网域？</p>
+<h2 id="扩展的不同方面"><a href="#扩展的不同方面" class="headerlink" title="扩展的不同方面"></a>扩展的不同方面</h2><p>全网域被炒作的最多的是扩展负载（Scaling load），比如支持单个用户访问的系统也可以支持10 个、100个、甚至100万个用户访问。在理想情况下，我们的系统应该保持尽可能的“无状态化（stateless）”。即使必须存在状态，也可以在网络的不同处理终端上转化并进行传输。当负载成为瓶颈时候，可能就不会出现延迟。所以对于单个请求来说，耗费50到100毫秒也是可以接受的。这就是所谓的横向扩展（Scaling out）。</p>
+<p>扩展在全网域优化中的表现则完全不同，比如确保成功处理一条数据的算法也可成功处理10条、100条甚至100万条数据。无论这种度量类型是是否可行，事件复杂度（大O符号）是最佳描述。延迟是性能扩展杀手。你会想尽办法将所有的运算处理在同一台机器上进行。这就是所谓的纵向扩展（Scaling up）。</p>
+<p>如果天上能掉馅饼的话（当然这是不可能的），我们或许能把横向扩展和纵向扩展组合起来。但是，今天我们只打算介绍下面几条提升效率的简单方法。</p>
+<h2 id="大O符号"><a href="#大O符号" class="headerlink" title="大O符号"></a>大O符号</h2><p>Java 7的 ForkJoinPool 和Java8 的并行数据流（parallel Stream） 都对并行处理有所帮助。当在多核处理器上部署Java程序时表现尤为明显，因所有的处理器都可以访问相同的内存。</p>
+<p>所以，这种并行处理较之在跨网络的不同机器上进行扩展，根本的好处是几乎可以完全消除延迟。</p>
+<p>但不要被并行处理的效果所迷惑！请谨记下面两点：</p>
+<ul>
+<li>并行处理会吃光处理器资源。并行处理为批处理带来了极大的好处，但同时也是非同步服务器（如HTTP）的噩梦。有很多原因可以解释，为什么在过去的几十年中我们一直在使用单线程的Servlet模型。并行处理仅在纵向扩展时才能带来实际的好处。</li>
+<li>并行处理对算法复杂度没有影响。如果你的算法的时间复杂度为 O(nlogn)，让算法在 c 个处理器上运行，事件复杂度仍然为 O(nlogn&#x2F;c)， 因为 c 只是算法中的一个无关紧要的常量。你节省的仅仅是时钟时间（wall-clock time），实际的算法复杂度并没有降低。</li>
+</ul>
+<p>降低算法复杂度毫无疑问是改善性能最行之有效的办法。比如对于一个 HashMap 实例的 lookup() 方法来说，事件复杂度 O(1) 或者空间复杂度 O(1) 是最快的。但这种情况往往是不可能的，更别提轻易地实现。</p>
+<p>如果你不能降低算法的复杂度，也可以通过找到算法中的关键点并加以改善的方法，来起到改善性能的作用。假设我们有下面这样的算法示意图：</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fnyolwd0qhj20a209ajrn.jpg"></p>
+<p>该算法的整体时间复杂度为 O(N3)，如果按照单独访问顺序计算也可得出复杂度为 O(N x O x P)。但是不管怎样，在我们分析这段代码时会发现一些奇怪的场景：</p>
+<ul>
+<li>在开发环境中，通过测试数据可以看到：左分支（N-&gt;M-&gt;Heavy operation）的时间复杂度 M 的值要大于右边的 O 和 P，所以在我们的分析器中仅仅看到了左分支。</li>
+<li>在生产环境中，你的维护团队可能会通过 AppDynamics、DynaTrace 或其它小工具发现，真正导致问题的罪魁祸首是右分支（N -&gt; O -&gt; P -&gt; Easy operation or also *N.O.P.E.*）。</li>
+</ul>
+<p>在没有生产数据参照的情况下，我们可能会轻易的得出要优化“高开销操作”的结论。但我们做出的优化对交付的产品没有起到任何效果。</p>
+<p>优化的金科玉律不外乎以下内容：</p>
+<ul>
+<li>良好的设计将会使优化变得更加容易。</li>
+<li>过早的优化并不能解决多有的性能问题，但是不良的设计将会导致优化难度的增加。</li>
+</ul>
+<p>理论就先谈到这里。假设我们已经发现了问题出现在了右分支上，很有可能是因产品中的简单处理因耗费了大量的时间而失去响应（假设N、O和 P 的值非常大）， 请注意文章中提及的左分支的时间复杂度为 O(N3)。这里所做出的努力并不能扩展，但可以为用户节省时间，将困难的性能改善推迟到后面再进行。</p>
+<p>这里有10条改善Java性能的小建议：</p>
+<h2 id="1、使用StringBuilder"><a href="#1、使用StringBuilder" class="headerlink" title="1、使用StringBuilder"></a>1、使用StringBuilder</h2><p>StingBuilder 应该是在我们的Java代码中默认使用的，应该避免使用 + 操作符。或许你会对 StringBuilder 的语法糖（syntax sugar）持有不同意见，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String x = &quot;a&quot; + args.length + &quot;b&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>将会被编译为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0  new java.lang.StringBuilder [16] 3  dup 4  ldc &lt;String &quot;a&quot;&gt; [18] 6  invokespecial java.lang.StringBuilder(java.lang.String) [20] 9  aload_0 [args]10  arraylength11  invokevirtual java.lang.StringBuilder.append(int) : java.lang.StringBuilder [23]14  ldc &lt;String &quot;b&quot;&gt; [27]16  invokevirtual java.lang.StringBuilder.append(java.lang.String) : java.lang.StringBuilder [29]19  invokevirtual java.lang.StringBuilder.toString() : java.lang.String [32]22  astore_1 [x]</span><br></pre></td></tr></table></figure>
+
+<p>但究竟发生了什么？接下来是否需要用下面的部分来对 String 进行改善呢？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String x = &quot;a&quot; + args.length + &quot;b&quot;;if (args.length == 1)    x = x + args[0];</span><br></pre></td></tr></table></figure>
+
+<p>现在使用到了第二个 StringBuilder，而且这个 StringBuilder 不会消耗堆中额外的内存，但却给 GC 带来了压力。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder x = new StringBuilder(&quot;a&quot;);x.append(args.length);x.append(&quot;b&quot;);if (args.length == 1);    x.append(args[0]);</span><br></pre></td></tr></table></figure>
+
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>在上面的样例中，如果你是依靠Java编译器来隐式生成实例的话，那么编译的效果几乎和是否使用了 StringBuilder 实例毫无关系。请记住：在  N.O.P.E 分支中，每次CPU的循环的时间到白白的耗费在GC或者为 StringBuilder 分配默认空间上了，我们是在浪费 N x O x P 时间。</p>
+<p>一般来说，使用 StringBuilder 的效果要优于使用 + 操作符。如果可能的话请在需要跨多个方法传递引用的情况下选择 StringBuilder，因为 String 要消耗额外的资源。JOOQ在生成复杂的SQL语句便使用了这样的方式。在整个抽象语法树（AST Abstract Syntax Tree）SQL传递过程中仅使用了一个 StringBuilder 。</p>
+<p>更加悲剧的是，如果你仍在使用 StringBuffer 的话，那么用 StringBuilder 代替 StringBuffer 吧，毕竟需要同步字符串的情况真的不多。</p>
+<h2 id="2、避免使用正则表达式"><a href="#2、避免使用正则表达式" class="headerlink" title="2、避免使用正则表达式"></a>2、避免使用正则表达式</h2><p>正则表达式给人的印象是快捷简便。但是在 N.O.P.E 分支中使用正则表达式将是最糟糕的决定。如果万不得已非要在计算密集型代码中使用正则表达式的话，至少要将 Pattern 缓存下来，避免反复编译Pattern。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static final Pattern HEAVY_REGEX =    Pattern.compile(&quot;(((X)*Y)*Z)*&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>如果仅使用到了如下这样简单的正则表达式的话：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] parts = ipAddress.split(&quot;//.&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>这是最好还是用普通的 char[] 数组或者是基于索引的操作。比如下面这段可读性比较差的代码其实起到了相同的作用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int length = ipAddress.length();int offset = 0;int part = 0;for (int i = 0; i &lt; length; i++) &#123;    if (i == length - 1 ||            ipAddress.charAt(i + 1) == &#x27;.&#x27;) &#123;        parts[part] =            ipAddress.substring(offset, i + 1);        part++;        offset = i + 2;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码同时表明了过早的优化是没有意义的。虽然与 split() 方法相比较，这段代码的可维护性比较差。</p>
+<p><strong>挑战：</strong>聪明的小伙伴能想出更快的算法吗？</p>
+<h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><p>正则表达式是十分有用，但是在使用时也要付出代价。尤其是在 N.O.P.E 分支深处时，要不惜一切代码避免使用正则表达式。还要小心各种使用到正则表达式的JDK字符串方法，比如 String.replaceAll() 或 String.split()。可以选择用比较流行的开发库，比如 Apache Commons Lang 来进行字符串操作。</p>
+<h2 id="3、不要使用iterator-方法"><a href="#3、不要使用iterator-方法" class="headerlink" title="3、不要使用iterator()方法"></a>3、不要使用iterator()方法</h2><p>这条建议不适用于一般的场合，仅适用于在 N.O.P.E 分支深处的场景。尽管如此也应该有所了解。Java 5格式的循环写法非常的方便，以至于我们可以忘记内部的循环方法，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (String value : strings) &#123;    // Do something useful here&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当每次代码运行到这个循环时，如果 strings 变量是一个 Iterable 的话，代码将会自动创建一个Iterator 的实例。如果使用的是 ArrayList 的话，虚拟机会自动在堆上为对象分配3个整数类型大小的内存。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private class Itr implements Iterator&lt;E&gt; &#123;    int cursor;    int lastRet = -1;    int expectedModCount = modCount;    // ...</span><br></pre></td></tr></table></figure>
+
+<p>也可以用下面等价的循环方式来替代上面的 for 循环，仅仅是在栈上“浪费”了区区一个整形，相当划算。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int size = strings.size();for (int i = 0; i &lt; size; i++) &#123;    String value : strings.get(i);    // Do something useful here&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果循环中字符串的值是不怎么变化，也可用数组来实现循环。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (String value : stringArray) &#123;    // Do something useful here&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h2><p>无论是从易读写的角度来说，还是从API设计的角度来说迭代器、Iterable接口和 foreach 循环都是非常好用的。但代价是，使用它们时是会额外在堆上为每个循环子创建一个对象。如果循环要执行很多很多遍，请注意避免生成无意义的实例，最好用基本的指针循环方式来代替上述迭代器、Iterable接口和 foreach 循环。</p>
+<h2 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h2><p>一些与上述内容持反对意见的看法（尤其是用指针操作替代迭代器）详见Reddit上的讨论。</p>
+<h2 id="4、不要调用高开销方法"><a href="#4、不要调用高开销方法" class="headerlink" title="4、不要调用高开销方法"></a>4、不要调用高开销方法</h2><p>有些方法的开销很大。以 N.O.P.E 分支为例，我们没有提到叶子的相关方法，不过这个可以有。假设我们的JDBC驱动需要排除万难去计算 ResultSet.wasNull() 方法的返回值。我们自己实现的SQL框架可能像下面这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (type == Integer.class) &#123;    result = (T) wasNull(rs,        Integer.valueOf(rs.getInt(index)));&#125;// And then...static final &lt;T&gt; T wasNull(ResultSet rs, T value)throws SQLException &#123;    return rs.wasNull() ? null : value;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的逻辑中，每次从结果集中取得 int 值时都要调用 ResultSet.wasNull() 方法，但是 getInt() 的方法定义为：</p>
+<blockquote>
+<p>返回类型：变量值；如果SQL查询结果为NULL，则返回0。</p>
+</blockquote>
+<p>所以一个简单有效的改善方法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static final &lt;T extends Number&gt; T wasNull(    ResultSet rs, T value)throws SQLException &#123;    return (value == null ||           (value.intValue() == 0 &amp;&amp; rs.wasNull()))        ? null : value;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是轻而易举的事情。</p>
+<h2 id="小结-3"><a href="#小结-3" class="headerlink" title="小结"></a>小结</h2><p>将方法调用缓存起来替代在叶子节点的高开销方法，或者在方法约定允许的情况下避免调用高开销方法。</p>
+<h2 id="5、使用原始类型和栈"><a href="#5、使用原始类型和栈" class="headerlink" title="5、使用原始类型和栈"></a>5、使用原始类型和栈</h2><p>上面介绍了来自 jOOQ的例子中使用了大量的泛型，导致的结果是使用了 byte、 short、 int 和 long 的包装类。但至少泛型在Java 10或者Valhalla项目中被专门化之前，不应该成为代码的限制。因为可以通过下面的方法来进行替换：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//存储在堆上Integer i = 817598;</span><br></pre></td></tr></table></figure>
+
+<p>……如果这样写的话：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 存储在栈上int i = 817598;</span><br></pre></td></tr></table></figure>
+
+<p>在使用数组时情况可能会变得更加糟糕：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//在堆上生成了三个对象Integer[] i = &#123; 1337, 424242 &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>……如果这样写的话：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 仅在堆上生成了一个对象int[] i = &#123; 1337, 424242 &#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="小结-4"><a href="#小结-4" class="headerlink" title="小结"></a>小结</h2><p>当我们处于 *N.O.P.E. *分支的深处时，应该极力避免使用包装类。这样做的坏处是给GC带来了很大的压力。GC将会为清除包装类生成的对象而忙得不可开交。</p>
+<p>所以一个有效的优化方法是使用基本数据类型、定长数组，并用一系列分割变量来标识对象在数组中所处的位置。</p>
+<p>遵循LGPL协议的 trove4j 是一个Java集合类库，它为我们提供了优于整形数组 int[] 更好的性能实现。</p>
+<h2 id="例外"><a href="#例外" class="headerlink" title="例外"></a>例外</h2><p>下面的情况对这条规则例外：因为 boolean 和 byte 类型不足以让JDK为其提供缓存方法。我们可以这样写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Boolean a1 = true; // ... syntax sugar for:Boolean a2 = Boolean.valueOf(true);Byte b1 = (byte) 123; // ... syntax sugar for:Byte b2 = Byte.valueOf((byte) 123);</span><br></pre></td></tr></table></figure>
+
+<p>其它整数基本类型也有类似情况，比如 char、short、int、long。</p>
+<p>不要在调用构造方法时将这些整型基本类型自动装箱或者调用 TheType.valueOf() 方法。</p>
+<p>也不要在包装类上调用构造方法，除非你想得到一个不在堆上创建的实例。这样做的好处是为你为同事献上一个巨坑的愚人节笑话。</p>
+<h2 id="非堆存储"><a href="#非堆存储" class="headerlink" title="非堆存储"></a>非堆存储</h2><p>当然了，如果你还想体验下堆外函数库的话，尽管这可能参杂着不少战略决策，而并非最乐观的本地方案。一篇由Peter Lawrey和 Ben Cotton撰写的关于非堆存储的很有意思文章请点击： OpenJDK与HashMap——让老手安全地掌握（非堆存储！）新技巧。</p>
+<h2 id="6、避免递归"><a href="#6、避免递归" class="headerlink" title="6、避免递归"></a>6、避免递归</h2><p>现在，类似Scala这样的函数式编程语言都鼓励使用递归。因为递归通常意味着能分解到单独个体优化的尾递归（tail-recursing）。如果你使用的编程语言能够支持那是再好不过。不过即使如此，也要注意对算法的细微调整将会使尾递归变为普通递归。</p>
+<p>希望编译器能自动探测到这一点，否则本来我们将为只需使用几个本地变量就能搞定的事情而白白浪费大量的堆栈框架（stack frames）。</p>
+<h2 id="小结-5"><a href="#小结-5" class="headerlink" title="小结"></a>小结</h2><p>这节中没什么好说的，除了在 <em>N.O.P.E</em> 分支尽量使用迭代来代替递归。</p>
+<h2 id="7、使用entrySet"><a href="#7、使用entrySet" class="headerlink" title="7、使用entrySet()"></a>7、使用entrySet()</h2><p>当我们想遍历一个用键值对形式保存的 Map 时，必须要为下面的代码找到一个很好的理由：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (K key : map.keySet()) &#123;    V value : map.get(key);&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更不用说下面的写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (Entry&lt;K, V&gt; entry : map.entrySet()) &#123;    K key = entry.getKey();    V value = entry.getValue();&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在我们使用 <em>N.O.P.E.</em> 分支应该慎用map。因为很多看似时间复杂度为 O(1) 的访问操作其实是由一系列的操作组成的。而且访问本身也不是免费的。至少，如果不得不使用map的话，那么要用 entrySet() 方法去迭代！这样的话，我们要访问的就仅仅是Map.Entry的实例。</p>
+<h2 id="小结-6"><a href="#小结-6" class="headerlink" title="小结"></a>小结</h2><p>在需要迭代键值对形式的Map时一定要用 entrySet() 方法。</p>
+<h2 id="9、使用EnumSet或EnumMap"><a href="#9、使用EnumSet或EnumMap" class="headerlink" title="9、使用EnumSet或EnumMap"></a>9、使用EnumSet或EnumMap</h2><p>在某些情况下，比如在使用配置map时，我们可能会预先知道保存在map中键值。如果这个键值非常小，我们就应该考虑使用 EnumSet 或 EnumMap，而并非使用我们常用的 HashSet 或 HashMap。下面的代码给出了很清楚的解释：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private transient Object[] vals;public V put(K key, V value) &#123;    // ...    int index = key.ordinal();    vals[index] = maskNull(value);    // ...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上段代码的关键实现在于，我们用数组代替了哈希表。尤其是向map中插入新值时，所要做的仅仅是获得一个由编译器为每个枚举类型生成的常量序列号。如果有一个全局的map配置（例如只有一个实例），在增加访问速度的压力下，EnumMap 会获得比 HashMap 更加杰出的表现。原因在于 EnumMap 使用的堆内存比 HashMap 要少 一位（bit），而且 HashMap 要在每个键值上都要调用 hashCode() 方法和 equals() 方法。</p>
+<h2 id="小结-7"><a href="#小结-7" class="headerlink" title="小结"></a>小结</h2><p>Enum 和 EnumMap 是亲密的小伙伴。在我们用到类似枚举（enum-like）结构的键值时，就应该考虑将这些键值用声明为枚举类型，并将之作为 EnumMap 键。</p>
+<h2 id="9、优化自定义hasCode-方法和equals-方法"><a href="#9、优化自定义hasCode-方法和equals-方法" class="headerlink" title="9、优化自定义hasCode()方法和equals()方法"></a>9、优化自定义hasCode()方法和equals()方法</h2><p>在不能使用EnumMap的情况下，至少也要优化 hashCode() 和 equals() 方法。一个好的 hashCode() 方法是很有必要的，因为它能防止对高开销 equals() 方法多余的调用。</p>
+<p>在每个类的继承结构中，需要容易接受的简单对象。让我们看一下jOOQ的 org.jooq.Table 是如何实现的？</p>
+<p>最简单、快速的 hashCode() 实现方法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// AbstractTable一个通用Table的基础实现：@Overridepublic int hashCode() &#123;    // [#1938] 与标准的QueryParts相比，这是一个更加高效的hashCode()实现    return name.hashCode();&#125;</span><br></pre></td></tr></table></figure>
+
+<p>name即为表名。我们甚至不需要考虑schema或者其它表属性，因为表名在数据库中通常是唯一的。并且变量 name 是一个字符串，它本身早就已经缓存了一个 hashCode() 值。</p>
+<p>这段代码中注释十分重要，因继承自 AbstractQueryPart 的 AbstractTable 是任意抽象语法树元素的基本实现。普通抽象语法树元素并没有任何属性，所以不能对优化 hashCode() 方法实现抱有任何幻想。覆盖后的 hashCode() 方法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// AbstractQueryPart一个通用抽象语法树基础实现：@Overridepublic int hashCode() &#123;    // 这是一个可工作的默认实现。    // 具体实现的子类应当覆盖此方法以提高性能。    return create().renderInlined(this).hashCode();&#125;</span><br></pre></td></tr></table></figure>
+
+<p>换句话说，要触发整个SQL渲染工作流程（rendering workflow）来计算一个普通抽象语法树元素的hash代码。</p>
+<p>equals() 方法则更加有趣：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// AbstractTable通用表的基础实现：@Overridepublic boolean equals(Object that) &#123;    if (this == that) &#123;        return true;    &#125;    // [#2144] 在调用高开销的AbstractQueryPart.equals()方法前，    // 可以及早知道对象是否不相等。    if (that instanceof AbstractTable) &#123;        if (StringUtils.equals(name,            (((AbstractTable&lt;?&gt;) that).name))) &#123;            return super.equals(that);        &#125;        return false;    &#125;    return false;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先，不要过早使用 equals() 方法（不仅在*N.O.P.E.*中），如果：</p>
+<ul>
+<li>this &#x3D;&#x3D; argument</li>
+<li>this“不兼容：参数</li>
+</ul>
+<p>注意：如果我们过早使用 instanceof 来检验兼容类型的话，后面的条件其实包含了argument &#x3D;&#x3D; null。</p>
+<p>在我们对以上几种情况的比较结束后，应该能得出部分结论。比如jOOQ的 Table.equals() 方法说明是，用来比较两张表是否相同。不论具体实现类型如何，它们必须要有相同的字段名。比如下面两个元素是不可能相同的：</p>
+<ul>
+<li>com.example.generated.Tables.MY_TABLE</li>
+<li>DSL.tableByName(“MY_OTHER_TABLE”)</li>
+</ul>
+<p>如果我们能方便地判断传入参数是否等于实例本身（this），就可以在返回结果为 false 的情况下放弃操作。如果返回结果为 true，我们还可以进一步对父类（super）实现进行判断。在比较过的大多数对象都不等的情况下，我们可以尽早结束方法来节省CPU的执行时间。</p>
+<blockquote>
+<p>一些对象的相似度比其它对象更高。</p>
+</blockquote>
+<p>在jOOQ中，大多数的表实例是由jOOQ的代码生成器生成的，这些实例的 equals() 方法都经过了深度优化。而数十种其它的表类型（衍生表 （derived tables）、表值函数（table-valued functions）、数组表（array tables）、连接表（joined tables）、数据透视表（pivot tables）、公用表表达式（common table expressions）等，则保持 equals() 方法的基本实现。</p>
+<h2 id="10、考虑使用set而并非单个元素"><a href="#10、考虑使用set而并非单个元素" class="headerlink" title="10、考虑使用set而并非单个元素"></a>10、考虑使用set而并非单个元素</h2><p>最后，还有一种情况可以适用于所有语言而并非仅仅同Java有关。除此以外，我们以前研究的* N.O.P.E. *分支也会对了解从 O(N3) 到 O(n log n)有所帮助。</p>
+<p>不幸的是，很多程序员的用简单的、本地算法来考虑问题。他们习惯按部就班地解决问题。这是命令式（imperative）的“是&#x2F;或”形式的函数式编程风格。这种编程风格在由纯粹命令式编程向面对象式编程向函数式编程转换时，很容易将“更大的场景（bigger picture）”模型化，但是这些风格都缺少了只有在SQL和R语言中存在的：</p>
+<p>声明式编程。</p>
+<p>在SQL中，我们可以在不考虑算法影响下声明要求数据库得到的效果。数据库可以根据数据类型，比如约束（constraints）、键（key）、索引（indexes）等不同来采取最佳的算法。</p>
+<p>在理论上，我们最初在SQL和关系演算（relational calculus）后就有了基本的想法。在实践中，SQL的供应商们在过去的几十年中已经实现了基于开销的高效优化器CBOs (Cost-Based Optimisers) 。然后到了2010版，我们才终于将SQL的所有潜力全部挖掘出来。</p>
+<p>但是我们还不需要用set方式来实现SQL。所有的语言和库都支持Sets、collections、bags、lists。使用set的主要好处是能使我们的代码变的简洁明了。比如下面的写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SomeSet INTERSECT SomeOtherSet</span><br></pre></td></tr></table></figure>
+
+<p>而不是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// Java 8以前的写法Set result = new HashSet();for (Object candidate : someSet)    if (someOtherSet.contains(candidate))        result.add(candidate);// 即使采用Java 8也没有很大帮助someSet.stream()       .filter(someOtherSet::contains)       .collect(Collectors.toSet());</span><br></pre></td></tr></table></figure>
+
+<p>有些人可能会对函数式编程和Java 8能帮助我们写出更加简单、简洁的算法持有不同的意见。但这种看法不一定是对的。我们可以把命令式的Java 7循环转换成Java 8的Stream collection，但是我们还是采用了相同的算法。但SQL风格的表达式则是不同的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SomeSet INTERSECT SomeOtherSet</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码在不同的引擎上可以有1000种不同的实现。我们今天所研究的是，在调用 INTERSECT 操作之前，更加智能地将两个set自动的转化为 EnumSet 。甚至我们可以在不需要调用底层的 Stream.parallel() 方法的情况下进行并行 INTERSECT 操作。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在这篇文章中，我们讨论了关于*N.O.P.E.*分支的优化。比如深入高复杂性的算法。作为jOOQ的开发者，我们很乐于对SQL的生成进行优化。</p>
+<ul>
+<li>每条查询都用唯一的StringBuilder来生成。</li>
+<li>模板引擎实际上处理的是字符而并非正则表达式。</li>
+<li>选择尽可能的使用数组，尤其是在对监听器进行迭代时。</li>
+<li>对JDBC的方法敬而远之。</li>
+<li>等等。</li>
+</ul>
+<p>jOOQ处在“食物链的底端”，因为它是在离开JVM进入到DBMS时，被我们电脑程序所调用的最后一个API。位于食物链的底端意味着任何一条线路在jOOQ中被执行时都需要* N x O x P* 的时间，所以我要尽早进行优化。</p>
+<p>我们的业务逻辑可能没有*N.O.P.E.*分支那么复杂。但是基础框架有可能十分复杂（本地SQL框架、本地库等）。所以需要按照我们今天提到的原则，用Java Mission Control 或其它工具进行复查，确认是否有需要优化的地方。</p>
+</div><div class="tags"><a href="/tags/java"><i class="fa fa-tag">java</i></a></div><div class="post-nav"><a class="pre" href="/posts/38529/">Redis 总结</a><a class="next" href="/posts/15972/">Nginx相关状态码总结</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/AI-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/">AI, 网络运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">36</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">117</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">72</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B7%91%E6%AD%A5/">跑步</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/PMO/" style="font-size: 15px;">PMO</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 15px;">人工智能</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">深度学习</a> <a href="/tags/Deepseek-%E8%87%AA%E6%99%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%90%A5%E5%95%86-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">Deepseek, 自智网络, 运营商, 网络运维</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 15px;">知识图谱</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%8A%80%E6%9C%AF%E8%B6%8B%E5%8A%BF-%E8%A1%8C%E4%B8%9A%E5%8A%A8%E6%80%81/" style="font-size: 15px;">人工智能, 技术趋势, 行业动态</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">运维</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/SDN/" style="font-size: 15px;">SDN</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a> <a href="/tags/%E9%A9%AC%E6%8B%89%E6%9D%BE/" style="font-size: 15px;">马拉松</a> <a href="/tags/%E5%81%A5%E5%BA%B7/" style="font-size: 15px;">健康</a> <a href="/tags/%E6%8A%A5%E5%91%8A%E5%88%86%E4%BA%AB/" style="font-size: 15px;">报告分享</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/" style="font-size: 15px;">技术小栈</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/63200/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63199/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63198/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/55960/">Deepseek 技术分析总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/17232/">3月份马拉松计划</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/16164/">2024年人工智能进展及展望</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/57547/">大模型概念总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/47183/">系统稳定性建设</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/24447/">实时通信的关键差异解析</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/5864/">LSTM详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a><ul></ul><a href="https://excalidraw.com/" title="excalidraw" target="_blank">excalidraw</a><ul></ul><a href="https://tudan.blog.csdn.net/?type=lately" title="王坦" target="_blank">王坦</a><ul></ul><a href="https://aspoem.com/zh-Hans" target="_blank"></a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">枫哲's文栖小筑.</a><a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn/">｜苏ICP备18013756号-1</a><!--a(rel='nofollow', target='_blank', href='https://github.com/tufu9441/maupassant-hexo')  Theme--><!--|  by--><!--a(rel='nofollow', target='_blank', href='https://github.com/pagecho')  Cho.--></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

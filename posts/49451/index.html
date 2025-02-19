@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>MySQL性能优化高阶总结 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2bb92548008bd1f1f88213efd40c8dad';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">MySQL性能优化高阶总结</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">MySQL性能优化高阶总结</h1><div class="post-meta">2019-10-26<span> | </span><span class="category"><a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><a class="disqus-comment-count" href="/posts/49451/#vcomment"><span class="waline-comment-count" id="/posts/49451/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8B%E9%AA%A8%E7%81%B0%E7%BA%A7%EF%BC%8C%E9%AB%98%E9%98%B6%E7%A5%9E%E6%8A%80"><span class="toc-number">1.</span> <span class="toc-text">MySQL性能优化之骨灰级，高阶神技</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BC%98%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">数据类型优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E6%9F%A5%E8%AF%A2-x2F-%E4%BF%AE%E6%94%B9%E4%BC%98%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">数据表查询&#x2F;修改优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%99%E9%87%8C%E6%8E%A8%E8%8D%90%E4%B8%A4%E7%A7%8D%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">这里推荐两种小技巧：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">索引优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%88%97%E7%B4%A2%E5%BC%95%E5%8F%8A%E5%85%B6%E9%A1%BA%E5%BA%8F"><span class="toc-number">5.</span> <span class="toc-text">多列索引及其顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95"><span class="toc-number">6.</span> <span class="toc-text">覆盖索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96"><span class="toc-number">6.1.</span> <span class="toc-text">查询优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%B1%E5%93%8D%E6%9F%A5%E8%AF%A2%E6%95%88%E7%8E%87%E7%9A%84%E5%9B%A0%E7%B4%A0"><span class="toc-number">7.</span> <span class="toc-text">影响查询效率的因素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E6%9D%A5%E8%AF%B4%EF%BC%8C%E5%BD%B1%E5%93%8D%E6%9F%A5%E8%AF%A2%E7%9A%84%E5%9B%A0%E7%B4%A0%E6%9C%89%E4%B8%89%E9%83%A8%E5%88%86%E7%BB%84%E6%88%90%EF%BC%8C%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">8.</span> <span class="toc-text">一般来说，影响查询的因素有三部分组成，如下：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%9F%BA%E7%A1%80"><span class="toc-number">9.</span> <span class="toc-text">查询基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">10.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%8F%91%E7%8E%B0%E6%9F%A5%E8%AF%A2%E6%85%A2%E7%9A%84-SQL"><span class="toc-number">11.</span> <span class="toc-text">如何发现查询慢的 SQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain-%E5%88%86%E6%9E%90-SQL-%E6%9F%A5%E8%AF%A2"><span class="toc-number">12.</span> <span class="toc-text">Explain 分析 SQL 查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL-%E4%BC%98%E5%8C%96%E5%BB%BA%E8%AE%AE"><span class="toc-number">13.</span> <span class="toc-text">SQL 优化建议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1GROUPBY-%E4%BC%98%E5%8C%96"><span class="toc-number">13.1.</span> <span class="toc-text">②GROUPBY 优化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number"></span> <span class="toc-text">总结</span></a></div></div><div class="post-content"><blockquote>
+<p>作者：崔皓 转载于 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/FCrsFHaJ0HGjV5We1h5Ogg">https://mp.weixin.qq.com/s/FCrsFHaJ0HGjV5We1h5Ogg</a></p>
+</blockquote>
+<h2 id="MySQL性能优化之骨灰级，高阶神技"><a href="#MySQL性能优化之骨灰级，高阶神技" class="headerlink" title="MySQL性能优化之骨灰级，高阶神技"></a>MySQL性能优化之骨灰级，高阶神技</h2><hr>
+<p>大量信息的存储和查询都会用到 MySQL，因此它的优化就对系统性能提升就尤为重要了。<br>由于 MySQL 的优化范围较广，从软件到硬件，从配置到应用，无法一一道来。<br>今天就从开发者的角度介绍一下 MySQL 应用优化。包括数据类型，数据表查询&#x2F;修改，索引和查询等几个方面。</p>
+<h2 id="数据类型优化"><a href="#数据类型优化" class="headerlink" title="数据类型优化"></a>数据类型优化</h2><hr>
+<p>字段是用来存放数据的单元，设计好字段是设计数据库的第一步，同样会影响到系统的性能。<br>设计字段有一个基本的原则，保小不保大，也就是能够用字节少的字段就不用字节数大的字段，目的是为了节省空间，提高查询效率。<br>更小的字段，占用更小的磁盘空间，内存空间，更小的 IO 消耗。下面针对使用场景，说一些字段类型选取的经验，供大家参考。</p>
+<ul>
+<li><p>数值类型</p>
+<ul>
+<li>手机号：通常我们在存储手机号的时候，喜欢用 Varchar 类型。</li>
+<li>如果是 11 位的手机号，假设我们用 utf8 的编码，每位字节就需要 3 个字节，那么就需要 11*33&#x3D;33 个字节来存放；如果我们使用 bigint，只需要 8 个字节就可以存放。</li>
+<li>IP 地址：同上，IP 地址也可以通过 int（4 字节）在存放，可以通过 INET_ATON() 函数把 IP 地址转成数字。这里需要注意溢出的问题，需要用无符号的 int。</li>
+<li>年龄，枚举类型：可以用 tinyint 来存放，它只占用 1 个字节，无符号的 tinyint 可以表示 0-255 的范围，基本够用了。</li>
+</ul>
+</li>
+<li><p>字符类型</p>
+<ul>
+<li>Char 和 Varchar 是我们常用的字符类型。char(N) 用来记录固定长度的字符，如果长度不足 N 的，用空格补齐。</li>
+<li>varchar(N) 用来保存可变长度的字符，它会额外增加 1-2 字节来保存字符串的长度。</li>
+<li>Char 和 Varchar 占用的字节数，根据数据库的编码格式不同而不同。Latin1 占用 1 个字节，gbk 占用 2 个字节，utf8 占用 3 个字节。</li>
+<li><strong><strong>用法方面，如果存储的内容是可变长度的，例如：家庭住址，用户描述就可以用 Varchar。</strong></strong></li>
+<li><em><strong><strong>如果内容是固定长度的，例如：UUID（36 位），或者是 MD5 加密串（32 位），就可以使用 Char 存放。</strong></strong></em></li>
+</ul>
+</li>
+<li><p>时间类型</p>
+<ul>
+<li><p><em>Datetime 和 Timestamp 都是可以精确到秒的时间类型，但是 Datetime 占用 8 个字节，而 Timestamp 占用 4 个字节。</em></p>
+</li>
+<li><p><strong>所以在日常建表的时候可以有限选择 Timestamp。不过他们有下面几个小区别，需要注意的。</strong></p>
+</li>
+<li><p><strong>区别一：存储数据方式不一样。</strong></p>
+</li>
+<li><ul>
+<li><strong>Timestamp 是转化成 utc 时间进行存储，查询时，转化为客户端时间返回的。</strong></li>
+</ul>
+</li>
+<li><p>区别二：两者存储时间的范围不一样。</p>
+<ul>
+<li><em>Timestamp 为’1970-01-01 00:00:01.000000’ 到’2038-01-19 03:14:07.999999’。</em></li>
+<li><strong>Datetime为’1000-01-01 00:00:00.000000’到’9999-12-31 23:59:59.999999’。</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据表查询-x2F-修改优化"><a href="#数据表查询-x2F-修改优化" class="headerlink" title="数据表查询&#x2F;修改优化"></a>数据表查询&#x2F;修改优化</h2><hr>
+<p>说了如何高效地选择存储数据的类型以后，再来看看如何高效地读取数据。MySQL 作为关系型数据库，在处理复杂业务的时候多会选择表与表之间的关联。<br>这会导致我们在查询数据的时候，会关联其他的表，特别是一些多维度数据查询的时候，这种关联就尤为突出。<br>此时，为了提高查询的效率，我们会对某些字段做冗余处理，让这些字段同时存在于多张表中。<br>但是，这又会带来其他的问题，例如：如果针对冗余字段进行修改的时候，就需要对多张表进行修改，并且需要让这个修改保持在一个事物中。<br>如果处理不当，会导致数据的不一致性。这里需要根据具体情况采取查询策略，例如：需要跨多张表查询公司销售额信息。<br>由于，销售信息需要连接多张表，并且对销售量和金额做求和操作，直接查询显然是不妥当的。<br>可以生成后台服务，定时从相关表中取出信息，计算出结果放入一张汇总表中。<br>将汇总表中需要查询的条件字段加上索引信息，提高查询的效率。这种做法，限于查询数据实时性不强的情况。<br>在高速迭代开发过程中，业务变化快，数据库会根据业务的变化进行迭代。所以，在开发新产品初期，表结构会面临频繁地修改。<br>MySQL 的 ALTERTABLE 操作性能对大表来说是个问题。MySQL 执行修改表结构操作的方法是，用新的结构创建一个空表，从旧表中查出所有数据插入新表，然后删除旧表。<br>这一操作需要花费大量时间，如果内存不足而表数据很大，并且索引较多的情况，会造成长时间的锁表。<br>有极端的情况，有些 ALTERTABLE 操作需要花费数个小时甚至数天才能完成。</p>
+<h3 id="这里推荐两种小技巧："><a href="#这里推荐两种小技巧：" class="headerlink" title="这里推荐两种小技巧："></a>这里推荐两种小技巧：</h3><hr>
+<ul>
+<li>先把数据库拷贝到一台非生产服务器上，在上面做修改表操作，此时的修改不会影响生产库。<ul>
+<li>　　修改完毕以后在做数据库的切换，把非生产数据库切换成生产库。不过需要注意的时候，在做表结构修改的时候，生产库会生成一些数据。这里需要通过脚本根据时间区间导入这部分数据。</li>
+</ul>
+</li>
+<li>“影子拷贝”，即生成一张表结构相同的不同名新数据表（更改数据结构以后的表）。<ul>
+<li>　<em>然后导入原表的数据到新表，导入成功以后停止数据库，修改原表和新表的名字，最终将数据访问指向新表。</em></li>
+<li><strong>在运行正常以后，将原表删除。这里有现成的工具可以协助完成上述操作，“online schema change”,”openark toolkit”</strong></li>
+</ul>
+</li>
+</ul>
+<p>　　如果只是删除或者更改某一列的默认值，那么直接可以使用 Alert table modify column 和 Alert table alert column 来实现。</p>
+<h2 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h2><hr>
+<p>说了字段和表再来聊聊索引。对于索引的优化网上有很多的说法，都是在实际工作中总结出来的，这里没有一定的标准。<br>针对我们使用比较多的 InnoDB 的存储引擎（使用的 B-Tree 索引），推荐几个方法给大家。</p>
+<ul>
+<li><p>索引独立</p>
+<ul>
+<li>“索引独立”是指索引列不能是表达式的一部分，也不能是函数的参数。例如：假设 User 表中分别把 create_date 和 userId 设置为索引。</li>
+<li><code>select</code> <code>*``from</code> <code>user</code> <code>where</code> <code>date``(create_date)=curdate()``selectuserId ``from</code> <code>user</code> <code>where</code> <code>userId+1=5</code></li>
+<li><em>类似上面的语句就是将索引作为了函数中的参数和表达式的一部分，是不推荐这样使用的。</em></li>
+</ul>
+</li>
+<li><p>前缀索引</p>
+<ul>
+<li>有时候索引字段长度较大，例如：VarChar，Blob，Text。当搜索的时候，这会让索引变得大且慢。<br>通常的做法是，可以索引开始的部分字符，这样可以节约索引空间，提高索引效率。<br>既然索引全部字符行不通，那么索引多少字符就是我们要讨论的问题了<br>这里需要引入一个概念，索引的选择性。索引的选择性是指，不重复的索引值和数据表的记录总数的比值。<br>索引的选择性越高则查询效率越高，因为选择性高的索引可以让 MySQL 在查找时过滤掉更多的行。</li>
+<li>例如：有一张 user 表，其中有一个字段是 FirstName，如何计算这个字段的选择性，如下：</li>
+<li><code>Select1.0*``count``(``distinct</code> <code>FirstName)/``count``(*) ``from</code> <code>user</code></li>
+<li>假设这个结果是 0.75 再用 left 函数对该字段取部分字符，例如取从左开始的 3，4，5 个字段。</li>
+<li>分别查看其选择性，目的是看当选择多少字符的时候，选择性最接近 0.75。</li>
+<li><code>从左取3个字段的时候，``Select</code> <code>1.0*``count``(``distinct</code> <code>left``(FirstName,3))/``count``(*) ``from</code> <code>user``结果为0.58</code>“__mceDel”<code> </code>style&#x3D;<code>&quot;background-color: rgba(255, 255, 255, 1); font-family: &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px&quot;</code>&gt;　&#96;</li>
+<li><code>从左取4个字段的时候，``Select</code> <code>1.0*``count``(``distinct</code> <code>left``(FirstName,4))/``count``(*) ``from</code> <code>user``结果为0.67</code></li>
+<li><code>从左取5个字段的时候，``Select</code> <code>1.0*``count``(``distinct</code> <code>left``(FirstName,5))/``count``(*) ``from</code> <code>user``结果为0.74</code></li>
+</ul>
+<p>　　从上面尝试发现，字段 FirstName 取左边字符，从 3-5 的获取可以看出，当从左边取第 5 个字符的时候，选择性 0.74 最接近 0.75。</p>
+</li>
+</ul>
+<p> 　　因此，可以将 FirstName 的前面 5 个字符作为前缀索引，这样建立索引的效果基本和 FirstName 全部字符建立索引的效果一致。而又不用将 FirstName 整个字段都当成索引。</p>
+<p>　　　于是可以用下面语句修改索引信息：　　　</p>
+<p>　　　　Alter tableuser add key(FirstName(5))</p>
+<h2 id="多列索引及其顺序"><a href="#多列索引及其顺序" class="headerlink" title="多列索引及其顺序"></a>多列索引及其顺序</h2><hr>
+<p>多列索引，顾名思义就是将多列字段作为索引。假设在 user 表中通过搜索 LastName 和 FirstName 条件来查找数据。</p>
+<p>可能出现以下语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Select` `*``from` `user` `where` `LastName = ‘Green’``Select` `*``from` `user` `where` `LastName = ‘Green’ ``and` `FirstName = ‘Jack’``Select` `*``from` `user` `where` `LastName = ‘Green’ ``and` `(FirstName = ‘Jack’ ``or` `FirstName =‘Michael’``Select` `*``from` `user` `where` `LastName = ‘Green’ ``and` `FirstName &gt;=‘M’ ``and` `FirstName&lt;‘N’</span><br></pre></td></tr></table></figure>
+
+<p>如果分别在 LastName 和 FirstName 上面建立索引：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Select` `*``from` `user` `where` `LastName = ‘Green’ ``and` `FirstName = ‘Jack’</span><br></pre></td></tr></table></figure>
+
+<p>当运行上面这段代码的时候，系统会让选择性高的 SQL 的索引生效，另外一个索引是用不上的。因此我们就需要建立多列索引（合并索引）。</p>
+<p> 语句如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Alter` `table` `user` `add` `key``(LastName, FirstName)</span><br></pre></td></tr></table></figure>
+
+<p>既然定义了多列索引，那么其中的索引顺序是否也需要考虑呢？在一个多列 B-Tree 索引中，索引列的顺序意味着，索引首先按照最左列进行排序，其次是第二列。<br>索引可以按照升序或者降序进行扫描，以满足精确符合列顺序的 ORDERBY、GROUPBY 和 DISTINCT 等子句的查询需求。<br>所以，多列索引的顺序是需要考虑的。这里给出的建议是，将选择性最高的索引列放在前面。<br>接上面的例子，还是 LastName 和 FirstName 作为多列索引。看谁应该放前面。</p>
+<p>通过按照选择性规则，写如下 SQL 语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先计算LastName的选择性``Selectcount(disctinc LastName)/``count``(*) ``from` `user``结果为0.02</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">再计算FirstName的选择性``Selectcount(disctinc FirstName)/``count``(*) ``from` `user``结果0.05</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<p>FirstName 的选择性要高于 LastName 的选择性。因此调整多列索引的顺序如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Alter` `tableuser ``add` `key``(FirstName ，LastName)</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<h2 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a><strong>覆盖索引</strong></h2><hr>
+<p>当使用 Select 的数据列只用从索引中取得，而不必从数据表中读取，换句话说查询列要被所使用的索引覆盖。</p>
+<p>例如：User 表中将 LastName 作为索引。如果写以下查询语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Select` `LastName ``from` `user</span><br></pre></td></tr></table></figure>
+
+<p>LastName 及作为索引，又在查询内容中显示出来，那么 LastName 就是覆盖索引。<br>覆盖索引是高效查找行方法，通过索引就可以读取数据，就不需要再到数据表中读取数据了。</p>
+<p><em>而且覆盖索引会以 Usingindex 作为标示，可以通过 Explain 语句查看。</em></p>
+<p><em><img src="https://img2018.cnblogs.com/blog/1175403/201910/1175403-20191028184646933-1864623193.png" alt="img"></em></p>
+<p> 覆盖索引主要应用在 Count 等一些聚合操作上，提升查询的效率。例如上面提到的 Selectcount(LastName) from user 就可以把 LastName 设置为索引。</p>
+<p> <em>还有可以进行列查询的回表优化，如下：</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Select` `LastName, FirstName ``from` `user` `where` `LastName=‘Jack’</span><br></pre></td></tr></table></figure>
+
+
+<p>如果此时 LastName 设置为索引，可以将 LastName 和 FirstName 设置为多列索引（联合索引）。<br>避免回表行为的发生。这里的回表是指二级索引搜索到以后，再找到聚合索引，然后在查找 PK 的过程。</p>
+<p>这里需要通过两次搜索完成。简单点说就是使用了覆盖索引以后，一次就可以查到想要的记录，不用在查第二次了。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1175403/201910/1175403-20191028184741370-1321441480.png" alt="img"></p>
+<h3 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h3><p>作为程序开发人员来说，使用得最多的就是 SQL 语句了，最多的操作就是查询了。<br>我们一起来看看，哪些因素会影响查询记录，查询基本原理是什么，以及如何发现和优化 SQL 语句。</p>
+<h2 id="影响查询效率的因素"><a href="#影响查询效率的因素" class="headerlink" title="影响查询效率的因素"></a><strong>影响查询效率的因素</strong></h2><hr>
+<h2 id="一般来说，影响查询的因素有三部分组成，如下："><a href="#一般来说，影响查询的因素有三部分组成，如下：" class="headerlink" title="一般来说，影响查询的因素有三部分组成，如下："></a><strong>一般来说，影响查询的因素有三部分组成，如下：</strong></h2><ul>
+<li><p><strong>响应时间，</strong>由两部分组成，他们分别是，服务时间和排队时间。服务时间是指数据库处理查询花费的时间。</p>
+<p>排队时间是指服务器因为等待某些资源花费的时间。例如：I&#x2F;O 操作，等待其他事务释放锁的时间。</p>
+</li>
+<li><p><strong>扫描记录行数，</strong>在查询过程中数据库锁扫描的行记录。理想情况下扫描的行数和返回的行数是相同的。不过通常来说，扫描的行数都会大于返回记录的行数。</p>
+</li>
+<li><p><strong>返回记录行数，</strong>返回实际要查询的结果。</p>
+</li>
+</ul>
+<h2 id="查询基础"><a href="#查询基础" class="headerlink" title="查询基础"></a><strong>查询基础</strong></h2><hr>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://img2018.cnblogs.com/blog/1175403/201910/1175403-20191028184843459-995983551.png" alt="img"></h2><p> 说了影响查询效率的因素以后，来看看查询这件事情在 MySQL 中是如何运作的，可以帮助我理解，查询优化工作是在哪里进行的：</p>
+<ul>
+<li>客户端发送一条查询给服务器。</li>
+<li>服务器先检查查询缓存，如果命中了缓存，则立刻返回存储在缓存中的结果。</li>
+<li>解析器对 SQL 进行解析，它通过关键字将 SQL 语句进行解析，并生成一棵对应的“解析树”。MySQL 解析器将使用 MySQL 语法规则验证和解析查询。</li>
+<li>预处理器则根据一些 MySQL 规则进一步检查解析树是否合法，并且验证权限。例如，检查数据表和数据列是否存在，解析名字和别名看是否有歧义。</li>
+<li>MySQL 根据优化器生成的执行计划，调用存储引擎的 API 来执行查询。</li>
+<li>将结果返回给客户端。</li>
+</ul>
+<h2 id="如何发现查询慢的-SQL"><a href="#如何发现查询慢的-SQL" class="headerlink" title="如何发现查询慢的 SQL"></a><strong>如何发现查询慢的 SQL</strong></h2><hr>
+<p>说了影响查询缓慢的因素以及查询的基本流程以后，再来看看如何发现查询慢的 SQL。这里 MySQL 提供了日志，其中可以查询执行比较慢的 SQL。</p>
+<p><strong>①查看慢查询日志是否开启</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOWVARIABLESLIKE``&#x27;%slow_query_log%&#x27;``;</span><br></pre></td></tr></table></figure>
+
+<p>　　<img src="https://img2018.cnblogs.com/blog/1175403/201910/1175403-20191028184941956-1039646703.png" alt="img"></p>
+<p><strong>②如果没有开启，通过命令开启慢查询日志</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SETGLOBAL slow_query_log=1;</span><br></pre></td></tr></table></figure>
+
+<p>　　<img src="https://img2018.cnblogs.com/blog/1175403/201910/1175403-20191028185011545-561623481.png" alt="img"></p>
+<p> ③设置慢查询日志的时间，这里的单位是秒，意思是只要是执行时间超过 X 秒的查询语句被记录到这个日志中。这里的 X 就是你要设置的。（下面的例子设置的是 3 秒）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SETGLOBAL long_query_time=3;</span><br></pre></td></tr></table></figure>
+
+<p>　　<img src="https://img2018.cnblogs.com/blog/1175403/201910/1175403-20191028185031869-815149857.png" alt="img"></p>
+<p> ④查看多少 SQL 语句是超过查询阀值的（3 秒）</p>
+<p> <img src="https://img2018.cnblogs.com/blog/1175403/201910/1175403-20191028185101608-213106289.png" alt="img"></p>
+<h2 id="Explain-分析-SQL-查询"><a href="#Explain-分析-SQL-查询" class="headerlink" title="Explain 分析 SQL 查询"></a><strong>Explain 分析 SQL 查询</strong></h2><hr>
+<p>**通过上面的方法可以知道哪些 SQL 花费了较多的时间，那么如何对这些 SQL 语句进行分析呢。毕竟，我们的目的是通过分析以后，优化 SQL 从而提高其性能。<br>**</p>
+<p>将 Explain 关键字放在要执行的 SQL 语句前面，可以模拟优化器执行 SQL 语句，从而知道 MySQL 是如何处理你的 SQL 语句的。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1175403/201910/1175403-20191028185115583-1996317626.png" alt="img"></p>
+<p> 上面每个字段的含义，在这里不展开描述。</p>
+<h2 id="SQL-优化建议"><a href="#SQL-优化建议" class="headerlink" title="SQL 优化建议"></a><strong>SQL 优化建议</strong></h2><hr>
+<p><strong>如果发现慢查询的 SQL，我们就需要针对其问题进行优化。这里针对几个常见的 SQL 给出一些优化建议。<br>类似 SQL 优化的文章和例子在网上种类繁多，千奇百怪。建议在优化之前，先查看慢查询日志和 Explain 的语句，再进行优化，做到有的放矢。</strong></p>
+<p><strong><strong>①Count 优化</strong></strong></p>
+<p>从 user 表中搜索 id 大于 7 的所有用户。如果是 InnoDB 存储引擎会进行逐行扫描，如果表中记录比较多，性能就是问题了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Select` `count``(*) ``from` `user` `where` `id&gt;7</span><br></pre></td></tr></table></figure>
+
+<p>如果先将所有的行数 Count 出来，再减去 id&lt;&#x3D;7 的记录，这样速度就会快一些。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Select` `(``select` `count``(*) - (``select` `count``(*) ``from` `user` `where` `id &lt;=7) ``from` `user``)</span><br></pre></td></tr></table></figure>
+
+<p>如果有一个货物表 items，其中有一个 color 字段来表示货物的颜色，如果需要知道颜色是蓝色或者红色的货物的数量，可以这么写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Select` `count``(color=‘blue’ ``or` `color=‘red’) ``from` `items``Select` `count``(*) ``from` `items ``where` `color=‘blue’ ``and` `color=‘red’</span><br></pre></td></tr></table></figure>
+
+<p>不过颜色本身是除斥的字段，所以可以优化成下面的 SQL。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Select` `count``(color=‘blue’ ``or` `null``) ``as` `blue, ``count``(color=‘red’ ``or` `null``) ``as` `red ``from` `items</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<h3 id="②GROUPBY-优化"><a href="#②GROUPBY-优化" class="headerlink" title="②GROUPBY 优化"></a><strong>②GROUPBY 优化</strong></h3><p>MySQL 通过索引来优化 GROUPBY 查询。在无法使用索引的时候，会使用两种策略优化：临时表和文件排序分组。<br>可以通过两个参数 SQL_BIG_RESULT 和 SQL_SMALL_RESULT 提升其性能。<br>这两个参数只对 Select 语句有效。它们告诉优化器对 GROUPBY 查询使用临时表及排序。<br>SQL_SMALL_RESULT 告诉优化器结果集会很小，可以将结果集放在内存中的索引临时表，以避免排序操作。<br>如果是 SQL_BIG_RESULT，则告诉优化器结果集可能会非常大，建议使用磁盘临时表做排序操作。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SelectSQL_BUFFER_RESULTfield1, ``count``(*) ``from` `table1 groupby field1</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<p>假设两个表做关联查询，选择查询表中的标识列（主键）分组效率会高。<br>例如 actor 表和 film 表通过 actorId 做关联，查询如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Select` `actor.FirstName, actor.LastName,``count``(*) ``from` `film ``inner` `join` `actor using(actorId)``Group` `by` `actor.FirstName,actor.LastName</span><br></pre></td></tr></table></figure>
+
+<p>就可以修改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Select` `actor.FirstName, actor.LastName, ``count``(*) ``from` `film ``inner` `join` `actor using(actorId)``Group` `by` `film.actorId</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<p>③Limit<br>Limit 对我们再熟悉也不过了，特别是在做分页操作的时候，经常会用到它。但在偏移量非常的时候问题就来了。<br>例如，Limit 1000，20 就需要偏移 1000 条数据以后，再返回后面的 20 条记录，前面的 1000 条数据是被抛弃掉的。<br>按照上例 SQL 代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Select` `name` `from` `user` `order` `by` `id limit1000,20</span><br></pre></td></tr></table></figure>
+
+<p>这里通过 id 索引到第 1001 条记录，然后取 20 条记录。这里利用 id 的索引的优势直接跳过了前面 1000 条记录。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Select` `name` `from` `user` `where` `id&gt;=1001order ``by` `id limit 20</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><hr>
+<p>从开发者的角度了解 MySQL 的应用优化。从数据类型的选择开始，针对数值类型，字符类型，时间类型进行了举例说明。<br>接下来谈到，作为数据表的查询，修改的优化，我们应该注意哪些细节。然后，聊了索引独立，前缀索引，多列索引，覆盖索引的优化方法。<br>最后，针对使用最多的查询优化进行了探讨。从影响查询的因素到查询基础，再到如何发现慢查询，用几个 SQL 优化的建议结束了我们的 MySQL 应用优化之旅。</p>
+</div><div class="tags"><a href="/tags/Mysql"><i class="fa fa-tag">Mysql</i></a></div><div class="post-nav"><a class="pre" href="/posts/32367/">管理的4C模型</a><a class="next" href="/posts/19528/">工作中常用Git 命令总结</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/AI-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/">AI, 网络运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">36</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">117</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">72</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B7%91%E6%AD%A5/">跑步</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/PMO/" style="font-size: 15px;">PMO</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 15px;">人工智能</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">深度学习</a> <a href="/tags/Deepseek-%E8%87%AA%E6%99%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%90%A5%E5%95%86-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">Deepseek, 自智网络, 运营商, 网络运维</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 15px;">知识图谱</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%8A%80%E6%9C%AF%E8%B6%8B%E5%8A%BF-%E8%A1%8C%E4%B8%9A%E5%8A%A8%E6%80%81/" style="font-size: 15px;">人工智能, 技术趋势, 行业动态</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">运维</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/SDN/" style="font-size: 15px;">SDN</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a> <a href="/tags/%E9%A9%AC%E6%8B%89%E6%9D%BE/" style="font-size: 15px;">马拉松</a> <a href="/tags/%E5%81%A5%E5%BA%B7/" style="font-size: 15px;">健康</a> <a href="/tags/%E6%8A%A5%E5%91%8A%E5%88%86%E4%BA%AB/" style="font-size: 15px;">报告分享</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/" style="font-size: 15px;">技术小栈</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/63200/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63199/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63198/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/55960/">Deepseek 技术分析总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/17232/">3月份马拉松计划</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/16164/">2024年人工智能进展及展望</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/57547/">大模型概念总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/47183/">系统稳定性建设</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/24447/">实时通信的关键差异解析</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/5864/">LSTM详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a><ul></ul><a href="https://excalidraw.com/" title="excalidraw" target="_blank">excalidraw</a><ul></ul><a href="https://tudan.blog.csdn.net/?type=lately" title="王坦" target="_blank">王坦</a><ul></ul><a href="https://aspoem.com/zh-Hans" target="_blank"></a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">枫哲's文栖小筑.</a><a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn/">｜苏ICP备18013756号-1</a><!--a(rel='nofollow', target='_blank', href='https://github.com/tufu9441/maupassant-hexo')  Theme--><!--|  by--><!--a(rel='nofollow', target='_blank', href='https://github.com/pagecho')  Cho.--></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

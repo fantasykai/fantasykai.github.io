@@ -1,0 +1,575 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="fantasykai`blog"><title>集中式日志监控系统 | 枫哲's文栖小筑</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2bb92548008bd1f1f88213efd40c8dad';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">集中式日志监控系统</h1><a id="logo" href="/.">枫哲's文栖小筑</a><p class="description">君子终日乾乾，夕惕若厉，无咎</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/timeline/"><i class="fa fa-book"> 历史</i></a><a href="/blogroll/"><i class="fa fa-external-link"> 收藏链接</i></a><a href="/2048/"><i class="fa fa-gamepad"> 放松下</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">集中式日志监控系统</h1><div class="post-meta">2017-03-13<span> | </span><span class="category"><a href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a></span></div><a class="disqus-comment-count" href="/posts/8327/#vcomment"><span class="waline-comment-count" id="/posts/8327/"></span><span> 条评论</span></a><div class="post-content"><h1 id="集中式日志监控系统"><a href="#集中式日志监控系统" class="headerlink" title="集中式日志监控系统"></a>集中式日志监控系统</h1><h2 id="为什么需要日志管理系统"><a href="#为什么需要日志管理系统" class="headerlink" title="为什么需要日志管理系统"></a>为什么需要日志管理系统</h2><p>日志，对于任何系统都是重要的组成，作为程序猿，定位问题，查看系统的健康运载情况，都需要通过查询日志进行分析。</p>
+<p>合理的软件架构往往都不会是单点的，即使在同一台应用服务器上，日志有不同的种类，nginx访问日志，操作系统，应用服务，业务逻辑等等。</p>
+<p>没有日志管理系统时，我们如何分析日志：</p>
+<p>tail，cat，grep，sed ，awk ，wc… 显然不可能登录到每一台应用服务器上敲命令。</p>
+<p>于是建立一套集中式的方法，把不同来源的数据集中整合到一起，方便归纳分析，就成为解决以上痛点的方式方法。</p>
+<h2 id="ELK-简介"><a href="#ELK-简介" class="headerlink" title="ELK 简介"></a>ELK 简介</h2><p>ELK 是 Elasticsearch、Logstash 和 Kibana 三种软件产品的首字母缩写。这三者都是开源软件，通常配合使用，而且又先后归于 Elastic.co 公司名下，所以被简称为 ELK Stack,目前ELK Stack 已经成为最流行的集中式日志解决方案。</p>
+<h3 id="Elasticsearch"><a href="#Elasticsearch" class="headerlink" title="Elasticsearch"></a>Elasticsearch</h3><p>Elasticsearch 是一个实时的分布式搜索和分析引擎，它可以用于全文搜索，结构化搜索以及分析。它是一个建立在全文搜索引擎 Apache Lucene 基础上的搜索引擎，使用 Java 语言编写</p>
+<p>主要特点</p>
+<ul>
+<li>实时分析</li>
+<li>分布式实时文件存储，并将每一个字段都编入索引</li>
+<li>文档导向，所有的对象全部是文档</li>
+<li>高可用性，易扩展，支持集群（Cluster）、分片和复制（Shards 和 Replicas）。</li>
+<li>支持 JSON</li>
+</ul>
+<h3 id="Logstash"><a href="#Logstash" class="headerlink" title="Logstash"></a>Logstash</h3><p>Logstash 是一个具有实时渠道能力的数据收集引擎。使用 JRuby 语言编写</p>
+<p>主要特点</p>
+<ul>
+<li>几乎可以访问任何数据</li>
+<li>可以和多种外部应用结合</li>
+<li>支持弹性扩展</li>
+</ul>
+<p>它由三个主要部分组成</p>
+<ul>
+<li>Shipper－发送日志数据</li>
+<li>Broker－收集数据，缺省内置 Redis</li>
+<li>Indexer－数据写入</li>
+</ul>
+<h3 id="Kibana"><a href="#Kibana" class="headerlink" title="Kibana"></a>Kibana</h3><p>Kibana 是一款基于 Apache 开源协议，为 Elasticsearch 提供分析和可视化的 Web 平台。它可以在 Elasticsearch 的索引中查找，交互数据，并生成各种维度的表图。</p>
+<p>Elastic.co 在2016-10-27 发布了 Elastic Stack 5.0 以后目前更新的步伐还是很快的，并且Elastic.co 对部分好用插件开始收费。</p>
+<h2 id="整体架构图"><a href="#整体架构图" class="headerlink" title="整体架构图"></a>整体架构图</h2><p>我在对ELK有了一定了解探索后，决定先使用 ELK 5 之前比较成熟的方案做一次搭建，尝试及进一步熟悉了解集中式日志监控系统，也方便应用到我们的测试及生成环境中。</p>
+<p>各模块版本</p>
+<ul>
+<li>elasticsearch-2.4.4</li>
+<li>logstash-2.3.4</li>
+<li>kibana-4.6.3</li>
+</ul>
+<p>另外还引入消息队列</p>
+<ul>
+<li>zookeeper-3.4.9</li>
+<li>kafka_2.11-0.10.2.0</li>
+</ul>
+<p>Logstash 作为日志收集端，比较消耗 CPU 和内存资源,从Elastic.co的官网找到了更好的替代方案：Beats组件</p>
+<p>Beats 作为日志shipper</p>
+<ul>
+<li>Packetbeat（网络数据）；</li>
+<li>Metricbeat（从系统和服务收集指标。从CPU到内存，Redis到Nginx等等，Metricbeat是一种轻量级的方式来发送系统和服务统计信息）；</li>
+<li>Filebeat（日志文件）；</li>
+<li>Winlogbeat（搜集 Windows 事件日志数据）。</li>
+<li>Heartbeat （使用主动探测监视服务的可用性。给出一个URL列表，Heartbeat询问一个简单的问题：你活着吗？Heartbeat将此信息和响应时间发送到弹性堆栈的其余部分进行进一步分析）</li>
+</ul>
+<p>Beats 将搜集到的数据发送到 Logstash，经 Logstash 解析、过滤后，将其发送到 Elasticsearch 存储</p>
+<p>相比 Logstash，Beats 所占系统的 CPU 和内存几乎可以忽略不计，这样解决了Logstash 在各服务器节点上占用系统资源高的问题。另外，Beats 和 Logstash 之间支持 SSL&#x2F;TLS 加密传输，客户端和服务器双向认证，保证了通信安全。</p>
+<p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdj6dwfug4j20mo0jswft"></p>
+<h2 id="部署图"><a href="#部署图" class="headerlink" title="部署图"></a>部署图</h2><p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdfbfjchczj214g10iwpx"></p>
+<h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><p>简单把部署过程及配置文件进行记录，方便后续回顾及优化</p>
+<h3 id="相关环境："><a href="#相关环境：" class="headerlink" title="相关环境："></a>相关环境：</h3><p>部署平台&#x2F;环境：</p>
+<ul>
+<li>linux centos7.2</li>
+<li>jdk1.8.0_74</li>
+</ul>
+<h3 id="1-部署Elasticsearch集群"><a href="#1-部署Elasticsearch集群" class="headerlink" title="1.部署Elasticsearch集群"></a>1.部署Elasticsearch集群</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.elastic.co/">elastic 官网</a></li>
+</ul>
+<p>我从官网下载了 <code>elasticsearch-2.4.4.tar.gz</code></p>
+<h4 id="解压缩tar-tz"><a href="#解压缩tar-tz" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h4><pre><code>    cd /usr/local/elasticsearch
+    tar -zxvf elasticsearch-2.4.4.tar.gz
+</code></pre>
+<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><pre><code>    cd /usr/local/elasticsearch/elasticsearch-2.4.4/config
+    vim elasticsearch.yml
+</code></pre>
+<p>配置文件关键配置说明：</p>
+<p>部分配置已经在部署图中有所说明，这里再补充一些字段说明：</p>
+<pre><code> 	#配置es的集群名称，不同的集群用名字来区分，es会自动发现在同一网段下的es，配置成相同集群名字的各个节点形成一个集群。如果在同一网段下有多个集群，就可以用这个属性来区分不同的集群。
+    cluster.name: blu-es 
+
+      #节点名称，es启动时会自动创建节点名称，自己配置下更方便维护吧
+    node.name: es01
+    
+     #是否作为主节点
+    node.master: true
+    
+    #是否存储数据 
+    node.data: false
+
+    # 默认情况下，ElasticSearch使用0.0.0.0地址，并为http传输开启9200-9300端口，为节点到节点的通信开启9300-9400端口，可以自行设置IP地址
+    network.host: 我设置为内网的IP了
+
+    # 输监听定制端口
+    http.port: 9200
+
+    # 数据文件存储路径 此路径要创建出来
+    path.data: /home/elk/data
+
+    # 日志文件存储路径，此路径要创建出来
+    path.logs: /var/log/elasticsearch
+</code></pre>
+<h4 id="ES环境启动"><a href="#ES环境启动" class="headerlink" title="ES环境启动"></a>ES环境启动</h4><ul>
+<li><strong>elasticsearch默认是不支持用root用户来启动的。</strong></li>
+</ul>
+<p>解决方案：</p>
+<ul>
+<li><p>1.新建专门的用户用来管理elasticsearch，线上环境确实也不建议使用root用户</p>
+</li>
+<li><p>2.启动时，追加 <code>Des.insecure.allow.root=true</code></p>
+<pre><code>  在 `/usr/local/elasticsearch/elasticsearch-2.4.4/bin/elasticsearch` 中增加 ES_JAVA_OPTS=&quot;-Des.insecure.allow.root=true&quot;
+</code></pre>
+</li>
+</ul>
+<p>启动ES环境</p>
+<pre><code>    cd /usr/local/elasticsearch/elasticsearch-2.4.4/bin
+    sh ./elasticsearch -d
+</code></pre>
+<ul>
+<li>-d表示后台启动</li>
+</ul>
+<h4 id="Elasticsearch插件安装"><a href="#Elasticsearch插件安装" class="headerlink" title="Elasticsearch插件安装"></a>Elasticsearch插件安装</h4><p>在熟悉Elasticsearch过程中，了解到有许多不错的插件，这里把简单记录下插件的安装方法</p>
+<ul>
+<li><p>通过plugin 命令进行安装</p>
+<pre><code>  #head 方便对es进行各种操作的客户端，可以查看各个索引的数据量以及分片的状态，
+  /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+  #kopf es的管理工具，也提供了对ES集群操作的API。
+  /usr/share/elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf
+  #bigdesk 监控es状态的插
+  /usr/share/elasticsearch/bin/plugin install hlstudio/bigdesk
+</code></pre>
+</li>
+<li><p>还可以到github上查找插件的源码进行手动安装，安装细节不再赘述。</p>
+</li>
+<li><p>访问插件： <code>/_plugin/插件名称</code></p>
+<pre><code>  如访问head
+  http://ip:9200/_plugin/head/
+</code></pre>
+</li>
+</ul>
+<h4 id="Elasticsearch集群配置"><a href="#Elasticsearch集群配置" class="headerlink" title="Elasticsearch集群配置"></a>Elasticsearch集群配置</h4><p>主要是针对 <code>elasticsearch.yml</code>的配置，上述步骤已经对该文件部分关键字段说明，我在测试环境使用了3台做集群配置，通过head插件可以查看集群的状态：</p>
+<p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdl4okw4u7j20o60hrdks"></p>
+<p>ES 集群搭建OK~</p>
+<h3 id="2-部署kafka集群"><a href="#2-部署kafka集群" class="headerlink" title="2.部署kafka集群"></a>2.部署kafka集群</h3><p>Kafka集群是把状态保存在Zookeeper中的，首先要搭建Zookeeper集群。</p>
+<ul>
+<li>Zookeeper通过复制来实现高可用性，只要集群中半数以上的节点处于可用状态，它就能够保证服务继续。所以搭建集群的服务器台数应该为（2*n+1）台。</li>
+</ul>
+<h4 id="1-Zookeeper的安装配置"><a href="#1-Zookeeper的安装配置" class="headerlink" title="1) Zookeeper的安装配置"></a>1) Zookeeper的安装配置</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://zookeeper.apache.org/">zookeeper官网</a></li>
+</ul>
+<p>上述说明zookeeper集群必须保证3台以上的服务器，我这里搭建3台zookeeper服务器</p>
+<h5 id="创建myid文件"><a href="#创建myid文件" class="headerlink" title="创建myid文件"></a>创建myid文件</h5><ul>
+<li>myid 为服务器编号，用于标识服务器，这个值必须和dataDir目录下myid文件中的值保证一致</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>服务IP</th>
+<th>myid</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.11.1.11</td>
+<td>11</td>
+</tr>
+<tr>
+<td>10.11.1.12</td>
+<td>12</td>
+</tr>
+<tr>
+<td>10.11.1.13</td>
+<td>13</td>
+</tr>
+</tbody></table>
+<pre><code>为每台机器创建myid文件
+# 10.11.1.11
+echo 11 &gt;/home/zookeeper/data/myid
+# 10.11.1.12
+echo 12 &gt;/home/zookeeper/data/myid
+# 10.11.1.13
+echo 13 &gt;/home/zookeeper/data/myid
+</code></pre>
+<h5 id="我从官网下载了-zookeeper-3-4-9-tar-gz"><a href="#我从官网下载了-zookeeper-3-4-9-tar-gz" class="headerlink" title="我从官网下载了 zookeeper-3.4.9.tar.gz"></a>我从官网下载了 <code>zookeeper-3.4.9.tar.gz</code></h5><h5 id="解压缩tar-tz-1"><a href="#解压缩tar-tz-1" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h5><pre><code>    cd /usr/local/zookeeper
+    tar -zxvf zookeeper-3.4.9.tar.gz
+</code></pre>
+<h5 id="修改配置文件-1"><a href="#修改配置文件-1" class="headerlink" title="修改配置文件"></a>修改配置文件</h5><pre><code>    cd /usr/local/zookeeper/zookeeper-3.4.9/conf
+    cp zoo_sample.cfg zoo.cfg
+    vim zoo.cfg
+
+
+    # 这个时间是作为Zk服务器之间或客户端与服务器之间维持心跳的时间间隔，每隔tickTime时间就会发送一个心跳；最小 的session过期时间为2倍tickTime 
+    tickTime=2000
+    # 此配置表示，允许follower(相对于Leaderer言的“客户端”)连接并同步到Leader的初始化连接时间，以tickTime为单位。当初始化连接时间超过该值，则表示连接失败。
+    initLimit=10
+    # 此配置项表示Leader与Follower之间发送消息时，请求和应答时间长度。如果follower在设置时间内不能与leader通信，那么此follower将会被丢弃。
+    syncLimit=5
+    # 数据的存放路径
+    dataDir=/home/zookeeper/data
+    # the port at which the clients will connect
+    clientPort=2181
+    # the maximum number of client connections.
+    # 最大的并发连接数限制，设置为0或者不设置该参数，表示不进行连接数的限制。
+    #maxClientCnxns=60
+    
+    # 集群模式的配置参数
+    # 第一个端口是master和slave之间的通信端口，默认是2888，第二个端口是leader选举的端口，集群刚启动的时候选举或者leader挂掉之后进行新的选举的端口默认是3888
+    server.11=10.11.1.11:2888:3888
+    server.12=10.11.1.12:2888:3888
+    server.13=10.11.1.13:2888:3888
+    
+    #
+    # Be sure to read the maintenance section of the 
+    # administrator guide before turning on autopurge.
+    #
+    # http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance
+    #
+    # The number of snapshots to retain in dataDir
+    #autopurge.snapRetainCount=3
+    # Purge task interval in hours
+    # Set to &quot;0&quot; to disable auto purge feature
+    #autopurge.purgeInterval=1		
+</code></pre>
+<p>每台的zoo.cfg的配置相同，复制到每一台即可</p>
+<h5 id="启动zookeeper环境"><a href="#启动zookeeper环境" class="headerlink" title="启动zookeeper环境"></a>启动zookeeper环境</h5><pre><code>在bin目录下执行
+nohup ./zkServer.sh start &amp;
+</code></pre>
+<h5 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h5><pre><code>./zkServer.sh status
+Using config: /usr/local/zookeeper/zookeeper-3.4.9/bin/../conf/zoo.cfg
+Mode: follower 
+或者 Mode: leader 
+</code></pre>
+<h4 id="2-kafka的安装配置"><a href="#2-kafka的安装配置" class="headerlink" title="2) kafka的安装配置"></a>2) kafka的安装配置</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://kafka.apache.org/">kafka官网</a></li>
+</ul>
+<h5 id="我从kafka的官网下载了-kafka-2-11-0-10-2-0-tgz"><a href="#我从kafka的官网下载了-kafka-2-11-0-10-2-0-tgz" class="headerlink" title="我从kafka的官网下载了 kafka_2.11-0.10.2.0.tgz"></a>我从kafka的官网下载了 <code>kafka_2.11-0.10.2.0.tgz</code></h5><h5 id="解压缩tar-tz-2"><a href="#解压缩tar-tz-2" class="headerlink" title="解压缩tar.tz"></a>解压缩tar.tz</h5><pre><code>    cd /usr/local/kafka
+    tar -zxvf kafka_2.11-0.10.2.0.tgz
+</code></pre>
+<h5 id="修改配置文件-2"><a href="#修改配置文件-2" class="headerlink" title="修改配置文件"></a>修改配置文件</h5><pre><code>    vim /usr/local/kafka/kafka_2.11-0.10.2.0/config/server.properties
+</code></pre>
+<p>配置文件主要参数说明</p>
+<pre><code>    #当前机器在集群中的唯一标识，和zookeeper的myid性质一样
+    broker.id=1  
+    
+    #当前kafka对外提供服务的端口默认是9092
+    port=9092 #不配置的话，默认为9092
+    
+    #这个是borker进行网络处理的线程数
+    num.network.threads=3 
+    
+    #这个是borker进行I/O处理的线程数
+    num.io.threads=8 
+    
+    #消息存放的目录，这个目录可以配置为“，”逗号分割的表达式，上面的num.io.threads要大于这个目录的个数这个目录，如果配置多个目录，新创建的topic他把消息持久化的地方是，当前以逗号分割的目录中，那个分区数最少就放那一个
+    log.dirs=/usr/local/kafka/kafka_2.11-0.10.2.0/logs 
+    
+    
+    #发送缓冲区buffer大小，数据不是一下子就发送的，先回存储到缓冲区了到达一定的大小后在发送，能提高性能
+    socket.send.buffer.bytes=102400 
+    
+    
+    #kafka接收缓冲区大小，当数据到达一定大小后在序列化到磁盘
+    socket.receive.buffer.bytes=102400 
+    
+    #这个参数是向kafka请求消息或者向kafka发送消息的请请求的最大数，这个值不能超过java的堆栈大小
+    socket.request.max.bytes=104857600 
+    
+    #默认的分区数，一个topic默认1个分区数
+    num.partitions=6
+    
+    #默认消息的最大持久化时间（小时）
+    log.retention.hours=60 
+    
+    #这个参数是：因为kafka的消息是以追加的形式落地到文件，当超过这个值的时候，kafka会新起一个文件
+    log.segment.bytes=1073741824
+    
+    #每隔300000毫秒去检查上面配置的log失效时间（log.retention.hours=168 ），到目录查看是否有过期的消息如果有，删除
+    log.retention.check.interval.ms=300000 
+    
+    #设置zookeeper的连接端口
+    zookeeper.connect=10.11.1.11:2181,10.11.1.12:2181,10.11.1.13:2181
+    
+    指定客户端连接zookeeper的最大超时时间
+    zookeeper.connection.timeout.ms=6000
+</code></pre>
+<ul>
+<li>另外2台的配置只是需要修改broker.id即可，3台服务器保证broker.id不相同。</li>
+</ul>
+<h5 id="配置主机名对应IP的解析"><a href="#配置主机名对应IP的解析" class="headerlink" title="配置主机名对应IP的解析"></a>配置主机名对应IP的解析</h5><p><strong>3台配置相同</strong></p>
+<pre><code>    vim /etc/hosts
+     
+    10.11.1.11 server1
+    10.11.1.12 server2
+    10.11.1.13 server3
+</code></pre>
+<h5 id="启动kafka环境"><a href="#启动kafka环境" class="headerlink" title="启动kafka环境"></a>启动kafka环境</h5><pre><code>    nohup ./kafka-server-start.sh ../config/server.properties &amp;
+</code></pre>
+<p>kafka集群搭建OK</p>
+<h3 id="3-部署logstash服务"><a href="#3-部署logstash服务" class="headerlink" title="3.部署logstash服务"></a>3.部署logstash服务</h3><p>在此架构中，logstash担任两种角色，也处于不同的层次</p>
+<ul>
+<li>对日志进行格式化等处理，对接转存到kafka集群中。</li>
+<li>作为（消费者）从kafka集群中拉取日志消息。同步到ES集群。</li>
+</ul>
+<h4 id="部署日志处理层的logstash"><a href="#部署日志处理层的logstash" class="headerlink" title="部署日志处理层的logstash"></a>部署日志处理层的logstash</h4><p>这里用到了 <code>GeoLite</code>, 可用于转换IP，变成地理位置信息。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://dev.maxmind.com/">GeoLite官网</a></li>
+</ul>
+<h5 id="从GeoLite官网下载-GeoLiteCity-dat-gz"><a href="#从GeoLite官网下载-GeoLiteCity-dat-gz" class="headerlink" title="从GeoLite官网下载 GeoLiteCity.dat.gz"></a>从GeoLite官网下载 <code>GeoLiteCity.dat.gz</code></h5><h5 id="从elastic官网下载-logstash-2-3-4-tar-gz"><a href="#从elastic官网下载-logstash-2-3-4-tar-gz" class="headerlink" title="从elastic官网下载 logstash-2.3.4.tar.gz"></a>从elastic官网下载 <code>logstash-2.3.4.tar.gz</code></h5><h5 id="解压logstash-2-3-4-tar-gz"><a href="#解压logstash-2-3-4-tar-gz" class="headerlink" title="解压logstash-2.3.4.tar.gz"></a>解压logstash-2.3.4.tar.gz</h5><pre><code>    cd /usr/local/logstash
+    tar -zxvf logstash-2.3.4.tar.gz
+</code></pre>
+<h5 id="解压GeoLiteCity-dat-gz"><a href="#解压GeoLiteCity-dat-gz" class="headerlink" title="解压GeoLiteCity.dat.gz"></a>解压GeoLiteCity.dat.gz</h5><pre><code>    cd /usr/local/logstash
+    tar -zxvf GeoLiteCity.dat.gz
+</code></pre>
+<h5 id="编辑获取日志并输出到kafka的配置文件"><a href="#编辑获取日志并输出到kafka的配置文件" class="headerlink" title="编辑获取日志并输出到kafka的配置文件"></a>编辑获取日志并输出到kafka的配置文件</h5><p><code>vim logstash_in_kafka.conf</code></p>
+<pre><code>    # 用于接收Beats组件传送的日志信息
+    input &#123;
+        beats &#123;
+        port =&gt; 5044
+        codec =&gt; &quot;json&quot;
+    &#125;
+    &#125;
+    
+    # 过滤日志内容，这里判断nginx日志时，增加ip转换的内容  
+    filter &#123;
+        if [type] == &quot;nginxacclog&quot; &#123;
+     
+        geoip &#123;
+            source =&gt; &quot;clientip&quot;
+            target =&gt; &quot;geoip&quot;
+            database =&gt; &quot;/usr/local/logstash/GeoLiteCity.dat&quot;
+            add_field =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;%&#123;[geoip][longitude]&#125;&quot; ]
+            add_field =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;%&#123;[geoip][latitude]&#125;&quot; ]
+    &#125;
+    
+        mutate &#123;
+            convert =&gt; [ &quot;[geoip][coordinates]&quot;,&quot;float&quot; ]
+     
+    &#125;
+    &#125;
+    &#125;
+
+    # 输出到kafka中
+    output &#123;
+      kafka &#123;
+        workers =&gt; 2
+        bootstrap_servers =&gt; &quot;10.11.1.11:9092,10.11.1.12:9092,10.11.1.13:9092&quot;
+        topic_id =&gt; &quot;peiyinlog&quot;
+    &#125;
+    &#125;
+</code></pre>
+<ul>
+<li>workers：用于写入时的工作线程</li>
+<li>bootstrap_servers：指定可用的kafka broker实例列表</li>
+<li>topic_id：指定topic名称，可以在写入前手动在broker创建定义好分片数和副本数，也可以不提前创建，那么在logstash写入时会自动创建</li>
+<li>topic，分片数和副本数则默认为broker配置文件中设置的。</li>
+</ul>
+<h5 id="启动logstash"><a href="#启动logstash" class="headerlink" title="启动logstash"></a>启动logstash</h5><pre><code>    nohup ./logstash agent -f logstash_in_kafka.conf &amp;
+</code></pre>
+<h4 id="部署作为consumer的logstash"><a href="#部署作为consumer的logstash" class="headerlink" title="部署作为consumer的logstash"></a>部署作为consumer的logstash</h4><p>同样解压logstash-2.3.4.tar.gz，只是这里的配置文件不同</p>
+<h5 id="编辑从kafka获取日志内容，传输到ES集群的配置文件"><a href="#编辑从kafka获取日志内容，传输到ES集群的配置文件" class="headerlink" title="编辑从kafka获取日志内容，传输到ES集群的配置文件"></a>编辑从kafka获取日志内容，传输到ES集群的配置文件</h5><p><code>vim kafka_to_es.conf</code></p>
+<pre><code>    # 从kafka获取日志内容
+    input&#123;
+        kafka &#123;
+            zk_connect =&gt; &quot;10.11.1.11:2181,10.11.1.12:2181,10.11.1.13:2181&quot;
+            group_id =&gt; &quot;logstash&quot;
+            topic_id =&gt; &quot;peiyinlog&quot;
+            reset_beginning =&gt; false
+            consumer_threads =&gt; 50
+            decorate_events =&gt; true
+     
+    &#125;
+     
+    &#125;
+     
+    # 删除一些不需要的字段  
+    filter &#123;
+      if [type] == &quot;nginxacclog&quot; &#123;
+     
+         mutate &#123;
+         remove_field =&gt; [&quot;slbip&quot;,&quot;kafka&quot;,&quot;domain&quot;,&quot;serverip&quot;,&quot;url&quot;,&quot;@version&quot;,&quot;offset&quot;,&quot;input_type&quot;,&quot;count&quot;,&quot;source&quot;,&quot;fields&quot;,&quot;beat.hostname&quot;,&quot;host&quot;,&quot;tags&quot;]
+        &#125;
+    &#125;
+     
+    &#125;
+     
+    # 输出日志到ES集群
+    output &#123;
+        if [type] == &quot;nginxacclog&quot; &#123;
+           # stdout &#123;codec =&gt; rubydebug &#125;
+            elasticsearch &#123;
+                hosts =&gt; [&quot;x.x.x.x:9200&quot;,&quot;x.x.x.x:9200&quot;]
+                index =&gt; &quot;logstash-nginxacclog-%&#123;+YYYY.MM.dd&#125;&quot;
+                manage_template =&gt; true
+                flush_size =&gt; 50000
+                idle_flush_time =&gt; 10
+                workers =&gt; 2
+    &#125;
+     
+    &#125;
+        if [type] == &quot;messages&quot; &#123;
+            elasticsearch &#123;
+                hosts =&gt; [&quot;x.x.x.x:9200&quot;,&quot;x.x.x.x:9200&quot;]
+                index =&gt; &quot;logstash-messages-%&#123;+YYYY.MM.dd&#125;&quot;
+                manage_template =&gt; true
+                flush_size =&gt; 50000
+                idle_flush_time =&gt; 30
+                workers =&gt; 1
+    &#125;
+     
+    &#125;
+     
+    &#125;
+</code></pre>
+<h5 id="启动logstash-1"><a href="#启动logstash-1" class="headerlink" title="启动logstash"></a>启动logstash</h5><pre><code>    nohup ./logstash agent -f kafka_to_es.conf &amp;
+</code></pre>
+<h3 id="4-部署日志采集程序Filebeat"><a href="#4-部署日志采集程序Filebeat" class="headerlink" title="4.部署日志采集程序Filebeat"></a>4.部署日志采集程序Filebeat</h3><p>上述已说明使用beats组件作为日志采集程序，这里只使用了<code>filebeat</code>组件收集我们测试环境上的nginx日志centos操作系统日志，并传输到logstash中。</p>
+<h4 id="从elastic官网下载-filebeat-1-2-3-x86-64-tar-gz"><a href="#从elastic官网下载-filebeat-1-2-3-x86-64-tar-gz" class="headerlink" title="从elastic官网下载 filebeat-1.2.3-x86_64.tar.gz"></a>从elastic官网下载 <code>filebeat-1.2.3-x86_64.tar.gz</code></h4><h4 id="解压logstash-2-3-4-tar-gz-1"><a href="#解压logstash-2-3-4-tar-gz-1" class="headerlink" title="解压logstash-2.3.4.tar.gz"></a>解压logstash-2.3.4.tar.gz</h4><pre><code>    cd /usr/local/filebeat
+    tar -zxvf ogstash-2.3.4.tar.gz
+</code></pre>
+<h4 id="配置filebeat-yml-文件"><a href="#配置filebeat-yml-文件" class="headerlink" title="配置filebeat.yml 文件"></a>配置filebeat.yml 文件</h4><pre><code>    ################### Filebeat Configuration Example #########################
+     
+    ############################# Filebeat ######################################
+     
+    filebeat:
+      prospectors:
+        -
+          paths:
+            - /var/log/messages
+     
+          input_type: log
+           
+          document_type: messages
+     
+        -
+          paths:
+            - /var/log/nginx/access.log
+           
+          input_type: log
+     
+          document_type: nginxacclog
+         
+     
+          multiline: 
+              pattern: &#39;^[[:space:]]&#39;
+              negate: true
+              match: after
+     
+      registry_file: /var/lib/filebeat/registry
+     
+       
+    ############################# Output ##########################################
+       
+    output:
+      logstash: 
+        hosts: [&quot;x.x.x.x:5044&quot;,&quot;x.x.x.x:5044&quot;]
+       
+     
+    ############################# Shipper #########################################
+       
+    shipper: 
+      name: &quot;blu_test&quot;
+       
+       
+    ############################# Logging ######################################### 
+       
+    logging:  
+      files:
+        rotateeverybytes: 10485760 # = 10MB
+</code></pre>
+<h4 id="这里把nginx的access日志源改为json格式，方便后续处理"><a href="#这里把nginx的access日志源改为json格式，方便后续处理" class="headerlink" title="这里把nginx的access日志源改为json格式，方便后续处理"></a>这里把nginx的access日志源改为json格式，方便后续处理</h4><pre><code>    log_format json &#39;&#123; &quot;@timestamp&quot;:&quot;$time_local&quot;,&#39;
+             &#39;&quot;clientip&quot;:&quot;$remote_addr&quot;,&#39;
+             &#39;&quot;remote_user&quot;: &quot;$remote_user&quot;, &#39;
+             &#39;&quot;http_x_forwarded_for&quot;:&quot;$http_x_forwarded_for&quot;,&#39;
+             &#39;&quot;serverip&quot;:&quot;$server_addr&quot;,&#39;
+             &#39;&quot;size&quot;:$body_bytes_sent,&#39;
+             &#39;&quot;request_time&quot;:$request_time,&#39;
+             &#39;&quot;domain&quot;:&quot;$host&quot;,&#39;
+             &#39;&quot;request&quot;: &quot;$request&quot;, &#39;
+             &#39;&quot;method&quot;:&quot;$request_method&quot;,&#39;
+             &#39;&quot;requesturi&quot;:&quot;$request_uri&quot;,&#39;
+             &#39;&quot;url&quot;:&quot;$uri&quot;,&#39;
+             &#39;&quot;appversion&quot;:&quot;$HTTP_APP_VERSION&quot;,&#39;
+             &#39;&quot;referer&quot;:&quot;$http_referer&quot;,&#39;
+             &#39;&quot;agent&quot;:&quot;$http_user_agent&quot;,&#39;
+             &#39;&quot;status&quot;:&quot;$status&quot;&#125;&#39;;
+</code></pre>
+<h4 id="重启nginx服务"><a href="#重启nginx服务" class="headerlink" title="重启nginx服务"></a>重启nginx服务</h4><pre><code>    nginx -s reload
+</code></pre>
+<h4 id="启动-filebeat"><a href="#启动-filebeat" class="headerlink" title="启动 filebeat"></a>启动 filebeat</h4><pre><code>    cd /usr/local/filebeat/filebeat-1.2.3-x86_64
+    nohup ./filebeat start &amp;
+</code></pre>
+<h3 id="5-安装配置kibana"><a href="#5-安装配置kibana" class="headerlink" title="5.安装配置kibana"></a>5.安装配置kibana</h3><h4 id="安装kibana"><a href="#安装kibana" class="headerlink" title="安装kibana"></a>安装kibana</h4><p>kibana最早是为了代替logstash-web 用来查看 ES 中的数据，用PHP编写的web</p>
+<p>k2 是k1作者使用ruby重写</p>
+<p>K3 是纯前端框架搭建，使用angularjs 编写</p>
+<p>K4 是使用node.js编写</p>
+<p>目前最新的版本已经是K5 </p>
+<p>本次部署依然选用了比较成熟的k4,安装也相对比较简单</p>
+<h5 id="从elastic官网下载-kibana-4-6-3-linux-x86-64-tar-gz"><a href="#从elastic官网下载-kibana-4-6-3-linux-x86-64-tar-gz" class="headerlink" title="从elastic官网下载 kibana-4.6.3-linux-x86_64.tar.gz"></a>从elastic官网下载 <code>kibana-4.6.3-linux-x86_64.tar.gz</code></h5><h5 id="解压kibana-4-6-3-linux-x86-64-tar-gz"><a href="#解压kibana-4-6-3-linux-x86-64-tar-gz" class="headerlink" title="解压kibana-4.6.3-linux-x86_64.tar.gz"></a>解压kibana-4.6.3-linux-x86_64.tar.gz</h5><pre><code>    cd /usr/local/kibana
+    tar -zxvf kibana-4.6.3-linux-x86_64.tar.gz
+</code></pre>
+<h5 id="配置kibana-yml-文件"><a href="#配置kibana-yml-文件" class="headerlink" title="配置kibana.yml 文件"></a>配置kibana.yml 文件</h5><pre><code>    cd /usr/local/kibana/kibana-4.6.3-linux-x86_64/config
+    vim kibana.yml
+</code></pre>
+<p>一堆参数，只需修改这3个，即可启动</p>
+<pre><code>    # Kibana is served by a back end server. This controls which port to use.
+    server.port: 5601
+    
+    # The host to bind the server to.
+    server.host: &quot;0.0.0.0&quot;
+    
+    # The Elasticsearch instance to use for all your queries.
+    elasticsearch.url: &quot;http://IP:9200&quot;
+</code></pre>
+<h5 id="启动kibana"><a href="#启动kibana" class="headerlink" title="启动kibana"></a>启动kibana</h5><pre><code>    nohup ./kibana &amp;
+</code></pre>
+<h4 id="访问kibana，配置日志索引"><a href="#访问kibana，配置日志索引" class="headerlink" title="访问kibana，配置日志索引"></a>访问kibana，配置日志索引</h4><ul>
+<li>访问地址： <code>http://IP:5601</code></li>
+</ul>
+<p>默认情况下，Kibana 认为你要访问的是通过 Logstash 导入 Elasticsearch 的数据。这时候你可以用默认的 logstash-* 作为你的 index pattern。通配符(*) 匹配索引名中零到多个字符。如果你的 Elasticsearch 索引有其他命名约定，输入合适的 pattern。pattern 也开始是最简单的单个索引的名字。</p>
+<p><img src="https://ws1.sinaimg.cn/mw690/7108d6c2ly1fdlec8xlpfj210z0hbtae"></p>
+<p>如果一个新索引是定期生成，而且索引名中带有时间戳，选择 <code>Use event times to create index names</code> 选项，然后再选择 <code>Index pattern interval</code>。这可以提高搜索性能，Kibana 会至搜索你指定的时间范围内的索引。在你用 Logstash 输出数据给 Elasticsearch 的情况下尤其有效。</p>
+<p>点击 <code>Create</code> 添加 <code>index pattern</code>。第一个被添加的 pattern 会自动被设置为默认值。如果你有多个 index pattern 的时候，你可以在 Settings &gt; Indices 里设置具体哪个是默认值。</p>
+<p><img src="https://ws1.sinaimg.cn/mw690/7108d6c2ly1fdleezdoyrj21070pgq78"></p>
+<h4 id="kibana简单介绍"><a href="#kibana简单介绍" class="headerlink" title="kibana简单介绍"></a>kibana简单介绍</h4><p>简单介绍下kibana的三个模块</p>
+<h5 id="Discover"><a href="#Discover" class="headerlink" title="Discover"></a>Discover</h5><p>可以从 <strong><code>Discover</code></strong> 页面以交互方式探索日志数据，可以过滤搜索结果以及查看文档数据。 还可以查看与搜索查询匹配的文档数，并获取字段值统计信息，可以配置时间字段，则日志随时间的分布将显示在页面顶部的直方图中。</p>
+<p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlh5o8arrj218m0ekwgf"></p>
+<h5 id="Visualize"><a href="#Visualize" class="headerlink" title="Visualize"></a>Visualize</h5><p><strong><code>Visualize</code></strong> 用来构建显示相关可视化的仪表板.Kibana可视化基于Elasticsearch查询。 通过使用一系列Elasticsearch聚合来提取和处理数据</p>
+<p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlh5z4x7ej210p0k6tb6"></p>
+<h5 id="Dashboard"><a href="#Dashboard" class="headerlink" title="Dashboard"></a>Dashboard</h5><p>Kibana仪表板显示已保存的可视化对象的集合。 可以根据需要安排和调整可视化对象，并保存仪表板，以便重新加载和共享。</p>
+<p>我在Visualize中制作了一些简单的统计，绘制了一个Dashboard</p>
+<p><img src="https://ws1.sinaimg.cn/large/7108d6c2ly1fdlhexd03kj21f30qzqfa"></p>
+<p>目前对Kibana及ES尚未深入了解，后续有一定掌握之后再做总结分享。</p>
+<h3 id="后续优化："><a href="#后续优化：" class="headerlink" title="后续优化："></a>后续优化：</h3><ul>
+<li>部署的的相关应用统一管理等</li>
+<li>ES 调优</li>
+<li>kafka集群调优</li>
+<li>kibana扩展</li>
+<li>kibana接入到nginx中</li>
+<li>等等</li>
+</ul>
+<p>参考资料：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/chenryn/elk-stack-guide-cn/details">elk-stack-guide-cn</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.elastic.co/">elastic.co</a></p>
+</li>
+</ul>
+</div><div class="tags"><a href="/tags/日志"><i class="fa fa-tag">日志</i></a></div><div class="post-nav"><a class="pre" href="/posts/29501/">vue2简单总结</a><a class="next" href="/posts/24257/">多说评论一篇文章被评论后，其他文章都添加了相同的评论</a></div><div id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://comment.aimak.cn',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>认真生活.</p><a class="info-icon" href="https://twitter.com/fantasykaicc" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:makren@126.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/fantasykai" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/AI-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/">AI, 网络运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%B9%E5%99%A8/">容器</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">36</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/">技术小栈</a><span class="category-list-count">117</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">72</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%93%E5%AD%98/">缓存</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E5%BD%95/">语录</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B7%91%E6%AD%A5/">跑步</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 15px;">架构</a> <a href="/tags/PMO/" style="font-size: 15px;">PMO</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/" style="font-size: 15px;">技术团队</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 15px;">开发效率</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 15px;">杂记</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 15px;">人工智能</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">深度学习</a> <a href="/tags/Deepseek-%E8%87%AA%E6%99%BA%E7%BD%91%E7%BB%9C-%E8%BF%90%E8%90%A5%E5%95%86-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">Deepseek, 自智网络, 运营商, 网络运维</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 15px;">知识图谱</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%8A%80%E6%9C%AF%E8%B6%8B%E5%8A%BF-%E8%A1%8C%E4%B8%9A%E5%8A%A8%E6%80%81/" style="font-size: 15px;">人工智能, 技术趋势, 行业动态</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/thymeleaf/" style="font-size: 15px;">thymeleaf</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Chrome-%E6%95%88%E7%8E%87%E6%8F%92%E4%BB%B6/" style="font-size: 15px;">Chrome 效率插件</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 15px;">运维</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">测试</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/SDN/" style="font-size: 15px;">SDN</a> <a href="/tags/%E8%AF%AD%E5%BD%95/" style="font-size: 15px;">语录</a> <a href="/tags/%E9%A9%AC%E6%8B%89%E6%9D%BE/" style="font-size: 15px;">马拉松</a> <a href="/tags/%E5%81%A5%E5%BA%B7/" style="font-size: 15px;">健康</a> <a href="/tags/%E6%8A%A5%E5%91%8A%E5%88%86%E4%BA%AB/" style="font-size: 15px;">报告分享</a> <a href="/tags/Jenkins/" style="font-size: 15px;">Jenkins</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 15px;">容器</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/restful/" style="font-size: 15px;">restful</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%B0%8F%E6%A0%88/" style="font-size: 15px;">技术小栈</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/CAP/" style="font-size: 15px;">CAP</a> <a href="/tags/ideas/" style="font-size: 15px;">ideas</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">并发</a> <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 15px;">高并发</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/63200/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63199/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/63198/">每日资讯</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/55960/">Deepseek 技术分析总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/17232/">3月份马拉松计划</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/16164/">2024年人工智能进展及展望</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/57547/">大模型概念总结</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/47183/">系统稳定性建设</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/24447/">实时通信的关键差异解析</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/5864/">LSTM详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://comment.aimak.cn" count="5" src="/js/recent-comments.js?v=1.0.0" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://landscape.cncf.io/" title="CNCF" target="_blank">CNCF</a><ul></ul><a href="https://segmentfault.com/" title="SegmentFault" target="_blank">SegmentFault</a><ul></ul><a href="https://blog.csdn.net/junbaozi/category_11649936_3.html" title="CloudNative" target="_blank">CloudNative</a><ul></ul><a href="https://excalidraw.com/" title="excalidraw" target="_blank">excalidraw</a><ul></ul><a href="https://tudan.blog.csdn.net/?type=lately" title="王坦" target="_blank">王坦</a><ul></ul><a href="https://aspoem.com/zh-Hans" target="_blank"></a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">枫哲's文栖小筑.</a><a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn/">｜苏ICP备18013756号-1</a><!--a(rel='nofollow', target='_blank', href='https://github.com/tufu9441/maupassant-hexo')  Theme--><!--|  by--><!--a(rel='nofollow', target='_blank', href='https://github.com/pagecho')  Cho.--></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
