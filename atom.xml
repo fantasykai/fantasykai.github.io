@@ -6,7 +6,7 @@
   <link href="http://ai.mak.cn/atom.xml" rel="self"/>
   
   <link href="http://ai.mak.cn/"/>
-  <updated>2025-02-25T10:23:35.733Z</updated>
+  <updated>2025-02-26T06:23:31.742Z</updated>
   <id>http://ai.mak.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每日资讯</title>
+    <link href="http://ai.mak.cn/posts/411b54c4/"/>
+    <id>http://ai.mak.cn/posts/411b54c4/</id>
+    <published>2025-02-25T16:00:00.000Z</published>
+    <updated>2025-02-26T06:23:31.742Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="2025年2月25日-AI领域核心动态与深度解读"><a href="#2025年2月25日-AI领域核心动态与深度解读" class="headerlink" title="2025年2月25日 AI领域核心动态与深度解读"></a>2025年2月25日 AI领域核心动态与深度解读</h1><hr><h2 id="一、国内AI领域核心进展"><a href="#一、国内AI领域核心进展" class="headerlink" title="一、国内AI领域核心进展"></a>一、国内AI领域核心进展</h2><h3 id="1-DeepSeek开源生态加速模型平权，推动低成本AI普及"><a href="#1-DeepSeek开源生态加速模型平权，推动低成本AI普及" class="headerlink" title="1. DeepSeek开源生态加速模型平权，推动低成本AI普及"></a>1. <strong>DeepSeek开源生态加速模型平权，推动低成本AI普及</strong></h3><p>DeepSeek宣布启动“开源周”，计划逐步开源5个代码库，包括通用人工智能（AGI）研究成果，显著降低垂类模型训练门槛。其最新模型DeepSeek-R1已接入腾讯元宝、百度搜索等应用，推理成本仅为OpenAI同类模型的1&#x2F;30，推动终端设备智能化升级。同时，国务院国资委召开央企“AI+”专项行动会议，强调核心技术攻关与开放生态构建。<br><strong>点评</strong>：开源策略加速技术普惠，但需警惕生态依赖导致的技术同质化风险。建议企业采用“核心自研+外围开源”策略，如华为“芯片自主+鸿蒙开源”模式。</p><h3 id="2-AI-PC市场爆发，联想、小米引领终端智能化浪潮"><a href="#2-AI-PC市场爆发，联想、小米引领终端智能化浪潮" class="headerlink" title="2. AI PC市场爆发，联想、小米引领终端智能化浪潮"></a>2. <strong>AI PC市场爆发，联想、小米引领终端智能化浪潮</strong></h3><ul><li><strong>联想</strong>发布YOGA 2025系列新品，首次在端侧部署DeepSeek 7B大模型，成为首家实现该规模端侧模型的终端厂商，显著提升AI PC交互能力。  </li><li><strong>小米</strong>将于2月27日推出Redmi Book Pro 16 2025，搭载“小米AI PC引擎”，支持跨设备文件互传，定位为AI时代专业办公工具。<br><strong>趋势</strong>：IDC预测，2027年全球AI PC出货量将达1.5亿台，中国市场渗透率超85%。AI芯片、散热模组、存储等产业链环节将迎来需求激增。</li></ul><h3 id="3-人形机器人产业中国领跑全球，深圳成创新高地"><a href="#3-人形机器人产业中国领跑全球，深圳成创新高地" class="headerlink" title="3. 人形机器人产业中国领跑全球，深圳成创新高地"></a>3. <strong>人形机器人产业中国领跑全球，深圳成创新高地</strong></h3><p>摩根士丹利发布的全球人形机器人百强榜单中，中国企业占比超30%，深圳独占7席。宇树科技、优必选等企业通过DeepSeek大模型优化运动控制与交互能力，推动人形机器人从实验室走向量产。<br><strong>风险提示</strong>：当前板块市盈率中位数达87倍，远超硬件制造业合理区间，需警惕估值泡沫化。</p><h3 id="4-国产大模型安全技术取得关键进展"><a href="#4-国产大模型安全技术取得关键进展" class="headerlink" title="4. 国产大模型安全技术取得关键进展"></a>4. <strong>国产大模型安全技术取得关键进展</strong></h3><p>清华大学与瑞莱智慧联合发布<strong>Real-Safe-R1大语言模型</strong>，基于Deep-Seek-R1框架优化，重点解决大模型在内容生成中的安全漏洞问题，例如对抗性攻击和越狱风险[[5]]。<br><strong>点评</strong>：AI安全已成为行业痛点，该模型通过算法级防护提升可信度，或为金融、政务等高敏感领域提供落地新路径。建议关注其开源计划及行业适配性测试进展。</p><hr><h3 id="5-医疗AI突破：覆盖90-癌症病种的病理模型落地"><a href="#5-医疗AI突破：覆盖90-癌症病种的病理模型落地" class="headerlink" title="5. 医疗AI突破：覆盖90%癌症病种的病理模型落地"></a>5. <strong>医疗AI突破：覆盖90%癌症病种的病理模型落地</strong></h3><p>华为DCS AI解决方案支持的<strong>瑞金病理模型</strong>正式发布，可辅助诊断超90%癌症类型，结合多模态数据（病理切片、基因信息）提升精准度[[7]]。<br><strong>点评</strong>：医疗AI从辅助筛查向精准诊断跃进，但需警惕数据隐私争议。建议医疗机构探索“AI+医生”双审机制，平衡效率与责任归属。</p><hr><h3 id="6-人形机器人量产元年到来"><a href="#6-人形机器人量产元年到来" class="headerlink" title="6. 人形机器人量产元年到来"></a>6. <strong>人形机器人量产元年到来</strong></h3><p>特斯拉计划2025年生产1万台Optimus，FigureAI目标4年内量产10万台，1X Technologies预计2025年实现规模化生产[[9]]。<br><strong>点评</strong>：供应链成熟度与成本控制是关键。建议关注电机、传感器等核心部件国产化替代机会，以及工业、家庭场景的商业化优先级差异。</p><hr><h3 id="7-开源生态加速AI技术迭代"><a href="#7-开源生态加速AI技术迭代" class="headerlink" title="7. 开源生态加速AI技术迭代"></a>7. <strong>开源生态加速AI技术迭代</strong></h3><p>2025全球开发者先锋大会上，多家企业强调开源对AI创新的推动作用，例如模型训练框架优化与多模态工具链共享[[2]][[6]]。<br><strong>建议</strong>：开发者可重点关注GitHub等平台上的AI开源项目（如AmbroseX&#x2F;Awesome-AISourceHub[[3]]），但需警惕技术碎片化导致的兼容性问题。</p><hr><h3 id="8-行业趋势研判与行动指南"><a href="#8-行业趋势研判与行动指南" class="headerlink" title="8. 行业趋势研判与行动指南"></a>8. <strong>行业趋势研判与行动指南</strong></h3><ol><li><strong>技术聚焦</strong>：多模态生成（文本&#x2F;图像&#x2F;音频）与具身智能（机器人）是短期爆发点[[8]][[4]]；  </li><li><strong>风险预警</strong>：欧盟《AI法案》生效在即，企业需提前布局合规性测试；  </li><li><strong>投资热点</strong>：医疗AI诊断、机器人执行器供应链、边缘计算硬件。</li></ol><hr><h2 id="二、国际AI前沿动态"><a href="#二、国际AI前沿动态" class="headerlink" title="二、国际AI前沿动态"></a>二、国际AI前沿动态</h2><h3 id="1-特斯拉FSD入华倒逼国产智驾技术迭代"><a href="#1-特斯拉FSD入华倒逼国产智驾技术迭代" class="headerlink" title="1. 特斯拉FSD入华倒逼国产智驾技术迭代"></a>1. <strong>特斯拉FSD入华倒逼国产智驾技术迭代</strong></h3><p>特斯拉计划在中国分批推送FSD（完全自动驾驶）功能，支持城市道路导航与交通信号识别。此举或加速比亚迪、吉利等车企接入DeepSeek模型优化智驾系统，但需关注数据跨境合规性与本地化适配挑战。</p><h3 id="2-苹果股东大会聚焦AI战略，库克或披露技术新动向"><a href="#2-苹果股东大会聚焦AI战略，库克或披露技术新动向" class="headerlink" title="2. 苹果股东大会聚焦AI战略，库克或披露技术新动向"></a>2. <strong>苹果股东大会聚焦AI战略，库克或披露技术新动向</strong></h3><p>苹果2025年股东大会于2月25日召开，AI技术成为焦点议题。CEO蒂姆·库克可能透露AI在硬件（如AirTag 2与Vision Pro）与软件生态中的整合计划，尤其是生成式AI在创作工具中的应用。此前，苹果已宣布将集成谷歌Gemini模型，增强设备端AI能力。</p><h3 id="3-欧盟AI法案生效，划定全球监管新标杆"><a href="#3-欧盟AI法案生效，划定全球监管新标杆" class="headerlink" title="3. 欧盟AI法案生效，划定全球监管新标杆"></a>3. <strong>欧盟AI法案生效，划定全球监管新标杆</strong></h3><p>欧盟AI法案正式实施，明确禁止社会评分系统与情感识别技术，要求企业提升算法透明度。此举与国内“包容性治理”路径形成对比，可能影响跨国企业的技术输出策略。</p><hr><h2 id="三、技术趋势与产业洞察"><a href="#三、技术趋势与产业洞察" class="headerlink" title="三、技术趋势与产业洞察"></a>三、技术趋势与产业洞察</h2><h3 id="1-开源生态重构产业规则"><a href="#1-开源生态重构产业规则" class="headerlink" title="1. 开源生态重构产业规则"></a>1. <strong>开源生态重构产业规则</strong></h3><p>DeepSeek的开源策略与央企政策支持形成协同效应，推动AI技术从“实验室垄断”转向“全民开发”。昆仑万维开源AI短剧创作模型SkyReels-V1，阶跃星辰与吉利汽车联合开源视频生成模型，进一步降低内容生产门槛。</p><h3 id="2-AI-消费场景加速落地"><a href="#2-AI-消费场景加速落地" class="headerlink" title="2. AI+消费场景加速落地"></a>2. <strong>AI+消费场景加速落地</strong></h3><p>港股消费板块中，AI赋能出海、教育、品牌服务等场景成为投资热点。东吴证券指出，AI在跨语种选品、个性化营销等领域潜力巨大，但需平衡效率提升与隐私保护。</p><h3 id="3-算力需求爆发与绿色转型并行"><a href="#3-算力需求爆发与绿色转型并行" class="headerlink" title="3. 算力需求爆发与绿色转型并行"></a>3. <strong>算力需求爆发与绿色转型并行</strong></h3><p>阿里宣布未来三年投入3800亿元建设云与AI基础设施，液冷技术、国产GPU需求激增。同时，全球最大功率甲醇双燃料船用发动机发布，采用数字化智能控制系统，减少碳排放7.5%，预示AI与绿色科技的深度融合。</p><hr><h2 id="四、深度点评与策略建议"><a href="#四、深度点评与策略建议" class="headerlink" title="四、深度点评与策略建议"></a>四、深度点评与策略建议</h2><h3 id="1-投资逻辑：从硬件到场景验证"><a href="#1-投资逻辑：从硬件到场景验证" class="headerlink" title="1. 投资逻辑：从硬件到场景验证"></a>1. <strong>投资逻辑：从硬件到场景验证</strong></h3><ul><li><strong>短期（1年）</strong>：关注算力基建（寒武纪、中科曙光）与AI PC产业链（英力股份、江波龙）；  </li><li><strong>长期（3-5年）</strong>：布局多模态交互（语音&#x2F;视觉合成）与量子AI融合（微软Majorana芯片）。</li></ul><h3 id="2-风险预警"><a href="#2-风险预警" class="headerlink" title="2. 风险预警"></a>2. <strong>风险预警</strong></h3><ul><li><strong>技术悬崖</strong>：过度依赖开源可能导致创新乏力，企业需构建差异化技术护城河；  </li><li><strong>伦理争议</strong>：医疗AI诊断责任界定模糊，需政策明确“人机协同”边界。</li></ul><h3 id="3-开发者行动指南"><a href="#3-开发者行动指南" class="headerlink" title="3. 开发者行动指南"></a>3. <strong>开发者行动指南</strong></h3><ul><li><strong>技术选型</strong>：优先适配国产框架（如LazyLLM）、关注边缘计算工具链（TensorFlow Lite）；  </li><li><strong>职业转型</strong>：AI安全工程师、多模态模型开发等岗位需求激增，需积累开源社区影响力。</li></ul><hr><h3 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h3><ul><li><a href="https://github.com/deepseek">DeepSeek开源代码库地址</a>  </li><li>《IDC全球AI PC市场预测报告》摘要  </li><li>苹果股东大会AI技术讨论实录</li></ul><hr><p><strong>结语</strong><br>2025年AI产业在开源生态与终端智能化的双重驱动下，呈现“技术民主化”与“场景深水区”并行的特征。开发者需在创新与合规间寻找平衡，投资者应聚焦AI PC、人形机器人等领域的实质性落地。未来一周，关注小米新品发布会的技术细节与苹果AI战略的进一步披露，这些或成市场风向标。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;2025年2月25日-AI领域核心动态与深度解读&quot;&gt;&lt;a href=&quot;#2025年2月25日-AI领域核心动态与深度解读&quot; class=&quot;headerlink&quot; title=&quot;2025年2月25日 AI领域核心动态与深度解读&quot;&gt;&lt;/a&gt;2025年2月25日 AI领</summary>
+      
+    
+    
+    
+    <category term="AI" scheme="http://ai.mak.cn/categories/AI/"/>
+    
+    
+    <category term="人工智能" scheme="http://ai.mak.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>每日资讯</title>
@@ -471,32 +495,6 @@
       
     <summary type="html">&lt;h1 id=&quot;5公里成绩跑进20分钟！&quot;&gt;&lt;a href=&quot;#5公里成绩跑进20分钟！&quot; class=&quot;headerlink&quot; title=&quot;5公里成绩跑进20分钟！&quot;&gt;&lt;/a&gt;5公里成绩跑进20分钟！&lt;/h1&gt;&lt;p&gt;5km，在跑者眼里是一个很有意义的路程。&lt;/p&gt;
 &lt;p&gt;5k</summary>
-      
-    
-    
-    
-    <category term="跑步" scheme="http://ai.mak.cn/categories/%E8%B7%91%E6%AD%A5/"/>
-    
-    
-    <category term="健康" scheme="http://ai.mak.cn/tags/%E5%81%A5%E5%BA%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>提升跑步能力，这三项训练缺一不可</title>
-    <link href="http://ai.mak.cn/posts/31560/"/>
-    <id>http://ai.mak.cn/posts/31560/</id>
-    <published>2024-08-10T16:00:00.000Z</published>
-    <updated>2025-02-11T03:10:23.776Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://mp.weixin.qq.com/s/DfBvo1-iVbBgpoj1Dfwgyw">https://mp.weixin.qq.com/s/DfBvo1-iVbBgpoj1Dfwgyw</a></p></blockquote><h1 id="提升跑步能力，这三项训练缺一不可"><a href="#提升跑步能力，这三项训练缺一不可" class="headerlink" title="提升跑步能力，这三项训练缺一不可"></a>提升跑步能力，这三项训练缺一不可</h1><p>马拉松世界冠军基普乔格，全名埃利乌德·基普乔格，1984年11月5日出生于肯尼亚西部的裂谷省南迪郡，他的母亲是一位教师，父亲在他刚出生不久就去世了，基普乔格是家里四个孩子中最小的一个。</p><p>据说，基普乔格每天都要跑3公里去上学，因为迟到的学生，要接受老师的体罚。就这样，基普乔格一直跑到16岁，这也不知不觉中锻炼了他跑步的能力。</p><p>2000年，基普乔格结识了肯尼亚的奥运长跑冠军帕特里克·桑(Patrick Sang)。帕特里克·桑和基普乔格住处离得不远，基普乔格很想让帕特里克·桑为自己做一份训练计划。</p><p>而帕特里克·桑一眼就看中了这个跑步的苗子，在几次交流之后，帕特里克·桑就成为了基普乔格的教练。</p><p>而这也开启了属于基普大神的黄金20年时光。</p><p>2019年10月，基普乔格在奥地利维也纳的路拉特公园参加了Ineos 159挑战，再次向两小时的极限发起冲刺。最终以1小时59分40秒完成挑战，成为人类历史上，第一个跑进2小时的马拉松选手。</p><p>虽然这项成绩不被国际田联认可，但基普乔格还是创造了历史，成为人类体育史上的一大亮点。</p><p><strong>二、基普乔格推荐的3项身体素质训练</strong></p><p>我们都以为出生于肯尼亚的基普乔格，天生就是跑步的天才，实际上能够取得今天这样的成就，除了长跑的天赋，就是老天爷赏饭吃之外，也不能缺少他个人的刻苦训练。</p><p>如果我们以为基普乔格，只是靠跑步天分，就能够成为马拉松届的天花板，那么就误解了乔大侠颇为重视的身体素质训练。</p><p>以下分别罗列一下基普乔格推荐并且始终坚持的3项身体素质训练，相信也会对我们自身的跑步训练课有所启发和借鉴。</p><p>正如乔神的教练帕特里克·桑所言：“<strong>心理素质要比身体素质更重要，肯尼亚从不缺才华横溢的苗子，只有心理强大的人才会走的很远。</strong>”。</p><p>从2012年转战马拉松开始， 基普乔格已经驰骋马拉松赛场10年，创造了10年的辉煌，自律和坚持才是基普乔格成功的关键。</p><p><strong>素质训练①：肌肉力量训练</strong></p><p>1、深蹲</p><p>主要用来发展臀部和大腿前侧的力量</p><p>2、弓箭步提膝</p><p>可以模拟跑步发力，增强臀腿肌肉力量</p><p>3、单腿硬拉</p><p>可以增强腘绳肌耐力，增强髋外旋外展肌肉耐力，同时，维持跑步过程中髋关节的稳定性</p><p>4、单腿提踵</p><p>可有效增强脚踝和小腿的肌肉耐力</p><p><strong>素质训练②：核心训练</strong></p><p>1、平板交替抬腿</p><p>可以模拟跑步伸髋动作，增加腹横肌稳定和身体抗旋转的能力</p><p>2、仰卧蹬自行车</p><p>可以增加腹部内外斜肌肌肉耐力，好的跑步姿势，离不开强大的核心肌肉群。</p><p>3、俯身登山跑</p><p>可以模拟跑步发力，提升腹部肌肉和腰大肌肌肉耐力</p><p>4、摸膝卷腹</p><p>可以很好地刺激到腹部肌肉群，增强核心肌肉能力</p><p><strong>素质训练③：跑步专项技术</strong></p><p>1、垫歩提膝</p><p>可有效提升髋关节灵活性</p><p>2、折叠腿</p><p>学会脚跟拉向臀部，增大跑步的车轮半径</p><p>3、直腿跑</p><p>学会用髋关节发力，脚掌落地下压并快速提拉</p><p>4、后蹬跑</p><p>可以提升肌肉弹性以及爆发力，增强腿部韧带刚性，可以有效增大步幅</p><p>基普乔格的马拉松生涯并没有划上句号，正如他所说：<strong>记录就是应该被打破的。</strong></p><p>希望乔大侠能够继续挑战新的世界记录。即使无法再创造之前的运动传奇，也不会影响我们对这位伟大运动员的尊重和热爱。</p><p>乔大侠的成功，与严格的自律和坚持是分不开的，最后以他的一句名言结尾，希望我们也能够通过适合自己强度的训练，能够有所收获。</p><p><strong>“人人皆可超越自己的极限！”</strong></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/DfBvo1-iVbBgpoj1Dfwgyw&quot;&gt;https://mp.weixin.qq.com/s/DfBvo1-iVbBgpoj1Dfwgyw&lt;/a&gt;&lt;/p&gt;
-&lt;/bloc</summary>
       
     
     
