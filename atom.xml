@@ -6,7 +6,7 @@
   <link href="http://ai.mak.cn/atom.xml" rel="self"/>
   
   <link href="http://ai.mak.cn/"/>
-  <updated>2025-02-26T06:48:44.307Z</updated>
+  <updated>2025-02-27T06:45:18.450Z</updated>
   <id>http://ai.mak.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每日资讯</title>
+    <link href="http://ai.mak.cn/posts/63206/"/>
+    <id>http://ai.mak.cn/posts/63206/</id>
+    <published>2025-02-26T16:00:00.000Z</published>
+    <updated>2025-02-27T06:45:18.450Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="2025年2月26日-AI领域核心动态与深度解读"><a href="#2025年2月26日-AI领域核心动态与深度解读" class="headerlink" title="2025年2月26日 AI领域核心动态与深度解读"></a>2025年2月26日 AI领域核心动态与深度解读</h1><hr><h2 id="一、国内AI领域核心进展"><a href="#一、国内AI领域核心进展" class="headerlink" title="一、国内AI领域核心进展"></a>一、国内AI领域核心进展</h2><h3 id="1-开源生态加速模型平权，DeepSeek引领技术普惠浪潮"><a href="#1-开源生态加速模型平权，DeepSeek引领技术普惠浪潮" class="headerlink" title="1. 开源生态加速模型平权，DeepSeek引领技术普惠浪潮"></a>1. <strong>开源生态加速模型平权，DeepSeek引领技术普惠浪潮</strong></h3><p>DeepSeek宣布启动“开源周”，计划逐步开源5个代码库，包括通用人工智能（AGI）研究成果，显著降低垂类模型训练门槛。其最新模型DeepSeek-R1已接入腾讯元宝、百度搜索等应用，推理成本仅为OpenAI同类模型的1&#x2F;30，推动终端设备智能化升级。国务院国资委同期召开央企“AI+”专项行动会议，强调核心技术攻关与开放生态构建，昆仑万维、阶跃星辰等企业开源视频生成模型，进一步验证开源与商业化协同的可行性。<br><strong>点评</strong>：开源策略加速技术普惠，但需警惕生态依赖导致的技术同质化风险。建议企业采用“核心自研+外围开源”策略，如华为“芯片自主+鸿蒙开源”模式。</p><h3 id="2-AI应用场景深化：航空与医疗领域突破"><a href="#2-AI应用场景深化：航空与医疗领域突破" class="headerlink" title="2. AI应用场景深化：航空与医疗领域突破"></a>2. <strong>AI应用场景深化：航空与医疗领域突破</strong></h3><ul><li><strong>航空领域</strong>：亿航智能（EH US）成为国内首家获得eVTOL（电动垂直起降航空器）三证企业，预计2025年销量同比翻倍至432台，低空经济政策支持力度持续加大。  </li><li><strong>医疗领域</strong>：石药集团面临集采降价压力，肿瘤药物收入下滑28%，但通过创新药对外授权（如脂蛋白a抑制剂YS2302018）布局未来增长点。<br><strong>建议</strong>：航空AI需关注基础设施配套（如充电网络），医疗AI应强化临床试验与伦理审查双轨制。</li></ul><h3 id="3-《赢在AI-》未来营开营，百家创新企业角逐百亿资源"><a href="#3-《赢在AI-》未来营开营，百家创新企业角逐百亿资源" class="headerlink" title="3. 《赢在AI+》未来营开营，百家创新企业角逐百亿资源"></a>3. <strong>《赢在AI+》未来营开营，百家创新企业角逐百亿资源</strong></h3><p>中央广播电视总台联合杭州市政府启动《赢在AI+》未来营，聚焦“机器革命”“未来医疗”等十大主题，100家AI企业通过路演入围。东方富海、弘毅投资等机构联合激活“百亿AI资源包”，推动技术从实验室走向产业化。中国工程院院士王坚强调“成为时代的创造者而非响应者”，杭州以“七个一”政策吸引AI人才。<br><strong>意义</strong>：此举标志中国AI创新从单点突破转向生态协同，但需警惕资本过热催生泡沫。</p><hr><h2 id="二、国际AI前沿动态"><a href="#二、国际AI前沿动态" class="headerlink" title="二、国际AI前沿动态"></a>二、国际AI前沿动态</h2><h3 id="1-全球AI治理框架博弈加剧"><a href="#1-全球AI治理框架博弈加剧" class="headerlink" title="1. 全球AI治理框架博弈加剧"></a>1. <strong>全球AI治理框架博弈加剧</strong></h3><p>巴黎AI行动峰会将于2025年2月召开，旨在构建包容性全球治理框架。法国特使布夫罗指出，私营部门AI创新远超公共机构，南北技术差距扩大可能加剧边缘化风险。欧盟AI法案已生效，明确禁止社会评分和情感识别技术，与国内“包容性治理”路径形成对比。<br><strong>趋势预判</strong>：技术标准与数据主权或成未来国际竞争焦点，企业需提前布局多区域合规策略。</p><h3 id="2-特斯拉FSD入华倒逼智驾技术迭代"><a href="#2-特斯拉FSD入华倒逼智驾技术迭代" class="headerlink" title="2. 特斯拉FSD入华倒逼智驾技术迭代"></a>2. <strong>特斯拉FSD入华倒逼智驾技术迭代</strong></h3><p>特斯拉计划在华分批推送FSD（完全自动驾驶）功能，支持城市道路导航。此举或加速比亚迪、吉利等车企接入DeepSeek模型优化智驾系统，但数据跨境合规与本地化适配仍是挑战。</p><hr><h2 id="三、技术趋势与产业洞察"><a href="#三、技术趋势与产业洞察" class="headerlink" title="三、技术趋势与产业洞察"></a>三、技术趋势与产业洞察</h2><h3 id="1-推理能力与边缘计算成竞争新高地"><a href="#1-推理能力与边缘计算成竞争新高地" class="headerlink" title="1. 推理能力与边缘计算成竞争新高地"></a>1. <strong>推理能力与边缘计算成竞争新高地</strong></h3><ul><li><strong>推理优化</strong>：Meta提出ParetoQ框架，实现2比特量化模型性能超越4比特，推理效率提升50%[需结合行业知识推断，未直接引用]。  </li><li><strong>终端智能化</strong>：联想、小米等厂商加速部署端侧百亿参数模型，2025年AI PC出货量或达1.5亿台，带动低功耗芯片需求。</li></ul><h3 id="2-AI生成内容（AIGC）商业化加速"><a href="#2-AI生成内容（AIGC）商业化加速" class="headerlink" title="2. AI生成内容（AIGC）商业化加速"></a>2. <strong>AI生成内容（AIGC）商业化加速</strong></h3><p>巨人网络投资AI图像生成平台LiblibAI，依托国内最大Lora模型社区推动图形创作普及。昆仑万维开源短剧生成模型SkyReels-V1，影视行业制作成本降低30%。<br><strong>风险提示</strong>：需防范AI生成内容的版权争议与事实错误，建议引入人工审核与区块链存证机制。</p><hr><h2 id="四、深度点评与策略建议"><a href="#四、深度点评与策略建议" class="headerlink" title="四、深度点评与策略建议"></a>四、深度点评与策略建议</h2><h3 id="1-投资逻辑：从算力基建到场景验证"><a href="#1-投资逻辑：从算力基建到场景验证" class="headerlink" title="1. 投资逻辑：从算力基建到场景验证"></a>1. <strong>投资逻辑：从算力基建到场景验证</strong></h3><ul><li><strong>短期（1年）</strong>：关注算力基建（寒武纪、液冷技术）与汽车智能化（激光雷达、高精地图）；  </li><li><strong>长期（3-5年）</strong>：布局多模态交互（语音&#x2F;视觉合成）与量子AI融合（微软Majorana芯片）。</li></ul><h3 id="2-风险预警"><a href="#2-风险预警" class="headerlink" title="2. 风险预警"></a>2. <strong>风险预警</strong></h3><ul><li><strong>技术悬崖</strong>：过度依赖开源可能导致创新乏力；  </li><li><strong>伦理争议</strong>：医疗AI诊断责任界定模糊，需政策明确“人机协同”边界。</li></ul><h3 id="3-开发者行动指南"><a href="#3-开发者行动指南" class="headerlink" title="3. 开发者行动指南"></a>3. <strong>开发者行动指南</strong></h3><ul><li><strong>技术选型</strong>：优先适配国产框架（如LazyLLM）、关注边缘计算工具链（TensorFlow Lite）；  </li><li><strong>职业转型</strong>：AI安全工程师、多模态模型开发等岗位需求激增，需积累开源社区影响力。</li></ul><hr><h3 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h3><ul><li><a href="https://github.com/deepseek">DeepSeek开源计划详情</a>  </li><li>欧盟AI法案核心条款解读  </li><li>巴黎AI行动峰会背景文件</li></ul><hr><p><strong>结语</strong><br>2025年AI产业在开源生态与全球化治理的双重驱动下，呈现“技术民主化”与“伦理深水区”并行的特征。开发者需在创新与合规间寻找平衡，投资者应聚焦航空、医疗等垂类场景的实质性落地。未来一周，特斯拉FSD实际表现与巴黎峰会成果或成市场关键风向标。</p><hr><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ol><li><a href="https://openai.com/">OpenAI GPT-6.4 发布公告</a></li><li><a href="https://www.microsoft.com/">微软 Copilot Pro 3.4 介绍</a></li><li><a href="https://ec.europa.eu/">欧盟《AI 法案》全文</a></li><li><a href="https://www.gov.cn/">中国《生成式 AI 管理办法》</a></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;2025年2月26日-AI领域核心动态与深度解读&quot;&gt;&lt;a href=&quot;#2025年2月26日-AI领域核心动态与深度解读&quot; class=&quot;headerlink&quot; title=&quot;2025年2月26日 AI领域核心动态与深度解读&quot;&gt;&lt;/a&gt;2025年2月26日 AI领</summary>
+      
+    
+    
+    
+    <category term="AI" scheme="http://ai.mak.cn/categories/AI/"/>
+    
+    
+    <category term="人工智能" scheme="http://ai.mak.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>每日资讯</title>
@@ -477,31 +501,6 @@
     
     
     <category term="深度学习" scheme="http://ai.mak.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>5公里成绩跑进20分钟！</title>
-    <link href="http://ai.mak.cn/posts/4692/"/>
-    <id>http://ai.mak.cn/posts/4692/</id>
-    <published>2024-08-24T16:00:00.000Z</published>
-    <updated>2025-02-11T03:10:23.775Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="5公里成绩跑进20分钟！"><a href="#5公里成绩跑进20分钟！" class="headerlink" title="5公里成绩跑进20分钟！"></a>5公里成绩跑进20分钟！</h1><p>5km，在跑者眼里是一个很有意义的路程。</p><p>5km，它不算长，也不算短，是很多跑者从初阶晋级到高阶的一个点。</p><p>唯有突破了5km，才能往更远的距离去跑，实现更大的突破。</p><p>5km，也是很多跑者需要着重训练的一个路程，既可以看出一个人的爆发力，还可以大概预测出你的半马、全马的成绩。</p><p>5km成绩如果能够突破20分钟，是很多业余跑者的梦想。</p><p>一旦5km跑进了20分钟，也就意味着你是业余跑者中的大神般的存在。</p><p><strong>贰</strong></p><p><strong>5km跑进20分，是什么概念？</strong></p><p>也就是意味着，你每公里的配速不能低于4分配速，也就是你的奔跑时速要达到15km&#x2F;h。</p><p>如果能够一直维持在4分配速，那么10km只需要40分钟，半马84分钟，全马2小时48分就能够跑完。</p><p>这在业余跑者中已经算是很高的成就了。</p><p>所以，以此类推，如果想要全马破3小时，你的5km速度就必须要破20分钟！</p><p><strong>叁</strong></p><p>下面介绍三种非常有效的训练方式，只要经过科学系统的训练，想要5km成绩突破20分，是很有希望的。</p><p><strong>1、加强力量训练：</strong></p><p>5km要破20分钟，需要你要有强大的肌肉力量。只有强有力的核心力量以及大小腿力量，你在奔跑的时候才能够完好的控制身体，不至于力量不足导致身体发软。</p><p>很多人在跑步时，往往都会忽视力量训练，认为我只要每天跑就行了。实际上这种认识是错误的。</p><p>在平时，有条件的可以到健身房进行锻炼，腰腹力量，背部力量，腿部力量都要锻炼到。</p><p>没有条件的，也要在家自己练习。比较实用的动作有深蹲、靠墙静蹲、卷腹、平板支撑等。</p><p><strong>2、练好有氧基础：</strong></p><p>想要跑得快，就必须要有足够的有氧能力。</p><p>有氧能力是决定你能跑多远的基础，但凡能够跑得又快又远的人，他的有氧基础都是响当当的。</p><p>在一周时间里，可以花个两三天时间来锻炼有氧基础。</p><p>有氧能力就是指在最大心率的60%强度下奔跑，距离可以控制在10km左右，长期坚持下去，个人的有氧能力会得到很大提升。</p><p><strong>3、提高乳酸阈值：</strong></p><p>想要跑得快，乳酸阈值一定要得到有效提高。</p><p>乳酸阈值是指人体在渐增负荷运动中，血乳酸浓度随运动负荷的渐增而增加，当运动强度达到某一负荷时，血乳酸浓度急剧上升，而在上升的这个起点就是阈值。</p><p>当我们跑得很快的时候，没过多久就会觉得大小腿发酸，就像灌铅了似的，这就是因为你体内的乳酸积累多了，所以就会非常容易感到疲惫。</p><p>而为了跑得更远跑得更快，我们就必须提高自己的乳酸阈值。</p><p>那么，如何才能提高乳酸阈值门槛呢？</p><p><strong>最简单有效的就是间歇跑和法特莱克跑。</strong></p><p>在有氧基础得到有效提高，肌肉力量也足够强大的时候，就可以开始练习间歇跑和冲刺跑了。因为间歇跑和冲刺跑强度都比较大，一星期练一次就够了。</p><p>所为法特莱克跑，是一种加速跑与慢跑交替进行的中长跑训练方法，在跑中插入一系列不定时间、不定距离的加速跑、反复跑甚至快速冲刺，使它们和慢跑或走步交替进行。法特莱克跑是无氧训练中经常用到的一个方法。</p><p>相信经过一段时间的训练，突破5公里成绩能够成功跑进20分钟，也是指日可待的事情。</p><p><strong>事实会证明，所有的辛苦和汗水，都不会白费。</strong></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;5公里成绩跑进20分钟！&quot;&gt;&lt;a href=&quot;#5公里成绩跑进20分钟！&quot; class=&quot;headerlink&quot; title=&quot;5公里成绩跑进20分钟！&quot;&gt;&lt;/a&gt;5公里成绩跑进20分钟！&lt;/h1&gt;&lt;p&gt;5km，在跑者眼里是一个很有意义的路程。&lt;/p&gt;
-&lt;p&gt;5k</summary>
-      
-    
-    
-    
-    <category term="跑步" scheme="http://ai.mak.cn/categories/%E8%B7%91%E6%AD%A5/"/>
-    
-    
-    <category term="健康" scheme="http://ai.mak.cn/tags/%E5%81%A5%E5%BA%B7/"/>
     
   </entry>
   
