@@ -1,0 +1,30 @@
+# robots.txt for 枫哲's文栖小筑
+# 网站地址: http://ai.mak.cn
+
+# 允许所有搜索引擎爬取
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /categories/
+Allow: /tags/
+Allow: /posts/
+Allow: /about/
+Allow: /timeline/
+Allow: /guestbook/
+Allow: /blogroll/
+
+# 禁止爬取资源目录
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /vendors/
+Disallow: /lib/
+Disallow: /live2dw/
+Disallow: /2048/
+
+# 禁止爬取分页页面（避免重复内容）
+Disallow: /page/
+
+# Sitemap 地址
+Sitemap: http://ai.mak.cn/sitemap.xml
+Sitemap: http://ai.mak.cn/baidusitemap.xml
