@@ -1,0 +1,50 @@
+name: Deploy Static Site to Tencent COS
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout site
+        uses: actions/checkout@v4
+
+      - name: Prepare static files
+        run: |
+          mkdir -p dist
+          find . -mindepth 1 -maxdepth 1 \
+            ! -name '.git' \
+            ! -name '.github' \
+            ! -name 'dist' \
+            -exec cp -R {} dist/ \;
+          test -f dist/index.html
+          echo "Prepared files:"
+          find dist -maxdepth 2 -type f | sort | head -50
+
+      - name: Validate COS secrets
+        env:
+          COS_SECRET_ID: ${{ secrets.COS_SECRET_ID }}
+          COS_SECRET_KEY: ${{ secrets.COS_SECRET_KEY }}
+          COS_BUCKET: ${{ secrets.COS_BUCKET }}
+          COS_REGION: ${{ secrets.COS_REGION }}
+        run: |
+          test -n "$COS_SECRET_ID" || (echo "::error::COS_SECRET_ID is empty" && exit 1)
+          test -n "$COS_SECRET_KEY" || (echo "::error::COS_SECRET_KEY is empty" && exit 1)
+          test -n "$COS_BUCKET" || (echo "::error::COS_BUCKET is empty" && exit 1)
+          test -n "$COS_REGION" || (echo "::error::COS_REGION is empty" && exit 1)
+
+      - name: Deploy to Tencent COS
+        uses: TencentCloud/cos-action@v1
+        with:
+          secret_id: ${{ secrets.COS_SECRET_ID }}
+          secret_key: ${{ secrets.COS_SECRET_KEY }}
+          cos_bucket: ${{ secrets.COS_BUCKET }}
+          cos_region: ${{ secrets.COS_REGION }}
+          local_path: dist
+          remote_path: ''
+          clean: true
