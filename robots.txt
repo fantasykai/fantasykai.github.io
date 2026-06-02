@@ -1,5 +1,5 @@
 # robots.txt for 枫哲's文栖小筑
-# 网站地址: http://ai.mak.cn
+# 网站地址: https://aimak.cn
 
 # 允许所有搜索引擎爬取
 User-agent: *
@@ -26,5 +26,5 @@ Disallow: /2048/
 Disallow: /page/
 
 # Sitemap 地址
-Sitemap: http://ai.mak.cn/sitemap.xml
-Sitemap: http://ai.mak.cn/baidusitemap.xml
+Sitemap: https://aimak.cn/sitemap.xml
+Sitemap: https://aimak.cn/baidusitemap.xml
