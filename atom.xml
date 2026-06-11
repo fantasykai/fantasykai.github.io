@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-06-02T10:01:14.846Z</updated>
+  <updated>2026-06-11T03:39:21.293Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="HyperFrames, 视频生成, AI Agent, HeyGen, 开源工具" scheme="https://aimak.cn/tags/HyperFrames-%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90-AI-Agent-HeyGen-%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/"/>
+    <id>https://aimak.cn/posts/11744/</id>
+    <link href="https://aimak.cn/posts/11744/"/>
+    <published>2026-06-11T01:00:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>HTML is now a video format —— 把 HTML、CSS、媒体和可定格动画，编译成确定性的 MP4。</p>
+</blockquote>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>HyperFrames</strong> 是由]]>
+    </summary>
+    <title>HyperFrames Studio 入门：用 HTML 写视频，为 AI Agent 而生</title>
+    <updated>2026-06-11T03:39:21.293Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -326,21 +344,5 @@
     </summary>
     <title>AI领域最新资讯：突破、趋势与展望</title>
     <updated>2025-04-27T01:01:49.447Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="人工智能" scheme="https://aimak.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    <id>https://aimak.cn/posts/11223/</id>
-    <link href="https://aimak.cn/posts/11223/"/>
-    <published>2025-04-24T22:00:00.000Z</published>
-    <summary>
-      <![CDATA[<h3 id="2025年4月24日AI领域资讯综述与深度解读"><a href="#2025年4月24日AI领域资讯综述与深度解读" class="headerlink" title="2025年4月24日AI领域资讯综述与深度解读"></a><strong>2025年4月24日AI领域资讯综述与深度解读</strong></h3><hr>
-<h4 id="一、国内动态"><a]]>
-    </summary>
-    <title>AI领域最新资讯：突破、趋势与展望</title>
-    <updated>2025-04-25T02:55:09.360Z</updated>
   </entry>
 </feed>
