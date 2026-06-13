@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>五子棋 · 放松下</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <nav class="crumbs">
+        <a href="/">首页</a>
+        <span>/</span>
+        <a href="/relax/">放松下</a>
+        <span>/</span>
+        <strong>五子棋</strong>
+      </nav>
+      <section class="hero-content">
+        <p class="eyebrow">Gomoku Studio</p>
+        <h1>下一局有质感的五子棋</h1>
+        <p class="lead">支持双人对战、人机对战、AI 难度调整、胜负复盘和新手教学。棋盘背景可切换，棋子带立体高光与落子提示。</p>
+      </section>
+    </header>
+
+    <section class="game-layout">
+      <aside class="control-card">
+        <div class="section-title">
+          <p class="eyebrow">对局设置</p>
+          <h2>开局</h2>
+        </div>
+
+        <label class="field">
+          <span>对战模式</span>
+          <select id="modeSelect">
+            <option value="ai">人机对战</option>
+            <option value="local">双人对战</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>AI 难度</span>
+          <select id="difficultySelect">
+            <option value="easy">入门：随机 + 简单判断</option>
+            <option value="medium" selected>进阶：攻防权衡</option>
+            <option value="hard">高手：威胁优先 + 深度评估</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>棋盘背景</span>
+          <select id="themeSelect">
+            <option value="bamboo">暖木竹纹</option>
+            <option value="ink">水墨青灰</option>
+            <option value="night">星夜蓝紫</option>
+            <option value="jade">翡翠绿檀</option>
+          </select>
+        </label>
+
+        <div class="button-grid">
+          <button id="newGameButton" type="button">重新开始</button>
+          <button id="undoButton" type="button" class="ghost">悔棋</button>
+          <button id="hintButton" type="button" class="ghost">给我提示</button>
+          <button id="replayButton" type="button" class="ghost" disabled>复盘</button>
+        </div>
+
+        <div class="status-box">
+          <span id="turnBadge" class="stone-badge black"></span>
+          <div>
+            <strong id="statusTitle">黑棋先行</strong>
+            <p id="statusText">点击棋盘交叉点落子。</p>
+          </div>
+        </div>
+      </aside>
+
+      <section class="board-card" aria-label="五子棋棋盘区域">
+        <div class="board-topbar">
+          <div>
+            <p class="eyebrow">棋盘</p>
+            <h2 id="matchTitle">人机对战 · 进阶</h2>
+          </div>
+          <div class="score-panel">
+            <span>黑棋 <strong id="blackCount">0</strong></span>
+            <span>白棋 <strong id="whiteCount">0</strong></span>
+          </div>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="boardCanvas" width="720" height="720" aria-label="十五路线五子棋棋盘"></canvas>
+        </div>
+      </section>
+
+      <aside class="review-card">
+        <div class="section-title compact">
+          <p class="eyebrow">复盘</p>
+          <h2>对战结果</h2>
+        </div>
+        <div id="resultSummary" class="summary empty">暂无结果。完成一局后可逐手复盘。</div>
+        <div class="replay-controls">
+          <button id="firstStepButton" type="button" class="ghost" disabled>开局</button>
+          <button id="prevStepButton" type="button" class="ghost" disabled>上一步</button>
+          <button id="nextStepButton" type="button" class="ghost" disabled>下一步</button>
+          <button id="autoReplayButton" type="button" class="ghost" disabled>自动播放</button>
+        </div>
+        <ol id="moveList" class="move-list"></ol>
+      </aside>
+    </section>
+
+    <section class="teach-card">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">五子棋教学</p>
+          <h2>从会下到会想</h2>
+        </div>
+        <button id="teachDemoButton" type="button" class="ghost">演示活三</button>
+      </div>
+      <div class="lesson-grid">
+        <article>
+          <span>01</span>
+          <h3>胜负规则</h3>
+          <p>黑白轮流落子，任意横、竖、斜方向连续形成五枚同色棋子即可获胜。本页面按“连五及以上即胜”处理。</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>先找威胁</h3>
+          <p>优先观察对方是否有“四连”或“双三”。能赢先赢，不能赢就先堵住对方下一手必胜点。</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>常见棋形</h3>
+          <p>活四几乎必胜，冲四需要配合；活三用于制造连续进攻，眠三和跳三适合过渡布局。</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>复盘方法</h3>
+          <p>输棋后回看最后 5～10 手：是哪一步没有堵四、是否只顾进攻、有没有错过双威胁。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

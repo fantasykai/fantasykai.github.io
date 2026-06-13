@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>跑步打卡 OCR 自动同步</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="hero">
+      <nav class="crumbs">
+        <a href="/">首页</a>
+        <span>/</span>
+        <a href="/relax/">放松下</a>
+        <span>/</span>
+        <strong>跑步打卡 OCR</strong>
+      </nav>
+      <div class="hero-grid">
+        <section>
+          <p class="eyebrow">Keep / 运动 APP 截图识别</p>
+          <h1>跑步打卡截图一键转标准化 Excel</h1>
+          <p class="lead">
+            上传跑步打卡截图后，页面会在浏览器本地 OCR 识别并自动生成 12 个标准字段，
+            支持在线校对导入结果和一键下载 Excel。
+          </p>
+          <div class="hero-actions">
+            <label class="file-picker">
+              <input id="imageInput" type="file" accept="image/*" multiple>
+              选择截图
+            </label>
+            <button id="startButton" type="button">开始 OCR 解析</button>
+            <button id="downloadButton" type="button" disabled>下载 Excel</button>
+            <button id="clearButton" type="button" class="ghost">清空</button>
+          </div>
+        </section>
+        <aside class="privacy-card">
+          <h2>本地处理</h2>
+          <p>图片仅在当前浏览器中识别，不会上传到博客服务器。OCR 结果可在表格中手动修正后导出。</p>
+          <ul>
+            <li>支持多张截图批量导入</li>
+            <li>自动补齐日期、距离、配速等字段</li>
+            <li>异常字段会标记为“识别异常”</li>
+          </ul>
+        </aside>
+      </div>
+    </header>
+
+    <section class="status-panel" aria-live="polite">
+      <div>
+        <strong id="statusText">请先选择 Keep 等运动 APP 的跑步打卡截图。</strong>
+        <p id="hintText">建议截图中包含用户昵称、日期、距离、配速、运动时长、步频、步幅、心率等信息。</p>
+      </div>
+      <div class="progress-wrap" aria-label="识别进度">
+        <span id="progressBar"></span>
+      </div>
+    </section>
+
+    <section class="result-card">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">导入结果</p>
+          <h2>12 个标准化字段</h2>
+        </div>
+        <button id="addBlankButton" type="button" class="ghost">新增空白行</button>
+      </div>
+      <div class="table-wrap">
+        <table id="resultTable">
+          <thead>
+            <tr>
+              <th>日期</th>
+              <th>群昵称</th>
+              <th>起跑时间</th>
+              <th>距离(km)</th>
+              <th>配速(分:秒)</th>
+              <th>运动时长(时:分:秒)</th>
+              <th>平均步频(步/分钟)</th>
+              <th>平均步幅(cm)</th>
+              <th>平均心率(bpm)</th>
+              <th>打卡次数</th>
+              <th>打卡图片</th>
+              <th>数据状态</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr class="empty-row">
+              <td colspan="12">暂无数据，上传截图后会在这里展示识别结果。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="debug-card">
+      <details>
+        <summary>查看 OCR 原文与解析说明</summary>
+        <pre id="ocrText">暂无 OCR 原文。</pre>
+      </details>
+      <div class="field-help">
+        <h3>字段规则</h3>
+        <p>页面会优先从截图文字中提取日期、昵称、开始时间、距离、平均配速、运动时长、平均步频、平均步幅、平均心率和打卡次数；若日期无法识别，会使用图片文件修改日期作为兜底。</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
