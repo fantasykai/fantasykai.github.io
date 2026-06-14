@@ -153,6 +153,37 @@ const episode = {
   ]
 };
 
+const maleVoicePresets = [
+  {
+    id: 'male-news',
+    label: '男声 · 新闻主播（推荐）',
+    pitch: 0.82,
+    rate: 0.96,
+    keywords: ['Yunyang', 'Yunjian', 'Yunxi', 'Kangkang', 'Male', '男']
+  },
+  {
+    id: 'male-deep',
+    label: '男声 · 低沉稳重',
+    pitch: 0.68,
+    rate: 0.9,
+    keywords: ['Yunjian', 'Yunyang', 'Kangkang', 'Male', '男']
+  },
+  {
+    id: 'male-warm',
+    label: '男声 · 温和讲解',
+    pitch: 0.9,
+    rate: 0.92,
+    keywords: ['Yunxi', 'Kangkang', 'Yunyang', 'Male', '男']
+  },
+  {
+    id: 'male-fast',
+    label: '男声 · 快速简报',
+    pitch: 0.78,
+    rate: 1.08,
+    keywords: ['Yunyang', 'Yunxi', 'Yunjian', 'Male', '男']
+  }
+];
+
 const state = {
   filteredTopic: 'all',
   currentIndex: 0,
@@ -277,14 +308,69 @@ function setupVoices() {
   }
 
   const load = () => {
+    const previousValue = voiceSelect.value || 'preset:male-news';
     state.voices = window.speechSynthesis.getVoices();
-    const zhVoices = state.voices.filter((voice) => /^zh|Chinese|普通话|中文/i.test(`${voice.lang} ${voice.name}`));
+    const zhVoices = chineseVoices();
     const usableVoices = zhVoices.length ? zhVoices : state.voices;
-    voiceSelect.innerHTML = usableVoices.map((voice, index) => `<option value="${state.voices.indexOf(voice)}">${escapeHtml(voice.name)} · ${escapeHtml(voice.lang)}${index === 0 ? '（推荐）' : ''}</option>`).join('') || '<option>系统默认音色</option>';
+    const maleSystemVoices = usableVoices.filter(isLikelyMaleVoice);
+
+    const presetOptions = maleVoicePresets.map((preset, index) => (
+      `<option value="preset:${preset.id}">${escapeHtml(preset.label)}${index === 0 ? ' · 推荐' : ''}</option>`
+    )).join('');
+
+    const maleOptions = maleSystemVoices.map((voice) => (
+      `<option value="voice:${state.voices.indexOf(voice)}">系统男声 · ${escapeHtml(voice.name)} · ${escapeHtml(voice.lang)}</option>`
+    )).join('');
+
+    const allOptions = usableVoices.map((voice) => (
+      `<option value="voice:${state.voices.indexOf(voice)}">系统音色 · ${escapeHtml(voice.name)} · ${escapeHtml(voice.lang)}</option>`
+    )).join('');
+
+    voiceSelect.innerHTML = [
+      `<optgroup label="男声预设（跨浏览器可用）">${presetOptions}</optgroup>`,
+      maleOptions ? `<optgroup label="系统男声（如浏览器提供）">${maleOptions}</optgroup>` : '',
+      allOptions ? `<optgroup label="系统全部音色">${allOptions}</optgroup>` : ''
+    ].join('') || '<option>系统默认音色</option>';
+
+    if ([...voiceSelect.options].some((option) => option.value === previousValue)) {
+      voiceSelect.value = previousValue;
+    } else {
+      voiceSelect.value = 'preset:male-news';
+    }
   };
 
   load();
   window.speechSynthesis.onvoiceschanged = load;
+}
+
+function chineseVoices() {
+  return state.voices.filter((voice) => /^zh|Chinese|普通话|中文|Mandarin/i.test(`${voice.lang} ${voice.name}`));
+}
+
+function isLikelyMaleVoice(voice) {
+  return /Yunxi|Yunyang|Yunjian|Kangkang|Microsoft Huihui|Male|男声|男|Daniel|Thomas|Alex|Fred|Google UK English Male|Google US English/i.test(`${voice.name} ${voice.lang}`);
+}
+
+function getSelectedVoiceConfig() {
+  const value = voiceSelect.value || 'preset:male-news';
+  if (value.startsWith('preset:')) {
+    const preset = maleVoicePresets.find((item) => item.id === value.slice(7)) || maleVoicePresets[0];
+    return {
+      voice: findPreferredMaleVoice(preset),
+      pitch: preset.pitch,
+      rateMultiplier: preset.rate
+    };
+  }
+
+  const voice = state.voices[Number(value.replace('voice:', ''))];
+  return { voice, pitch: 1, rateMultiplier: 1 };
+}
+
+function findPreferredMaleVoice(preset) {
+  const voices = chineseVoices().length ? chineseVoices() : state.voices;
+  return voices.find((voice) => preset.keywords.some((keyword) => `${voice.name} ${voice.lang}`.toLowerCase().includes(keyword.toLowerCase())))
+    || voices.find(isLikelyMaleVoice)
+    || voices[0];
 }
 
 function togglePlayPause() {
@@ -314,13 +400,13 @@ function playSegment(index) {
   const segment = allSegments[state.currentIndex];
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(segment.text);
-  const voice = state.voices[Number(voiceSelect.value)];
-  if (voice) {
-    utterance.voice = voice;
+  const voiceConfig = getSelectedVoiceConfig();
+  if (voiceConfig.voice) {
+    utterance.voice = voiceConfig.voice;
   }
-  utterance.lang = voice?.lang || 'zh-CN';
-  utterance.rate = Number(rateControl.value) || 1;
-  utterance.pitch = 1;
+  utterance.lang = voiceConfig.voice?.lang || 'zh-CN';
+  utterance.rate = Math.min(1.8, Math.max(0.5, (Number(rateControl.value) || 1) * voiceConfig.rateMultiplier));
+  utterance.pitch = voiceConfig.pitch;
   utterance.onend = () => {
     if (state.currentIndex < allSegments.length - 1) {
       playSegment(state.currentIndex + 1);

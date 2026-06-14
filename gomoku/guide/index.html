@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>五子棋入门到精通 · 系统教学</title>
+  <meta name="description" content="五子棋从入门到精通：规则、棋形、开局、攻防优先级、复盘训练与高手进阶。">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <main class="app-shell guide-shell">
+    <header class="hero">
+      <nav class="crumbs">
+        <a href="/">首页</a>
+        <span>/</span>
+        <a href="/relax/">放松下</a>
+        <span>/</span>
+        <a href="/gomoku/">五子棋</a>
+        <span>/</span>
+        <strong>系统教学</strong>
+      </nav>
+      <section class="hero-content">
+        <p class="eyebrow">Gomoku Master Guide</p>
+        <h1>五子棋入门到精通</h1>
+        <p class="lead">把“会下棋”升级成“会判断”：从基本规则、棋形识别、攻防优先级，到复盘训练和高手思维，一页建立完整学习路径。</p>
+      </section>
+    </header>
+
+    <section class="guide-hero-card">
+      <div>
+        <p class="eyebrow">学习路线</p>
+        <h2>先懂规则，再懂威胁，最后懂节奏</h2>
+        <p>五子棋看似简单，核心却是连续制造“对方只能应”的威胁。本教学按 6 个阶段展开：规则 → 棋形 → 开局 → 攻防 → 复盘 → 高手训练。</p>
+        <a class="guide-link-button" href="/gomoku/">返回棋盘练习 →</a>
+      </div>
+      <ol class="guide-toc">
+        <li><a href="#start">1. 入门规则</a></li>
+        <li><a href="#shape">2. 关键棋形</a></li>
+        <li><a href="#opening">3. 开局布局</a></li>
+        <li><a href="#priority">4. 攻防优先级</a></li>
+        <li><a href="#review">5. 复盘训练</a></li>
+        <li><a href="#master">6. 高手进阶</a></li>
+      </ol>
+    </section>
+
+    <section id="start" class="guide-card">
+      <p class="eyebrow">Stage 01</p>
+      <h2>入门：先把胜负和坐标搞清楚</h2>
+      <div class="stage-grid">
+        <article>
+          <span>1</span>
+          <h3>基本规则</h3>
+          <p>黑棋先行，双方轮流落在交叉点上。横、竖、斜任意方向连续五枚同色棋子，即可获胜。本页面采用“连五及以上即胜”。</p>
+        </article>
+        <article>
+          <span>2</span>
+          <h3>坐标意识</h3>
+          <p>把棋盘看成坐标系，记住中心、边线和角落。新手优先在中心附近展开，因为中心能同时影响更多方向。</p>
+        </article>
+        <article>
+          <span>3</span>
+          <h3>每手都问一句</h3>
+          <p>这一步是在进攻、补形，还是防守？如果回答不上来，先检查对方有没有四连或活三。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="shape" class="guide-card">
+      <p class="eyebrow">Stage 02</p>
+      <h2>进阶：认识决定胜负的棋形</h2>
+      <div class="shape-grid">
+        <article>
+          <span>活四</span>
+          <h3>两端都能成五</h3>
+          <p>例如“_OOOO_”。对方只能堵一端，下一手另一端成五，通常等同必胜。</p>
+        </article>
+        <article>
+          <span>冲四</span>
+          <h3>一端能成五</h3>
+          <p>例如“XOOOO_”。冲四必须回应，但单个冲四不一定必胜，要配合另一个威胁。</p>
+        </article>
+        <article>
+          <span>活三</span>
+          <h3>下一手可变活四</h3>
+          <p>例如“_OOO_”。活三是连续进攻的发动机，新手最容易漏看。</p>
+        </article>
+        <article>
+          <span>眠三</span>
+          <h3>一端受限的三</h3>
+          <p>威胁较弱，但可以作为补形、牵制或制造下一轮组合攻击的材料。</p>
+        </article>
+        <article>
+          <span>跳三</span>
+          <h3>中间有空点的三</h3>
+          <p>例如“O_OO”。补上中间点可能瞬间变成强威胁。</p>
+        </article>
+        <article>
+          <span>双三</span>
+          <h3>一手造两个活三</h3>
+          <p>如果规则允许，双三往往很强，因为对方很难一手同时处理两个方向。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="opening" class="guide-card">
+      <p class="eyebrow">Stage 03</p>
+      <h2>开局：不要只贴着对方走</h2>
+      <div class="stage-grid">
+        <article>
+          <span>A</span>
+          <h3>占中心</h3>
+          <p>中心区域方向最多，便于横、竖、斜同时做棋。第一阶段目标是形成两个以上可发展的方向。</p>
+        </article>
+        <article>
+          <span>B</span>
+          <h3>留间隔</h3>
+          <p>不要每手都紧贴。适当留一格，可以制造跳三、冲四和更灵活的二连。</p>
+        </article>
+        <article>
+          <span>C</span>
+          <h3>看整体</h3>
+          <p>不要只盯最后一手。每次落子前，横竖斜四个方向都扫一遍。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="priority" class="guide-card">
+      <p class="eyebrow">Stage 04</p>
+      <h2>攻防优先级：能赢先赢，必堵先堵</h2>
+      <ol class="priority-list">
+        <li><strong>自己能五连：</strong>直接下成五，不要绕。</li>
+        <li><strong>对方下一手能五连：</strong>必须堵，除非自己也能马上赢。</li>
+        <li><strong>自己能造活四：</strong>通常是最强进攻。</li>
+        <li><strong>对方有活三或双三：</strong>尽快压制，不要只顾补自己的小形。</li>
+        <li><strong>没有直接威胁：</strong>选择能同时扩展两个方向的位置。</li>
+      </ol>
+      <div class="example-board" aria-label="活三示例棋形">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span class="white"></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span class="black"></span><span class="black"></span><span class="black mark"></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span class="white"></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </section>
+
+    <section id="review" class="guide-card">
+      <p class="eyebrow">Stage 05</p>
+      <h2>复盘：输棋后只查三个问题</h2>
+      <div class="training-grid">
+        <article>
+          <span>01</span>
+          <h3>漏堵了吗？</h3>
+          <p>回看失败前 5～10 手，找出对方第一次形成冲四、活三或双威胁的位置。</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>贪攻了吗？</h3>
+          <p>很多输棋不是不会进攻，而是明知对方有威胁仍继续补自己的棋。</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>错过了吗？</h3>
+          <p>检查自己是否有一步能直接成五、造活四或形成双三，却选择了普通补形。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="master" class="guide-card">
+      <p class="eyebrow">Stage 06</p>
+      <h2>高手进阶：把每步棋变成“连续威胁”</h2>
+      <div class="stage-grid">
+        <article>
+          <span>练</span>
+          <h3>一题多解</h3>
+          <p>同一个局面至少找 3 个候选点，比较哪个点让对方最难受。</p>
+        </article>
+        <article>
+          <span>算</span>
+          <h3>多看两手</h3>
+          <p>下之前模拟：我下这里，对方最佳防守是什么？我还有没有后续威胁？</p>
+        </article>
+        <article>
+          <span>控</span>
+          <h3>控制节奏</h3>
+          <p>高手不是每手都冲，而是通过活三、冲四和补形让对手持续被迫防守。</p>
+        </article>
+      </div>
+      <p><strong>训练建议：</strong>回到 <a href="/gomoku/">五子棋棋盘</a>，先用“演示活三”理解棋形，再用“给我提示”对照自己的判断。每局结束后用复盘功能查看最后 10 手。</p>
+    </section>
+  </main>
+</body>
+</html>

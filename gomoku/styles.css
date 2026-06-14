@@ -413,3 +413,213 @@ select:focus {
     flex-direction: column;
   }
 }
+
+.sound-toggle {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 2px 0 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.sound-toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+.guide-link-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  align-items: center;
+  margin-top: 20px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.64);
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 247, 237, 0.78)),
+    radial-gradient(circle at top right, rgba(217, 119, 6, 0.18), transparent 18rem);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.guide-link-card p {
+  max-width: 760px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.guide-link-button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  padding: 13px 18px;
+  background: linear-gradient(135deg, #111827, #7c2d12);
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0 14px 28px rgba(17, 24, 39, 0.18);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.guide-link-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(17, 24, 39, 0.24);
+}
+
+.guide-shell {
+  display: grid;
+  gap: 20px;
+}
+
+.guide-card,
+.guide-hero-card {
+  border: 1px solid rgba(255, 255, 255, 0.64);
+  border-radius: 28px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.guide-hero-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+  gap: 20px;
+  padding: 28px;
+}
+
+.guide-hero-card p,
+.guide-card p,
+.guide-card li {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.guide-card {
+  padding: 24px;
+}
+
+.guide-toc {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.guide-toc a {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--text);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.stage-grid,
+.shape-grid,
+.training-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.stage-grid article,
+.shape-grid article,
+.training-grid article {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.stage-grid span,
+.shape-grid span,
+.training-grid span {
+  display: inline-grid;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 12px;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(217, 119, 6, 0.14);
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.priority-list {
+  display: grid;
+  gap: 10px;
+  padding-left: 22px;
+}
+
+.example-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 4px;
+  max-width: 360px;
+  padding: 14px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #f2c77d, #d79a45);
+  box-shadow: inset 0 0 0 1px rgba(65, 38, 12, 0.2);
+}
+
+.example-board span {
+  aspect-ratio: 1 / 1;
+  border-radius: 999px;
+  background: rgba(65, 38, 12, 0.28);
+}
+
+.example-board .black {
+  background: radial-gradient(circle at 32% 28%, #77808c, #111827 46%, #020617 76%);
+}
+
+.example-board .white {
+  background: radial-gradient(circle at 32% 28%, #fff, #f1f5f9 48%, #cbd5e1 80%);
+}
+
+.example-board .mark {
+  outline: 3px solid #22c55e;
+  outline-offset: 2px;
+}
+
+@media (max-width: 1180px) {
+  .guide-hero-card,
+  .stage-grid,
+  .shape-grid,
+  .training-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 820px) {
+  .guide-link-card,
+  .guide-hero-card {
+    align-items: stretch;
+    flex-direction: column;
+    grid-template-columns: 1fr;
+  }
+
+  .guide-link-button {
+    width: 100%;
+  }
+
+  .stage-grid,
+  .shape-grid,
+  .training-grid {
+    grid-template-columns: 1fr;
+  }
+}

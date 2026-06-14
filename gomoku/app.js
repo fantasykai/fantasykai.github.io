@@ -47,6 +47,7 @@
   const modeSelect = document.querySelector('#modeSelect');
   const difficultySelect = document.querySelector('#difficultySelect');
   const themeSelect = document.querySelector('#themeSelect');
+  const soundToggle = document.querySelector('#soundToggle');
   const newGameButton = document.querySelector('#newGameButton');
   const undoButton = document.querySelector('#undoButton');
   const hintButton = document.querySelector('#hintButton');
@@ -76,6 +77,7 @@
   let replayTimer = null;
   let aiThinking = false;
   let hintMove = null;
+  let audioContext = null;
   let layout = { size: 720, padding: 42, cell: 45.42 };
 
   const resizeObserver = new ResizeObserver(resizeCanvas);
@@ -93,6 +95,11 @@
   themeSelect.addEventListener('change', () => {
     applyPageTheme();
     draw();
+  });
+  soundToggle.addEventListener('change', () => {
+    if (soundToggle.checked) {
+      playStoneSound(currentPlayer, { preview: true });
+    }
   });
   newGameButton.addEventListener('click', newGame);
   undoButton.addEventListener('click', undoMove);
@@ -185,6 +192,9 @@
     moves.push(move);
     lastMove = move;
     hintMove = null;
+    if (!options.silent) {
+      playStoneSound(player);
+    }
 
     const line = findWinningLine(row, col, player);
     if (line.length >= 5) {
@@ -343,7 +353,7 @@
     [
       [7, 6, BLACK], [6, 6, WHITE], [7, 7, BLACK], [6, 7, WHITE],
       [8, 8, BLACK], [8, 7, WHITE], [7, 8, BLACK]
-    ].forEach(([row, col, player]) => playMove(row, col, player, { skipAi: true }));
+    ].forEach(([row, col, player]) => playMove(row, col, player, { skipAi: true, silent: true }));
 
     gameOver = false;
     winner = EMPTY;
@@ -355,6 +365,59 @@
     updateCounts();
     renderMoveList();
     draw();
+  }
+
+
+  function playStoneSound(player, options = {}) {
+    if (!soundToggle.checked) {
+      return;
+    }
+
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) {
+      return;
+    }
+
+    try {
+      audioContext = audioContext || new AudioContextClass();
+      if (audioContext.state === 'suspended') {
+        audioContext.resume().catch(() => {});
+      }
+
+      const now = audioContext.currentTime;
+      const duration = options.preview ? 0.08 : 0.13;
+      const baseFrequency = player === BLACK ? 176 : 228;
+      const gain = audioContext.createGain();
+      const lowTone = audioContext.createOscillator();
+      const clickTone = audioContext.createOscillator();
+      const filter = audioContext.createBiquadFilter();
+
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(980, now);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(options.preview ? 0.08 : 0.16, now + 0.012);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+      lowTone.type = 'sine';
+      lowTone.frequency.setValueAtTime(baseFrequency, now);
+      lowTone.frequency.exponentialRampToValueAtTime(baseFrequency * 0.62, now + duration);
+
+      clickTone.type = 'triangle';
+      clickTone.frequency.setValueAtTime(baseFrequency * 3.1, now);
+      clickTone.frequency.exponentialRampToValueAtTime(baseFrequency * 1.55, now + 0.055);
+
+      lowTone.connect(filter);
+      clickTone.connect(filter);
+      filter.connect(gain);
+      gain.connect(audioContext.destination);
+
+      lowTone.start(now);
+      clickTone.start(now);
+      lowTone.stop(now + duration + 0.02);
+      clickTone.stop(now + 0.07);
+    } catch (error) {
+      soundToggle.checked = false;
+    }
   }
 
   function chooseAiMove(level, player) {
