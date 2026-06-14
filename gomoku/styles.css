@@ -623,3 +623,31 @@ select:focus {
     grid-template-columns: 1fr;
   }
 }
+
+.guide-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.primary-guide {
+  margin-top: 20px;
+}
+
+.guide-lesson-grid {
+  margin-top: 16px;
+}
+
+@media (max-width: 820px) {
+  .guide-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .guide-actions > * {
+    flex: 1 1 100%;
+  }
+}

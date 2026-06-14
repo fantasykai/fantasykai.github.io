@@ -1,117 +1,118 @@
 const episode = {
-  date: '2026-06-13',
-  title: 'AI HOT 日报：代码模型开源、Agent 产品化与企业治理补课',
-  intro: '本期基于 AI HOT 2026-06-13 日报：MiniMax M3 与 Kimi-K2.7-Code 推动国产代码模型开源；豆包、Codex、Claude Code 把 Agent 做进任务执行、浏览器调试和企业管控；TCS 与 Anthropic 合作说明受监管行业开始组织化采用 Claude；Google Research 的皮肤健康研究提醒我们，医疗 AI 应先做辅助理解而不是替代诊断。',
+  date: '2026-06-14',
+  title: 'AI HOT 日报：GLM-5.2 开源、AI 治理升温与订阅经济压力',
+  intro: '本期基于 AI HOT 2026-06-14 日报：智谱 GLM-5.2 全量开放并宣布下周开源，Suno 和 OpenRouter 分别推进音乐制作与复合模型路由；同时 Anthropic、OpenAI、Google、Meta 都出现监管、伦理或组织调整信号，说明 AI 行业正在从模型竞速进入能力、治理和商业模式同时竞争的新阶段。',
+  conclusion: 'GLM-5.2 代表模型能力继续上探，Suno 与 Fusion API 代表产品链路继续下沉；但 Anthropic、OpenAI、Google、Meta 的动态提醒我们，AI 越强，越需要治理、组织和商业模式一起跟上。',
   items: [
     {
       topic: 'model',
-      title: 'MiniMax M3：开源权重模型上架 HuggingFace',
-      source: 'X：MiniMax (@MiniMax_AI)',
-      url: 'https://x.com/MiniMax_AI/status/2065436935188058208',
-      date: '2026-06-13',
-      score: 95,
-      tags: ['MiniMax', '代码模型', '多模态'],
-      summary: 'MiniMax 发布 M3，约 428B 总参数、23B 激活参数，强调编码、智能体、长上下文和原生多模态，并同步上线 MiniMax Code 与 API 平台。',
-      comment: '点评：代码模型开始围绕真实工程任务竞争，长上下文、工具调用和端到端成功率比单点问答更重要。'
+      title: '智谱 GLM-5.2：1M 上下文与国产 Coding 模型继续开源竞速',
+      source: '公众号：智谱（GLM）',
+      url: 'https://mp.weixin.qq.com/s/LDrbtLM0wiCTJorvd5GY9w',
+      date: '2026-06-14',
+      score: 96,
+      tags: ['GLM', '长上下文', 'Coding'],
+      summary: 'GLM-5.2 面向 GLM Coding Plan 全量用户开放，支持 1M 上下文，API 与开源版本预计下周上线，并采用 MIT 协议。',
+      comment: '点评：这条新闻的价值在于把长上下文、代码能力和开源许可打包。企业应等待权重与技术细节落地后，用真实仓库 issue 做端到端评测。'
     },
     {
-      topic: 'model',
-      title: 'Kimi-K2.7-Code：开源代码模型继续强化效率',
-      source: 'X：Kimi.ai (@Kimi_Moonshot)',
-      url: 'https://x.com/Kimi_Moonshot/status/2065377579130142937',
-      date: '2026-06-13',
-      score: 93,
-      tags: ['Kimi', '开源', 'Coding Agent'],
-      summary: 'Kimi 发布并开源 Kimi-K2.7-Code，相比 K2.6 在多项代码评测上提升，并降低推理 token 使用量。',
-      comment: '点评：模型厂商已经把成本、效率和长任务成功率放到台前，企业评测应使用真实 issue，而不是只看榜单。'
-    },
-    {
-      topic: 'agent',
-      title: '豆包任务模式：AI 应用进入可执行任务阶段',
-      source: 'IT之家（RSS）',
-      url: 'https://www.ithome.com/0/963/725.htm',
-      date: '2026-06-13',
-      score: 91,
-      tags: ['豆包', '任务模式', 'Agent'],
-      summary: '豆包上线任务模式，支持定时执行、零代码网页生成、一键 PPT 和数据可视化分析，思考模式升级为专家模式。',
-      comment: '点评：这代表 AI 产品从聊天助手转向任务代理，产品经理要重点设计失败处理、人工确认和交付物验收。'
-    },
-    {
-      topic: 'agent',
-      title: 'Codex 浏览器开发者模式：AI 开始读控制台和网络面板',
-      source: 'X：OpenAI Developers (@OpenAIDevs)',
-      url: 'https://x.com/OpenAIDevs/status/2065226355495895521',
-      date: '2026-06-13',
-      score: 92,
-      tags: ['Codex', 'Chrome DevTools', '前端调试'],
-      summary: 'Codex 引入浏览器开发者模式，可通过 Chrome DevTools 协议分析控制台、网络、性能和页面状态。',
-      comment: '点评：前端 AI 编程的验收标准要升级为能复现问题、读取运行时信号并给出最小修复。'
-    },
-    {
-      topic: 'agent',
-      title: 'Claude Code 管控更新：企业白名单和默认模型约束补齐',
-      source: 'Claude Code：GitHub Releases（RSS）',
-      url: 'https://github.com/anthropics/claude-code/releases/tag/v2.1.175',
-      date: '2026-06-13',
-      score: 88,
-      tags: ['Claude Code', '企业治理', '模型白名单'],
-      summary: 'Claude Code v2.1.175 新增 enforceAvailableModels 管理设置，后续版本继续修复白名单、环境变量、远程控制和 Bedrock 凭证等问题。',
-      comment: '点评：AI 编程助手进入组织后，模型可用范围、环境变量、远程会话和审计边界会比提示词本身更关键。'
-    },
-    {
-      topic: 'industry',
-      title: 'TCS 与 Anthropic：Claude 进入受监管行业交付体系',
-      source: 'Anthropic：Newsroom（网页）',
-      url: 'https://www.anthropic.com/news/tcs-anthropic-partnership',
-      date: '2026-06-13',
-      score: 90,
-      tags: ['Anthropic', 'TCS', '受监管行业'],
-      summary: 'TCS 将向 56 个国家的 5 万名员工提供 Claude，并为金融、医疗等客户构建基于 Claude 的产品和培训体系。',
-      comment: '点评：大厂咨询体系入场后，AI 落地会从单点工具采购转向技能、插件、交付方法论和治理平台。'
-    },
-    {
-      topic: 'industry',
-      title: 'Google Research：医疗 AI 应先帮助用户理解问题',
-      source: 'Google Research：Blog（网页）',
-      url: 'https://research.google/blog/research-into-how-ai-can-help-users-understand-skin-conditions',
-      date: '2026-06-13',
-      score: 86,
-      tags: ['Google Research', '医疗 AI', '皮肤健康'],
-      summary: 'Google Research 发表皮肤健康相关研究，探索 AI 如何帮助用户识别问题、理解信息并决定下一步行动。',
-      comment: '点评：医疗 AI 的正确姿势是辅助理解和就医准备，不是替代医生；产品边界必须写清楚。'
-    },
-    {
-      topic: 'workflow',
-      title: 'Spec 驱动开发：把 AI 编程纳入规格与验证闭环',
-      source: 'X：邵猛 (@shao__meng)',
-      url: 'https://x.com/shao__meng/status/2065234132431675439',
-      date: '2026-06-13',
+      topic: 'product',
+      title: 'Suno 音轨分离升级：音乐 AI 进入后期制作链路',
+      source: 'X：Suno (@suno)',
+      url: 'https://x.com/suno/status/2065862499765821916',
+      date: '2026-06-14',
       score: 89,
-      tags: ['SDD', 'Skills', 'Verify'],
-      summary: 'Spec 驱动开发用产品规格、技术规格、实现与验证覆盖 AI 开发闭环，强调规格随 PR 一起提交。',
-      comment: '点评：团队要把需求、架构和验收命令写给 AI 看，才能减少“看似完成但不可验证”的代码。'
+      tags: ['Suno', '音乐生成', '音轨分离'],
+      summary: 'Suno 升级音轨分离能力，从零重新生成更纯净的音轨，目标是减少伪影并直接进入 DAW 工作流。',
+      comment: '点评：音乐 AI 的关键从一键生成转向可编辑、可混音、可局部重做。创作者应关注它能否进入专业生产流程。'
     },
     {
-      topic: 'workflow',
-      title: '人味儿写作心法：AI 写作需要作者的真实位置',
-      source: 'X：Oran Ge (@oran_ge)',
-      url: 'https://x.com/oran_ge/status/2065566882774868125',
-      date: '2026-06-13',
-      score: 84,
-      tags: ['写作', 'Skill', '内容创作'],
-      summary: 'Oran Ge 开源写作技能，主张保留作者的具体处境、代价和存在感，避免 AI 改稿越改越空。',
-      comment: '点评：内容创作者不要把 AI 当代笔，应该先给出个人经历和判断，再让 AI 做结构和润色。'
+      topic: 'product',
+      title: 'OpenRouter Fusion API：复合模型开始售卖性价比智能',
+      source: 'X：OpenRouter (@OpenRouter)',
+      url: 'https://x.com/OpenRouter/status/2065856853989270011',
+      date: '2026-06-14',
+      score: 88,
+      tags: ['OpenRouter', '模型路由', '成本'],
+      summary: 'Fusion API 宣称以一半价格达到 Fable 级智能，指向模型组合、路由和级联调用的新接口形态。',
+      comment: '点评：应用开发者不要把业务绑死在单一模型上，应提前设计模型抽象层、降级、重试和成本上限。'
     },
     {
       topic: 'safety',
-      title: 'Anthropic 公众调查：期待与担忧同时上升',
-      source: 'Anthropic：Newsroom（网页）',
-      url: 'https://www.anthropic.com/news/anthropic-public-record',
-      date: '2026-06-13',
+      title: 'Anthropic 模型撤回风波：安全叙事进入监管两难',
+      source: 'TechCrunch：AI（RSS）',
+      url: 'https://techcrunch.com/2026/06/12/anthropics-safety-warnings-may-have-just-backfired-the-government-has-pulled-the-plug-on-its-most-powerful-ai',
+      date: '2026-06-14',
+      score: 91,
+      tags: ['Anthropic', 'AI安全', '政府采购'],
+      summary: 'Anthropic 对政府撤回其强大 AI 模型表达不满，认为基于狭窄潜在越狱发现召回商业模型并不合理。',
+      comment: '点评：高风险客户会更保守，模型公司越强调风险越可能触发审查；企业产品要提前准备模型卡、红队报告和应急下线机制。'
+    },
+    {
+      topic: 'safety',
+      title: 'Google 安全负责人辞职：军事 AI 合作带来组织伦理冲突',
+      source: 'IT之家（RSS）',
+      url: 'https://www.ithome.com/0/963/888.htm',
+      date: '2026-06-14',
+      score: 90,
+      tags: ['Google', 'AI伦理', '军事AI'],
+      summary: 'Google Android 平台安全负责人 René Mayrhofer 辞职，批评公司 AI 原则变化、能源目标和军事合作方向。',
+      comment: '点评：AI 伦理已经会影响人才留存和组织信任。敏感合作必须有透明沟通、伦理审查和员工反馈渠道。'
+    },
+    {
+      topic: 'industry',
+      title: 'Anthropic 秘密申请上市：基础模型估值继续冲高',
+      source: 'Bloomberg：Technology（RSS）',
+      url: 'https://www.bloomberg.com/news/articles/2026-06-13/global-capitalism-bets-it-all-on-ai-future-that-alarms-voters',
+      date: '2026-06-14',
       score: 87,
-      tags: ['AI治理', '公众调查', '风险'],
-      summary: 'Anthropic 调查显示，公众期待 AI 在疾病、无障碍等方面发挥作用，同时担忧失业、认知依赖和信息误导。',
-      comment: '点评：AI 公司和企业用户都要重视信任建设，透明度、隐私、儿童安全和责任归属会成为长期议题。'
+      tags: ['Anthropic', 'IPO', '资本市场'],
+      summary: 'Bloomberg 报道 Anthropic 估值达 9650 亿美元，并已秘密提交 IPO 申请。',
+      comment: '点评：估值越高，市场对收入、毛利、算力效率和企业续费的要求越高；应用层公司要警惕上游定价和策略变化。'
+    },
+    {
+      topic: 'industry',
+      title: 'Meta 承认 AI 转型脱轨：组织调整比模型接入更难',
+      source: 'IT之家（RSS）',
+      url: 'https://www.ithome.com/0/963/858.htm',
+      date: '2026-06-14',
+      score: 86,
+      tags: ['Meta', '组织转型', 'AI战略'],
+      summary: '扎克伯格承认 Meta AI 转型中组织调整过快，裁员和转岗带来管理跨度、协作和安置问题。',
+      comment: '点评：AI 转型不是改组织名或转岗人数，而是业务目标、工具链、绩效和治理一起重构。'
+    },
+    {
+      topic: 'safety',
+      title: 'OpenAI 遭多州总检察长调查：平台级监管压力扩大',
+      source: 'Bloomberg：Technology（RSS）',
+      url: 'https://www.bloomberg.com/news/articles/2026-06-13/openai-probed-by-coalition-of-state-attorneys-general',
+      date: '2026-06-14',
+      score: 88,
+      tags: ['OpenAI', '监管', '合规'],
+      summary: 'OpenAI 正被多州总检察长联盟调查，相关方已索取广泛主题的信息。',
+      comment: '点评：AI 平台越像基础设施，监管越会覆盖隐私、儿童安全、消费者保护和市场竞争。AI 应用也应提前补齐合规流程。'
+    },
+    {
+      topic: 'workflow',
+      title: 'SemiAnalysis Token 经济：200 美元订阅可能透支算力补贴',
+      source: 'IT之家（RSS）',
+      url: 'https://www.ithome.com/0/963/834.htm',
+      date: '2026-06-14',
+      score: 92,
+      tags: ['Token经济', '订阅制', '成本'],
+      summary: 'SemiAnalysis 测算显示，重度用户可从 200 美元订阅中消耗相当于 40 至 70 倍 API 价值的 token。',
+      comment: '点评：个人重度使用短期划算，但企业不能把个人订阅当生产基础设施；需要 API 成本、配额、审计和 SLA。'
+    },
+    {
+      topic: 'workflow',
+      title: '/architect 工作流：强模型规划审核，Codex 负责构建',
+      source: 'Hacker News 热门（buzzing.cc 中文翻译）',
+      url: 'https://github.com/DanMcInerney/architect-loop',
+      date: '2026-06-14',
+      score: 85,
+      tags: ['Agent工作流', 'Codex', '成本优化'],
+      summary: '/architect 项目尝试减少 80% Fable token，让强模型负责协调和审核，Codex 负责构建。',
+      comment: '点评：AI 开发会走向分工制：Planner 负责拆解，Executor 负责实现，Verifier 负责验证，用模型协作控制成本。'
     }
   ],
   sources: [
@@ -121,66 +122,52 @@ const episode = {
       note: '本期日报与中文摘要来源'
     },
     {
-      name: 'MiniMax',
-      url: 'https://x.com/MiniMax_AI/status/2065436935188058208',
-      note: 'M3 开源权重模型动态'
+      name: '智谱 GLM',
+      url: 'https://mp.weixin.qq.com/s/LDrbtLM0wiCTJorvd5GY9w',
+      note: 'GLM-5.2 全量开放与开源计划'
     },
     {
-      name: 'Kimi',
-      url: 'https://x.com/Kimi_Moonshot/status/2065377579130142937',
-      note: 'Kimi-K2.7-Code 开源动态'
+      name: 'Suno',
+      url: 'https://x.com/suno/status/2065862499765821916',
+      note: '音轨分离产品更新'
     },
     {
-      name: 'OpenAI Developers',
-      url: 'https://x.com/OpenAIDevs/status/2065226355495895521',
-      note: 'Codex 浏览器开发者模式'
+      name: 'OpenRouter',
+      url: 'https://x.com/OpenRouter/status/2065856853989270011',
+      note: 'Fusion API 与复合模型路由'
     },
     {
-      name: 'Anthropic Newsroom',
-      url: 'https://www.anthropic.com/news/tcs-anthropic-partnership',
-      note: 'Claude 企业合作与治理动态'
+      name: 'TechCrunch AI',
+      url: 'https://techcrunch.com/2026/06/12/anthropics-safety-warnings-may-have-just-backfired-the-government-has-pulled-the-plug-on-its-most-powerful-ai',
+      note: 'Anthropic 模型撤回与安全争议'
     },
     {
-      name: 'Google Research',
-      url: 'https://research.google/blog/research-into-how-ai-can-help-users-understand-skin-conditions',
-      note: '医疗健康 AI 研究'
+      name: 'Bloomberg Technology',
+      url: 'https://www.bloomberg.com/news/articles/2026-06-13/openai-probed-by-coalition-of-state-attorneys-general',
+      note: 'OpenAI 调查与 Anthropic 资本动态'
     },
     {
       name: '本站 AI 日报文章',
-      url: '/posts/61313/',
+      url: '/posts/61414/',
       note: '完整文字版、点评与建议'
     }
   ]
 };
 
-const maleVoicePresets = [
+const episodeHistory = [
   {
-    id: 'male-news',
-    label: '男声 · 新闻主播（推荐）',
-    pitch: 0.82,
-    rate: 0.96,
-    keywords: ['Yunyang', 'Yunjian', 'Yunxi', 'Kangkang', 'Male', '男']
+    date: '2026-06-14',
+    title: 'AI HOT 日报：GLM-5.2 开源、AI 治理升温与订阅经济压力',
+    summary: '本期基于 AI HOT 2026-06-14 日报：智谱 GLM-5.2 全量开放并宣布下周开源，Suno 和 OpenRouter 分别推进音乐制作与复合模型路由；同时 Anthropic、OpenAI、Google、Meta 都出现监管、伦理或组织调整信号，说明 AI 行业正在从模型竞速进入能力、治理和商业模式同时竞争的新阶段。',
+    link: '/posts/61414/',
+    tags: ['AI HOT', 'GLM-5.2', 'AI治理', 'Token经济']
   },
   {
-    id: 'male-deep',
-    label: '男声 · 低沉稳重',
-    pitch: 0.68,
-    rate: 0.9,
-    keywords: ['Yunjian', 'Yunyang', 'Kangkang', 'Male', '男']
-  },
-  {
-    id: 'male-warm',
-    label: '男声 · 温和讲解',
-    pitch: 0.9,
-    rate: 0.92,
-    keywords: ['Yunxi', 'Kangkang', 'Yunyang', 'Male', '男']
-  },
-  {
-    id: 'male-fast',
-    label: '男声 · 快速简报',
-    pitch: 0.78,
-    rate: 1.08,
-    keywords: ['Yunyang', 'Yunxi', 'Yunjian', 'Male', '男']
+    date: '2026-06-13',
+    title: 'AI HOT 日报：代码模型开源、Agent 产品化与企业治理补课',
+    summary: 'MiniMax M3 与 Kimi-K2.7-Code 推动国产代码模型开源；豆包、Codex、Claude Code 把 Agent 做进任务执行、浏览器调试和企业管控。',
+    link: '/posts/61313/',
+    tags: ['AI HOT', '代码模型', 'Agent', '企业治理']
   }
 ];
 
@@ -194,6 +181,7 @@ const state = {
 
 const newsGrid = document.querySelector('#newsGrid');
 const sourceList = document.querySelector('#sourceList');
+const episodeHistoryList = document.querySelector('#episodeHistory');
 const scriptText = document.querySelector('#scriptText');
 const playBriefButton = document.querySelector('#playBriefButton');
 const playPauseButton = document.querySelector('#playPauseButton');
@@ -209,6 +197,7 @@ const toast = document.querySelector('#toast');
 
 renderNews();
 renderSources();
+renderHistory();
 renderScript();
 setupVoices();
 updatePlayerSegment();
@@ -266,6 +255,24 @@ function renderSources() {
   `).join('');
 }
 
+function renderHistory() {
+  if (!episodeHistoryList) {
+    return;
+  }
+
+  episodeHistoryList.innerHTML = episodeHistory.map((item) => `
+    <article class="history-item">
+      <div>
+        <p class="eyebrow">${escapeHtml(item.date)}</p>
+        <h3>${escapeHtml(item.title)}</h3>
+        <p>${escapeHtml(item.summary)}</p>
+        <div class="badges">${item.tags.map((tag) => `<span class="badge">${escapeHtml(tag)}</span>`).join('')}</div>
+      </div>
+      <a href="${item.link}" target="${item.link.startsWith('/') ? '_self' : '_blank'}" rel="noopener">查看文字稿 →</a>
+    </article>
+  `).join('');
+}
+
 function renderScript() {
   scriptText.textContent = buildScript();
 }
@@ -284,7 +291,7 @@ function buildScript() {
     lines.push('');
   });
 
-  lines.push('最后给出本期结论：代码模型会继续开源提速，Agent 产品会从问答走向可执行任务。建议先建立真实任务评测、规格驱动开发、模型白名单、工具权限和人工确认机制，再扩大自动化范围。');
+  lines.push(`最后给出本期结论：${episode.conclusion}`);
   return lines.join('\n');
 }
 
@@ -295,7 +302,7 @@ function segments() {
       title: `${index + 1}. ${item.title}`,
       text: `${item.title}。${item.summary}${item.comment}`
     })),
-    { title: '本期结论', text: '本期结论：代码模型会继续开源提速，Agent 产品会从问答走向可执行任务。建议先建立真实任务评测、规格驱动开发、模型白名单、工具权限和人工确认机制，再扩大自动化范围。' }
+    { title: '本期结论', text: `本期结论：${episode.conclusion}` }
   ];
 }
 
@@ -308,34 +315,17 @@ function setupVoices() {
   }
 
   const load = () => {
-    const previousValue = voiceSelect.value || 'preset:male-news';
+    const previousValue = voiceSelect.value;
     state.voices = window.speechSynthesis.getVoices();
-    const zhVoices = chineseVoices();
+    const zhVoices = state.voices.filter((voice) => /^zh|Chinese|普通话|中文|Mandarin/i.test(`${voice.lang} ${voice.name}`));
     const usableVoices = zhVoices.length ? zhVoices : state.voices;
-    const maleSystemVoices = usableVoices.filter(isLikelyMaleVoice);
 
-    const presetOptions = maleVoicePresets.map((preset, index) => (
-      `<option value="preset:${preset.id}">${escapeHtml(preset.label)}${index === 0 ? ' · 推荐' : ''}</option>`
-    )).join('');
-
-    const maleOptions = maleSystemVoices.map((voice) => (
-      `<option value="voice:${state.voices.indexOf(voice)}">系统男声 · ${escapeHtml(voice.name)} · ${escapeHtml(voice.lang)}</option>`
-    )).join('');
-
-    const allOptions = usableVoices.map((voice) => (
-      `<option value="voice:${state.voices.indexOf(voice)}">系统音色 · ${escapeHtml(voice.name)} · ${escapeHtml(voice.lang)}</option>`
-    )).join('');
-
-    voiceSelect.innerHTML = [
-      `<optgroup label="男声预设（跨浏览器可用）">${presetOptions}</optgroup>`,
-      maleOptions ? `<optgroup label="系统男声（如浏览器提供）">${maleOptions}</optgroup>` : '',
-      allOptions ? `<optgroup label="系统全部音色">${allOptions}</optgroup>` : ''
-    ].join('') || '<option>系统默认音色</option>';
+    voiceSelect.innerHTML = usableVoices.map((voice, index) => (
+      `<option value="${state.voices.indexOf(voice)}">${escapeHtml(voice.name)} · ${escapeHtml(voice.lang)}${index === 0 ? '（推荐）' : ''}</option>`
+    )).join('') || '<option value="">系统默认音色</option>';
 
     if ([...voiceSelect.options].some((option) => option.value === previousValue)) {
       voiceSelect.value = previousValue;
-    } else {
-      voiceSelect.value = 'preset:male-news';
     }
   };
 
@@ -343,35 +333,6 @@ function setupVoices() {
   window.speechSynthesis.onvoiceschanged = load;
 }
 
-function chineseVoices() {
-  return state.voices.filter((voice) => /^zh|Chinese|普通话|中文|Mandarin/i.test(`${voice.lang} ${voice.name}`));
-}
-
-function isLikelyMaleVoice(voice) {
-  return /Yunxi|Yunyang|Yunjian|Kangkang|Microsoft Huihui|Male|男声|男|Daniel|Thomas|Alex|Fred|Google UK English Male|Google US English/i.test(`${voice.name} ${voice.lang}`);
-}
-
-function getSelectedVoiceConfig() {
-  const value = voiceSelect.value || 'preset:male-news';
-  if (value.startsWith('preset:')) {
-    const preset = maleVoicePresets.find((item) => item.id === value.slice(7)) || maleVoicePresets[0];
-    return {
-      voice: findPreferredMaleVoice(preset),
-      pitch: preset.pitch,
-      rateMultiplier: preset.rate
-    };
-  }
-
-  const voice = state.voices[Number(value.replace('voice:', ''))];
-  return { voice, pitch: 1, rateMultiplier: 1 };
-}
-
-function findPreferredMaleVoice(preset) {
-  const voices = chineseVoices().length ? chineseVoices() : state.voices;
-  return voices.find((voice) => preset.keywords.some((keyword) => `${voice.name} ${voice.lang}`.toLowerCase().includes(keyword.toLowerCase())))
-    || voices.find(isLikelyMaleVoice)
-    || voices[0];
-}
 
 function togglePlayPause() {
   if (!('speechSynthesis' in window)) {
@@ -400,13 +361,13 @@ function playSegment(index) {
   const segment = allSegments[state.currentIndex];
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(segment.text);
-  const voiceConfig = getSelectedVoiceConfig();
-  if (voiceConfig.voice) {
-    utterance.voice = voiceConfig.voice;
+  const voice = state.voices[Number(voiceSelect.value)];
+  if (voice) {
+    utterance.voice = voice;
   }
-  utterance.lang = voiceConfig.voice?.lang || 'zh-CN';
-  utterance.rate = Math.min(1.8, Math.max(0.5, (Number(rateControl.value) || 1) * voiceConfig.rateMultiplier));
-  utterance.pitch = voiceConfig.pitch;
+  utterance.lang = voice?.lang || 'zh-CN';
+  utterance.rate = Number(rateControl.value) || 1;
+  utterance.pitch = 1;
   utterance.onend = () => {
     if (state.currentIndex < allSegments.length - 1) {
       playSegment(state.currentIndex + 1);

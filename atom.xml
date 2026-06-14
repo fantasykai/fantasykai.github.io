@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-06-13T13:16:21.434Z</updated>
+  <updated>2026-06-14T08:45:04.167Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI日报, AI资讯, 大模型, Agent, GLM, Anthropic, OpenAI, AI治理" scheme="https://aimak.cn/tags/AI%E6%97%A5%E6%8A%A5-AI%E8%B5%84%E8%AE%AF-%E5%A4%A7%E6%A8%A1%E5%9E%8B-Agent-GLM-Anthropic-OpenAI-AI%E6%B2%BB%E7%90%86/"/>
+    <id>https://aimak.cn/posts/61414/</id>
+    <link href="https://aimak.cn/posts/61414/"/>
+    <published>2026-06-14T13:30:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 2026-06-14 日报，覆盖窗口为北京时间 2026-06-13 08:00 至 2026-06-14 08:00。本文在原始资讯基础上补充趋势点评和落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a]]>
+    </summary>
+    <title>AI HOT 日报 2026-06-14：GLM-5.2 开源、AI 治理升温与订阅经济压力</title>
+    <updated>2026-06-14T08:45:04.167Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -332,20 +350,5 @@
     </summary>
     <title>2025年04月AI资讯总结</title>
     <updated>2025-05-03T09:16:16.105Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="人工智能" scheme="https://aimak.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    <id>https://aimak.cn/posts/11225/</id>
-    <link href="https://aimak.cn/posts/11225/"/>
-    <published>2025-04-29T22:00:00.000Z</published>
-    <summary>
-      <![CDATA[<h3 id="国内动态"><a href="#国内动态" class="headerlink"]]>
-    </summary>
-    <title>AI领域最新资讯：突破、趋势与展望</title>
-    <updated>2025-05-03T09:10:12.314Z</updated>
   </entry>
 </feed>

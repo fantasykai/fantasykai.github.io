@@ -385,39 +385,110 @@
       }
 
       const now = audioContext.currentTime;
-      const duration = options.preview ? 0.08 : 0.13;
-      const baseFrequency = player === BLACK ? 176 : 228;
-      const gain = audioContext.createGain();
-      const lowTone = audioContext.createOscillator();
-      const clickTone = audioContext.createOscillator();
-      const filter = audioContext.createBiquadFilter();
+      const master = audioContext.createGain();
+      const compressor = audioContext.createDynamicsCompressor();
+      master.gain.setValueAtTime(options.preview ? 0.32 : 0.48, now);
+      compressor.threshold.setValueAtTime(-18, now);
+      compressor.knee.setValueAtTime(18, now);
+      compressor.ratio.setValueAtTime(4, now);
+      compressor.attack.setValueAtTime(0.002, now);
+      compressor.release.setValueAtTime(0.09, now);
+      master.connect(compressor);
+      compressor.connect(audioContext.destination);
 
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(980, now);
-      gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(options.preview ? 0.08 : 0.16, now + 0.012);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-
-      lowTone.type = 'sine';
-      lowTone.frequency.setValueAtTime(baseFrequency, now);
-      lowTone.frequency.exponentialRampToValueAtTime(baseFrequency * 0.62, now + duration);
-
-      clickTone.type = 'triangle';
-      clickTone.frequency.setValueAtTime(baseFrequency * 3.1, now);
-      clickTone.frequency.exponentialRampToValueAtTime(baseFrequency * 1.55, now + 0.055);
-
-      lowTone.connect(filter);
-      clickTone.connect(filter);
-      filter.connect(gain);
-      gain.connect(audioContext.destination);
-
-      lowTone.start(now);
-      clickTone.start(now);
-      lowTone.stop(now + duration + 0.02);
-      clickTone.stop(now + 0.07);
+      playClickTransient(now, master, player);
+      playWoodResonance(now + 0.004, master, player, options.preview);
+      playStoneBody(now + 0.002, master, player, options.preview);
     } catch (error) {
       soundToggle.checked = false;
     }
+  }
+
+  function playClickTransient(startTime, destination, player) {
+    const duration = 0.026;
+    const bufferSize = Math.max(1, Math.floor(audioContext.sampleRate * duration));
+    const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+    const data = buffer.getChannelData(0);
+
+    for (let index = 0; index < bufferSize; index += 1) {
+      const progress = index / bufferSize;
+      const envelope = Math.exp(-progress * 24);
+      const tick = Math.sin(progress * Math.PI * 120 + (player === BLACK ? 0.15 : 0.55));
+      data[index] = (Math.random() * 2 - 1) * envelope * 0.72 + tick * envelope * 0.2;
+    }
+
+    const source = audioContext.createBufferSource();
+    const highpass = audioContext.createBiquadFilter();
+    const bandpass = audioContext.createBiquadFilter();
+    const gain = audioContext.createGain();
+
+    highpass.type = 'highpass';
+    highpass.frequency.setValueAtTime(850, startTime);
+    bandpass.type = 'bandpass';
+    bandpass.frequency.setValueAtTime(player === BLACK ? 2450 : 2850, startTime);
+    bandpass.Q.setValueAtTime(1.4, startTime);
+    gain.gain.setValueAtTime(0.0001, startTime);
+    gain.gain.exponentialRampToValueAtTime(0.42, startTime + 0.003);
+    gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+    source.buffer = buffer;
+    source.connect(highpass);
+    highpass.connect(bandpass);
+    bandpass.connect(gain);
+    gain.connect(destination);
+    source.start(startTime);
+    source.stop(startTime + duration + 0.01);
+  }
+
+  function playWoodResonance(startTime, destination, player, preview) {
+    const gain = audioContext.createGain();
+    const filter = audioContext.createBiquadFilter();
+    const frequencies = player === BLACK ? [620, 930, 1320] : [700, 1040, 1480];
+    const duration = preview ? 0.07 : 0.12;
+
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(2600, startTime);
+    gain.gain.setValueAtTime(0.0001, startTime);
+    gain.gain.exponentialRampToValueAtTime(preview ? 0.08 : 0.16, startTime + 0.008);
+    gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+    gain.connect(filter);
+    filter.connect(destination);
+
+    frequencies.forEach((frequency, index) => {
+      const oscillator = audioContext.createOscillator();
+      const toneGain = audioContext.createGain();
+      oscillator.type = index === 0 ? 'triangle' : 'sine';
+      oscillator.frequency.setValueAtTime(frequency, startTime);
+      oscillator.frequency.exponentialRampToValueAtTime(frequency * 0.92, startTime + duration);
+      toneGain.gain.setValueAtTime(1 / (index + 1.4), startTime);
+      oscillator.connect(toneGain);
+      toneGain.connect(gain);
+      oscillator.start(startTime);
+      oscillator.stop(startTime + duration + 0.02);
+    });
+  }
+
+  function playStoneBody(startTime, destination, player, preview) {
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    const filter = audioContext.createBiquadFilter();
+    const base = player === BLACK ? 205 : 238;
+    const duration = preview ? 0.06 : 0.095;
+
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(base, startTime);
+    oscillator.frequency.exponentialRampToValueAtTime(base * 0.72, startTime + duration);
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(520, startTime);
+    gain.gain.setValueAtTime(0.0001, startTime);
+    gain.gain.exponentialRampToValueAtTime(preview ? 0.035 : 0.075, startTime + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+    oscillator.connect(filter);
+    filter.connect(gain);
+    gain.connect(destination);
+    oscillator.start(startTime);
+    oscillator.stop(startTime + duration + 0.02);
   }
 
   function chooseAiMove(level, player) {

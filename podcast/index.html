@@ -28,8 +28,8 @@
         </div>
         <aside class="signal-card">
           <span>更新锚点</span>
-          <strong>2026-06-13</strong>
-          <p>信源优先级：AI HOT 日报 / 官方公告 / 研究博客 / 开源发布 / 企业实践。静态博客无后端，内容以本页数据源维护，语音由浏览器本地 SpeechSynthesis 播放。</p>
+          <strong>2026-06-14</strong>
+          <p>信源优先级：AI HOT 日报 / 官方公告 / 研究博客 / 开源发布 / 企业实践。语音由浏览器本地 SpeechSynthesis 播放。</p>
         </aside>
       </section>
     </header>
@@ -51,7 +51,7 @@
           <input id="rateControl" type="range" min="0.75" max="1.5" step="0.05" value="1">
         </label>
         <label>
-          音色（含男声）
+          音色
           <select id="voiceSelect"></select>
         </label>
       </div>
@@ -61,25 +61,25 @@
     <section class="insight-grid" aria-label="本期核心判断">
       <article>
         <span>01</span>
-        <h3>代码模型开源提速</h3>
-        <p>MiniMax M3 与 Kimi-K2.7-Code 都把编码、长上下文和 Agent 工作流作为核心卖点。</p>
+        <h3>GLM-5.2 开源在即</h3>
+        <p>智谱 GLM-5.2 全量开放，1M 上下文、Coding 能力与 MIT 开源计划成为今日模型主线。</p>
       </article>
       <article>
         <span>02</span>
-        <h3>Agent 走向任务执行</h3>
-        <p>豆包任务模式、Codex 浏览器调试与 Claude Code 管控更新，说明 AI 工具正在进入真实生产链路。</p>
+        <h3>AI 治理压力升温</h3>
+        <p>Anthropic、OpenAI、Google 的监管与伦理争议，说明安全和合规已进入主战场。</p>
       </article>
       <article>
         <span>03</span>
-        <h3>治理成为落地前提</h3>
-        <p>受监管行业采用 Claude、公众对 AI 风险的担忧，都要求权限、审计、人审和回滚先行。</p>
+        <h3>成本与组织开始承压</h3>
+        <p>200 美元订阅的 token 经济、Meta AI 转型脱轨，都提醒企业必须同时管理成本和组织节奏。</p>
       </article>
     </section>
 
     <section class="toolbar" aria-label="资讯筛选">
       <button class="filter-button active" type="button" data-filter="all">全部</button>
       <button class="filter-button" type="button" data-filter="model">模型</button>
-      <button class="filter-button" type="button" data-filter="agent">Agent</button>
+      <button class="filter-button" type="button" data-filter="product">产品</button>
       <button class="filter-button" type="button" data-filter="workflow">工作流</button>
       <button class="filter-button" type="button" data-filter="industry">产业</button>
       <button class="filter-button" type="button" data-filter="safety">治理</button>
@@ -117,15 +117,23 @@
       </aside>
     </section>
 
+    <section class="history-card">
+      <div class="section-heading compact">
+        <p class="eyebrow">Episode Archive</p>
+        <h2>播客历史列表</h2>
+      </div>
+      <div id="episodeHistory" class="history-grid"></div>
+    </section>
+
     <section class="reading-card">
       <div class="section-heading compact">
         <p class="eyebrow">From This Blog</p>
         <h2>结合本站 AI 内容继续阅读</h2>
       </div>
       <div class="reading-grid">
-        <a href="/posts/61313/">
-          <strong>AI HOT 日报 2026-06-13</strong>
-          <span>代码模型开源、Agent 产品化与企业治理补课的文字版点评。</span>
+        <a href="/posts/61414/">
+          <strong>AI HOT 日报 2026-06-14</strong>
+          <span>GLM-5.2 开源、AI 治理升温与订阅经济压力的文字版点评。</span>
         </a>
         <a href="/posts/29847/">
           <strong>AI Agent 全解析：从概念到网络运维实战</strong>
@@ -148,7 +156,6 @@
         <h2>持续追踪信源</h2>
       </div>
       <div id="sourceList" class="source-list"></div>
-      <p class="source-note">维护方式：后续新增一期播客时，更新 <code>source/podcast/app.js</code> 中的 <code>episode</code> 数据即可同步卡片、播报稿和语音内容。</p>
     </section>
   </main>
 
