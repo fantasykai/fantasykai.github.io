@@ -146,3 +146,11 @@ code { color: #fef08a; }
   .player-controls { grid-template-columns: 1fr; }
   .player-main { align-items: flex-start; }
 }
+
+.history-hero {
+  margin-bottom: 20px;
+}
+
+.history-page-card {
+  margin-top: 0;
+}
