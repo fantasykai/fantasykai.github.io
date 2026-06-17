@@ -1,173 +1,235 @@
 const episode = {
-  date: '2026-06-14',
-  title: 'AI HOT 日报：GLM-5.2 开源、AI 治理升温与订阅经济压力',
-  intro: '本期基于 AI HOT 2026-06-14 日报：智谱 GLM-5.2 全量开放并宣布下周开源，Suno 和 OpenRouter 分别推进音乐制作与复合模型路由；同时 Anthropic、OpenAI、Google、Meta 都出现监管、伦理或组织调整信号，说明 AI 行业正在从模型竞速进入能力、治理和商业模式同时竞争的新阶段。',
-  conclusion: 'GLM-5.2 代表模型能力继续上探，Suno 与 Fusion API 代表产品链路继续下沉；但 Anthropic、OpenAI、Google、Meta 的动态提醒我们，AI 越强，越需要治理、组织和商业模式一起跟上。',
-  items: [
+  "date": "2026-06-16",
+  "title": "AI HOT 日报：开源模型提速、Agent 应用并购与 AI 成本重估",
+  "intro": "本期基于 AI HOT 2026-06-16 日报：MiniMax M3 开源权重与 MSA 论文、DFlash 与 Spec V2 推动推理加速；Grok Build、Kimi、Claude Code 把 Agent 编程推向多会话调度、极速交互和权限治理；Salesforce 以 36 亿美元收购 Fin，Nvidia 计划发行 200 亿美元债券，说明 AI 应用价值与基础设施成本正在同时被重估。",
+  "conclusion": "今天的关键词不是单点模型突破，而是系统效率、Agent 闭环和组织成本。下一阶段，能同时控制能力、速度、权限、成本和组织接受度的团队，才更可能把 AI 真正放进生产系统。",
+  "items": [
     {
-      topic: 'model',
-      title: '智谱 GLM-5.2：1M 上下文与国产 Coding 模型继续开源竞速',
-      source: '公众号：智谱（GLM）',
-      url: 'https://mp.weixin.qq.com/s/LDrbtLM0wiCTJorvd5GY9w',
-      date: '2026-06-14',
-      score: 96,
-      tags: ['GLM', '长上下文', 'Coding'],
-      summary: 'GLM-5.2 面向 GLM Coding Plan 全量用户开放，支持 1M 上下文，API 与开源版本预计下周上线，并采用 MIT 协议。',
-      comment: '点评：这条新闻的价值在于把长上下文、代码能力和开源许可打包。企业应等待权重与技术细节落地后，用真实仓库 issue 做端到端评测。'
+      "topic": "model",
+      "title": "MiniMax M3：开源权重与 MSA 把长上下文成本摆上台面",
+      "source": "公众号：MiniMax（稀宇科技）",
+      "url": "https://mp.weixin.qq.com/s/AW6L89QZkwN-jD27hQ84ww",
+      "date": "2026-06-16",
+      "score": 96,
+      "tags": [
+        "MiniMax",
+        "开源模型",
+        "长上下文"
+      ],
+      "summary": "MiniMax 开源 428B 总参数、23B 激活参数的 M3 模型权重，并发布 MSA 技术论文，强调降低长上下文计算成本和提升输出速度。",
+      "comment": "点评：开源模型竞争已从参数和榜单扩展到系统工程。企业评测时要看长仓库、长文档、多轮工具调用和真实吞吐。"
     },
     {
-      topic: 'product',
-      title: 'Suno 音轨分离升级：音乐 AI 进入后期制作链路',
-      source: 'X：Suno (@suno)',
-      url: 'https://x.com/suno/status/2065862499765821916',
-      date: '2026-06-14',
-      score: 89,
-      tags: ['Suno', '音乐生成', '音轨分离'],
-      summary: 'Suno 升级音轨分离能力，从零重新生成更纯净的音轨，目标是减少伪影并直接进入 DAW 工作流。',
-      comment: '点评：音乐 AI 的关键从一键生成转向可编辑、可混音、可局部重做。创作者应关注它能否进入专业生产流程。'
+      "topic": "model",
+      "title": "DFlash 与 Spec V2：投机解码成为推理成本战场",
+      "source": "LMSYS：Blog（Chatbot Arena 团队）",
+      "url": "https://www.lmsys.org/blog/2026-06-15-next-generation-speculative-decoding-dflash-v2",
+      "date": "2026-06-16",
+      "score": 92,
+      "tags": [
+        "推理加速",
+        "投机解码",
+        "SGLang"
+      ],
+      "summary": "Z Lab、Modal 与 SGLang 团队发布 DFlash 和 Spec V2，通过块扩散与 KV 注入并行生成 draft token，在特定基准中显著提升吞吐。",
+      "comment": "点评：AI 应用的可持续性越来越取决于推理系统。高频场景应同时评估质量、延迟、吞吐和单位成本。"
     },
     {
-      topic: 'product',
-      title: 'OpenRouter Fusion API：复合模型开始售卖性价比智能',
-      source: 'X：OpenRouter (@OpenRouter)',
-      url: 'https://x.com/OpenRouter/status/2065856853989270011',
-      date: '2026-06-14',
-      score: 88,
-      tags: ['OpenRouter', '模型路由', '成本'],
-      summary: 'Fusion API 宣称以一半价格达到 Fable 级智能，指向模型组合、路由和级联调用的新接口形态。',
-      comment: '点评：应用开发者不要把业务绑死在单一模型上，应提前设计模型抽象层、降级、重试和成本上限。'
+      "topic": "workflow",
+      "title": "Grok Build Agent Dashboard：编码 Agent 进入多会话调度",
+      "source": "xAI：News",
+      "url": "https://x.ai/news/agent-dashboard",
+      "date": "2026-06-16",
+      "score": 90,
+      "tags": [
+        "Grok Build",
+        "Agent工作台",
+        "编码助手"
+      ],
+      "summary": "xAI 为 Grok Build 推出 Agent Dashboard，可在单屏管理多个编码会话，查看状态、分支、权限模式和最新输出。",
+      "comment": "点评：AI 编程正在从聊天框走向任务队列。团队需要分支隔离、任务日志、等待人工输入和回滚点。"
     },
     {
-      topic: 'safety',
-      title: 'Anthropic 模型撤回风波：安全叙事进入监管两难',
-      source: 'TechCrunch：AI（RSS）',
-      url: 'https://techcrunch.com/2026/06/12/anthropics-safety-warnings-may-have-just-backfired-the-government-has-pulled-the-plug-on-its-most-powerful-ai',
-      date: '2026-06-14',
-      score: 91,
-      tags: ['Anthropic', 'AI安全', '政府采购'],
-      summary: 'Anthropic 对政府撤回其强大 AI 模型表达不满，认为基于狭窄潜在越狱发现召回商业模型并不合理。',
-      comment: '点评：高风险客户会更保守，模型公司越强调风险越可能触发审查；企业产品要提前准备模型卡、红队报告和应急下线机制。'
+      "topic": "workflow",
+      "title": "Kimi K2.7 Code 高速版：代码模型开始卖速度",
+      "source": "公众号：月之暗面（Kimi）",
+      "url": "https://mp.weixin.qq.com/s/p87ebkY1xqKtkGZ2N3DGSw",
+      "date": "2026-06-16",
+      "score": 91,
+      "tags": [
+        "Kimi",
+        "代码模型",
+        "速度"
+      ],
+      "summary": "Kimi K2.7 Code 高速版上线，常规编程场景约 180 Token/s，短上下文可达 260 Token/s，但 API 定价和用量消耗更高。",
+      "comment": "点评：速度会显著改善开发者体验，但不是免费午餐。交互式调试用高速模型，批量任务可用普通模型。"
     },
     {
-      topic: 'safety',
-      title: 'Google 安全负责人辞职：军事 AI 合作带来组织伦理冲突',
-      source: 'IT之家（RSS）',
-      url: 'https://www.ithome.com/0/963/888.htm',
-      date: '2026-06-14',
-      score: 90,
-      tags: ['Google', 'AI伦理', '军事AI'],
-      summary: 'Google Android 平台安全负责人 René Mayrhofer 辞职，批评公司 AI 原则变化、能源目标和军事合作方向。',
-      comment: '点评：AI 伦理已经会影响人才留存和组织信任。敏感合作必须有透明沟通、伦理审查和员工反馈渠道。'
+      "topic": "workflow",
+      "title": "Claude Code v2.1.178：权限规则细到工具参数",
+      "source": "Claude Code：GitHub Releases",
+      "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.178",
+      "date": "2026-06-16",
+      "score": 88,
+      "tags": [
+        "Claude Code",
+        "权限治理",
+        "Skills"
+      ],
+      "summary": "Claude Code 新增 Tool(param:value) 权限规则，支持嵌套 skills 自动加载，并修复 OAuth、WebSocket、后台恢复等问题。",
+      "comment": "点评：企业落地 AI 编程助手时，参数级权限、项目级 skill 管理和会话审计会变成基本能力。"
     },
     {
-      topic: 'industry',
-      title: 'Anthropic 秘密申请上市：基础模型估值继续冲高',
-      source: 'Bloomberg：Technology（RSS）',
-      url: 'https://www.bloomberg.com/news/articles/2026-06-13/global-capitalism-bets-it-all-on-ai-future-that-alarms-voters',
-      date: '2026-06-14',
-      score: 87,
-      tags: ['Anthropic', 'IPO', '资本市场'],
-      summary: 'Bloomberg 报道 Anthropic 估值达 9650 亿美元，并已秘密提交 IPO 申请。',
-      comment: '点评：估值越高，市场对收入、毛利、算力效率和企业续费的要求越高；应用层公司要警惕上游定价和策略变化。'
+      "topic": "industry",
+      "title": "Salesforce 36 亿美元收购 Fin：客服 Agent 价值被验证",
+      "source": "TechCrunch：AI",
+      "url": "https://techcrunch.com/2026/06/15/salesforce-acquires-ai-customer-service-platform-fin-for-3-6b",
+      "date": "2026-06-16",
+      "score": 94,
+      "tags": [
+        "Salesforce",
+        "Fin",
+        "客服Agent"
+      ],
+      "summary": "Salesforce 宣布以 36 亿美元收购 AI 客服平台 Fin，用于增强 Agentforce 企业智能体平台。",
+      "comment": "点评：垂直 Agent 的价值在于解决率、渠道集成、质检审计和 CRM 闭环，而不是单纯对话能力。"
     },
     {
-      topic: 'industry',
-      title: 'Meta 承认 AI 转型脱轨：组织调整比模型接入更难',
-      source: 'IT之家（RSS）',
-      url: 'https://www.ithome.com/0/963/858.htm',
-      date: '2026-06-14',
-      score: 86,
-      tags: ['Meta', '组织转型', 'AI战略'],
-      summary: '扎克伯格承认 Meta AI 转型中组织调整过快，裁员和转岗带来管理跨度、协作和安置问题。',
-      comment: '点评：AI 转型不是改组织名或转岗人数，而是业务目标、工具链、绩效和治理一起重构。'
+      "topic": "industry",
+      "title": "Nvidia 发行 200 亿美元债券：AI 基建进入重资本周期",
+      "source": "The Decoder：AI News",
+      "url": "https://the-decoder.com/nvidia-joins-ai-debt-boom-with-20-billion-bond-sale",
+      "date": "2026-06-16",
+      "score": 89,
+      "tags": [
+        "Nvidia",
+        "AI基建",
+        "债务融资"
+      ],
+      "summary": "Nvidia 计划通过债券发行筹集至少 200 亿美元，显示 AI 基础设施扩张进入更重资本、更长周期阶段。",
+      "comment": "点评：AI 不是纯软件浪潮。企业预算要关注上游算力价格、供应商融资压力和长期合同风险。"
     },
     {
-      topic: 'safety',
-      title: 'OpenAI 遭多州总检察长调查：平台级监管压力扩大',
-      source: 'Bloomberg：Technology（RSS）',
-      url: 'https://www.bloomberg.com/news/articles/2026-06-13/openai-probed-by-coalition-of-state-attorneys-general',
-      date: '2026-06-14',
-      score: 88,
-      tags: ['OpenAI', '监管', '合规'],
-      summary: 'OpenAI 正被多州总检察长联盟调查，相关方已索取广泛主题的信息。',
-      comment: '点评：AI 平台越像基础设施，监管越会覆盖隐私、儿童安全、消费者保护和市场竞争。AI 应用也应提前补齐合规流程。'
+      "topic": "industry",
+      "title": "Cloudflare 引入 Ensemble AI：边缘推理继续降本",
+      "source": "Cloudflare Blog",
+      "url": "https://blog.cloudflare.com/ensemble-ai-talent-joins-cloudflare",
+      "date": "2026-06-16",
+      "score": 87,
+      "tags": [
+        "Cloudflare",
+        "模型压缩",
+        "边缘AI"
+      ],
+      "summary": "Cloudflare 引入 Ensemble AI 团队，整合模型压缩和高效推理成果到 Workers AI，提升推理效率与部署经济性。",
+      "comment": "点评：面向全球用户的 AI 应用应关注边缘推理、缓存、模型压缩和区域合规。"
     },
     {
-      topic: 'workflow',
-      title: 'SemiAnalysis Token 经济：200 美元订阅可能透支算力补贴',
-      source: 'IT之家（RSS）',
-      url: 'https://www.ithome.com/0/963/834.htm',
-      date: '2026-06-14',
-      score: 92,
-      tags: ['Token经济', '订阅制', '成本'],
-      summary: 'SemiAnalysis 测算显示，重度用户可从 200 美元订阅中消耗相当于 40 至 70 倍 API 价值的 token。',
-      comment: '点评：个人重度使用短期划算，但企业不能把个人订阅当生产基础设施；需要 API 成本、配额、审计和 SLA。'
+      "topic": "product",
+      "title": "Meta Facebook AI Mode：社交内容成为答案引擎燃料",
+      "source": "TechCrunch：AI",
+      "url": "https://techcrunch.com/2026/06/15/metas-new-ai-mode-on-facebook-pulls-from-public-info-across-its-platforms",
+      "date": "2026-06-16",
+      "score": 86,
+      "tags": [
+        "Meta",
+        "AI搜索",
+        "社交数据"
+      ],
+      "summary": "Meta 在 Facebook 推出 AI Mode，从公开帖子、群组和 Reels 提取信息并合成答案，同时继续扩展 AI 编辑和订阅能力。",
+      "comment": "点评：AI 产品竞争正在转向上下文资产。垂直社区和专业数据会成为比模型 API 更难复制的壁垒。"
     },
     {
-      topic: 'workflow',
-      title: '/architect 工作流：强模型规划审核，Codex 负责构建',
-      source: 'Hacker News 热门（buzzing.cc 中文翻译）',
-      url: 'https://github.com/DanMcInerney/architect-loop',
-      date: '2026-06-14',
-      score: 85,
-      tags: ['Agent工作流', 'Codex', '成本优化'],
-      summary: '/architect 项目尝试减少 80% Fable token，让强模型负责协调和审核，Codex 负责构建。',
-      comment: '点评：AI 开发会走向分工制：Planner 负责拆解，Executor 负责实现，Verifier 负责验证，用模型协作控制成本。'
+      "topic": "safety",
+      "title": "AI 裁员浪潮：效率叙事正在冲击组织信任",
+      "source": "TechCrunch：AI",
+      "url": "https://techcrunch.com/2026/06/15/the-ai-layoff-wave-is-becoming-a-powder-keg",
+      "date": "2026-06-16",
+      "score": 90,
+      "tags": [
+        "AI转型",
+        "裁员",
+        "组织管理"
+      ],
+      "summary": "科技公司裁员速度加快，AI 连续三个月被列为裁员首要原因，而 AI 公司估值和资本热度仍在高位。",
+      "comment": "点评：AI 转型如果只被员工理解为裁员工具，会损害组织信任。管理者应先做任务重组、培训和人机协作流程。"
     }
   ],
-  sources: [
+  "sources": [
     {
-      name: 'AI HOT',
-      url: 'https://aihot.virxact.com',
-      note: '本期日报与中文摘要来源'
+      "name": "AI HOT",
+      "url": "https://aihot.virxact.com",
+      "note": "本期日报与中文摘要来源"
     },
     {
-      name: '智谱 GLM',
-      url: 'https://mp.weixin.qq.com/s/LDrbtLM0wiCTJorvd5GY9w',
-      note: 'GLM-5.2 全量开放与开源计划'
+      "name": "MiniMax M3",
+      "url": "https://mp.weixin.qq.com/s/AW6L89QZkwN-jD27hQ84ww",
+      "note": "M3 权重开源与 MSA 论文"
     },
     {
-      name: 'Suno',
-      url: 'https://x.com/suno/status/2065862499765821916',
-      note: '音轨分离产品更新'
+      "name": "LMSYS Blog",
+      "url": "https://www.lmsys.org/blog/2026-06-15-next-generation-speculative-decoding-dflash-v2",
+      "note": "DFlash 与 Spec V2 推理加速"
     },
     {
-      name: 'OpenRouter',
-      url: 'https://x.com/OpenRouter/status/2065856853989270011',
-      note: 'Fusion API 与复合模型路由'
+      "name": "xAI Grok Build",
+      "url": "https://x.ai/news/agent-dashboard",
+      "note": "Agent Dashboard 多会话管理"
     },
     {
-      name: 'TechCrunch AI',
-      url: 'https://techcrunch.com/2026/06/12/anthropics-safety-warnings-may-have-just-backfired-the-government-has-pulled-the-plug-on-its-most-powerful-ai',
-      note: 'Anthropic 模型撤回与安全争议'
+      "name": "Kimi K2.7 Code",
+      "url": "https://mp.weixin.qq.com/s/p87ebkY1xqKtkGZ2N3DGSw",
+      "note": "高速版代码模型"
     },
     {
-      name: 'Bloomberg Technology',
-      url: 'https://www.bloomberg.com/news/articles/2026-06-13/openai-probed-by-coalition-of-state-attorneys-general',
-      note: 'OpenAI 调查与 Anthropic 资本动态'
+      "name": "Salesforce / Fin",
+      "url": "https://techcrunch.com/2026/06/15/salesforce-acquires-ai-customer-service-platform-fin-for-3-6b",
+      "note": "AI 客服 Agent 并购"
     },
     {
-      name: '本站 AI 日报文章',
-      url: '/posts/61414/',
-      note: '完整文字版、点评与建议'
+      "name": "本站 AI 日报文章",
+      "url": "/posts/61616/",
+      "note": "完整文字版、点评与建议"
     }
   ]
 };
 
 const episodeHistory = [
   {
-    date: '2026-06-14',
-    title: 'AI HOT 日报：GLM-5.2 开源、AI 治理升温与订阅经济压力',
-    summary: '本期基于 AI HOT 2026-06-14 日报：智谱 GLM-5.2 全量开放并宣布下周开源，Suno 和 OpenRouter 分别推进音乐制作与复合模型路由；同时 Anthropic、OpenAI、Google、Meta 都出现监管、伦理或组织调整信号，说明 AI 行业正在从模型竞速进入能力、治理和商业模式同时竞争的新阶段。',
-    link: '/posts/61414/',
-    tags: ['AI HOT', 'GLM-5.2', 'AI治理', 'Token经济']
+    "date": "2026-06-16",
+    "title": "AI HOT 日报：开源模型提速、Agent 应用并购与 AI 成本重估",
+    "summary": "MiniMax M3 与 DFlash 指向开源模型和推理系统效率战；Grok Build、Kimi、Claude Code 推动 Agent 编程工作台化；Salesforce 收购 Fin 与 Nvidia 发债显示 AI 应用价值和基建成本同步重估。",
+    "link": "/posts/61616/",
+    "tags": [
+      "AI HOT",
+      "MiniMax",
+      "Agent",
+      "AI成本"
+    ]
   },
   {
-    date: '2026-06-13',
-    title: 'AI HOT 日报：代码模型开源、Agent 产品化与企业治理补课',
-    summary: 'MiniMax M3 与 Kimi-K2.7-Code 推动国产代码模型开源；豆包、Codex、Claude Code 把 Agent 做进任务执行、浏览器调试和企业管控。',
-    link: '/posts/61313/',
-    tags: ['AI HOT', '代码模型', 'Agent', '企业治理']
+    "date": "2026-06-14",
+    "title": "AI HOT 日报：GLM-5.2 开源、AI 治理升温与订阅经济压力",
+    "summary": "智谱 GLM-5.2 全量开放并宣布下周开源；Suno 和 OpenRouter 推进音乐制作与复合模型路由；Anthropic、OpenAI、Google、Meta 出现监管、伦理或组织调整信号。",
+    "link": "/posts/61414/",
+    "tags": [
+      "AI HOT",
+      "GLM-5.2",
+      "AI治理",
+      "Token经济"
+    ]
+  },
+  {
+    "date": "2026-06-13",
+    "title": "AI HOT 日报：代码模型开源、Agent 产品化与企业治理补课",
+    "summary": "MiniMax M3 与 Kimi-K2.7-Code 推动国产代码模型开源；豆包、Codex、Claude Code 把 Agent 做进任务执行、浏览器调试和企业管控。",
+    "link": "/posts/61313/",
+    "tags": [
+      "AI HOT",
+      "代码模型",
+      "Agent",
+      "企业治理"
+    ]
   }
 ];
 
