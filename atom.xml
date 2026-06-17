@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-06-16T10:35:07.613Z</updated>
+  <updated>2026-06-17T08:35:14.783Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Meta, 观点, xAI, Grok, 机器人, 产业, 产品, Anthropic, Claude, Claude Code, 论文" scheme="https://aimak.cn/tags/AI-HOT-Meta-%E8%A7%82%E7%82%B9-xAI-Grok-%E6%9C%BA%E5%99%A8%E4%BA%BA-%E4%BA%A7%E4%B8%9A-%E4%BA%A7%E5%93%81-Anthropic-Claude-Claude-Code-%E8%AE%BA%E6%96%87/"/>
+    <id>https://aimak.cn/posts/61717/</id>
+    <link href="https://aimak.cn/posts/61717/"/>
+    <published>2026-06-17T08:35:14.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-06-17：Meta、xAI、Wolfram</title>
+    <updated>2026-06-17T08:35:14.783Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -338,20 +356,5 @@
     </summary>
     <title>AI领域最新资讯：突破、趋势与展望</title>
     <updated>2025-05-03T09:29:53.836Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="人工智能" scheme="https://aimak.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    <id>https://aimak.cn/posts/11227/</id>
-    <link href="https://aimak.cn/posts/11227/"/>
-    <published>2025-05-01T22:00:00.000Z</published>
-    <summary>
-      <![CDATA[<h3 id="国内动态"><a href="#国内动态" class="headerlink"]]>
-    </summary>
-    <title>AI领域最新资讯：突破、趋势与展望</title>
-    <updated>2025-05-03T09:24:38.649Z</updated>
   </entry>
 </feed>
