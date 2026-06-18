@@ -10,7 +10,43 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-06-17T08:35:14.783Z</updated>
+  <updated>2026-06-18T08:33:23.550Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, OpenAI, Google, Gemini, 产业, Nvidia, 开源, 机器人, 论文, GPT, 产品, Anthropic" scheme="https://aimak.cn/tags/AI-HOT-OpenAI-Google-Gemini-%E4%BA%A7%E4%B8%9A-Nvidia-%E5%BC%80%E6%BA%90-%E6%9C%BA%E5%99%A8%E4%BA%BA-%E8%AE%BA%E6%96%87-GPT-%E4%BA%A7%E5%93%81-Anthropic/"/>
+    <id>https://aimak.cn/posts/61818/</id>
+    <link href="https://aimak.cn/posts/61818/"/>
+    <published>2026-06-18T08:33:23.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-06-18：OpenAI、Nvidia、开源</title>
+    <updated>2026-06-18T08:33:23.550Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="SpaceX, SPCX, IPO, Starlink, xAI, Nasdaq, 投资观察" scheme="https://aimak.cn/tags/SpaceX-SPCX-IPO-Starlink-xAI-Nasdaq-%E6%8A%95%E8%B5%84%E8%A7%82%E5%AF%9F/"/>
+    <id>https://aimak.cn/posts/61826/</id>
+    <link href="https://aimak.cn/posts/61826/"/>
+    <published>2026-06-18T08:27:31.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>本文基于 SpaceX 向 SEC 提交的最终招股书（424B4）和后续 8-K 文件整理，时间截至 2026-06-18。内容仅作产业与商业模式观察，不构成投资建议。</p>
+</blockquote>
+<h2 id="一句话总结"><a href="#一句话总结" class="headerlink"]]>
+    </summary>
+    <title>SpaceX（SPCX）上市解读：它不只是火箭公司 IPO</title>
+    <updated>2026-06-18T08:28:54.562Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -326,35 +362,5 @@
     </summary>
     <title>AI领域最新资讯：突破、趋势与展望</title>
     <updated>2025-05-05T00:43:26.015Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="人工智能" scheme="https://aimak.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    <id>https://aimak.cn/posts/11229/</id>
-    <link href="https://aimak.cn/posts/11229/"/>
-    <published>2025-05-03T22:00:00.000Z</published>
-    <summary>
-      <![CDATA[<h3 id="国内动态"><a href="#国内动态" class="headerlink"]]>
-    </summary>
-    <title>AI领域最新资讯：突破、趋势与展望</title>
-    <updated>2025-05-05T00:41:26.442Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="人工智能" scheme="https://aimak.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    <id>https://aimak.cn/posts/11228/</id>
-    <link href="https://aimak.cn/posts/11228/"/>
-    <published>2025-05-02T22:00:00.000Z</published>
-    <summary>
-      <![CDATA[<h3 id="国内动态"><a href="#国内动态" class="headerlink"]]>
-    </summary>
-    <title>AI领域最新资讯：突破、趋势与展望</title>
-    <updated>2025-05-03T09:29:53.836Z</updated>
   </entry>
 </feed>

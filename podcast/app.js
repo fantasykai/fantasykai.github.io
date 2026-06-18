@@ -1,232 +1,240 @@
 const episode = {
-  "date": "2026-06-17",
-  "title": "AI HOT 日报：Meta、xAI、Wolfram",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 技巧与观点、行业动态、产品发布/更新、论文研究。核心信号是：Meta 解散工程部门引发热议；美国司法部援引国家安全为xAI未经许可的燃气轮机辩护；Wolfram 语言和 Mathematica 15 版发布：内置 AI 助手、符号音乐等新功能。",
+  "date": "2026-06-18",
+  "title": "AI HOT 日报：OpenAI、Nvidia、开源",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、论文研究、产品发布/更新、技巧与观点、模型发布/更新。核心信号是：Noam Shazeer 离开 Google 加入 OpenAI；NVIDIA GEAR实验室发布ENPIRE：8个Codex智能体自主控制机器人完成物理实验；免费开源乔木画布：AI生图+抠图，一键部署Vercel。",
   "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "topic": "tip",
-      "title": "Meta 解散工程部门引发热议",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://newsletter.pragmaticengineer.com/p/why-is-meta-destroying-its-engineering",
-      "date": "2026-06-17",
-      "score": 80,
+      "topic": "industry",
+      "title": "Noam Shazeer 离开 Google 加入 OpenAI",
+      "source": "X：Yuchen Jin (@Yuchenj_UW)",
+      "url": "https://x.com/Yuchenj_UW/status/2067401895178817999",
+      "date": "2026-06-18",
+      "score": 82,
       "tags": [
         "AI HOT",
-        "Meta",
-        "观点"
+        "OpenAI",
+        "Google",
+        "Gemini",
+        "产业"
       ],
-      "summary": "6月16日，一篇标题为\"Why is Meta destroying its engineering organization？\"的博客文章出现在 Hacker News，获得110个点赞。文章指出 Meta 正在解散其工程组织，引发业界广泛讨论。具体原因和后续影响尚未明确。",
-      "publishedAt": "2026-06-16T18:37:24.744Z",
-      "category": "tip",
-      "comment": "点评：这条动态值得从方法论、最佳实践和落地风险三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
-      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
+      "summary": "两年前谷歌花 27 亿美元请回的 AI 传奇 Noam Shazeer 已离开谷歌，加入 OpenAI。 对 Gemini 来说是个残酷的消息。",
+      "publishedAt": "2026-06-18T00:19:56.000Z",
+      "category": "industry",
+      "comment": "点评：这条动态值得从产业资本、平台竞争和组织变化三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
+      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
     },
     {
       "topic": "safety",
-      "title": "美国司法部援引国家安全为xAI未经许可的燃气轮机辩护",
-      "source": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/doj-invokes-national-security-to-defend-xais-unpermitted-gas-turbines-in-naacp-lawsuit",
-      "date": "2026-06-17",
-      "score": 80,
+      "title": "NVIDIA GEAR实验室发布ENPIRE：8个Codex智能体自主控制机器人完成物理实验",
+      "source": "X：Jim Fan (@DrJimFan)",
+      "url": "https://x.com/DrJimFan/status/2067283904986517866",
+      "date": "2026-06-18",
+      "score": 81,
       "tags": [
         "AI HOT",
-        "xAI",
-        "Grok",
+        "Nvidia",
+        "开源",
         "机器人",
-        "产业"
+        "论文"
       ],
-      "summary": "美国司法部在一份驳回诉讼的动议中称，xAI的聊天机器人Grok对军事行动至关重要，以此为其在密西西比州Southaven的Colossus 2设施运行未经许可的燃气轮机辩护。NAACP已提起诉讼，指控xAI的燃气轮机数量从4月的27台增至57台，导致氮氧化物排放飙升111%。国防部首席数字与人工智…",
-      "publishedAt": "2026-06-16T13:23:33.000Z",
-      "category": "industry",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "summary": "NVIDIA GEAR实验室推出ENPIRE系统，首次实现物理世界自主研究。系统让8个Codex智能体控制8台机器人，配备GPU和token预算。安全方面采用硬运动极限切断和扭矩受限夹爪两层硬件保障，支持通宵无人运行。奖励函数通过视觉分类器离线固定并冻结，防止智能体作弊。实时监测机器人利用率（MR…",
+      "publishedAt": "2026-06-17T16:31:05.000Z",
+      "category": "paper",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
       "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
     },
     {
       "topic": "product",
-      "title": "Wolfram 语言和 Mathematica 15 版发布：内置 AI 助手、符号音乐等新功能",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://writings.stephenwolfram.com/2026/06/launching-version-15-of-wolfram-language-mathematica-built-in-useful-ai-lots-of-new-core-functionality",
-      "date": "2026-06-17",
-      "score": 76,
+      "title": "免费开源乔木画布：AI生图+抠图，一键部署Vercel",
+      "source": "X：Vista (@vista8)",
+      "url": "https://x.com/vista8/status/2067513484364140994",
+      "date": "2026-06-18",
+      "score": 79,
       "tags": [
         "AI HOT",
+        "GPT",
+        "开源",
         "产品"
       ],
-      "summary": "在 Mathematica 诞生近 38 年后，Wolfram 语言与 Mathematica 发布 Version 15。每个笔记本内置 AI 助手，支持从 AI 环境中直接调用 Wolfram 技术。新增符号音乐系统、大规模时间序列与事件序列处理、分类数据计算、模型拟合超函数 ModelFit…",
-      "publishedAt": "2026-06-17T03:25:14.439Z",
+      "summary": "乔木画布推出免费开源在线图像编辑器，可一键部署Vercel为网站，功能类似简化版PS。支持Seedream和GPT-image-2生图、图片模板存储分享、一键抠图、2万图标和常见Emoji，甚至能绘制PRD。随时创建3：4/16：9/21：9等不同尺寸画布。原计划高级功能收费，庆祝端午节现全免费开…",
+      "publishedAt": "2026-06-18T07:43:21.000Z",
       "category": "ai-products",
       "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
       "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     },
     {
-      "topic": "paper",
-      "title": "Anthropic：智能体编码中专业知识回报持续存在",
-      "source": "Anthropic：Research（发表成果 · 网页）",
-      "url": "https://www.anthropic.com/research/claude-code-expertise",
-      "date": "2026-06-17",
-      "score": 76,
+      "topic": "industry",
+      "title": "Anthropic与DeepMind CEO呼吁G7组建AI联盟排除中国",
+      "source": "X：Kim (@kimmonismus)",
+      "url": "https://x.com/kimmonismus/status/2067310431669223425",
+      "date": "2026-06-18",
+      "score": 79,
       "tags": [
         "AI HOT",
         "Anthropic",
-        "Claude",
-        "Claude Code",
-        "论文"
+        "Google",
+        "产业"
       ],
-      "summary": "Anthropic 基于约40万次 Claude Code 交互会话（2025年10月至2026年4月）分析发现：人类主导规划决策（做什么），Claude 主导执行决策（怎么做）。领域专业知识越强，模型每次指令完成的工作量越多。各类职业完成任务的成功率与软件工程师平均相近；领域专家成功率更高，但与…",
-      "publishedAt": "2026-06-16T19:35:22.252Z",
-      "category": "paper",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：技术团队可先复现实验结论，再判断是否能转化为检索、推理、评测或数据处理链路中的收益。"
+      "summary": "Dario Amodei（Anthropic）与Demis Hassabis（Google DeepMind）在G7闭门会议上呼吁组建美国主导的联盟，为人工智能制定全球规则和标准。Amodei指出，该联盟应以前沿模型和硬件（包括芯片及其他关键组件）的访问权限为手段，将中国排除在外。这一主张被评论为…",
+      "publishedAt": "2026-06-17T18:16:30.000Z",
+      "category": "industry",
+      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
     },
     {
-      "topic": "tip",
-      "title": "baoyu-design 本地动画视频导出功能更新",
-      "source": "X：宝玉 (@dotey)",
-      "url": "https://x.com/dotey/status/2067039941960327204",
-      "date": "2026-06-17",
-      "score": 75,
+      "topic": "industry",
+      "title": "泄露文件显示OpenAI年营收130亿但亏损远超收入",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year",
+      "date": "2026-06-18",
+      "score": 78,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "GPT",
+        "Sora",
+        "推理",
+        "产业"
+      ],
+      "summary": "OpenAI 2025年营收130.7亿美元（2024年37亿），但研发成本达191.8亿（含向微软支付105.9亿），收入成本（推理计算）75亿，销售营销成本57.3亿，运营亏损209.2亿。2025年净亏损约390亿，扣除约300亿一次性会计费用后约80亿。2025年3月获1220亿融资（估值…",
+      "publishedAt": "2026-06-17T23:09:09.056Z",
+      "category": "industry",
+      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
+    },
+    {
+      "topic": "safety",
+      "title": "Vercel 发布开源 AI 智能体框架 Eve：每个智能体就是一个文件目录",
+      "source": "MarkTechPost（RSS）",
+      "url": "https://www.marktechpost.com/2026/06/17/vercel-releases-eve",
+      "date": "2026-06-18",
+      "score": 77,
+      "tags": [
+        "AI HOT",
+        "Agent",
+        "MCP",
+        "开源",
+        "产品"
+      ],
+      "summary": "Vercel 发布开源 AI 智能体框架 Eve（npm 包，Apache-2.0 许可）。Eve 采用文件系统优先设计：每个智能体对应一个磁盘目录，目录结构直接映射模型、指令、工具、技能、连接、子智能体等能力，无需额外注册代码。内置六大生产级能力：持久执行（每步检查点，崩溃后可恢复）、沙箱计算、…",
+      "publishedAt": "2026-06-17T17:22:51.000Z",
+      "category": "ai-products",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
+    },
+    {
+      "topic": "product",
+      "title": "Omnigent开源：AI智能体团队元框架",
+      "source": "X：Yuchen Jin (@Yuchenj_UW)",
+      "url": "https://x.com/Yuchenj_UW/status/2067273020352380950",
+      "date": "2026-06-18",
+      "score": 77,
       "tags": [
         "AI HOT",
         "Claude",
         "开源",
+        "Claude Code",
+        "产品"
+      ],
+      "summary": "编程的未来不是单一智能体，而是一个完整的AI团队。 Omnigent让你在一个实时会话中运行一个智能体团队：Claude Code、Codex、Cursor、Pi，以及你自己的智能体。 它是一个面向AI智能体的元框架，基于我们内部的Databricks开发工具构建，现已开源给所有人。 由传奇人物@…",
+      "publishedAt": "2026-06-17T15:47:50.000Z",
+      "category": "ai-products",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
+    },
+    {
+      "topic": "tip",
+      "title": "Matt Pocock 开源 skills v1：将技能描述 Token 成本降低 63%",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "url": "https://x.com/AYi_AInotes/status/2067327021005656135",
+      "date": "2026-06-18",
+      "score": 76,
+      "tags": [
+        "AI HOT",
+        "开源",
         "观点"
       ],
-      "summary": "baoyu-design（本地运行 Claude Design 的 Skill）新增动画视频导出功能。其声明式动画引擎基于 f（t） 设计：任意时间点 t 可绝对确定画面状态。导出采用无头 Chromium 逐帧截图 + ffmpeg 编码，每帧等待两帧 requestAnimationFrame…",
-      "publishedAt": "2026-06-17T00:21:40.000Z",
+      "summary": "Matt Pocock（Total TypeScript 作者）开源了 skills v1，将技能描述的 Token 成本降低 63%。该工具包将技能分为模型可调用和用户可调用，新增 /codebase-design、/domain-modeling、/grilling 三项技能；重写 /writ…",
+      "publishedAt": "2026-06-17T19:22:25.000Z",
       "category": "tip",
       "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
       "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
     },
     {
-      "topic": "safety",
-      "title": "微软考虑为 Copilot Cowork 集成 DeepSeek V4",
-      "source": "X：Kim (@kimmonismus)",
-      "url": "https://x.com/kimmonismus/status/2066946013026263110",
-      "date": "2026-06-17",
-      "score": 75,
-      "tags": [
-        "AI HOT",
-        "DeepSeek",
-        "Copilot",
-        "产业"
-      ],
-      "summary": "微软正考虑为 Copilot Cowork 提供微软托管的 DeepSeek V4 版本，作为更便宜的模型选项。Copilot Cowork 将放弃无限定价，转向按使用量计费，原因是成本过高（用户每周执行数百项任务导致费用激增）。若采用 DeepSeek，该模型将是可选的、经过微调与安全防护，并完…",
-      "publishedAt": "2026-06-16T18:08:26.000Z",
-      "category": "industry",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
-    },
-    {
-      "topic": "industry",
-      "title": "Fable 遭美国政府封禁，TechCrunch 质疑真正原因并非模型越狱",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://techcrunch.com/2026/06/15/the-us-governments-anthropic-models-ban-was-never-about-an-ai-jailbreak",
-      "date": "2026-06-17",
-      "score": 75,
-      "tags": [
-        "AI HOT",
-        "Anthropic",
-        "产业"
-      ],
-      "summary": "美国政府对 Anthropic 的模型 Fable 实施封禁，但 TechCrunch 发文质疑，实际原因可能并非此前认为的\"模型越狱\"问题。该文章在 Hacker News 引发讨论，获得 103 个点赞。",
-      "publishedAt": "2026-06-16T16:45:18.627Z",
-      "category": "industry",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
-    },
-    {
-      "topic": "industry",
-      "title": "SpaceX 以 600 亿美元股票收购 AI 编程公司 Cursor",
+      "topic": "product",
+      "title": "Google发布99美元Gemini智能音箱",
       "source": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/06/16/spacex-to-acquire-cursor-for-60b-in-stock-days-after-blockbuster-ipo",
-      "date": "2026-06-17",
+      "url": "https://techcrunch.com/2026/06/17/google-bets-on-gemini-to-reinvent-the-smart-home-speaker",
+      "date": "2026-06-18",
+      "score": 76,
+      "tags": [
+        "AI HOT",
+        "Google",
+        "Gemini",
+        "产品"
+      ],
+      "summary": "Google推出首款专为Gemini打造的智能音箱Google Home Speaker，售价99.99美元。支持自然语言请求和多步指令，可在说话中途纠正，并具备连续对话功能。内置10种新声音。高级AI功能需订阅Google Home Premium（月费10美元或年费100美元），包括Gemin…",
+      "publishedAt": "2026-06-17T16:30:09.000Z",
+      "category": "ai-products",
+      "comment": "点评：这条动态值得从产品入口、用户工作流和商业化节奏三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
+    },
+    {
+      "topic": "model",
+      "title": "首个统一科学大模型 LOGOS 正式开源",
+      "source": "公众号：通义实验室（千问）",
+      "url": "https://mp.weixin.qq.com/s/50q5uY849FKnBzk1Q04MRg",
+      "date": "2026-06-18",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "开源",
+        "推理",
+        "模型"
+      ],
+      "summary": "LOGOS 由 ATH-Token Foundry 联合中国人民大学高瓴人工智能学院开源，是首个基于统一\"科学语法\"的多领域科学生成基础模型。LOGOS-1B（1B参数）在六大科学任务上匹配或超越领域专用方法：口袋条件配体生成纯序列范式首次超越3D扩散模型，超越NatureLM（8×7B）；逆合成…",
+      "publishedAt": "2026-06-18T02:31:28.000Z",
+      "category": "ai-models",
+      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
+    },
+    {
+      "topic": "product",
+      "title": "阿里云发布HappyOyster 1.0：一句话生成可实时交互的数字世界",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/965/652.htm",
+      "date": "2026-06-18",
       "score": 74,
       "tags": [
         "AI HOT",
-        "Nvidia",
-        "xAI",
-        "产业"
+        "多模态",
+        "产品"
       ],
-      "summary": "SpaceX 在历史性 IPO 数天后，同意以 600 亿美元股票收购 AI 编程初创公司 Cursor，旨在帮助其围绕 xAI 构建的 AI 部门追赶主要 AI 实验室。此前 Cursor 正接近完成一轮 20 亿美元融资，估值 500 亿美元，投资方包括 Andreessen Horowitz…",
-      "publishedAt": "2026-06-16T11:21:41.000Z",
-      "category": "industry",
-      "comment": "点评：资本和组织信号说明 AI 正在进入商业兑现期，团队需要同时关注增长故事和真实 ROI。",
-      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
-    },
-    {
-      "topic": "industry",
-      "title": "消息称 OpenAI 今年一季度现金消耗达 37 亿美元，超同期收入的一半",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/965/335.htm",
-      "date": "2026-06-17",
-      "score": 73,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "产业"
-      ],
-      "summary": "OpenAI 在 2026 年第一季度现金消耗达 37 亿美元，超过同期 57 亿美元收入的一半。数据来自一份向股东披露的文件，直观体现 AI 大模型研发与规模化落地的巨额成本。OpenAI 正筹备上市，已在美国保密递交 IPO 申请，最早或于 9 月完成，估值最高可达 1 万亿美元。头部 AI …",
-      "publishedAt": "2026-06-17T04:55:33.000Z",
-      "category": "industry",
+      "summary": "6月17日，阿里云发布开放式世界模型HappyOyster 1.0（快乐生蚝）。该产品基于原生多模态架构，支持多模态输入与音视频联合生成，可在生成过程中持续接收用户指令并实时响应画面。它深度学习物理世界状态转移规律，保持人物和环境长程一致性。官网开放\"实时导演\"与\"世界探索\"两种玩法：前者可随时叫…",
+      "publishedAt": "2026-06-17T12:46:59.000Z",
+      "category": "ai-products",
       "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     },
     {
-      "topic": "safety",
-      "title": "Anthropic 5月企业AI订阅份额首超OpenAI，特朗普政府禁令反促采用量创新高",
-      "source": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/06/16/anthropics-latest-feud-with-the-trump-admin-may-actually-help-it-sales-data-suggests",
-      "date": "2026-06-17",
-      "score": 73,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "Anthropic",
-        "Claude",
-        "产业"
-      ],
-      "summary": "Anthropic 5月企业AI订阅市场份额达41%，首次超越OpenAI（39.5%）。公司刚完成650亿美元融资、估值9650亿美元，并因首次盈利季度秘密提交IPO。特朗普政府以出口管制为由要求Anthropic禁止非美国人访问最新模型Mythos 5及Fable 5，导致两款模型下架。Ram…",
-      "publishedAt": "2026-06-16T22:34:17.000Z",
-      "category": "industry",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
-    },
-    {
-      "topic": "paper",
-      "title": "公开聊天数据能否预测真实世界AI失调？",
-      "source": "OpenAI：Alignment 研究博客（RSS）",
-      "url": "https://alignment.openai.com/validating-public-evals",
-      "date": "2026-06-17",
-      "score": 73,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "GPT",
-        "论文"
-      ],
-      "summary": "OpenAI利用WildChat公开数据集（2023年4月至2024年5月收集的100万条对话）模拟模型部署，预测GPT-5.1、GPT-5.2、GPT-5.4在真实生产环境中的不良行为率。与私有生产数据对比发现，WildChat模拟的平均预测误差约3倍；但对技术性和智能体型失调的预测精度下降。研…",
-      "publishedAt": "2026-06-16T18:00:00.000Z",
-      "category": "paper",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：技术团队可先复现实验结论，再判断是否能转化为检索、推理、评测或数据处理链路中的收益。"
-    },
-    {
-      "topic": "safety",
-      "title": "中国加紧筹建世界人工智能合作组织",
+      "topic": "product",
+      "title": "DeepSeek 识图模式正式上线 App 和网页端",
       "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/965/248.htm",
-      "date": "2026-06-17",
+      "url": "https://www.ithome.com/0/966/066.htm",
+      "date": "2026-06-18",
       "score": 72,
       "tags": [
         "AI HOT",
-        "产业"
+        "DeepSeek",
+        "多模态",
+        "产品"
       ],
-      "summary": "中国正加紧筹建世界人工智能合作组织，欢迎各方加入。2025年7月26日，中国政府倡议成立该组织，作为践行多边主义、推动共商共建共享全球治理的举措，旨在弥合数字和智能鸿沟、促进人工智能向善普惠发展。初步考虑总部设在上海。同日，2025世界人工智能大会发表《人工智能全球治理行动计划》，呼吁各方遵循向善…",
-      "publishedAt": "2026-06-17T02:50:01.000Z",
-      "category": "industry",
-      "comment": "点评：AI 能力越深入生产，治理越不能停留在原则口号，必须落到权限、审计、数据边界和责任链。",
-      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
+      "summary": "DeepSeek 识图模式于6月18日在网页和 App 端正式上线，与快速模式、专家模式并列。开启后用户可直接上传图片让 DeepSeek 识别图像，能力超越简单文字提取。目前 App 端仍显示\"图片理解功能内测中\"，网页端无此提示。该模式背后的多模态模型技术细节于今年4月公开，核心框架为\"Thi…",
+      "publishedAt": "2026-06-18T07:48:11.000Z",
+      "category": "ai-products",
+      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     }
   ],
   "sources": [
@@ -236,44 +244,56 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://newsletter.pragmaticengineer.com/p/why-is-meta-destroying-its-engineering",
-      "note": "Meta 解散工程部门引发热议"
+      "name": "X：Yuchen Jin (@Yuchenj_UW)",
+      "url": "https://x.com/Yuchenj_UW/status/2067401895178817999",
+      "note": "Noam Shazeer 离开 Google 加入 OpenAI"
     },
     {
-      "name": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/doj-invokes-national-security-to-defend-xais-unpermitted-gas-turbines-in-naacp-lawsuit",
-      "note": "美国司法部援引国家安全为xAI未经许可的燃气轮机辩护"
+      "name": "X：Jim Fan (@DrJimFan)",
+      "url": "https://x.com/DrJimFan/status/2067283904986517866",
+      "note": "NVIDIA GEAR实验室发布ENPIRE：8个Codex智能体自主控制机器…"
     },
     {
-      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://writings.stephenwolfram.com/2026/06/launching-version-15-of-wolfram-language-mathematica-built-in-useful-ai-lots-of-new-core-functionality",
-      "note": "Wolfram 语言和 Mathematica 15 版发布：内置 AI 助手…"
-    },
-    {
-      "name": "Anthropic：Research（发表成果 · 网页）",
-      "url": "https://www.anthropic.com/research/claude-code-expertise",
-      "note": "Anthropic：智能体编码中专业知识回报持续存在"
-    },
-    {
-      "name": "X：宝玉 (@dotey)",
-      "url": "https://x.com/dotey/status/2067039941960327204",
-      "note": "baoyu-design 本地动画视频导出功能更新"
+      "name": "X：Vista (@vista8)",
+      "url": "https://x.com/vista8/status/2067513484364140994",
+      "note": "免费开源乔木画布：AI生图+抠图，一键部署Vercel"
     },
     {
       "name": "X：Kim (@kimmonismus)",
-      "url": "https://x.com/kimmonismus/status/2066946013026263110",
-      "note": "微软考虑为 Copilot Cowork 集成 DeepSeek V4"
+      "url": "https://x.com/kimmonismus/status/2067310431669223425",
+      "note": "Anthropic与DeepMind CEO呼吁G7组建AI联盟排除中国"
     },
     {
       "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://techcrunch.com/2026/06/15/the-us-governments-anthropic-models-ban-was-never-about-an-ai-jailbreak",
-      "note": "Fable 遭美国政府封禁，TechCrunch 质疑真正原因并非模型越狱"
+      "url": "https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year",
+      "note": "泄露文件显示OpenAI年营收130亿但亏损远超收入"
+    },
+    {
+      "name": "MarkTechPost（RSS）",
+      "url": "https://www.marktechpost.com/2026/06/17/vercel-releases-eve",
+      "note": "Vercel 发布开源 AI 智能体框架 Eve：每个智能体就是一个文件目录"
+    },
+    {
+      "name": "X：Yuchen Jin (@Yuchenj_UW)",
+      "url": "https://x.com/Yuchenj_UW/status/2067273020352380950",
+      "note": "Omnigent开源：AI智能体团队元框架"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-06-18",
+    "title": "AI HOT 日报：OpenAI、Nvidia、开源",
+    "summary": "重点关注 行业动态、论文研究、产品发布/更新、技巧与观点、模型发布/更新。核心信号是：Noam Shazeer 离开 Google 加入 OpenAI；NVIDIA GEAR实验室发布ENPIRE：8个Codex智能体自主控制机器人完成物理实验；免费开源乔木画布：AI生图+抠图…",
+    "link": "/posts/61818/",
+    "tags": [
+      "AI HOT",
+      "OpenAI",
+      "Google",
+      "Gemini"
+    ]
+  },
   {
     "date": "2026-06-17",
     "title": "AI HOT 日报：Meta、xAI、Wolfram",
