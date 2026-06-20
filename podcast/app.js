@@ -1,239 +1,227 @@
 const episode = {
-  "date": "2026-06-18",
-  "title": "AI HOT 日报：OpenAI、Nvidia、开源",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、论文研究、产品发布/更新、技巧与观点、模型发布/更新。核心信号是：Noam Shazeer 离开 Google 加入 OpenAI；NVIDIA GEAR实验室发布ENPIRE：8个Codex智能体自主控制机器人完成物理实验；免费开源乔木画布：AI生图+抠图，一键部署Vercel。",
+  "date": "2026-06-20",
+  "title": "AI HOT 日报：开源、机器人、Nvidia",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 产品发布/更新、行业动态、技巧与观点。核心信号是：阿里开源向量数据库Zvec，UCSD黄碧薇教授提出因果AI第四代范式；Figure机器人数首超人类员工；NVIDIA Research 发布 SpatialClaw：免训练空间推理框架。",
   "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "topic": "industry",
-      "title": "Noam Shazeer 离开 Google 加入 OpenAI",
-      "source": "X：Yuchen Jin (@Yuchenj_UW)",
-      "url": "https://x.com/Yuchenj_UW/status/2067401895178817999",
-      "date": "2026-06-18",
-      "score": 82,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "Google",
-        "Gemini",
-        "产业"
-      ],
-      "summary": "两年前谷歌花 27 亿美元请回的 AI 传奇 Noam Shazeer 已离开谷歌，加入 OpenAI。 对 Gemini 来说是个残酷的消息。",
-      "publishedAt": "2026-06-18T00:19:56.000Z",
-      "category": "industry",
-      "comment": "点评：这条动态值得从产业资本、平台竞争和组织变化三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
-      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
-    },
-    {
-      "topic": "safety",
-      "title": "NVIDIA GEAR实验室发布ENPIRE：8个Codex智能体自主控制机器人完成物理实验",
-      "source": "X：Jim Fan (@DrJimFan)",
-      "url": "https://x.com/DrJimFan/status/2067283904986517866",
-      "date": "2026-06-18",
-      "score": 81,
-      "tags": [
-        "AI HOT",
-        "Nvidia",
-        "开源",
-        "机器人",
-        "论文"
-      ],
-      "summary": "NVIDIA GEAR实验室推出ENPIRE系统，首次实现物理世界自主研究。系统让8个Codex智能体控制8台机器人，配备GPU和token预算。安全方面采用硬运动极限切断和扭矩受限夹爪两层硬件保障，支持通宵无人运行。奖励函数通过视觉分类器离线固定并冻结，防止智能体作弊。实时监测机器人利用率（MR…",
-      "publishedAt": "2026-06-17T16:31:05.000Z",
-      "category": "paper",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
-    },
-    {
       "topic": "product",
-      "title": "免费开源乔木画布：AI生图+抠图，一键部署Vercel",
-      "source": "X：Vista (@vista8)",
-      "url": "https://x.com/vista8/status/2067513484364140994",
-      "date": "2026-06-18",
+      "title": "阿里开源向量数据库Zvec，UCSD黄碧薇教授提出因果AI第四代范式",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "url": "https://x.com/AYi_AInotes/status/2067832098816250346",
+      "date": "2026-06-20",
       "score": 79,
       "tags": [
         "AI HOT",
-        "GPT",
         "开源",
         "产品"
       ],
-      "summary": "乔木画布推出免费开源在线图像编辑器，可一键部署Vercel为网站，功能类似简化版PS。支持Seedream和GPT-image-2生图、图片模板存储分享、一键抠图、2万图标和常见Emoji，甚至能绘制PRD。随时创建3：4/16：9/21：9等不同尺寸画布。原计划高级功能收费，庆祝端午节现全免费开…",
-      "publishedAt": "2026-06-18T07:43:21.000Z",
+      "summary": "阿里开源内部向量数据库Zvec，pip install zvec免费使用，对标Pinecone每月70美元能力。支持十亿向量毫秒级检索，无需单独起服务，全平台兼容；v0.5.0新增原生全文混合搜索。UCSD黄碧薇教授（causal-learn作者）提出AI四代范式：相关性小模型→因果小模型→相关性…",
+      "publishedAt": "2026-06-19T04:49:25.000Z",
       "category": "ai-products",
       "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
       "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     },
     {
       "topic": "industry",
-      "title": "Anthropic与DeepMind CEO呼吁G7组建AI联盟排除中国",
-      "source": "X：Kim (@kimmonismus)",
-      "url": "https://x.com/kimmonismus/status/2067310431669223425",
-      "date": "2026-06-18",
-      "score": 79,
-      "tags": [
-        "AI HOT",
-        "Anthropic",
-        "Google",
-        "产业"
-      ],
-      "summary": "Dario Amodei（Anthropic）与Demis Hassabis（Google DeepMind）在G7闭门会议上呼吁组建美国主导的联盟，为人工智能制定全球规则和标准。Amodei指出，该联盟应以前沿模型和硬件（包括芯片及其他关键组件）的访问权限为手段，将中国排除在外。这一主张被评论为…",
-      "publishedAt": "2026-06-17T18:16:30.000Z",
-      "category": "industry",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
-    },
-    {
-      "topic": "industry",
-      "title": "泄露文件显示OpenAI年营收130亿但亏损远超收入",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year",
-      "date": "2026-06-18",
+      "title": "Figure机器人数首超人类员工",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2068089038213693800",
+      "date": "2026-06-20",
       "score": 78,
       "tags": [
         "AI HOT",
-        "OpenAI",
-        "GPT",
-        "Sora",
-        "推理",
+        "机器人",
         "产业"
       ],
-      "summary": "OpenAI 2025年营收130.7亿美元（2024年37亿），但研发成本达191.8亿（含向微软支付105.9亿），收入成本（推理计算）75亿，销售营销成本57.3亿，运营亏损209.2亿。2025年净亏损约390亿，扣除约300亿一次性会计费用后约80亿。2025年3月获1220亿融资（估值…",
-      "publishedAt": "2026-06-17T23:09:09.056Z",
+      "summary": "我们已超越理论阶段。 有史以来第一次，Figure的机器人数量超过了人类员工数量。",
+      "publishedAt": "2026-06-19T21:50:24.000Z",
       "category": "industry",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "comment": "点评：这条动态值得从产业资本、平台竞争和组织变化三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
       "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
     },
     {
-      "topic": "safety",
-      "title": "Vercel 发布开源 AI 智能体框架 Eve：每个智能体就是一个文件目录",
-      "source": "MarkTechPost（RSS）",
-      "url": "https://www.marktechpost.com/2026/06/17/vercel-releases-eve",
-      "date": "2026-06-18",
-      "score": 77,
-      "tags": [
-        "AI HOT",
-        "Agent",
-        "MCP",
-        "开源",
-        "产品"
-      ],
-      "summary": "Vercel 发布开源 AI 智能体框架 Eve（npm 包，Apache-2.0 许可）。Eve 采用文件系统优先设计：每个智能体对应一个磁盘目录，目录结构直接映射模型、指令、工具、技能、连接、子智能体等能力，无需额外注册代码。内置六大生产级能力：持久执行（每步检查点，崩溃后可恢复）、沙箱计算、…",
-      "publishedAt": "2026-06-17T17:22:51.000Z",
-      "category": "ai-products",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
-    },
-    {
       "topic": "product",
-      "title": "Omnigent开源：AI智能体团队元框架",
-      "source": "X：Yuchen Jin (@Yuchenj_UW)",
-      "url": "https://x.com/Yuchenj_UW/status/2067273020352380950",
-      "date": "2026-06-18",
+      "title": "NVIDIA Research 发布 SpatialClaw：免训练空间推理框架",
+      "source": "MarkTechPost（RSS）",
+      "url": "https://www.marktechpost.com/2026/06/19/nvidia-ai-introduce-spatialclaw-a-training-free-agent-that-treats-code-as-the-action-interface-for-spatial-reasoning",
+      "date": "2026-06-20",
       "score": 77,
       "tags": [
         "AI HOT",
-        "Claude",
-        "开源",
-        "Claude Code",
+        "Nvidia",
+        "Qwen",
+        "推理",
         "产品"
       ],
-      "summary": "编程的未来不是单一智能体，而是一个完整的AI团队。 Omnigent让你在一个实时会话中运行一个智能体团队：Claude Code、Codex、Cursor、Pi，以及你自己的智能体。 它是一个面向AI智能体的元框架，基于我们内部的Databricks开发工具构建，现已开源给所有人。 由传奇人物@…",
-      "publishedAt": "2026-06-17T15:47:50.000Z",
+      "summary": "NVIDIA Research 发布 SpatialClaw，一个免训练的空间推理框架。它通过将代码作为动作接口，让智能体调用感知工具（Depth Anything 3、SAM 3）并自由组合输出，解决视觉语言模型在 3D 空间判断上的弱点。在 20 项基准测试中平均准确率达 59.9%，比近期智…",
+      "publishedAt": "2026-06-19T22:51:59.000Z",
       "category": "ai-products",
       "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
       "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     },
     {
       "topic": "tip",
-      "title": "Matt Pocock 开源 skills v1：将技能描述 Token 成本降低 63%",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "url": "https://x.com/AYi_AInotes/status/2067327021005656135",
-      "date": "2026-06-18",
-      "score": 76,
+      "title": "Humanize PPT v0.9：为演讲而生的开源PPT Skill",
+      "source": "公众号：卡尔的AI沃茨",
+      "url": "https://mp.weixin.qq.com/s/rGoYnUcBRkfRKQPbIaawyg",
+      "date": "2026-06-20",
+      "score": 77,
       "tags": [
         "AI HOT",
         "开源",
         "观点"
       ],
-      "summary": "Matt Pocock（Total TypeScript 作者）开源了 skills v1，将技能描述的 Token 成本降低 63%。该工具包将技能分为模型可调用和用户可调用，新增 /codebase-design、/domain-modeling、/grilling 三项技能；重写 /writ…",
-      "publishedAt": "2026-06-17T19:22:25.000Z",
+      "summary": "Humanize PPT v0.9 是一款专为演讲场景设计的PPT Skill，核心通过AST（Audience， State， Transfer）逻辑重新编排大纲，将页面渲染外包给下游Skill。渲染前先输出4张真实预览页，并将图片、视频素材的占位与生成prompt写入大纲。新增质检环节自动修复…",
+      "publishedAt": "2026-06-19T09:48:28.000Z",
+      "category": "tip",
+      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
+    },
+    {
+      "topic": "tip",
+      "title": "DeepSeek研究员开源AutoResearch：AI自主跑通285B模型RL研究闭环",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "url": "https://x.com/AYi_AInotes/status/2067819352926150953",
+      "date": "2026-06-20",
+      "score": 76,
+      "tags": [
+        "AI HOT",
+        "DeepSeek",
+        "开源",
+        "观点"
+      ],
+      "summary": "DeepSeek研究员Deli Chen将AutoResearch协议开源，并发布Self-play综述论文。其AI智能体首次完全自主地在DeepSeek 285B模型上完成完整RL研究闭环--从实验设计、写代码、提交GPU任务、debug到结论总结，全程零人工干预。系统调用了GRPO工具，被视为…",
+      "publishedAt": "2026-06-19T03:58:46.000Z",
+      "category": "tip",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
+    },
+    {
+      "topic": "safety",
+      "title": "JAWBONE Act：一项打击政府为压制合法网络言论而施压的新法案",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://www.eff.org/deeplinks/2026/06/new-bill-takes-aim-government-pressure-silence-lawful-online-speech",
+      "date": "2026-06-20",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "Meta",
+        "产业"
+      ],
+      "summary": "上周，参议员Ted Cruz和Ron Wyden提出两党法案JAWBONE Act，为受政府胁迫的广播商、互动计算机服务商及AI提供商创建针对政府官员的联邦诉讼权，并建立政府与中间方就用户表达问题沟通的透明度体系。法案旨在应对政府施压私营公司审查受第一修正案保护的言论。EFF支持该法案，并举证：2…",
+      "publishedAt": "2026-06-19T19:41:30.069Z",
+      "category": "industry",
+      "comment": "点评：AI 能力越深入生产，治理越不能停留在原则口号，必须落到权限、审计、数据边界和责任链。",
+      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
+    },
+    {
+      "topic": "tip",
+      "title": "baoyu-design Skill迭代：修复导出样式与渐变丢失问题，支持AI配图导出PPTX",
+      "source": "X：宝玉 (@dotey)",
+      "url": "https://x.com/dotey/status/2068042001895809420",
+      "date": "2026-06-20",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "Agent",
+        "观点"
+      ],
+      "summary": "宝玉分享 baoyu-design Skill 的迭代过程：用户测试发现导出问题（样式表未铺满整页、渐变色丢失），他在本地复现后让 Agent 分析原因、给出解决方案并添加测试覆盖，修复后效果改善。该 Skill 可在制作 PPT、动画视频或网站时调用 AI 生图配图，支持 Codex 内置画图或…",
+      "publishedAt": "2026-06-19T18:43:30.000Z",
+      "category": "tip",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
+    },
+    {
+      "topic": "tip",
+      "title": "/youtube-notetaker：YT 视频转 Artifacts",
+      "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+      "url": "https://x.com/omarsar0/status/2067952726282031411",
+      "date": "2026-06-20",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "观点"
+      ],
+      "summary": "YT 视频 -> Artifacts 看看我如何使用新的 /youtube-notetaker 技能从 YT 视频生成 Artifacts。 捕获幻灯片、笔记、转录内容…… 快去试试 ↓",
+      "publishedAt": "2026-06-19T12:48:45.000Z",
+      "category": "tip",
+      "comment": "点评：这条动态值得从方法论、最佳实践和落地风险三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
+      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
+    },
+    {
+      "topic": "tip",
+      "title": "我们在 Elasticsearch 上构建了一个持久化代理内存层，其召回率为0.89",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://www.elastic.co/search-labs/blog/agent-memory-elasticsearch",
+      "date": "2026-06-20",
+      "score": 73,
+      "tags": [
+        "AI HOT",
+        "Agent",
+        "MCP",
+        "开源",
+        "观点"
+      ],
+      "summary": "Agent Builder 正式上市（GA）。基于 Elasticsearch 的持久化内存层将记忆分为情景、语义、程序三类，分别存入独立索引，各设不同写速率与过期规则。召回采用 BM25 与 Jina v5 稠密向量的 RRF 融合，再经交叉编码器重排序。在 168 道 QA 题评估中，R@10…",
+      "publishedAt": "2026-06-19T05:01:18.006Z",
+      "category": "tip",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
+    },
+    {
+      "topic": "industry",
+      "title": "AlphaFold 负责人 John Jumper 离职 Google DeepMind，加入 Anthropic",
+      "source": "X：Demis Hassabis (@demishassabis)",
+      "url": "https://x.com/demishassabis/status/2068002732250640603",
+      "date": "2026-06-20",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "Anthropic",
+        "Google",
+        "产业"
+      ],
+      "summary": "AlphaFold 团队负责人 John Jumper 宣布，在 Google DeepMind 工作近 9 年后决定离职，将加入 Anthropic（先休整一段时间）。DeepMind CEO Demis Hassabis 表示，过去 9 年与 Jumper 的非凡合作改变了世界，AlphaFo…",
+      "publishedAt": "2026-06-19T16:07:27.000Z",
+      "category": "industry",
+      "comment": "点评：这条动态值得从产业资本、平台竞争和组织变化三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
+      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
+    },
+    {
+      "topic": "tip",
+      "title": "OpenRouter vs LiteLLM：如何选择 LLM 网关",
+      "source": "OpenRouter：Announcements（RSS）",
+      "url": "https://openrouter.ai/blog/insights/openrouter-vs-litellm",
+      "date": "2026-06-20",
+      "score": 68,
+      "tags": [
+        "AI HOT",
+        "开源",
+        "观点"
+      ],
+      "summary": "OpenRouter 是托管在 Cloudflare 边缘的 LLM 网关，无需管理基础设施，收取 5.5% 平台费（前 100 万次请求免费），支持 70+ 提供商和自动故障转移。LiteLLM 是自部署代理（Docker/PostgreSQL/Redis），数据不离开内网，免费开源，但需承担基…",
+      "publishedAt": "2026-06-19T15:00:00.000Z",
       "category": "tip",
       "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
       "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
     },
     {
       "topic": "product",
-      "title": "Google发布99美元Gemini智能音箱",
-      "source": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/06/17/google-bets-on-gemini-to-reinvent-the-smart-home-speaker",
-      "date": "2026-06-18",
-      "score": 76,
+      "title": "Cloudflare 为 AI 智能体推出临时账户",
+      "source": "Cloudflare Blog",
+      "url": "https://blog.cloudflare.com/temporary-accounts",
+      "date": "2026-06-20",
+      "score": 62,
       "tags": [
         "AI HOT",
-        "Google",
-        "Gemini",
         "产品"
       ],
-      "summary": "Google推出首款专为Gemini打造的智能音箱Google Home Speaker，售价99.99美元。支持自然语言请求和多步指令，可在说话中途纠正，并具备连续对话功能。内置10种新声音。高级AI功能需订阅Google Home Premium（月费10美元或年费100美元），包括Gemin…",
-      "publishedAt": "2026-06-17T16:30:09.000Z",
+      "summary": "Cloudflare 在 Workers 上推出临时账户（Temporary Accounts），允许 AI 智能体直接运行 `wrangler deploy --temporary`，在数秒内获取一个可用的实时 Worker，无需绕开面向人类设计的部署流程。该功能旨在降低智能体部署门槛。",
+      "publishedAt": "2026-06-19T13:00:00.000Z",
       "category": "ai-products",
-      "comment": "点评：这条动态值得从产品入口、用户工作流和商业化节奏三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
-      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
-    },
-    {
-      "topic": "model",
-      "title": "首个统一科学大模型 LOGOS 正式开源",
-      "source": "公众号：通义实验室（千问）",
-      "url": "https://mp.weixin.qq.com/s/50q5uY849FKnBzk1Q04MRg",
-      "date": "2026-06-18",
-      "score": 75,
-      "tags": [
-        "AI HOT",
-        "开源",
-        "推理",
-        "模型"
-      ],
-      "summary": "LOGOS 由 ATH-Token Foundry 联合中国人民大学高瓴人工智能学院开源，是首个基于统一\"科学语法\"的多领域科学生成基础模型。LOGOS-1B（1B参数）在六大科学任务上匹配或超越领域专用方法：口袋条件配体生成纯序列范式首次超越3D扩散模型，超越NatureLM（8×7B）；逆合成…",
-      "publishedAt": "2026-06-18T02:31:28.000Z",
-      "category": "ai-models",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
-    },
-    {
-      "topic": "product",
-      "title": "阿里云发布HappyOyster 1.0：一句话生成可实时交互的数字世界",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/965/652.htm",
-      "date": "2026-06-18",
-      "score": 74,
-      "tags": [
-        "AI HOT",
-        "多模态",
-        "产品"
-      ],
-      "summary": "6月17日，阿里云发布开放式世界模型HappyOyster 1.0（快乐生蚝）。该产品基于原生多模态架构，支持多模态输入与音视频联合生成，可在生成过程中持续接收用户指令并实时响应画面。它深度学习物理世界状态转移规律，保持人物和环境长程一致性。官网开放\"实时导演\"与\"世界探索\"两种玩法：前者可随时叫…",
-      "publishedAt": "2026-06-17T12:46:59.000Z",
-      "category": "ai-products",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
-    },
-    {
-      "topic": "product",
-      "title": "DeepSeek 识图模式正式上线 App 和网页端",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/966/066.htm",
-      "date": "2026-06-18",
-      "score": 72,
-      "tags": [
-        "AI HOT",
-        "DeepSeek",
-        "多模态",
-        "产品"
-      ],
-      "summary": "DeepSeek 识图模式于6月18日在网页和 App 端正式上线，与快速模式、专家模式并列。开启后用户可直接上传图片让 DeepSeek 识别图像，能力超越简单文字提取。目前 App 端仍显示\"图片理解功能内测中\"，网页端无此提示。该模式背后的多模态模型技术细节于今年4月公开，核心框架为\"Thi…",
-      "publishedAt": "2026-06-18T07:48:11.000Z",
-      "category": "ai-products",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
       "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     }
   ],
@@ -244,44 +232,68 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "X：Yuchen Jin (@Yuchenj_UW)",
-      "url": "https://x.com/Yuchenj_UW/status/2067401895178817999",
-      "note": "Noam Shazeer 离开 Google 加入 OpenAI"
+      "name": "X：阿易 AI Notes (@AYi_AInotes)",
+      "url": "https://x.com/AYi_AInotes/status/2067832098816250346",
+      "note": "阿里开源向量数据库Zvec，UCSD黄碧薇教授提出因果AI第四代范式"
     },
     {
-      "name": "X：Jim Fan (@DrJimFan)",
-      "url": "https://x.com/DrJimFan/status/2067283904986517866",
-      "note": "NVIDIA GEAR实验室发布ENPIRE：8个Codex智能体自主控制机器…"
-    },
-    {
-      "name": "X：Vista (@vista8)",
-      "url": "https://x.com/vista8/status/2067513484364140994",
-      "note": "免费开源乔木画布：AI生图+抠图，一键部署Vercel"
-    },
-    {
-      "name": "X：Kim (@kimmonismus)",
-      "url": "https://x.com/kimmonismus/status/2067310431669223425",
-      "note": "Anthropic与DeepMind CEO呼吁G7组建AI联盟排除中国"
-    },
-    {
-      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year",
-      "note": "泄露文件显示OpenAI年营收130亿但亏损远超收入"
+      "name": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2068089038213693800",
+      "note": "Figure机器人数首超人类员工"
     },
     {
       "name": "MarkTechPost（RSS）",
-      "url": "https://www.marktechpost.com/2026/06/17/vercel-releases-eve",
-      "note": "Vercel 发布开源 AI 智能体框架 Eve：每个智能体就是一个文件目录"
+      "url": "https://www.marktechpost.com/2026/06/19/nvidia-ai-introduce-spatialclaw-a-training-free-agent-that-treats-code-as-the-action-interface-for-spatial-reasoning",
+      "note": "NVIDIA Research 发布 SpatialClaw：免训练空间推理框架"
     },
     {
-      "name": "X：Yuchen Jin (@Yuchenj_UW)",
-      "url": "https://x.com/Yuchenj_UW/status/2067273020352380950",
-      "note": "Omnigent开源：AI智能体团队元框架"
+      "name": "公众号：卡尔的AI沃茨",
+      "url": "https://mp.weixin.qq.com/s/rGoYnUcBRkfRKQPbIaawyg",
+      "note": "Humanize PPT v0.9：为演讲而生的开源PPT Skill"
+    },
+    {
+      "name": "X：阿易 AI Notes (@AYi_AInotes)",
+      "url": "https://x.com/AYi_AInotes/status/2067819352926150953",
+      "note": "DeepSeek研究员开源AutoResearch：AI自主跑通285B模型R…"
+    },
+    {
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://www.eff.org/deeplinks/2026/06/new-bill-takes-aim-government-pressure-silence-lawful-online-speech",
+      "note": "JAWBONE Act：一项打击政府为压制合法网络言论而施压的新法案"
+    },
+    {
+      "name": "X：宝玉 (@dotey)",
+      "url": "https://x.com/dotey/status/2068042001895809420",
+      "note": "baoyu-design Skill迭代：修复导出样式与渐变丢失问题，支持AI…"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-06-20",
+    "title": "AI HOT 日报：开源、机器人、Nvidia",
+    "summary": "重点关注 产品发布/更新、行业动态、技巧与观点。核心信号是：阿里开源向量数据库Zvec，UCSD黄碧薇教授提出因果AI第四代范式；Figure机器人数首超人类员工；NVIDIA Research 发布 SpatialClaw：免训练空间推理框架。",
+    "link": "/posts/62020/",
+    "tags": [
+      "AI HOT",
+      "开源",
+      "产品",
+      "机器人"
+    ]
+  },
+  {
+    "date": "2026-06-19",
+    "title": "AI HOT 日报：GPT-5.5 In、八部门、OpenAI",
+    "summary": "重点关注 产品发布/更新、行业动态、论文研究、技巧与观点。核心信号是：GPT-5.5 Instant提升ChatGPT健康智能；八部门：用好个人消费贷款财政贴息政策，支持消费者购买 AI 相关产品；OpenAI 联合多国医生：GPT-5.5 Instant 健康问答能力追平前沿…",
+    "link": "/posts/61919/",
+    "tags": [
+      "AI HOT",
+      "GPT",
+      "产品",
+      "机器人"
+    ]
+  },
   {
     "date": "2026-06-18",
     "title": "AI HOT 日报：OpenAI、Nvidia、开源",
