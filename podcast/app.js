@@ -1,228 +1,233 @@
 const episode = {
-  "date": "2026-06-20",
-  "title": "AI HOT 日报：开源、机器人、Nvidia",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 产品发布/更新、行业动态、技巧与观点。核心信号是：阿里开源向量数据库Zvec，UCSD黄碧薇教授提出因果AI第四代范式；Figure机器人数首超人类员工；NVIDIA Research 发布 SpatialClaw：免训练空间推理框架。",
+  "date": "2026-06-22",
+  "title": "AI HOT 日报：NSA局长、Mythos 数小时、Claude",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、产品发布/更新、技巧与观点、论文研究。核心信号是：NSA局长：Mythos数小时内攻破其几乎所有机密系统；Mythos 数小时内攻破 NSA 全系统，下一代已出；美团tabbit国际版免费接入GPT-5.5/Claude Opus 4.8等旗舰模型。",
   "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "topic": "product",
-      "title": "阿里开源向量数据库Zvec，UCSD黄碧薇教授提出因果AI第四代范式",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "url": "https://x.com/AYi_AInotes/status/2067832098816250346",
-      "date": "2026-06-20",
+      "topic": "safety",
+      "title": "NSA局长：Mythos数小时内攻破其几乎所有机密系统",
+      "source": "X：AI Safety Memes (@AISafetyMemes)",
+      "url": "https://x.com/AISafetyMemes/status/2068718552174252477",
+      "date": "2026-06-22",
+      "score": 80,
+      "tags": [
+        "AI HOT",
+        "Google",
+        "产业"
+      ],
+      "summary": "美国NSA局长称，Mythos在数小时内攻破了其几乎所有机密系统。此前Mythos已在5天内破解MacOS。而顶级漏洞团队Google Project Zero完成同等攻击需6个月，单个MacOS零日漏洞价值约200万美元。苹果原假设全球仅10-20个团队具备此能力，Mythos将使该数字增至数千…",
+      "publishedAt": "2026-06-21T15:31:52.000Z",
+      "category": "industry",
+      "comment": "点评：AI 能力越深入生产，治理越不能停留在原则口号，必须落到权限、审计、数据边界和责任链。",
+      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
+    },
+    {
+      "topic": "safety",
+      "title": "Mythos 数小时内攻破 NSA 全系统，下一代已出",
+      "source": "X：Kim (@kimmonismus)",
+      "url": "https://x.com/kimmonismus/status/2068787804516053385",
+      "date": "2026-06-22",
       "score": 79,
       "tags": [
         "AI HOT",
-        "开源",
+        "产业"
+      ],
+      "summary": "据《经济学人》报道，6月11日，在亚马逊发现越狱的同一天，AI模型 Mythos 据称在数小时内攻破了美国国家安全局（NSA）和网络司令部的几乎所有机密系统，而非此前认为的数周。参议院情报委员会副主席 Mark Warner 转述 NSA 局长 Joshua Rudd 的话确认了此事。主推文还透露…",
+      "publishedAt": "2026-06-21T20:07:03.000Z",
+      "category": "industry",
+      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
+    },
+    {
+      "topic": "product",
+      "title": "美团tabbit国际版免费接入GPT-5.5/Claude Opus 4.8等旗舰模型",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "url": "https://x.com/AYi_AInotes/status/2068637890247016607",
+      "date": "2026-06-22",
+      "score": 78,
+      "tags": [
+        "AI HOT",
+        "Claude",
+        "Gemini",
+        "GPT",
+        "Kimi",
         "产品"
       ],
-      "summary": "阿里开源内部向量数据库Zvec，pip install zvec免费使用，对标Pinecone每月70美元能力。支持十亿向量毫秒级检索，无需单独起服务，全平台兼容；v0.5.0新增原生全文混合搜索。UCSD黄碧薇教授（causal-learn作者）提出AI四代范式：相关性小模型→因果小模型→相关性…",
-      "publishedAt": "2026-06-19T04:49:25.000Z",
+      "summary": "美团近期上线tabbit国际版应用，免费集成多家顶级AI模型的最新旗舰版，包括GPT-5.5、Claude Opus 4.8、Gemini 3.5 Flash，以及国内Kimi-2.6、GLM-5.1、MiniMax-M3。用户无需单独订阅即可使用这些模型。需注意：只有国际版包含海外模型，国内版仅…",
+      "publishedAt": "2026-06-21T10:11:21.000Z",
       "category": "ai-products",
       "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
       "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     },
     {
-      "topic": "industry",
-      "title": "Figure机器人数首超人类员工",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2068089038213693800",
-      "date": "2026-06-20",
-      "score": 78,
-      "tags": [
-        "AI HOT",
-        "机器人",
-        "产业"
-      ],
-      "summary": "我们已超越理论阶段。 有史以来第一次，Figure的机器人数量超过了人类员工数量。",
-      "publishedAt": "2026-06-19T21:50:24.000Z",
-      "category": "industry",
-      "comment": "点评：这条动态值得从产业资本、平台竞争和组织变化三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
-      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
-    },
-    {
       "topic": "product",
-      "title": "NVIDIA Research 发布 SpatialClaw：免训练空间推理框架",
-      "source": "MarkTechPost（RSS）",
-      "url": "https://www.marktechpost.com/2026/06/19/nvidia-ai-introduce-spatialclaw-a-training-free-agent-that-treats-code-as-the-action-interface-for-spatial-reasoning",
-      "date": "2026-06-20",
-      "score": 77,
+      "title": "Cloudflare 临时账户 for AI agents",
+      "source": "Simon Willison 博客",
+      "url": "https://simonwillison.net/2026/Jun/21/temporary-cloudflare-accounts",
+      "date": "2026-06-22",
+      "score": 72,
       "tags": [
         "AI HOT",
-        "Nvidia",
-        "Qwen",
-        "推理",
+        "GPT",
+        "Agent",
         "产品"
       ],
-      "summary": "NVIDIA Research 发布 SpatialClaw，一个免训练的空间推理框架。它通过将代码作为动作接口，让智能体调用感知工具（Depth Anything 3、SAM 3）并自由组合输出，解决视觉语言模型在 3D 空间判断上的弱点。在 20 项基准测试中平均准确率达 59.9%，比近期智…",
-      "publishedAt": "2026-06-19T22:51:59.000Z",
+      "summary": "Cloudflare 推出临时账户功能，无需注册即可通过 `npx wrangler deploy --temporary` 部署 Workers 项目，临时项目存活 60 分钟。该功能虽标称为 AI 智能体设计，但普通用户同样适用。作者使用 GPT-5.5 xhigh 在 Codex Deskt…",
+      "publishedAt": "2026-06-21T22:01:04.000Z",
       "category": "ai-products",
       "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
       "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     },
     {
       "topic": "tip",
-      "title": "Humanize PPT v0.9：为演讲而生的开源PPT Skill",
-      "source": "公众号：卡尔的AI沃茨",
-      "url": "https://mp.weixin.qq.com/s/rGoYnUcBRkfRKQPbIaawyg",
-      "date": "2026-06-20",
-      "score": 77,
+      "title": "Nature研究：AI或削弱专业人士硬技能",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2068938534212530631",
+      "date": "2026-06-22",
+      "score": 71,
       "tags": [
         "AI HOT",
-        "开源",
         "观点"
       ],
-      "summary": "Humanize PPT v0.9 是一款专为演讲场景设计的PPT Skill，核心通过AST（Audience， State， Transfer）逻辑重新编排大纲，将页面渲染外包给下游Skill。渲染前先输出4张真实预览页，并将图片、视频素材的占位与生成prompt写入大纲。新增质检环节自动修复…",
-      "publishedAt": "2026-06-19T09:48:28.000Z",
+      "summary": "一项发表于《自然》的研究指出，AI虽能节省时间，但可能削弱专业人士依赖的硬技能。波兰结肠镜研究显示，引入AI工作流后，有经验内镜医师独立操作的腺瘤检出率从28.4%降至22.4%。AI并非让人瞬间疏忽，而是改变了技能培养的\"摩擦\"机制--从主动搜索变为被动确认。类似现象也出现在软件开发中：一项20…",
+      "publishedAt": "2026-06-22T06:06:00.000Z",
       "category": "tip",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
       "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
     },
     {
-      "topic": "tip",
-      "title": "DeepSeek研究员开源AutoResearch：AI自主跑通285B模型RL研究闭环",
+      "topic": "product",
+      "title": "Netflix 工程师开源工具 Headroom，减少 95% token 消耗",
       "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "url": "https://x.com/AYi_AInotes/status/2067819352926150953",
-      "date": "2026-06-20",
-      "score": 76,
+      "url": "https://x.com/AYi_AInotes/status/2068836642916315344",
+      "date": "2026-06-22",
+      "score": 71,
       "tags": [
         "AI HOT",
-        "DeepSeek",
+        "Agent",
         "开源",
+        "产品"
+      ],
+      "summary": "Netflix 工程师开源 Headroom，在 Codex、Cursor 等 AI 编码工具外包围本地 Agent，自动压缩日志、JSON 和代码，保留逻辑准确性，减少 95% token 消耗。数据本地化，无需改代码，已获 35k GitHub 星标。核心将降本从改提示词、换模型转向输入前置处…",
+      "publishedAt": "2026-06-21T23:21:07.000Z",
+      "category": "ai-products",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
+    },
+    {
+      "topic": "safety",
+      "title": "Sakana AI 发布 Fugu Ultra 多模型编排系统",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2068909919873757456",
+      "date": "2026-06-22",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "产品"
+      ],
+      "summary": "Sakana AI 推出 Fugu Ultra，一个多智能体编排层，通过单一 OpenAI 兼容端点动态调用多个模型处理子任务。Fugu 本身是一个 LLM，被训练来自主决定是直接回答还是将子任务分发给模型池中的其他模型（包括递归调用自身），最后整合输出。在大多数基准测试中，Fugu Ultra …",
+      "publishedAt": "2026-06-22T04:12:18.000Z",
+      "category": "ai-products",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
+    },
+    {
+      "topic": "tip",
+      "title": "Codex 自动化循环测试应用所有功能",
+      "source": "X：Greg Brockman (@gdb)",
+      "url": "https://x.com/gdb/status/2068761809318990054",
+      "date": "2026-06-22",
+      "score": 69,
+      "tags": [
+        "AI HOT",
         "观点"
       ],
-      "summary": "DeepSeek研究员Deli Chen将AutoResearch协议开源，并发布Self-play综述论文。其AI智能体首次完全自主地在DeepSeek 285B模型上完成完整RL研究闭环--从实验设计、写代码、提交GPU任务、debug到结论总结，全程零人工干预。系统调用了GRPO工具，被视为…",
-      "publishedAt": "2026-06-19T03:58:46.000Z",
+      "summary": "Greg Brockman 展示 Codex 的\"循环\"自动化能力：通过一句 /goal 指令，Codex 自动扫描应用的每个功能，基于代码创建用户故事与预期行为，并维护统一电子表格跟踪状态；完成后自动切换为测试每个用户故事并记录所有错误；接着修复所有逻辑与 UX 错误，最后再次验证用户行为。该循…",
+      "publishedAt": "2026-06-21T18:23:45.000Z",
       "category": "tip",
       "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
       "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
     },
     {
       "topic": "safety",
-      "title": "JAWBONE Act：一项打击政府为压制合法网络言论而施压的新法案",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://www.eff.org/deeplinks/2026/06/new-bill-takes-aim-government-pressure-silence-lawful-online-speech",
-      "date": "2026-06-20",
-      "score": 75,
+      "title": "特朗普政府要求 Anthropic 下线两模型引争议",
+      "source": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/06/21/when-the-trump-administration-cracks-down-on-anthropic-who-benefits",
+      "date": "2026-06-22",
+      "score": 68,
       "tags": [
         "AI HOT",
-        "Meta",
+        "Anthropic",
         "产业"
       ],
-      "summary": "上周，参议员Ted Cruz和Ron Wyden提出两党法案JAWBONE Act，为受政府胁迫的广播商、互动计算机服务商及AI提供商创建针对政府官员的联邦诉讼权，并建立政府与中间方就用户表达问题沟通的透明度体系。法案旨在应对政府施压私营公司审查受第一修正案保护的言论。EFF支持该法案，并举证：2…",
-      "publishedAt": "2026-06-19T19:41:30.069Z",
+      "summary": "特朗普政府以国家安全为由要求 Anthropic 将 Fable 5 和 Mythos 5 模型下线。Anthropic 因难以限制外国国民使用而全面撤下模型。据悉，白宫接到亚马逊 CEO Andy Jassy 举报--亚马逊研究人员发现可绕过 Fable 5 的护栏。网络安全专家签署公开信要求撤…",
+      "publishedAt": "2026-06-21T15:28:17.000Z",
       "category": "industry",
-      "comment": "点评：AI 能力越深入生产，治理越不能停留在原则口号，必须落到权限、审计、数据边界和责任链。",
+      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
       "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
     },
     {
       "topic": "tip",
-      "title": "baoyu-design Skill迭代：修复导出样式与渐变丢失问题，支持AI配图导出PPTX",
-      "source": "X：宝玉 (@dotey)",
-      "url": "https://x.com/dotey/status/2068042001895809420",
-      "date": "2026-06-20",
-      "score": 75,
+      "title": "前Meta/Microsoft主任工程师kunchenguid的Agentic工程工作流",
+      "source": "X：邵猛 (@shao__meng)",
+      "url": "https://x.com/shao__meng/status/2068855273088074173",
+      "date": "2026-06-22",
+      "score": 67,
       "tags": [
         "AI HOT",
-        "Agent",
-        "观点"
-      ],
-      "summary": "宝玉分享 baoyu-design Skill 的迭代过程：用户测试发现导出问题（样式表未铺满整页、渐变色丢失），他在本地复现后让 Agent 分析原因、给出解决方案并添加测试覆盖，修复后效果改善。该 Skill 可在制作 PPT、动画视频或网站时调用 AI 生图配图，支持 Codex 内置画图或…",
-      "publishedAt": "2026-06-19T18:43:30.000Z",
-      "category": "tip",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
-    },
-    {
-      "topic": "tip",
-      "title": "/youtube-notetaker：YT 视频转 Artifacts",
-      "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-      "url": "https://x.com/omarsar0/status/2067952726282031411",
-      "date": "2026-06-20",
-      "score": 75,
-      "tags": [
-        "AI HOT",
-        "观点"
-      ],
-      "summary": "YT 视频 -> Artifacts 看看我如何使用新的 /youtube-notetaker 技能从 YT 视频生成 Artifacts。 捕获幻灯片、笔记、转录内容…… 快去试试 ↓",
-      "publishedAt": "2026-06-19T12:48:45.000Z",
-      "category": "tip",
-      "comment": "点评：这条动态值得从方法论、最佳实践和落地风险三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
-      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
-    },
-    {
-      "topic": "tip",
-      "title": "我们在 Elasticsearch 上构建了一个持久化代理内存层，其召回率为0.89",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://www.elastic.co/search-labs/blog/agent-memory-elasticsearch",
-      "date": "2026-06-20",
-      "score": 73,
-      "tags": [
-        "AI HOT",
+        "Meta",
+        "Microsoft",
         "Agent",
         "MCP",
-        "开源",
         "观点"
       ],
-      "summary": "Agent Builder 正式上市（GA）。基于 Elasticsearch 的持久化内存层将记忆分为情景、语义、程序三类，分别存入独立索引，各设不同写速率与过期规则。召回采用 BM25 与 Jina v5 稠密向量的 RRF 融合，再经交叉编码器重排序。在 168 道 QA 题评估中，R@10…",
-      "publishedAt": "2026-06-19T05:01:18.006Z",
+      "summary": "kunchenguid发布45分钟视频，讲解每天交付40-50个生产级PR的工作流。四层：1）终端中心（WezTerm+tmux+Neovim）；2）船员入职：全局memory精简27行，项目级memory由agent自写；3）协作：语音输入OpenSuperWhisper，AXI标准（MCP比C…",
+      "publishedAt": "2026-06-22T00:35:09.000Z",
       "category": "tip",
       "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
       "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
     },
     {
-      "topic": "industry",
-      "title": "AlphaFold 负责人 John Jumper 离职 Google DeepMind，加入 Anthropic",
-      "source": "X：Demis Hassabis (@demishassabis)",
-      "url": "https://x.com/demishassabis/status/2068002732250640603",
-      "date": "2026-06-20",
-      "score": 72,
-      "tags": [
-        "AI HOT",
-        "Anthropic",
-        "Google",
-        "产业"
-      ],
-      "summary": "AlphaFold 团队负责人 John Jumper 宣布，在 Google DeepMind 工作近 9 年后决定离职，将加入 Anthropic（先休整一段时间）。DeepMind CEO Demis Hassabis 表示，过去 9 年与 Jumper 的非凡合作改变了世界，AlphaFo…",
-      "publishedAt": "2026-06-19T16:07:27.000Z",
-      "category": "industry",
-      "comment": "点评：这条动态值得从产业资本、平台竞争和组织变化三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
-      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
-    },
-    {
       "topic": "tip",
-      "title": "OpenRouter vs LiteLLM：如何选择 LLM 网关",
-      "source": "OpenRouter：Announcements（RSS）",
-      "url": "https://openrouter.ai/blog/insights/openrouter-vs-litellm",
-      "date": "2026-06-20",
-      "score": 68,
+      "title": "AI用得好不好，跟你会不会管人，我觉得越来越是同一件事。",
+      "source": "X：卡兹克 (@Khazix0918)",
+      "url": "https://x.com/Khazix0918/status/2068927263035506977",
+      "date": "2026-06-22",
+      "score": 66,
       "tags": [
         "AI HOT",
-        "开源",
+        "Claude",
+        "GPT",
         "观点"
       ],
-      "summary": "OpenRouter 是托管在 Cloudflare 边缘的 LLM 网关，无需管理基础设施，收取 5.5% 平台费（前 100 万次请求免费），支持 70+ 提供商和自动故障转移。LiteLLM 是自部署代理（Docker/PostgreSQL/Redis），数据不离开内网，免费开源，但需承担基…",
-      "publishedAt": "2026-06-19T15:00:00.000Z",
+      "summary": "作者在端午节假期用Claude Opus 4.8重构AI新闻聚合站AIHOT的聚簇机制，消耗2000多万token，耗时一天屡次改阈值（0.72→0.71）、补多语言等边界情况仍问题百出。对比怀念已被下架的Claude Fable 5--后者只需给模糊目标就能自动跑完并填坑。由此总结：管理AI与管…",
+      "publishedAt": "2026-06-22T05:21:12.000Z",
       "category": "tip",
       "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
       "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
     },
     {
-      "topic": "product",
-      "title": "Cloudflare 为 AI 智能体推出临时账户",
-      "source": "Cloudflare Blog",
-      "url": "https://blog.cloudflare.com/temporary-accounts",
-      "date": "2026-06-20",
-      "score": 62,
+      "topic": "paper",
+      "title": "皮尤研究中心发布\"Americans and AI 2026\"报告",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2068902049643901191",
+      "date": "2026-06-22",
+      "score": 65,
       "tags": [
         "AI HOT",
-        "产品"
+        "Meta",
+        "Grok",
+        "Claude",
+        "Gemini",
+        "论文"
       ],
-      "summary": "Cloudflare 在 Workers 上推出临时账户（Temporary Accounts），允许 AI 智能体直接运行 `wrangler deploy --temporary`，在数秒内获取一个可用的实时 Worker，无需绕开面向人类设计的部署流程。该功能旨在降低智能体部署门槛。",
-      "publishedAt": "2026-06-19T13:00:00.000Z",
-      "category": "ai-products",
+      "summary": "皮尤研究中心最新报告显示，仅16%美国成年人预期AI在未来20年帮助社会，40%预期伤害。24%每天使用聊天机器人，51%从未使用。聊天机器人首要用途是搜索信息（42%），38%上班族用于工作，10%用于情感支持，4%用于陪伴。ChatGPT使用率最高（44%），其次Gemini（24%）、Cop…",
+      "publishedAt": "2026-06-22T03:41:01.000Z",
+      "category": "paper",
       "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
+      "advice": "建议：技术团队可先复现实验结论，再判断是否能转化为检索、推理、评测或数据处理链路中的收益。"
     }
   ],
   "sources": [
@@ -232,44 +237,56 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
+      "name": "X：AI Safety Memes (@AISafetyMemes)",
+      "url": "https://x.com/AISafetyMemes/status/2068718552174252477",
+      "note": "NSA局长：Mythos数小时内攻破其几乎所有机密系统"
+    },
+    {
+      "name": "X：Kim (@kimmonismus)",
+      "url": "https://x.com/kimmonismus/status/2068787804516053385",
+      "note": "Mythos 数小时内攻破 NSA 全系统，下一代已出"
+    },
+    {
       "name": "X：阿易 AI Notes (@AYi_AInotes)",
-      "url": "https://x.com/AYi_AInotes/status/2067832098816250346",
-      "note": "阿里开源向量数据库Zvec，UCSD黄碧薇教授提出因果AI第四代范式"
+      "url": "https://x.com/AYi_AInotes/status/2068637890247016607",
+      "note": "美团tabbit国际版免费接入GPT-5.5/Claude Opus 4.8等…"
+    },
+    {
+      "name": "Simon Willison 博客",
+      "url": "https://simonwillison.net/2026/Jun/21/temporary-cloudflare-accounts",
+      "note": "Cloudflare 临时账户 for AI agents"
     },
     {
       "name": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2068089038213693800",
-      "note": "Figure机器人数首超人类员工"
-    },
-    {
-      "name": "MarkTechPost（RSS）",
-      "url": "https://www.marktechpost.com/2026/06/19/nvidia-ai-introduce-spatialclaw-a-training-free-agent-that-treats-code-as-the-action-interface-for-spatial-reasoning",
-      "note": "NVIDIA Research 发布 SpatialClaw：免训练空间推理框架"
-    },
-    {
-      "name": "公众号：卡尔的AI沃茨",
-      "url": "https://mp.weixin.qq.com/s/rGoYnUcBRkfRKQPbIaawyg",
-      "note": "Humanize PPT v0.9：为演讲而生的开源PPT Skill"
+      "url": "https://x.com/rohanpaul_ai/status/2068938534212530631",
+      "note": "Nature研究：AI或削弱专业人士硬技能"
     },
     {
       "name": "X：阿易 AI Notes (@AYi_AInotes)",
-      "url": "https://x.com/AYi_AInotes/status/2067819352926150953",
-      "note": "DeepSeek研究员开源AutoResearch：AI自主跑通285B模型R…"
+      "url": "https://x.com/AYi_AInotes/status/2068836642916315344",
+      "note": "Netflix 工程师开源工具 Headroom，减少 95% token 消耗"
     },
     {
-      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://www.eff.org/deeplinks/2026/06/new-bill-takes-aim-government-pressure-silence-lawful-online-speech",
-      "note": "JAWBONE Act：一项打击政府为压制合法网络言论而施压的新法案"
-    },
-    {
-      "name": "X：宝玉 (@dotey)",
-      "url": "https://x.com/dotey/status/2068042001895809420",
-      "note": "baoyu-design Skill迭代：修复导出样式与渐变丢失问题，支持AI…"
+      "name": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2068909919873757456",
+      "note": "Sakana AI 发布 Fugu Ultra 多模型编排系统"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-06-22",
+    "title": "AI HOT 日报：NSA局长、Mythos 数小时、Claude",
+    "summary": "重点关注 行业动态、产品发布/更新、技巧与观点、论文研究。核心信号是：NSA局长：Mythos数小时内攻破其几乎所有机密系统；Mythos 数小时内攻破 NSA 全系统，下一代已出；美团tabbit国际版免费接入GPT-5.5/Claude Opus 4.8等旗舰模型。",
+    "link": "/posts/62222/",
+    "tags": [
+      "AI HOT",
+      "Google",
+      "产业",
+      "Claude"
+    ]
+  },
   {
     "date": "2026-06-20",
     "title": "AI HOT 日报：开源、机器人、Nvidia",
