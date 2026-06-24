@@ -1,233 +1,311 @@
 const episode = {
-  "date": "2026-06-22",
-  "title": "AI HOT 日报：NSA局长、Mythos 数小时、Claude",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、产品发布/更新、技巧与观点、论文研究。核心信号是：NSA局长：Mythos数小时内攻破其几乎所有机密系统；Mythos 数小时内攻破 NSA 全系统，下一代已出；美团tabbit国际版免费接入GPT-5.5/Claude Opus 4.8等旗舰模型。",
-  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
+  "date": "2026-06-24",
+  "title": "AI HOT 日报：Qwen-AgentWorld、豆包专业版、Bidi 1",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 模型发布/更新、产品发布/更新、行业动态、论文研究、技巧与观点。核心信号是：豆包专业版把办公 Agent 推向订阅化；Qwen-AgentWorld 开源“先预测，再行动”的智能体世界模型；OpenAI ChatGPT 语音测试 Bidi 1，实时双向交互继续升温。",
+  "conclusion": "今天的 AI 主线是“Agent 产品化 + 多模态提速 + 治理压力上升”。建议团队把新闻转成三件事：可复现的任务评测、可审计的工具权限、可量化的成本与风险看板。",
   "items": [
     {
-      "topic": "safety",
-      "title": "NSA局长：Mythos数小时内攻破其几乎所有机密系统",
-      "source": "X：AI Safety Memes (@AISafetyMemes)",
-      "url": "https://x.com/AISafetyMemes/status/2068718552174252477",
-      "date": "2026-06-22",
-      "score": 80,
+      "topic": "product",
+      "title": "今天，豆包正式推出专业版",
+      "source": "公众号：豆包（字节）",
+      "url": "https://mp.weixin.qq.com/s/Sb-NMXTrWFQES1EDO_Gr2g",
+      "date": "2026-06-24",
+      "score": 77,
       "tags": [
         "AI HOT",
-        "Google",
-        "产业"
+        "豆包",
+        "产品"
       ],
-      "summary": "美国NSA局长称，Mythos在数小时内攻破了其几乎所有机密系统。此前Mythos已在5天内破解MacOS。而顶级漏洞团队Google Project Zero完成同等攻击需6个月，单个MacOS零日漏洞价值约200万美元。苹果原假设全球仅10-20个团队具备此能力，Mythos将使该数字增至数千…",
-      "publishedAt": "2026-06-21T15:31:52.000Z",
+      "summary": "豆包专业版基于豆包2.1系列大模型上线，面向复杂办公与生产力场景。办公任务模式接入可执行Agent任务的豆包2.1模型，支持操作本地电脑、浏览器、调用Skills技能、定时任务，内置Office办公套件，并可生成带后端数据库的在线应用。免费用户可体验豆包2.1 Turbo版办公任务模式，专业版接入豆包2.1 Pro模型。定价：标准套餐68元/月（连续包月），加强套餐200元/月，高级套餐500元/月。大学生认证后标准套餐38元/月，持续6个月。",
+      "publishedAt": "2026-06-24T01:00:00.000Z",
+      "category": "ai-products",
+      "comment": "点评：豆包专业版把办公 Agent、本地电脑操作、Skills 和应用生成打包，说明通用助手正在向“可执行生产力套件”演进。",
+      "advice": "建议：团队试用这类产品时，不要只看模型强弱，要验证它能否稳定完成表格、文档、浏览器和内部流程的端到端任务。"
+    },
+    {
+      "topic": "safety",
+      "title": "Oracle因AI应用裁员21000人，债务驱动云基础设施投资",
+      "source": "Ars Technica：AI（RSS）",
+      "url": "https://arstechnica.com/ai/2026/06/oracles-21000-layoffs-help-drive-its-debt-fueled-ai-investments",
+      "date": "2026-06-24",
+      "score": 76,
+      "tags": [
+        "AI HOT",
+        "Oracle",
+        "产业",
+        "治理"
+      ],
+      "summary": "Oracle在截至5月31日的财年裁员21000人，员工总数降至141，000人，降幅12.9%。公司称AI技术的采用导致劳动力缩减，同时重组成本达18亿美元，同比增长481%。Oracle计划2026年通过债务和股权筹集450至500亿美元，扩建Oracle Cloud Infrastructure，服务OpenAI、xAI、AMD、Nvidia、Meta等客户。公司债务超1200亿美元。分析人士指出裁员有助于改善现金流，但Oracle也承认大规模裁员可能带来生产力下降、人才短缺和员工士气受损等风险。",
+      "publishedAt": "2026-06-23T20:17:38.000Z",
       "category": "industry",
-      "comment": "点评：AI 能力越深入生产，治理越不能停留在原则口号，必须落到权限、审计、数据边界和责任链。",
-      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
+      "comment": "点评：AI 基建扩张与组织裁员同时发生，说明大厂正在用现金流和债务押注云算力，但组织风险也在上升。",
+      "advice": "建议：企业做 AI 投资时，应同步评估算力预算、债务压力、人才保留和关键系统交付风险。"
     },
     {
-      "topic": "safety",
-      "title": "Mythos 数小时内攻破 NSA 全系统，下一代已出",
-      "source": "X：Kim (@kimmonismus)",
-      "url": "https://x.com/kimmonismus/status/2068787804516053385",
-      "date": "2026-06-22",
-      "score": 79,
-      "tags": [
-        "AI HOT",
-        "产业"
-      ],
-      "summary": "据《经济学人》报道，6月11日，在亚马逊发现越狱的同一天，AI模型 Mythos 据称在数小时内攻破了美国国家安全局（NSA）和网络司令部的几乎所有机密系统，而非此前认为的数周。参议院情报委员会副主席 Mark Warner 转述 NSA 局长 Joshua Rudd 的话确认了此事。主推文还透露…",
-      "publishedAt": "2026-06-21T20:07:03.000Z",
-      "category": "industry",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
-    },
-    {
-      "topic": "product",
-      "title": "美团tabbit国际版免费接入GPT-5.5/Claude Opus 4.8等旗舰模型",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "url": "https://x.com/AYi_AInotes/status/2068637890247016607",
-      "date": "2026-06-22",
-      "score": 78,
-      "tags": [
-        "AI HOT",
-        "Claude",
-        "Gemini",
-        "GPT",
-        "Kimi",
-        "产品"
-      ],
-      "summary": "美团近期上线tabbit国际版应用，免费集成多家顶级AI模型的最新旗舰版，包括GPT-5.5、Claude Opus 4.8、Gemini 3.5 Flash，以及国内Kimi-2.6、GLM-5.1、MiniMax-M3。用户无需单独订阅即可使用这些模型。需注意：只有国际版包含海外模型，国内版仅…",
-      "publishedAt": "2026-06-21T10:11:21.000Z",
-      "category": "ai-products",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
-    },
-    {
-      "topic": "product",
-      "title": "Cloudflare 临时账户 for AI agents",
-      "source": "Simon Willison 博客",
-      "url": "https://simonwillison.net/2026/Jun/21/temporary-cloudflare-accounts",
-      "date": "2026-06-22",
-      "score": 72,
-      "tags": [
-        "AI HOT",
-        "GPT",
-        "Agent",
-        "产品"
-      ],
-      "summary": "Cloudflare 推出临时账户功能，无需注册即可通过 `npx wrangler deploy --temporary` 部署 Workers 项目，临时项目存活 60 分钟。该功能虽标称为 AI 智能体设计，但普通用户同样适用。作者使用 GPT-5.5 xhigh 在 Codex Deskt…",
-      "publishedAt": "2026-06-21T22:01:04.000Z",
-      "category": "ai-products",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
-    },
-    {
-      "topic": "tip",
-      "title": "Nature研究：AI或削弱专业人士硬技能",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2068938534212530631",
-      "date": "2026-06-22",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "观点"
-      ],
-      "summary": "一项发表于《自然》的研究指出，AI虽能节省时间，但可能削弱专业人士依赖的硬技能。波兰结肠镜研究显示，引入AI工作流后，有经验内镜医师独立操作的腺瘤检出率从28.4%降至22.4%。AI并非让人瞬间疏忽，而是改变了技能培养的\"摩擦\"机制--从主动搜索变为被动确认。类似现象也出现在软件开发中：一项20…",
-      "publishedAt": "2026-06-22T06:06:00.000Z",
-      "category": "tip",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
-    },
-    {
-      "topic": "product",
-      "title": "Netflix 工程师开源工具 Headroom，减少 95% token 消耗",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "url": "https://x.com/AYi_AInotes/status/2068836642916315344",
-      "date": "2026-06-22",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "Agent",
-        "开源",
-        "产品"
-      ],
-      "summary": "Netflix 工程师开源 Headroom，在 Codex、Cursor 等 AI 编码工具外包围本地 Agent，自动压缩日志、JSON 和代码，保留逻辑准确性，减少 95% token 消耗。数据本地化，无需改代码，已获 35k GitHub 星标。核心将降本从改提示词、换模型转向输入前置处…",
-      "publishedAt": "2026-06-21T23:21:07.000Z",
-      "category": "ai-products",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
-    },
-    {
-      "topic": "safety",
-      "title": "Sakana AI 发布 Fugu Ultra 多模型编排系统",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2068909919873757456",
-      "date": "2026-06-22",
-      "score": 70,
+      "topic": "model",
+      "title": "OpenAI ChatGPT 语音最大规模升级：双向AI语音模型 Bidi 1 已上线测试",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/967/852.htm",
+      "date": "2026-06-24",
+      "score": 74,
       "tags": [
         "AI HOT",
         "OpenAI",
-        "产品"
+        "语音",
+        "模型"
       ],
-      "summary": "Sakana AI 推出 Fugu Ultra，一个多智能体编排层，通过单一 OpenAI 兼容端点动态调用多个模型处理子任务。Fugu 本身是一个 LLM，被训练来自主决定是直接回答还是将子任务分发给模型池中的其他模型（包括递归调用自身），最后整合输出。在大多数基准测试中，Fugu Ultra …",
-      "publishedAt": "2026-06-22T04:12:18.000Z",
-      "category": "ai-products",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
+      "summary": "6月23日，部分用户反馈 ChatGPT 网页版和 App 版上线了双向 AI 语音模型 Bidi 1，位于设置模型选择器中，与标准语音和高级语音并列。该模型支持边说话边监听，用户可在对话中途打断并发出新指令，例如要求从1数到10时中途喊停倒数，模型会立即切换执行。OpenAI 尚未官宣，预计本周启动更大范围测试。",
+      "publishedAt": "2026-06-24T04:34:24.000Z",
+      "category": "ai-models",
+      "comment": "点评：双向语音模型的关键不是更像人说话，而是能被打断、能实时改任务，这会改变客服、陪练、会议和车载交互。",
+      "advice": "建议：语音产品应重点测试打断、纠错、多轮上下文和噪声环境，而不是只比较音色自然度。"
     },
     {
-      "topic": "tip",
-      "title": "Codex 自动化循环测试应用所有功能",
-      "source": "X：Greg Brockman (@gdb)",
-      "url": "https://x.com/gdb/status/2068761809318990054",
-      "date": "2026-06-22",
-      "score": 69,
+      "topic": "model",
+      "title": "Qwen-AgentWorld 开源：让 Agent 学会\"先预测，再行动\"",
+      "source": "公众号：通义实验室（千问）",
+      "url": "https://mp.weixin.qq.com/s/NV9WGpGsfFz35jww5agM9g",
+      "date": "2026-06-24",
+      "score": 74,
       "tags": [
         "AI HOT",
-        "观点"
+        "Qwen",
+        "Agent",
+        "模型"
       ],
-      "summary": "Greg Brockman 展示 Codex 的\"循环\"自动化能力：通过一句 /goal 指令，Codex 自动扫描应用的每个功能，基于代码创建用户故事与预期行为，并维护统一电子表格跟踪状态；完成后自动切换为测试每个用户故事并记录所有错误；接着修复所有逻辑与 UX 错误，最后再次验证用户行为。该循…",
-      "publishedAt": "2026-06-21T18:23:45.000Z",
-      "category": "tip",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
+      "summary": "通义千问推出首个原生语言世界模型 Qwen-AgentWorld，覆盖 MCP、Search、Terminal、SWE、Web、OS、Android 七大领域。模型基于超 1000 万条真实交互轨迹，经 CPT→SFT→RL 三阶段训练，在 AgentWorldBench 上超越 GPT-5.4（58.25）和 Claude Opus 4.8，Qwen-AgentWorld-397B-A17B 取得 58.71 分。两种范式已验证其能力：作为解耦环境模拟器实现可控 Sim RL，在 WideSearch 上超越真实…",
+      "publishedAt": "2026-06-24T03:32:04.000Z",
+      "category": "ai-models",
+      "comment": "点评：Agent 竞争正在从“会调用工具”升级为“理解行动后果”。先预测再行动，本质上是在给智能体补上世界模型和试错沙箱。",
+      "advice": "建议：做企业 Agent 时，优先建设可回放的任务轨迹、仿真环境和评测集，不要急着把高风险动作直接交给模型。"
     },
     {
       "topic": "safety",
-      "title": "特朗普政府要求 Anthropic 下线两模型引争议",
-      "source": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/06/21/when-the-trump-administration-cracks-down-on-anthropic-who-benefits",
-      "date": "2026-06-22",
+      "title": "五眼联盟警告：AI网络威胁数月内将影响普通用户",
+      "source": "Artificial Intelligence News（RSS）",
+      "url": "https://www.artificialintelligence-news.com/news/five-eyes-warning-ai-cyber-threats",
+      "date": "2026-06-24",
+      "score": 74,
+      "tags": [
+        "AI HOT",
+        "Agent",
+        "产业",
+        "治理"
+      ],
+      "summary": "2026年6月22日，五眼联盟（美、英、加、澳、新）网络安全部门联合警告，即将到来的AI模型（如OpenAI的GPT-5.5-Cyber、Anthropic的Mythos）将降低编写复杂攻击代码的门槛。自动化智能体可全天候扫描互联网漏洞，大幅缩短安全窗口期。AI驱动的超个性化钓鱼诈骗已在亚太蔓延，印度2026年初勒索软件事件激增165%。五眼联盟建议企业部署自动化防御AI，个人用户开启多因素认证、删除闲置账户。",
+      "publishedAt": "2026-06-23T08:00:00.000Z",
+      "category": "industry",
+      "comment": "点评：AI 攻防门槛下降会让漏洞扫描、钓鱼、恶意代码生成更自动化，安全窗口被进一步压缩。",
+      "advice": "建议：安全团队应把自动化防御、MFA、资产暴露面清理和钓鱼演练列为短期优先项。"
+    },
+    {
+      "topic": "model",
+      "title": "FastWan-QAD：单卡5090上1.8秒生成5秒视频",
+      "source": "X：Sky Computing Lab (@haoailab)",
+      "url": "https://x.com/haoailab/status/2069493820732170695",
+      "date": "2026-06-24",
+      "score": 73,
+      "tags": [
+        "AI HOT",
+        "模型"
+      ],
+      "summary": "Sky Computing Lab 发布 FastWan-QAD 视频生成模型系列，基于 FastVideo 的量化感知蒸馏（QAD）方案训练。在单张 NVIDIA GeForce RTX 5090 上，端到端生成一段 5 秒 480P 视频仅需 1.8 秒。模型、代码及博客已开源。",
+      "publishedAt": "2026-06-23T18:52:30.000Z",
+      "category": "ai-models",
+      "comment": "点评：视频生成继续向更快、更便宜、更高分辨率推进，创意工作流会从“少量成片”转向“批量试稿”。",
+      "advice": "建议：内容团队应建立提示词模板、品牌风格库和版权审查流程，避免只追求生成速度。"
+    },
+    {
+      "topic": "product",
+      "title": "IBM 开源 CUGA：轻量级智能体框架，提供二十余个单文件示例应用",
+      "source": "Hugging Face：Blog（RSS）",
+      "url": "https://huggingface.co/blog/ibm-research/cuga-apps",
+      "date": "2026-06-24",
+      "score": 73,
+      "tags": [
+        "AI HOT",
+        "Agent",
+        "产品"
+      ],
+      "summary": "IBM 开源了 CUGA（Configurable Generalist Agent），一个处理规划、执行循环、工具调用和状态管理的轻量级智能体框架。开发者只需提供工具列表和提示词即可构建 CugaAgent。内置计划-执行-反思循环，在 AppWorld（2025年7月-2026年2月）和 WebArena（2025年2月-9月）基准上排名第一。支持 Fast / Balanced / Accurate 三种推理模式，代码执行可在本地、Docker 或 E2B 沙箱中运行。可互换工具支持 OpenAPI、MCP…",
+      "publishedAt": "2026-06-23T12:51:55.000Z",
+      "category": "ai-products",
+      "comment": "点评：轻量级 Agent 框架开始强调规划、循环、工具和状态管理，开发者门槛正在从“搭框架”转向“设计任务闭环”。",
+      "advice": "建议：评估 Agent 框架时，重点看工具接入、状态可观测、失败恢复、沙箱执行和评测样例，而不是只看 Demo。"
+    },
+    {
+      "topic": "product",
+      "title": "Runway推出Seedance 4K等三款新模型",
+      "source": "X：Runway (@runwayml)",
+      "url": "https://x.com/runwayml/status/2069535148450705517",
+      "date": "2026-06-24",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "Seedance 4K。Seedance Mini。Kling 3.0 Turbo。现已推出。 全球最佳模型，汇聚一处。  使用优惠码 30RUNWAY，前三个月可享七折优惠。  通过下方链接开始使用。",
+      "publishedAt": "2026-06-23T21:36:44.000Z",
+      "category": "ai-products",
+      "comment": "点评：视频生成继续向更快、更便宜、更高分辨率推进，创意工作流会从“少量成片”转向“批量试稿”。",
+      "advice": "建议：内容团队应建立提示词模板、品牌风格库和版权审查流程，避免只追求生成速度。"
+    },
+    {
+      "topic": "model",
+      "title": "网易有道发布 Confucius4-TTS：14 语种跨语种无口音语音克隆开源模型",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/967/636.htm",
+      "date": "2026-06-24",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "语音",
+        "模型"
+      ],
+      "summary": "网易有道推出\"子曰 4.0\"TTS 引擎 Confucius4-TTS，声称是业内首个支持 14 种语言跨语种无口音、且无需参考文本即可完成语音克隆的开源模型。用户仅需 3 秒音频即可实现零样本音色克隆，克隆音色与原声相似度超 85%，任务准确度达 97%。模型支持中文、英语等 14 种语言，首创音频 Prompt 情感克隆迁移。底层采用 GPT 式语义大模型、SSL 预训练特征与 ECAPA-TDNN 说话人编码器、Flow Matching 框架。已全量开源（Apache 协议），提供 54GB 资源包供本地部…",
+      "publishedAt": "2026-06-23T11:00:00.000Z",
+      "category": "ai-models",
+      "comment": "点评：跨语种无口音语音克隆降低了本地化内容成本，也同步提高了声音版权和身份冒用风险。",
+      "advice": "建议：语音应用应增加授权证明、水印或声纹检测，并明确克隆音色的使用边界。"
+    },
+    {
+      "topic": "safety",
+      "title": "AI招聘工具存在种族偏见和系统性排斥；黑人占比26%，亚裔占比15%",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://hai.stanford.edu/news/ai-hiring-tools-can-yield-racial-bias-and-systemic-rejection",
+      "date": "2026-06-24",
+      "score": 71,
+      "tags": [
+        "AI HOT",
+        "治理"
+      ],
+      "summary": "一项覆盖340万人、400万份申请、150家雇主和1700个职位的大规模实地研究发现，AI招聘筛选工具存在显著的种族歧视：26%的黑人申请者和15%的亚裔申请者遭遇算法对其族群的系统性排斥；若AI按推荐率最高群体（通常为白人）标准执行，将有4万份额外申请进入下一轮。多数雇主依赖同一第三方供应商算法，形成\"算法单一文化\"，导致10%提交4份申请者被所有职位拒绝。对比同期未用AI的招聘数据（8.3万份申请、108家财富500强企业），未发现此类模式。研究呼吁对算法招聘进行独立监管。",
+      "publishedAt": "2026-06-23T21:48:25.964Z",
+      "category": "paper",
+      "comment": "点评：AI 招聘不是简单提高效率的问题，同一供应商算法被大规模复用后，偏见会变成系统性排斥。",
+      "advice": "建议：HR 和合规团队应要求供应商提供独立审计、分群通过率监控和人工申诉通道。"
+    },
+    {
+      "topic": "model",
+      "title": "Krea 2 技术报告正式发布",
+      "source": "X：Krea AI (@krea_ai)",
+      "url": "https://x.com/krea_ai/status/2069473417804591191",
+      "date": "2026-06-24",
+      "score": 71,
+      "tags": [
+        "AI HOT",
+        "模型"
+      ],
+      "summary": "我们的技术报告已发布。  深入解析创建 Krea 2 所用的数据、架构及训练技巧。  https：//www.krea.ai/blog/krea-2-technical-report",
+      "publishedAt": "2026-06-23T17:31:26.000Z",
+      "category": "ai-models",
+      "comment": "点评：这条动态体现了 AI 从能力展示走向工程落地，真正价值取决于场景、数据和流程闭环。",
+      "advice": "建议：先做小规模试点，验证质量、成本、延迟和人工接管点，再扩大使用范围。"
+    },
+    {
+      "topic": "product",
+      "title": "无限制OCR：单次长时域解析",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://github.com/baidu/Unlimited-OCR",
+      "date": "2026-06-24",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "OCR",
+        "产品"
+      ],
+      "summary": "Unlimited OCR 是一个托管在 GitHub 的项目，实现单次长时域解析（One-Shot Long-Horizon Parsing），旨在一次性处理长时间跨度的 OCR 任务。",
+      "publishedAt": "2026-06-23T13:32:22.612Z",
+      "category": "ai-products",
+      "comment": "点评：文档智能仍是企业 AI 的刚需。边界框、块分类和置信度分数，能让 OCR 从“提取文本”升级为“可审计的数据入口”。",
+      "advice": "建议：知识库、合同、票据和工单场景可优先试点带置信度的 OCR，并把低置信度结果送人工复核。"
+    },
+    {
+      "topic": "model",
+      "title": "Mistral OCR 4",
+      "source": "Mistral AI：News（网页）",
+      "url": "https://mistral.ai/news/ocr-4",
+      "date": "2026-06-24",
       "score": 68,
       "tags": [
         "AI HOT",
-        "Anthropic",
-        "产业"
+        "OCR",
+        "模型"
       ],
-      "summary": "特朗普政府以国家安全为由要求 Anthropic 将 Fable 5 和 Mythos 5 模型下线。Anthropic 因难以限制外国国民使用而全面撤下模型。据悉，白宫接到亚马逊 CEO Andy Jassy 举报--亚马逊研究人员发现可绕过 Fable 5 的护栏。网络安全专家签署公开信要求撤…",
-      "publishedAt": "2026-06-21T15:28:17.000Z",
-      "category": "industry",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
+      "summary": "Mistral AI 发布 OCR 4，新增边界框、块分类（标题、表格、方程式、签名等）及逐页逐词置信度分数。支持 170 种语言、10 个语系，可单容器全自托管部署。在 OlmOCRBench 上得分 85.20，独立标注者偏好率平均 72%。定价每 1000 页 $4，Batch API 享 50% 折扣。可通过 API 或 Mistral Studio 的 Document AI 调用。",
+      "publishedAt": "2026-06-23T14:24:55.949Z",
+      "category": "ai-models",
+      "comment": "点评：文档智能仍是企业 AI 的刚需。边界框、块分类和置信度分数，能让 OCR 从“提取文本”升级为“可审计的数据入口”。",
+      "advice": "建议：知识库、合同、票据和工单场景可优先试点带置信度的 OCR，并把低置信度结果送人工复核。"
     },
     {
       "topic": "tip",
-      "title": "前Meta/Microsoft主任工程师kunchenguid的Agentic工程工作流",
-      "source": "X：邵猛 (@shao__meng)",
-      "url": "https://x.com/shao__meng/status/2068855273088074173",
-      "date": "2026-06-22",
-      "score": 67,
-      "tags": [
-        "AI HOT",
-        "Meta",
-        "Microsoft",
-        "Agent",
-        "MCP",
-        "观点"
-      ],
-      "summary": "kunchenguid发布45分钟视频，讲解每天交付40-50个生产级PR的工作流。四层：1）终端中心（WezTerm+tmux+Neovim）；2）船员入职：全局memory精简27行，项目级memory由agent自写；3）协作：语音输入OpenSuperWhisper，AXI标准（MCP比C…",
-      "publishedAt": "2026-06-22T00:35:09.000Z",
-      "category": "tip",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
-    },
-    {
-      "topic": "tip",
-      "title": "AI用得好不好，跟你会不会管人，我觉得越来越是同一件事。",
-      "source": "X：卡兹克 (@Khazix0918)",
-      "url": "https://x.com/Khazix0918/status/2068927263035506977",
-      "date": "2026-06-22",
-      "score": 66,
-      "tags": [
-        "AI HOT",
-        "Claude",
-        "GPT",
-        "观点"
-      ],
-      "summary": "作者在端午节假期用Claude Opus 4.8重构AI新闻聚合站AIHOT的聚簇机制，消耗2000多万token，耗时一天屡次改阈值（0.72→0.71）、补多语言等边界情况仍问题百出。对比怀念已被下架的Claude Fable 5--后者只需给模糊目标就能自动跑完并填坑。由此总结：管理AI与管…",
-      "publishedAt": "2026-06-22T05:21:12.000Z",
-      "category": "tip",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
-    },
-    {
-      "topic": "paper",
-      "title": "皮尤研究中心发布\"Americans and AI 2026\"报告",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2068902049643901191",
-      "date": "2026-06-22",
+      "title": "MiniCPM-V 4.6 在 Apple Core AI 上高速运行",
+      "source": "X：面壁智能 OpenBMB (@OpenBMB)",
+      "url": "https://x.com/OpenBMB/status/2069676334381728106",
+      "date": "2026-06-24",
       "score": 65,
       "tags": [
-        "AI HOT",
-        "Meta",
-        "Grok",
-        "Claude",
-        "Gemini",
-        "论文"
+        "AI HOT"
       ],
-      "summary": "皮尤研究中心最新报告显示，仅16%美国成年人预期AI在未来20年帮助社会，40%预期伤害。24%每天使用聊天机器人，51%从未使用。聊天机器人首要用途是搜索信息（42%），38%上班族用于工作，10%用于情感支持，4%用于陪伴。ChatGPT使用率最高（44%），其次Gemini（24%）、Cop…",
-      "publishedAt": "2026-06-22T03:41:01.000Z",
-      "category": "paper",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：技术团队可先复现实验结论，再判断是否能转化为检索、推理、评测或数据处理链路中的收益。"
+      "summary": "🥳感谢分享，@MLBoy_DaisukeMajima 🚀 MiniCPM-V 4.6 在设备上以这样的速度运行，实在令人印象深刻--尤其是在 Apple Core AI 上以不到 2B 参数跑出。 干得漂亮，推动高效多模态 AI 向前发展。🫡",
+      "publishedAt": "2026-06-24T06:57:45.000Z",
+      "category": "tip",
+      "comment": "点评：端侧多模态模型速度提升，意味着隐私敏感、低延迟和离线场景会更快落地。",
+      "advice": "建议：移动端团队可以关注小模型在拍照理解、文档识别、离线助手中的真实功耗和延迟。"
+    },
+    {
+      "topic": "product",
+      "title": "国内首个高考志愿AI测评出炉，千问多项表现超过资深咨询师",
+      "source": "公众号：千问APP（阿里）",
+      "url": "https://mp.weixin.qq.com/s/oGHVP4MgGS1rbmT8s8St8Q",
+      "date": "2026-06-24",
+      "score": 60,
+      "tags": [
+        "AI HOT",
+        "Qwen",
+        "产品"
+      ],
+      "summary": "友松实验室发布国内首个高考志愿AI能力测评报告，测试千问高考志愿填报Agent四大模块。与53位平均从业4.6年的人类咨询师对照，千问表现更稳定精确：44道事实题全对；模拟10个志愿中6个可录取；100场匿名对比中专家58次倾向千问回答。使用千问辅助后，人类咨询师正确率提升，耗时减少约27%。该Agent基于千问高考志愿大模型和夸克8年高考数据，覆盖约3000所院校、2000多个专业。",
+      "publishedAt": "2026-06-23T10:54:49.000Z",
+      "category": "ai-products",
+      "comment": "点评：这条动态体现了 AI 从能力展示走向工程落地，真正价值取决于场景、数据和流程闭环。",
+      "advice": "建议：先做小规模试点，验证质量、成本、延迟和人工接管点，再扩大使用范围。"
+    },
+    {
+      "topic": "product",
+      "title": "Anthropic 推出 Claude Tag：在 Slack 中通过 @Claude 协作",
+      "source": "Anthropic：Newsroom（网页）",
+      "url": "https://www.anthropic.com/news/introducing-claude-tag",
+      "date": "2026-06-24",
+      "score": 56,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "Anthropic 推出 Claude Tag，一种在 Slack 频道中通过 @Claude 委托任务的新协作方式。Claude 可记住频道上下文，支持多用户交互，经授权后可自动学习其他频道和数据源。开启\"环境\"行为后，能主动更新未解决的线程或任务。支持异步工作，可自主推进项目数小时或数天。即日起面向 Claude Enterprise 和 Team 客户提供 beta 版。管理员可精细控制工具和渠道访问权限、设置 token 消耗限额，并查看所有操作日志。",
+      "publishedAt": "2026-06-23T17:09:41.902Z",
+      "category": "ai-products",
+      "comment": "点评：这条动态体现了 AI 从能力展示走向工程落地，真正价值取决于场景、数据和流程闭环。",
+      "advice": "建议：先做小规模试点，验证质量、成本、延迟和人工接管点，再扩大使用范围。"
+    },
+    {
+      "topic": "safety",
+      "title": "GitHub联合开源联盟呼吁修改加州AI透明度法案以保护开源",
+      "source": "GitHub Blog",
+      "url": "https://github.blog/news-insights/policy-news-and-insights/github-joins-coalition-advocating-for-fixes-to-california-ai-transparency-act-to-protect-open-source",
+      "date": "2026-06-24",
+      "score": 56,
+      "tags": [
+        "AI HOT",
+        "产业",
+        "治理"
+      ],
+      "summary": "GitHub 联合 Black Forest Labs、Hugging Face 与 Mozilla Corporation 组成开源联盟，呼吁对加州 AI 透明度法案（SB 942，拟由 SB 1000 修正）进行针对性修改。当前草案要求开发者在下游用户未履行义务时撤销开源许可证，这与开源许可证永久不可撤销的性质冲突。联盟认为该要求非必要，已有直接监管和执法机制，并建议参考欧盟 AI 法案的透明度实践规范，以向下游用户通知最佳实践文档的方式替代撤销条款。GitHub 支持这些修正，以在保持透明度目标的同时兼容开源…",
+      "publishedAt": "2026-06-23T15:48:00.000Z",
+      "category": "industry",
+      "comment": "点评：AI 产业信号越来越体现为监管、组织、资本和开源生态的联动，而不只是模型发布。",
+      "advice": "建议：管理者应把政策、供应商依赖、开源许可和数据合规纳入 AI 项目立项清单。"
     }
   ],
   "sources": [
@@ -237,44 +315,66 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "X：AI Safety Memes (@AISafetyMemes)",
-      "url": "https://x.com/AISafetyMemes/status/2068718552174252477",
-      "note": "NSA局长：Mythos数小时内攻破其几乎所有机密系统"
+      "name": "公众号：豆包（字节）",
+      "url": "https://mp.weixin.qq.com/s/Sb-NMXTrWFQES1EDO_Gr2g",
+      "note": "今天，豆包正式推出专业版"
     },
     {
-      "name": "X：Kim (@kimmonismus)",
-      "url": "https://x.com/kimmonismus/status/2068787804516053385",
-      "note": "Mythos 数小时内攻破 NSA 全系统，下一代已出"
+      "name": "Ars Technica：AI（RSS）",
+      "url": "https://arstechnica.com/ai/2026/06/oracles-21000-layoffs-help-drive-its-debt-fueled-ai-investments",
+      "note": "Oracle因AI应用裁员21000人，债务驱动云基础设施投资"
     },
     {
-      "name": "X：阿易 AI Notes (@AYi_AInotes)",
-      "url": "https://x.com/AYi_AInotes/status/2068637890247016607",
-      "note": "美团tabbit国际版免费接入GPT-5.5/Claude Opus 4.8等…"
+      "name": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/967/852.htm",
+      "note": "OpenAI ChatGPT 语音最大规模升级：双向AI语音模型 Bidi 1 已上…"
     },
     {
-      "name": "Simon Willison 博客",
-      "url": "https://simonwillison.net/2026/Jun/21/temporary-cloudflare-accounts",
-      "note": "Cloudflare 临时账户 for AI agents"
+      "name": "公众号：通义实验室（千问）",
+      "url": "https://mp.weixin.qq.com/s/NV9WGpGsfFz35jww5agM9g",
+      "note": "Qwen-AgentWorld 开源：让 Agent 学会\"先预测，再行动\""
     },
     {
-      "name": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2068938534212530631",
-      "note": "Nature研究：AI或削弱专业人士硬技能"
+      "name": "Artificial Intelligence News（RSS）",
+      "url": "https://www.artificialintelligence-news.com/news/five-eyes-warning-ai-cyber-threats",
+      "note": "五眼联盟警告：AI网络威胁数月内将影响普通用户"
     },
     {
-      "name": "X：阿易 AI Notes (@AYi_AInotes)",
-      "url": "https://x.com/AYi_AInotes/status/2068836642916315344",
-      "note": "Netflix 工程师开源工具 Headroom，减少 95% token 消耗"
+      "name": "X：Sky Computing Lab (@haoailab)",
+      "url": "https://x.com/haoailab/status/2069493820732170695",
+      "note": "FastWan-QAD：单卡5090上1.8秒生成5秒视频"
     },
     {
-      "name": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2068909919873757456",
-      "note": "Sakana AI 发布 Fugu Ultra 多模型编排系统"
+      "name": "Hugging Face：Blog（RSS）",
+      "url": "https://huggingface.co/blog/ibm-research/cuga-apps",
+      "note": "IBM 开源 CUGA：轻量级智能体框架，提供二十余个单文件示例应用"
+    },
+    {
+      "name": "X：Runway (@runwayml)",
+      "url": "https://x.com/runwayml/status/2069535148450705517",
+      "note": "Runway推出Seedance 4K等三款新模型"
+    },
+    {
+      "name": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/967/636.htm",
+      "note": "网易有道发布 Confucius4-TTS：14 语种跨语种无口音语音克隆开源模型"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-06-24",
+    "title": "AI HOT 日报：Qwen-AgentWorld、豆包专业版、Bidi 1",
+    "summary": "重点关注 模型发布/更新、产品发布/更新、行业动态、论文研究、技巧与观点。核心信号是：豆包专业版把办公 Agent 推向订阅化；Qwen-AgentWorld 开源“先预测，再行动”；OpenAI ChatGPT 语音测试 Bidi 1。",
+    "link": "/posts/62424/",
+    "tags": [
+      "AI HOT",
+      "Qwen",
+      "豆包",
+      "Agent"
+    ]
+  },
   {
     "date": "2026-06-22",
     "title": "AI HOT 日报：NSA局长、Mythos 数小时、Claude",

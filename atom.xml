@@ -10,7 +10,34 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-06-22T06:32:52.528Z</updated>
+  <updated>2026-06-24T07:33:16.602Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT" scheme="https://aimak.cn/tags/AI-HOT/"/>
+    <category term="AI日报" scheme="https://aimak.cn/tags/AI%E6%97%A5%E6%8A%A5/"/>
+    <category term="Qwen" scheme="https://aimak.cn/tags/Qwen/"/>
+    <category term="Agent" scheme="https://aimak.cn/tags/Agent/"/>
+    <category term="豆包" scheme="https://aimak.cn/tags/%E8%B1%86%E5%8C%85/"/>
+    <category term="OpenAI" scheme="https://aimak.cn/tags/OpenAI/"/>
+    <category term="语音模型" scheme="https://aimak.cn/tags/%E8%AF%AD%E9%9F%B3%E6%A8%A1%E5%9E%8B/"/>
+    <category term="AIOps" scheme="https://aimak.cn/tags/AIOps/"/>
+    <category term="OCR" scheme="https://aimak.cn/tags/OCR/"/>
+    <category term="AI治理" scheme="https://aimak.cn/tags/AI%E6%B2%BB%E7%90%86/"/>
+    <id>https://aimak.cn/posts/62424/</id>
+    <link href="https://aimak.cn/posts/62424/"/>
+    <published>2026-06-24T07:35:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-06-24：Qwen-AgentWorld、豆包专业版、Bidi 1</title>
+    <updated>2026-06-24T07:33:16.602Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -196,19 +223,22 @@
       <name>fantasykai</name>
     </author>
     <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AIOps" scheme="https://aimak.cn/tags/AIOps/"/>
     <category term="AI Agent" scheme="https://aimak.cn/tags/AI-Agent/"/>
     <category term="网络运维" scheme="https://aimak.cn/tags/%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/"/>
+    <category term="Harness" scheme="https://aimak.cn/tags/Harness/"/>
+    <category term="Loop Engineering" scheme="https://aimak.cn/tags/Loop-Engineering/"/>
     <category term="RAG" scheme="https://aimak.cn/tags/RAG/"/>
     <category term="MCP" scheme="https://aimak.cn/tags/MCP/"/>
-    <category term="提示词工程" scheme="https://aimak.cn/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/"/>
-    <category term="多智能体" scheme="https://aimak.cn/tags/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93/"/>
+    <category term="可观测性" scheme="https://aimak.cn/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7/"/>
     <category term="Function Calling" scheme="https://aimak.cn/tags/Function-Calling/"/>
+    <category term="多智能体" scheme="https://aimak.cn/tags/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93/"/>
     <id>https://aimak.cn/posts/29847/</id>
     <link href="https://aimak.cn/posts/29847/"/>
     <published>2026-06-02T02:00:00.000Z</published>
-    <summary>全面解析AI Agent生态：提示词、上下文、RAG、MCP、Skill、记忆、LLM、Token、Embedding、Function Calling、思维链、多智能体等21个核心概念，以及它们在网络运维场景的应用实践。</summary>
+    <summary>系统梳理 AI Agent 的核心概念与工程化方法：从 Prompt、Context、RAG、MCP、Memory、Function Calling，到 Harness、Loop Engineering、Guardrails、Eval 与可观测性，并结合网络运维监控、告警降噪、根因分析和闭环修复场景给出落地路径。</summary>
     <title>AI Agent全解析：从概念到网络运维实战</title>
-    <updated>2026-06-02T10:01:14.846Z</updated>
+    <updated>2026-06-24T07:30:00.000Z</updated>
   </entry>
   <entry>
     <author>
@@ -268,10 +298,10 @@
     </author>
     <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
     <category term="人工智能" scheme="https://aimak.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    <category term="Agent" scheme="https://aimak.cn/tags/Agent/"/>
     <category term="AI资讯" scheme="https://aimak.cn/tags/AI%E8%B5%84%E8%AE%AF/"/>
     <category term="大模型" scheme="https://aimak.cn/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
     <category term="智能体" scheme="https://aimak.cn/tags/%E6%99%BA%E8%83%BD%E4%BD%93/"/>
-    <category term="Agent" scheme="https://aimak.cn/tags/Agent/"/>
     <id>https://aimak.cn/posts/20260520/</id>
     <link href="https://aimak.cn/posts/20260520/"/>
     <published>2026-05-20T00:00:00.000Z</published>
@@ -351,25 +381,5 @@
     </summary>
     <title>新常态下的中国消费</title>
     <updated>2025-05-29T07:28:28.341Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="人工智能" scheme="https://aimak.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    <category term="AI资讯" scheme="https://aimak.cn/tags/AI%E8%B5%84%E8%AE%AF/"/>
-    <category term="大模型" scheme="https://aimak.cn/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
-    <category term="AGI" scheme="https://aimak.cn/tags/AGI/"/>
-    <id>https://aimak.cn/posts/ai-brief-202505/</id>
-    <link href="https://aimak.cn/posts/ai-brief-202505/"/>
-    <published>2025-05-14T00:00:00.000Z</published>
-    <summary>
-      <![CDATA[<p>2025年5月，AI 行业持续高速发展，从大模型能力跃迁到 Agent 生态爆发，从硬件竞赛到开源浪潮，一系列重磅事件值得回顾。本文梳理近期值得关注的 AI 动态，帮助你快速了解行业脉搏。</p>
-<hr>
-<h3 id="🚀-一、大模型赛道：能力持续跃迁"><a href="#🚀-一、大模型赛道：能力持续跃迁" class="headerlink" title="🚀]]>
-    </summary>
-    <title>AI 资讯简报：2025年5月行业动态速览</title>
-    <updated>2026-05-14T12:36:11.591Z</updated>
   </entry>
 </feed>
