@@ -1,311 +1,242 @@
 const episode = {
-  "date": "2026-06-24",
-  "title": "AI HOT 日报：Qwen-AgentWorld、豆包专业版、Bidi 1",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 模型发布/更新、产品发布/更新、行业动态、论文研究、技巧与观点。核心信号是：豆包专业版把办公 Agent 推向订阅化；Qwen-AgentWorld 开源“先预测，再行动”的智能体世界模型；OpenAI ChatGPT 语音测试 Bidi 1，实时双向交互继续升温。",
-  "conclusion": "今天的 AI 主线是“Agent 产品化 + 多模态提速 + 治理压力上升”。建议团队把新闻转成三件事：可复现的任务评测、可审计的工具权限、可量化的成本与风险看板。",
+  "date": "2026-06-25",
+  "title": "AI HOT 日报：xAI争议、Figma AI 画布、AI Coding 实践",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 模型发布/更新、产品发布/更新、行业动态、论文研究、技巧与观点。核心信号是：xAI 与 SpaceX 的 AI 叙事受到投资人质疑；Figma 在 Config 2026 把设计画布扩展到代码、动画与 3D；字节跳动复盘 AI Coding，提醒不要只看代码生成占比。",
+  "conclusion": "今天的主线不是“又有几个新模型”，而是 AI 正在进入可执行工作流：语音可被实时打断，设计画布能生成代码与动画，开发团队开始用吞吐率和正确率衡量 AI Coding。建议把每条新闻落到三张表：任务评测表、权限与数据边界表、成本与 ROI 复盘表。",
   "items": [
     {
-      "topic": "product",
-      "title": "今天，豆包正式推出专业版",
-      "source": "公众号：豆包（字节）",
-      "url": "https://mp.weixin.qq.com/s/Sb-NMXTrWFQES1EDO_Gr2g",
-      "date": "2026-06-24",
-      "score": 77,
+      "topic": "tip",
+      "title": "里德·霍夫曼称SpaceX\"不是一家人工智能公司\"，xAI则是\"彻底的灾难\"",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://fortune.com/2026/06/24/reid-hoffman-spacex-musk-openai-anthropic-gen-z-mistake",
+      "date": "2026-06-25",
+      "score": 78,
       "tags": [
         "AI HOT",
-        "豆包",
-        "产品"
+        "OpenAI",
+        "Anthropic",
+        "xAI",
+        "Grok",
+        "观点"
       ],
-      "summary": "豆包专业版基于豆包2.1系列大模型上线，面向复杂办公与生产力场景。办公任务模式接入可执行Agent任务的豆包2.1模型，支持操作本地电脑、浏览器、调用Skills技能、定时任务，内置Office办公套件，并可生成带后端数据库的在线应用。免费用户可体验豆包2.1 Turbo版办公任务模式，专业版接入豆包2.1 Pro模型。定价：标准套餐68元/月（连续包月），加强套餐200元/月，高级套餐500元/月。大学生认证后标准套餐38元/月，持续6个月。",
-      "publishedAt": "2026-06-24T01:00:00.000Z",
-      "category": "ai-products",
-      "comment": "点评：豆包专业版把办公 Agent、本地电脑操作、Skills 和应用生成打包，说明通用助手正在向“可执行生产力套件”演进。",
-      "advice": "建议：团队试用这类产品时，不要只看模型强弱，要验证它能否稳定完成表格、文档、浏览器和内部流程的端到端任务。"
+      "summary": "LinkedIn联合创始人、Anthropic和OpenAI投资者Reid Hoffman在播客中公开批评SpaceX和xAI。他指出SpaceX\"不是一家人工智能公司\"，6月12日上市后收购AI编程工具Cursor属于\"花钱买相关性\"；xAI则是\"彻底的灾难\"，所有11位联合创始人已离职，Gro…",
+      "publishedAt": "2026-06-24T14:20:14.340Z",
+      "category": "tip",
+      "comment": "点评：投资人对 xAI 与 SpaceX 的批评，本质上是在质疑“把 AI 标签贴到一切业务上”的叙事泡沫。AI 公司最终还是要用模型能力、产品留存、组织稳定性和商业收入证明自己。",
+      "advice": "建议：看 AI 公司或相关标的时，不要只看估值和创始人光环，应拆开看团队稳定性、技术路线、客户付费、数据闭环和现金消耗。"
     },
     {
-      "topic": "safety",
-      "title": "Oracle因AI应用裁员21000人，债务驱动云基础设施投资",
-      "source": "Ars Technica：AI（RSS）",
-      "url": "https://arstechnica.com/ai/2026/06/oracles-21000-layoffs-help-drive-its-debt-fueled-ai-investments",
-      "date": "2026-06-24",
-      "score": 76,
+      "topic": "product",
+      "title": "Figma在Config 2026押注人类判断，画布AI能力却来自第三方",
+      "source": "The Decoder：AI News（RSS）",
+      "url": "https://the-decoder.com/figma-bets-on-human-judgment-at-config-2026-while-the-ai-powering-its-canvas-belongs-to-someone-else",
+      "date": "2026-06-25",
+      "score": 74,
       "tags": [
         "AI HOT",
-        "Oracle",
-        "产业",
-        "治理"
+        "OpenAI",
+        "Anthropic",
+        "Google",
+        "推理",
+        "产品"
       ],
-      "summary": "Oracle在截至5月31日的财年裁员21000人，员工总数降至141，000人，降幅12.9%。公司称AI技术的采用导致劳动力缩减，同时重组成本达18亿美元，同比增长481%。Oracle计划2026年通过债务和股权筹集450至500亿美元，扩建Oracle Cloud Infrastructure，服务OpenAI、xAI、AMD、Nvidia、Meta等客户。公司债务超1200亿美元。分析人士指出裁员有助于改善现金流，但Oracle也承认大规模裁员可能带来生产力下降、人才短缺和员工士气受损等风险。",
-      "publishedAt": "2026-06-23T20:17:38.000Z",
-      "category": "industry",
-      "comment": "点评：AI 基建扩张与组织裁员同时发生，说明大厂正在用现金流和债务押注云算力，但组织风险也在上升。",
-      "advice": "建议：企业做 AI 投资时，应同步评估算力预算、债务压力、人才保留和关键系统交付风险。"
+      "summary": "Figma在Config 2026将设计画布扩展至代码、动画、3D深度和着色器效果，并集成去年收购的Weave工作流系统。新功能包括Code Layers（代码与设计并存）、Motion动画、深度层、Shader及Generative Plugins。协作方面，团队可搜索复用AI提示词、保存工作流…",
+      "publishedAt": "2026-06-24T16:49:01.000Z",
+      "category": "ai-products",
+      "comment": "点评：Figma 的方向很清楚：设计工具正在从静态画布变成“产品生产画布”。但核心 AI 能力来自外部模型，也说明应用层护城河会更多来自工作流、协作和设计资产，而不是底层模型本身。",
+      "advice": "建议：设计和产品团队可以试点“设计稿—代码—动画—评审”的一体化流程，但要保留设计规范、组件库和人工审核，避免生成内容破坏品牌一致性。"
+    },
+    {
+      "topic": "tip",
+      "title": "字节跳动技术副总裁洪定坤：AI Coding 的实践与探索",
+      "source": "公众号：火山引擎",
+      "url": "https://mp.weixin.qq.com/s/mdmaAyUIvxE8WT_GEbF2wQ",
+      "date": "2026-06-25",
+      "score": 74,
+      "tags": [
+        "AI HOT",
+        "观点"
+      ],
+      "summary": "在火山引擎Force大会，字节跳动技术副总裁洪定坤分享AI Coding实践。过去一年，字节AI代码贡献率增长6倍，tokens消耗增长5倍，但过度关注单一指标可能失真--TRAE团队代码超90%由AI生成，人均需求吞吐率仅提升60%。900次实验显示，主流Coding模型组合代码正确率超80%，…",
+      "publishedAt": "2026-06-24T14:02:42.000Z",
+      "category": "tip",
+      "comment": "点评：AI Coding 已经从“代码有多少由 AI 写”进入“需求吞吐、正确率、评审负担、缺陷率是否改善”的阶段。只追求生成占比，很容易制造漂亮但失真的指标。",
+      "advice": "建议：研发管理者应把 AI Coding 评估指标改成端到端交付效率：需求周期、一次通过率、线上缺陷、代码审查耗时和开发者满意度。"
+    },
+    {
+      "topic": "paper",
+      "title": "DFlash：块扩散草稿模型实现最高15倍吞吐量提升",
+      "source": "MarkTechPost（RSS）",
+      "url": "https://www.marktechpost.com/2026/06/24/dflash-speculative-decoding-drafts-whole-token-blocks-in-parallel-for-up-to-15x-higher-throughput-on-nvidia-blackwell",
+      "date": "2026-06-25",
+      "score": 74,
+      "tags": [
+        "AI HOT",
+        "Nvidia",
+        "GPT",
+        "Qwen",
+        "推理",
+        "论文"
+      ],
+      "summary": "DFlash 由 UC San Diego 团队提出，是一种用于投机解码的轻量块扩散草稿模型。它一次前向推理生成整块 token，再由目标模型并行验证，保证输出无损。相比 EAGLE-3，DFlash 实现最高 2.5 倍加速，在 Qwen3-8B 等多种模型上平均无损加速超过 6 倍（MATH-…",
+      "publishedAt": "2026-06-24T07:21:10.000Z",
+      "category": "paper",
+      "comment": "点评：投机解码与块扩散草稿模型说明推理侧仍有巨大工程红利。对于企业来说，吞吐提升往往比单点能力提升更快转化为成本下降和体验改善。",
+      "advice": "建议：平台团队可关注这类无损加速方案是否能接入现有推理栈，并用真实负载测试延迟、吞吐、显存和答案一致性。"
     },
     {
       "topic": "model",
       "title": "OpenAI ChatGPT 语音最大规模升级：双向AI语音模型 Bidi 1 已上线测试",
       "source": "IT之家（RSS）",
       "url": "https://www.ithome.com/0/967/852.htm",
-      "date": "2026-06-24",
+      "date": "2026-06-25",
       "score": 74,
       "tags": [
         "AI HOT",
         "OpenAI",
-        "语音",
+        "GPT",
         "模型"
       ],
-      "summary": "6月23日，部分用户反馈 ChatGPT 网页版和 App 版上线了双向 AI 语音模型 Bidi 1，位于设置模型选择器中，与标准语音和高级语音并列。该模型支持边说话边监听，用户可在对话中途打断并发出新指令，例如要求从1数到10时中途喊停倒数，模型会立即切换执行。OpenAI 尚未官宣，预计本周启动更大范围测试。",
+      "summary": "6月23日，部分用户反馈 ChatGPT 网页版和 App 版上线了双向 AI 语音模型 Bidi 1，位于设置模型选择器中，与标准语音和高级语音并列。该模型支持边说话边监听，用户可在对话中途打断并发出新指令，例如要求从1数到10时中途喊停倒数，模型会立即切换执行。OpenAI 尚未官宣，预计本周…",
       "publishedAt": "2026-06-24T04:34:24.000Z",
       "category": "ai-models",
-      "comment": "点评：双向语音模型的关键不是更像人说话，而是能被打断、能实时改任务，这会改变客服、陪练、会议和车载交互。",
-      "advice": "建议：语音产品应重点测试打断、纠错、多轮上下文和噪声环境，而不是只比较音色自然度。"
+      "comment": "点评：双向语音的关键不是“声音更像人”，而是模型能边听边说、被打断、实时改任务。这会推动客服、陪练、会议助手和车载交互从播报式体验走向协作式体验。",
+      "advice": "建议：语音产品应重点测试打断、纠错、噪声环境、多说话人和任务切换，而不是只比较音色自然度。"
     },
     {
       "topic": "model",
       "title": "Qwen-AgentWorld 开源：让 Agent 学会\"先预测，再行动\"",
       "source": "公众号：通义实验室（千问）",
       "url": "https://mp.weixin.qq.com/s/NV9WGpGsfFz35jww5agM9g",
-      "date": "2026-06-24",
+      "date": "2026-06-25",
       "score": 74,
       "tags": [
         "AI HOT",
-        "Qwen",
-        "Agent",
+        "Claude",
+        "GPT",
+        "通义",
+        "千问",
         "模型"
       ],
-      "summary": "通义千问推出首个原生语言世界模型 Qwen-AgentWorld，覆盖 MCP、Search、Terminal、SWE、Web、OS、Android 七大领域。模型基于超 1000 万条真实交互轨迹，经 CPT→SFT→RL 三阶段训练，在 AgentWorldBench 上超越 GPT-5.4（58.25）和 Claude Opus 4.8，Qwen-AgentWorld-397B-A17B 取得 58.71 分。两种范式已验证其能力：作为解耦环境模拟器实现可控 Sim RL，在 WideSearch 上超越真实…",
+      "summary": "通义千问推出首个原生语言世界模型 Qwen-AgentWorld，覆盖 MCP、Search、Terminal、SWE、Web、OS、Android 七大领域。模型基于超 1000 万条真实交互轨迹，经 CPT→SFT→RL 三阶段训练，在 AgentWorldBench 上超越 GPT-5.4（…",
       "publishedAt": "2026-06-24T03:32:04.000Z",
       "category": "ai-models",
-      "comment": "点评：Agent 竞争正在从“会调用工具”升级为“理解行动后果”。先预测再行动，本质上是在给智能体补上世界模型和试错沙箱。",
-      "advice": "建议：做企业 Agent 时，优先建设可回放的任务轨迹、仿真环境和评测集，不要急着把高风险动作直接交给模型。"
+      "comment": "点评：Agent 竞争正在从“会调用工具”升级为“理解行动后果”。先预测再行动，本质上是在给智能体补上世界模型、可回放轨迹和低风险试错空间。",
+      "advice": "建议：做企业 Agent 时，优先建设任务轨迹、仿真环境、评测集和回滚机制，不要急着把高风险动作直接交给模型。"
+    },
+    {
+      "topic": "model",
+      "title": "Gemini 3.5 Flash 中的计算机使用",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash",
+      "date": "2026-06-25",
+      "score": 71,
+      "tags": [
+        "AI HOT",
+        "Google",
+        "Gemini",
+        "Agent",
+        "模型"
+      ],
+      "summary": "Google 将计算机使用（Computer use）作为内置工具集成至 Gemini 3.5 Flash，使开发者能构建跨浏览器、移动端和桌面环境的智能体。此前该功能仅作为独立模型在 Gemini 2.5 中提供，现已原生整合至主 Flash 模型。开发者可通过 Gemini API 及 Gem…",
+      "publishedAt": "2026-06-24T21:16:01.786Z",
+      "category": "ai-models",
+      "comment": "点评：Computer Use 进入主模型，说明浏览器、桌面和移动端操作会成为通用 Agent 的基础能力。但能力越通用，权限边界和误操作风险越需要工程化治理。",
+      "advice": "建议：试点此类能力时，先限定沙箱、白名单网站、只读数据和人工确认点，再逐步开放写入、支付、发布等高风险操作。"
     },
     {
       "topic": "safety",
-      "title": "五眼联盟警告：AI网络威胁数月内将影响普通用户",
-      "source": "Artificial Intelligence News（RSS）",
-      "url": "https://www.artificialintelligence-news.com/news/five-eyes-warning-ai-cyber-threats",
-      "date": "2026-06-24",
-      "score": 74,
+      "title": "在与Anthropic的纠纷中，NSA失去了对Mythos的访问权限",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://www.nytimes.com/2026/06/23/us/politics/nsa-lost-access-anthropic-tool.html",
+      "date": "2026-06-25",
+      "score": 71,
       "tags": [
         "AI HOT",
-        "Agent",
-        "产业",
-        "治理"
+        "Anthropic",
+        "产业"
       ],
-      "summary": "2026年6月22日，五眼联盟（美、英、加、澳、新）网络安全部门联合警告，即将到来的AI模型（如OpenAI的GPT-5.5-Cyber、Anthropic的Mythos）将降低编写复杂攻击代码的门槛。自动化智能体可全天候扫描互联网漏洞，大幅缩短安全窗口期。AI驱动的超个性化钓鱼诈骗已在亚太蔓延，印度2026年初勒索软件事件激增165%。五眼联盟建议企业部署自动化防御AI，个人用户开启多因素认证、删除闲置账户。",
-      "publishedAt": "2026-06-23T08:00:00.000Z",
+      "summary": "美国国家安全局（NSA）因与人工智能公司Anthropic的纠纷，失去了对Mythos系统的访问权限。",
+      "publishedAt": "2026-06-24T19:08:32.032Z",
       "category": "industry",
-      "comment": "点评：AI 攻防门槛下降会让漏洞扫描、钓鱼、恶意代码生成更自动化，安全窗口被进一步压缩。",
-      "advice": "建议：安全团队应把自动化防御、MFA、资产暴露面清理和钓鱼演练列为短期优先项。"
-    },
-    {
-      "topic": "model",
-      "title": "FastWan-QAD：单卡5090上1.8秒生成5秒视频",
-      "source": "X：Sky Computing Lab (@haoailab)",
-      "url": "https://x.com/haoailab/status/2069493820732170695",
-      "date": "2026-06-24",
-      "score": 73,
-      "tags": [
-        "AI HOT",
-        "模型"
-      ],
-      "summary": "Sky Computing Lab 发布 FastWan-QAD 视频生成模型系列，基于 FastVideo 的量化感知蒸馏（QAD）方案训练。在单张 NVIDIA GeForce RTX 5090 上，端到端生成一段 5 秒 480P 视频仅需 1.8 秒。模型、代码及博客已开源。",
-      "publishedAt": "2026-06-23T18:52:30.000Z",
-      "category": "ai-models",
-      "comment": "点评：视频生成继续向更快、更便宜、更高分辨率推进，创意工作流会从“少量成片”转向“批量试稿”。",
-      "advice": "建议：内容团队应建立提示词模板、品牌风格库和版权审查流程，避免只追求生成速度。"
-    },
-    {
-      "topic": "product",
-      "title": "IBM 开源 CUGA：轻量级智能体框架，提供二十余个单文件示例应用",
-      "source": "Hugging Face：Blog（RSS）",
-      "url": "https://huggingface.co/blog/ibm-research/cuga-apps",
-      "date": "2026-06-24",
-      "score": 73,
-      "tags": [
-        "AI HOT",
-        "Agent",
-        "产品"
-      ],
-      "summary": "IBM 开源了 CUGA（Configurable Generalist Agent），一个处理规划、执行循环、工具调用和状态管理的轻量级智能体框架。开发者只需提供工具列表和提示词即可构建 CugaAgent。内置计划-执行-反思循环，在 AppWorld（2025年7月-2026年2月）和 WebArena（2025年2月-9月）基准上排名第一。支持 Fast / Balanced / Accurate 三种推理模式，代码执行可在本地、Docker 或 E2B 沙箱中运行。可互换工具支持 OpenAPI、MCP…",
-      "publishedAt": "2026-06-23T12:51:55.000Z",
-      "category": "ai-products",
-      "comment": "点评：轻量级 Agent 框架开始强调规划、循环、工具和状态管理，开发者门槛正在从“搭框架”转向“设计任务闭环”。",
-      "advice": "建议：评估 Agent 框架时，重点看工具接入、状态可观测、失败恢复、沙箱执行和评测样例，而不是只看 Demo。"
-    },
-    {
-      "topic": "product",
-      "title": "Runway推出Seedance 4K等三款新模型",
-      "source": "X：Runway (@runwayml)",
-      "url": "https://x.com/runwayml/status/2069535148450705517",
-      "date": "2026-06-24",
-      "score": 72,
-      "tags": [
-        "AI HOT",
-        "产品"
-      ],
-      "summary": "Seedance 4K。Seedance Mini。Kling 3.0 Turbo。现已推出。 全球最佳模型，汇聚一处。  使用优惠码 30RUNWAY，前三个月可享七折优惠。  通过下方链接开始使用。",
-      "publishedAt": "2026-06-23T21:36:44.000Z",
-      "category": "ai-products",
-      "comment": "点评：视频生成继续向更快、更便宜、更高分辨率推进，创意工作流会从“少量成片”转向“批量试稿”。",
-      "advice": "建议：内容团队应建立提示词模板、品牌风格库和版权审查流程，避免只追求生成速度。"
-    },
-    {
-      "topic": "model",
-      "title": "网易有道发布 Confucius4-TTS：14 语种跨语种无口音语音克隆开源模型",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/967/636.htm",
-      "date": "2026-06-24",
-      "score": 72,
-      "tags": [
-        "AI HOT",
-        "语音",
-        "模型"
-      ],
-      "summary": "网易有道推出\"子曰 4.0\"TTS 引擎 Confucius4-TTS，声称是业内首个支持 14 种语言跨语种无口音、且无需参考文本即可完成语音克隆的开源模型。用户仅需 3 秒音频即可实现零样本音色克隆，克隆音色与原声相似度超 85%，任务准确度达 97%。模型支持中文、英语等 14 种语言，首创音频 Prompt 情感克隆迁移。底层采用 GPT 式语义大模型、SSL 预训练特征与 ECAPA-TDNN 说话人编码器、Flow Matching 框架。已全量开源（Apache 协议），提供 54GB 资源包供本地部…",
-      "publishedAt": "2026-06-23T11:00:00.000Z",
-      "category": "ai-models",
-      "comment": "点评：跨语种无口音语音克隆降低了本地化内容成本，也同步提高了声音版权和身份冒用风险。",
-      "advice": "建议：语音应用应增加授权证明、水印或声纹检测，并明确克隆音色的使用边界。"
-    },
-    {
-      "topic": "safety",
-      "title": "AI招聘工具存在种族偏见和系统性排斥；黑人占比26%，亚裔占比15%",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://hai.stanford.edu/news/ai-hiring-tools-can-yield-racial-bias-and-systemic-rejection",
-      "date": "2026-06-24",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "治理"
-      ],
-      "summary": "一项覆盖340万人、400万份申请、150家雇主和1700个职位的大规模实地研究发现，AI招聘筛选工具存在显著的种族歧视：26%的黑人申请者和15%的亚裔申请者遭遇算法对其族群的系统性排斥；若AI按推荐率最高群体（通常为白人）标准执行，将有4万份额外申请进入下一轮。多数雇主依赖同一第三方供应商算法，形成\"算法单一文化\"，导致10%提交4份申请者被所有职位拒绝。对比同期未用AI的招聘数据（8.3万份申请、108家财富500强企业），未发现此类模式。研究呼吁对算法招聘进行独立监管。",
-      "publishedAt": "2026-06-23T21:48:25.964Z",
-      "category": "paper",
-      "comment": "点评：AI 招聘不是简单提高效率的问题，同一供应商算法被大规模复用后，偏见会变成系统性排斥。",
-      "advice": "建议：HR 和合规团队应要求供应商提供独立审计、分群通过率监控和人工申诉通道。"
-    },
-    {
-      "topic": "model",
-      "title": "Krea 2 技术报告正式发布",
-      "source": "X：Krea AI (@krea_ai)",
-      "url": "https://x.com/krea_ai/status/2069473417804591191",
-      "date": "2026-06-24",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "模型"
-      ],
-      "summary": "我们的技术报告已发布。  深入解析创建 Krea 2 所用的数据、架构及训练技巧。  https：//www.krea.ai/blog/krea-2-technical-report",
-      "publishedAt": "2026-06-23T17:31:26.000Z",
-      "category": "ai-models",
-      "comment": "点评：这条动态体现了 AI 从能力展示走向工程落地，真正价值取决于场景、数据和流程闭环。",
-      "advice": "建议：先做小规模试点，验证质量、成本、延迟和人工接管点，再扩大使用范围。"
-    },
-    {
-      "topic": "product",
-      "title": "无限制OCR：单次长时域解析",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://github.com/baidu/Unlimited-OCR",
-      "date": "2026-06-24",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "OCR",
-        "产品"
-      ],
-      "summary": "Unlimited OCR 是一个托管在 GitHub 的项目，实现单次长时域解析（One-Shot Long-Horizon Parsing），旨在一次性处理长时间跨度的 OCR 任务。",
-      "publishedAt": "2026-06-23T13:32:22.612Z",
-      "category": "ai-products",
-      "comment": "点评：文档智能仍是企业 AI 的刚需。边界框、块分类和置信度分数，能让 OCR 从“提取文本”升级为“可审计的数据入口”。",
-      "advice": "建议：知识库、合同、票据和工单场景可优先试点带置信度的 OCR，并把低置信度结果送人工复核。"
-    },
-    {
-      "topic": "model",
-      "title": "Mistral OCR 4",
-      "source": "Mistral AI：News（网页）",
-      "url": "https://mistral.ai/news/ocr-4",
-      "date": "2026-06-24",
-      "score": 68,
-      "tags": [
-        "AI HOT",
-        "OCR",
-        "模型"
-      ],
-      "summary": "Mistral AI 发布 OCR 4，新增边界框、块分类（标题、表格、方程式、签名等）及逐页逐词置信度分数。支持 170 种语言、10 个语系，可单容器全自托管部署。在 OlmOCRBench 上得分 85.20，独立标注者偏好率平均 72%。定价每 1000 页 $4，Batch API 享 50% 折扣。可通过 API 或 Mistral Studio 的 Document AI 调用。",
-      "publishedAt": "2026-06-23T14:24:55.949Z",
-      "category": "ai-models",
-      "comment": "点评：文档智能仍是企业 AI 的刚需。边界框、块分类和置信度分数，能让 OCR 从“提取文本”升级为“可审计的数据入口”。",
-      "advice": "建议：知识库、合同、票据和工单场景可优先试点带置信度的 OCR，并把低置信度结果送人工复核。"
+      "comment": "点评：这类事件提醒我们，关键 AI 系统不仅是工具，也是供应链和治理资产。一旦访问权、合同或信任关系变化，业务连续性会受到直接影响。",
+      "advice": "建议：企业采购关键 AI 能力时，应准备替代模型、数据导出、权限审计和应急降级方案，避免单一供应商锁死核心流程。"
     },
     {
       "topic": "tip",
-      "title": "MiniCPM-V 4.6 在 Apple Core AI 上高速运行",
-      "source": "X：面壁智能 OpenBMB (@OpenBMB)",
-      "url": "https://x.com/OpenBMB/status/2069676334381728106",
-      "date": "2026-06-24",
-      "score": 65,
+      "title": "AI被认为会取代工程岗位，但新数据显示工程是2025年最具韧性的岗位",
+      "source": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/06/24/ai-was-supposed-to-kill-engineering-jobs-but-new-data-suggests-theyre-the-most-resilient",
+      "date": "2026-06-25",
+      "score": 70,
       "tags": [
-        "AI HOT"
+        "AI HOT",
+        "Anthropic",
+        "Meta",
+        "Nvidia",
+        "观点"
       ],
-      "summary": "🥳感谢分享，@MLBoy_DaisukeMajima 🚀 MiniCPM-V 4.6 在设备上以这样的速度运行，实在令人印象深刻--尤其是在 Apple Core AI 上以不到 2B 参数跑出。 干得漂亮，推动高效多模态 AI 向前发展。🫡",
-      "publishedAt": "2026-06-24T06:57:45.000Z",
+      "summary": "风投机构SignalFire追踪8000万家公司数百万员工数据发现，工程是2025年最具韧性的岗位。大型科技公司总招聘较2019年下降25%，工程岗仅降11%；工程岗占Alphabet、Meta等12家\"Tech Majors\"新招员工的55%（2019年为46%）。早期初创公司2025年工程师招…",
+      "publishedAt": "2026-06-24T21:56:41.000Z",
       "category": "tip",
-      "comment": "点评：端侧多模态模型速度提升，意味着隐私敏感、低延迟和离线场景会更快落地。",
-      "advice": "建议：移动端团队可以关注小模型在拍照理解、文档识别、离线助手中的真实功耗和延迟。"
+      "comment": "点评：“AI 取代工程师”的叙事过于粗糙。更现实的变化是工程师岗位会重组：会用 AI 分解任务、写规格、评审和验证的人，反而更稀缺。",
+      "advice": "建议：个人应把学习重点放在系统设计、需求澄清、测试验证和 Agent 协作；团队则应把 AI 培训纳入工程规范，而不是只买工具。"
     },
     {
-      "topic": "product",
-      "title": "国内首个高考志愿AI测评出炉，千问多项表现超过资深咨询师",
-      "source": "公众号：千问APP（阿里）",
-      "url": "https://mp.weixin.qq.com/s/oGHVP4MgGS1rbmT8s8St8Q",
-      "date": "2026-06-24",
-      "score": 60,
+      "topic": "paper",
+      "title": "思考即回忆：推理如何解锁LLM中的参数化知识",
+      "source": "Google Research：Blog（网页）",
+      "url": "https://research.google/blog/thinking-to-recall-how-reasoning-unlocks-parametric-knowledge-in-llms",
+      "date": "2026-06-25",
+      "score": 69,
       "tags": [
         "AI HOT",
+        "Google",
+        "Gemini",
         "Qwen",
-        "产品"
+        "推理",
+        "论文"
       ],
-      "summary": "友松实验室发布国内首个高考志愿AI能力测评报告，测试千问高考志愿填报Agent四大模块。与53位平均从业4.6年的人类咨询师对照，千问表现更稳定精确：44道事实题全对；模拟10个志愿中6个可录取；100场匿名对比中专家58次倾向千问回答。使用千问辅助后，人类咨询师正确率提升，耗时减少约27%。该Agent基于千问高考志愿大模型和夸克8年高考数据，覆盖约3000所院校、2000多个专业。",
-      "publishedAt": "2026-06-23T10:54:49.000Z",
-      "category": "ai-products",
-      "comment": "点评：这条动态体现了 AI 从能力展示走向工程落地，真正价值取决于场景、数据和流程闭环。",
-      "advice": "建议：先做小规模试点，验证质量、成本、延迟和人工接管点，再扩大使用范围。"
-    },
-    {
-      "topic": "product",
-      "title": "Anthropic 推出 Claude Tag：在 Slack 中通过 @Claude 协作",
-      "source": "Anthropic：Newsroom（网页）",
-      "url": "https://www.anthropic.com/news/introducing-claude-tag",
-      "date": "2026-06-24",
-      "score": 56,
-      "tags": [
-        "AI HOT",
-        "产品"
-      ],
-      "summary": "Anthropic 推出 Claude Tag，一种在 Slack 频道中通过 @Claude 委托任务的新协作方式。Claude 可记住频道上下文，支持多用户交互，经授权后可自动学习其他频道和数据源。开启\"环境\"行为后，能主动更新未解决的线程或任务。支持异步工作，可自主推进项目数小时或数天。即日起面向 Claude Enterprise 和 Team 客户提供 beta 版。管理员可精细控制工具和渠道访问权限、设置 token 消耗限额，并查看所有操作日志。",
-      "publishedAt": "2026-06-23T17:09:41.902Z",
-      "category": "ai-products",
-      "comment": "点评：这条动态体现了 AI 从能力展示走向工程落地，真正价值取决于场景、数据和流程闭环。",
-      "advice": "建议：先做小规模试点，验证质量、成本、延迟和人工接管点，再扩大使用范围。"
+      "summary": "Google Research研究发现，推理（chain-of-thought）能帮助大语言模型（LLM）回忆简单事实，即使这些事实无需复杂推导。在Gemini-2.5 Flash和Pro以及Qwen3-32B上，启用推理后模型能够回答原本无法直接回答的简单问题，pass@k显示正确事实存在于输出…",
+      "publishedAt": "2026-06-24T17:05:40.380Z",
+      "category": "paper",
+      "comment": "点评：这项研究说明“推理”有时不只是解决复杂题，也能激活模型内部已有知识。它提醒我们，提示词和推理预算会影响事实召回，而不仅影响数学题表现。",
+      "advice": "建议：知识问答场景应对比直接回答、短推理、长推理和 RAG 的效果差异，避免在所有问题上无差别开启高成本推理。"
     },
     {
       "topic": "safety",
-      "title": "GitHub联合开源联盟呼吁修改加州AI透明度法案以保护开源",
-      "source": "GitHub Blog",
-      "url": "https://github.blog/news-insights/policy-news-and-insights/github-joins-coalition-advocating-for-fixes-to-california-ai-transparency-act-to-protect-open-source",
-      "date": "2026-06-24",
-      "score": 56,
+      "title": "OpenRouter 零数据留存（ZDR）实践：97 款新模型，流量占比近半",
+      "source": "OpenRouter：Announcements（RSS）",
+      "url": "https://openrouter.ai/blog/insights/when-zero-means-zero",
+      "date": "2026-06-25",
+      "score": 68,
       "tags": [
         "AI HOT",
-        "产业",
-        "治理"
+        "观点"
       ],
-      "summary": "GitHub 联合 Black Forest Labs、Hugging Face 与 Mozilla Corporation 组成开源联盟，呼吁对加州 AI 透明度法案（SB 942，拟由 SB 1000 修正）进行针对性修改。当前草案要求开发者在下游用户未履行义务时撤销开源许可证，这与开源许可证永久不可撤销的性质冲突。联盟认为该要求非必要，已有直接监管和执法机制，并建议参考欧盟 AI 法案的透明度实践规范，以向下游用户通知最佳实践文档的方式替代撤销条款。GitHub 支持这些修正，以在保持透明度目标的同时兼容开源…",
-      "publishedAt": "2026-06-23T15:48:00.000Z",
-      "category": "industry",
-      "comment": "点评：AI 产业信号越来越体现为监管、组织、资本和开源生态的联动，而不只是模型发布。",
-      "advice": "建议：管理者应把政策、供应商依赖、开源许可和数据合规纳入 AI 项目立项清单。"
+      "summary": "OpenRouter 的零数据留存（ZDR）保证用户提示词和模型响应不被存储，元数据一般安全。自 1 月以来新增 97 款支持 ZDR 的模型，月度 token 量增长 4.3 倍，约占全部路由流量一半。ZDR 在三个层面执行：账户级（整个供应商开启）、护栏级（按 API Key 或组织成员限定）…",
+      "publishedAt": "2026-06-24T16:00:00.000Z",
+      "category": "tip",
+      "comment": "点评：ZDR 流量占比上升，说明企业用户越来越在意模型路由中的数据留存和合规边界。隐私能力会成为模型平台的重要产品特性。",
+      "advice": "建议：企业接入模型路由平台时，应逐项确认提示词、响应、日志、元数据的留存策略，并把不同业务按敏感级别分配模型与 Key。"
+    },
+    {
+      "topic": "model",
+      "title": "GPT-5.5 Instant 新版本，对话更有趣",
+      "source": "X：OpenAI (@OpenAI)",
+      "url": "https://x.com/OpenAI/status/2069843083701915755",
+      "date": "2026-06-25",
+      "score": 67,
+      "tags": [
+        "AI HOT",
+        "GPT",
+        "模型"
+      ],
+      "summary": "我们为你带来了新版 GPT-5.5 Instant，它现在聊起天来有趣多了。 我们最常用的模型现在能更好地理解问题背后的意图，并相应地调整回应。 它也能更可靠地处理复杂约束，让购物和本地推荐更加实用和连贯。 今天向付费用户推送，明天向免费用户推送。",
+      "publishedAt": "2026-06-24T18:00:21.000Z",
+      "category": "ai-models",
+      "comment": "点评：通用模型继续打磨“意图理解 + 约束遵循 + 推荐质量”，说明日常助手的竞争正在转向更稳定的长尾任务体验。",
+      "advice": "建议：团队评测通用模型时，应加入多约束推荐、本地信息检索、连续追问和拒答边界，而不是只看一次性问答。"
     }
   ],
   "sources": [
@@ -315,19 +246,29 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "公众号：豆包（字节）",
-      "url": "https://mp.weixin.qq.com/s/Sb-NMXTrWFQES1EDO_Gr2g",
-      "note": "今天，豆包正式推出专业版"
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://fortune.com/2026/06/24/reid-hoffman-spacex-musk-openai-anthropic-gen-z-mistake",
+      "note": "里德·霍夫曼称SpaceX\"不是一家人工智能公司\"，xAI则是\"彻底的灾难\""
     },
     {
-      "name": "Ars Technica：AI（RSS）",
-      "url": "https://arstechnica.com/ai/2026/06/oracles-21000-layoffs-help-drive-its-debt-fueled-ai-investments",
-      "note": "Oracle因AI应用裁员21000人，债务驱动云基础设施投资"
+      "name": "The Decoder：AI News（RSS）",
+      "url": "https://the-decoder.com/figma-bets-on-human-judgment-at-config-2026-while-the-ai-powering-its-canvas-belongs-to-someone-else",
+      "note": "Figma在Config 2026押注人类判断，画布AI能力却来自第三方"
+    },
+    {
+      "name": "公众号：火山引擎",
+      "url": "https://mp.weixin.qq.com/s/mdmaAyUIvxE8WT_GEbF2wQ",
+      "note": "字节跳动技术副总裁洪定坤：AI Coding 的实践与探索"
+    },
+    {
+      "name": "MarkTechPost（RSS）",
+      "url": "https://www.marktechpost.com/2026/06/24/dflash-speculative-decoding-drafts-whole-token-blocks-in-parallel-for-up-to-15x-higher-throughput-on-nvidia-blackwell",
+      "note": "DFlash：块扩散草稿模型实现最高15倍吞吐量提升"
     },
     {
       "name": "IT之家（RSS）",
       "url": "https://www.ithome.com/0/967/852.htm",
-      "note": "OpenAI ChatGPT 语音最大规模升级：双向AI语音模型 Bidi 1 已上…"
+      "note": "OpenAI ChatGPT 语音最大规模升级：双向AI语音模型 Bidi 1…"
     },
     {
       "name": "公众号：通义实验室（千问）",
@@ -335,34 +276,26 @@ const episode = {
       "note": "Qwen-AgentWorld 开源：让 Agent 学会\"先预测，再行动\""
     },
     {
-      "name": "Artificial Intelligence News（RSS）",
-      "url": "https://www.artificialintelligence-news.com/news/five-eyes-warning-ai-cyber-threats",
-      "note": "五眼联盟警告：AI网络威胁数月内将影响普通用户"
-    },
-    {
-      "name": "X：Sky Computing Lab (@haoailab)",
-      "url": "https://x.com/haoailab/status/2069493820732170695",
-      "note": "FastWan-QAD：单卡5090上1.8秒生成5秒视频"
-    },
-    {
-      "name": "Hugging Face：Blog（RSS）",
-      "url": "https://huggingface.co/blog/ibm-research/cuga-apps",
-      "note": "IBM 开源 CUGA：轻量级智能体框架，提供二十余个单文件示例应用"
-    },
-    {
-      "name": "X：Runway (@runwayml)",
-      "url": "https://x.com/runwayml/status/2069535148450705517",
-      "note": "Runway推出Seedance 4K等三款新模型"
-    },
-    {
-      "name": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/967/636.htm",
-      "note": "网易有道发布 Confucius4-TTS：14 语种跨语种无口音语音克隆开源模型"
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash",
+      "note": "Gemini 3.5 Flash 中的计算机使用"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-06-25",
+    "title": "AI HOT 日报：xAI争议、Figma AI 画布、AI Coding 实践",
+    "summary": "xAI 与 SpaceX 的 AI 叙事受到质疑；Figma 把设计画布扩展到代码、动画与 3D；字节复盘 AI Coding，提醒团队用吞吐、正确率和缺陷率衡量真实收益。",
+    "link": "/posts/62525/",
+    "tags": [
+      "AI HOT",
+      "xAI",
+      "Figma",
+      "AI Coding"
+    ]
+  },
   {
     "date": "2026-06-24",
     "title": "AI HOT 日报：Qwen-AgentWorld、豆包专业版、Bidi 1",

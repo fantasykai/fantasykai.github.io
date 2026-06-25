@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-06-24T07:33:16.602Z</updated>
+  <updated>2026-06-25T01:44:18.062Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, OpenAI, Anthropic, xAI, Grok, 观点, Google, 推理, 产品, Nvidia, GPT, Qwen" scheme="https://aimak.cn/tags/AI-HOT-OpenAI-Anthropic-xAI-Grok-%E8%A7%82%E7%82%B9-Google-%E6%8E%A8%E7%90%86-%E4%BA%A7%E5%93%81-Nvidia-GPT-Qwen/"/>
+    <id>https://aimak.cn/posts/62525/</id>
+    <link href="https://aimak.cn/posts/62525/"/>
+    <published>2026-06-25T01:42:33.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-06-25：xAI争议、Figma AI 画布、AI Coding 实践</title>
+    <updated>2026-06-25T01:44:18.062Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -362,24 +380,5 @@
     </summary>
     <title>Factory AI 总结</title>
     <updated>2025-08-14T07:56:48.853Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="杂记" scheme="https://aimak.cn/categories/%E6%9D%82%E8%AE%B0/"/>
-    <category term="杂记" scheme="https://aimak.cn/tags/%E6%9D%82%E8%AE%B0/"/>
-    <id>https://aimak.cn/posts/56433/</id>
-    <link href="https://aimak.cn/posts/56433/"/>
-    <published>2025-05-27T22:00:00.000Z</published>
-    <summary>
-      <![CDATA[<p>深度解读麦肯锡《新常态下的中国消费》报告的核心发现与趋势研判。</p>
-<ul>
-<li><strong>新常态的定义与特征</strong>：分析中国消费市场进入个位数增长的结构性转变，使用经济数据和领域复苏案例说明当前消费特点。</li>
-<li><strong>消费者信心分化态势</strong>：通过群体对比表格展示城乡、代际及收入层的信心差异，解释政策刺激的有限影响。</li>
-<]]>
-    </summary>
-    <title>新常态下的中国消费</title>
-    <updated>2025-05-29T07:28:28.341Z</updated>
   </entry>
 </feed>
