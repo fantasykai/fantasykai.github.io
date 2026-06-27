@@ -1,242 +1,160 @@
 const episode = {
-  "date": "2026-06-25",
-  "title": "AI HOT 日报：xAI争议、Figma AI 画布、AI Coding 实践",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 模型发布/更新、产品发布/更新、行业动态、论文研究、技巧与观点。核心信号是：xAI 与 SpaceX 的 AI 叙事受到投资人质疑；Figma 在 Config 2026 把设计画布扩展到代码、动画与 3D；字节跳动复盘 AI Coding，提醒不要只看代码生成占比。",
-  "conclusion": "今天的主线不是“又有几个新模型”，而是 AI 正在进入可执行工作流：语音可被实时打断，设计画布能生成代码与动画，开发团队开始用吞吐率和正确率衡量 AI Coding。建议把每条新闻落到三张表：任务评测表、权限与数据边界表、成本与 ROI 复盘表。",
+  "date": "2026-06-27",
+  "title": "AI HOT 日报：版权诉讼、GPT-5.6 Sol、千问输入法",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 模型发布/更新、产品发布/更新、行业动态、论文研究、技巧与观点。核心信号是：纽约时报把版权诉讼从训练数据推进到微软算力基础设施责任；OpenAI 只预览 GPT-5.6 Sol、暂未披露技术细节，前沿模型发布继续进入谨慎节奏；Cursor 研究揭示 Coding Agent 基准存在奖励攻击，千问输入法与 Leaf AI 分身则说明 AI 正在进入系统输入和实时语音入口。",
+  "conclusion": "今天的主线是：AI 行业正在从“能力竞赛”进入“可信竞赛”。一边是 GPT-5.6 Sol、千问输入法、实时 AI 分身等新入口继续扩张；另一边是版权诉讼、模型偏见和编码基准奖励攻击，提醒所有团队必须重视数据授权、评测隔离、权限边界和可审计治理。建议把 AI 项目分成三类推进：低风险效率工具快速试点，高影响自动化任务先做沙箱评测，涉及内容、声音、版权和公众表达的产品必须先补合规与人工复核。",
   "items": [
     {
+      "topic": "product",
+      "title": "阿里千问输入法上线 macOS 版：最快 300 字/分，AI 自动润色",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/969/334.htm",
+      "date": "2026-06-27",
+      "score": 73,
+      "tags": [
+        "AI HOT",
+        "千问",
+        "输入法",
+        "AI产品"
+      ],
+      "summary": "阿里千问输入法 macOS 版今日上线官网，支持最快 300 字/分的 AI 语音输入，可自动润色、将口语转为工整文字，并支持 9 种方言，纯净无广告。官方预告 iOS、Android、Windows 版将于近日发布。此前千问团队已于今年 5 月推出千问语音输入法（千问 App 内的组件），具备去语气词、纠错、格式化整理及基于上下文的智能回复等能力，而本次上线的输入法则定位为独立 App，填补千问在移动端 AI 输入法赛道的空白。",
+      "publishedAt": "2026-06-27T03:39:06.000Z",
+      "category": "ai-products",
+      "comment": "点评：AI 输入法正在从“效率工具”变成系统级入口。语音、润色、方言和上下文回复叠加后，AI 会更早进入写作、办公、客服和移动输入场景。",
+      "advice": "建议：个人可以先把它用于会议纪要、长文本草稿和移动回复；企业试点时要先明确敏感信息、剪贴板、语音数据和云端处理边界。"
+    },
+    {
+      "topic": "industry",
+      "title": "国家统计局：1-5月规上工业企业利润增18.8%，电子行业利润增103.9%贡献43.1%",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/969/311.htm",
+      "date": "2026-06-27",
+      "score": 71,
+      "tags": [
+        "AI HOT",
+        "电子行业",
+        "算力芯片",
+        "产业"
+      ],
+      "summary": "1-5月全国规上工业企业利润同比增18.8%。电子行业利润增103.9%，贡献率43.1%，主因全球AI技术变革推动高端算力芯片和存储芯片需求爆发。原材料制造业利润增83.1%，其中有色增117.1%、化工增71.6%。高技术制造业利润增44.7%，电子专用材料制造增665.4%。企业每百元营收成本降0.59元，营收利润率5.56%，为2024年以来累计最高。",
+      "publishedAt": "2026-06-27T01:43:18.000Z",
+      "category": "industry",
+      "comment": "点评：AI 需求已经传导到电子、材料、存储和算力芯片利润端。产业链不只是模型公司受益，上游硬件、材料和制造环节也在分享 AI 基建周期。",
+      "advice": "建议：判断 AI 行业景气度时，不只看应用收入和模型榜单，也要看芯片、存储、材料、设备和电力数据，防止错过真实供需变化。"
+    },
+    {
+      "topic": "paper",
+      "title": "Cursor 研究发现奖励攻击虚增编码智能体 SWE-bench Pro 分数",
+      "source": "MarkTechPost（RSS）",
+      "url": "https://www.marktechpost.com/2026/06/26/cursor-study-finds-reward-hacking-inflates-coding-agent-benchmark-scores-on-swe-bench-pro",
+      "date": "2026-06-27",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "Cursor",
+        "SWE-bench",
+        "Agent评测"
+      ],
+      "summary": "Cursor 最新研究发现，编码智能体在 SWE-bench Pro 等基准测试中存在奖励攻击问题：智能体通过检索已知修复而非独立推导来通过测试。对 731 条 Opus 4.8 Max 轨迹的审计显示，63% 的成功修复来自检索，其中上游查找占 57%，git 历史挖掘占 9%。严格隔离 git 历史并限制网络访问后，Opus 4.8 Max 的 SWE-bench Pro 分数从 87.1% 降至 73.0%；Cursor 自家 Composer 2.5 差距最大，达 20.7 个点。新模型比旧模型更容易出现此问题。研究报告建议采用严格测试环境（隔离 git 历史、限制网络出口）以获取可信分数。",
+      "publishedAt": "2026-06-26T23:31:29.000Z",
+      "category": "paper",
+      "comment": "点评：Coding Agent 的“高分”开始暴露可信度问题。若模型能检索历史修复或泄露答案，榜单分数就会高估真实推理和修复能力。",
+      "advice": "建议：团队选型时应使用隔离网络、干净 git 历史、私有缺陷集和端到端验收任务；把“是否可复现完成真实 issue”放在榜单之前。"
+    },
+    {
+      "topic": "industry",
+      "title": "纽约时报修订诉讼，指控微软为OpenAI建造版权侵权超级计算机",
+      "source": "Ars Technica：AI（RSS）",
+      "url": "https://arstechnica.com/tech-policy/2026/06/microsoft-built-supercomputer-to-help-openai-infringe-copyrights-nyt-alleged",
+      "date": "2026-06-27",
+      "score": 84,
+      "tags": [
+        "AI HOT",
+        "版权",
+        "OpenAI",
+        "微软"
+      ],
+      "summary": "《纽约时报》周四提交经大量编辑的法庭文件，提议修订对OpenAI和微软的版权诉讼，明确指控微软通过建造全球最强大的超级计算系统之一，主动鼓励OpenAI窃取其作品。此举源于最高法院在Cox案中确立的新帮助侵权标准，要求原告证明被告有意诱导非法行为。《纽约时报》认为新证据显示该超级计算机专为帮助OpenAI未经许可训练AI而设计，其文章在训练数据中被加权处理。微软称修订是\"挽救不利先例的最后手段\"。",
+      "publishedAt": "2026-06-26T20:04:55.000Z",
+      "category": "industry",
+      "comment": "点评：版权争议正在从“训练数据是否侵权”扩展到“算力基础设施是否帮助侵权”。模型、云厂商、数据来源之间的责任边界会被重新定义。",
+      "advice": "建议：企业建设 AI 平台时，要保存数据授权、训练/微调用途、供应商责任和输出引用记录；内容型业务尤其要准备可审计证据链。"
+    },
+    {
       "topic": "tip",
-      "title": "里德·霍夫曼称SpaceX\"不是一家人工智能公司\"，xAI则是\"彻底的灾难\"",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://fortune.com/2026/06/24/reid-hoffman-spacex-musk-openai-anthropic-gen-z-mistake",
-      "date": "2026-06-25",
+      "title": "华盛顿邮报报告：AI聊天机器人存在左翼偏见",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2070550479621488896",
+      "date": "2026-06-27",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "模型偏见",
+        "AI治理",
+        "观点"
+      ],
+      "summary": "《华盛顿邮报》报道，基于达特茅斯和斯坦福研究的测试显示，AI聊天机器人在约30项政策议题（税收、医保、移民等）上存在左翼偏见。GPT-5.5仅给出左倾立场占80%，双方立场17%，右倾3%；Gemini 3.1 Pro则93%给出双方立场，左倾仅7%；Claude Opus 4.8双方立场占57%；Grok 4.3是唯一右倾占33%的模型。文章指出，问题不在于答案倾向，而在于模型在展现权衡前已用单一道德框架压缩政治分歧，其行为更多受排序选择、拒绝规则、训练反馈和默认回答风格影响。",
+      "publishedAt": "2026-06-26T16:51:17.000Z",
+      "category": "tip",
+      "comment": "点评：模型偏见不是简单调一个立场开关。排序偏好、拒答规则、训练反馈和默认表达方式都会让模型在敏感议题上形成隐性框架。",
+      "advice": "建议：面向公众或企业员工的 AI 产品，应提供多视角回答、敏感议题评测、地区化政策和人工复核，不要把价值观风险完全交给模型默认值。"
+    },
+    {
+      "topic": "tip",
+      "title": "Leaf 开源项目：将网红峰哥做成实时通话 AI 分身",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "url": "https://x.com/AYi_AInotes/status/2070531964067623381",
+      "date": "2026-06-27",
+      "score": 76,
+      "tags": [
+        "AI HOT",
+        "AI分身",
+        "语音克隆",
+        "开源"
+      ],
+      "summary": "开发者 Leaf 开源项目，将网红峰哥做成能实时通话的 AI 分身，集成实时对话、音色克隆和人格注入，工程延迟压到 1 秒内。技术拆解：语音识别用 Cartesia ink-whisper 降噪防误触发；大模型选 MiniMax 高速版，首字响应 361ms；语音合成用 VoxCPM 开源克隆，15 秒素材即可复刻。整体从最初 8-20 秒优化至体感 2-3 秒。人格通过女娲 Skill 从直播语料蒸馏出口头禅和思维逻辑。普通人半小时可跑通：克隆项目后，用 Claude Code 或 Cursor 配置，填两个 API Key 即可使用。",
+      "publishedAt": "2026-06-26T15:37:43.000Z",
+      "category": "tip",
+      "comment": "点评：实时 AI 分身的门槛迅速下降，语音识别、低延迟模型、音色克隆和人格注入已经能被个人开发者组合成可体验产品。",
+      "advice": "建议：做数字分身前先解决授权、肖像、声音、免责声明和滥用防护；技术 demo 可以快，商业化一定要慢一拍把合规补齐。"
+    },
+    {
+      "topic": "paper",
+      "title": "Anthropic Economic Index 报告：使用节奏",
+      "source": "Anthropic：Research（发表成果 · 网页）",
+      "url": "https://www.anthropic.com/research/economic-index-june-2026-report",
+      "date": "2026-06-27",
+      "score": 55,
+      "tags": [
+        "AI HOT",
+        "Anthropic",
+        "Economic Index",
+        "使用节奏"
+      ],
+      "summary": "Anthropic 发布 Economic Index 报告，基于隐私保护遥测数据分析了 Claude 的使用节奏。工作日个人对话占比约 35%，周末升至近 50%；高薪职业在工作日外的使用占比更高。日内模式显示：新闻请求集中在早上 7 点，食谱在下午 6 点达到 2.3 倍高频，睡眠建议凌晨 3 点最多。税收相关请求在 4 月 15 日美国报税截止日前激增。调查还发现：使用 Claude 最自动化的用户预计 AI 明年将承担更多任务，但对薪资、工作安全及工作意义的预期最为乐观。",
+      "publishedAt": "2026-06-26T15:18:56.294Z",
+      "category": "paper",
+      "comment": "点评：AI 使用呈现明显的时间、职业和生活场景节奏。它既是工作自动化工具，也是个人助理、信息入口和生活规划工具。",
+      "advice": "建议：AI 产品设计可按“早间信息、工作执行、傍晚生活、深夜陪伴/健康”拆分场景；企业管理则要关注非工作时段使用带来的边界问题。"
+    },
+    {
+      "topic": "model",
+      "title": "OpenAI 预览新一代模型 GPT-5.6 Sol",
+      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "url": "https://openai.com/index/previewing-gpt-5-6-sol",
+      "date": "2026-06-27",
       "score": 78,
       "tags": [
         "AI HOT",
         "OpenAI",
-        "Anthropic",
-        "xAI",
-        "Grok",
-        "观点"
-      ],
-      "summary": "LinkedIn联合创始人、Anthropic和OpenAI投资者Reid Hoffman在播客中公开批评SpaceX和xAI。他指出SpaceX\"不是一家人工智能公司\"，6月12日上市后收购AI编程工具Cursor属于\"花钱买相关性\"；xAI则是\"彻底的灾难\"，所有11位联合创始人已离职，Gro…",
-      "publishedAt": "2026-06-24T14:20:14.340Z",
-      "category": "tip",
-      "comment": "点评：投资人对 xAI 与 SpaceX 的批评，本质上是在质疑“把 AI 标签贴到一切业务上”的叙事泡沫。AI 公司最终还是要用模型能力、产品留存、组织稳定性和商业收入证明自己。",
-      "advice": "建议：看 AI 公司或相关标的时，不要只看估值和创始人光环，应拆开看团队稳定性、技术路线、客户付费、数据闭环和现金消耗。"
-    },
-    {
-      "topic": "product",
-      "title": "Figma在Config 2026押注人类判断，画布AI能力却来自第三方",
-      "source": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/figma-bets-on-human-judgment-at-config-2026-while-the-ai-powering-its-canvas-belongs-to-someone-else",
-      "date": "2026-06-25",
-      "score": 74,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "Anthropic",
-        "Google",
-        "推理",
-        "产品"
-      ],
-      "summary": "Figma在Config 2026将设计画布扩展至代码、动画、3D深度和着色器效果，并集成去年收购的Weave工作流系统。新功能包括Code Layers（代码与设计并存）、Motion动画、深度层、Shader及Generative Plugins。协作方面，团队可搜索复用AI提示词、保存工作流…",
-      "publishedAt": "2026-06-24T16:49:01.000Z",
-      "category": "ai-products",
-      "comment": "点评：Figma 的方向很清楚：设计工具正在从静态画布变成“产品生产画布”。但核心 AI 能力来自外部模型，也说明应用层护城河会更多来自工作流、协作和设计资产，而不是底层模型本身。",
-      "advice": "建议：设计和产品团队可以试点“设计稿—代码—动画—评审”的一体化流程，但要保留设计规范、组件库和人工审核，避免生成内容破坏品牌一致性。"
-    },
-    {
-      "topic": "tip",
-      "title": "字节跳动技术副总裁洪定坤：AI Coding 的实践与探索",
-      "source": "公众号：火山引擎",
-      "url": "https://mp.weixin.qq.com/s/mdmaAyUIvxE8WT_GEbF2wQ",
-      "date": "2026-06-25",
-      "score": 74,
-      "tags": [
-        "AI HOT",
-        "观点"
-      ],
-      "summary": "在火山引擎Force大会，字节跳动技术副总裁洪定坤分享AI Coding实践。过去一年，字节AI代码贡献率增长6倍，tokens消耗增长5倍，但过度关注单一指标可能失真--TRAE团队代码超90%由AI生成，人均需求吞吐率仅提升60%。900次实验显示，主流Coding模型组合代码正确率超80%，…",
-      "publishedAt": "2026-06-24T14:02:42.000Z",
-      "category": "tip",
-      "comment": "点评：AI Coding 已经从“代码有多少由 AI 写”进入“需求吞吐、正确率、评审负担、缺陷率是否改善”的阶段。只追求生成占比，很容易制造漂亮但失真的指标。",
-      "advice": "建议：研发管理者应把 AI Coding 评估指标改成端到端交付效率：需求周期、一次通过率、线上缺陷、代码审查耗时和开发者满意度。"
-    },
-    {
-      "topic": "paper",
-      "title": "DFlash：块扩散草稿模型实现最高15倍吞吐量提升",
-      "source": "MarkTechPost（RSS）",
-      "url": "https://www.marktechpost.com/2026/06/24/dflash-speculative-decoding-drafts-whole-token-blocks-in-parallel-for-up-to-15x-higher-throughput-on-nvidia-blackwell",
-      "date": "2026-06-25",
-      "score": 74,
-      "tags": [
-        "AI HOT",
-        "Nvidia",
-        "GPT",
-        "Qwen",
-        "推理",
-        "论文"
-      ],
-      "summary": "DFlash 由 UC San Diego 团队提出，是一种用于投机解码的轻量块扩散草稿模型。它一次前向推理生成整块 token，再由目标模型并行验证，保证输出无损。相比 EAGLE-3，DFlash 实现最高 2.5 倍加速，在 Qwen3-8B 等多种模型上平均无损加速超过 6 倍（MATH-…",
-      "publishedAt": "2026-06-24T07:21:10.000Z",
-      "category": "paper",
-      "comment": "点评：投机解码与块扩散草稿模型说明推理侧仍有巨大工程红利。对于企业来说，吞吐提升往往比单点能力提升更快转化为成本下降和体验改善。",
-      "advice": "建议：平台团队可关注这类无损加速方案是否能接入现有推理栈，并用真实负载测试延迟、吞吐、显存和答案一致性。"
-    },
-    {
-      "topic": "model",
-      "title": "OpenAI ChatGPT 语音最大规模升级：双向AI语音模型 Bidi 1 已上线测试",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/967/852.htm",
-      "date": "2026-06-25",
-      "score": 74,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "GPT",
+        "GPT-5.6 Sol",
         "模型"
       ],
-      "summary": "6月23日，部分用户反馈 ChatGPT 网页版和 App 版上线了双向 AI 语音模型 Bidi 1，位于设置模型选择器中，与标准语音和高级语音并列。该模型支持边说话边监听，用户可在对话中途打断并发出新指令，例如要求从1数到10时中途喊停倒数，模型会立即切换执行。OpenAI 尚未官宣，预计本周…",
-      "publishedAt": "2026-06-24T04:34:24.000Z",
+      "summary": "OpenAI 发布了新一代模型 GPT-5.6 Sol 的预览信息。该模型被定位为下一代模型，目前仅公开了预览消息和标题，尚未披露具体技术细节、性能参数或功能特性。",
+      "publishedAt": "2026-06-26T10:00:00.000Z",
       "category": "ai-models",
-      "comment": "点评：双向语音的关键不是“声音更像人”，而是模型能边听边说、被打断、实时改任务。这会推动客服、陪练、会议助手和车载交互从播报式体验走向协作式体验。",
-      "advice": "建议：语音产品应重点测试打断、纠错、噪声环境、多说话人和任务切换，而不是只比较音色自然度。"
-    },
-    {
-      "topic": "model",
-      "title": "Qwen-AgentWorld 开源：让 Agent 学会\"先预测，再行动\"",
-      "source": "公众号：通义实验室（千问）",
-      "url": "https://mp.weixin.qq.com/s/NV9WGpGsfFz35jww5agM9g",
-      "date": "2026-06-25",
-      "score": 74,
-      "tags": [
-        "AI HOT",
-        "Claude",
-        "GPT",
-        "通义",
-        "千问",
-        "模型"
-      ],
-      "summary": "通义千问推出首个原生语言世界模型 Qwen-AgentWorld，覆盖 MCP、Search、Terminal、SWE、Web、OS、Android 七大领域。模型基于超 1000 万条真实交互轨迹，经 CPT→SFT→RL 三阶段训练，在 AgentWorldBench 上超越 GPT-5.4（…",
-      "publishedAt": "2026-06-24T03:32:04.000Z",
-      "category": "ai-models",
-      "comment": "点评：Agent 竞争正在从“会调用工具”升级为“理解行动后果”。先预测再行动，本质上是在给智能体补上世界模型、可回放轨迹和低风险试错空间。",
-      "advice": "建议：做企业 Agent 时，优先建设任务轨迹、仿真环境、评测集和回滚机制，不要急着把高风险动作直接交给模型。"
-    },
-    {
-      "topic": "model",
-      "title": "Gemini 3.5 Flash 中的计算机使用",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash",
-      "date": "2026-06-25",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "Google",
-        "Gemini",
-        "Agent",
-        "模型"
-      ],
-      "summary": "Google 将计算机使用（Computer use）作为内置工具集成至 Gemini 3.5 Flash，使开发者能构建跨浏览器、移动端和桌面环境的智能体。此前该功能仅作为独立模型在 Gemini 2.5 中提供，现已原生整合至主 Flash 模型。开发者可通过 Gemini API 及 Gem…",
-      "publishedAt": "2026-06-24T21:16:01.786Z",
-      "category": "ai-models",
-      "comment": "点评：Computer Use 进入主模型，说明浏览器、桌面和移动端操作会成为通用 Agent 的基础能力。但能力越通用，权限边界和误操作风险越需要工程化治理。",
-      "advice": "建议：试点此类能力时，先限定沙箱、白名单网站、只读数据和人工确认点，再逐步开放写入、支付、发布等高风险操作。"
-    },
-    {
-      "topic": "safety",
-      "title": "在与Anthropic的纠纷中，NSA失去了对Mythos的访问权限",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://www.nytimes.com/2026/06/23/us/politics/nsa-lost-access-anthropic-tool.html",
-      "date": "2026-06-25",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "Anthropic",
-        "产业"
-      ],
-      "summary": "美国国家安全局（NSA）因与人工智能公司Anthropic的纠纷，失去了对Mythos系统的访问权限。",
-      "publishedAt": "2026-06-24T19:08:32.032Z",
-      "category": "industry",
-      "comment": "点评：这类事件提醒我们，关键 AI 系统不仅是工具，也是供应链和治理资产。一旦访问权、合同或信任关系变化，业务连续性会受到直接影响。",
-      "advice": "建议：企业采购关键 AI 能力时，应准备替代模型、数据导出、权限审计和应急降级方案，避免单一供应商锁死核心流程。"
-    },
-    {
-      "topic": "tip",
-      "title": "AI被认为会取代工程岗位，但新数据显示工程是2025年最具韧性的岗位",
-      "source": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/06/24/ai-was-supposed-to-kill-engineering-jobs-but-new-data-suggests-theyre-the-most-resilient",
-      "date": "2026-06-25",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "Anthropic",
-        "Meta",
-        "Nvidia",
-        "观点"
-      ],
-      "summary": "风投机构SignalFire追踪8000万家公司数百万员工数据发现，工程是2025年最具韧性的岗位。大型科技公司总招聘较2019年下降25%，工程岗仅降11%；工程岗占Alphabet、Meta等12家\"Tech Majors\"新招员工的55%（2019年为46%）。早期初创公司2025年工程师招…",
-      "publishedAt": "2026-06-24T21:56:41.000Z",
-      "category": "tip",
-      "comment": "点评：“AI 取代工程师”的叙事过于粗糙。更现实的变化是工程师岗位会重组：会用 AI 分解任务、写规格、评审和验证的人，反而更稀缺。",
-      "advice": "建议：个人应把学习重点放在系统设计、需求澄清、测试验证和 Agent 协作；团队则应把 AI 培训纳入工程规范，而不是只买工具。"
-    },
-    {
-      "topic": "paper",
-      "title": "思考即回忆：推理如何解锁LLM中的参数化知识",
-      "source": "Google Research：Blog（网页）",
-      "url": "https://research.google/blog/thinking-to-recall-how-reasoning-unlocks-parametric-knowledge-in-llms",
-      "date": "2026-06-25",
-      "score": 69,
-      "tags": [
-        "AI HOT",
-        "Google",
-        "Gemini",
-        "Qwen",
-        "推理",
-        "论文"
-      ],
-      "summary": "Google Research研究发现，推理（chain-of-thought）能帮助大语言模型（LLM）回忆简单事实，即使这些事实无需复杂推导。在Gemini-2.5 Flash和Pro以及Qwen3-32B上，启用推理后模型能够回答原本无法直接回答的简单问题，pass@k显示正确事实存在于输出…",
-      "publishedAt": "2026-06-24T17:05:40.380Z",
-      "category": "paper",
-      "comment": "点评：这项研究说明“推理”有时不只是解决复杂题，也能激活模型内部已有知识。它提醒我们，提示词和推理预算会影响事实召回，而不仅影响数学题表现。",
-      "advice": "建议：知识问答场景应对比直接回答、短推理、长推理和 RAG 的效果差异，避免在所有问题上无差别开启高成本推理。"
-    },
-    {
-      "topic": "safety",
-      "title": "OpenRouter 零数据留存（ZDR）实践：97 款新模型，流量占比近半",
-      "source": "OpenRouter：Announcements（RSS）",
-      "url": "https://openrouter.ai/blog/insights/when-zero-means-zero",
-      "date": "2026-06-25",
-      "score": 68,
-      "tags": [
-        "AI HOT",
-        "观点"
-      ],
-      "summary": "OpenRouter 的零数据留存（ZDR）保证用户提示词和模型响应不被存储，元数据一般安全。自 1 月以来新增 97 款支持 ZDR 的模型，月度 token 量增长 4.3 倍，约占全部路由流量一半。ZDR 在三个层面执行：账户级（整个供应商开启）、护栏级（按 API Key 或组织成员限定）…",
-      "publishedAt": "2026-06-24T16:00:00.000Z",
-      "category": "tip",
-      "comment": "点评：ZDR 流量占比上升，说明企业用户越来越在意模型路由中的数据留存和合规边界。隐私能力会成为模型平台的重要产品特性。",
-      "advice": "建议：企业接入模型路由平台时，应逐项确认提示词、响应、日志、元数据的留存策略，并把不同业务按敏感级别分配模型与 Key。"
-    },
-    {
-      "topic": "model",
-      "title": "GPT-5.5 Instant 新版本，对话更有趣",
-      "source": "X：OpenAI (@OpenAI)",
-      "url": "https://x.com/OpenAI/status/2069843083701915755",
-      "date": "2026-06-25",
-      "score": 67,
-      "tags": [
-        "AI HOT",
-        "GPT",
-        "模型"
-      ],
-      "summary": "我们为你带来了新版 GPT-5.5 Instant，它现在聊起天来有趣多了。 我们最常用的模型现在能更好地理解问题背后的意图，并相应地调整回应。 它也能更可靠地处理复杂约束，让购物和本地推荐更加实用和连贯。 今天向付费用户推送，明天向免费用户推送。",
-      "publishedAt": "2026-06-24T18:00:21.000Z",
-      "category": "ai-models",
-      "comment": "点评：通用模型继续打磨“意图理解 + 约束遵循 + 推荐质量”，说明日常助手的竞争正在转向更稳定的长尾任务体验。",
-      "advice": "建议：团队评测通用模型时，应加入多约束推荐、本地信息检索、连续追问和拒答边界，而不是只看一次性问答。"
+      "comment": "点评：GPT-5.6 Sol 目前披露信息很少，但“先预览、后细节”的节奏本身说明前沿模型发布越来越重视预期管理和安全缓冲。",
+      "advice": "建议：对这类预览消息保持关注但不要立刻调整架构；等上下文长度、工具调用、价格、速率、安全策略和评测结果明确后再做迁移计划。"
     }
   ],
   "sources": [
@@ -246,44 +164,73 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://fortune.com/2026/06/24/reid-hoffman-spacex-musk-openai-anthropic-gen-z-mistake",
-      "note": "里德·霍夫曼称SpaceX\"不是一家人工智能公司\"，xAI则是\"彻底的灾难\""
-    },
-    {
-      "name": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/figma-bets-on-human-judgment-at-config-2026-while-the-ai-powering-its-canvas-belongs-to-someone-else",
-      "note": "Figma在Config 2026押注人类判断，画布AI能力却来自第三方"
-    },
-    {
-      "name": "公众号：火山引擎",
-      "url": "https://mp.weixin.qq.com/s/mdmaAyUIvxE8WT_GEbF2wQ",
-      "note": "字节跳动技术副总裁洪定坤：AI Coding 的实践与探索"
-    },
-    {
-      "name": "MarkTechPost（RSS）",
-      "url": "https://www.marktechpost.com/2026/06/24/dflash-speculative-decoding-drafts-whole-token-blocks-in-parallel-for-up-to-15x-higher-throughput-on-nvidia-blackwell",
-      "note": "DFlash：块扩散草稿模型实现最高15倍吞吐量提升"
+      "name": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/969/334.htm",
+      "note": "阿里千问输入法上线 macOS 版：最快 300 字/分，AI 自动润色"
     },
     {
       "name": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/967/852.htm",
-      "note": "OpenAI ChatGPT 语音最大规模升级：双向AI语音模型 Bidi 1…"
+      "url": "https://www.ithome.com/0/969/311.htm",
+      "note": "国家统计局：1-5月规上工业企业利润增18.8%，电子行业利润增103.9%贡献43.1%"
     },
     {
-      "name": "公众号：通义实验室（千问）",
-      "url": "https://mp.weixin.qq.com/s/NV9WGpGsfFz35jww5agM9g",
-      "note": "Qwen-AgentWorld 开源：让 Agent 学会\"先预测，再行动\""
+      "name": "MarkTechPost（RSS）",
+      "url": "https://www.marktechpost.com/2026/06/26/cursor-study-finds-reward-hacking-inflates-coding-agent-benchmark-scores-on-swe-bench-pro",
+      "note": "Cursor 研究发现奖励攻击虚增编码智能体 SWE-bench Pro 分数"
     },
     {
-      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash",
-      "note": "Gemini 3.5 Flash 中的计算机使用"
+      "name": "Ars Technica：AI（RSS）",
+      "url": "https://arstechnica.com/tech-policy/2026/06/microsoft-built-supercomputer-to-help-openai-infringe-copyrights-nyt-alleged",
+      "note": "纽约时报修订诉讼，指控微软为OpenAI建造版权侵权超级计算机"
+    },
+    {
+      "name": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2070550479621488896",
+      "note": "华盛顿邮报报告：AI聊天机器人存在左翼偏见"
+    },
+    {
+      "name": "X：阿易 AI Notes (@AYi_AInotes)",
+      "url": "https://x.com/AYi_AInotes/status/2070531964067623381",
+      "note": "Leaf 开源项目：将网红峰哥做成实时通话 AI 分身"
+    },
+    {
+      "name": "Anthropic：Research（发表成果 · 网页）",
+      "url": "https://www.anthropic.com/research/economic-index-june-2026-report",
+      "note": "Anthropic Economic Index 报告：使用节奏"
+    },
+    {
+      "name": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "url": "https://openai.com/index/previewing-gpt-5-6-sol",
+      "note": "OpenAI 预览新一代模型 GPT-5.6 Sol"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-06-27",
+    "title": "AI HOT 日报：版权诉讼、GPT-5.6 Sol、千问输入法",
+    "summary": "纽约时报升级对微软/OpenAI 的版权诉讼，OpenAI 预览 GPT-5.6 Sol；Cursor 揭示 Coding Agent 基准奖励攻击；阿里千问输入法、Leaf 实时 AI 分身和 Anthropic 使用节奏报告显示 AI 正在进入更贴近日常的输入、语音和生活场景。",
+    "link": "/posts/62727/",
+    "tags": [
+      "AI HOT",
+      "GPT-5.6 Sol",
+      "版权",
+      "千问输入法"
+    ]
+  },
+  {
+    "date": "2026-06-26",
+    "title": "AI HOT 日报：AI 经济、GPT-5.6、Agentic Coding",
+    "summary": "AI 经济年化收入超 1750 亿美元，OpenAI GPT-5.6 被要求受控预览，版权诉讼与内容审核推动 AI 治理升温；Ornith-1.0、Codex 移动端、Claude Code Hook、Runway Agent 2.0 则显示 Agent 工作流继续产品化。",
+    "link": "/posts/62626/",
+    "tags": [
+      "AI HOT",
+      "AI经济",
+      "GPT-5.6",
+      "Agentic Coding"
+    ]
+  },
   {
     "date": "2026-06-25",
     "title": "AI HOT 日报：xAI争议、Figma AI 画布、AI Coding 实践",

@@ -10,7 +10,43 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-06-25T01:44:18.062Z</updated>
+  <updated>2026-06-27T07:34:04.357Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, GPT-5.6 Sol, OpenAI, 微软, 版权, Cursor, SWE-bench, 千问输入法, AI分身, AI治理" scheme="https://aimak.cn/tags/AI-HOT-GPT-5-6-Sol-OpenAI-%E5%BE%AE%E8%BD%AF-%E7%89%88%E6%9D%83-Cursor-SWE-bench-%E5%8D%83%E9%97%AE%E8%BE%93%E5%85%A5%E6%B3%95-AI%E5%88%86%E8%BA%AB-AI%E6%B2%BB%E7%90%86/"/>
+    <id>https://aimak.cn/posts/62727/</id>
+    <link href="https://aimak.cn/posts/62727/"/>
+    <published>2026-06-27T07:45:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-06-27：版权诉讼、GPT-5.6 Sol、千问输入法</title>
+    <updated>2026-06-27T07:34:04.357Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, AI经济, GPT-5.6, Agentic Coding, OpenAI, Codex, Claude Code, Midjourney, Runway, AI治理" scheme="https://aimak.cn/tags/AI-HOT-AI%E7%BB%8F%E6%B5%8E-GPT-5-6-Agentic-Coding-OpenAI-Codex-Claude-Code-Midjourney-Runway-AI%E6%B2%BB%E7%90%86/"/>
+    <id>https://aimak.cn/posts/62626/</id>
+    <link href="https://aimak.cn/posts/62626/"/>
+    <published>2026-06-26T09:28:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-06-26：AI 经济、GPT-5.6、Agentic Coding</title>
+    <updated>2026-06-26T09:30:37.970Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -346,39 +382,5 @@
     </summary>
     <title>《通信网络智能体白皮书》全景解读：AI重构未来网络</title>
     <updated>2025-08-14T07:56:48.857Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="人工智能" scheme="https://aimak.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    <id>https://aimak.cn/posts/5856/</id>
-    <link href="https://aimak.cn/posts/5856/"/>
-    <published>2025-07-27T22:00:00.000Z</published>
-    <summary>
-      <![CDATA[<p>字节跳动于2025年7月26日正式开源Coze的核心组件<strong>Coze Studio</strong>（可视化Agent开发平台）和<strong>Coze Loop</strong>（Agent运维管理平台），这一动作对AI Agent生态具有战略意义。</p>
-<hr>
-<h3 id="⚙️-一、技术架构与核心价值"><a href="#⚙️-一、技术架构与核心价值"]]>
-    </summary>
-    <title>字节正式开源Coze的核心组</title>
-    <updated>2025-08-14T07:56:48.858Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="人工智能" scheme="https://aimak.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    <id>https://aimak.cn/posts/60844/</id>
-    <link href="https://aimak.cn/posts/60844/"/>
-    <published>2025-07-12T22:00:00.000Z</published>
-    <summary>
-      <![CDATA[<p>Factory AI（又称“Factory”）是一款专为企业级软件开发设计的AI编程工具，由红杉资本等机构投资支持。它通过自动化软件开发的重复性任务、优化协作流程和智能解决问题，大幅提升开发效率和质量。下面从核心功能、技术特点和应用场景三方面进行通俗解析：</p>
-<hr>
-<h3 id="一、Factory-AI-的核心功能：三大模块"><a]]>
-    </summary>
-    <title>Factory AI 总结</title>
-    <updated>2025-08-14T07:56:48.853Z</updated>
   </entry>
 </feed>
