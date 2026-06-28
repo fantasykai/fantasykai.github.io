@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-06-27T07:34:04.357Z</updated>
+  <updated>2026-06-27T22:57:34.988Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, SpaceXAI, xAI, DeepSeek, DSpark, OpenAI, AI硬件, AI成本, 模型路由, 供应链安全" scheme="https://aimak.cn/tags/AI-HOT-SpaceXAI-xAI-DeepSeek-DSpark-OpenAI-AI%E7%A1%AC%E4%BB%B6-AI%E6%88%90%E6%9C%AC-%E6%A8%A1%E5%9E%8B%E8%B7%AF%E7%94%B1-%E4%BE%9B%E5%BA%94%E9%93%BE%E5%AE%89%E5%85%A8/"/>
+    <id>https://aimak.cn/posts/62828/</id>
+    <link href="https://aimak.cn/posts/62828/"/>
+    <published>2026-06-27T23:05:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-06-28：SpaceXAI、DeepSeek DSpark、AI 账单重估</title>
+    <updated>2026-06-27T22:57:34.988Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -364,23 +382,5 @@
     </summary>
     <title>AI领域最新资讯：突破、趋势与展望</title>
     <updated>2026-05-20T04:38:09.043Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="人工智能" scheme="https://aimak.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    <id>https://aimak.cn/posts/3935/</id>
-    <link href="https://aimak.cn/posts/3935/"/>
-    <published>2025-08-05T22:00:00.000Z</published>
-    <summary>
-      <![CDATA[<ul>
-<li><strong>发布背景与行业挑战</strong>：介绍白皮书发布的行业背景和通信网络面临的运维挑战，使用列表说明行业痛点。</li>
-<li><strong>核心理念：通信网络智能体</strong>：定义智能体的概念和技术特征，使用表格对比与传统网络差异。</li>
-<li><strong>体系框架：五层协同架构</strong>：说明智能体网络的层级结构，包含人机交互层到]]>
-    </summary>
-    <title>《通信网络智能体白皮书》全景解读：AI重构未来网络</title>
-    <updated>2025-08-14T07:56:48.857Z</updated>
   </entry>
 </feed>

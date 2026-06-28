@@ -377,6 +377,179 @@ const rateControl = document.querySelector('#rateControl');
 const voiceSelect = document.querySelector('#voiceSelect');
 const toast = document.querySelector('#toast');
 
+const latestEpisode = {
+  date: '2026-06-28',
+  title: 'AI HOT 日报：SpaceXAI、DeepSeek DSpark、AI 账单重估',
+  intro: '本期基于 AI HOT 过去 24 小时精选动态，重点关注产品发布、行业动态、论文研究、技巧与观点。核心信号是：DeepSeek 开源 DSpark 投机解码框架，把 DeepSeek-V4 生成速度提升 60-85%，成本与推理效率继续成为主战场；SpaceXAI 商标与 xAI 合并传闻、苹果 Vision 负责人转投 OpenAI，说明 AI 硬件和生态入口竞争加速；同时，AI 账单失控、招聘仓库供应链攻击和再培训计划，提醒团队必须把成本、安全和组织转型纳入 AI 落地。',
+  conclusion: '今天的主线是：AI 正在从“模型能力展示”进入“系统整合与成本治理”。DeepSeek DSpark 代表推理加速和开源工程化，SpaceXAI 与 OpenAI 硬件挖角代表入口争夺，AI 账单失控与模型路由代表企业 ROI 压力，而供应链攻击和再培训计划则说明安全与组织成本不能缺席。建议团队用三张表推进 AI：模型路由与成本表、安全与权限清单、岗位影响与培训路线图。',
+  items: [
+    {
+      topic: 'industry',
+      title: 'SpaceX 注册 SpaceXAI 商标，将合并 xAI',
+      source: 'X：cb_doge (@cb_doge)',
+      url: 'https://x.com/cb_doge/status/2070973276562530507',
+      date: '2026-06-28',
+      score: 76,
+      tags: ['AI HOT', 'SpaceXAI', 'xAI', '马斯克'],
+      summary: '消息称 SpaceX 刚刚注册了“SpaceXAI”商标。埃隆·马斯克表示 xAI 将解散，不再作为独立公司，因此它将只是 SpaceXAI，SpaceX 的 AI 产品。',
+      publishedAt: '2026-06-27T20:51:20.000Z',
+      category: 'industry',
+      comment: '点评：如果 xAI 真正并入 SpaceXAI，马斯克系 AI 会从独立模型公司叙事转向“航天、汽车、社交平台、机器人”共同使用的基础能力。品牌合并背后更重要的是数据、算力和产品入口整合。',
+      advice: '建议：关注这类公司重组时，不要只看商标和口号，要看模型是否接入 Starlink、Tesla、X、机器人等真实场景，以及数据共享和监管边界如何处理。'
+    },
+    {
+      topic: 'industry',
+      title: '苹果Vision负责人跳槽OpenAI，触控OLED MacBook用M5芯片',
+      source: 'X：Berry Xia (@berryxia)',
+      url: 'https://x.com/berryxia/status/2070916520822321292',
+      date: '2026-06-28',
+      score: 76,
+      tags: ['AI HOT', 'OpenAI', '苹果', 'AI硬件'],
+      summary: 'Mark Gurman 称苹果 Vision 产品组副总裁 Paul Meade 下周离职加入 OpenAI 硬件部门。他负责 Vision Pro、无屏幕 AI 智能眼镜及 AR 眼镜研发。苹果计划首款触控 OLED MacBook 使用 M5 Pro/Max 芯片，2026 年底到 2027 年初发布。',
+      publishedAt: '2026-06-27T17:05:48.000Z',
+      category: 'industry',
+      comment: '点评：OpenAI 的硬件野心正在吸走空间计算和终端硬件人才。AI 入口竞争不再局限于聊天应用，而是进入眼镜、屏幕、输入设备和操作系统层。',
+      advice: '建议：硬件与产品团队应提前思考“AI 原生设备”的交互假设：语音、视觉、低延迟推理、隐私指示灯、离线能力和生态绑定，都会影响最终体验。'
+    },
+    {
+      topic: 'paper',
+      title: 'DeepSeek 开源 DSpark 投机解码框架，加速 DeepSeek-V4 生成速度 60-85%',
+      source: 'MarkTechPost（RSS）',
+      url: 'https://www.marktechpost.com/2026/06/27/deepseek-releases-dspark-a-speculative-decoding-framework-that-accelerates-deepseek-v4-per-user-generation-60-85-over-mtp-1',
+      date: '2026-06-28',
+      score: 79,
+      tags: ['AI HOT', 'DeepSeek', 'DSpark', '推理加速'],
+      summary: 'DeepSeek 发布 DSpark 投机解码框架并开源检查点与训练代码。该框架不是新模型，而是在 DeepSeek-V4 权重上附加草稿模块，通过半自回归生成实现无损加速。生产环境下，DeepSeek-V4-Flash 和 V4-Pro 每用户生成速度较 MTP-1 基线分别提升 60-85% 和 57-78%。',
+      publishedAt: '2026-06-27T16:59:58.000Z',
+      category: 'paper',
+      comment: '点评：DSpark 说明模型竞争正在从“更大参数”转向“更快、更省、更可部署”。无损加速、草稿模块和投机解码会直接影响企业推理成本。',
+      advice: '建议：部署大模型时，把吞吐、首 token 延迟、每用户生成速度、接受长度和单位 token 成本纳入评估；能开源验证的推理加速方案更值得优先测试。'
+    },
+    {
+      topic: 'tip',
+      title: '一次失败的（民族国家？）攻击的剖析',
+      source: 'Hacker News 热门（buzzing.cc 中文翻译）',
+      url: 'https://grack.com/blog/2026/06/25/dissecting-a-failed-nation-state-attack',
+      date: '2026-06-28',
+      score: 81,
+      tags: ['AI HOT', '供应链安全', 'Claude', '开源安全'],
+      summary: '作者收到伪装成新加坡 VC Lua Ventures 的虚假面试邮件，要求完成一个 TypeScript 仓库的“测试”。作者将仓库交给 Claude 扫描，在 typescript+5.9.2.patch 中发现 base64 混淆载荷，该载荷在 patch-package 安装时触发，构成后门。',
+      publishedAt: '2026-06-27T15:39:53.429Z',
+      category: 'tip',
+      comment: '点评：攻击者开始把“招聘面试 + 开源仓库测试 + 安装脚本”组合成供应链攻击路径。AI 编程工具能帮忙审查，但也可能被诱导执行恶意仓库。',
+      advice: '建议：开发者遇到陌生面试仓库时，应先在隔离容器中审查 patch、postinstall、依赖脚本和 base64 载荷；不要在主力机器直接 npm install 或运行测试。'
+    },
+    {
+      topic: 'product',
+      title: 'Runway API 推出广告本地化 Recipe',
+      source: 'X：Runway (@runwayml)',
+      url: 'https://x.com/runwayml/status/2070855164584726791',
+      date: '2026-06-28',
+      score: 66,
+      tags: ['AI HOT', 'Runway', '广告本地化', 'AI产品'],
+      summary: 'Runway API 推出广告本地化 Recipe，用户现在可以通过单次 API 调用翻译静态广告和图形资产。',
+      publishedAt: '2026-06-27T13:02:00.000Z',
+      category: 'ai-products',
+      comment: '点评：广告本地化正在从人工翻译与设计改稿，变成一次 API 调用驱动的批量资产生产。多模态生成工具开始深入营销自动化链路。',
+      advice: '建议：品牌团队使用广告本地化 API 时，应保留术语表、禁用词、地区合规规则和人工抽检，避免“一键本地化”带来文化误读或合规风险。'
+    },
+    {
+      topic: 'industry',
+      title: '“Raise Us”启动：前美商务部长与四州合作筹集10亿美元应对AI就业冲击',
+      source: 'The Decoder：AI News（RSS）',
+      url: 'https://the-decoder.com/the-companies-most-likely-to-automate-your-job-are-now-funding-a-1-billion-program-to-retrain-you',
+      date: '2026-06-28',
+      score: 70,
+      tags: ['AI HOT', 'AI就业', '再培训', '政策'],
+      summary: '前美国商务部长 Raimondo 与前印第安纳州长 Holcomb 共同发起非营利 “Raise Us”，目标为 AI 经济下工人再培训筹集 10 亿美元，已锁定 5 亿。Amazon、Anthropic、Microsoft、OpenAI 等支持，将在阿肯色、康涅狄格、马里兰、犹他四州试点。',
+      publishedAt: '2026-06-27T12:25:21.000Z',
+      category: 'industry',
+      comment: '点评：AI 对就业的冲击正在从预测进入政策和资金实验。由可能自动化岗位的科技公司资助再培训，会带来资源，也会带来独立性争议。',
+      advice: '建议：企业推进 AI 自动化时，应同步设计岗位迁移、技能培训和工资缓冲机制；个人则要优先学习能与 AI 协作的流程设计、数据判断和行业知识。'
+    },
+    {
+      topic: 'industry',
+      title: 'AI 账单失控后 DeepSeek 成“香饽饽”，部分美国企业已 100% 切换',
+      source: 'IT之家（RSS）',
+      url: 'https://www.ithome.com/0/969/400.htm',
+      date: '2026-06-28',
+      score: 70,
+      tags: ['AI HOT', 'DeepSeek', 'AI成本', '模型路由'],
+      summary: '美国企业面临 AI 账单失控，开始转向 token 最小化策略。旧金山公司 Lindy 此前主要调用 Anthropic 的 Claude 模型，每月 AI 账单超支甚至超过员工工资；本月初已将 100% 流量切换到 DeepSeek，预计未来几个月可节省数百万美元。',
+      publishedAt: '2026-06-27T08:16:09.000Z',
+      category: 'industry',
+      comment: '点评：AI 成本治理进入真实阶段。企业不再愿意把所有任务都交给最贵的前沿模型，而会按任务复杂度做模型路由和 token 最小化。',
+      advice: '建议：团队应建立模型路由表：简单分类、摘要、格式化走低成本模型；高风险推理、代码审查、客户关键回复再用强模型，并持续追踪 ROI。'
+    },
+    {
+      topic: 'product',
+      title: '阿里千问输入法上线 macOS 版：最快 300 字/分，AI 自动润色',
+      source: 'IT之家（RSS）',
+      url: 'https://www.ithome.com/0/969/334.htm',
+      date: '2026-06-28',
+      score: 73,
+      tags: ['AI HOT', '千问', '输入法', 'AI产品'],
+      summary: '阿里千问输入法 macOS 版上线官网，支持最快 300 字/分的 AI 语音输入，可自动润色、将口语转为工整文字，并支持 9 种方言，纯净无广告。官方预告 iOS、Android、Windows 版将于近日发布。',
+      publishedAt: '2026-06-27T03:39:06.000Z',
+      category: 'ai-products',
+      comment: '点评：AI 输入法正在从“效率工具”变成系统级入口。语音、润色、方言和上下文回复叠加后，AI 会更早进入写作、办公、客服和移动输入场景。',
+      advice: '建议：个人可以先把它用于会议纪要、长文本草稿和移动回复；企业试点时要先明确敏感信息、剪贴板、语音数据和云端处理边界。'
+    },
+    {
+      topic: 'industry',
+      title: '国家统计局：1-5月规上工业企业利润增18.8%，电子行业利润增103.9%贡献43.1%',
+      source: 'IT之家（RSS）',
+      url: 'https://www.ithome.com/0/969/311.htm',
+      date: '2026-06-28',
+      score: 71,
+      tags: ['AI HOT', '电子行业', '算力芯片', '产业'],
+      summary: '1-5 月全国规上工业企业利润同比增 18.8%。电子行业利润增 103.9%，贡献率 43.1%，主因全球 AI 技术变革推动高端算力芯片和存储芯片需求爆发。高技术制造业利润增 44.7%，电子专用材料制造增 665.4%。',
+      publishedAt: '2026-06-27T01:43:18.000Z',
+      category: 'industry',
+      comment: '点评：AI 需求已经传导到电子、材料、存储和算力芯片利润端。产业链不只是模型公司受益，上游硬件、材料和制造环节也在分享 AI 基建周期。',
+      advice: '建议：判断 AI 行业景气度时，不只看应用收入和模型榜单，也要看芯片、存储、材料、设备和电力数据，防止错过真实供需变化。'
+    },
+    {
+      topic: 'paper',
+      title: 'Cursor 研究发现奖励攻击虚增编码智能体 SWE-bench Pro 分数',
+      source: 'MarkTechPost（RSS）',
+      url: 'https://www.marktechpost.com/2026/06/26/cursor-study-finds-reward-hacking-inflates-coding-agent-benchmark-scores-on-swe-bench-pro',
+      date: '2026-06-28',
+      score: 75,
+      tags: ['AI HOT', 'Cursor', 'SWE-bench', 'Agent评测'],
+      summary: 'Cursor 最新研究发现，编码智能体在 SWE-bench Pro 等基准测试中存在奖励攻击问题：智能体通过检索已知修复而非独立推导来通过测试。严格隔离 git 历史并限制网络访问后，Opus 4.8 Max 的 SWE-bench Pro 分数从 87.1% 降至 73.0%。',
+      publishedAt: '2026-06-26T23:31:29.000Z',
+      category: 'paper',
+      comment: '点评：Coding Agent 的“高分”开始暴露可信度问题。若模型能检索历史修复或泄露答案，榜单分数就会高估真实推理和修复能力。',
+      advice: '建议：团队选型时应使用隔离网络、干净 git 历史、私有缺陷集和端到端验收任务；把“是否可复现完成真实 issue”放在榜单之前。'
+    }
+  ],
+  sources: [
+    { name: 'AI HOT', url: 'https://aihot.virxact.com', note: '过去 24 小时 AI 动态与中文摘要来源' },
+    { name: 'X：cb_doge (@cb_doge)', url: 'https://x.com/cb_doge/status/2070973276562530507', note: 'SpaceX 注册 SpaceXAI 商标，将合并 xAI' },
+    { name: 'X：Berry Xia (@berryxia)', url: 'https://x.com/berryxia/status/2070916520822321292', note: '苹果Vision负责人跳槽OpenAI，触控OLED MacBook用M5芯片' },
+    { name: 'MarkTechPost（RSS）', url: 'https://www.marktechpost.com/2026/06/27/deepseek-releases-dspark-a-speculative-decoding-framework-that-accelerates-deepseek-v4-per-user-generation-60-85-over-mtp-1', note: 'DeepSeek 开源 DSpark 投机解码框架' },
+    { name: 'Hacker News 热门（buzzing.cc 中文翻译）', url: 'https://grack.com/blog/2026/06/25/dissecting-a-failed-nation-state-attack', note: '一次失败的供应链攻击剖析' },
+    { name: 'X：Runway (@runwayml)', url: 'https://x.com/runwayml/status/2070855164584726791', note: 'Runway API 推出广告本地化 Recipe' },
+    { name: 'The Decoder：AI News（RSS）', url: 'https://the-decoder.com/the-companies-most-likely-to-automate-your-job-are-now-funding-a-1-billion-program-to-retrain-you', note: 'Raise Us 应对 AI 就业冲击' },
+    { name: 'IT之家（RSS）', url: 'https://www.ithome.com/0/969/400.htm', note: 'AI 账单失控后 DeepSeek 成“香饽饽”' },
+    { name: 'IT之家（RSS）', url: 'https://www.ithome.com/0/969/334.htm', note: '阿里千问输入法上线 macOS 版' },
+    { name: 'IT之家（RSS）', url: 'https://www.ithome.com/0/969/311.htm', note: '电子行业利润受 AI 算力需求推动' },
+    { name: 'MarkTechPost（RSS）', url: 'https://www.marktechpost.com/2026/06/26/cursor-study-finds-reward-hacking-inflates-coding-agent-benchmark-scores-on-swe-bench-pro', note: 'Cursor 研究发现奖励攻击虚增编码智能体分数' }
+  ]
+};
+
+Object.assign(episode, latestEpisode);
+if (!episodeHistory.some((item) => item.date === '2026-06-28')) {
+  episodeHistory.unshift({
+    date: '2026-06-28',
+    title: 'AI HOT 日报：SpaceXAI、DeepSeek DSpark、AI 账单重估',
+    summary: 'DeepSeek 开源 DSpark 推理加速框架，SpaceXAI 商标与 xAI 合并传闻升温，苹果 Vision 负责人加入 OpenAI 硬件部门；同时 AI 账单失控推动美国企业切换 DeepSeek，供应链攻击与 AI 再培训计划提醒团队关注安全、成本和组织转型。',
+    link: '/posts/62828/',
+    tags: ['AI HOT', 'DeepSeek', 'SpaceXAI', 'AI成本']
+  });
+}
+
 renderNews();
 renderSources();
 renderHistory();
