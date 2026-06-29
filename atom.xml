@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-06-27T22:57:34.988Z</updated>
+  <updated>2026-06-29T07:33:31.883Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Wayfinder, 模型路由, SK, AI数据中心, Grok, VibeThinker, Vibe Coding, CEO-Bench, 开源模型, Agent评测" scheme="https://aimak.cn/tags/AI-HOT-Wayfinder-%E6%A8%A1%E5%9E%8B%E8%B7%AF%E7%94%B1-SK-AI%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83-Grok-VibeThinker-Vibe-Coding-CEO-Bench-%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B-Agent%E8%AF%84%E6%B5%8B/"/>
+    <id>https://aimak.cn/posts/62929/</id>
+    <link href="https://aimak.cn/posts/62929/"/>
+    <published>2026-06-29T07:31:30.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-06-29：Wayfinder 路由、SK AI 数据中心、VibeThinker</title>
+    <updated>2026-06-29T07:33:31.883Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -363,24 +381,5 @@
     </summary>
     <title>深入理解Ontology本体：AI时代被低估的基石概念</title>
     <updated>2026-05-26T09:18:26.637Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="人工智能" scheme="https://aimak.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    <category term="Agent" scheme="https://aimak.cn/tags/Agent/"/>
-    <category term="AI资讯" scheme="https://aimak.cn/tags/AI%E8%B5%84%E8%AE%AF/"/>
-    <category term="大模型" scheme="https://aimak.cn/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
-    <category term="智能体" scheme="https://aimak.cn/tags/%E6%99%BA%E8%83%BD%E4%BD%93/"/>
-    <id>https://aimak.cn/posts/20260520/</id>
-    <link href="https://aimak.cn/posts/20260520/"/>
-    <published>2026-05-20T00:00:00.000Z</published>
-    <summary>
-      <![CDATA[<p>2026 年 5 月 19 日，Google I&#x2F;O 在 Mountain View 拉开帷幕，几乎与此同时，OpenAI、Anthropic 各自抛出新动作，国内百度 Create 2026、阿里、字节、腾讯也在同一周完成密集发布。这是大模型走向”长程智能体（Long Horizon Agent）”分水岭式的一周——以下是过去 24]]>
-    </summary>
-    <title>AI领域最新资讯：突破、趋势与展望</title>
-    <updated>2026-05-20T04:38:09.043Z</updated>
   </entry>
 </feed>
