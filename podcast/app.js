@@ -1,141 +1,236 @@
 const episode = {
-  "date": "2026-06-29",
-  "title": "AI HOT 日报：Wayfinder 路由、SK AI 数据中心、VibeThinker",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注模型路由、AI 基建、低成本推理模型、Agent 长周期评测与 Vibe Coding 审查闭环。核心信号是：Wayfinder Router 让企业能按提示词结构在本地和托管模型之间确定性路由；SK 集团计划到 2035 年建设 15GW AI 数据中心，AI 竞争继续外溢到电力、半导体和国家基础设施；VibeThinker-3B 与 CEO-Bench 则说明推理能力可以被压缩，但事实知识、长期策略和稳定经营仍要靠评测与系统约束。",
-  "conclusion": "今天的主线是：AI 正在从“单个模型更聪明”走向“系统更会分配资源”。企业下一步应建立模型路由、真实评测、成本看板和安全审查四件套，而不是只追热点模型名称。",
+  "date": "2026-07-01",
+  "title": "AI HOT 日报：Anthropic、美团 LongCat、Claude",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、模型发布/更新、论文研究、技巧与观点、产品发布/更新。核心信号是：Anthropic在Claude Code中植入隐写术代码识别中国用户；美团 LongCat-2.0 正式发布：国产算力集群训练的万亿参数大模型；Claude Sonnet 5 发布。",
+  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "topic": "product",
-      "title": "Wayfinder Router：在本地和托管的大语言模型之间进行确定性查询路由",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://github.com/itsthelore/wayfinder-router",
-      "date": "2026-06-29",
-      "score": 75,
+      "topic": "safety",
+      "title": "Anthropic在Claude Code中植入隐写术代码识别中国用户",
+      "source": "公众号：数字生命卡兹克",
+      "url": "https://mp.weixin.qq.com/s/yLb4T2UC16ebKHApdBbgWw",
+      "date": "2026-07-01",
+      "score": 84,
       "tags": [
         "AI HOT",
-        "Wayfinder",
-        "模型路由",
-        "产品"
-      ],
-      "summary": "Wayfinder Router 通过分析提示词结构和硬约束特征，在微秒级完成本地模型与托管模型之间的路由决策。它完全离线，不需要额外调用模型，可支持 OpenAI 兼容 API、Ollama、Anthropic、Groq、vLLM 等。",
-      "publishedAt": "2026-06-28T16:58:56.073Z",
-      "category": "ai-products",
-      "comment": "点评：模型路由正在从规则 if/else 升级为可校准的成本控制层。简单任务留在本地或低成本模型，复杂任务交给强模型，能同时降低延迟、费用和供应商锁定风险。",
-      "advice": "建议：先建立三档路由：低风险本地模型、中等复杂度便宜托管模型、高风险强模型；持续记录命中率、失败率、平均延迟和单次成本。"
-    },
-    {
-      "topic": "industry",
-      "title": "SK 集团会长崔泰源：到 2035 年建设 15GW AI 数据中心，总投资达 1000 万亿韩元",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/969/953.htm",
-      "date": "2026-06-29",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "SK",
-        "AI数据中心",
+        "Anthropic",
+        "Claude",
+        "Claude Code",
         "产业"
       ],
-      "summary": "SK 集团计划到 2035 年建成 15GW AI 数据中心容量，项目总投资 1000 万亿韩元；SK 海力士也将向韩国西南部投资 400 万亿韩元，半导体供应项目总投资达 1100 万亿韩元。",
-      "publishedAt": "2026-06-29T06:44:15.000Z",
+      "summary": "Anthropic在Claude Code中植入隐写术：读取本地时区（Asia/Shanghai或Asia/Urumqi）和ANTHROPIC_BASE_URL环境变量，与一份经base64+XOR（密钥91）加密的147个域名列表（含美团、字节跳动、月之暗面等）比对，识别中国用户。识别后，在请求…",
+      "publishedAt": "2026-07-01T00:11:00.000Z",
       "category": "industry",
-      "comment": "点评：AI 基建竞争已经不只是 GPU 采购，而是电力、数据中心、半导体、网络和主权产业链的长期工程。15GW 量级意味着能源和芯片供应会继续成为 AI 约束。",
-      "advice": "建议：战略和 CIO 团队应同时跟踪电力规划、数据中心 PUE、HBM、存储、光模块和本地政策；AI 预算要把算力与能源弹性一起考虑。"
-    },
-    {
-      "topic": "tip",
-      "title": "分享两个 Vibe Coding 必备 Prompt：第一性原理与对抗式审查",
-      "source": "公众号：数字生命卡兹克",
-      "url": "https://mp.weixin.qq.com/s/umPqTD_-IubbhXIgiS47eQ",
-      "date": "2026-06-29",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "Vibe Coding",
-        "Prompt",
-        "观点"
-      ],
-      "summary": "作者分享 Vibe Coding 中两个关键 Prompt：一是从第一性原理出发，要求 AI 从基本事实重新推导；二是对抗式审查，让 AI 站在恶意用户角度检查 OOM、死循环、未来时间污染等问题。",
-      "publishedAt": "2026-06-29T02:08:00.000Z",
-      "category": "tip",
-      "comment": "点评：Vibe Coding 的核心不是只让 AI 写得快，而是把 AI 拆成建设者和审计者。第一性原理避免路径依赖，对抗式审查负责发现边界条件。",
-      "advice": "建议：重要代码固定两轮提示：先列约束、事实和不可违反条件，再换角色做攻击式评审；不要跳过测试、资源上限、异常输入和权限边界。"
+      "comment": "点评：这条新闻的重点不是单一功能争议，而是开发者工具的透明度和供应链信任。企业越依赖 AI 编程工具，越需要知道客户端收集了什么、如何路由请求、是否存在区域或客户识别逻辑。",
+      "advice": "建议：把 AI 编程工具纳入客户端审计和网络观测；对敏感仓库使用代理隔离、最小权限 token、版本锁定和变更审查，不要默认信任闭源本地客户端。"
     },
     {
       "topic": "model",
-      "title": "Grok 4.5 私测于 SpaceX 和 Tesla，性能接近 Opus",
-      "source": "X：Elon Musk (@elonmusk, xAI)",
-      "url": "https://x.com/elonmusk/status/2071184354756477041",
-      "date": "2026-06-29",
-      "score": 70,
+      "title": "美团 LongCat-2.0 正式发布：国产算力集群训练的万亿参数大模型",
+      "source": "公众号：龙猫LongCat（美团）",
+      "url": "https://mp.weixin.qq.com/s/9XFcx3fmFcmbry5bHMJsow",
+      "date": "2026-07-01",
+      "score": 82,
       "tags": [
         "AI HOT",
-        "Grok",
-        "xAI",
+        "Agent",
+        "开源",
+        "推理",
         "模型"
       ],
-      "summary": "Grok 4.5 基于 1.5T V9 基础模型，并在补充训练中加入 Cursor 数据，已在 SpaceX 和 Tesla 进入私测。初步评估显示其性能接近或可能超过 Opus，Grok Build 工具链也在完善。",
-      "publishedAt": "2026-06-28T10:50:05.000Z",
+      "summary": "美团于6月30日发布新一代万亿参数大模型LongCat-2.0并开源。总参数1.6T，平均激活约48B，原生支持1M超长上下文，在五万卡国产算力集群上完成全流程训练与推理。采用LSA稀疏注意力、零计算专家、ScMoE及MOPD多专家融合（Agent/Reasoning/Interaction三组专…",
+      "publishedAt": "2026-07-01T02:24:00.000Z",
       "category": "ai-models",
-      "comment": "点评：重点不只是又一个强模型，而是模型进入 SpaceX、Tesla 这类真实复杂组织中试跑。业务数据、工程工具链和员工反馈会成为模型迭代资产。",
-      "advice": "建议：评估模型时准备自己的私测任务包：真实代码仓库、运营数据、内部知识库、权限限制和回滚方案，用业务完成率衡量模型。"
+      "comment": "点评：LongCat-2.0 把国产算力、超大 MoE、1M 上下文和开源放在同一叙事里，真正值得观察的是训练链路是否稳定、推理成本是否可控，以及长上下文能力能否转成真实 Agent 任务收益。",
+      "advice": "建议：评测 LongCat 这类新模型时，不只看发布参数；要用中文长文档、代码仓库、函数调用、长上下文召回、延迟和单位任务成本做横向对比。"
+    },
+    {
+      "topic": "model",
+      "title": "Claude Sonnet 5 发布",
+      "source": "Anthropic：Newsroom（网页）",
+      "url": "https://www.anthropic.com/news/claude-sonnet-5",
+      "date": "2026-07-01",
+      "score": 81,
+      "tags": [
+        "AI HOT",
+        "Anthropic",
+        "Claude",
+        "推理",
+        "Claude Code",
+        "模型"
+      ],
+      "summary": "Claude Sonnet 5 是 Anthropic 推出的最新 Sonnet 模型，具备计划、浏览器和终端工具使用能力，可自主运行。性能接近 Opus 4.8，定价更低：即日起至 2026 年 8 月 31 日，输入 token $2/百万，输出 $10/百万，之后恢复为 $3/百万输入和 $…",
+      "publishedAt": "2026-06-30T18:02:06.984Z",
+      "category": "ai-models",
+      "comment": "点评：Sonnet 5 的信号是“旗舰能力下沉”：更低价格、更强工具使用和 Claude Code 可用性，会继续压缩中间层模型的生存空间，也会加速企业把 Agent 放入真实研发流程。",
+      "advice": "建议：把 Sonnet 5 放进现有评测集与 Sonnet 4.6、Opus、Gemini、国产模型对跑，重点观察工具调用成功率、幻觉率、代码修改回归和真实成本。"
     },
     {
       "topic": "paper",
-      "title": "仅有三个 AI 模型在 500 天创业测试中盈利超过起始资本",
-      "source": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/only-three-ai-models-finished-above-starting-capital-in-a-500-day-startup-survival-test",
-      "date": "2026-06-29",
-      "score": 70,
+      "title": "AI 用 prover-verifier LLM 循环攻克 9 个未解数学难题",
+      "source": "X：AI Safety Memes (@AISafetyMemes)",
+      "url": "https://x.com/AISafetyMemes/status/2072085914558558402",
+      "date": "2026-07-01",
+      "score": 76,
       "tags": [
         "AI HOT",
-        "CEO-Bench",
-        "Agent评测",
         "论文"
       ],
-      "summary": "普林斯顿大学推出 CEO-Bench，让 AI 智能体在模拟环境中运营订阅软件公司 500 天。14 个模型中只有 Claude Fable 5、Claude Opus 4.8 和 GPT-5.5 在最佳运行中超过起始资本。",
-      "publishedAt": "2026-06-28T10:16:13.000Z",
+      "summary": "AI Safety Memes 推文指出，AI 刚刚解决了 9 个未解决的数学问题，但全球没有记者报道。引用 @WeinsteinOmri 的推文称，采用\"prover-verifier\"LLM 循环的方法，成功解决了理论计算机科学中 9 个重大开放问题，其中包括一个困扰其长达 2 年的难题。该研…",
+      "publishedAt": "2026-06-30T22:32:34.000Z",
       "category": "paper",
-      "comment": "点评：短任务表现强，不代表能做长期经营。价格、配额、研发投入、市场反馈和现金流管理需要持续一致策略，多数 Agent 仍容易在长周期中漂移。",
-      "advice": "建议：不要急着让 Agent 自主经营业务闭环。更现实的是让 AI 做局部建议和模拟推演，人类保留预算、定价、招聘、合规等关键决策权。"
-    },
-    {
-      "topic": "model",
-      "title": "新浪开源 VibeThinker-3B：推理可压缩，事实知识不能",
-      "source": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/sinas-open-model-vibethinker-3b-aims-to-show-reasoning-compresses-well-but-factual-knowledge-doesnt",
-      "date": "2026-06-29",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "VibeThinker",
-        "小模型",
-        "推理"
-      ],
-      "summary": "新浪发布 3B 参数模型 VibeThinker-3B，在数学和编程基准上表现突出，但在知识密集型 GPQA-Diamond 上明显落后。研究提出逻辑推理可压缩，广泛事实知识仍需要大参数或外部知识补足。",
-      "publishedAt": "2026-06-28T07:44:41.000Z",
-      "category": "ai-models",
-      "comment": "点评：小模型未必不能做推理，但更适合结构清晰、规则稳定、知识边界明确的任务；事实密集任务仍需要检索增强、引用校验或强模型兜底。",
-      "advice": "建议：数学、代码、结构化推理可优先测试小模型；行业知识、政策问答、医疗法律金融等任务，应配合 RAG 和强模型复核。"
+      "comment": "点评：prover-verifier 循环说明 AI 在形式化推理中更适合扮演“提出证明 + 自动校验”的协作系统，而不是一次性给出不可审查的答案；可信度来自可验证链路。",
+      "advice": "建议：对这类重大研究结论保持“先验兴奋、验证谨慎”：优先查论文、证明、代码和同行复核，再决定是否迁移到研发流程。"
     },
     {
       "topic": "tip",
-      "title": "Artifacts 22：Zyphra、Cohere 和 Poolside 正在扩展生态系统广度",
-      "source": "Nathan Lambert：Interconnects（RSS）",
-      "url": "https://www.interconnects.ai/p/artifacts-22-zyphra-cohere-and-poolside",
-      "date": "2026-06-29",
-      "score": 60,
+      "title": "mattpocockuk 的 /writing-great-skills：编写可预测 AI Skill 的指南",
+      "source": "X：邵猛 (@shao__meng)",
+      "url": "https://x.com/shao__meng/status/2072126769986220157",
+      "date": "2026-07-01",
+      "score": 75,
       "tags": [
         "AI HOT",
-        "开源模型",
-        "Cohere",
-        "生态"
+        "观点"
       ],
-      "summary": "开源模型生态变得更多元，纯模型厂商、主权 AI 玩家、科技巨头和产品公司都在训练不同定位的模型。NVIDIA 发布 Nemotron-3-Ultra，Cohere 以 Apache 2.0 开源 Command A+。",
-      "publishedAt": "2026-06-28T17:03:07.000Z",
+      "summary": "mattpocockuk 的 /writing-great-skills 成为其最常调用的 Skill，指导如何编写稳定可预测的 AI Skill。核心：以过程可预测为目标；区分 model-invoked（自动触发）与 user-invoked（用户调用），description 应作触发器；采…",
+      "publishedAt": "2026-07-01T01:14:54.000Z",
       "category": "tip",
-      "comment": "点评：开源生态正从少数大模型追赶闭源前沿，走向多类型模型满足不同部署场景。通用大模型、主权模型、行业模型、产品内嵌小模型会并存。",
-      "advice": "建议：选型时看许可证、商用限制、本地部署、目标语言、工具调用、上下文和维护频率。开源不等于无成本，评测和运维也要预算。"
+      "comment": "点评：Skill 的本质是把经验流程产品化：触发条件、步骤、边界和反例越清楚，模型越不容易自由发挥。未来团队的 AI 能力会沉淀为一组可维护的 Skill 库。",
+      "advice": "建议：为团队高频任务写 Skill 模板：触发条件、输入输出、禁止事项、验收命令和失败兜底，并把好坏样例纳入版本管理。"
+    },
+    {
+      "topic": "product",
+      "title": "用 shot-scraper video 让 AI 智能体录制工作演示视频",
+      "source": "Simon Willison 博客",
+      "url": "https://simonwillison.net/2026/Jun/30/shot-scraper-video",
+      "date": "2026-07-01",
+      "score": 73,
+      "tags": [
+        "AI HOT",
+        "Agent",
+        "产品"
+      ],
+      "summary": "shot-scraper 1.10 新增 shot-scraper video 命令，支持通过 storyboard.yml 文件定义操作步骤，并利用 Playwright 录制浏览器视频。演示视频展示了 Datasette 中从粘贴的 CSV/TSV/JSON 数据创建新表的功能。该功能依赖 P…",
+      "publishedAt": "2026-06-30T16:54:26.000Z",
+      "category": "ai-products",
+      "comment": "点评：让 Agent 自动生成演示视频，价值在于把“完成了什么”变成可复核证据。对异步 Agent 工作流来说，截图、视频、日志和测试结果会成为交付物的一部分。",
+      "advice": "建议：让 Agent 交付时附带可复现证据包：操作脚本、演示视频、测试日志和变更摘要，方便人类快速验收。"
+    },
+    {
+      "topic": "safety",
+      "title": "库克与欧盟科技主管就新版Siri AI举行建设性会谈",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/970/810.htm",
+      "date": "2026-07-01",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "机器人",
+        "产业"
+      ],
+      "summary": "苹果CEO库克与欧盟科技事务负责人维尔库宁就新版Siri AI在欧推出举行建设性视频会议。新版Siri将转为可调用用户个人数据的聊天机器人，但因《数字市场法》互操作义务苹果拒绝向竞争对手开放同等数据权限，暂不在欧盟iPhone和iPad上推出。苹果提出\"可信系统代理\"方案，拟在设备与第三方AI模型…",
+      "publishedAt": "2026-06-30T23:43:32.000Z",
+      "category": "industry",
+      "comment": "点评：个人 AI 助手的竞争焦点正在从语音问答转向“谁能安全调动用户私有数据”。苹果与欧盟的拉扯说明，平台权限、互操作和隐私边界会直接决定产品节奏。",
+      "advice": "建议：做个人助理类产品时先设计数据授权面板、第三方调用边界、撤销机制和审计记录，避免能力上线后再补合规。"
+    },
+    {
+      "topic": "product",
+      "title": "Acti 将 AI 智能体直接放入手机键盘",
+      "source": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/06/30/acti-puts-ai-agents-directly-into-your-smartphone-keyboard",
+      "date": "2026-07-01",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "Google",
+        "Gemini",
+        "产品"
+      ],
+      "summary": "新加坡初创公司 Acti 发布基于 Google Gemini 的智能体键盘，可代替用户在应用中执行操作。核心功能 Skills 允许用自然语言创建快捷方式，如长按 T 键翻译消息、C 键发送会议链接。早期测试者两周内创建超 1000 个 Skills。采用本地优先架构，默认不访问私人消息。公司获…",
+      "publishedAt": "2026-06-30T17:52:46.000Z",
+      "category": "ai-products",
+      "comment": "点评：键盘可能成为移动端 Agent 的高频入口，因为它天然贴近输入场景。但入口越贴身，用户对隐私、本地处理和误触执行的要求就越高。",
+      "advice": "建议：移动端 Agent 产品优先实现本地优先、显式确认、权限分级和可撤销快捷操作，把“误发消息/误执行”作为核心风险测试。"
+    },
+    {
+      "topic": "tip",
+      "title": "Claude Code 入门：智能体循环",
+      "source": "Claude：Blog（网页）",
+      "url": "https://claude.com/blog/getting-started-with-loops",
+      "date": "2026-07-01",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "Claude",
+        "Agent",
+        "Claude Code",
+        "观点"
+      ],
+      "summary": "Claude Code 团队将智能体循环定义为 agent 重复工作直到满足停止条件的过程，并划分出四种主要类型：turn-based 循环（用户提示触发，Claude 自行判断完成或需更多上下文）、goal-based 循环（通过 `/goal` 命令设定可验证完成标准与最大轮次）、time-b…",
+      "publishedAt": "2026-06-30T17:28:28.530Z",
+      "category": "tip",
+      "comment": "点评：Agent 循环的关键不是“让模型一直干”，而是定义停止条件、检查点和预算。循环设计不好，自动化会变成无限重试和不可解释的成本黑洞。",
+      "advice": "建议：所有 Agent 循环都要写明目标、最大轮次、预算、停止条件、人工升级条件和可验证产物，避免无界自动化。"
+    },
+    {
+      "topic": "industry",
+      "title": "亚马逊 AWS 砸 10 亿美元，派遣工程师进驻客户公司",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/971/071.htm",
+      "date": "2026-07-01",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "Anthropic",
+        "产业"
+      ],
+      "summary": "亚马逊 AWS 宣布设立新部门，组建前置驻场工程师团队，先期投入 10 亿美元（约 67.97 亿元人民币）。团队分批派驻客户企业，每批 5-6 组工程师，驻场周期 45 天，协助客户落地人工智能软件与智能体应用。该模式在 Palantir、Salesforce、Anthropic、谷歌云等企业已…",
+      "publishedAt": "2026-07-01T06:57:42.000Z",
+      "category": "industry",
+      "comment": "点评：AWS 把工程师派进客户现场，说明 AI 落地不是卖 API 就结束，而是需要咨询、迁移、流程改造和指标复盘。大模型云竞争正在服务化。",
+      "advice": "建议：企业引入 AI 时预留流程顾问和工程集成预算，按 45-90 天设计试点，验收指标写清节省工时、缺陷率、采用率和成本。"
+    },
+    {
+      "topic": "model",
+      "title": "Google DeepMind 发布 Nano Banana 2 Lite 和 Gemini Omni Flash",
+      "source": "Google DeepMind：Blog（RSS）",
+      "url": "https://deepmind.google/blog/start-building-with-nano-banana-2-lite-and-gemini-omni-flash",
+      "date": "2026-07-01",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "Google",
+        "Gemini",
+        "模型"
+      ],
+      "summary": "Google DeepMind 推出 Nano Banana 2 Lite（gemini-3.1-flash-lite-image），为 Nano Banana 系列速度最快、成本最低的图像模型，文本到图像输出仅需 4 秒，每 1K 分辨率图像成本 $0.034，已上线 Google AI Stu…",
+      "publishedAt": "2026-06-30T16:02:40.000Z",
+      "category": "ai-models",
+      "comment": "点评：多模态模型开始进入“速度和单价”竞争。对内容生产团队而言，低成本图像生成会把试错次数拉高，真正的差异会转向工作流、版权和品牌一致性。",
+      "advice": "建议：内容团队可建立多模型素材流水线，但要同步维护风格规范、版权记录、提示词模板和人工抽检机制。"
+    },
+    {
+      "topic": "safety",
+      "title": "Meta秘密测试ChatGPT等竞品：承包商假扮未成年发送数万条危机提示",
+      "source": "The Decoder：AI News（RSS）",
+      "url": "https://the-decoder.com/meta-secretly-tested-chatgpt-gemini-and-character-ai-with-thousands-of-minor-perspective-crisis-prompts",
+      "date": "2026-07-01",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "Google",
+        "Meta",
+        "Gemini",
+        "产业"
+      ],
+      "summary": "Meta通过承包商Covelen发起代号\"Cannes\"的项目，雇佣数百人假扮未成年人，向ChatGPT、Gemini和Character.AI发送关于自杀、自残、饮食障碍和毒品的敏感提示，并将回复录入表格。2025年8月一轮测试中发送了超过4.5万条提示。Meta称这是行业标准安全测试，未将数据…",
+      "publishedAt": "2026-06-30T11:14:52.000Z",
+      "category": "industry",
+      "comment": "点评：安全评测本身也需要治理。用敏感未成年人视角测试竞品可以发现风险，但也会引出数据来源、测试伦理、员工心理负担和行业透明度问题。",
+      "advice": "建议：做安全红队时要建立伦理审批、测试人员保护、敏感数据脱敏和披露边界；不要把“行业惯例”当成免审理由。"
     }
   ],
   "sources": [
@@ -145,44 +240,68 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://github.com/itsthelore/wayfinder-router",
-      "note": "Wayfinder Router：在本地和托管的大语言模型之间进行确定性查询路由"
+      "name": "公众号：数字生命卡兹克",
+      "url": "https://mp.weixin.qq.com/s/yLb4T2UC16ebKHApdBbgWw",
+      "note": "Anthropic在Claude Code中植入隐写术代码识别中国用户"
+    },
+    {
+      "name": "公众号：龙猫LongCat（美团）",
+      "url": "https://mp.weixin.qq.com/s/9XFcx3fmFcmbry5bHMJsow",
+      "note": "美团 LongCat-2.0 正式发布：国产算力集群训练的万亿参数大模型"
+    },
+    {
+      "name": "Anthropic：Newsroom（网页）",
+      "url": "https://www.anthropic.com/news/claude-sonnet-5",
+      "note": "Claude Sonnet 5 发布"
+    },
+    {
+      "name": "X：AI Safety Memes (@AISafetyMemes)",
+      "url": "https://x.com/AISafetyMemes/status/2072085914558558402",
+      "note": "AI 用 prover-verifier LLM 循环攻克 9 个未解数学难题"
+    },
+    {
+      "name": "X：邵猛 (@shao__meng)",
+      "url": "https://x.com/shao__meng/status/2072126769986220157",
+      "note": "mattpocockuk 的 /writing-great-skills：编写…"
+    },
+    {
+      "name": "Simon Willison 博客",
+      "url": "https://simonwillison.net/2026/Jun/30/shot-scraper-video",
+      "note": "用 shot-scraper video 让 AI 智能体录制工作演示视频"
     },
     {
       "name": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/969/953.htm",
-      "note": "SK 集团会长崔泰源：到 2035 年建设 15GW AI 数据中心，总投资达 1000 万亿韩元"
-    },
-    {
-      "name": "公众号：数字生命卡兹克",
-      "url": "https://mp.weixin.qq.com/s/umPqTD_-IubbhXIgiS47eQ",
-      "note": "分享两个 Vibe Coding 必备 Prompt：第一性原理与对抗式审查"
-    },
-    {
-      "name": "X：Elon Musk (@elonmusk, xAI)",
-      "url": "https://x.com/elonmusk/status/2071184354756477041",
-      "note": "Grok 4.5 私测于 SpaceX 和 Tesla，性能接近 Opus"
-    },
-    {
-      "name": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/only-three-ai-models-finished-above-starting-capital-in-a-500-day-startup-survival-test",
-      "note": "仅有三个 AI 模型在 500 天创业测试中盈利超过起始资本"
-    },
-    {
-      "name": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/sinas-open-model-vibethinker-3b-aims-to-show-reasoning-compresses-well-but-factual-knowledge-doesnt",
-      "note": "新浪开源 VibeThinker-3B：推理可压缩，事实知识不能"
-    },
-    {
-      "name": "Nathan Lambert：Interconnects（RSS）",
-      "url": "https://www.interconnects.ai/p/artifacts-22-zyphra-cohere-and-poolside",
-      "note": "Artifacts 22：Zyphra、Cohere 和 Poolside 正在扩展生态系统广度"
+      "url": "https://www.ithome.com/0/970/810.htm",
+      "note": "库克与欧盟科技主管就新版Siri AI举行建设性会谈"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-07-01",
+    "title": "AI HOT 日报：Anthropic、美团 LongCat、Claude",
+    "summary": "重点关注 行业动态、模型发布/更新、论文研究、技巧与观点、产品发布/更新。核心信号是：Anthropic在Claude Code中植入隐写术代码识别中国用户；美团 LongCat-2.0 正式发布：国产算力集群训练的万亿参数大模型；Claude Sonnet 5 发布。",
+    "link": "/posts/70101/",
+    "tags": [
+      "AI HOT",
+      "Anthropic",
+      "Claude",
+      "Claude Code"
+    ]
+  },
+  {
+    "date": "2026-06-30",
+    "title": "AI HOT 日报：LongCat Owl、Claude 企业网关、AI 安全红线",
+    "summary": "LongCat Owl Alpha 显示国产 MoE 与国产 ASIC 训练链路进入全球模型流量场；Claude apps gateway 与 Microsoft Foundry 把模型接入企业云、SSO、预算和治理体系；Cursor iOS、EverOS 与 RedKnot 说明 Agent 正在走向移动端、长期记忆和推理系统优化；Claude Code 隐藏恶意代码与军方误炸事件则提醒团队先补齐安全沙箱和证据链。",
+    "link": "/posts/63030/",
+    "tags": [
+      "AI HOT",
+      "LongCat Owl",
+      "Claude",
+      "AI安全"
+    ]
+  },
   {
     "date": "2026-06-29",
     "title": "AI HOT 日报：Wayfinder 路由、SK AI 数据中心、VibeThinker",
