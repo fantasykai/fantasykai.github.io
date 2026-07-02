@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-07-01T07:20:14.597Z</updated>
+  <updated>2026-07-02T11:41:52.352Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Agent, OpenAI, Kimi, Copilot, 蚂蚁阿宝, 支付宝, Claude Code, 机器人, AI算力, 产品, 产业, 观点" scheme="https://aimak.cn/tags/AI-HOT-Agent-OpenAI-Kimi-Copilot-%E8%9A%82%E8%9A%81%E9%98%BF%E5%AE%9D-%E6%94%AF%E4%BB%98%E5%AE%9D-Claude-Code-%E6%9C%BA%E5%99%A8%E4%BA%BA-AI%E7%AE%97%E5%8A%9B-%E4%BA%A7%E5%93%81-%E4%BA%A7%E4%B8%9A-%E8%A7%82%E7%82%B9/"/>
+    <id>https://aimak.cn/posts/70202/</id>
+    <link href="https://aimak.cn/posts/70202/"/>
+    <published>2026-07-02T11:45:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-07-02：阿宝、OpenAI 持股、Kimi K2.7 Code</title>
+    <updated>2026-07-02T11:41:52.352Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -365,23 +383,5 @@
     <summary>系统梳理 AI Agent 的核心概念与工程化方法：从 Prompt、Context、RAG、MCP、Memory、Function Calling，到 Harness、Loop Engineering、Guardrails、Eval 与可观测性，并结合网络运维监控、告警降噪、根因分析和闭环修复场景给出落地路径。</summary>
     <title>AI Agent全解析：从概念到网络运维实战</title>
     <updated>2026-06-24T07:30:00.000Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI资讯, 大模型, 智能体, OpenAI, Google, Anthropic" scheme="https://aimak.cn/tags/AI%E8%B5%84%E8%AE%AF-%E5%A4%A7%E6%A8%A1%E5%9E%8B-%E6%99%BA%E8%83%BD%E4%BD%93-OpenAI-Google-Anthropic/"/>
-    <id>https://aimak.cn/posts/11544/</id>
-    <link href="https://aimak.cn/posts/11544/"/>
-    <published>2026-05-31T16:00:00.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>AI领域最新资讯：突破、趋势与展望</p>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink"]]>
-    </summary>
-    <title>2026年6月1日AI资讯简报：突破、趋势与展望</title>
-    <updated>2026-06-01T11:24:02.738Z</updated>
   </entry>
 </feed>
