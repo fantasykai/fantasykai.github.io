@@ -327,13 +327,44 @@ button:disabled { cursor: not-allowed; opacity: 0.45; transform: none; }
   border-color: rgba(217, 130, 50, 0.3);
   box-shadow: 0 16px 40px rgba(75, 52, 24, 0.09);
 }
-.exercise-figure {
-  height: 78px;
+.exercise-media {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
   display: grid;
   place-items: center;
   border-radius: 18px;
   background: linear-gradient(135deg, rgba(223,147,67,.16), rgba(111,142,95,.12));
   border: 1px dashed rgba(64,54,44,.25);
+}
+
+.exercise-media.compact {
+  height: 118px;
+}
+
+.exercise-media.large {
+  height: min(360px, 52vh);
+  margin: 16px 0;
+  border-radius: 24px;
+}
+
+.workout-media {
+  width: min(460px, 100%);
+  margin: 16px auto 0;
+}
+
+.exercise-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.media-fallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
   font-size: 40px;
 }
 .exercise-card h3 { margin: 0; font-size: 18px; line-height: 1.38; letter-spacing: -0.01em; }

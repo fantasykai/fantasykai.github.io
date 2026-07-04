@@ -17,7 +17,8 @@ const state = {
   plans: readJson(STORE.plans, []),
   history: readJson(STORE.history, []),
   workout: readJson(STORE.workout, null),
-  randomSet: []
+  randomSet: [],
+  timerId: null
 };
 
 const runningRecipes = [
@@ -91,8 +92,10 @@ function route() {
 
 function render() {
   if (!state.exercises.length) return;
+  stopWorkoutTimer();
   const views = { home: renderHome, library: renderLibrary, gym: renderGym, plans: renderPlans, running: renderRunning, strength: renderStrength, workout: renderWorkout, history: renderHistory };
   app.innerHTML = views[state.view]();
+  if (state.view === 'workout') setupWorkoutTimer();
 }
 
 function renderHome() {
@@ -108,7 +111,7 @@ function renderHome() {
       </div>
       <div class="slot-display">
         <div class="slot-cell"><div><span>部位</span><strong>${state.randomSet[0]?.body_part_zh || '臀腿'}</strong></div></div>
-        <div class="slot-cell"><div><span>动作</span><strong>${state.randomSet[1]?.name_zh || state.randomSet[1]?.name || '罗马尼亚硬拉'}</strong></div></div>
+        <div class="slot-cell"><div><span>动作</span><strong>${displayName(state.randomSet[1]) || '罗马尼亚硬拉'}</strong></div></div>
         <div class="slot-cell"><div><span>心情</span><strong>${randomMood()}</strong></div></div>
       </div>
       <div class="actions">
@@ -215,20 +218,30 @@ function renderWorkout() {
   const index = Math.min(workout.index || 0, workout.items.length - 1);
   const item = workout.items[index];
   const exercise = item.id ? getExercise(item.id) : null;
-  const title = item.title || exercise?.name_zh || exercise?.name || '训练动作';
+  normalizeWorkoutItem(item);
+  const title = item.title || displayName(exercise) || '训练动作';
   const steps = exercise?.steps_zh?.length ? exercise.steps_zh : [item.cue || item.runner_cue || '保持动作稳定，按自己的节奏完成。'];
+  const phaseLabel = item.phase === 'rest' ? '组间休息' : '训练中';
+  const remaining = Math.max(0, item.remaining ?? item.work_seconds ?? 45);
   return `
     <section class="paper-card workout-card">
       <p class="eyebrow">Workout Player</p>
       <h2>${escapeHtml(workout.title)}</h2>
-      <p>${index + 1} / ${workout.items.length}</p>
-      <div class="workout-count"><div><strong>${index + 1}</strong><span>当前动作</span></div></div>
+      <p>${index + 1} / ${workout.items.length} · 第 ${item.current_set}/${item.sets} 组 · ${phaseLabel}</p>
+      ${exercise ? `<div class="workout-media">${renderExerciseMedia(exercise, false)}</div>` : ''}
+      <div class="workout-count"><div><strong id="countdownText">${formatSeconds(remaining)}</strong><span>${phaseLabel}</span></div></div>
       <h1 style="font-size:clamp(32px,6vw,58px)">${escapeHtml(title)}</h1>
       <p>${escapeHtml(item.prescription || item.reps || item.duration || '按计划完成')}</p>
       <ol class="step-list">${steps.slice(0, 5).map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>
       ${item.runner_cue ? `<p class="tag">跑步提示：${escapeHtml(item.runner_cue)}</p>` : ''}
       <p class="disclaimer">如出现疼痛、头晕或明显不适，请立即停止。</p>
-      <div class="actions" style="justify-content:center"><button class="ghost-btn" data-action="prev-workout">上一个</button><button class="primary-btn" data-action="next-workout">${index === workout.items.length - 1 ? '完成训练' : '下一个'}</button><button class="ghost-btn" data-action="finish-workout">结束并记录</button></div>
+      <div class="actions" style="justify-content:center">
+        <button class="ghost-btn" data-action="prev-workout">上一个</button>
+        <button class="primary-btn" data-action="toggle-timer">${item.timer_running ? '暂停倒计时' : '继续倒计时'}</button>
+        <button class="ghost-btn" data-action="reset-set">重置本组</button>
+        <button class="ghost-btn" data-action="next-workout">${index === workout.items.length - 1 ? '完成训练' : '下一个'}</button>
+        <button class="ghost-btn" data-action="finish-workout">结束并记录</button>
+      </div>
     </section>`;
 }
 
@@ -247,23 +260,36 @@ function renderPlanItem(plan) {
 function renderExerciseCard(exercise) {
   const favorite = state.favorites.has(exercise.id);
   return `<article class="exercise-card">
-    <div class="exercise-figure" aria-hidden="true">${figureFor(exercise)}</div>
-    <h3>${escapeHtml(exercise.name_zh || exercise.name)}</h3>
-    <p>${escapeHtml(exercise.name_zh ? exercise.name : exercise.target_zh)} · ${escapeHtml(exercise.equipment_zh)} · ${escapeHtml(exercise.body_part_zh)}</p>
+    ${renderExerciseMedia(exercise, true)}
+    <h3>${escapeHtml(displayName(exercise))}</h3>
+    <p>${escapeHtml(exercise.target_zh)} · ${escapeHtml(exercise.equipment_zh)} · ${escapeHtml(exercise.body_part_zh)}</p>
     <div class="tags">${[exercise.target_zh, exercise.difficulty, ...(exercise.tags || []).slice(0, 2)].map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}</div>
     <div class="card-actions"><button class="tiny-btn" data-action="detail" data-id="${exercise.id}">详情</button><button class="tiny-btn ${favorite ? 'favorite-on' : ''}" data-action="favorite" data-id="${exercise.id}">${favorite ? '★ 已藏' : '☆ 收藏'}</button></div>
   </article>`;
 }
 
+function renderExerciseMedia(exercise, compact = true) {
+  const alt = `${displayName(exercise)} 动作动图`;
+  const fallback = figureFor(exercise);
+  const cls = compact ? 'exercise-media compact' : 'exercise-media large';
+  if (!exercise.gif_url) {
+    return `<div class="${cls} media-fallback" aria-label="${escapeAttr(alt)}">${fallback}</div>`;
+  }
+  return `<div class="${cls}">
+    <img src="${escapeAttr(exercise.gif_url)}" alt="${escapeAttr(alt)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
+    <span class="media-fallback" hidden>${fallback}</span>
+  </div>`;
+}
+
 function renderRunningPlan(plan) {
   const warmup = namesToExercises(plan.warmup);
   const cooldown = namesToExercises(plan.cooldown);
-  return `<section class="paper-card"><div class="section-title"><div><p class="eyebrow">今日跑步签</p><h2>${escapeHtml(plan.title)}</h2><p>${plan.minutes} 分钟 · ${plan.intensity}强度 · ${escapeHtml(plan.main)}</p></div><button class="primary-btn" data-action="start-running" data-id="${plan.id}">开始分段提示</button></div><div class="timeline"><div class="timeline-step"><b>热</b><div><strong>跑前激活</strong><p>${warmup.map((e) => e?.name_zh || e?.name).filter(Boolean).join('、')}</p></div></div><div class="timeline-step"><b>跑</b><div><strong>主训练</strong><p>${escapeHtml(plan.main)}</p></div></div><div class="timeline-step"><b>松</b><div><strong>跑后放松</strong><p>${cooldown.map((e) => e?.name_zh || e?.name).filter(Boolean).join('、') || '小腿、臀部、髋屈肌舒适拉伸'}</p></div></div></div><h3>跑前动作</h3><div class="exercise-grid">${warmup.map(renderExerciseCard).join('')}</div></section>`;
+  return `<section class="paper-card"><div class="section-title"><div><p class="eyebrow">今日跑步签</p><h2>${escapeHtml(plan.title)}</h2><p>${plan.minutes} 分钟 · ${plan.intensity}强度 · ${escapeHtml(plan.main)}</p></div><button class="primary-btn" data-action="start-running" data-id="${plan.id}">开始分段提示</button></div><div class="timeline"><div class="timeline-step"><b>热</b><div><strong>跑前激活</strong><p>${warmup.map(displayName).filter(Boolean).join('、')}</p></div></div><div class="timeline-step"><b>跑</b><div><strong>主训练</strong><p>${escapeHtml(plan.main)}</p></div></div><div class="timeline-step"><b>松</b><div><strong>跑后放松</strong><p>${cooldown.map(displayName).filter(Boolean).join('、') || '小腿、臀部、髋屈肌舒适拉伸'}</p></div></div></div><h3>跑前动作</h3><div class="exercise-grid">${warmup.map(renderExerciseCard).join('')}</div></section>`;
 }
 
 function renderStrengthPlan(plan) {
   const items = plan.items.map(([name, prescription, cue]) => ({ exercise: findByName(name), prescription, cue }));
-  return `<section class="paper-card"><div class="section-title"><div><p class="eyebrow">推荐计划</p><h2>${escapeHtml(plan.title)}</h2><p>${plan.minutes} 分钟 · ${plan.intensity} · ${escapeHtml(plan.benefit)}</p></div><div class="actions"><button class="primary-btn" data-action="start-strength" data-id="${plan.id}">开始跟练</button><button class="ghost-btn" data-action="save-strength" data-id="${plan.id}">保存计划</button></div></div><div class="timeline">${items.map((item, index) => `<div class="timeline-step"><b>${index + 1}</b><div><strong>${escapeHtml(item.exercise?.name_zh || item.exercise?.name || plan.items[index][0])}</strong><p>${escapeHtml(item.prescription)} · ${escapeHtml(item.cue)}</p></div></div>`).join('')}</div></section>`;
+  return `<section class="paper-card"><div class="section-title"><div><p class="eyebrow">推荐计划</p><h2>${escapeHtml(plan.title)}</h2><p>${plan.minutes} 分钟 · ${plan.intensity} · ${escapeHtml(plan.benefit)}</p></div><div class="actions"><button class="primary-btn" data-action="start-strength" data-id="${plan.id}">开始跟练</button><button class="ghost-btn" data-action="save-strength" data-id="${plan.id}">保存计划</button></div></div><div class="timeline">${items.map((item, index) => `<div class="timeline-step"><b>${index + 1}</b><div><strong>${escapeHtml(displayName(item.exercise) || plan.items[index][0])}</strong><p>${escapeHtml(item.prescription)} · ${escapeHtml(item.cue)}</p></div></div>`).join('')}</div></section>`;
 }
 
 function onAppClick(event) {
@@ -289,6 +315,8 @@ function onAppClick(event) {
   if (action === 'save-strength') saveStrength(id || selectStrengthPlan().id);
   if (action === 'prev-workout') moveWorkout(-1);
   if (action === 'next-workout') moveWorkout(1);
+  if (action === 'toggle-timer') toggleWorkoutTimer();
+  if (action === 'reset-set') resetWorkoutSet();
   if (action === 'finish-workout') finishWorkout();
   if (action === 'clear-history') clearHistory();
 }
@@ -329,7 +357,7 @@ function makeRandomSet() {
 
 function startWorkoutFromExercises(exercises, title) {
   if (!exercises.length) return toast('没有可开始的动作');
-  const items = exercises.map((exercise) => ({ id: exercise.id, title: exercise.name_zh || exercise.name, prescription: exercise.body_part === 'cardio' ? '40 秒 / 休息 20 秒' : '3 组 × 10-12 次', runner_cue: exercise.tags.includes('跑者力量') ? '保持膝髋踝稳定，动作质量优先。' : '' }));
+  const items = exercises.map((exercise) => createWorkoutItem(exercise, exercise.body_part === 'cardio' ? '3 组 × 40 秒' : '3 组 × 45 秒', exercise.tags.includes('跑者力量') ? '保持膝髋踝稳定，动作质量优先。' : ''));
   state.workout = { id: uid(), title, index: 0, items, started_at: new Date().toISOString() };
   writeJson(STORE.workout, state.workout);
   location.hash = '#workout';
@@ -347,7 +375,7 @@ function saveTemplate(id) {
 }
 
 function savePlan(title, exercises, desc = '') {
-  const plan = { id: uid(), title, desc, items: exercises.map((exercise) => ({ id: exercise.id, title: exercise.name_zh || exercise.name, prescription: exercise.body_part === 'cardio' ? '40 秒 / 休息 20 秒' : '3 组 × 10-12 次' })), created_at: new Date().toISOString() };
+  const plan = { id: uid(), title, desc, items: exercises.map((exercise) => createWorkoutItem(exercise, exercise.body_part === 'cardio' ? '3 组 × 40 秒' : '3 组 × 45 秒')), created_at: new Date().toISOString() };
   state.plans.unshift(plan);
   writeJson(STORE.plans, state.plans);
   toast('计划已保存');
@@ -385,7 +413,7 @@ function openDetail(id) {
   const exercise = getExercise(id);
   if (!exercise) return;
   const modal = $('#detailModal');
-  modal.innerHTML = `<section class="modal-sheet"><div class="modal-head"><div><p class="eyebrow">${escapeHtml(exercise.body_part_zh)} · ${escapeHtml(exercise.equipment_zh)}</p><h2>${escapeHtml(exercise.name_zh || exercise.name)}</h2><p>${escapeHtml(exercise.name_zh ? exercise.name : '')}</p></div><button class="ghost-btn" data-action="close-modal">关闭</button></div><div class="tags">${[exercise.target_zh, exercise.muscle_group_zh, ...exercise.secondary_muscles_zh, ...exercise.tags].slice(0, 9).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}</div><h3>中文步骤</h3><ol class="step-list">${exercise.steps_zh.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol><p class="disclaimer">动作媒体未随数据集分发。练习时请量力而行，疼痛或头晕请停止。</p><div class="actions"><button class="primary-btn" data-action="modal-start" onclick="window.fitnessStartSingle('${exercise.id}')">直接跟练</button><button class="ghost-btn" onclick="window.fitnessToggleFavorite('${exercise.id}')">${state.favorites.has(exercise.id) ? '取消收藏' : '收藏动作'}</button></div></section>`;
+  modal.innerHTML = `<section class="modal-sheet"><div class="modal-head"><div><p class="eyebrow">${escapeHtml(exercise.body_part_zh)} · ${escapeHtml(exercise.equipment_zh)}</p><h2>${escapeHtml(displayName(exercise))}</h2><p>动作编号：${escapeHtml(exercise.id)} · 动图来自外部媒体源</p></div><button class="ghost-btn" data-action="close-modal">关闭</button></div>${renderExerciseMedia(exercise, false)}<div class="tags">${[exercise.target_zh, exercise.muscle_group_zh, ...exercise.secondary_muscles_zh, ...exercise.tags].slice(0, 9).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}</div><h3>中文步骤</h3><ol class="step-list">${exercise.steps_zh.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol><p class="disclaimer">动图通过数据源 media_id 从外部地址加载，未打包进本站仓库。练习时请量力而行，疼痛或头晕请停止。</p><div class="actions"><button class="primary-btn" data-action="modal-start" onclick="window.fitnessStartSingle('${exercise.id}')">直接跟练</button><button class="ghost-btn" onclick="window.fitnessToggleFavorite('${exercise.id}')">${state.favorites.has(exercise.id) ? '取消收藏' : '收藏动作'}</button></div></section>`;
   modal.classList.add('show');
   modal.setAttribute('aria-hidden', 'false');
 }
@@ -403,9 +431,9 @@ function readRunningForm() {
 }
 function startRunning(id) {
   const plan = runningRecipes.find((item) => item.id === id) || readRunningForm();
-  const warmup = namesToExercises(plan.warmup).map((e) => ({ id: e.id, title: e.name_zh || e.name, prescription: '40 秒 / 休息 20 秒' }));
-  const cooldown = namesToExercises(plan.cooldown).map((e) => ({ id: e.id, title: e.name_zh || e.name, prescription: '45 秒舒适拉伸' }));
-  state.workout = { id: uid(), title: plan.title, index: 0, items: [...warmup, { title: '主跑步训练', prescription: `${plan.minutes} 分钟`, cue: plan.main }, ...cooldown], started_at: new Date().toISOString() };
+  const warmup = namesToExercises(plan.warmup).map((e) => createWorkoutItem(e, '2 组 × 40 秒'));
+  const cooldown = namesToExercises(plan.cooldown).map((e) => createWorkoutItem(e, '1 组 × 45 秒'));
+  state.workout = { id: uid(), title: plan.title, index: 0, items: [...warmup, { title: '主跑步训练', prescription: `${plan.minutes} 分钟`, cue: plan.main, sets: 1, current_set: 1, work_seconds: Math.max(60, plan.minutes * 60), rest_seconds: 0, remaining: Math.max(60, plan.minutes * 60), phase: 'work', timer_running: true }, ...cooldown], started_at: new Date().toISOString() };
   writeJson(STORE.workout, state.workout);
   location.hash = '#workout';
 }
@@ -420,7 +448,7 @@ function startStrength(id) {
   const plan = runnerStrengthTemplates.find((item) => item.id === id) || readStrengthForm();
   const items = plan.items.map(([name, prescription, cue]) => {
     const exercise = findByName(name);
-    return { id: exercise?.id, title: exercise?.name_zh || exercise?.name || name, prescription, runner_cue: cue };
+    return exercise ? createWorkoutItem(exercise, prescription, cue) : { title: name, prescription, runner_cue: cue, sets: 3, current_set: 1, work_seconds: 45, rest_seconds: 30, remaining: 45, phase: 'work', timer_running: true };
   });
   state.workout = { id: uid(), title: plan.title, index: 0, items, started_at: new Date().toISOString() };
   writeJson(STORE.workout, state.workout);
@@ -457,9 +485,118 @@ function clearHistory() { state.history = []; writeJson(STORE.history, state.his
 
 function seedDefaultPlans() {
   if (state.plans.length) return;
-  const seed = planTemplates.slice(0, 2).map((template) => ({ id: template.id, title: template.title, desc: template.desc, items: namesToExercises(template.names).map((exercise) => ({ id: exercise.id, title: exercise.name_zh || exercise.name, prescription: exercise.body_part === 'cardio' ? '40 秒 / 休息 20 秒' : '3 组 × 10-12 次' })), created_at: new Date().toISOString() }));
+  const seed = planTemplates.slice(0, 2).map((template) => ({ id: template.id, title: template.title, desc: template.desc, items: namesToExercises(template.names).map((exercise) => createWorkoutItem(exercise, exercise.body_part === 'cardio' ? '3 组 × 40 秒' : '3 组 × 45 秒')), created_at: new Date().toISOString() }));
   state.plans = seed;
   writeJson(STORE.plans, state.plans);
+}
+
+function createWorkoutItem(exercise, prescription = '3 组 × 45 秒', runnerCue = '') {
+  const timing = parseTiming(prescription, exercise);
+  return {
+    id: exercise.id,
+    title: displayName(exercise),
+    prescription,
+    runner_cue: runnerCue,
+    sets: timing.sets,
+    current_set: 1,
+    work_seconds: timing.work_seconds,
+    rest_seconds: timing.rest_seconds,
+    remaining: timing.work_seconds,
+    phase: 'work',
+    timer_running: true
+  };
+}
+
+function parseTiming(prescription = '', exercise = null) {
+  const setsMatch = String(prescription).match(/(\d+)\s*组/);
+  const secondsMatch = String(prescription).match(/(\d+)\s*秒/);
+  const minutesMatch = String(prescription).match(/(\d+)\s*分钟/);
+  const sets = setsMatch ? Number(setsMatch[1]) : 3;
+  let workSeconds = secondsMatch ? Number(secondsMatch[1]) : 45;
+  if (!secondsMatch && minutesMatch) workSeconds = Number(minutesMatch[1]) * 60;
+  if (exercise?.body_part === 'cardio' && !secondsMatch && !minutesMatch) workSeconds = 40;
+  const restSeconds = exercise?.body_part === 'cardio' ? 20 : 30;
+  return { sets, work_seconds: Math.max(10, workSeconds), rest_seconds: restSeconds };
+}
+
+function normalizeWorkoutItem(item) {
+  if (!item.sets) item.sets = parseTiming(item.prescription).sets;
+  if (!item.current_set) item.current_set = 1;
+  if (!item.work_seconds) item.work_seconds = parseTiming(item.prescription).work_seconds;
+  if (typeof item.rest_seconds !== 'number') item.rest_seconds = parseTiming(item.prescription).rest_seconds;
+  if (!item.phase) item.phase = 'work';
+  if (typeof item.remaining !== 'number') item.remaining = item.phase === 'rest' ? item.rest_seconds : item.work_seconds;
+  if (typeof item.timer_running !== 'boolean') item.timer_running = true;
+}
+
+function setupWorkoutTimer() {
+  const workout = state.workout;
+  if (!workout?.items?.length) return;
+  const item = workout.items[Math.min(workout.index || 0, workout.items.length - 1)];
+  normalizeWorkoutItem(item);
+  updateCountdownDom(item);
+  if (!item.timer_running) return;
+  state.timerId = window.setInterval(() => {
+    item.remaining = Math.max(0, (item.remaining || 0) - 1);
+    updateCountdownDom(item);
+    writeJson(STORE.workout, state.workout);
+    if (item.remaining <= 0) advanceWorkoutPhase();
+  }, 1000);
+}
+
+function stopWorkoutTimer() {
+  if (state.timerId) {
+    window.clearInterval(state.timerId);
+    state.timerId = null;
+  }
+}
+
+function updateCountdownDom(item) {
+  const node = $('#countdownText');
+  if (node) node.textContent = formatSeconds(item.remaining || 0);
+}
+
+function advanceWorkoutPhase() {
+  const workout = state.workout;
+  if (!workout) return;
+  const item = workout.items[workout.index || 0];
+  normalizeWorkoutItem(item);
+  if (item.phase === 'work' && item.current_set < item.sets && item.rest_seconds > 0) {
+    item.phase = 'rest';
+    item.remaining = item.rest_seconds;
+  } else if (item.phase === 'rest' && item.current_set < item.sets) {
+    item.phase = 'work';
+    item.current_set += 1;
+    item.remaining = item.work_seconds;
+  } else {
+    item.phase = 'work';
+    item.current_set = 1;
+    item.remaining = item.work_seconds;
+    moveWorkout(1);
+    return;
+  }
+  writeJson(STORE.workout, workout);
+  render();
+}
+
+function toggleWorkoutTimer() {
+  const item = state.workout?.items?.[state.workout.index || 0];
+  if (!item) return;
+  normalizeWorkoutItem(item);
+  item.timer_running = !item.timer_running;
+  writeJson(STORE.workout, state.workout);
+  render();
+}
+
+function resetWorkoutSet() {
+  const item = state.workout?.items?.[state.workout.index || 0];
+  if (!item) return;
+  normalizeWorkoutItem(item);
+  item.phase = 'work';
+  item.remaining = item.work_seconds;
+  item.timer_running = true;
+  writeJson(STORE.workout, state.workout);
+  render();
 }
 
 function namesToExercises(names) { return names.map(findByName).filter(Boolean); }
@@ -468,6 +605,7 @@ function findByName(name) {
   return state.exercises.find((e) => e.name.toLowerCase() === lower) || state.exercises.find((e) => e.name.toLowerCase().includes(lower)) || state.exercises.find((e) => e.search_text.includes(lower));
 }
 function getExercise(id) { return state.exercises.find((exercise) => exercise.id === id); }
+function displayName(exercise) { return exercise ? (exercise.name_zh || exercise.display_name || '中文动作') : ''; }
 function figureFor(exercise) {
   if (exercise.tags.includes('跑步辅助') || exercise.tags.includes('心肺有氧')) return '🏃';
   if (exercise.tags.includes('跑者力量') || exercise.body_part_zh === '臀腿') return '🦵';
@@ -484,6 +622,12 @@ function workoutsThisWeek() { const now = Date.now(); const week = 7 * 24 * 60 *
 function shuffle(items) { return [...items].sort(() => Math.random() - 0.5); }
 function unique(items) { return [...new Set(items.filter(Boolean))]; }
 function uid() { return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`; }
+function formatSeconds(total) {
+  const seconds = Math.max(0, Number(total) || 0);
+  const minutes = Math.floor(seconds / 60);
+  const rest = seconds % 60;
+  return `${minutes}:${String(rest).padStart(2, '0')}`;
+}
 function readJson(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } }
 function writeJson(key, value) { localStorage.setItem(key, JSON.stringify(value)); }
 function escapeHtml(value = '') { return String(value).replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch])); }
