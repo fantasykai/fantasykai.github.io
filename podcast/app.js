@@ -1,278 +1,223 @@
 const episode = {
-  "date": "2026-07-02",
-  "title": "AI HOT 日报：阿宝、OpenAI 持股、Kimi K2.7 Code",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 产品发布/更新、行业动态、技巧与观点。核心信号是：AI 版支付宝“蚂蚁阿宝”进入公测；OpenAI 可能让美国政府持有 5% 股份；Kimi K2.7 Code 进入 GitHub Copilot，开源权重模型开始进入主流编程工作流。",
-  "conclusion": "今天的 AI 热点显示，Agent 正从“对话框能力”走向系统入口、团队协作、开发工具和基础设施治理。建议团队少追单点发布，多把模型、权限、数据、成本和验收证据做成可复用流程。",
+  "date": "2026-07-04",
+  "title": "AI HOT 日报：pxpipe、Claude、阿里达摩院发布",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 技巧与观点、论文研究、行业动态、产品发布/更新、模型发布/更新。核心信号是：pxpipe：通过图像化压缩输入token降低Claude Code成本；claude-real-video ─ 让任何大语言模型（LLM）都能观看视频；阿里达摩院发布超导材料发现AI智能体Elements Claw。",
+  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "topic": "product",
-      "title": "Senior SWE-Bench：评估AI智能体作为高级工程师的基准测试",
+      "topic": "tip",
+      "title": "pxpipe：通过图像化压缩输入token降低Claude Code成本",
       "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://senior-swe-bench.snorkel.ai/",
-      "date": "2026-07-02",
-      "score": 71,
+      "url": "https://github.com/teamchong/pxpipe",
+      "date": "2026-07-04",
+      "score": 83,
       "tags": [
         "AI HOT",
-        "Agent",
-        "产品"
+        "Claude",
+        "Claude Code",
+        "观点"
       ],
-      "summary": "Senior SWE-Bench是一个开源基准测试，用于评估AI智能体完成高级软件工程师级别任务的能力。任务分功能开发与Bug修复两类：功能任务指令类似自然语言消息，采用验证智能体基于专家配方自动生成行为测试；Bug任务要求根据日志、profiling等运行时信息深入调查。排行榜显示，Claude Opus 4.8搭配Mini-SWE-Agent（max effort）通过率24.0%，Claude Sonnet 5为19.4%，GPT-5.5为16.0%，最强前沿模型在超75%任务中未能达到高级工程师级别的正确…",
-      "publishedAt": "2026-07-02T11:04:07.048Z",
-      "category": "ai-products",
-      "comment": "点评：Senior SWE-Bench 的价值在于把“会写代码”推向“能像高级工程师一样理解仓库、定位问题并保持品味”。最强模型通过率仍不高，说明 Coding Agent 距离完全接管复杂工程还有明显距离。",
-      "advice": "建议：用这类基准设计自己的内部评测：选真实仓库、真实缺陷、真实验收命令，记录通过率、回归率、人工介入次数和总成本，而不是只看模型榜单。"
+      "summary": "pxpipe是一个本地代理，将系统提示、工具文档和历史记录等密集文本渲染为PNG图像，利用图像token成本取决于像素尺寸的特性压缩输入token。在Fable 5模型上，约25k文本token压缩为约2.7k图像token，端到端账单降低59-70%。SWE-bench Lite 10个实例全部…",
+      "publishedAt": "2026-07-03T19:19:45.726Z",
+      "category": "tip",
+      "comment": "点评：pxpipe 把“文本上下文”转成低成本图像 token，本质是在探索多模态计费差异下的上下文压缩。它能显著降本，但也提醒我们：一旦上下文被有损压缩，精确 ID、代码片段和安全证据必须保留文本链路。",
+      "advice": "建议：可在非敏感、可回放任务中小规模试验上下文压缩；对文件路径、代码 diff、凭证、测试日志等关键证据保持原文输入，并用固定任务集对比成本、成功率和误读率。"
     },
     {
       "topic": "tip",
-      "title": "千问团队朱达：C端Agent Harness的\"多快好省\"工程哲学与主动服务探索",
-      "source": "公众号：千问APP（阿里）",
-      "url": "https://mp.weixin.qq.com/s/l70iUM0bIpG9EdV9Px7QPQ",
-      "date": "2026-07-02",
-      "score": 62,
+      "title": "claude-real-video ─ 让任何大语言模型（LLM）都能观看视频",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://github.com/HUANGCHIHHUNGLeo/claude-real-video",
+      "date": "2026-07-04",
+      "score": 81,
       "tags": [
         "AI HOT",
-        "Agent",
+        "Claude",
+        "开源",
         "观点"
       ],
-      "summary": "千问团队2026年1月上线通用复杂任务Agent（千问App胶囊入口），总结\"多快好省\"方法论：支持信息搜集、研究分析等任务；执行时间降至初始1/3；通过搜索范式与上下文管理优化交付质量；Token消耗仅为海外产品1/10。团队探索从被动响应转向主动服务，构建User Memory、Environment、Task System、Assistant四大组件，指出\"情商\"是主动服务最难环节。朱达提出Agent工程从Prompt Engineering演进至Harness Engineering，下一站是A IWar…",
-      "publishedAt": "2026-07-02T10:22:07.000Z",
+      "summary": "claude-real-video 是一个开源工具，让大语言模型基于视频画面而非字幕进行理解。它通过场景变化检测提取关键帧、滑动窗口去重并转录音频，生成干净的本地文件夹供模型读取。支持 YouTube 链接或本地文件，依赖 ffmpeg 和 Whisper，通过 pip 安装。全部处理在本地完成，…",
+      "publishedAt": "2026-07-03T04:56:06.814Z",
       "category": "tip",
-      "comment": "点评：千问把重点放在 Harness，而不是单纯 Prompt，说明 C 端 Agent 的竞争正在转向上下文管理、任务系统、记忆和主动服务。真正难的是“情商”：什么时候该主动，什么时候该沉默。",
-      "advice": "建议：做 C 端 Agent 时先定义主动服务边界：触发条件、打扰频率、用户撤销、记忆可见性和隐私说明；先把低功耗、够用、可信做稳，再追求炫技。"
+      "comment": "点评：claude-real-video 的价值不是炫技，而是把视频理解拆成抽帧、转写、去重和本地文件包，让通用模型能基于可复核素材分析视频。多模态 Agent 正在从“看一眼”走向“留下证据”。",
+      "advice": "建议：做视频复盘、课程摘要或产品演示分析时，优先建立“本地抽帧 + 转写 + 引用帧号”的流程；涉及隐私视频时不要默认上传云端。"
     },
     {
-      "topic": "industry",
-      "title": "证监会同意宇树科技科创板 IPO 注册申请",
+      "topic": "paper",
+      "title": "阿里达摩院发布超导材料发现AI智能体Elements Claw",
       "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/971/790.htm",
-      "date": "2026-07-02",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "产业"
-      ],
-      "summary": "7月2日，证监会同意宇树科技股份有限公司首次公开发行股票并在科创板上市的注册申请。宇树科技是国内头部民用足式、人形机器人研发企业，全球四足机器人销量领先，2016年由王兴兴在杭州创立，截至2025年6月员工总数超1000人。公司核心优势在于实现关节电机、减速器、控制器等核心零部件全栈自研，关键部件成本仅为进口产品的约1/3。批复自同意注册之日起12个月内有效。",
-      "publishedAt": "2026-07-02T09:10:36.000Z",
-      "category": "industry",
-      "comment": "点评：宇树 IPO 注册获批，意味着人形与足式机器人从实验室叙事进入资本市场验证。全栈自研降低核心部件成本，是机器人商业化能否规模扩张的关键变量。",
-      "advice": "建议：关注机器人公司时不要只看视频演示，要看核心零部件自研率、量产良率、售后成本、应用场景复购率和真实交付规模。"
-    },
-    {
-      "topic": "product",
-      "title": "Google Health API 推出 CLI：ghealth 是一款针对 Fitbit 数据的开源工具",
-      "source": "MarkTechPost（RSS）",
-      "url": "https://www.marktechpost.com/2026/07/02/the-google-health-api-got-a-cli-ghealth-is-an-open-source-tool-for-your-fitbit-air-data",
-      "date": "2026-07-02",
-      "score": 72,
-      "tags": [
-        "AI HOT",
-        "Agent",
-        "Google",
-        "产品"
-      ],
-      "summary": "ghealth 是一款封装 Google Health API v4 的开源命令行工具，以单个 Go 二进制文件发布（Apache 2.0 协议）。它提供 40 种已验证的数据类型（包括步数、心率、睡眠、体重、血氧饱和度、心率变异性等）的结构化 JSON 输出。工具采用 Agent 优先设计，具备确定性退出码、--dry-run 和 --raw 标志，并附带两个 SKILL.md 文件供 AI 智能体使用。用户需自行创建 OAuth 凭据，通过 PKCE S256 认证。数据来源覆盖 Fitbit、Pixel W…",
-      "publishedAt": "2026-07-02T08:46:56.000Z",
-      "category": "ai-products",
-      "comment": "点评：ghealth 把健康数据做成 Agent 友好的命令行接口，代表一个趋势：个人数据不只是 App 页面，而会变成可被自动化流程读取、分析和验证的结构化输入。",
-      "advice": "建议：处理健康数据要把 OAuth、最小权限、脱敏、审计和本地缓存策略放在第一位；先做只读分析和报告，再谨慎开放自动建议或动作。"
-    },
-    {
-      "topic": "product",
-      "title": "Kimi K2.7 Code 已在 GitHub Copilot 上正式发布",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://github.blog/changelog/2026-07-01-kimi-k2-7-is-now-available-in-github-copilot",
-      "date": "2026-07-02",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "Kimi",
-        "产品"
-      ],
-      "summary": "Kimi K2.7 Code 开源权重模型已在 GitHub Copilot 中正式可用，成为 Copilot 模型选择器首个可选的开源权重模型，为编程工作流提供更低成本选择。该模型由 GitHub 托管于 Microsoft Azure，按供应商列表价格以用量计费。逐步向 Copilot Pro、Pro+ 和 Max 计划用户推送，用户可在 Visual Studio Code 1.127.0 或更新版本、Visual Studio 17.14.6 或更新版本、JetBrains 1.9.1-251 或更新版本…",
-      "publishedAt": "2026-07-02T08:24:53.347Z",
-      "category": "ai-products",
-      "comment": "点评：Kimi K2.7 Code 进入 Copilot，说明开源权重模型正在穿透主流开发入口。模型竞争不再只发生在独立 IDE 插件里，而会被 GitHub、云平台和企业策略统一分发。",
-      "advice": "建议：团队可以把 Kimi 与现有 Copilot 模型做同题评测，重点看中文代码库理解、补丁质量、单任务成本、数据边界和企业策略默认关闭后的启用流程。"
-    },
-    {
-      "topic": "industry",
-      "title": "OpenAI提议美国政府持股5%估值426亿美元",
-      "source": "X：Testing Catalog (@testingcatalog)",
-      "url": "https://x.com/testingcatalog/status/2072585845542969583",
-      "date": "2026-07-02",
-      "score": 75,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "产业"
-      ],
-      "summary": "据Financial Times和CNBC报道，OpenAI提议向美国政府提供公司5%的股份，按近期8520亿美元估值计算，价值约426亿美元。OpenAI CEO Sam Altman表示，此举是与公众分享AI发展红利的最佳方式。",
-      "publishedAt": "2026-07-02T07:39:07.000Z",
-      "category": "industry",
-      "comment": "点评：如果 OpenAI 让美国政府持股，AI 公司与国家战略、公共收益和监管关系会进一步绑定。这不是普通融资新闻，而是 AI 基础设施公共属性增强的信号。",
-      "advice": "建议：跟踪这类消息时要区分传闻、提议和正式交易；企业采购 OpenAI 生态时同步评估政策、合规、供应连续性和跨境数据风险。"
-    },
-    {
-      "topic": "product",
-      "title": "昆仑万维天工3.2发布Skywork Tags，AI智能体加入工作群聊",
-      "source": "公众号：昆仑万维（天工）",
-      "url": "https://mp.weixin.qq.com/s/OqL6ID-mAel8XN-slYgXOA",
-      "date": "2026-07-02",
-      "score": 67,
-      "tags": [
-        "AI HOT",
-        "Agent",
-        "产品"
-      ],
-      "summary": "昆仑万维天工3.2发布Skywork Tags，将AI智能体以团队成员身份接入Slack、飞书、钉钉、Discord、Telegram等即时通讯工具。团队可在原有工作群中@Skywork参与讨论，无需切换窗口或迁移数据。共享版Agent持续吸收多样上下文后表现反超精心调教的个人版，团队最终完全改用共享版。Skywork Tags不要求改变工作方式，让AI积累团队上下文并越用越强。",
-      "publishedAt": "2026-07-02T02:53:26.000Z",
-      "category": "ai-products",
-      "comment": "点评：Skywork Tags 把 Agent 放进 Slack、飞书、钉钉等群聊，抓住了团队协作里的真实上下文。共享 Agent 可能比个人 Agent 更有价值，因为它能沉淀组织记忆。",
-      "advice": "建议：把群聊 Agent 当“可审计同事”设计：限定可见频道、明确 @ 触发、保留引用来源、支持退出和清除记忆，避免它变成新的信息噪声源。"
-    },
-    {
-      "topic": "product",
-      "title": "AI 版支付宝开放公测，蚂蚁阿宝无需邀请码即可体验",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/971/469.htm",
-      "date": "2026-07-02",
+      "url": "https://www.ithome.com/0/972/089.htm",
+      "date": "2026-07-04",
       "score": 80,
       "tags": [
         "AI HOT",
-        "支付宝",
-        "产品"
+        "论文"
       ],
-      "summary": "支付宝阿宝 AI 助手今日正式开放公测，iOS 和安卓用户可在应用商店或支付宝 App 搜索\"阿宝\"或\"蚂蚁阿宝\"直接体验。开通后右滑进入新版，以对话方式安排办事，例如说出\"查公积金\"，阿宝会自动匹配对应小程序和服务入口，用户点击确认即可完成。支付宝承诺所有资金变动与支付环节均需用户本人确认，扫码、转账等功能已预留入口。",
-      "publishedAt": "2026-07-02T02:51:10.000Z",
-      "category": "ai-products",
-      "comment": "点评：蚂蚁阿宝的重点不是又一个聊天助手，而是把 AI 放进支付、政务、生活服务这些高频办事入口。它会测试用户是否愿意让 AI 帮自己“找入口、填流程、做确认”。",
-      "advice": "建议：所有涉及资金、身份和公共服务的 AI 助手必须坚持人类最终确认、权限分级、清晰日志和可撤销动作；先从低风险查询与导航做起。"
-    },
-    {
-      "topic": "tip",
-      "title": "Emil Kowalski 发布设计工程师 Skills，让 AI 编码工具具备 UI 动画审美",
-      "source": "X：邵猛 (@shao__meng)",
-      "url": "https://x.com/shao__meng/status/2072484635955900792",
-      "date": "2026-07-02",
-      "score": 77,
-      "tags": [
-        "AI HOT",
-        "Agent",
-        "观点"
-      ],
-      "summary": "Emil Kowalski 将多年 UI/动画原则沉淀为三个 Skill，使 Codex、Claude Code、Cursor 等 Coding Agents 具备资深设计工程师的审美判断。核心规则：动画必须有理由；每天 100+ 次的高频操作禁用动画；UI 动画控制在 300ms 内；只动画 transform 和 opacity；入口从 scale（0.95）+opacity：0 开始；尊重 prefers-reduced-motion（仅移除位移动画）。review-animations 以严格标准审查动画…",
-      "publishedAt": "2026-07-02T00:56:56.000Z",
-      "category": "tip",
-      "comment": "点评：把 UI 动画审美写成 Skills，说明 AI 编码的瓶颈不只是语法正确，还包括产品品味。可维护的设计规则会成为团队让 Agent 输出更稳定体验的方式。",
-      "advice": "建议：为前端团队沉淀设计工程 Skill：动效时长、可访问性、组件边界、反例和 review 清单，并把高频交互用视觉回归锁住。"
-    },
-    {
-      "topic": "product",
-      "title": "Claude Code v2.1.198 发布",
-      "source": "Claude Code：GitHub Releases（RSS）",
-      "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.198",
-      "date": "2026-07-02",
-      "score": 64,
-      "tags": [
-        "AI HOT",
-        "Agent",
-        "Claude Code",
-        "产品"
-      ],
-      "summary": "Claude Code v2.1.198 更新。Claude in Chrome 现已全面可用。为 claude agents 新增后台智能体通知（agent_needs_input / agent_completed）。新增 /dataviz 技能，提供图表与仪表盘设计指导及配色验证器。Gateway 增加 AWS 上的 Claude Platform 作为上游提供商。后台智能体在 worktree 中完成代码后自动提交、推送并创建草稿 PR。内置 Explore 智能体现继承主会话模型（上限 opus）。修复…",
-      "publishedAt": "2026-07-01T20:45:36.000Z",
-      "category": "ai-products",
-      "comment": "点评：Claude Code 的更新继续把 Coding Agent 推向后台执行、浏览器协作、数据可视化和自动 PR。工具越自动，越需要明确通知、工作树隔离和完成证据。",
-      "advice": "建议：使用后台 Agent 时强制开启分支隔离、自动测试、草稿 PR、人审合并和失败通知；不要让 Agent 直接改主分支或绕过 CI。"
-    },
-    {
-      "topic": "product",
-      "title": "Google Cloud Workbench Notebooks 扩展发布：在 VS Code 中连接云端 Jupyter 环境",
-      "source": "Google Developers Blog（RSS）",
-      "url": "https://developers.googleblog.com/ml-development-in-vs-code-with-google-cloud-power-workbench-extension-now-available",
-      "date": "2026-07-02",
-      "score": 68,
-      "tags": [
-        "AI HOT",
-        "Google",
-        "产品"
-      ],
-      "summary": "Google Cloud Workbench Notebooks 扩展正式上线，开发者可在 VS Code 中直接连接可扩展的云端 Jupyter 环境，无需切换上下文即可利用高性能 Google Cloud 基础设施完成机器学习全流程。该扩展已完全开源，可在 GitHub 和 VS Code Marketplace 获取。",
-      "publishedAt": "2026-07-01T17:17:56.374Z",
-      "category": "ai-products",
-      "comment": "点评：Google 把云端 Jupyter 通过 VS Code 扩展带到开发者手边，是 ML 工程体验继续 IDE 化的信号。数据科学、训练环境和代码编辑正在合并成一个工作面。",
-      "advice": "建议：团队应统一 Notebook 环境、依赖镜像、权限和成本配额，避免每个人维护一套不可复现的实验环境。"
-    },
-    {
-      "topic": "tip",
-      "title": "Meta 大规模 AI 存储蓝图",
-      "source": "Meta Engineering Blog（RSS）",
-      "url": "https://engineering.fb.com/2026/07/01/data-infrastructure/metas-ai-storage-blueprint-at-scale",
-      "date": "2026-07-02",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "Meta",
-        "观点"
-      ],
-      "summary": "Meta 运营数百 EB 级存储集群，基于 Tectonic 分层存储层构建 BLOB 存储架构，以应对两大挑战：最大化 GPU 利用率与研究迭代速度。传统 BLOB 架构的多层元数据查询可导致数百毫秒延迟，使 GPU 因 I/O 等待停顿。新架构将训练栈逐步迁移到 BLOB 存储接口上，利用闪存提供可预测的低 pMax 延迟，避免单 GPU 慢速拖慢整批任务。同时，统一的数据湖访问支持地理分布 GPU 间的数据高速注入与跨区移动，提升研究效率。",
-      "publishedAt": "2026-07-01T16:00:36.000Z",
-      "category": "tip",
-      "comment": "点评：Meta 的存储蓝图提醒我们，AI 训练瓶颈不只在 GPU，也在数据读取、延迟尾部和跨区域数据流。基础设施效率会直接影响模型迭代速度。",
-      "advice": "建议：做大规模训练或 RAG 平台时，提前压测数据吞吐、尾延迟、冷热分层和失败恢复；别等 GPU 闲置后才补数据基础设施。"
-    },
-    {
-      "topic": "product",
-      "title": "智谱推出GLM-5.2官方开发环境ZCode",
-      "source": "X：智谱 Z.ai (@Zai_org)",
-      "url": "https://x.com/Zai_org/status/2072349453361557898",
-      "date": "2026-07-02",
-      "score": 67,
-      "tags": [
-        "AI HOT",
-        "产品"
-      ],
-      "summary": "推出 ZCode，GLM-5.2 的官方开发环境  - GLM Coding Plan 订阅用户：现可在 ZCode 获得 1.5 倍使用配额 - 支持 BYOK：可与您现有的订阅和 API 配合使用 - 适用于 macOS、Windows 和 Linux  立即下载：http://zcode.z.ai/en",
-      "publishedAt": "2026-07-01T15:59:46.000Z",
-      "category": "ai-products",
-      "comment": "点评：ZCode 表明模型厂商正在从 API 供应商走向开发环境供应商。谁控制开发入口，谁就更容易绑定模型、套餐、上下文和工作流。",
-      "advice": "建议：试用 ZCode 这类官方 IDE 时，要评估 BYOK、数据留存、插件生态、迁移成本和与现有 CI/CD 的兼容性。"
+      "summary": "7月3日，阿里达摩院联合中国人民大学、中国科学院大学发布首个超导材料发现AI智能体Elements Claw。该智能体采用\"专通融合\"架构，基于1.25亿分子/晶体结构预训练的1B参数原子基础模型Elements，判断超导性AUC达0.996，预测临界温度平均误差小于1K。AI仅用28个GPU小时…",
+      "publishedAt": "2026-07-03T03:27:15.000Z",
+      "category": "paper",
+      "comment": "点评：Elements Claw 的看点在于“预测—筛选—实验验证”闭环，而不是单纯宣称 AI 发现材料。AI for Science 真正的壁垒会落在领域模型、实验设计、失败样本和可复现数据上。",
+      "advice": "建议：评估 AI for Science 项目时，看候选空间、实验验证比例、负样本披露、数据开放和复现实验路径，不要只被“发现新材料”标题吸引。"
     },
     {
       "topic": "industry",
-      "title": "Meta效仿SpaceX，将过剩AI算力变现",
-      "source": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/07/01/meta-like-spacex-looks-to-turn-excess-ai-compute-into-cash",
-      "date": "2026-07-02",
-      "score": 72,
+      "title": "国家网信办就《互联网信息服务管理办法》再次征求意见，首设\"智能信息服务\"专章规范AI服务",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/972/341.htm",
+      "date": "2026-07-04",
+      "score": 79,
       "tags": [
         "AI HOT",
-        "Meta",
         "产业"
       ],
-      "summary": "据Bloomberg报道，Meta正计划推出云基础设施业务Meta Compute，对外出售AI计算能力和模型访问权限，直接与AWS、Google Cloud及Azure竞争。Meta已承诺未来几年投入1829亿美元建设AI基础设施，其中俄亥俄州数据中心（规模如曼哈顿）将于今年上线。新业务由基础设施主管Santosh Janardhan、Meta超级智能实验室负责人Daniel Gross和总裁Dina Powell McCormick领导。Meta可能效仿CoreWeave出售裸计算能力，并像AWS一样托管AI…",
-      "publishedAt": "2026-07-01T13:43:07.000Z",
+      "summary": "7月3日，国家互联网信息办公室就《互联网信息服务管理办法（修订草案征求意见稿）》再次公开征求意见。草案新增\"智能信息服务\"专章，要求AI服务提供者公示技术基本原理、训练数据来源，对生成合成内容进行标识，禁止强制用户使用智能服务或利用算法扰乱网络舆论。草案还强化用户账号管理，明确对超过6个月不登录账…",
+      "publishedAt": "2026-07-03T09:15:08.000Z",
       "category": "industry",
-      "comment": "点评：Meta Compute 的传闻说明巨头 AI 基建开始寻找外部变现路径。算力会从内部战略资产变成云市场商品，但差异在模型、网络、数据栈和价格稳定性。",
-      "advice": "建议：采购新算力云时别只看峰值报价，要比较地域、互联、模型托管、SLA、出口费用、锁定期和供应商长期战略。"
+      "comment": "点评：监管草案把“智能信息服务”单列成章，说明 AI 服务正在从功能创新进入责任披露阶段。训练数据来源、公示机制、合成内容标识和强制使用边界，都会影响产品上线节奏。",
+      "advice": "建议：面向公众的 AI 产品应提前准备模型说明、数据来源口径、生成内容标识、用户关闭入口和舆情风险处理机制，别等合规审查时再补。"
     },
     {
       "topic": "product",
-      "title": "Cloudflare 推出全新AI流量管理选项：区分搜索、智能体与训练爬虫，保护广告页面",
-      "source": "Cloudflare Blog",
-      "url": "https://blog.cloudflare.com/content-independence-day-ai-options",
-      "date": "2026-07-02",
-      "score": 58,
+      "title": "Wan Video 推出\"音乐伴舞\"新功能",
+      "source": "X：阿里云 / Alibaba Cloud (@alibaba_cloud)",
+      "url": "https://x.com/alibaba_cloud/status/2072967570441834771",
+      "date": "2026-07-04",
+      "score": 77,
       "tags": [
         "AI HOT",
-        "Agent",
         "产品"
       ],
-      "summary": "Cloudflare 为所有网站所有者提供更精细的AI流量管控选项，取代一刀切的屏蔽方式。用户可轻松区分并管理搜索爬虫、AI智能体爬虫和训练爬虫，同时新增保护广告变现页面的能力。",
-      "publishedAt": "2026-07-01T13:00:00.000Z",
+      "summary": "Wan Video 新功能：**音乐伴舞** 💃 上传一个角色，添加一首歌曲，让 Wan Video 生成与节奏同步的舞蹈视频。 可用舞种： • 街舞 • 踢踏舞 • 拉丁舞 • K-Pop • 中国古典舞 从节拍至动作，你的角色随音乐起舞。 前往 wan.video 体验音乐伴舞 👉 htt…",
+      "publishedAt": "2026-07-03T08:55:57.000Z",
       "category": "ai-products",
-      "comment": "点评：Cloudflare 将 AI 流量细分为搜索、智能体和训练爬虫，说明网站主开始重新定义“谁可以读取我的内容”。AI 时代的流量治理会比 robots.txt 更细。",
-      "advice": "建议：内容网站应尽快梳理 AI 爬虫策略：哪些允许索引，哪些允许 Agent 访问，哪些禁止训练，并同步监控广告页、登录页和高价值内容。"
+      "comment": "点评：音乐伴舞把视频生成与节拍控制结合，说明 AIGC 正在进入更细的可控编辑阶段。内容产品的竞争会从“能生成”转向“能否按音乐、角色和风格精准控制”。",
+      "advice": "建议：营销和短视频团队可用它做角色舞蹈素材 A/B 测试，但要关注音乐版权、肖像授权、动作稳定性和导出后二次剪辑效率。"
+    },
+    {
+      "topic": "safety",
+      "title": "全球首例 AI Agent 勒索攻击曝光，从漏洞利用到数据库加密全程自主完成",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/972/424.htm",
+      "date": "2026-07-04",
+      "score": 76,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "Anthropic",
+        "Google",
+        "Gemini",
+        "产业"
+      ],
+      "summary": "安全厂商 Sysdig 首次记录到 AI Agent\"JADEPUFFER\"自动完成的勒索攻击。攻击利用暴露的 Langflow 服务漏洞 CVE-2025-3248 远程执行 Python 代码，随后自主收集 OpenAI、Anthropic、DeepSeek、Gemini 等 API 密钥及阿…",
+      "publishedAt": "2026-07-03T11:57:00.000Z",
+      "category": "industry",
+      "comment": "点评：AI Agent 勒索攻击的危险在于自动化链路完整：侦察、利用、凭证收集、横向移动和加密勒索都可连续执行。安全风险已经从“模型会不会回答坏问题”升级到“Agent 能不能操作真实系统”。",
+      "advice": "建议：立即排查暴露的 Langflow、Nacos、MinIO、数据库与云凭证；把 AI/LLM 服务密钥纳入密钥轮换，限制横向访问，并为 Agent 行为检测建立异常命令告警。"
+    },
+    {
+      "topic": "tip",
+      "title": "藏师傅PPT与Pencil结合使用技巧",
+      "source": "X：歸藏 (@op7418)",
+      "url": "https://x.com/op7418/status/2073020264083050811",
+      "date": "2026-07-04",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "观点"
+      ],
+      "summary": "用户将藏师傅的AI生成PPT导入Pencil设计软件，可在Pencil中一次性浏览所有页面并手动调整AI常见的排版问题，如元素重叠、对齐不准、字体错误。Pencil提供比PPT更强的编辑能力（对齐、嵌套、打组），支持导出网页和编辑文件，也可导出PNG后直接放入PPT演示。这种工作流昨天经朋友分享验…",
+      "publishedAt": "2026-07-03T12:25:20.000Z",
+      "category": "tip",
+      "comment": "点评：这类技巧的价值在于承认 AI 输出仍需后期编辑：让 AI 先生成草稿，再用更强的设计工具统一检查对齐、字体和层级，能显著提升交付质量。",
+      "advice": "建议：把 AI PPT 定位为初稿生成器，交付前增加一轮设计软件校对：统一字体、网格、留白、对齐和导出格式，避免直接拿 AI 草稿汇报。"
+    },
+    {
+      "topic": "tip",
+      "title": "Fable 的判断力：Simon Willison 从 Claude Code 团队获得的效率技巧",
+      "source": "Simon Willison 博客",
+      "url": "https://simonwillison.net/2026/Jul/3/judgement",
+      "date": "2026-07-04",
+      "score": 73,
+      "tags": [
+        "AI HOT",
+        "Claude",
+        "Claude Code",
+        "观点"
+      ],
+      "summary": "Simon Willison 在 AIE 上与 Claude Code 团队交流后建议，让 Fable（以及 Opus）用自己的判断力工作，而非硬性规定行为。例如，直接让 Fable 自行决定何时编写测试，比给出具体规则更好。为应对价格即将上涨、节省 Fable token，Jesse Vince…",
+      "publishedAt": "2026-07-03T18:51:06.000Z",
+      "category": "tip",
+      "comment": "点评：Simon Willison 的经验说明，强模型适合承担判断、审计和综合，小模型适合机械执行。Agent 工作流的核心不是让最贵模型包办一切，而是做任务分层和成本路由。",
+      "advice": "建议：为编码 Agent 设计模型分工：强模型负责需求澄清、计划、审查和关键判断，便宜模型负责批量机械修改，并用成本看板验证节省是否真实。"
+    },
+    {
+      "topic": "product",
+      "title": "面向 Web 开发者的 Safari MCP 服务器",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://webkit.org/blog/18136/introducing-the-safari-mcp-server-for-web-developers",
+      "date": "2026-07-04",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "MCP",
+        "产品"
+      ],
+      "summary": "Safari Technology Preview 247 推出 Safari MCP 服务器，基于 Model Context Protocol，允许任何 MCP 兼容客户端连接 Safari 浏览器窗口。智能体可获取 DOM、网络请求、截图、控制台输出等信息，自主完成调试、性能分析、可访问性检…",
+      "publishedAt": "2026-07-03T09:59:42.679Z",
+      "category": "ai-products",
+      "comment": "点评：Safari MCP Server 把浏览器调试能力开放给 Agent，意味着前端开发将更依赖“可观测浏览器”。Agent 不再只读代码，还能看 DOM、网络、控制台和截图。",
+      "advice": "建议：前端团队可把浏览器 MCP 纳入调试链路，但要隔离测试环境、限制敏感 cookie、记录 Agent 操作，并保留人工确认的发布门禁。"
+    },
+    {
+      "topic": "model",
+      "title": "生数科技发布 Vidu S1，推动视频生成迈向\"实时交互\"新时代",
+      "source": "公众号：生数科技（Vidu·视频）",
+      "url": "https://mp.weixin.qq.com/s/RuukpnoOA2tI0ERCNrLgtQ",
+      "date": "2026-07-04",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "模型"
+      ],
+      "summary": "7月3日，生数科技在2026全球数字经济大会上发布Vidu S1实时交互模型，支持实时视频通话和语音控制视频走向，实现无限时长连续互动。模型采用自回归扩散路线，基于已生成画面和语音指令持续预测后续内容；无需传统建模，一张图片即可创建角色并自定义音色。Vidu S1在540P分辨率下实现25FPS（…",
+      "publishedAt": "2026-07-03T11:17:47.000Z",
+      "category": "ai-models",
+      "comment": "点评：Vidu S1 指向视频生成的新门槛：从离线生成短片走向实时交互。只要延迟和成本继续下降，视频模型会更像可对话的视觉角色，而不是一次性素材生成器。",
+      "advice": "建议：视频团队可关注实时交互在虚拟主播、客服、教育陪练和游戏 NPC 中的延迟、成本与内容安全；内测阶段重点验证长时一致性和失控兜底。"
+    },
+    {
+      "topic": "tip",
+      "title": "《Fable》通关指南：短绳AI编程法",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://blog.okturtles.org/2026/07/short-leash-ai-method",
+      "date": "2026-07-04",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "观点"
+      ],
+      "summary": "专业开发者经过一年多研究，总结出使用AI编码代理的\"短绳方法\"。该方法要求开发者全程参与：先规划并分解任务，从不使用YOLO模式，每次变更前审查差异并拒绝不想要的更改，每个子任务后提交以防止AI误操作（如Opus曾出现破坏性行为）。最终需进行人工与AI双重PR审查，PR须注明使用模型，提交者须亲自…",
+      "publishedAt": "2026-07-03T06:16:11.377Z",
+      "category": "tip",
+      "comment": "点评：“短绳 AI 编程法”强调人类保持任务拆解、差异审查和提交节奏控制。它反驳了完全放手的幻想：高质量 AI 编程更像受控协作，而不是无人驾驶。",
+      "advice": "建议：研发团队使用 AI 编程时，应坚持小步任务、小步提交、每步看 diff、禁止 YOLO 执行高风险命令，并在 PR 中标注模型参与范围。"
+    },
+    {
+      "topic": "product",
+      "title": "JoyAI App 上线 UGC 数字人功能，用户可\"捏\"出专属虚拟玩伴",
+      "source": "公众号：京东JoyAI",
+      "url": "https://mp.weixin.qq.com/s/XfpxdblzNWa5HxahRoT9pg",
+      "date": "2026-07-04",
+      "score": 68,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "JoyAI App 近日上线 UGC 数字人功能，用户只需上传一张照片即可生成专属虚拟数字分身，支持一键复刻写实形象或通过模板重塑为卡通风格，搭配用户自己的语音即可解锁专属陪伴。该功能复用\"万能博士\"技术底座，集成 JoyAI 语言、语音、数字人大模型，实现行业领先的全双工对话，支持随时打断、自然…",
+      "publishedAt": "2026-07-03T10:03:25.000Z",
+      "category": "ai-products",
+      "comment": "点评：UGC 数字人把照片、声音和对话能力组合成陪伴入口，说明消费级 AI 正在从工具效率走向情绪交互。机会在个性化，风险也在肖像、声音授权和未成年人保护。",
+      "advice": "建议：数字人产品要把肖像/声音授权、内容边界、未成年人保护和删除机制做成默认能力；先从低风险陪伴和生活助手场景验证留存。"
     }
   ],
   "sources": [
@@ -282,44 +227,68 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/971/469.htm",
-      "note": "AI 版支付宝开放公测，蚂蚁阿宝无需邀请码即可体验"
-    },
-    {
-      "name": "X：邵猛 (@shao__meng)",
-      "url": "https://x.com/shao__meng/status/2072484635955900792",
-      "note": "Emil Kowalski 发布设计工程师 Skills，让 AI 编码工具具备 UI 动画审美"
-    },
-    {
-      "name": "X：Testing Catalog (@testingcatalog)",
-      "url": "https://x.com/testingcatalog/status/2072585845542969583",
-      "note": "OpenAI提议美国政府持股5%估值426亿美元"
-    },
-    {
-      "name": "MarkTechPost（RSS）",
-      "url": "https://www.marktechpost.com/2026/07/02/the-google-health-api-got-a-cli-ghealth-is-an-open-source-tool-for-your-fitbit-air-data",
-      "note": "Google Health API 推出 CLI：ghealth 是一款针对 Fitbit 数据的开源工具"
-    },
-    {
-      "name": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/07/01/meta-like-spacex-looks-to-turn-excess-ai-compute-into-cash",
-      "note": "Meta效仿SpaceX，将过剩AI算力变现"
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://github.com/teamchong/pxpipe",
+      "note": "pxpipe：通过图像化压缩输入token降低Claude Code成本"
     },
     {
       "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://senior-swe-bench.snorkel.ai/",
-      "note": "Senior SWE-Bench：评估AI智能体作为高级工程师的基准测试"
+      "url": "https://github.com/HUANGCHIHHUNGLeo/claude-real-video",
+      "note": "claude-real-video ─ 让任何大语言模型（LLM）都能观看视频"
     },
     {
-      "name": "公众号：千问APP（阿里）",
-      "url": "https://mp.weixin.qq.com/s/l70iUM0bIpG9EdV9Px7QPQ",
-      "note": "千问团队朱达：C端Agent Harness的\"多快好省\"工程哲学与主动服务探索"
+      "name": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/972/089.htm",
+      "note": "阿里达摩院发布超导材料发现AI智能体Elements Claw"
+    },
+    {
+      "name": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/972/341.htm",
+      "note": "国家网信办就《互联网信息服务管理办法》再次征求意见，首设\"智能信息服务\"专章规…"
+    },
+    {
+      "name": "X：阿里云 / Alibaba Cloud (@alibaba_cloud)",
+      "url": "https://x.com/alibaba_cloud/status/2072967570441834771",
+      "note": "Wan Video 推出\"音乐伴舞\"新功能"
+    },
+    {
+      "name": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/972/424.htm",
+      "note": "全球首例 AI Agent 勒索攻击曝光，从漏洞利用到数据库加密全程自主完成"
+    },
+    {
+      "name": "X：歸藏 (@op7418)",
+      "url": "https://x.com/op7418/status/2073020264083050811",
+      "note": "藏师傅PPT与Pencil结合使用技巧"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-07-04",
+    "title": "AI HOT 日报：pxpipe、Claude、阿里达摩院发布",
+    "summary": "重点关注 技巧与观点、论文研究、行业动态、产品发布/更新、模型发布/更新。核心信号是：pxpipe：通过图像化压缩输入token降低Claude Code成本；claude-real-video ─ 让任何大语言模型（LLM）都能观看视频；阿里达摩院发布超导材料发现AI智能体E…",
+    "link": "/posts/70404/",
+    "tags": [
+      "AI HOT",
+      "Claude",
+      "Claude Code",
+      "观点"
+    ]
+  },
+  {
+    "date": "2026-07-03",
+    "title": "AI HOT 日报：视频理解、Elements Claw、Frontier Company",
+    "summary": "重点关注 行业动态、技巧与观点、产品发布/更新、论文研究。核心信号是：claude-real-video 让通用大模型获得可落地的视频理解入口；阿里达摩院 Elements Claw 用 AI 智能体发现并验证新超导材料；Microsoft Frontier Company 以 6000 名 AI 工程师驻场企业客户，企业 AI 从采购工具走向共同交付。",
+    "link": "/posts/70303/",
+    "tags": [
+      "AI HOT",
+      "Agent",
+      "Microsoft",
+      "视频理解"
+    ]
+  },
   {
     "date": "2026-07-02",
     "title": "AI HOT 日报：阿宝、OpenAI 持股、Kimi K2.7 Code",

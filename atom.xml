@@ -10,7 +10,43 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-07-02T11:41:52.352Z</updated>
+  <updated>2026-07-04T02:05:58.886Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Claude, Claude Code, 观点, 开源, 论文, 产业, 产品, OpenAI, Anthropic, Google, Gemini" scheme="https://aimak.cn/tags/AI-HOT-Claude-Claude-Code-%E8%A7%82%E7%82%B9-%E5%BC%80%E6%BA%90-%E8%AE%BA%E6%96%87-%E4%BA%A7%E4%B8%9A-%E4%BA%A7%E5%93%81-OpenAI-Anthropic-Google-Gemini/"/>
+    <id>https://aimak.cn/posts/70404/</id>
+    <link href="https://aimak.cn/posts/70404/"/>
+    <published>2026-07-04T02:05:58.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-07-04：pxpipe、Claude、阿里达摩院发布</title>
+    <updated>2026-07-04T02:05:58.886Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Agent, Claude, Fable 5, Elements Claw, Microsoft, 阿里, 可灵, AI成本, 视频理解, 企业AI, AI治理, 产品, 产业, 观点, 论文" scheme="https://aimak.cn/tags/AI-HOT-Agent-Claude-Fable-5-Elements-Claw-Microsoft-%E9%98%BF%E9%87%8C-%E5%8F%AF%E7%81%B5-AI%E6%88%90%E6%9C%AC-%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3-%E4%BC%81%E4%B8%9AAI-AI%E6%B2%BB%E7%90%86-%E4%BA%A7%E5%93%81-%E4%BA%A7%E4%B8%9A-%E8%A7%82%E7%82%B9-%E8%AE%BA%E6%96%87/"/>
+    <id>https://aimak.cn/posts/70303/</id>
+    <link href="https://aimak.cn/posts/70303/"/>
+    <published>2026-07-03T06:30:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-07-03：视频理解、Elements Claw、Frontier Company</title>
+    <updated>2026-07-03T06:14:14.697Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -343,45 +379,5 @@
     </summary>
     <title>AI HOT 日报 2026-06-13：代码模型开源与 Agent 产品化提速</title>
     <updated>2026-06-13T13:16:21.434Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="HyperFrames, 视频生成, AI Agent, HeyGen, 开源工具" scheme="https://aimak.cn/tags/HyperFrames-%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90-AI-Agent-HeyGen-%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/"/>
-    <id>https://aimak.cn/posts/11744/</id>
-    <link href="https://aimak.cn/posts/11744/"/>
-    <published>2026-06-11T01:00:00.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>HTML is now a video format —— 把 HTML、CSS、媒体和可定格动画，编译成确定性的 MP4。</p>
-</blockquote>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>HyperFrames</strong> 是由]]>
-    </summary>
-    <title>HyperFrames Studio 入门：用 HTML 写视频，为 AI Agent 而生</title>
-    <updated>2026-06-11T03:39:21.293Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AIOps" scheme="https://aimak.cn/tags/AIOps/"/>
-    <category term="AI Agent" scheme="https://aimak.cn/tags/AI-Agent/"/>
-    <category term="网络运维" scheme="https://aimak.cn/tags/%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/"/>
-    <category term="Harness" scheme="https://aimak.cn/tags/Harness/"/>
-    <category term="Loop Engineering" scheme="https://aimak.cn/tags/Loop-Engineering/"/>
-    <category term="RAG" scheme="https://aimak.cn/tags/RAG/"/>
-    <category term="MCP" scheme="https://aimak.cn/tags/MCP/"/>
-    <category term="可观测性" scheme="https://aimak.cn/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7/"/>
-    <category term="Function Calling" scheme="https://aimak.cn/tags/Function-Calling/"/>
-    <category term="多智能体" scheme="https://aimak.cn/tags/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93/"/>
-    <id>https://aimak.cn/posts/29847/</id>
-    <link href="https://aimak.cn/posts/29847/"/>
-    <published>2026-06-02T02:00:00.000Z</published>
-    <summary>系统梳理 AI Agent 的核心概念与工程化方法：从 Prompt、Context、RAG、MCP、Memory、Function Calling，到 Harness、Loop Engineering、Guardrails、Eval 与可观测性，并结合网络运维监控、告警降噪、根因分析和闭环修复场景给出落地路径。</summary>
-    <title>AI Agent全解析：从概念到网络运维实战</title>
-    <updated>2026-06-24T07:30:00.000Z</updated>
   </entry>
 </feed>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>运动情书 · 健身训练</title>
+  <meta name="description" content="中文健身动作库、跑步推荐、跑者力量、训练计划、收藏动作和跟练计时。">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="fitness-shell">
+    <header class="hero-card">
+      <nav class="crumbs" aria-label="面包屑">
+        <a href="/">首页</a>
+        <span>/</span>
+        <strong>健身</strong>
+      </nav>
+      <div class="hero-grid">
+        <section>
+          <p class="eyebrow">Sports Love Letter</p>
+          <h1>运动情书</h1>
+          <p class="lead">不知道练啥，随机一把。基于 1,324 个中文动作说明，组合动作库、收藏、计划、跑步推荐和跟练计时。</p>
+          <form id="heroSearchForm" class="hero-search" role="search">
+            <span aria-hidden="true">⌕</span>
+            <input id="heroSearchInput" type="search" placeholder="搜索动作 / 部位 / 器械 / 跑步计划" autocomplete="off">
+            <button type="submit">去找</button>
+          </form>
+        </section>
+        <aside class="hero-note">
+          <span>今日提醒</span>
+          <strong>量力而行，疼痛停止</strong>
+          <p>本站内容仅作训练参考，不替代医疗建议。动作媒体未随数据集分发，页面使用文字步骤和线稿占位。</p>
+        </aside>
+      </div>
+    </header>
+
+    <section id="statusBar" class="status-bar" aria-live="polite">正在加载中文动作库…</section>
+    <section id="app" class="app-stage"></section>
+  </main>
+
+  <nav class="bottom-tabs" aria-label="健身页面导航">
+    <a href="#home" data-tab="home">⌂<span>首页</span></a>
+    <a href="#library" data-tab="library">▦<span>动作库</span></a>
+    <a href="#running" data-tab="running">◌<span>跑步</span></a>
+    <a href="#strength" data-tab="strength">◆<span>跑者力量</span></a>
+    <a href="#plans" data-tab="plans">☷<span>计划</span></a>
+    <a href="#gym" data-tab="gym">♡<span>我的</span></a>
+  </nav>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="detailModal" class="modal" aria-hidden="true"></div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
