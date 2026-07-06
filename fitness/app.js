@@ -77,7 +77,7 @@ function bindGlobalEvents() {
   });
   app.addEventListener('click', onAppClick);
   app.addEventListener('change', onAppChange);
-  app.addEventListener('input', debounce(onAppInput, 180));
+  app.addEventListener('input', onAppInput);
   $('#detailModal').addEventListener('click', (event) => {
     if (event.target.id === 'detailModal' || event.target.dataset.action === 'close-modal') closeModal();
   });
@@ -147,10 +147,11 @@ function renderLibrary() {
   const bodyOptions = optionList(unique(state.exercises.map((e) => e.body_part_zh)), state.filters.body, '全部部位');
   const equipmentOptions = optionList(unique(state.exercises.map((e) => e.equipment_zh)), state.filters.equipment, '全部器械');
   const tagOptions = optionList(['跑步辅助', '跑者力量', '心肺有氧', '拉伸恢复', '居家', '健身房'], state.filters.tag, '全部标签');
-  const result = filterExercises().slice(0, 72);
+  const matches = filterExercises();
+  const result = matches.slice(0, 72);
   return `
     <section class="paper-card">
-      <div class="section-title"><div><p class="eyebrow">Exercise Library</p><h2>训练动作库</h2><p>中文步骤、肌群、器械和收藏都在这里。</p></div><span class="tag">${result.length} / ${state.exercises.length}</span></div>
+      <div class="section-title"><div><p class="eyebrow">Exercise Library</p><h2>训练动作库</h2><p>中文步骤、肌群、器械和收藏都在这里。</p></div><span id="libraryCount" class="tag">${matches.length} / ${state.exercises.length}</span></div>
       <div class="filters">
         <input id="librarySearch" type="search" value="${escapeAttr(state.query)}" placeholder="搜索：深蹲 / 跑步 / 哑铃 / 腹肌">
         <select id="bodyFilter">${bodyOptions}</select>
@@ -158,7 +159,7 @@ function renderLibrary() {
         <select id="tagFilter">${tagOptions}</select>
       </div>
     </section>
-    <section class="exercise-grid">${result.map(renderExerciseCard).join('') || empty('没有找到动作，换个关键词试试。')}</section>`;
+    <section id="libraryResults" class="exercise-grid">${result.map(renderExerciseCard).join('') || empty('没有找到动作，换个关键词试试。')}</section>`;
 }
 
 function renderGym() {
@@ -329,7 +330,19 @@ function onAppChange(event) {
 }
 
 function onAppInput(event) {
-  if (event.target.id === 'librarySearch') { state.query = event.target.value.trim(); render(); }
+  if (event.target.id === 'librarySearch') {
+    state.query = event.target.value.trim();
+    updateLibraryResults();
+  }
+}
+
+function updateLibraryResults() {
+  const matches = filterExercises();
+  const result = matches.slice(0, 72);
+  const count = $('#libraryCount');
+  const results = $('#libraryResults');
+  if (count) count.textContent = `${matches.length} / ${state.exercises.length}`;
+  if (results) results.innerHTML = result.map(renderExerciseCard).join('') || empty('没有找到动作，换个关键词试试。');
 }
 
 function filterExercises() {

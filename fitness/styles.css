@@ -354,6 +354,8 @@ button:disabled { cursor: not-allowed; opacity: 0.45; transform: none; }
 }
 
 .exercise-media img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;

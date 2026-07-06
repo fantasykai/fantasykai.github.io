@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-07-04T02:05:58.886Z</updated>
+  <updated>2026-07-06T08:47:25.814Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, LongCat, 美团, Meta, NVIDIA, Fun-ASR, Claude, OpenScience, Runway, AI基础设施, 开源模型, 语音识别, AI治理, 产品, 产业, 观点" scheme="https://aimak.cn/tags/AI-HOT-LongCat-%E7%BE%8E%E5%9B%A2-Meta-NVIDIA-Fun-ASR-Claude-OpenScience-Runway-AI%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD-%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B-%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB-AI%E6%B2%BB%E7%90%86-%E4%BA%A7%E5%93%81-%E4%BA%A7%E4%B8%9A-%E8%A7%82%E7%82%B9/"/>
+    <id>https://aimak.cn/posts/70606/</id>
+    <link href="https://aimak.cn/posts/70606/"/>
+    <published>2026-07-06T08:50:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，抓取锚点为 2026-07-06 16:43（北京时间）。本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览"]]>
+    </summary>
+    <title>AI HOT 日报 2026-07-06：LongCat-2.0、千兆瓦 AI 集群、Fun-ASR</title>
+    <updated>2026-07-06T08:47:25.814Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -361,23 +379,5 @@
     </summary>
     <title>AI HOT 日报 2026-06-14：GLM-5.2 开源、AI 治理升温与订阅经济压力</title>
     <updated>2026-06-14T08:45:04.167Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI日报, AI资讯, 大模型, Agent, Codex, Claude Code, Kimi, MiniMax" scheme="https://aimak.cn/tags/AI%E6%97%A5%E6%8A%A5-AI%E8%B5%84%E8%AE%AF-%E5%A4%A7%E6%A8%A1%E5%9E%8B-Agent-Codex-Claude-Code-Kimi-MiniMax/"/>
-    <id>https://aimak.cn/posts/61313/</id>
-    <link href="https://aimak.cn/posts/61313/"/>
-    <published>2026-06-13T13:30:00.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 2026-06-13 日报，覆盖窗口为 2026-06-12 00:00 至 2026-06-13 00:00（UTC）。本文在原始资讯基础上补充个人点评、落地建议，并已同步到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a]]>
-    </summary>
-    <title>AI HOT 日报 2026-06-13：代码模型开源与 Agent 产品化提速</title>
-    <updated>2026-06-13T13:16:21.434Z</updated>
   </entry>
 </feed>
