@@ -1,209 +1,241 @@
 const episode = {
-  "date": "2026-07-06",
-  "title": "AI HOT 日报：LongCat-2.0、千兆瓦 AI 集群、Fun-ASR",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 模型发布/更新、行业动态、产品发布/更新、技巧与观点。核心信号是：美团 LongCat-2.0 完全开源，国产 MoE 大模型进入长上下文与 Agent 工具链竞争；Meta 千兆瓦级 AI 集群与 SK 海力士上市计划继续放大 AI 基础设施资本战；Fun-ASR-Realtime 与 OpenScience 则说明语音识别、科研工作台正在从演示走向可部署工作流。",
-  "conclusion": "今天的主线不是单个模型刷榜，而是模型开源、算力资本、垂直工作台和治理约束同时加速。建议团队把热点拆成四张表：可用模型清单、算力与供应链风险、真实任务评测、合规与权限边界。",
+  "date": "2026-07-07",
+  "title": "AI HOT 日报：AI裁员潮、初级程序员危机、OfficeCLI",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、技巧与观点、产品发布/更新、模型发布/更新。核心信号是：2026年科技公司AI裁员名单：Microsoft、Oracle、GitLab等十家公司裁减数千岗位；AI颠覆初级程序员就业市场：斯坦福数据揭示年轻开发者就业锐减19%；OfficeCLI：为AI智能体设计的开源Office套件。",
+  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
       "topic": "industry",
-      "title": "扎克伯格：建千兆瓦级AI集群，集中精英与资本",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2073834219659534816",
-      "date": "2026-07-06",
-      "score": 84,
+      "title": "2026年科技公司AI裁员名单：Microsoft、Oracle、GitLab等十家公司裁减数千岗位",
+      "source": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/06/the-running-list-major-tech-layoffs-in-2026-where-employers-cited-ai",
+      "date": "2026-07-07",
+      "score": 78,
       "tags": [
         "AI HOT",
+        "Google",
+        "Meta",
+        "Microsoft",
         "产业"
       ],
-      "summary": "Mark Zuckerberg 表示，Meta 正在建设名为 Prometheus 的千兆瓦级 AI 集群，并把自己的核心职责定义为集中顶尖人才、资本和基础设施。",
-      "publishedAt": "2026-07-05T18:19:42.000Z",
+      "summary": "2026年以来，多家科技公司以AI为由大规模裁员。Microsoft裁减约4800岗位（2.1%），Oracle裁减21000人（13%），GitLab裁减350人（14%）以投资AI基础设施，Google Cloud持续裁减员工（外界估计1500-3000+工程师），Intuit裁减3000人（…",
+      "publishedAt": "2026-07-06T18:35:00.000Z",
       "category": "industry",
-      "comment": "点评：Meta 把 AI 竞争重新定义为人才、资本和电力的集中能力。千兆瓦级集群意味着前沿模型门槛继续抬高，也意味着中小团队更难复制基础设施优势。",
-      "advice": "建议：企业不要跟随巨头拼裸算力，应优先做数据、流程和场景护城河；模型选型要预设供应商锁定、推理成本和长期算力可得性。"
+      "comment": "点评：资本和组织信号说明 AI 正在进入商业兑现期，团队需要同时关注增长故事和真实 ROI。",
+      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
     },
     {
-      "topic": "model",
-      "title": "美团 LongCat-2.0 完全开源（MIT 许可），1.6T MoE 模型开放权重与推理代码",
-      "source": "X：美团 LongCat (@Meituan_LongCat)",
-      "url": "https://x.com/Meituan_LongCat/status/2073768940078317713",
-      "date": "2026-07-05",
-      "score": 81,
+      "topic": "tip",
+      "title": "AI颠覆初级程序员就业市场：斯坦福数据揭示年轻开发者就业锐减19%",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://seldo.com/posts/ai-has-torched-the-market-for-junior-programmers",
+      "date": "2026-07-07",
+      "score": 77,
       "tags": [
         "AI HOT",
-        "LongCat",
-        "Claude",
         "Agent",
-        "开源"
+        "Copilot",
+        "观点"
       ],
-      "summary": "美团今日宣布 LongCat-2.0 完全开源（MIT 许可），公开模型权重与推理代码。该模型为 MoE 架构，总参数量 1.6T，每 token 激活约 48B，支持 1M token 上下文。技术亮点包括 LongCat Sparse Attention 高效处理长文本、Zero-Compute Experts 动态激活 33B-56B 零浪费计算、MOPD 按任务路由 Agent/Reasoning/Interaction 三组专家。Benchmark 成绩：Terminal-Bench 2.1 70.8；…",
-      "publishedAt": "2026-07-05T14:00:18.000Z",
-      "category": "ai-models",
-      "comment": "点评：LongCat-2.0 以 MIT 许可开放权重与推理代码，重点不只是参数规模，而是长上下文、任务路由和 Agent 工具链适配。国产开源模型正在从“能用”走向“能嵌入生产工作流”。",
-      "advice": "建议：研发团队可用内部代码库、长文档问答和 Agent 任务做同题评测；重点看部署成本、中文理解、工具调用稳定性、长上下文衰减和许可证合规。"
+      "summary": "斯坦福数字经济实验室基于ADP薪资数据发现，美国22-25岁软件开发人员就业较2022年峰值下降19%，而41-49岁增长14%。入门级岗位招聘减少28%，计算机科学毕业生失业率达6.1%，高于文科专业。核心推手是2024-2025年兴起的智能体编程（Agentic programming）。总程…",
+      "publishedAt": "2026-07-06T11:51:40.808Z",
+      "category": "tip",
+      "comment": "点评：初级岗位正在被 Agent 编程挤压，经验溢价上升。新人不再只靠“会写代码”入场，而要证明能用 AI 交付、调试、测试、部署并理解业务上下文。",
+      "advice": "建议：新人作品集要覆盖测试、部署、代码审查、故障定位、需求拆解和领域理解；团队也要重设计师徒制，让新人从 AI 辅助交付和真实复盘中积累判断力。"
     },
     {
-      "topic": "industry",
-      "title": "NVIDIA Kyber NVL144 延迟超 12 个月至 2028",
-      "source": "X：SemiAnalysis (@SemiAnalysis_)",
-      "url": "https://x.com/SemiAnalysis_/status/2073874671498387899",
-      "date": "2026-07-06",
-      "score": 76,
+      "topic": "product",
+      "title": "OfficeCLI：为AI智能体设计的开源Office套件",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://github.com/iOfficeAI/OfficeCLI",
+      "date": "2026-07-07",
+      "score": 75,
       "tags": [
         "AI HOT",
-        "NVIDIA",
+        "Claude",
+        "开源",
+        "Copilot",
+        "Claude Code",
+        "产品"
+      ],
+      "summary": "OfficeCLI是全球首个专为AI智能体设计的开源Office套件，以单二进制文件运行，无需安装Office或任何依赖。它内置HTML渲染引擎，可将.docx/.xlsx/.pptx转换为HTML或PNG，形成\"渲染→查看→修复\"的视觉闭环，使AI代理能自主创建、读取和修改Word、Excel、…",
+      "publishedAt": "2026-07-06T23:03:34.910Z",
+      "category": "ai-products",
+      "comment": "点评：OfficeCLI 把 Office 文件处理做成 Agent 可调用、可渲染、可修复的工具链，补齐了企业文档自动化里的关键闭环：不是只生成文件，而是能看见并修正结果。",
+      "advice": "建议：文档自动化场景应把“生成—渲染—视觉检查—修复—导出”写成流水线，并保留人工抽检点，尤其关注格式兼容、字体缺失和复杂表格。"
+    },
+    {
+      "topic": "safety",
+      "title": "Google 更新隐私设置，默认用媒体数据训练 AI，用户可手动退出",
+      "source": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/06/if-you-use-google-youre-training-its-ai-heres-how-to-opt-out",
+      "date": "2026-07-07",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "Google",
+        "Meta",
+        "观点"
+      ],
+      "summary": "Google 于 6 月通过客户邮件低调更新了搜索服务隐私设置，新增\"搜索服务历史\"和\"个性化推荐\"两项开关，默认将用户上传的图片、文件、音频和视频录制等媒体数据保存并用于训练 AI 模型。该更新适用于搜索、地图、购物、航班、酒店、翻译、新闻等服务。用户可通过取消勾选\"保存媒体\"框来退出，同时可设…",
+      "publishedAt": "2026-07-06T17:04:58.000Z",
+      "category": "tip",
+      "comment": "点评：AI 能力越深入生产，治理越不能停留在原则口号，必须落到权限、审计、数据边界和责任链。",
+      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
+    },
+    {
+      "topic": "tip",
+      "title": "免费开源API中转站监测网站tokhub.me上线",
+      "source": "X：Vista (@vista8)",
+      "url": "https://x.com/vista8/status/2074130700421456089",
+      "date": "2026-07-07",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "开源",
+        "观点"
+      ],
+      "summary": "作者与姚老师合作开发中转站评测网站tokhub.me，通过真实充值调用API进行模型监控，区别于单纯速度评测。代码完全开源，支持一键Docker部署，还可作为公司内部Token和网关管理系统，省去繁杂的API Key和Base URL管理。开源代码见Github评论区。",
+      "publishedAt": "2026-07-06T13:57:49.000Z",
+      "category": "tip",
+      "comment": "点评：API 中转与监测工具变热，说明团队开始关心真实调用里的延迟、成功率、价格和供应商稳定性，而不是只看模型发布会和榜单。",
+      "advice": "建议：企业内部模型网关至少要监控延迟、成功率、错误类型、单位成本、余额风险和供应商波动；避免把不透明中转站直接接入生产敏感数据。"
+    },
+    {
+      "topic": "tip",
+      "title": "AT&T 1956年专利法令：公共天才的私有化",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://www.wysr.xyz/p/the-private-capture-of-public-genius",
+      "date": "2026-07-07",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "观点"
+      ],
+      "summary": "1956年1月24日，全球最大私营公司AT&T签署专利法令，将其7，820项未过期专利免费授权给所有美国企业，并承诺未来专利按\"合理费率\"许可。作为交换，AT&T得以保留Western Electric，但被禁止进入电信以外的业务。贝尔实验室69%的非电信专利（涵盖化学、半导体、光学等）迅速公开，…",
+      "publishedAt": "2026-07-06T08:55:43.404Z",
+      "category": "tip",
+      "comment": "点评：AT&T 专利开放是公共创新与私有垄断之间的历史样本。放到 AI 时代看，模型、数据、推理代码、专利与治理开放程度，会直接塑造生态竞争格局。",
+      "advice": "建议：评估 AI 开源时不要只看许可证，还要看权重、训练数据、推理代码、专利风险、贡献治理和商业使用边界。"
+    },
+    {
+      "topic": "safety",
+      "title": "Meta 被曝让外包人员伪装未成年人，诱导竞争对手 AI 聊敏感话题",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/973/207.htm",
+      "date": "2026-07-07",
+      "score": 73,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "Meta",
+        "Gemini",
+        "GPT",
         "产业"
       ],
-      "summary": "重大延迟：Jensen 在 GTC 上展示 Kyber NVL144 仅 3 个月后，该项目遭遇重大挫折，已推迟超过 12 个月，延至 2028 年。下文我们将解释 Kyber 为何面临大幅延迟，以及 NVIDIA 的 NVL72x2 背靠背机架架构为何也被取消，导致 Rubin Ultra 的扩展域受限。👇️ 1/6🧵",
-      "publishedAt": "2026-07-05T21:00:27.000Z",
+      "summary": "据《连线》报道，Meta 通过外包公司 Covalen 开展代号\"Cannes\"的项目，让数百名外包人员伪装成未成年人，向 OpenAI ChatGPT、谷歌 Gemini 及 Character.AI 发送涉及自杀、自残、进食障碍等高风险提示词，以测试竞品聊天机器人的安全拦截机制。项目持续至 4…",
+      "publishedAt": "2026-07-06T09:23:28.000Z",
       "category": "industry",
-      "comment": "点评：Kyber NVL144 延迟提醒市场：AI 基础设施不是线性扩容，机架、互联、供电、散热和供应链任何一环都可能拖慢模型迭代节奏。",
-      "advice": "建议：采购 GPU/集群时不要只按路线图做容量规划，应准备多供应商方案、租赁与自建组合、模型压缩策略和关键项目的算力降级预案。"
+      "comment": "点评：安全评测本身也需要治理。用敏感未成年人视角测试竞品可以发现风险，但也会引出数据来源、测试伦理、员工心理负担和行业透明度问题。",
+      "advice": "建议：做安全红队时要建立伦理审批、测试人员保护、敏感数据脱敏和披露边界；不要把“行业惯例”当成免审理由。"
     },
     {
       "topic": "model",
       "title": "Fun-ASR-Realtime 发布：单模型支持30种语言与16种方言，识别准确率领先",
       "source": "公众号：通义实验室（千问）",
       "url": "https://mp.weixin.qq.com/s/ntw0SliBi4f8LROnFY26kA",
-      "date": "2026-07-06",
+      "date": "2026-07-07",
       "score": 73,
       "tags": [
         "AI HOT",
-        "Fun-ASR",
+        "通义",
         "模型"
       ],
-      "summary": "通义实验室发布Fun-ASR-Realtime实时语音识别模型。单模型覆盖30种语言及16种方言，针对东亚、东南亚地区重点优化。在工业级方言测评inhouse上取得87.8%的语义准确率，大幅领先，多地方言接近人工水平。引入上下文理解与动态热词注入，实现同音词、品牌名等语义消歧。流式识别首字延迟控制在百毫秒级，准确率接近离线水平，支持多语言无缝切换。API已上线阿里云百炼平台。",
+      "summary": "通义实验室发布Fun-ASR-Realtime实时语音识别模型。单模型覆盖30种语言及16种方言，针对东亚、东南亚地区重点优化。在工业级方言测评inhouse上取得87.8%的语义准确率，大幅领先，多地方言接近人工水平。引入上下文理解与动态热词注入，实现同音词、品牌名等语义消歧。流式识别首字延迟控…",
       "publishedAt": "2026-07-06T06:09:29.000Z",
       "category": "ai-models",
-      "comment": "点评：Fun-ASR-Realtime 的价值在于实时、多语言、方言和热词消歧同时推进。语音入口正在从“能转文字”升级为能服务客服、会议、车载和跨境业务的基础能力。",
-      "advice": "建议：语音产品评测时要加入方言、噪声、品牌词、多人打断、延迟和跨语言切换场景；不要只用普通话清晰录音做验收。"
+      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
     },
     {
-      "topic": "tip",
-      "title": "分享8个Claude Fable 5下线前必跑的超实用Prompt",
-      "source": "公众号：卡尔的AI沃茨",
-      "url": "https://mp.weixin.qq.com/s/ZkMsdeTK6wmgkaER0iPT8w",
-      "date": "2026-07-06",
-      "score": 73,
+      "topic": "safety",
+      "title": "Sysdig 澄清首例\"智能体勒索软件\"JadePuffer：AI 执行攻击但人类仍负责设置与选目标",
+      "source": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/06/the-first-ai-run-ransomware-attack-still-needed-a-human",
+      "date": "2026-07-07",
+      "score": 72,
       "tags": [
         "AI HOT",
-        "Claude",
-        "Agent",
-        "观点"
+        "OpenAI",
+        "Anthropic",
+        "Gemini",
+        "DeepSeek",
+        "产业"
       ],
-      "summary": "Claude Fable 5即将下线，作者整理了8个经实战验证的提示词：/goal提示语让模型自主跑25次实验（花费165美元，构建速度提高50%、token开销降60%）；工作模式提示语将用户习惯转化为可复用Skills；行动规范提示语约束subagent行为；subagent分配提示语智能分配任务；25个定时循环工作流（含Shadow prompt loop做A/B测试）；自治运行+自动暂停提示语；记忆系统提示语保留错题本；反向面试提示语确保95%把握再执行。这些提示词可迁移至API计费后继续使用，核心是让模…",
-      "publishedAt": "2026-07-06T01:19:09.000Z",
-      "category": "tip",
-      "comment": "点评：这组提示词反映出 Agent 使用从“写一句 prompt”转向工作流资产化：目标循环、记忆、反向面试、subagent 分配和自动暂停，都是可迁移的操作系统。",
-      "advice": "建议：把高价值 prompt 沉淀成团队 Skill 或模板，并记录适用模型、成本、失败案例和验收命令；不要让个人经验散落在聊天记录里。"
-    },
-    {
-      "topic": "tip",
-      "title": "Anthropic Claude Design 反向工程提示词开源更新",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://github.com/Trystan-SA/claude-design-system-prompt",
-      "date": "2026-07-05",
-      "score": 73,
-      "tags": [
-        "AI HOT",
-        "Claude",
-        "开源",
-        "观点"
-      ],
-      "summary": "Anthropic 旗下 Claude Design 的反向工程系统提示词在 GitHub 以 MIT 许可证开源，包含 20 章提示词和 14 项技能，覆盖内容纪律、美学、无障碍（WCAG、语义 HTML、键盘导航）、交互状态、系统思维等。近日针对 Fable 5/Opus 4.7+ 系列校准，新增自主决策条款：小决定直接执行记录而不询问。项目支持 Claude Code/Claude.ai 及 Codex 两种变体。",
-      "publishedAt": "2026-07-05T15:35:42.919Z",
-      "category": "tip",
-      "comment": "点评：Claude Design 提示词被开源和适配，说明设计 Agent 的竞争焦点已经从审美描述转向系统规范：无障碍、交互状态、语义结构和自主决策边界。",
-      "advice": "建议：设计团队可以借鉴其结构化规范，但要替换为自己的品牌 token、组件库、可访问性标准和评审流程，避免直接复制导致风格同质化。"
+      "summary": "云安全公司 Sysdig 记录了首例\"智能体勒索软件\"攻击 JadePuffer，AI 智能体独立完成入侵、窃取凭证、横向移动、加密超 1，300 条配置记录并撰写赎金信，还能在 31 秒内修复失败登录并以自然语言注释解释推理过程。但 Sysdig 高级威胁研究总监 Michael Clark 澄…",
+      "publishedAt": "2026-07-06T23:56:14.000Z",
+      "category": "industry",
+      "comment": "点评：AI Agent 勒索攻击的危险在于自动化链路完整：侦察、利用、凭证收集、横向移动和加密勒索都可连续执行。安全风险已经从“模型会不会回答坏问题”升级到“Agent 能不能操作真实系统”。",
+      "advice": "建议：立即排查暴露的 Langflow、Nacos、MinIO、数据库与云凭证；把 AI/LLM 服务密钥纳入密钥轮换，限制横向访问，并为 Agent 行为检测建立异常命令告警。"
     },
     {
       "topic": "product",
       "title": "Synthetic Sciences 发布 OpenScience：面向机器学习、生物学、物理学和化学研究的开源模型无关 AI 工作台",
       "source": "MarkTechPost（RSS）",
       "url": "https://www.marktechpost.com/2026/07/05/synthetic-sciences-releases-openscience-an-open-source-model-agnostic-ai-workbench-for-machine-learning-biology-physics-and-chemistry-research",
-      "date": "2026-07-06",
+      "date": "2026-07-07",
       "score": 71,
       "tags": [
         "AI HOT",
+        "Anthropic",
         "Claude",
-        "OpenScience",
-        "开源",
+        "Gemini",
+        "GPT",
         "产品"
       ],
-      "summary": "Synthetic Sciences 推出开源（Apache 2.0）AI 科研工作台 OpenScience，覆盖机器学习、生物学、物理学、化学。它运行从文献、假设、代码、实验到分析与撰写的完整科研循环，支持按请求切换任意模型（Claude、GPT、Gemini、GLM、Kimi、DeepSeek 及本地微调模型）。内置 250 余项可编辑技能和 UniProt、PDB、ChEMBL、arXiv 等约 30 个科学数据库作为智能体工具。用户可自带 API 密钥在自己的基础设施上免费运行，安装命令为 `npm i…",
+      "summary": "Synthetic Sciences 推出开源（Apache 2.0）AI 科研工作台 OpenScience，覆盖机器学习、生物学、物理学、化学。它运行从文献、假设、代码、实验到分析与撰写的完整科研循环，支持按请求切换任意模型（Claude、GPT、Gemini、GLM、Kimi、DeepSee…",
       "publishedAt": "2026-07-06T05:07:12.000Z",
       "category": "ai-products",
-      "comment": "点评：OpenScience 把科研流程做成模型无关工作台，核心优势是技能、数据库和实验循环，而不是绑定某个大模型。AI for Science 正在走向“工具链平台化”。",
-      "advice": "建议：科研和企业研发团队试用时，应先选一个可复现的小课题，检查文献追踪、实验记录、代码执行、数据权限和结果引用是否闭环。"
-    },
-    {
-      "topic": "industry",
-      "title": "SK 海力士将启动 280 亿美元美股上市，有望成史上第二大 IPO",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/972/896.htm",
-      "date": "2026-07-06",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "SK 海力士",
-        "产业"
-      ],
-      "summary": "SK 海力士于本周一启动规模约 280 亿美元的美股上市计划，将在纳斯达克通过存托凭证发行 1779 万股新股，每 10 份存托凭证对应 1 股普通股。发行价区间周一公布，最终发行价周四敲定，股票周五挂牌交易。受益于全球人工智能热潮，该股年内涨幅超 270%。本次募资规模预计为史上第二大新股发行，仅次于上月 SpaceX 的 857 亿美元 IPO。SK 海力士是高带宽内存芯片核心供应商，产品用于英伟达、谷歌等 AI 设备。",
-      "publishedAt": "2026-07-06T01:09:29.000Z",
-      "category": "industry",
-      "comment": "点评：SK 海力士上市计划凸显 HBM 和存储供应链在 AI 产业中的战略地位。模型热潮正在把芯片、内存和资本市场绑定得更紧。",
-      "advice": "建议：关注 AI 成本时不能只看 GPU 单价，也要跟踪 HBM 供给、云厂商采购节奏和资本市场波动；预算模型要预留硬件涨价与交付延期。"
+      "comment": "点评：OpenScience 的重点是模型无关的科研工作台，而不是某个单点模型。真正价值在于把文献、假设、代码、实验、分析和撰写连成可追踪的科研闭环。",
+      "advice": "建议：先用一个小而可复现的研究任务试跑，检查引用来源、数据权限、实验日志、代码可复现性和模型切换成本，再决定是否进入正式科研流程。"
     },
     {
       "topic": "tip",
-      "title": "三周前，我不小心创办了一家小公司",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://extelligence.substack.com/p/i-accidentally-started-a-small-business",
-      "date": "2026-07-06",
+      "title": "Claude Code 团队详解四种智能体循环类型",
+      "source": "X：Claude Devs (@ClaudeDevs)",
+      "url": "https://x.com/ClaudeDevs/status/2074208949205881033",
+      "date": "2026-07-07",
       "score": 70,
       "tags": [
         "AI HOT",
+        "Claude",
+        "Claude Code",
         "观点"
       ],
-      "summary": "一位父亲为患有自闭症的非语言儿子开发了一款沟通应用，在言语治疗室的等候区展示时，所有非语言儿童的母亲看到后都忍不住流泪，言语治疗师也啜泣了五分钟。他意外发现产品市场匹配，决定腾出时间让更多孩子能用上，即使这意味着几周睡眠不足。应用本身是专为理解语言困难的儿童设计的，与传统的AAC设备不同--后者主要面向身体障碍但语言理解正常的成人。",
-      "publishedAt": "2026-07-05T17:43:57.442Z",
+      "summary": "Claude Code 团队将\"设计循环\"定义为智能体重复工作直到满足停止条件，划分四种类型：1）回合循环--手动提示触发，Claude 自判完成，适合短任务，可通过 SKILL.md 提升验证；2）目标循环--`/goal` 手动触发，达成目标或达最大轮数停止，需确定性完成标准（如测试通过数）；…",
+      "publishedAt": "2026-07-06T19:08:45.000Z",
       "category": "tip",
-      "comment": "点评：这个故事提醒我们，AI 创业机会不一定来自宏大技术叙事，也可能来自一个被长期忽视的真实痛点。强烈的用户情绪反馈往往比流量指标更早揭示产品市场匹配。",
-      "advice": "建议：创业者应多观察高痛点、低服务的人群，用小产品快速验证；尤其在辅助沟通、教育和无障碍场景中，先做可用和可信，再谈规模化。"
+      "comment": "点评：Agent 循环的关键不是“让模型一直干”，而是定义停止条件、检查点和预算。循环设计不好，自动化会变成无限重试和不可解释的成本黑洞。",
+      "advice": "建议：所有 Agent 循环都要写明目标、最大轮次、预算、停止条件、人工升级条件和可验证产物，避免无界自动化。"
     },
     {
-      "topic": "safety",
-      "title": "欧盟理事会通过快速通道强制推行\"聊天管控\"（Chat Control 2.0）",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://www.heise.de/en/news/Chat-Control-1-0-EU-Council-forces-messenger-scans-via-fast-track-11353659.html",
-      "date": "2026-07-06",
+      "topic": "tip",
+      "title": "Claude Fable实地指南：发现你的未知",
+      "source": "Claude：Blog（网页）",
+      "url": "https://claude.com/blog/a-field-guide-to-claude-fable-finding-your-unknowns",
+      "date": "2026-07-07",
       "score": 70,
       "tags": [
         "AI HOT",
-        "治理"
+        "Claude",
+        "Claude Code",
+        "观点"
       ],
-      "summary": "欧盟理事会通过书面程序快速通过一项新法规，强制要求科技集团对加密通信进行无差别扫描（Chat Control 2.0），以填补过渡性规定4月3日到期后的法律漏洞，并向欧洲议会施压。批评者指责该做法试图绕过民主监督。草案将在夏季休会前以紧急程序提交议会表决，多数议员可能已离会，反对需绝对多数，几乎无法阻止。理事会称扫描限于必要范围，处理的数据须在检测后12个月内不可撤销地删除。",
-      "publishedAt": "2026-07-05T16:23:44.440Z",
-      "category": "industry",
-      "comment": "点评：Chat Control 2.0 再次把安全治理与加密通信隐私推向冲突中心。对 AI 产品来说，合规压力会从内容生成扩展到通信扫描、数据留存和用户权利。",
-      "advice": "建议：面向欧洲用户的产品应提前梳理加密、内容检测、数据删除、透明披露和法务响应流程；不要把隐私设计留到政策落地后再补。"
-    },
-    {
-      "topic": "industry",
-      "title": "Runway 宣布设立巴黎办公室",
-      "source": "Runway：News（网页）",
-      "url": "https://runwayml.com/news/announcing-our-paris-office",
-      "date": "2026-07-06",
-      "score": 65,
-      "tags": [
-        "AI HOT",
-        "Runway",
-        "产业"
-      ],
-      "summary": "原文正文仅包含网站 Cookie 设置说明，未提供关于巴黎办公室的部门、规模、职能或开业时间等具体信息。",
-      "publishedAt": "2026-07-06T08:33:02.716Z",
-      "category": "industry",
-      "comment": "点评：Runway 设立巴黎办公室释放出本地化和欧洲创意生态扩张信号，但当前可见正文信息有限，不宜过度解读规模、职能或时间表。",
-      "advice": "建议：关注 Runway 后续招聘、合作伙伴和产品发布；做区域市场判断时，应以官方细节、岗位分布和客户案例交叉验证。"
+      "summary": "Claude Fable是第一款要求用户主动澄清未知才能获得高质量工作的模型。与Claude Fable协作是一个在实现前后迭代发现未知的过程。通过将问题分解为已知的已知、已知的未知、未知的已知和未知的未知四类，用户可以借助Claude Fable和Claude Code进行盲点检查、头脑风暴、原…",
+      "publishedAt": "2026-07-06T18:20:11.364Z",
+      "category": "tip",
+      "comment": "点评：Claude Fable 强调的不是更会执行命令，而是帮助用户发现盲点。高质量人机协作正在从“下指令”转向“共同暴露假设、未知和验证路径”。",
+      "advice": "建议：每次交给模型实现前，先让它列出假设、未知、风险、反例和验证计划；完成后再让它对照这些清单做一次盲点复盘。"
     }
   ],
   "sources": [
@@ -213,44 +245,56 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2073834219659534816",
-      "note": "扎克伯格：建千兆瓦级AI集群，集中精英与资本"
-    },
-    {
-      "name": "X：美团 LongCat (@Meituan_LongCat)",
-      "url": "https://x.com/Meituan_LongCat/status/2073768940078317713",
-      "note": "美团 LongCat-2.0 完全开源（MIT 许可），1.6T MoE 模型开放…"
-    },
-    {
-      "name": "X：SemiAnalysis (@SemiAnalysis_)",
-      "url": "https://x.com/SemiAnalysis_/status/2073874671498387899",
-      "note": "NVIDIA Kyber NVL144 延迟超 12 个月至 2028"
-    },
-    {
-      "name": "公众号：通义实验室（千问）",
-      "url": "https://mp.weixin.qq.com/s/ntw0SliBi4f8LROnFY26kA",
-      "note": "Fun-ASR-Realtime 发布：单模型支持30种语言与16种方言，识别准确…"
-    },
-    {
-      "name": "公众号：卡尔的AI沃茨",
-      "url": "https://mp.weixin.qq.com/s/ZkMsdeTK6wmgkaER0iPT8w",
-      "note": "分享8个Claude Fable 5下线前必跑的超实用Prompt"
+      "name": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/06/the-running-list-major-tech-layoffs-in-2026-where-employers-cited-ai",
+      "note": "2026年科技公司AI裁员名单：Microsoft、Oracle、GitLab…"
     },
     {
       "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://github.com/Trystan-SA/claude-design-system-prompt",
-      "note": "Anthropic Claude Design 反向工程提示词开源更新"
+      "url": "https://seldo.com/posts/ai-has-torched-the-market-for-junior-programmers",
+      "note": "AI颠覆初级程序员就业市场：斯坦福数据揭示年轻开发者就业锐减19%"
     },
     {
-      "name": "MarkTechPost（RSS）",
-      "url": "https://www.marktechpost.com/2026/07/05/synthetic-sciences-releases-openscience-an-open-source-model-agnostic-ai-workbench-for-machine-learning-biology-physics-and-chemistry-research",
-      "note": "Synthetic Sciences 发布 OpenScience：面向机器学习、…"
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://github.com/iOfficeAI/OfficeCLI",
+      "note": "OfficeCLI：为AI智能体设计的开源Office套件"
+    },
+    {
+      "name": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/06/if-you-use-google-youre-training-its-ai-heres-how-to-opt-out",
+      "note": "Google 更新隐私设置，默认用媒体数据训练 AI，用户可手动退出"
+    },
+    {
+      "name": "X：Vista (@vista8)",
+      "url": "https://x.com/vista8/status/2074130700421456089",
+      "note": "免费开源API中转站监测网站tokhub.me上线"
+    },
+    {
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://www.wysr.xyz/p/the-private-capture-of-public-genius",
+      "note": "AT&T 1956年专利法令：公共天才的私有化"
+    },
+    {
+      "name": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/973/207.htm",
+      "note": "Meta 被曝让外包人员伪装未成年人，诱导竞争对手 AI 聊敏感话题"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-07-07",
+    "title": "AI HOT 日报：AI裁员潮、初级程序员危机、OfficeCLI",
+    "summary": "重点关注 行业动态、技巧与观点、产品发布/更新、模型发布/更新。核心信号是：2026年科技公司AI裁员名单：Microsoft、Oracle、GitLab等十家公司裁减数千岗位；AI颠覆初级程序员就业市场：斯坦福数据揭示年轻开发者就业锐减19%；OfficeCLI：为AI智能体…",
+    "link": "/posts/70707/",
+    "tags": [
+      "AI HOT",
+      "Google",
+      "Meta",
+      "Microsoft"
+    ]
+  },
   {
     "date": "2026-07-06",
     "title": "AI HOT 日报：LongCat-2.0、千兆瓦 AI 集群、Fun-ASR",
