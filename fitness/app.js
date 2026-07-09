@@ -271,7 +271,7 @@ function renderExerciseCard(exercise) {
 
 function renderExerciseMedia(exercise, compact = true) {
   const alt = `${displayName(exercise)} 动作动图`;
-  const fallback = figureFor(exercise);
+  const fallback = compact ? '动图加载失败' : '动图暂不可用';
   const cls = compact ? 'exercise-media compact' : 'exercise-media large';
   if (!exercise.gif_url) {
     return `<div class="${cls} media-fallback" aria-label="${escapeAttr(alt)}">${fallback}</div>`;
@@ -620,11 +620,8 @@ function findByName(name) {
 function getExercise(id) { return state.exercises.find((exercise) => exercise.id === id); }
 function displayName(exercise) { return exercise ? (exercise.name_zh || exercise.display_name || '中文动作') : ''; }
 function figureFor(exercise) {
-  if (exercise.tags.includes('跑步辅助') || exercise.tags.includes('心肺有氧')) return '🏃';
-  if (exercise.tags.includes('跑者力量') || exercise.body_part_zh === '臀腿') return '🦵';
-  if (exercise.body_part_zh === '腰腹核心') return '◎';
-  if (exercise.equipment_zh.includes('哑铃') || exercise.equipment_zh.includes('杠铃')) return '🏋️';
-  return '✦';
+  if (!exercise?.gif_url) return '暂无动图';
+  return '动图加载失败';
 }
 function optionList(items, selected, allLabel) { return [`<option value="">${allLabel}</option>`, ...items.sort().map((item) => `<option value="${escapeAttr(item)}" ${item === selected ? 'selected' : ''}>${escapeHtml(item)}</option>`)].join(''); }
 function selectField(id, label, options) { return `<label class="field"><span>${label}</span><select id="${id}">${options.map(([value, text]) => `<option value="${value}">${text}</option>`).join('')}</select></label>`; }
