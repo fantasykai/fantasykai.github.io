@@ -1,240 +1,233 @@
 const episode = {
-  "date": "2026-07-10",
-  "title": "AI HOT 日报：ChatGPT Work、Flint、LongCat-2.0",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 模型发布/更新、产品发布/更新、行业动态、技巧与观点。核心信号是：OpenAI 推出 ChatGPT Work：可跨应用自主工作的 AI 智能体；微软发布Flint：面向AI智能体的可视化语言；美团 LongCat-2.0 正式开源，同步开放国产卡推理代码。",
+  "date": "2026-07-11",
+  "title": "AI HOT 日报：Apple诉OpenAI、宇树G1手术、AI滥用风险",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、论文研究、技巧与观点、产品发布/更新。核心信号是：Apple 起诉 OpenAI 窃取商业机密；宇树G1人形机器人完成首例活体微创手术；博科圣地如何利用前沿AI技术。",
   "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "topic": "model",
-      "title": "OpenAI 推出 ChatGPT Work：可跨应用自主工作的 AI 智能体",
-      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "url": "https://openai.com/index/chatgpt-for-your-most-ambitious-work",
-      "date": "2026-07-10",
+      "topic": "safety",
+      "title": "Apple 起诉 OpenAI 窃取商业机密",
+      "source": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/10/apple-sues-openai-over-alleged-trade-secret-theft",
+      "date": "2026-07-11",
       "score": 80,
       "tags": [
         "AI HOT",
         "OpenAI",
-        "GPT",
-        "推理",
-        "模型"
+        "产业"
       ],
-      "summary": "OpenAI 发布 ChatGPT Work，一个能跨应用和文件收集信息、将复杂项目分解为小步骤独立完成并持续工作数小时的 AI 智能体。它内置 Codex 技术，目前每周超 500 万用户使用 Codex，其中超 100 万用于非软件开发场景。ChatGPT Work 由今天同步推出的最新前沿模…",
-      "publishedAt": "2026-07-09T10:00:00.000Z",
-      "category": "ai-models",
-      "comment": "点评：ChatGPT Work 把 Agent 从“会调用工具”推进到“能跨应用持续交付”。能力边界不再只看模型聪明程度，而在于能否安全访问文件、系统和协作流程。",
-      "advice": "建议：先在低权限、可回滚的工作流试点，明确每个连接器可读写的数据范围、最大执行时长、人工确认点和异常中止规则。"
+      "summary": "Apple 于周五向美国加州北区联邦法院提起诉讼，指控 OpenAI 窃取商业机密并违反合同。诉状称，OpenAI 高级领导层（包括首席硬件官 Tang Tan）指使前 Apple 员工在招聘过程中窃取机密，包括使用未发布产品的项目代号、要求应聘者携带硬件组件参加面试。Apple 还指控前高级系统…",
+      "publishedAt": "2026-07-10T20:32:00.000Z",
+      "category": "industry",
+      "comment": "点评：这起诉讼把 AI 硬件竞赛中的人才流动、商业秘密和供应链信任推到台前。前沿 AI 的竞争不只发生在模型层，也发生在产品工程、招聘流程与知识产权边界。",
+      "advice": "建议：招聘与合作中建立商业秘密隔离流程：明确禁止携带前雇主资料，保留访谈与设备访问审计，并让法务参与高敏感岗位的入职检查。"
     },
     {
-      "topic": "product",
-      "title": "微软发布Flint：面向AI智能体的可视化语言",
+      "topic": "paper",
+      "title": "宇树G1人形机器人完成首例活体微创手术",
+      "source": "X：X.PIN (@thexpin)",
+      "url": "https://x.com/thexpin/status/2075640168896516139",
+      "date": "2026-07-11",
+      "score": 79,
+      "tags": [
+        "AI HOT",
+        "机器人",
+        "论文"
+      ],
+      "summary": "一篇新的《自然》论文展示了宇树G1人形机器人执行研究人员所称的首例由人形机器人完成的活体标准微创手术。加州大学圣地亚哥团队使用G1，以常规手术器械完成了对两只活猪的腹腔镜胆囊切除术；第二次手术耗时32分钟。该机器人仍需反复校正，且尚无法满足手术无菌标准，但其成本可能仅为达芬奇系统的约5%。",
+      "publishedAt": "2026-07-10T17:55:54.000Z",
+      "category": "paper",
+      "comment": "点评：人形机器人进入活体手术研究，真正的门槛不是完成一次演示，而是无菌、稳定性、失效保护、临床验证和医生责任边界。低成本潜力值得关注，但不能替代严格的医疗路径。",
+      "advice": "建议：医疗机构应把相关系统限定在伦理审批与临床研究框架内，逐步验证无菌、故障切换、医生监督、术后追溯和患者知情同意。"
+    },
+    {
+      "topic": "safety",
+      "title": "博科圣地如何利用前沿AI技术",
       "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://microsoft.github.io/flint-chart",
-      "date": "2026-07-10",
+      "url": "https://casp.ac/reports/ai-enabled-terrorism",
+      "date": "2026-07-11",
+      "score": 77,
+      "tags": [
+        "AI HOT",
+        "Meta",
+        "Grok",
+        "Claude",
+        "Gemini",
+        "论文"
+      ],
+      "summary": "2025至2026年间对尼日利亚东北部27名前\"博科圣地\"成员的半结构化访谈揭示了该组织在2024年系统性地利用前沿AI技术。两大派系均使用ChatGPT、Claude、Gemini、Grok、Meta AI和DeepSeek辅助作战与日常运作，AI应用已通过专门小组和内部培训实现制度化。成员成功…",
+      "publishedAt": "2026-07-10T22:07:19.177Z",
+      "category": "paper",
+      "comment": "点评：这份研究报告表明，通用 AI 的滥用已可能从个体尝试转为组织化流程。模型安全不能只关注输出拒答，还需要覆盖账号风控、异常行为识别、跨平台协作和外部通报机制。",
+      "advice": "建议：模型和平台团队应把组织化滥用纳入威胁建模：强化异常账号与批量自动化检测、最小化高风险能力暴露，并建立与安全研究者和执法机构的合规联动。"
+    },
+    {
+      "topic": "industry",
+      "title": "扎克伯格首度回应 Meta\"算力过剩\"：没人会嫌算力太多，但租出去更赚钱",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/975/078.htm",
+      "date": "2026-07-11",
       "score": 75,
       "tags": [
         "AI HOT",
-        "MCP",
-        "开源",
-        "产品"
-      ],
-      "summary": "微软研究院推出Flint，一种可视化中间语言，让AI智能体通过简洁的人类可编辑spec自动生成美观图表。用户只需提供数据、语义类型和图表类型，Flint编译器即可推导坐标轴、配色、布局等底层参数。支持46种图表类型，可渲染到Vega-Lite、ECharts和Chart.js三个后端。项目通过np…",
-      "publishedAt": "2026-07-09T21:46:19.253Z",
-      "category": "ai-products",
-      "comment": "点评：Flint 的价值不在于多一个图表库，而在于给 Agent 一层可读、可编辑、可审查的可视化规格。它有机会减少“图画出来了但语义错了”的黑箱问题。",
-      "advice": "建议：把图表 spec 纳入版本控制和评审，针对指标口径、坐标轴、筛选条件和数据来源建立自动检查，避免 Agent 输出“好看但误导”的图。"
-    },
-    {
-      "topic": "model",
-      "title": "美团 LongCat-2.0 正式开源，同步开放国产卡推理代码",
-      "source": "公众号：龙猫LongCat（美团）",
-      "url": "https://mp.weixin.qq.com/s/iCq4jVlTdKOt74zAMYIIdw",
-      "date": "2026-07-10",
-      "score": 74,
-      "tags": [
-        "AI HOT",
-        "Agent",
-        "开源",
-        "推理",
-        "模型"
-      ],
-      "summary": "美团万亿参数大模型 LongCat-2.0 正式开源，总参数 1.6T，平均激活约 48B，专为真实 Agentic Coding 任务设计。模型引入 LongCat 稀疏注意力机制与 N-gram Embedding，提升长上下文处理效率与 Token 级表示能力。LongCat-2.0 是业界…",
-      "publishedAt": "2026-07-09T11:58:00.000Z",
-      "category": "ai-models",
-      "comment": "点评：LongCat-2.0 同时开放权重和国产卡推理代码，竞争点从“是否开源”推进到“能否在本地算力稳定、低成本地跑起来”。这对 Agentic Coding 的真实落地更关键。",
-      "advice": "建议：在目标国产算力上用真实代码仓、上下文长度、并发和单位任务成本做验证；同时检查许可证、权重下载、推理栈和模型更新的长期可维护性。"
-    },
-    {
-      "topic": "safety",
-      "title": "Elon Musk称赞Anthropic并承诺不切断其算力",
-      "source": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/07/09/elon-musk-praises-mythos-fable-promises-not-to-cut-off-anthropic",
-      "date": "2026-07-10",
-      "score": 73,
-      "tags": [
-        "AI HOT",
-        "Anthropic",
-        "xAI",
-        "产业"
-      ],
-      "summary": "Elon Musk近日在X上承认此前对Anthropic的判断有误，称其\"显然是当前AI领域的领导者\"，盛赞Mythos/Fable模型\"目前最好\"，并承诺不会恶意切断其计算资源。2026年7月起，Anthropic成为SpaceX最大客户之一--双方5月签署协议，Anthropic以每月12.5…",
-      "publishedAt": "2026-07-09T21:57:42.000Z",
-      "category": "industry",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：管理者应把合规、审计、权限和员工沟通前置，避免 AI 项目因信任问题受阻。"
-    },
-    {
-      "topic": "safety",
-      "title": "AI 能否回答 3 万亿美元的问题？",
-      "source": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/07/09/can-ai-answer-the-3-trillion-question",
-      "date": "2026-07-10",
-      "score": 73,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
         "Anthropic",
         "Meta",
-        "观点"
+        "产业"
       ],
-      "summary": "Sequoia 合伙人 David Cahn 更新 AI 基础设施支出估算：2026 年全球投入达 1.5 万亿美元，行业需产生 3 万亿美元收入才能回本。Anthropic 年化收入（ARR）达 600 亿美元，OpenAI 2025 年收入 130 亿美元（11 月称 ARR 200 亿美元）…",
-      "publishedAt": "2026-07-09T21:47:50.000Z",
-      "category": "tip",
-      "comment": "点评：三万亿美元问题本质是 AI 基建投资的回报压力。行业最终要靠可持续的企业收入和可验证的生产率收益，而不是靠更高的训练预算来闭环。",
-      "advice": "建议：企业立项时把增量收入、节省工时、推理成本和数据中心投入放进同一张财务模型，并按季度复核是否真的创造可回收价值。"
+      "summary": "Meta CEO 扎克伯格首次正面回应公司筹划云基础设施业务一事，否认\"算力过剩\"猜测，称内部算力需求依然旺盛、满负荷运转。但他同时表示，当前市场对算力出价极高，将部分 AI 基础设施对外出租在财务上更划算。Meta 正制定代号\"Meta Compute\"的云计算计划，包括开放模型访问权限和直接出…",
+      "publishedAt": "2026-07-10T07:26:10.000Z",
+      "category": "industry",
+      "comment": "点评：Meta 把闲置或弹性算力视为潜在云业务，反映 AI 基建正在从战略储备转向资产运营。算力竞争将同时受模型需求、资本开支和外部租赁市场约束。",
+      "advice": "建议：采购或自建算力时以业务峰谷、模型生命周期、网络与数据迁移成本为依据；同时预留多云或多芯片迁移方案，避免被短期供需波动锁定。"
     },
     {
-      "topic": "safety",
-      "title": "Claude 推出反思功能（Beta）",
-      "source": "Anthropic：Newsroom（网页）",
-      "url": "https://www.anthropic.com/news/reflect-with-claude",
-      "date": "2026-07-10",
-      "score": 73,
+      "topic": "tip",
+      "title": "马斯克承认Anthropic是当前AI领导者",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2075480331600417141",
+      "date": "2026-07-11",
+      "score": 75,
       "tags": [
         "AI HOT",
         "Anthropic",
-        "Claude",
+        "开源",
+        "观点"
+      ],
+      "summary": "马斯克在X上发文承认自己此前对Anthropic的判断有误，称其\"显然是当前AI领域的领导者\"。他表示，没有公司发布过像Mythos/Fable这样优秀的模型，并相信Anthropic很快会推出Mythos 2。他还强调，即使作为竞争对手，也不会以伤害对方的方式切断合作，并列举了特斯拉开源专利、开…",
+      "publishedAt": "2026-07-10T07:20:46.000Z",
+      "category": "tip",
+      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
+    },
+    {
+      "topic": "product",
+      "title": "百度搭子在成都AI Day发布四项更新：个人版升级、自媒体套件、企业版及搭子联盟",
+      "source": "公众号：百度智能云（文心）",
+      "url": "https://mp.weixin.qq.com/s/Haqbjim9YGmRu1XpxG_VvA",
+      "date": "2026-07-11",
+      "score": 71,
+      "tags": [
+        "AI HOT",
         "产品"
       ],
-      "summary": "Anthropic 为 Claude 推出一项反思功能（Beta），帮助用户追踪使用模式。用户可回顾过去 1、3、6 或 12 个月的活动总结，涵盖关键主题、使用频率和任务类型。功能结合 4D AI Fluency Framework（委托、描述、辨别、勤勉）提供协作分析，支持设定静音时段或定时休…",
-      "publishedAt": "2026-07-09T13:40:30.163Z",
+      "summary": "百度搭子在成都百度AI Day上发布四项更新。个人版新增浏览器调用、智能路由（平均任务耗时降20%，Token利用率提升25%）、多端共享记忆及强化PPT生成，并上架\"一镜\"数字人制作、\"灵医\"报告解读等Skill。行业首个自媒体专业套件支持选题到复盘全链路。企业版支持团队协作与权限管理。搭子联盟…",
+      "publishedAt": "2026-07-10T13:58:07.000Z",
       "category": "ai-products",
-      "comment": "点评：Claude 的反思功能把“如何使用 AI”也变成产品能力。对个人它能暴露习惯盲点；对团队则提示采用率不应只看调用量，还要看任务结构与协作质量。",
-      "advice": "建议：团队复盘 AI 使用时只聚合脱敏指标，避免把个人对话内容变成绩效监控；重点衡量任务完成质量、返工率和知识沉淀。"
+      "comment": "点评：百度把个人 Agent、垂直内容工作流、企业权限和生态伙伴放在同一产品线，说明 Agent 产品正在从单功能助手转向可运营的平台；关键仍是任务完成质量与权限治理。",
+      "advice": "建议：试点这类 Agent 平台时，先为一个可量化的内容或办公流程设定验收指标，并单独审查浏览器权限、长期记忆、团队数据和第三方 Skill 的边界。"
     },
     {
-      "topic": "model",
-      "title": "蚂蚁灵波开源实时交互世界模型 LingBot-World 2.0",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/974/508.htm",
-      "date": "2026-07-10",
-      "score": 73,
+      "topic": "product",
+      "title": "Claude Code桌面版新增应用内浏览器",
+      "source": "X：Claude Devs (@ClaudeDevs)",
+      "url": "https://x.com/ClaudeDevs/status/2075635283211772279",
+      "date": "2026-07-11",
+      "score": 70,
       "tags": [
         "AI HOT",
-        "Agent",
-        "开源",
-        "推理",
-        "模型"
+        "Claude",
+        "Claude Code",
+        "产品"
       ],
-      "summary": "蚂蚁灵波开源新一代实时交互世界模型 LingBot-World 2.0（14B 参数），支持施法、攻击、跳跃等丰富角色动作及文本驱动事件（如切换场景、召唤风暴），内置 Pilot Agent 与 Director Agent 实现世界持续演化，并支持多人同时交互。模型采用因果预训练范式和混合双向自…",
-      "publishedAt": "2026-07-09T06:53:40.000Z",
-      "category": "ai-models",
-      "comment": "点评：LingBot-World 把世界模型、角色控制与多智能体交互连接起来，说明具身智能正从单次生成走向持续运行的模拟环境；长期价值取决于物理一致性和可控性。",
-      "advice": "建议：游戏与机器人团队应先在封闭场景评估长时一致性、多人干扰、安全边界和资源成本，再决定是否连接真实控制系统。"
+      "summary": "Claude Code 桌面版现在有了应用内浏览器。 Claude 可以调出文档、设计稿或任何其他网站。它可以像操作本地开发服务器一样，进行阅读、点击浏览和交互。 该浏览器采用沙盒机制且可配置：你可以自行选择会话是否持久保留。",
+      "publishedAt": "2026-07-10T17:36:29.000Z",
+      "category": "ai-products",
+      "comment": "点评：把浏览器嵌进编程 Agent，意味着模型能直接观察并操作真实网页环境。沙盒和会话持久化是必要起点，但访问范围、登录态和发布动作仍需要明确门禁。",
+      "advice": "建议：把浏览器 Agent 先放入测试账号和隔离环境，限制域名、下载、Cookie 与表单提交；涉及生产发布、支付或敏感数据时保留人工确认。"
     },
     {
-      "topic": "safety",
-      "title": "社交媒体AI生成内容泛滥：LinkedIn超过40%长文为AI写作",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://www.pangram.com/blog/ai-in-your-feed",
-      "date": "2026-07-10",
-      "score": 72,
+      "topic": "paper",
+      "title": "小红书发布大模型新架构 PIPO",
+      "source": "公众号：小红书技术（dots.llm）",
+      "url": "https://mp.weixin.qq.com/s/1eo7rrCAH-OA0TnXwwqJEg",
+      "date": "2026-07-11",
+      "score": 70,
       "tags": [
         "AI HOT",
+        "Qwen",
+        "论文"
+      ],
+      "summary": "小红书提出 PIPO 架构，通过输入侧压缩器将两个 token 折叠为一个 latent，输出侧 MTP head 将隐藏状态展开为额外 token，实现输入长度减半、每步输出翻倍。基于 Qwen3.5-4B/9B backbone，在 AIME 2025 等基准上最高带来 +7.15 pass@…",
+      "publishedAt": "2026-07-10T09:59:00.000Z",
+      "category": "paper",
+      "comment": "点评：PIPO 直接瞄准上下文长度和解码吞吐两端的效率瓶颈。它的价值取决于压缩后是否保住关键信息，以及在真实工具调用、长文档和代码场景中能否稳定复现。",
+      "advice": "建议：评估压缩架构时用长上下文检索、代码修改、工具调用和事实一致性测试共同验证，重点观察边缘信息丢失和推理加速是否真正抵消训练复杂度。"
+    },
+    {
+      "topic": "tip",
+      "title": "Elon Musk 转发用户称赞 Grok Build 的反馈",
+      "source": "X：Elon Musk (@elonmusk, xAI)",
+      "url": "https://x.com/elonmusk/status/2075478792273842370",
+      "date": "2026-07-11",
+      "score": 68,
+      "tags": [
+        "AI HOT",
+        "Grok",
+        "Agent",
+        "MCP",
         "观点"
       ],
-      "summary": "安全公司Pangram通过Chrome扩展收集超100万条帖子，分析发现社交媒体AI生成内容泛滥。整体AI检测率13.8%，长文（超250词）中25.72%完全由AI生成。LinkedIn最为严重，超40%长文帖子被标记为完全AI生成，占全部AI内容的62%；X/Twitter近一半文章（23.9…",
-      "publishedAt": "2026-07-09T21:46:29.789Z",
+      "summary": "Elon Musk 转发用户 @0x0funky 对 Grok Build 的称赞。该用户称 Grok Build 是目前唯一集大成的 coding agentic workflow，内建图像生成和图片生视频功能，生图速度快且品质不输 Codex。Agent 可直接完成图像与视频生成，无需额外串接…",
+      "publishedAt": "2026-07-10T07:14:39.000Z",
       "category": "tip",
-      "comment": "点评：当 AI 生成内容成为信息流常态，稀缺的将不是写作能力而是可信信号：来源、经验、证据和独特判断。内容平台也会面临分发质量与用户信任的再平衡。",
-      "advice": "建议：内容团队优先强化一手案例、署名责任、引用链和编辑校验；平台方则应给读者可理解的来源提示和反馈机制，而不是只依赖检测分数。"
+      "comment": "点评：Grok Build 的卖点是把代码、图像与视频生成合在同一条 Agent 链路里。真正需要验证的是跨模态交付是否可复现，以及素材版权、权限和审查是否随能力一起内建。",
+      "advice": "建议：用一个端到端项目验证跨模态 Agent：固定素材授权、输出规格、测试证据与发布门禁，并对每一类外部工具设定最小权限。"
     },
     {
-      "topic": "model",
-      "title": "OpenAI 发布最强模型与最佳博文",
-      "source": "X：Sam Altman (@sama)",
-      "url": "https://x.com/sama/status/2075266471316615436",
-      "date": "2026-07-10",
-      "score": 72,
+      "topic": "product",
+      "title": "Perplexity 推出跨模型信用额度分析功能",
+      "source": "X：Perplexity (@perplexity_ai)",
+      "url": "https://x.com/perplexity_ai/status/2075599540640714863",
+      "date": "2026-07-11",
+      "score": 65,
       "tags": [
         "AI HOT",
-        "OpenAI",
-        "GPT",
-        "模型"
+        "产品"
       ],
-      "summary": "显然是我们有史以来最好的模型，也是我们写得最好的博文之一： https://openai.com/index/gpt-5-6/",
-      "publishedAt": "2026-07-09T17:10:58.000Z",
-      "category": "ai-models",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
+      "summary": "推出 Computer Analytics：你现在可以跨模型跟踪信用额度支出。 该功能现已面向个人和企业用户开放，可在账户设置的 Analytics 下使用。",
+      "publishedAt": "2026-07-10T15:14:27.000Z",
+      "category": "ai-products",
+      "comment": "点评：跨模型成本分析成为产品功能，说明团队开始把模型选择从“偏好问题”变成财务与工程决策。没有单位任务成本和成功率，单看 Token 消耗仍不够。",
+      "advice": "建议：把预算看板与任务成功率、人工返工、时延和供应商故障率关联，按业务场景设定模型路由与消费上限，而不是只比较单价。"
     },
     {
-      "topic": "model",
-      "title": "蚂蚁灵波开源全球首个面向具身智能的MoE视频基模LingBot-Video",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/974/517.htm",
-      "date": "2026-07-10",
-      "score": 72,
-      "tags": [
-        "AI HOT",
-        "开源",
-        "推理",
-        "机器人",
-        "模型"
-      ],
-      "summary": "蚂蚁灵波科技正式开源LingBot-Video，这是全球首个基于MoE架构、面向具身智能的视频生成基础模型。总参数30B，推理时仅激活约3B，效率较同规模Dense架构提升约3倍。模型引入7万小时VLA、VLN、Ego等机器人数据，并通过多维强化学习奖励系统对齐物理合理性与任务完成度。在RBenc…",
-      "publishedAt": "2026-07-09T07:06:00.000Z",
-      "category": "ai-models",
-      "comment": "点评：面向具身智能的视频模型强调的不是视觉效果，而是动作、物理约束和任务完成度。若能稳定建模失败与反馈，它会成为机器人训练和仿真的重要数据层。",
-      "advice": "建议：用明确的物理任务和失败案例评测视频模型，重点检查动作可执行性、跨帧一致性、仿真到真实的偏差和数据授权边界。"
-    },
-    {
-      "topic": "safety",
-      "title": "Bun 被 Anthropic 收购后用 Rust 重写，月下载超 2200 万",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://bun.com/blog/bun-in-rust",
-      "date": "2026-07-10",
-      "score": 71,
+      "topic": "product",
+      "title": "Claude Code v2.1.206 发布",
+      "source": "Claude Code：GitHub Releases（RSS）",
+      "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.206",
+      "date": "2026-07-11",
+      "score": 62,
       "tags": [
         "AI HOT",
         "Anthropic",
         "Claude",
+        "MCP",
         "Claude Code",
-        "观点"
+        "产品"
       ],
-      "summary": "Bun 于 2025 年 12 月被 Anthropic 收购，作者使用预发布版 Claude Fable 5 进行了大量 Rust 重写。Bun 最初用 Zig 在一年内构建，如今 CLI 月下载超 2200 万，被 Claude Code 等采用。广泛功能带来稳定性挑战，v1.3.14 修复了…",
-      "publishedAt": "2026-07-09T21:46:21.422Z",
-      "category": "tip",
-      "comment": "点评：Bun 的 Rust 重写说明 Agent 已能参与大型工程迁移，但“模型写了多少”不应替代架构、性能、兼容性和维护成本的审查。AI 更适合加速重构，而非取消工程责任。",
-      "advice": "建议：用 AI 做语言迁移时按模块切分，保留基准测试、兼容性测试、人工代码审查和可逆提交；不要把大规模重写一次性推入主分支。"
+      "summary": "Claude Code v2.1.206 发布，主要更新包括：为 `/cd` 命令添加目录路径建议；新增 `/doctor` 检查以建议修剪 CLAUDE.md 文件中模型可从代码库推导的内容；`/commit-push-pr` 现在自动允许 git push 到仓库配置的推送远程仓库；`/log…",
+      "publishedAt": "2026-07-10T01:45:26.000Z",
+      "category": "ai-products",
+      "comment": "点评：Claude Code 把环境诊断、上下文维护和提交流程继续内建，Agent 开发体验正在向“可观测、可维护的工程工作台”靠拢；自动化越深，审查门槛越要清晰。",
+      "advice": "建议：升级后先在非关键仓库验证命令权限与 Git 远程配置；对自动 push/PR 保留分支保护、必需检查和人工代码审查。"
     },
     {
-      "topic": "model",
-      "title": "Cognition 推出 SWE-1.7，接近 GPT 5.5 与 Opus 智能水平",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://cognition.com/blog/swe-1-7",
-      "date": "2026-07-10",
-      "score": 71,
+      "topic": "paper",
+      "title": "DeepSeek-V4 Flash 强化学习训练登陆 AMD Instinct MI355X GPU，由 Miles 框架支持",
+      "source": "LMSYS：Blog（Chatbot Arena 团队）",
+      "url": "https://www.lmsys.org/blog/2026-07-10-rocm-miles-dsv4",
+      "date": "2026-07-11",
+      "score": 61,
       "tags": [
         "AI HOT",
-        "GPT",
-        "Kimi",
-        "模型"
+        "DeepSeek",
+        "论文"
       ],
-      "summary": "Cognition 发布迄今最强模型 SWE-1.7，基于 Kimi K2.7 基座训练，通过强化学习管线改进（基础设施、训练稳定性、数据质量、长程任务技术）实现前沿智能水平并大幅降低成本。在 FrontierCode 1.1 Main 基准上达 42.3%（Kimi K2.7 Code 为 30…",
-      "publishedAt": "2026-07-09T21:46:17.901Z",
-      "category": "ai-models",
-      "comment": "点评：代码模型的竞争越来越像系统工程：训练数据、长程任务、工具调用和成本控制共同决定体验。单一基准接近旗舰模型，不等于真实仓库中的端到端交付已同等可靠。",
-      "advice": "建议：把新代码模型放进带测试、代码审查和回滚的真实仓库任务中对比；同时记录成功率、人工返工时长、成本和安全例外。"
+      "summary": "DeepSeek-V4 Flash 的强化学习训练现已在 AMD Instinct MI355X GPU 上通过 Miles 框架获得支持，基于 ROCm 软件栈运行。该 2840 亿参数 MoE 模型（每 token 激活 130 亿参数）需 SGLang 进行 rollout 生成、Megat…",
+      "publishedAt": "2026-07-10T17:19:11.037Z",
+      "category": "paper",
+      "comment": "点评：DeepSeek-V4 Flash 跑在 AMD 平台上，说明前沿训练与推理生态正尝试降低对单一硬件路线的依赖。软件栈成熟度、调试成本和集群稳定性会决定这种替代能走多远。",
+      "advice": "建议：计划采用 AMD 训练栈的团队应先做小规模兼容性和性能基线，覆盖算子支持、容错、监控、模型并行和运维人才，再扩大集群投入。"
     }
   ],
   "sources": [
@@ -244,44 +237,56 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "url": "https://openai.com/index/chatgpt-for-your-most-ambitious-work",
-      "note": "OpenAI 推出 ChatGPT Work：可跨应用自主工作的 AI 智能体"
+      "name": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/10/apple-sues-openai-over-alleged-trade-secret-theft",
+      "note": "Apple 起诉 OpenAI 窃取商业机密"
+    },
+    {
+      "name": "X：X.PIN (@thexpin)",
+      "url": "https://x.com/thexpin/status/2075640168896516139",
+      "note": "宇树G1人形机器人完成首例活体微创手术"
     },
     {
       "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://microsoft.github.io/flint-chart",
-      "note": "微软发布Flint：面向AI智能体的可视化语言"
-    },
-    {
-      "name": "公众号：龙猫LongCat（美团）",
-      "url": "https://mp.weixin.qq.com/s/iCq4jVlTdKOt74zAMYIIdw",
-      "note": "美团 LongCat-2.0 正式开源，同步开放国产卡推理代码"
-    },
-    {
-      "name": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/07/09/elon-musk-praises-mythos-fable-promises-not-to-cut-off-anthropic",
-      "note": "Elon Musk称赞Anthropic并承诺不切断其算力"
-    },
-    {
-      "name": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/07/09/can-ai-answer-the-3-trillion-question",
-      "note": "AI 能否回答 3 万亿美元的问题？"
-    },
-    {
-      "name": "Anthropic：Newsroom（网页）",
-      "url": "https://www.anthropic.com/news/reflect-with-claude",
-      "note": "Claude 推出反思功能（Beta）"
+      "url": "https://casp.ac/reports/ai-enabled-terrorism",
+      "note": "博科圣地如何利用前沿AI技术"
     },
     {
       "name": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/974/508.htm",
-      "note": "蚂蚁灵波开源实时交互世界模型 LingBot-World 2.0"
+      "url": "https://www.ithome.com/0/975/078.htm",
+      "note": "扎克伯格首度回应 Meta\"算力过剩\"：没人会嫌算力太多，但租出去更赚钱"
+    },
+    {
+      "name": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2075480331600417141",
+      "note": "马斯克承认Anthropic是当前AI领导者"
+    },
+    {
+      "name": "公众号：百度智能云（文心）",
+      "url": "https://mp.weixin.qq.com/s/Haqbjim9YGmRu1XpxG_VvA",
+      "note": "百度搭子在成都AI Day发布四项更新：个人版升级、自媒体套件、企业版及搭子联盟"
+    },
+    {
+      "name": "X：Claude Devs (@ClaudeDevs)",
+      "url": "https://x.com/ClaudeDevs/status/2075635283211772279",
+      "note": "Claude Code桌面版新增应用内浏览器"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-07-11",
+    "title": "AI HOT 日报：Apple诉OpenAI、宇树G1手术、AI滥用风险",
+    "summary": "重点关注 行业动态、论文研究、技巧与观点、产品发布/更新。核心信号是：Apple 起诉 OpenAI 窃取商业机密；宇树G1人形机器人完成首例活体微创手术；博科圣地如何利用前沿AI技术。",
+    "link": "/posts/71111/",
+    "tags": [
+      "AI HOT",
+      "OpenAI",
+      "产业",
+      "机器人"
+    ]
+  },
   {
     "date": "2026-07-10",
     "title": "AI HOT 日报：ChatGPT Work、Flint、LongCat-2.0",
