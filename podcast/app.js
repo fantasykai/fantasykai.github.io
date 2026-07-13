@@ -1,233 +1,160 @@
 const episode = {
-  "date": "2026-07-11",
-  "title": "AI HOT 日报：Apple诉OpenAI、宇树G1手术、AI滥用风险",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、论文研究、技巧与观点、产品发布/更新。核心信号是：Apple 起诉 OpenAI 窃取商业机密；宇树G1人形机器人完成首例活体微创手术；博科圣地如何利用前沿AI技术。",
+  "date": "2026-07-13",
+  "title": "AI HOT 日报：xAI、黄仁勋、ChatGPT Work",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、产品发布/更新、模型发布/更新、技巧与观点。核心信号是：xAI 官方 Grok CLI 被曝静默上传整个代码库及用户密钥；黄仁勋：英伟达季度收入逼近千亿美元，Rubin Ultra 架构未延期；Codex与ChatGPT Work多项更新：取消5小时限制。",
   "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
       "topic": "safety",
-      "title": "Apple 起诉 OpenAI 窃取商业机密",
-      "source": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/07/10/apple-sues-openai-over-alleged-trade-secret-theft",
-      "date": "2026-07-11",
-      "score": 80,
+      "title": "xAI 官方 Grok CLI 被曝静默上传整个代码库及用户密钥",
+      "source": "公众号：数字生命卡兹克",
+      "url": "https://mp.weixin.qq.com/s/6c6vGMJAVMbh6UhNVw4dcg",
+      "date": "2026-07-13",
+      "score": 86,
       "tags": [
         "AI HOT",
-        "OpenAI",
-        "产业"
-      ],
-      "summary": "Apple 于周五向美国加州北区联邦法院提起诉讼，指控 OpenAI 窃取商业机密并违反合同。诉状称，OpenAI 高级领导层（包括首席硬件官 Tang Tan）指使前 Apple 员工在招聘过程中窃取机密，包括使用未发布产品的项目代号、要求应聘者携带硬件组件参加面试。Apple 还指控前高级系统…",
-      "publishedAt": "2026-07-10T20:32:00.000Z",
-      "category": "industry",
-      "comment": "点评：这起诉讼把 AI 硬件竞赛中的人才流动、商业秘密和供应链信任推到台前。前沿 AI 的竞争不只发生在模型层，也发生在产品工程、招聘流程与知识产权边界。",
-      "advice": "建议：招聘与合作中建立商业秘密隔离流程：明确禁止携带前雇主资料，保留访谈与设备访问审计，并让法务参与高敏感岗位的入职检查。"
-    },
-    {
-      "topic": "paper",
-      "title": "宇树G1人形机器人完成首例活体微创手术",
-      "source": "X：X.PIN (@thexpin)",
-      "url": "https://x.com/thexpin/status/2075640168896516139",
-      "date": "2026-07-11",
-      "score": 79,
-      "tags": [
-        "AI HOT",
-        "机器人",
-        "论文"
-      ],
-      "summary": "一篇新的《自然》论文展示了宇树G1人形机器人执行研究人员所称的首例由人形机器人完成的活体标准微创手术。加州大学圣地亚哥团队使用G1，以常规手术器械完成了对两只活猪的腹腔镜胆囊切除术；第二次手术耗时32分钟。该机器人仍需反复校正，且尚无法满足手术无菌标准，但其成本可能仅为达芬奇系统的约5%。",
-      "publishedAt": "2026-07-10T17:55:54.000Z",
-      "category": "paper",
-      "comment": "点评：人形机器人进入活体手术研究，真正的门槛不是完成一次演示，而是无菌、稳定性、失效保护、临床验证和医生责任边界。低成本潜力值得关注，但不能替代严格的医疗路径。",
-      "advice": "建议：医疗机构应把相关系统限定在伦理审批与临床研究框架内，逐步验证无菌、故障切换、医生监督、术后追溯和患者知情同意。"
-    },
-    {
-      "topic": "safety",
-      "title": "博科圣地如何利用前沿AI技术",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://casp.ac/reports/ai-enabled-terrorism",
-      "date": "2026-07-11",
-      "score": 77,
-      "tags": [
-        "AI HOT",
-        "Meta",
+        "Google",
+        "xAI",
         "Grok",
         "Claude",
-        "Gemini",
-        "论文"
+        "产业"
       ],
-      "summary": "2025至2026年间对尼日利亚东北部27名前\"博科圣地\"成员的半结构化访谈揭示了该组织在2024年系统性地利用前沿AI技术。两大派系均使用ChatGPT、Claude、Gemini、Grok、Meta AI和DeepSeek辅助作战与日常运作，AI应用已通过专门小组和内部培训实现制度化。成员成功…",
-      "publishedAt": "2026-07-10T22:07:19.177Z",
-      "category": "paper",
-      "comment": "点评：这份研究报告表明，通用 AI 的滥用已可能从个体尝试转为组织化流程。模型安全不能只关注输出拒答，还需要覆盖账号风控、异常行为识别、跨平台协作和外部通报机制。",
-      "advice": "建议：模型和平台团队应把组织化滥用纳入威胁建模：强化异常账号与批量自动化检测、最小化高风险能力暴露，并建立与安全研究者和执法机构的合规联动。"
+      "summary": "安全研究者发现，xAI 官方 Grok CLI（npm 包 `@xai-official/grok` 0.2.93 版）会在每轮任务前后，将当前工作目录打包为 `before_codebase.tar.gz` 和 `after_codebase.tar.gz`，通过独立旁路通道静默上传至 xAI …",
+      "publishedAt": "2026-07-13T00:05:00.000Z",
+      "category": "industry",
+      "comment": "点评：Grok CLI 争议把 AI 编程工具的信任问题直接摆上桌面：本地客户端一旦能读取仓库、密钥和历史 diff，上传边界必须透明、可审计、可关闭。开发者工具的安全不只是模型安全，也是供应链安全。",
+      "advice": "建议：立即审计已安装的 AI CLI 和 npm 包，检查网络上传、遥测、忽略文件、密钥扫描和版本变更；敏感仓库应使用隔离账号、最小权限 token、出站网络控制和本地日志留存。"
     },
     {
       "topic": "industry",
-      "title": "扎克伯格首度回应 Meta\"算力过剩\"：没人会嫌算力太多，但租出去更赚钱",
+      "title": "黄仁勋：英伟达季度收入逼近千亿美元，Rubin Ultra 架构未延期",
       "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/975/078.htm",
-      "date": "2026-07-11",
-      "score": 75,
+      "url": "https://www.ithome.com/0/975/865.htm",
+      "date": "2026-07-13",
+      "score": 77,
       "tags": [
         "AI HOT",
         "Anthropic",
-        "Meta",
         "产业"
       ],
-      "summary": "Meta CEO 扎克伯格首次正面回应公司筹划云基础设施业务一事，否认\"算力过剩\"猜测，称内部算力需求依然旺盛、满负荷运转。但他同时表示，当前市场对算力出价极高，将部分 AI 基础设施对外出租在财务上更划算。Meta 正制定代号\"Meta Compute\"的云计算计划，包括开放模型访问权限和直接出…",
-      "publishedAt": "2026-07-10T07:26:10.000Z",
+      "summary": "英伟达CEO黄仁勋在摩根士丹利路演中表示，公司季度营收即将逼近1000亿美元，且增长速度仍在加快。他否认下一代旗舰架构Rubin Ultra延期传闻，称其仍按计划于明年出货，当前机架设计调整仅为系统架构优化。一个此前主要依赖ASIC的前沿AI模型项目，如今英伟达GPU算力占比已接近50%，市场普遍…",
+      "publishedAt": "2026-07-13T00:55:29.000Z",
       "category": "industry",
-      "comment": "点评：Meta 把闲置或弹性算力视为潜在云业务，反映 AI 基建正在从战略储备转向资产运营。算力竞争将同时受模型需求、资本开支和外部租赁市场约束。",
-      "advice": "建议：采购或自建算力时以业务峰谷、模型生命周期、网络与数据迁移成本为依据；同时预留多云或多芯片迁移方案，避免被短期供需波动锁定。"
-    },
-    {
-      "topic": "tip",
-      "title": "马斯克承认Anthropic是当前AI领导者",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2075480331600417141",
-      "date": "2026-07-11",
-      "score": 75,
-      "tags": [
-        "AI HOT",
-        "Anthropic",
-        "开源",
-        "观点"
-      ],
-      "summary": "马斯克在X上发文承认自己此前对Anthropic的判断有误，称其\"显然是当前AI领域的领导者\"。他表示，没有公司发布过像Mythos/Fable这样优秀的模型，并相信Anthropic很快会推出Mythos 2。他还强调，即使作为竞争对手，也不会以伤害对方的方式切断合作，并列举了特斯拉开源专利、开…",
-      "publishedAt": "2026-07-10T07:20:46.000Z",
-      "category": "tip",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
+      "comment": "点评：黄仁勋释放的是 AI 算力需求继续高烧的产业信号。即使模型效率提升，训练、推理、数据中心和网络系统的资本开支仍在放大，GPU 供应链会继续影响模型公司节奏。",
+      "advice": "建议：企业规划 AI 基建时，把 GPU 供给、机架功耗、网络、折旧、云租赁价格和模型效率一起算账；避免只按短期热度采购，忽略未来迁移和利用率风险。"
     },
     {
       "topic": "product",
-      "title": "百度搭子在成都AI Day发布四项更新：个人版升级、自媒体套件、企业版及搭子联盟",
-      "source": "公众号：百度智能云（文心）",
-      "url": "https://mp.weixin.qq.com/s/Haqbjim9YGmRu1XpxG_VvA",
-      "date": "2026-07-11",
+      "title": "Codex与ChatGPT Work多项更新：取消5小时限制",
+      "source": "X：Tibo (@thsottiaux)",
+      "url": "https://x.com/thsottiaux/status/2076365965915467978",
+      "date": "2026-07-13",
+      "score": 76,
+      "tags": [
+        "AI HOT",
+        "GPT",
+        "产品"
+      ],
+      "summary": "早上好。过去48小时里，Codex和ChatGPT Work非常忙碌！三项重要更新： - 暂时取消所有Plus、Business和Pro计划的5小时使用限制 - 正在推出变更，使GPT 5.6 Sol整体更高效，这将体现在使用量减少上，从而让你能走得更远。具体影响待量化后公布 - 我们已达到600…",
+      "publishedAt": "2026-07-12T17:59:57.000Z",
+      "category": "ai-products",
+      "comment": "点评：ChatGPT Work 把 Agent 从“会调用工具”推进到“能跨应用持续交付”。能力边界不再只看模型聪明程度，而在于能否安全访问文件、系统和协作流程。",
+      "advice": "建议：先在低权限、可回滚的工作流试点，明确每个连接器可读写的数据范围、最大执行时长、人工确认点和异常中止规则。"
+    },
+    {
+      "topic": "model",
+      "title": "腾讯混元发布Hy3模型：295B参数MoE架构，Agent向LLM定位，已集成微信服务10亿+用户",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "url": "https://x.com/AYi_AInotes/status/2076341952023310580",
+      "date": "2026-07-13",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "Agent",
+        "推理",
+        "模型"
+      ],
+      "summary": "腾讯混元团队发布Hy3模型，采用295B总参数、21B激活参数的MoE架构，推理效率可打平参数规模2-5倍的旗舰模型。Hy3定位为Agent向LLM，从preview到正式版基于50多个真实业务反馈迭代，内部WorkBuddy任务成功率从72%提升至90%，耗时降低34%，幻觉和常识错误持续下降。…",
+      "publishedAt": "2026-07-12T16:24:32.000Z",
+      "category": "ai-models",
+      "comment": "点评：Hy3 的重点不是参数数字，而是把模型迭代压到微信级真实业务反馈里。Agent 向模型的竞争会越来越看重任务成功率、耗时、幻觉下降和生态入口，而不是单一榜单。",
+      "advice": "建议：评估 Hy3 这类业务导向模型时，用真实 Agent 任务做 A/B：任务完成率、耗时、人工接管、幻觉率、微信生态接入成本和数据权限要一起看。"
+    },
+    {
+      "topic": "tip",
+      "title": "纳德拉提出\"反向信息悖论\"：企业使用AI时需保护自身知识",
+      "source": "X：Satya Nadella (@satyanadella)",
+      "url": "https://x.com/satyanadella/status/2076323181154230284",
+      "date": "2026-07-13",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "观点"
+      ],
+      "summary": "微软CEO萨提亚·纳德拉提出\"反向信息悖论\"：AI时代，买家为使用AI支付金钱，同时必须暴露专有知识（提示词、工具使用、纠正反馈等），这些\"智力废气\"被模型学习，导致信息不对称向卖家倾斜。企业需要真正的信任边界，确保自身数据、痕迹、评估、适配权重和记忆在边界内积累，未经同意不得外泄。纳德拉呼吁企业…",
+      "publishedAt": "2026-07-12T15:09:57.000Z",
+      "category": "tip",
+      "comment": "点评：纳德拉说的“反向信息悖论”击中了企业 AI 的核心焦虑：使用越深入，暴露给供应商的流程、提示词、反馈和记忆越有价值。AI 护城河会从模型选择转向知识边界。",
+      "advice": "建议：企业应把提示词、工具调用、纠错反馈、评测集和长期记忆视为知识资产；采购 AI 平台时明确数据保留、训练使用、导出迁移和租户隔离条款。"
+    },
+    {
+      "topic": "product",
+      "title": "Mindwalk：在代码库 3D 地图上回放编码代理会话",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://github.com/cosmtrek/mindwalk",
+      "date": "2026-07-13",
+      "score": 74,
+      "tags": [
+        "AI HOT",
+        "Claude",
+        "Claude Code",
+        "产品"
+      ],
+      "summary": "Mindwalk 是一款可视化工具，可将 Claude Code 和 Codex 的会话日志在代码库的 3D 地图上回放。它将仓库绘制成夜间地图，代理搜索、读取和编辑过的文件会发光，未触及区域保持黑暗，让用户一眼看清代理对任务的理解范围。单个 Go 二进制文件即可运行，所有会话数据完全本地处理，不…",
+      "publishedAt": "2026-07-12T13:51:05.035Z",
+      "category": "ai-products",
+      "comment": "点评：Mindwalk 的价值在于让 Agent 的“思考路径”变成可观察对象。随着代码代理接手更多仓库任务，团队需要知道它看了哪里、忽略了哪里、为什么改这些文件。",
+      "advice": "建议：把 Agent 会话可视化纳入代码审查和复盘流程，重点检查未读关键文件、异常大范围修改、重复搜索和上下文遗漏，帮助团队改进任务说明与权限边界。"
+    },
+    {
+      "topic": "tip",
+      "title": "OpenAI CEO Altman 改口称 AI 净创造就业，Anthropic CEO 也修正早期言论",
+      "source": "The Decoder：AI News（RSS）",
+      "url": "https://the-decoder.com/openai-ceo-altman-is-now-pretty-sure-ai-is-net-job-creating-which-is-quite-the-pivot-from-predicting-mass-layoffs",
+      "date": "2026-07-13",
       "score": 71,
       "tags": [
         "AI HOT",
-        "产品"
+        "OpenAI",
+        "Anthropic",
+        "GPT",
+        "观点"
       ],
-      "summary": "百度搭子在成都百度AI Day上发布四项更新。个人版新增浏览器调用、智能路由（平均任务耗时降20%，Token利用率提升25%）、多端共享记忆及强化PPT生成，并上架\"一镜\"数字人制作、\"灵医\"报告解读等Skill。行业首个自媒体专业套件支持选题到复盘全链路。企业版支持团队协作与权限管理。搭子联盟…",
-      "publishedAt": "2026-07-10T13:58:07.000Z",
-      "category": "ai-products",
-      "comment": "点评：百度把个人 Agent、垂直内容工作流、企业权限和生态伙伴放在同一产品线，说明 Agent 产品正在从单功能助手转向可运营的平台；关键仍是任务完成质量与权限治理。",
-      "advice": "建议：试点这类 Agent 平台时，先为一个可量化的内容或办公流程设定验收指标，并单独审查浏览器权限、长期记忆、团队数据和第三方 Skill 的边界。"
-    },
-    {
-      "topic": "product",
-      "title": "Claude Code桌面版新增应用内浏览器",
-      "source": "X：Claude Devs (@ClaudeDevs)",
-      "url": "https://x.com/ClaudeDevs/status/2075635283211772279",
-      "date": "2026-07-11",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "Claude",
-        "Claude Code",
-        "产品"
-      ],
-      "summary": "Claude Code 桌面版现在有了应用内浏览器。 Claude 可以调出文档、设计稿或任何其他网站。它可以像操作本地开发服务器一样，进行阅读、点击浏览和交互。 该浏览器采用沙盒机制且可配置：你可以自行选择会话是否持久保留。",
-      "publishedAt": "2026-07-10T17:36:29.000Z",
-      "category": "ai-products",
-      "comment": "点评：把浏览器嵌进编程 Agent，意味着模型能直接观察并操作真实网页环境。沙盒和会话持久化是必要起点，但访问范围、登录态和发布动作仍需要明确门禁。",
-      "advice": "建议：把浏览器 Agent 先放入测试账号和隔离环境，限制域名、下载、Cookie 与表单提交；涉及生产发布、支付或敏感数据时保留人工确认。"
-    },
-    {
-      "topic": "paper",
-      "title": "小红书发布大模型新架构 PIPO",
-      "source": "公众号：小红书技术（dots.llm）",
-      "url": "https://mp.weixin.qq.com/s/1eo7rrCAH-OA0TnXwwqJEg",
-      "date": "2026-07-11",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "Qwen",
-        "论文"
-      ],
-      "summary": "小红书提出 PIPO 架构，通过输入侧压缩器将两个 token 折叠为一个 latent，输出侧 MTP head 将隐藏状态展开为额外 token，实现输入长度减半、每步输出翻倍。基于 Qwen3.5-4B/9B backbone，在 AIME 2025 等基准上最高带来 +7.15 pass@…",
-      "publishedAt": "2026-07-10T09:59:00.000Z",
-      "category": "paper",
-      "comment": "点评：PIPO 直接瞄准上下文长度和解码吞吐两端的效率瓶颈。它的价值取决于压缩后是否保住关键信息，以及在真实工具调用、长文档和代码场景中能否稳定复现。",
-      "advice": "建议：评估压缩架构时用长上下文检索、代码修改、工具调用和事实一致性测试共同验证，重点观察边缘信息丢失和推理加速是否真正抵消训练复杂度。"
+      "summary": "OpenAI CEO Sam Altman 表示，他\"相当确信\"AI 迄今为止净创造了就业，并承认\"这并非我预期\"。此前他曾警告 AI 影响可能快得\"有点吓人\"。Anthropic CEO Dario Amodei 也修正了早期言论，将自动化描述为生产力倍增器而非岗位杀手。然而，多项研究未发现 A…",
+      "publishedAt": "2026-07-12T09:15:49.000Z",
+      "category": "tip",
+      "comment": "点评：Altman 和 Amodei 的口径变化说明，就业影响不是一句“替代”或“创造”能概括。AI 更可能先重塑岗位内容、技能门槛和组织结构，再逐步反映到招聘数字上。",
+      "advice": "建议：管理者不要用宏观口号替代组织设计；应按岗位拆分可自动化任务、需要增强的人类判断、培训路径和绩效指标，季度复盘净增产出与人员结构变化。"
     },
     {
       "topic": "tip",
-      "title": "Elon Musk 转发用户称赞 Grok Build 的反馈",
-      "source": "X：Elon Musk (@elonmusk, xAI)",
-      "url": "https://x.com/elonmusk/status/2075478792273842370",
-      "date": "2026-07-11",
-      "score": 68,
+      "title": "Ploy 将 AI 智能体默认模型从 Claude Opus 4.8 切换至 GPT-5.6 Sol",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://ploy.ai/blog/migrating-a-production-ai-agent-to-gpt-5-6",
+      "date": "2026-07-13",
+      "score": 70,
       "tags": [
         "AI HOT",
-        "Grok",
-        "Agent",
-        "MCP",
+        "OpenAI",
+        "Claude",
+        "GPT",
         "观点"
       ],
-      "summary": "Elon Musk 转发用户 @0x0funky 对 Grok Build 的称赞。该用户称 Grok Build 是目前唯一集大成的 coding agentic workflow，内建图像生成和图片生视频功能，生图速度快且品质不输 Codex。Agent 可直接完成图像与视频生成，无需额外串接…",
-      "publishedAt": "2026-07-10T07:14:39.000Z",
+      "summary": "Ploy 将其 AI 智能体默认模型从 Claude Opus 4.8 切换至 OpenAI 今晨发布的 GPT-5.6 Sol。在真实营销网站构建测试中，GPT-5.6 Sol 完成页面平均耗时 3 分 42 秒，较 Opus 4.8 的 8 分钟快 2.2 倍；每次构建成本从 3.06 美元降…",
+      "publishedAt": "2026-07-12T23:41:11.951Z",
       "category": "tip",
-      "comment": "点评：Grok Build 的卖点是把代码、图像与视频生成合在同一条 Agent 链路里。真正需要验证的是跨模态交付是否可复现，以及素材版权、权限和审查是否随能力一起内建。",
-      "advice": "建议：用一个端到端项目验证跨模态 Agent：固定素材授权、输出规格、测试证据与发布门禁，并对每一类外部工具设定最小权限。"
-    },
-    {
-      "topic": "product",
-      "title": "Perplexity 推出跨模型信用额度分析功能",
-      "source": "X：Perplexity (@perplexity_ai)",
-      "url": "https://x.com/perplexity_ai/status/2075599540640714863",
-      "date": "2026-07-11",
-      "score": 65,
-      "tags": [
-        "AI HOT",
-        "产品"
-      ],
-      "summary": "推出 Computer Analytics：你现在可以跨模型跟踪信用额度支出。 该功能现已面向个人和企业用户开放，可在账户设置的 Analytics 下使用。",
-      "publishedAt": "2026-07-10T15:14:27.000Z",
-      "category": "ai-products",
-      "comment": "点评：跨模型成本分析成为产品功能，说明团队开始把模型选择从“偏好问题”变成财务与工程决策。没有单位任务成本和成功率，单看 Token 消耗仍不够。",
-      "advice": "建议：把预算看板与任务成功率、人工返工、时延和供应商故障率关联，按业务场景设定模型路由与消费上限，而不是只比较单价。"
-    },
-    {
-      "topic": "product",
-      "title": "Claude Code v2.1.206 发布",
-      "source": "Claude Code：GitHub Releases（RSS）",
-      "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.206",
-      "date": "2026-07-11",
-      "score": 62,
-      "tags": [
-        "AI HOT",
-        "Anthropic",
-        "Claude",
-        "MCP",
-        "Claude Code",
-        "产品"
-      ],
-      "summary": "Claude Code v2.1.206 发布，主要更新包括：为 `/cd` 命令添加目录路径建议；新增 `/doctor` 检查以建议修剪 CLAUDE.md 文件中模型可从代码库推导的内容；`/commit-push-pr` 现在自动允许 git push 到仓库配置的推送远程仓库；`/log…",
-      "publishedAt": "2026-07-10T01:45:26.000Z",
-      "category": "ai-products",
-      "comment": "点评：Claude Code 把环境诊断、上下文维护和提交流程继续内建，Agent 开发体验正在向“可观测、可维护的工程工作台”靠拢；自动化越深，审查门槛越要清晰。",
-      "advice": "建议：升级后先在非关键仓库验证命令权限与 Git 远程配置；对自动 push/PR 保留分支保护、必需检查和人工代码审查。"
-    },
-    {
-      "topic": "paper",
-      "title": "DeepSeek-V4 Flash 强化学习训练登陆 AMD Instinct MI355X GPU，由 Miles 框架支持",
-      "source": "LMSYS：Blog（Chatbot Arena 团队）",
-      "url": "https://www.lmsys.org/blog/2026-07-10-rocm-miles-dsv4",
-      "date": "2026-07-11",
-      "score": 61,
-      "tags": [
-        "AI HOT",
-        "DeepSeek",
-        "论文"
-      ],
-      "summary": "DeepSeek-V4 Flash 的强化学习训练现已在 AMD Instinct MI355X GPU 上通过 Miles 框架获得支持，基于 ROCm 软件栈运行。该 2840 亿参数 MoE 模型（每 token 激活 130 亿参数）需 SGLang 进行 rollout 生成、Megat…",
-      "publishedAt": "2026-07-10T17:19:11.037Z",
-      "category": "paper",
-      "comment": "点评：DeepSeek-V4 Flash 跑在 AMD 平台上，说明前沿训练与推理生态正尝试降低对单一硬件路线的依赖。软件栈成熟度、调试成本和集群稳定性会决定这种替代能走多远。",
-      "advice": "建议：计划采用 AMD 训练栈的团队应先做小规模兼容性和性能基线，覆盖算子支持、容错、监控、模型并行和运维人才，再扩大集群投入。"
+      "comment": "点评：Ploy 的迁移案例很实用：模型替换不是信仰选择，而是用真实任务衡量速度、成功率、成本和输出质量。Agent 产品会更频繁地在多模型之间动态换挡。",
+      "advice": "建议：建立模型迁移基准：固定真实任务集，对比成功率、端到端时长、成本、人工返工、失败类型和客户感知，再决定是否把新模型设为默认。"
     }
   ],
   "sources": [
@@ -237,44 +164,68 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/07/10/apple-sues-openai-over-alleged-trade-secret-theft",
-      "note": "Apple 起诉 OpenAI 窃取商业机密"
-    },
-    {
-      "name": "X：X.PIN (@thexpin)",
-      "url": "https://x.com/thexpin/status/2075640168896516139",
-      "note": "宇树G1人形机器人完成首例活体微创手术"
-    },
-    {
-      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://casp.ac/reports/ai-enabled-terrorism",
-      "note": "博科圣地如何利用前沿AI技术"
+      "name": "公众号：数字生命卡兹克",
+      "url": "https://mp.weixin.qq.com/s/6c6vGMJAVMbh6UhNVw4dcg",
+      "note": "xAI 官方 Grok CLI 被曝静默上传整个代码库及用户密钥"
     },
     {
       "name": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/975/078.htm",
-      "note": "扎克伯格首度回应 Meta\"算力过剩\"：没人会嫌算力太多，但租出去更赚钱"
+      "url": "https://www.ithome.com/0/975/865.htm",
+      "note": "黄仁勋：英伟达季度收入逼近千亿美元，Rubin Ultra 架构未延期"
     },
     {
-      "name": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2075480331600417141",
-      "note": "马斯克承认Anthropic是当前AI领导者"
+      "name": "X：Tibo (@thsottiaux)",
+      "url": "https://x.com/thsottiaux/status/2076365965915467978",
+      "note": "Codex与ChatGPT Work多项更新：取消5小时限制"
     },
     {
-      "name": "公众号：百度智能云（文心）",
-      "url": "https://mp.weixin.qq.com/s/Haqbjim9YGmRu1XpxG_VvA",
-      "note": "百度搭子在成都AI Day发布四项更新：个人版升级、自媒体套件、企业版及搭子联盟"
+      "name": "X：阿易 AI Notes (@AYi_AInotes)",
+      "url": "https://x.com/AYi_AInotes/status/2076341952023310580",
+      "note": "腾讯混元发布Hy3模型：295B参数MoE架构，Agent向LLM定位，已集成…"
     },
     {
-      "name": "X：Claude Devs (@ClaudeDevs)",
-      "url": "https://x.com/ClaudeDevs/status/2075635283211772279",
-      "note": "Claude Code桌面版新增应用内浏览器"
+      "name": "X：Satya Nadella (@satyanadella)",
+      "url": "https://x.com/satyanadella/status/2076323181154230284",
+      "note": "纳德拉提出\"反向信息悖论\"：企业使用AI时需保护自身知识"
+    },
+    {
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://github.com/cosmtrek/mindwalk",
+      "note": "Mindwalk：在代码库 3D 地图上回放编码代理会话"
+    },
+    {
+      "name": "The Decoder：AI News（RSS）",
+      "url": "https://the-decoder.com/openai-ceo-altman-is-now-pretty-sure-ai-is-net-job-creating-which-is-quite-the-pivot-from-predicting-mass-layoffs",
+      "note": "OpenAI CEO Altman 改口称 AI 净创造就业，Anthropi…"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-07-13",
+    "title": "AI HOT 日报：xAI、黄仁勋、ChatGPT Work",
+    "summary": "重点关注 行业动态、产品发布/更新、模型发布/更新、技巧与观点。核心信号是：xAI 官方 Grok CLI 被曝静默上传整个代码库及用户密钥；黄仁勋：英伟达季度收入逼近千亿美元，Rubin Ultra 架构未延期；Codex与ChatGPT Work多项更新：取消5小时限制。",
+    "link": "/posts/71313/",
+    "tags": [
+      "AI HOT",
+      "Google",
+      "xAI",
+      "Grok"
+    ]
+  },
+  {
+    "date": "2026-07-12",
+    "title": "AI HOT 日报：OpenAI、Ghost Font、蚂蚁集团 Robby",
+    "summary": "重点关注 行业动态、技巧与观点、模型发布/更新。核心信号是：OpenAI GPT-5.6-Sol 删光 AI 创业者 Matt Shumer 的 Mac 硬盘；Ghost Font：一种人类能读懂但AI无法识别的反AI字体；蚂蚁集团 Robbyant 发布 LingBot-VA…",
+    "link": "/posts/71212/",
+    "tags": [
+      "AI HOT",
+      "OpenAI",
+      "Anthropic",
+      "GPT"
+    ]
+  },
   {
     "date": "2026-07-11",
     "title": "AI HOT 日报：Apple诉OpenAI、宇树G1手术、AI滥用风险",
