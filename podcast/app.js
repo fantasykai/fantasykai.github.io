@@ -1,160 +1,174 @@
 const episode = {
-  "date": "2026-07-13",
-  "title": "AI HOT 日报：xAI、黄仁勋、ChatGPT Work",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、产品发布/更新、模型发布/更新、技巧与观点。核心信号是：xAI 官方 Grok CLI 被曝静默上传整个代码库及用户密钥；黄仁勋：英伟达季度收入逼近千亿美元，Rubin Ultra 架构未延期；Codex与ChatGPT Work多项更新：取消5小时限制。",
+  "date": "2026-07-14",
+  "title": "AI HOT 日报：OpenAI、前沿模型实际成本、Meta",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 技巧与观点、行业动态、模型发布/更新。核心信号是：OpenAI 面向普通用户发布提示词指南：从结果出发，少写步骤；前沿模型实际成本：tokenizer 差异导致隐性涨价；Meta 宣布扩建路易斯安那州数据中心至 5GW，总投资超 500 亿美元。",
   "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "topic": "safety",
-      "title": "xAI 官方 Grok CLI 被曝静默上传整个代码库及用户密钥",
-      "source": "公众号：数字生命卡兹克",
-      "url": "https://mp.weixin.qq.com/s/6c6vGMJAVMbh6UhNVw4dcg",
-      "date": "2026-07-13",
-      "score": 86,
+      "topic": "tip",
+      "title": "OpenAI 面向普通用户发布提示词指南：从结果出发，少写步骤",
+      "source": "The Decoder：AI News（RSS）",
+      "url": "https://the-decoder.com/openais-new-prompting-guide-tells-users-to-stop-overthinking-and-start-with-the-result",
+      "date": "2026-07-14",
+      "score": 78,
       "tags": [
         "AI HOT",
-        "Google",
-        "xAI",
-        "Grok",
-        "Claude",
-        "产业"
+        "OpenAI",
+        "GPT",
+        "观点"
       ],
-      "summary": "安全研究者发现，xAI 官方 Grok CLI（npm 包 `@xai-official/grok` 0.2.93 版）会在每轮任务前后，将当前工作目录打包为 `before_codebase.tar.gz` 和 `after_codebase.tar.gz`，通过独立旁路通道静默上传至 xAI …",
-      "publishedAt": "2026-07-13T00:05:00.000Z",
-      "category": "industry",
-      "comment": "点评：Grok CLI 争议把 AI 编程工具的信任问题直接摆上桌面：本地客户端一旦能读取仓库、密钥和历史 diff，上传边界必须透明、可审计、可关闭。开发者工具的安全不只是模型安全，也是供应链安全。",
-      "advice": "建议：立即审计已安装的 AI CLI 和 npm 包，检查网络上传、遥测、忽略文件、密钥扫描和版本变更；敏感仓库应使用隔离账号、最小权限 token、出站网络控制和本地日志留存。"
+      "summary": "OpenAI 整合了一份面向普通用户的提示词指南，涵盖目标、上下文、输出格式和边界四个可选模块。指南建议以结果而非步骤开头，用一两条硬性规则替代逐步骤脚本。Chat 处理快速任务，基于 Codex 技术和 GPT-5.6 模型的 ChatGPT Work 负责多源、多步骤的复杂项目。Codex 新…",
+      "publishedAt": "2026-07-13T17:47:39.000Z",
+      "category": "tip",
+      "comment": "点评：OpenAI 这份指南的信号是提示词正在从“咒语工程”回到产品化表达：先说结果、补充上下文、限定边界，比堆复杂步骤更适合普通用户和企业流程沉淀。",
+      "advice": "建议：团队可以把高频提示词模板改成“目标、上下文、输出格式、边界”四段式，并为每类任务保留好坏样例，让非技术成员也能稳定复用。"
     },
     {
-      "topic": "industry",
-      "title": "黄仁勋：英伟达季度收入逼近千亿美元，Rubin Ultra 架构未延期",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/975/865.htm",
-      "date": "2026-07-13",
+      "topic": "tip",
+      "title": "前沿模型实际成本：tokenizer 差异导致隐性涨价",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://playcode.io/blog/real-price-of-frontier-models",
+      "date": "2026-07-14",
       "score": 77,
       "tags": [
         "AI HOT",
         "Anthropic",
-        "产业"
+        "Claude",
+        "GPT",
+        "观点"
       ],
-      "summary": "英伟达CEO黄仁勋在摩根士丹利路演中表示，公司季度营收即将逼近1000亿美元，且增长速度仍在加快。他否认下一代旗舰架构Rubin Ultra延期传闻，称其仍按计划于明年出货，当前机架设计调整仅为系统架构优化。一个此前主要依赖ASIC的前沿AI模型项目，如今英伟达GPU算力占比已接近50%，市场普遍…",
-      "publishedAt": "2026-07-13T00:55:29.000Z",
-      "category": "industry",
-      "comment": "点评：黄仁勋释放的是 AI 算力需求继续高烧的产业信号。即使模型效率提升，训练、推理、数据中心和网络系统的资本开支仍在放大，GPU 供应链会继续影响模型公司节奏。",
-      "advice": "建议：企业规划 AI 基建时，把 GPU 供给、机架功耗、网络、折旧、云租赁价格和模型效率一起算账；避免只按短期热度采购，忽略未来迁移和利用率风险。"
+      "summary": "同一份 TypeScript 文件在 GPT-5.x 上为 681 个 token，在 Claude 最新 tokenizer 下为 1，178 个，相差 1.73 倍。Anthropic 新 tokenizer 比旧版多产生约 30% 的 token，标价不变，构成隐性涨价。Claude Opu…",
+      "publishedAt": "2026-07-13T21:50:30.963Z",
+      "category": "tip",
+      "comment": "点评：这条真正提醒的是模型成本不能只看标价。不同 tokenizer 会让同一份代码、文档和日志产生完全不同的计费结果，企业做模型路由时必须把“实际 token 化后成本”纳入评测。",
+      "advice": "建议：模型评测要先用真实代码库、长文档和日志跑 tokenizer 统计，再比较单任务成本、成功率和返工率；不要只拿官网每百万 token 标价做采购决策。"
     },
     {
-      "topic": "product",
-      "title": "Codex与ChatGPT Work多项更新：取消5小时限制",
-      "source": "X：Tibo (@thsottiaux)",
-      "url": "https://x.com/thsottiaux/status/2076365965915467978",
-      "date": "2026-07-13",
-      "score": 76,
+      "topic": "industry",
+      "title": "Meta 宣布扩建路易斯安那州数据中心至 5GW，总投资超 500 亿美元",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/976/149.htm",
+      "date": "2026-07-14",
+      "score": 77,
       "tags": [
         "AI HOT",
-        "GPT",
-        "产品"
+        "Meta",
+        "产业"
       ],
-      "summary": "早上好。过去48小时里，Codex和ChatGPT Work非常忙碌！三项重要更新： - 暂时取消所有Plus、Business和Pro计划的5小时使用限制 - 正在推出变更，使GPT 5.6 Sol整体更高效，这将体现在使用量减少上，从而让你能走得更远。具体影响待量化后公布 - 我们已达到600…",
-      "publishedAt": "2026-07-12T17:59:57.000Z",
-      "category": "ai-products",
-      "comment": "点评：ChatGPT Work 把 Agent 从“会调用工具”推进到“能跨应用持续交付”。能力边界不再只看模型聪明程度，而在于能否安全访问文件、系统和协作流程。",
-      "advice": "建议：先在低权限、可回滚的工作流试点，明确每个连接器可读写的数据范围、最大执行时长、人工确认点和异常中止规则。"
+      "summary": "Meta 将其路易斯安那州数据中心算力扩至 5GW，总投资超 500 亿美元，为全球最大 AI 基础设施投资之一。Meta 承诺承担全部能源及水资源费用，并另投超 10 亿美元改善当地道路及供水系统。此外，Meta 与安特吉公司达成协议，为新建天然气发电厂、储能电池及核电增容项目提供资金支持。",
+      "publishedAt": "2026-07-13T09:58:56.000Z",
+      "category": "industry",
+      "comment": "点评：Meta 的 5GW 数据中心把 AI 竞争拉到了能源、土地、水资源和电网层面。前沿模型的护城河不只在算法，也在能否长期获得低成本、可持续、可扩展的基础设施。",
+      "advice": "建议：企业做 AI 基建规划时，把电力、冷却、水资源、网络、折旧和监管社区关系纳入模型；采购云算力也要评估供应商区域容量和长期价格稳定性。"
     },
     {
       "topic": "model",
-      "title": "腾讯混元发布Hy3模型：295B参数MoE架构，Agent向LLM定位，已集成微信服务10亿+用户",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "url": "https://x.com/AYi_AInotes/status/2076341952023310580",
-      "date": "2026-07-13",
-      "score": 75,
+      "title": "腾讯混元发布 HyOCR-1.5：端到端 OCR 大模型全栈开源，推理提速 6.37 倍",
+      "source": "公众号：腾讯混元",
+      "url": "https://mp.weixin.qq.com/s/vKFCa9FfoGBUGK8J1MhFag",
+      "date": "2026-07-14",
+      "score": 76,
       "tags": [
         "AI HOT",
         "Agent",
+        "开源",
         "推理",
         "模型"
       ],
-      "summary": "腾讯混元团队发布Hy3模型，采用295B总参数、21B激活参数的MoE架构，推理效率可打平参数规模2-5倍的旗舰模型。Hy3定位为Agent向LLM，从preview到正式版基于50多个真实业务反馈迭代，内部WorkBuddy任务成功率从72%提升至90%，耗时降低34%，幻觉和常识错误持续下降。…",
-      "publishedAt": "2026-07-12T16:24:32.000Z",
+      "summary": "腾讯混元发布 HyOCR-1.5，这是端到端 OCR 大模型领域首个将训练、推理、模型权重完整开源的专家模型。仅 1B 参数，覆盖 8 种以上 text-centric 任务。引入 DFlash 投机解码框架，在 Transformers 下实现 6.37× 加速，vLLM 下 2.14× 加速，…",
+      "publishedAt": "2026-07-13T11:12:59.000Z",
       "category": "ai-models",
-      "comment": "点评：Hy3 的重点不是参数数字，而是把模型迭代压到微信级真实业务反馈里。Agent 向模型的竞争会越来越看重任务成功率、耗时、幻觉下降和生态入口，而不是单一榜单。",
-      "advice": "建议：评估 Hy3 这类业务导向模型时，用真实 Agent 任务做 A/B：任务完成率、耗时、人工接管、幻觉率、微信生态接入成本和数据权限要一起看。"
+      "comment": "点评：HyOCR-1.5 的价值在于把 OCR 从单点识别工具推进到可训练、可推理、可部署的开源专家模型。对文档自动化团队来说，速度、版面理解和可本地化部署同样关键。",
+      "advice": "建议：有票据、合同、表格、截图处理需求的团队，可用自有样本测试版面还原、低质图鲁棒性、推理延迟和私有部署成本，再决定是否替换传统 OCR pipeline。"
     },
     {
       "topic": "tip",
-      "title": "纳德拉提出\"反向信息悖论\"：企业使用AI时需保护自身知识",
-      "source": "X：Satya Nadella (@satyanadella)",
-      "url": "https://x.com/satyanadella/status/2076323181154230284",
-      "date": "2026-07-13",
+      "title": "Seedream 5.0 Pro 测评：图像编辑门槛爆降",
+      "source": "X：歸藏 (@op7418)",
+      "url": "https://x.com/op7418/status/2076604797202161800",
+      "date": "2026-07-14",
       "score": 75,
       "tags": [
         "AI HOT",
+        "GPT",
+        "豆包",
         "观点"
       ],
-      "summary": "微软CEO萨提亚·纳德拉提出\"反向信息悖论\"：AI时代，买家为使用AI支付金钱，同时必须暴露专有知识（提示词、工具使用、纠正反馈等），这些\"智力废气\"被模型学习，导致信息不对称向卖家倾斜。企业需要真正的信任边界，确保自身数据、痕迹、评估、适配权重和记忆在边界内积累，未经同意不得外泄。纳德拉呼吁企业…",
-      "publishedAt": "2026-07-12T15:09:57.000Z",
+      "summary": "字节跳动发布 Seedream 5.0 Pro，图像质量与提示词理解追平 GPT-Image 2.0，综合能力仅次于后者。核心亮点是\"可编辑\"交互：用户可在图上打点、画框、涂鸦，提示词中直接 @ 标记，实现精准局部编辑（如换沙发、改墙面颜色），其他区域不变。实测案例涵盖家装改造（一次替换六件家具）…",
+      "publishedAt": "2026-07-13T09:48:59.000Z",
       "category": "tip",
-      "comment": "点评：纳德拉说的“反向信息悖论”击中了企业 AI 的核心焦虑：使用越深入，暴露给供应商的流程、提示词、反馈和记忆越有价值。AI 护城河会从模型选择转向知识边界。",
-      "advice": "建议：企业应把提示词、工具调用、纠错反馈、评测集和长期记忆视为知识资产；采购 AI 平台时明确数据保留、训练使用、导出迁移和租户隔离条款。"
+      "comment": "点评：Seedream 5.0 Pro 的重点是把图像生成从“写提示词抽卡”推进到可视化编辑。局部可控、区域不变和自然交互会直接降低设计、家装、营销素材的使用门槛。",
+      "advice": "建议：把它放进真实设计流程试用：家装改造、商品图、海报和社媒素材分别测试局部一致性、文字准确性、人物/品牌保持和导出后可编辑性。"
     },
     {
-      "topic": "product",
-      "title": "Mindwalk：在代码库 3D 地图上回放编码代理会话",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://github.com/cosmtrek/mindwalk",
-      "date": "2026-07-13",
+      "topic": "model",
+      "title": "商汤开源 SenseNova-Vision-7B-MoT 多任务视觉模型",
+      "source": "X：商汤 SenseTime (@SenseTime_AI)",
+      "url": "https://x.com/SenseTime_AI/status/2076828658531262619",
+      "date": "2026-07-14",
       "score": 74,
       "tags": [
         "AI HOT",
-        "Claude",
-        "Claude Code",
-        "产品"
+        "开源",
+        "模型"
       ],
-      "summary": "Mindwalk 是一款可视化工具，可将 Claude Code 和 Codex 的会话日志在代码库的 3D 地图上回放。它将仓库绘制成夜间地图，代理搜索、读取和编辑过的文件会发光，未触及区域保持黑暗，让用户一眼看清代理对任务的理解范围。单个 Go 二进制文件即可运行，所有会话数据完全本地处理，不…",
-      "publishedAt": "2026-07-12T13:51:05.035Z",
-      "category": "ai-products",
-      "comment": "点评：Mindwalk 的价值在于让 Agent 的“思考路径”变成可观察对象。随着代码代理接手更多仓库任务，团队需要知道它看了哪里、忽略了哪里、为什么改这些文件。",
-      "advice": "建议：把 Agent 会话可视化纳入代码审查和复盘流程，重点检查未读关键文件、异常大范围修改、重复搜索和上下文遗漏，帮助团队改进任务说明与权限边界。"
+      "summary": "商汤发布并完全开源 SenseNova-Vision-7B-MoT，一个统一处理检测、OCR、GUI、深度与法线估计、分割、多视图等主要视觉任务的模型。该模型支持通过自然语言定义新的视觉任务变体，跨传统任务边界重组视觉能力。开源内容包括模型权重及 SenseNova-Vision Corpus（含…",
+      "publishedAt": "2026-07-14T00:38:32.000Z",
+      "category": "ai-models",
+      "comment": "点评：SenseNova-Vision-7B-MoT 指向视觉模型的“任务统一化”：检测、OCR、GUI、分割和几何理解开始被自然语言任务描述串起来，这会降低多视觉 pipeline 的集成复杂度。",
+      "advice": "建议：视觉团队可以用统一任务描述评测跨任务能力，但仍要分场景检查检测精度、OCR 准确率、GUI 操作成功率、分割边界和许可证约束。"
     },
     {
-      "topic": "tip",
-      "title": "OpenAI CEO Altman 改口称 AI 净创造就业，Anthropic CEO 也修正早期言论",
-      "source": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/openai-ceo-altman-is-now-pretty-sure-ai-is-net-job-creating-which-is-quite-the-pivot-from-predicting-mass-layoffs",
-      "date": "2026-07-13",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "Anthropic",
-        "GPT",
-        "观点"
-      ],
-      "summary": "OpenAI CEO Sam Altman 表示，他\"相当确信\"AI 迄今为止净创造了就业，并承认\"这并非我预期\"。此前他曾警告 AI 影响可能快得\"有点吓人\"。Anthropic CEO Dario Amodei 也修正了早期言论，将自动化描述为生产力倍增器而非岗位杀手。然而，多项研究未发现 A…",
-      "publishedAt": "2026-07-12T09:15:49.000Z",
-      "category": "tip",
-      "comment": "点评：Altman 和 Amodei 的口径变化说明，就业影响不是一句“替代”或“创造”能概括。AI 更可能先重塑岗位内容、技能门槛和组织结构，再逐步反映到招聘数字上。",
-      "advice": "建议：管理者不要用宏观口号替代组织设计；应按岗位拆分可自动化任务、需要增强的人类判断、培训路径和绩效指标，季度复盘净增产出与人员结构变化。"
-    },
-    {
-      "topic": "tip",
-      "title": "Ploy 将 AI 智能体默认模型从 Claude Opus 4.8 切换至 GPT-5.6 Sol",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://ploy.ai/blog/migrating-a-production-ai-agent-to-gpt-5-6",
-      "date": "2026-07-13",
+      "topic": "industry",
+      "title": "视频生成创企 PixVerse 完成 4.39 亿美元 C 轮扩展融资，估值超 20 亿美元",
+      "source": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/13/video-generation-startup-pixverse-raises-439m-valuation-soars-past-2b",
+      "date": "2026-07-14",
       "score": 70,
       "tags": [
         "AI HOT",
-        "OpenAI",
-        "Claude",
-        "GPT",
+        "产业"
+      ],
+      "summary": "新加坡视频生成初创公司 PixVerse 完成 C 轮扩展融资，共筹集 4.39 亿美元，估值突破 20 亿美元。公司提供 V 系列（消费者及 API）、C 系列（专业影视）及今年初发布的 R 系列世界模型（游戏开发）。用户可生成最高 4k 分辨率并自带音频的视频，消费端注册用户超 1.5 亿，月…",
+      "publishedAt": "2026-07-14T00:00:00.000Z",
+      "category": "industry",
+      "comment": "点评：PixVerse 融资说明视频生成仍是资本最愿意押注的应用层赛道之一。消费端规模、API、影视工作流和世界模型叙事正在合流，但最终要看留存、单位生成成本和版权风险。",
+      "advice": "建议：内容团队评估视频生成平台时，除画质外要看批量生产成本、版权与肖像授权、API 稳定性、素材可控性、后期编辑链路和商业使用条款。"
+    },
+    {
+      "topic": "model",
+      "title": "德国AI协会发布开源模型Soofi S，在英语和德语基准测试中领先",
+      "source": "The Decoder：AI News（RSS）",
+      "url": "https://the-decoder.com/german-ai-consortium-releases-soofi-s-an-open-30b-model-that-tops-benchmarks-in-both-english-and-german",
+      "date": "2026-07-14",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "开源",
+        "模型"
+      ],
+      "summary": "德国AI协会协调的研究联盟发布开源大语言模型Soofi S 30B-A3B。该模型总参数量316亿，每个token仅激活约32亿参数，采用Mamba-2与标准注意力层混合的MoE架构。模型完全在德国电信慕尼黑工业AI云上训练，训练数据中德语占比从第一阶段的7.2%提升至第二阶段的15.3%。在基准…",
+      "publishedAt": "2026-07-13T11:41:01.000Z",
+      "category": "ai-models",
+      "comment": "点评：Soofi S 的意义在于主权 AI 与语言覆盖。它不一定挑战最大闭源模型，但对欧洲企业和公共部门来说，训练地点、语言能力、开源权重和合规边界本身就是产品价值。",
+      "advice": "建议：面向欧洲市场或德语场景的团队，应把本地语言、数据驻留、许可证、行业合规和部署成本纳入模型选型，而不是只看英文通用榜单。"
+    },
+    {
+      "topic": "tip",
+      "title": "面壁智能CTO曾国洋专访：端侧模型是AI落地关键路径",
+      "source": "公众号：面壁智能（MiniCPM）",
+      "url": "https://mp.weixin.qq.com/s/s75qDGt5iNqLXyMbjpwxeQ",
+      "date": "2026-07-14",
+      "score": 61,
+      "tags": [
+        "AI HOT",
         "观点"
       ],
-      "summary": "Ploy 将其 AI 智能体默认模型从 Claude Opus 4.8 切换至 OpenAI 今晨发布的 GPT-5.6 Sol。在真实营销网站构建测试中，GPT-5.6 Sol 完成页面平均耗时 3 分 42 秒，较 Opus 4.8 的 8 分钟快 2.2 倍；每次构建成本从 3.06 美元降…",
-      "publishedAt": "2026-07-12T23:41:11.951Z",
+      "summary": "面壁智能CTO曾国洋指出，端侧模型是AI落地的关键路径。其原创方法论\"模型风洞\"可在小规模实验中预测完整训练效果，并基于\"知识密度\"提出\"面壁定律\"：知识密度每3.5个月翻一番。2B参数的MiniCPM表现优于同期8B竞品。面壁已完成高通、联发科、英特尔、英伟达、AMD等芯片适配，新发布的BitC…",
+      "publishedAt": "2026-07-14T02:29:00.000Z",
       "category": "tip",
-      "comment": "点评：Ploy 的迁移案例很实用：模型替换不是信仰选择，而是用真实任务衡量速度、成功率、成本和输出质量。Agent 产品会更频繁地在多模型之间动态换挡。",
-      "advice": "建议：建立模型迁移基准：固定真实任务集，对比成功率、端到端时长、成本、人工返工、失败类型和客户感知，再决定是否把新模型设为默认。"
+      "comment": "点评：面壁的端侧路线强调的是 AI 落地的另一条曲线：不是所有能力都上云，低延迟、隐私、本地成本和芯片适配会决定大量真实场景能否跑起来。",
+      "advice": "建议：做端侧 AI 时先锁定设备、延迟、功耗、内存和隐私约束，用小模型真实任务集验证；同时规划云端兜底和端云协同，不要只追参数规模。"
     }
   ],
   "sources": [
@@ -164,44 +178,56 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "公众号：数字生命卡兹克",
-      "url": "https://mp.weixin.qq.com/s/6c6vGMJAVMbh6UhNVw4dcg",
-      "note": "xAI 官方 Grok CLI 被曝静默上传整个代码库及用户密钥"
-    },
-    {
-      "name": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/975/865.htm",
-      "note": "黄仁勋：英伟达季度收入逼近千亿美元，Rubin Ultra 架构未延期"
-    },
-    {
-      "name": "X：Tibo (@thsottiaux)",
-      "url": "https://x.com/thsottiaux/status/2076365965915467978",
-      "note": "Codex与ChatGPT Work多项更新：取消5小时限制"
-    },
-    {
-      "name": "X：阿易 AI Notes (@AYi_AInotes)",
-      "url": "https://x.com/AYi_AInotes/status/2076341952023310580",
-      "note": "腾讯混元发布Hy3模型：295B参数MoE架构，Agent向LLM定位，已集成…"
-    },
-    {
-      "name": "X：Satya Nadella (@satyanadella)",
-      "url": "https://x.com/satyanadella/status/2076323181154230284",
-      "note": "纳德拉提出\"反向信息悖论\"：企业使用AI时需保护自身知识"
+      "name": "The Decoder：AI News（RSS）",
+      "url": "https://the-decoder.com/openais-new-prompting-guide-tells-users-to-stop-overthinking-and-start-with-the-result",
+      "note": "OpenAI 面向普通用户发布提示词指南：从结果出发，少写步骤"
     },
     {
       "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://github.com/cosmtrek/mindwalk",
-      "note": "Mindwalk：在代码库 3D 地图上回放编码代理会话"
+      "url": "https://playcode.io/blog/real-price-of-frontier-models",
+      "note": "前沿模型实际成本：tokenizer 差异导致隐性涨价"
     },
     {
-      "name": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/openai-ceo-altman-is-now-pretty-sure-ai-is-net-job-creating-which-is-quite-the-pivot-from-predicting-mass-layoffs",
-      "note": "OpenAI CEO Altman 改口称 AI 净创造就业，Anthropi…"
+      "name": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/976/149.htm",
+      "note": "Meta 宣布扩建路易斯安那州数据中心至 5GW，总投资超 500 亿美元"
+    },
+    {
+      "name": "公众号：腾讯混元",
+      "url": "https://mp.weixin.qq.com/s/vKFCa9FfoGBUGK8J1MhFag",
+      "note": "腾讯混元发布 HyOCR-1.5：端到端 OCR 大模型全栈开源，推理提速 6…"
+    },
+    {
+      "name": "X：歸藏 (@op7418)",
+      "url": "https://x.com/op7418/status/2076604797202161800",
+      "note": "Seedream 5.0 Pro 测评：图像编辑门槛爆降"
+    },
+    {
+      "name": "X：商汤 SenseTime (@SenseTime_AI)",
+      "url": "https://x.com/SenseTime_AI/status/2076828658531262619",
+      "note": "商汤开源 SenseNova-Vision-7B-MoT 多任务视觉模型"
+    },
+    {
+      "name": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/13/video-generation-startup-pixverse-raises-439m-valuation-soars-past-2b",
+      "note": "视频生成创企 PixVerse 完成 4.39 亿美元 C 轮扩展融资，估值超…"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-07-14",
+    "title": "AI HOT 日报：OpenAI、前沿模型实际成本、Meta",
+    "summary": "重点关注 技巧与观点、行业动态、模型发布/更新。核心信号是：OpenAI 面向普通用户发布提示词指南：从结果出发，少写步骤；前沿模型实际成本：tokenizer 差异导致隐性涨价；Meta 宣布扩建路易斯安那州数据中心至 5GW，总投资超 500 亿美元。",
+    "link": "/posts/71414/",
+    "tags": [
+      "AI HOT",
+      "OpenAI",
+      "GPT",
+      "观点"
+    ]
+  },
   {
     "date": "2026-07-13",
     "title": "AI HOT 日报：xAI、黄仁勋、ChatGPT Work",
