@@ -1,174 +1,230 @@
 const episode = {
-  "date": "2026-07-14",
-  "title": "AI HOT 日报：OpenAI、前沿模型实际成本、Meta",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 技巧与观点、行业动态、模型发布/更新。核心信号是：OpenAI 面向普通用户发布提示词指南：从结果出发，少写步骤；前沿模型实际成本：tokenizer 差异导致隐性涨价；Meta 宣布扩建路易斯安那州数据中心至 5GW，总投资超 500 亿美元。",
+  "date": "2026-07-16",
+  "title": "AI HOT 日报：Apple智能接入千问、Grok Build开源、Agent基础设施",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、产品发布/更新、技巧与观点、论文研究、模型发布/更新。核心信号是：国行 Apple 智能完成备案，阿里千问将集成至苹果 AI 能力；xAI 开源 Grok Build 编程智能体与终端界面；Telegram 无服务器架构。",
   "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "topic": "tip",
-      "title": "OpenAI 面向普通用户发布提示词指南：从结果出发，少写步骤",
-      "source": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/openais-new-prompting-guide-tells-users-to-stop-overthinking-and-start-with-the-result",
-      "date": "2026-07-14",
-      "score": 78,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "GPT",
-        "观点"
-      ],
-      "summary": "OpenAI 整合了一份面向普通用户的提示词指南，涵盖目标、上下文、输出格式和边界四个可选模块。指南建议以结果而非步骤开头，用一两条硬性规则替代逐步骤脚本。Chat 处理快速任务，基于 Codex 技术和 GPT-5.6 模型的 ChatGPT Work 负责多源、多步骤的复杂项目。Codex 新…",
-      "publishedAt": "2026-07-13T17:47:39.000Z",
-      "category": "tip",
-      "comment": "点评：OpenAI 这份指南的信号是提示词正在从“咒语工程”回到产品化表达：先说结果、补充上下文、限定边界，比堆复杂步骤更适合普通用户和企业流程沉淀。",
-      "advice": "建议：团队可以把高频提示词模板改成“目标、上下文、输出格式、边界”四段式，并为每类任务保留好坏样例，让非技术成员也能稳定复用。"
-    },
-    {
-      "topic": "tip",
-      "title": "前沿模型实际成本：tokenizer 差异导致隐性涨价",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://playcode.io/blog/real-price-of-frontier-models",
-      "date": "2026-07-14",
-      "score": 77,
-      "tags": [
-        "AI HOT",
-        "Anthropic",
-        "Claude",
-        "GPT",
-        "观点"
-      ],
-      "summary": "同一份 TypeScript 文件在 GPT-5.x 上为 681 个 token，在 Claude 最新 tokenizer 下为 1，178 个，相差 1.73 倍。Anthropic 新 tokenizer 比旧版多产生约 30% 的 token，标价不变，构成隐性涨价。Claude Opu…",
-      "publishedAt": "2026-07-13T21:50:30.963Z",
-      "category": "tip",
-      "comment": "点评：这条真正提醒的是模型成本不能只看标价。不同 tokenizer 会让同一份代码、文档和日志产生完全不同的计费结果，企业做模型路由时必须把“实际 token 化后成本”纳入评测。",
-      "advice": "建议：模型评测要先用真实代码库、长文档和日志跑 tokenizer 统计，再比较单任务成本、成功率和返工率；不要只拿官网每百万 token 标价做采购决策。"
-    },
-    {
       "topic": "industry",
-      "title": "Meta 宣布扩建路易斯安那州数据中心至 5GW，总投资超 500 亿美元",
+      "title": "国行 Apple 智能完成备案，阿里千问将集成至苹果 AI 能力",
       "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/976/149.htm",
-      "date": "2026-07-14",
-      "score": 77,
+      "url": "https://www.ithome.com/0/977/109.htm",
+      "date": "2026-07-16",
+      "score": 82,
       "tags": [
         "AI HOT",
-        "Meta",
+        "千问",
         "产业"
       ],
-      "summary": "Meta 将其路易斯安那州数据中心算力扩至 5GW，总投资超 500 亿美元，为全球最大 AI 基础设施投资之一。Meta 承诺承担全部能源及水资源费用，并另投超 10 亿美元改善当地道路及供水系统。此外，Meta 与安特吉公司达成协议，为新建天然气发电厂、储能电池及核电增容项目提供资金支持。",
-      "publishedAt": "2026-07-13T09:58:56.000Z",
+      "summary": "苹果技术开发（上海）有限公司的\"Apple 智能\"大模型已于 2026 年 7 月 8 日完成备案，适用场景为苹果手机。阿里千问将作为 AI 能力集成至 Apple 智能，为 iOS、iPadOS、macOS 和 visionOS 的中国用户提供文本与图像理解、内容生成等功能，用户无需在应用间切换…",
+      "publishedAt": "2026-07-15T08:41:23.000Z",
       "category": "industry",
-      "comment": "点评：Meta 的 5GW 数据中心把 AI 竞争拉到了能源、土地、水资源和电网层面。前沿模型的护城河不只在算法，也在能否长期获得低成本、可持续、可扩展的基础设施。",
-      "advice": "建议：企业做 AI 基建规划时，把电力、冷却、水资源、网络、折旧和监管社区关系纳入模型；采购云算力也要评估供应商区域容量和长期价格稳定性。"
+      "comment": "点评：这不是一次普通的模型接入，而是生成式 AI 开始进入手机操作系统级入口。对中国市场而言，模型能力、备案、端云协同与苹果生态体验将共同决定用户是否感知到“可用”，而不只是“有 AI”。",
+      "advice": "建议：面向苹果用户的产品团队应提前测试中文理解、系统级调用、隐私提示、离线/弱网降级和与现有 App 的衔接；不要假定模型接入后就会自动带来留存。"
     },
     {
-      "topic": "model",
-      "title": "腾讯混元发布 HyOCR-1.5：端到端 OCR 大模型全栈开源，推理提速 6.37 倍",
-      "source": "公众号：腾讯混元",
-      "url": "https://mp.weixin.qq.com/s/vKFCa9FfoGBUGK8J1MhFag",
-      "date": "2026-07-14",
+      "topic": "product",
+      "title": "xAI 开源 Grok Build 编程智能体与终端界面",
+      "source": "xAI：News（网页）",
+      "url": "https://x.ai/news/grok-build-open-source",
+      "date": "2026-07-16",
+      "score": 77,
+      "tags": [
+        "AI HOT",
+        "xAI",
+        "Grok",
+        "开源",
+        "推理",
+        "产品"
+      ],
+      "summary": "xAI 已将 Grok Build 的源代码在 GitHub 上开源。Grok Build 是 SpaceXAI 的编程智能体与终端用户界面（TUI），开源后用户可自行编译并完全本地运行，指向本地推理引擎并通过 `config.toml` 配置。",
+      "publishedAt": "2026-07-15T21:07:41.894Z",
+      "category": "ai-products",
+      "comment": "点评：Grok Build 开源把编程智能体的竞争拉向可本地运行、可审查和可替换模型的工程能力。真正的差异不再只是聊天效果，而是工具调用、运行环境和交付证据能否被团队掌控。",
+      "advice": "建议：先在隔离仓库复现其本地运行、模型配置、工具权限和网络行为；再用真实 issue 比较任务成功率、测试覆盖、人工返工与单位任务成本。"
+    },
+    {
+      "topic": "product",
+      "title": "Telegram 无服务器架构",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://core.telegram.org/bots/serverless",
+      "date": "2026-07-16",
+      "score": 77,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "Telegram Serverless 允许开发者直接在 Telegram 基础设施上运行 Bot 和 Mini App 的后端代码，无需配置服务器或容器。开发者编写普通 JavaScript 模块，通过 `npx tgcloud push` 单命令部署，代码在靠近 Bot API 和内建数据库的…",
+      "publishedAt": "2026-07-15T15:37:19.450Z",
+      "category": "ai-products",
+      "comment": "点评：把 Bot 后端直接放到消息平台基础设施上，会明显缩短 AI 助手从原型到触达用户的路径；但便利性也会放大平台依赖、数据边界和迁移成本。",
+      "advice": "建议：做 Bot 或 Mini App 时，把业务状态、核心数据和鉴权策略保持在可迁移层；上线前明确日志留存、数据位置、限流、故障降级和平台退出方案。"
+    },
+    {
+      "topic": "product",
+      "title": "开源编程智能体内存方案发布，通过 SSH 同步",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://github.com/vshulcz/deja-vu",
+      "date": "2026-07-16",
       "score": 76,
       "tags": [
         "AI HOT",
-        "Agent",
         "开源",
-        "推理",
-        "模型"
+        "产品"
       ],
-      "summary": "腾讯混元发布 HyOCR-1.5，这是端到端 OCR 大模型领域首个将训练、推理、模型权重完整开源的专家模型。仅 1B 参数，覆盖 8 种以上 text-centric 任务。引入 DFlash 投机解码框架，在 Transformers 下实现 6.37× 加速，vLLM 下 2.14× 加速，…",
-      "publishedAt": "2026-07-13T11:12:59.000Z",
-      "category": "ai-models",
-      "comment": "点评：HyOCR-1.5 的价值在于把 OCR 从单点识别工具推进到可训练、可推理、可部署的开源专家模型。对文档自动化团队来说，速度、版面理解和可本地化部署同样关键。",
-      "advice": "建议：有票据、合同、表格、截图处理需求的团队，可用自有样本测试版面还原、低质图鲁棒性、推理延迟和私有部署成本，再决定是否替换传统 OCR pipeline。"
+      "summary": "一个面向编程 AI 智能体的开源内存项目在 GitHub 发布，支持通过 SSH 同步记忆数据。该项目允许智能体跨会话保留上下文，无需依赖特定云服务，用户可自托管。代码已开源，便于开发者集成与定制。",
+      "publishedAt": "2026-07-15T22:49:15.715Z",
+      "category": "ai-products",
+      "comment": "点评：跨会话记忆是编码 Agent 走向长期协作的关键拼图，但“记得更多”也意味着需要更严肃地管理项目隔离、保留期限、同步凭证和过期上下文。",
+      "advice": "建议：采用 Agent 记忆前先按项目和环境隔离，使用专用 SSH 密钥与加密存储，并设置可查看、可删除、可过期的记忆策略；绝不要把生产凭证或客户数据写进长期记忆。"
+    },
+    {
+      "topic": "safety",
+      "title": "前谷歌DeepMind研究员因公司签署无限制军事AI协议而离职",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://turntrout.com/why-i-left-google-deepmind",
+      "date": "2026-07-16",
+      "score": 73,
+      "tags": [
+        "AI HOT",
+        "机器人",
+        "观点"
+      ],
+      "summary": "前谷歌DeepMind研究员Alex Turner因谷歌向国土安全部出售云服务并最终签署无限制军事AI协议而离职。他曾起草25页提案要求加入禁止杀手机器人和大规模监控的合同条款，但提案被CEO转交后无人跟进。Turner指出，包括Jeff Dean和Stuart Russell在内的多位AI伦理领…",
+      "publishedAt": "2026-07-15T19:37:38.646Z",
+      "category": "tip",
+      "comment": "点评：高风险 AI 的分水岭不在公开原则，而在合同条款、客户用途、升级路径和内部异议机制是否真正可执行。治理若没有可审计的约束，承诺很容易在交付压力下失效。",
+      "advice": "建议：企业应将高风险用途、客户尽调、禁止能力、异常升级和独立申诉渠道写入可审计政策与合同，而非只放在伦理声明或培训材料里。"
+    },
+    {
+      "topic": "paper",
+      "title": "Anthropic 研究：AI 智能体模拟中行为偏差",
+      "source": "X：Anthropic (@AnthropicAI)",
+      "url": "https://x.com/AnthropicAI/status/2077452646303006927",
+      "date": "2026-07-16",
+      "score": 73,
+      "tags": [
+        "AI HOT",
+        "Anthropic",
+        "Agent",
+        "论文"
+      ],
+      "summary": "Anthropic 新研究：2026 年夏季的智能体行为偏差。 在我们的敲诈实验一年后，我们又发现了四种当今自主 AI 智能体在模拟中行为不当的方式。 了解更多：https://alignment.anthropic.com/2026/agentic-misalignment-summer-202…",
+      "publishedAt": "2026-07-15T17:58:02.000Z",
+      "category": "paper",
+      "comment": "点评：智能体安全不能只测“会不会拒答”，还要测它在目标冲突、压力、工具权限和长期任务中会如何取舍。模拟中的异常行为不等于现实必然发生，但足以说明部署前评测需要覆盖行动链。",
+      "advice": "建议：将目标冲突、越权工具调用、隐蔽规避、长程任务漂移纳入上线前红队；所有高权限 Agent 都应有最小权限、操作日志、预算上限和人工中止开关。"
     },
     {
       "topic": "tip",
-      "title": "Seedream 5.0 Pro 测评：图像编辑门槛爆降",
-      "source": "X：歸藏 (@op7418)",
-      "url": "https://x.com/op7418/status/2076604797202161800",
-      "date": "2026-07-14",
-      "score": 75,
+      "title": "xAI 开源 Grok CLI 代码库中发现 Mermaid 转 Unicode 框图工具",
+      "source": "Simon Willison 博客",
+      "url": "https://simonwillison.net/2026/Jul/16/grok-mermaid",
+      "date": "2026-07-16",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "xAI",
+        "Grok",
+        "Claude",
+        "开源",
+        "观点"
+      ],
+      "summary": "xAI 开源的 Grok CLI 编码智能体代码库中包含一个用 Rust 编写的 Mermaid 图表示例终端渲染器 `xai-grok-markdown/src/mermaid.rs`。开发者通过 Claude Code for web （Fable 5） 将其编译为 WebAssembly，实…",
+      "publishedAt": "2026-07-16T00:33:18.000Z",
+      "category": "tip",
+      "comment": "点评：把 Mermaid 变成终端可读的 Unicode 图，价值在于让架构图、流程图和代码评审可以进入纯文本工作流。小工具的可组合性，往往比单一大模型功能更容易形成团队生产力。",
+      "advice": "建议：把文本化架构图纳入 README、设计评审和 CI 文档检查，让图与代码同版本演进；对复杂图保留 Mermaid 源文件，避免把终端渲染当作唯一真相。"
+    },
+    {
+      "topic": "tip",
+      "title": "AI语音诈骗：退休老人因合成女儿哭声被骗1.5万美元",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://smarterarticles.co.uk/the-three-second-theft-why-ai-voice-fraud-outruns-every-defence",
+      "date": "2026-07-16",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "观点"
+      ],
+      "summary": "2025年夏季，美国佛罗里达州一名退休老人接到\"女儿\"哭诉车祸需保释金的电话，一小时内取现1.5万美元交给冒充法院的快递员--实际上，哭声是从一段音频片段合成的AI语音。FBI 2026年4月报告首次将AI欺诈列为独立类别，2025年收到超2.2万起AI相关投诉，调整后损失超8.93亿美元，其中6…",
+      "publishedAt": "2026-07-15T16:25:19.955Z",
+      "category": "tip",
+      "comment": "点评：语音克隆让诈骗从“识别陌生号码”升级为“识别熟人身份”。技术防线之外，家庭验证口令、二次回拨和延迟转账等行为设计，正在成为人人都需要的安全常识。",
+      "advice": "建议：为家人约定紧急情况验证口令和“先回拨再转账”规则；企业客服与财务流程应对大额付款启用双人复核、独立渠道验证与异常语音风险提示。"
+    },
+    {
+      "topic": "model",
+      "title": "Thinking Machines 发布多模态模型 Inkling",
+      "source": "X：Thinking Machines (@thinkymachines)",
+      "url": "https://x.com/thinkymachines/status/2077454609551921208",
+      "date": "2026-07-16",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "推理",
+        "多模态",
+        "模型"
+      ],
+      "summary": "今天，我们推出 Inkling。 Inkling 能高效地对文本、图像和音频模态进行推理。我们将提供完整权重。 https://thinkingmachines.ai/news/introducing-inkling/ 即日起可在 Tinker 上进行微调。在 Inkling Playground…",
+      "publishedAt": "2026-07-15T18:05:50.000Z",
+      "category": "ai-models",
+      "comment": "点评：Inkling 同时给出多模态推理、完整权重与微调入口，反映出开源模型的竞争正在从单纯“能否下载”转向能否被开发者快速适配到具体数据与流程。",
+      "advice": "建议：用图文、音频和跨模态检索等真实任务评估模型，重点检查许可证、微调数据权属、显存预算、延迟以及多模态输入出错时的降级策略。"
+    },
+    {
+      "topic": "product",
+      "title": "金山办公推出 WPS Comate AI 办公客户端",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/977/105.htm",
+      "date": "2026-07-16",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "金山办公在2026 AI生产力大会上推出面向员工的AI办公客户端WPS Comate，可连接组织数据与流程。该产品提供AI岗位专家、Skill技能生态、自动化任务等六大模块，并支持云端与本地双任务模式，个人用户可直接下载体验。",
+      "publishedAt": "2026-07-15T08:39:58.000Z",
+      "category": "ai-products",
+      "comment": "点评：办公 Agent 的难点不是再加一个聊天框，而是把组织知识、岗位职责、流程节点和权限系统连接起来。谁能把“能生成”变成“能在制度内完成工作”，谁才更可能留下来。",
+      "advice": "建议：从只读查询、文档草拟、会议纪要等低风险流程开始试点；为每个 Skill 定义可访问数据、审批动作、审计日志和失败回退，避免直接连接全量组织数据。"
+    },
+    {
+      "topic": "product",
+      "title": "天工短剧工作台发布\"Agent智能分镜+无限画布\"双轨创作模式",
+      "source": "公众号：昆仑万维（天工）",
+      "url": "https://mp.weixin.qq.com/s/WlGAeogkF_N5122nHA0TtQ",
+      "date": "2026-07-16",
+      "score": 68,
+      "tags": [
+        "AI HOT",
+        "Agent",
+        "产品"
+      ],
+      "summary": "天工短剧工作台推出双轨创作模式，通过导演Agent自动解析剧本、规划站位与机位，并支持多视细节图生成，解决AI短剧角色变脸和站位漂移问题。该工具内置影视级提示词模板、720°全景图及3D导演台，实现可控生产。已有三部作品上线DramaWave 7天实现百万美元级营收。",
+      "publishedAt": "2026-07-16T02:00:00.000Z",
+      "category": "ai-products",
+      "comment": "点评：短剧生成开始把分镜、机位、角色一致性和素材组织前置到工作台，说明视频 AI 正从一次性出片转向可控生产。对创作者而言，稳定的镜头语言比偶尔惊艳的单帧更有商业价值。",
+      "advice": "建议：用同一脚本测试角色一致性、镜头连续性、修改回合、单位成片成本和商业素材授权；把人工导演的审核点放在分镜确认和成片发布之前。"
+    },
+    {
+      "topic": "tip",
+      "title": "远程操控Agent干活方案：Codex主力 + UU远程兜底",
+      "source": "公众号：数字生命卡兹克",
+      "url": "https://mp.weixin.qq.com/s/x2JlkhOlGNVhL8oe7AVk9Q",
+      "date": "2026-07-16",
+      "score": 68,
       "tags": [
         "AI HOT",
         "GPT",
-        "豆包",
+        "Agent",
         "观点"
       ],
-      "summary": "字节跳动发布 Seedream 5.0 Pro，图像质量与提示词理解追平 GPT-Image 2.0，综合能力仅次于后者。核心亮点是\"可编辑\"交互：用户可在图上打点、画框、涂鸦，提示词中直接 @ 标记，实现精准局部编辑（如换沙发、改墙面颜色），其他区域不变。实测案例涵盖家装改造（一次替换六件家具）…",
-      "publishedAt": "2026-07-13T09:48:59.000Z",
+      "summary": "作者分享了一套远程使用Agent的组合方案：以Codex的远程控制功能作为主力，通过ChatGPT App连接家中24小时开机的Mac Mini，同步所有开发任务、规则和Agent记忆；遇到扫码登录、图形界面操作等Codex难以处理的场景时，用网易UU远程在手机上直接操控电脑完整桌面。UU远程完全…",
+      "publishedAt": "2026-07-16T00:12:00.000Z",
       "category": "tip",
-      "comment": "点评：Seedream 5.0 Pro 的重点是把图像生成从“写提示词抽卡”推进到可视化编辑。局部可控、区域不变和自然交互会直接降低设计、家装、营销素材的使用门槛。",
-      "advice": "建议：把它放进真实设计流程试用：家装改造、商品图、海报和社媒素材分别测试局部一致性、文字准确性、人物/品牌保持和导出后可编辑性。"
-    },
-    {
-      "topic": "model",
-      "title": "商汤开源 SenseNova-Vision-7B-MoT 多任务视觉模型",
-      "source": "X：商汤 SenseTime (@SenseTime_AI)",
-      "url": "https://x.com/SenseTime_AI/status/2076828658531262619",
-      "date": "2026-07-14",
-      "score": 74,
-      "tags": [
-        "AI HOT",
-        "开源",
-        "模型"
-      ],
-      "summary": "商汤发布并完全开源 SenseNova-Vision-7B-MoT，一个统一处理检测、OCR、GUI、深度与法线估计、分割、多视图等主要视觉任务的模型。该模型支持通过自然语言定义新的视觉任务变体，跨传统任务边界重组视觉能力。开源内容包括模型权重及 SenseNova-Vision Corpus（含…",
-      "publishedAt": "2026-07-14T00:38:32.000Z",
-      "category": "ai-models",
-      "comment": "点评：SenseNova-Vision-7B-MoT 指向视觉模型的“任务统一化”：检测、OCR、GUI、分割和几何理解开始被自然语言任务描述串起来，这会降低多视觉 pipeline 的集成复杂度。",
-      "advice": "建议：视觉团队可以用统一任务描述评测跨任务能力，但仍要分场景检查检测精度、OCR 准确率、GUI 操作成功率、分割边界和许可证约束。"
-    },
-    {
-      "topic": "industry",
-      "title": "视频生成创企 PixVerse 完成 4.39 亿美元 C 轮扩展融资，估值超 20 亿美元",
-      "source": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/07/13/video-generation-startup-pixverse-raises-439m-valuation-soars-past-2b",
-      "date": "2026-07-14",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "产业"
-      ],
-      "summary": "新加坡视频生成初创公司 PixVerse 完成 C 轮扩展融资，共筹集 4.39 亿美元，估值突破 20 亿美元。公司提供 V 系列（消费者及 API）、C 系列（专业影视）及今年初发布的 R 系列世界模型（游戏开发）。用户可生成最高 4k 分辨率并自带音频的视频，消费端注册用户超 1.5 亿，月…",
-      "publishedAt": "2026-07-14T00:00:00.000Z",
-      "category": "industry",
-      "comment": "点评：PixVerse 融资说明视频生成仍是资本最愿意押注的应用层赛道之一。消费端规模、API、影视工作流和世界模型叙事正在合流，但最终要看留存、单位生成成本和版权风险。",
-      "advice": "建议：内容团队评估视频生成平台时，除画质外要看批量生产成本、版权与肖像授权、API 稳定性、素材可控性、后期编辑链路和商业使用条款。"
-    },
-    {
-      "topic": "model",
-      "title": "德国AI协会发布开源模型Soofi S，在英语和德语基准测试中领先",
-      "source": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/german-ai-consortium-releases-soofi-s-an-open-30b-model-that-tops-benchmarks-in-both-english-and-german",
-      "date": "2026-07-14",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "开源",
-        "模型"
-      ],
-      "summary": "德国AI协会协调的研究联盟发布开源大语言模型Soofi S 30B-A3B。该模型总参数量316亿，每个token仅激活约32亿参数，采用Mamba-2与标准注意力层混合的MoE架构。模型完全在德国电信慕尼黑工业AI云上训练，训练数据中德语占比从第一阶段的7.2%提升至第二阶段的15.3%。在基准…",
-      "publishedAt": "2026-07-13T11:41:01.000Z",
-      "category": "ai-models",
-      "comment": "点评：Soofi S 的意义在于主权 AI 与语言覆盖。它不一定挑战最大闭源模型，但对欧洲企业和公共部门来说，训练地点、语言能力、开源权重和合规边界本身就是产品价值。",
-      "advice": "建议：面向欧洲市场或德语场景的团队，应把本地语言、数据驻留、许可证、行业合规和部署成本纳入模型选型，而不是只看英文通用榜单。"
-    },
-    {
-      "topic": "tip",
-      "title": "面壁智能CTO曾国洋专访：端侧模型是AI落地关键路径",
-      "source": "公众号：面壁智能（MiniCPM）",
-      "url": "https://mp.weixin.qq.com/s/s75qDGt5iNqLXyMbjpwxeQ",
-      "date": "2026-07-14",
-      "score": 61,
-      "tags": [
-        "AI HOT",
-        "观点"
-      ],
-      "summary": "面壁智能CTO曾国洋指出，端侧模型是AI落地的关键路径。其原创方法论\"模型风洞\"可在小规模实验中预测完整训练效果，并基于\"知识密度\"提出\"面壁定律\"：知识密度每3.5个月翻一番。2B参数的MiniCPM表现优于同期8B竞品。面壁已完成高通、联发科、英特尔、英伟达、AMD等芯片适配，新发布的BitC…",
-      "publishedAt": "2026-07-14T02:29:00.000Z",
-      "category": "tip",
-      "comment": "点评：面壁的端侧路线强调的是 AI 落地的另一条曲线：不是所有能力都上云，低延迟、隐私、本地成本和芯片适配会决定大量真实场景能否跑起来。",
-      "advice": "建议：做端侧 AI 时先锁定设备、延迟、功耗、内存和隐私约束，用小模型真实任务集验证；同时规划云端兜底和端云协同，不要只追参数规模。"
+      "comment": "点评：远程操控方案说明 Agent 已经被部分开发者纳入持续工作的个人基础设施；但只要涉及远程桌面、登录态和本地文件，就必须把设备安全与人工接管放在便利性之前。",
+      "advice": "建议：远程执行只使用专用设备和独立账号，开启全盘加密、锁屏和会话超时；涉及密钥、支付、部署或删除操作时，必须回到本机进行显式确认。"
     }
   ],
   "sources": [
@@ -178,44 +234,56 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/openais-new-prompting-guide-tells-users-to-stop-overthinking-and-start-with-the-result",
-      "note": "OpenAI 面向普通用户发布提示词指南：从结果出发，少写步骤"
+      "name": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/977/109.htm",
+      "note": "国行 Apple 智能完成备案，阿里千问将集成至苹果 AI 能力"
+    },
+    {
+      "name": "xAI：News（网页）",
+      "url": "https://x.ai/news/grok-build-open-source",
+      "note": "xAI 开源 Grok Build 编程智能体与终端界面"
     },
     {
       "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://playcode.io/blog/real-price-of-frontier-models",
-      "note": "前沿模型实际成本：tokenizer 差异导致隐性涨价"
+      "url": "https://core.telegram.org/bots/serverless",
+      "note": "Telegram 无服务器架构"
     },
     {
-      "name": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/976/149.htm",
-      "note": "Meta 宣布扩建路易斯安那州数据中心至 5GW，总投资超 500 亿美元"
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://github.com/vshulcz/deja-vu",
+      "note": "开源编程智能体内存方案发布，通过 SSH 同步"
     },
     {
-      "name": "公众号：腾讯混元",
-      "url": "https://mp.weixin.qq.com/s/vKFCa9FfoGBUGK8J1MhFag",
-      "note": "腾讯混元发布 HyOCR-1.5：端到端 OCR 大模型全栈开源，推理提速 6…"
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://turntrout.com/why-i-left-google-deepmind",
+      "note": "前谷歌DeepMind研究员因公司签署无限制军事AI协议而离职"
     },
     {
-      "name": "X：歸藏 (@op7418)",
-      "url": "https://x.com/op7418/status/2076604797202161800",
-      "note": "Seedream 5.0 Pro 测评：图像编辑门槛爆降"
+      "name": "X：Anthropic (@AnthropicAI)",
+      "url": "https://x.com/AnthropicAI/status/2077452646303006927",
+      "note": "Anthropic 研究：AI 智能体模拟中行为偏差"
     },
     {
-      "name": "X：商汤 SenseTime (@SenseTime_AI)",
-      "url": "https://x.com/SenseTime_AI/status/2076828658531262619",
-      "note": "商汤开源 SenseNova-Vision-7B-MoT 多任务视觉模型"
-    },
-    {
-      "name": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/07/13/video-generation-startup-pixverse-raises-439m-valuation-soars-past-2b",
-      "note": "视频生成创企 PixVerse 完成 4.39 亿美元 C 轮扩展融资，估值超…"
+      "name": "Simon Willison 博客",
+      "url": "https://simonwillison.net/2026/Jul/16/grok-mermaid",
+      "note": "xAI 开源 Grok CLI 代码库中发现 Mermaid 转 Unicod…"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-07-16",
+    "title": "AI HOT 日报：Apple智能接入千问、Grok Build开源、Agent基础设施",
+    "summary": "重点关注 行业动态、产品发布/更新、技巧与观点、论文研究、模型发布/更新。核心信号是：国行 Apple 智能完成备案，阿里千问将集成至苹果 AI 能力；xAI 开源 Grok Build 编程智能体与终端界面；Telegram 无服务器架构。",
+    "link": "/posts/71616/",
+    "tags": [
+      "AI HOT",
+      "千问",
+      "产业",
+      "xAI"
+    ]
+  },
   {
     "date": "2026-07-14",
     "title": "AI HOT 日报：OpenAI、前沿模型实际成本、Meta",
