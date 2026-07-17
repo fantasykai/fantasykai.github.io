@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-07-16T03:57:55.364Z</updated>
+  <updated>2026-07-17T02:11:01.463Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Grok, Agent, 安全, 评测, Claude Code, 多模态, 企业AI, 开源, 产业" scheme="https://aimak.cn/tags/AI-HOT-Grok-Agent-%E5%AE%89%E5%85%A8-%E8%AF%84%E6%B5%8B-Claude-Code-%E5%A4%9A%E6%A8%A1%E6%80%81-%E4%BC%81%E4%B8%9AAI-%E5%BC%80%E6%BA%90-%E4%BA%A7%E4%B8%9A/"/>
+    <id>https://aimak.cn/posts/71717/</id>
+    <link href="https://aimak.cn/posts/71717/"/>
+    <published>2026-07-17T02:08:11.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-07-17：Grok Automations、智能体安全、Claude Code迁移</title>
+    <updated>2026-07-17T02:11:01.463Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -352,32 +370,5 @@
     </summary>
     <title>AI HOT 日报 2026-06-25：xAI争议、Figma AI 画布、AI Coding 实践</title>
     <updated>2026-06-25T01:44:18.062Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT" scheme="https://aimak.cn/tags/AI-HOT/"/>
-    <category term="AI日报" scheme="https://aimak.cn/tags/AI%E6%97%A5%E6%8A%A5/"/>
-    <category term="Qwen" scheme="https://aimak.cn/tags/Qwen/"/>
-    <category term="Agent" scheme="https://aimak.cn/tags/Agent/"/>
-    <category term="豆包" scheme="https://aimak.cn/tags/%E8%B1%86%E5%8C%85/"/>
-    <category term="OpenAI" scheme="https://aimak.cn/tags/OpenAI/"/>
-    <category term="语音模型" scheme="https://aimak.cn/tags/%E8%AF%AD%E9%9F%B3%E6%A8%A1%E5%9E%8B/"/>
-    <category term="AIOps" scheme="https://aimak.cn/tags/AIOps/"/>
-    <category term="OCR" scheme="https://aimak.cn/tags/OCR/"/>
-    <category term="AI治理" scheme="https://aimak.cn/tags/AI%E6%B2%BB%E7%90%86/"/>
-    <id>https://aimak.cn/posts/62424/</id>
-    <link href="https://aimak.cn/posts/62424/"/>
-    <published>2026-06-24T07:35:00.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-06-24：Qwen-AgentWorld、豆包专业版、Bidi 1</title>
-    <updated>2026-06-24T07:33:16.602Z</updated>
   </entry>
 </feed>
