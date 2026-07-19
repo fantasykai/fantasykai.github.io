@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-07-17T02:11:01.463Z</updated>
+  <updated>2026-07-19T02:06:27.659Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Claude, Agent, MCP, 观点, Google, Nvidia, Qwen, GPT, Kimi, 开源, 产业" scheme="https://aimak.cn/tags/AI-HOT-Claude-Agent-MCP-%E8%A7%82%E7%82%B9-Google-Nvidia-Qwen-GPT-Kimi-%E5%BC%80%E6%BA%90-%E4%BA%A7%E4%B8%9A/"/>
+    <id>https://aimak.cn/posts/71919/</id>
+    <link href="https://aimak.cn/posts/71919/"/>
+    <published>2026-07-19T02:06:27.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-07-19：DAIR.AI 发布、Index Vent、Nvidia</title>
+    <updated>2026-07-19T02:06:27.659Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -352,23 +370,5 @@
     </summary>
     <title>AI HOT 日报 2026-06-26：AI 经济、GPT-5.6、Agentic Coding</title>
     <updated>2026-06-26T09:30:37.970Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, OpenAI, Anthropic, xAI, Grok, 观点, Google, 推理, 产品, Nvidia, GPT, Qwen" scheme="https://aimak.cn/tags/AI-HOT-OpenAI-Anthropic-xAI-Grok-%E8%A7%82%E7%82%B9-Google-%E6%8E%A8%E7%90%86-%E4%BA%A7%E5%93%81-Nvidia-GPT-Qwen/"/>
-    <id>https://aimak.cn/posts/62525/</id>
-    <link href="https://aimak.cn/posts/62525/"/>
-    <published>2026-06-25T01:42:33.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-06-25：xAI争议、Figma AI 画布、AI Coding 实践</title>
-    <updated>2026-06-25T01:44:18.062Z</updated>
   </entry>
 </feed>

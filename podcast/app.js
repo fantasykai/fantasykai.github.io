@@ -1,236 +1,234 @@
 const episode = {
-  "date": "2026-07-17",
-  "title": "AI HOT 日报：Grok Automations、智能体安全、Claude Code迁移",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注产品自动化、智能体安全、真实场景评测、多模态可靠性与推理效率。核心信号是：Grok 让任务按计划或邮件触发；企业 Agent 的身份与评测缺口浮现；Claude Code 的大规模迁移案例显示收益必须与测试和回归一起衡量。",
-  "conclusion": "今天的关键不是让 Agent 做更多事，而是先把身份、权限、评测、人工接管与回滚边界做清楚。可观察、可回滚、可追责的工作流，才是把热点转成生产力的稳妥路径。",
+  "date": "2026-07-19",
+  "title": "AI HOT 日报：DAIR.AI 发布、Index Vent、Nvidia",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 技巧与观点、行业动态、模型发布/更新、产品发布/更新。核心信号是：DAIR.AI 发布 X 智能体技能：自动追踪 AI 前沿动态；Index Ventures 联合创始人 Neil Rimer 认为 AI 财富将面临\"再分配\"；使用 NVIDIA NeMo AutoModel 在单 GPU Colab 上对 Qwen3-0.6B 进行 LoRA 微调。",
+  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "topic": "product",
-      "title": "Grok 推出 Automations 功能：定时或邮件触发，自动执行任务并汇报结果",
-      "source": "xAI：News（网页）",
-      "url": "https://x.ai/news/grok-automations",
-      "date": "2026-07-17",
-      "score": 85,
+      "topic": "tip",
+      "title": "DAIR.AI 发布 X 智能体技能：自动追踪 AI 前沿动态",
+      "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+      "url": "https://x.com/omarsar0/status/2078573267015885136",
+      "date": "2026-07-19",
+      "score": 73,
       "tags": [
         "AI HOT",
-        "Grok",
+        "Claude",
         "Agent",
-        "产品"
+        "MCP",
+        "观点"
       ],
-      "publishedAt": "2026-07-16T21:39:40.165Z",
-      "category": "ai-products",
-      "summary": "xAI 为 Grok 引入 Automations：用户可描述任务，并按一次、每日、工作日、每周等计划运行，或按邮件条件触发；每次执行会保存完整对话，结果支持邮件或应用内通知。",
-      "comment": "点评：任务从聊天窗口走向定时和邮件触发，AI 的价值开始取决于能否稳定接入真实工作流；效率会被放大，错误、越权和噪声也会被同步放大。",
-      "advice": "建议：先用于日报汇总、信息筛选和草稿生成等可复核任务；为每个自动化定义输入范围、输出收件人、失败通知、预算上限与人工复核点。"
+      "summary": "DAIR.AI 创始人 Elvis Saravia 发布了一款名为\"x-agent-intelligence\"的 AI 智能体技能，可自动追踪 X 平台高信号账号的 AI 新闻、论文和项目。该技能基于 X MCP 工具构建，支持 Codex、Claude 等智能体，能生成美观的 HTML 摘要页面…",
+      "publishedAt": "2026-07-18T20:10:59.000Z",
+      "category": "tip",
+      "comment": "点评：自动化追踪信息源的价值，不在于再多抓几条新闻，而在于能否把账号白名单、去重、可信度判断和团队分发规则做成可审计流程；否则只会更快地制造信息噪声。",
+      "advice": "建议：为新闻追踪 Agent 设定可信账号白名单、主题规则、去重阈值、原文链接和人工抽检；先用于内部晨报，再决定是否自动对外发布。"
     },
     {
-      "topic": "product",
-      "title": "Google Vids 上线 Gemini Omni 与个人数字分身功能",
-      "source": "Google Blog：AI（RSS）",
-      "url": "https://blog.google/products-and-platforms/products/workspace/gemini-omni-personal-avatars",
-      "date": "2026-07-17",
-      "score": 60,
-      "tags": [
-        "AI HOT",
-        "Gemini",
-        "视频",
-        "产品"
-      ],
-      "publishedAt": "2026-07-16T16:00:00.000Z",
-      "category": "ai-products",
-      "summary": "Google Vids 新增 Gemini Omni，可用自然语言和图片参考生成、逐步编辑视频；个人数字分身允许用户上传自拍与语音录制，再通过文字让数字分身出镜，生成内容带有 SynthID 数字水印。",
-      "comment": "点评：视频生成正从一次性片段走向按脚本持续编辑、由虚拟角色交付内容；企业真正的难题在肖像授权、品牌一致性、可编辑性和撤回机制。",
-      "advice": "建议：优先在培训、内部说明和产品演示等低风险场景试点；建立人物授权台账、素材审批、生成标识和撤稿流程。"
-    },
-    {
-      "topic": "product",
-      "title": "面壁智能开源企业 AI 数字员工平台 StaffDeck",
-      "source": "X：面壁智能 OpenBMB (@OpenBMB)",
-      "url": "https://x.com/OpenBMB/status/2077741814799548451",
-      "date": "2026-07-17",
-      "score": 66,
-      "tags": [
-        "AI HOT",
-        "Agent",
-        "开源",
-        "企业AI"
-      ],
-      "publishedAt": "2026-07-16T13:07:05.000Z",
-      "category": "ai-products",
-      "summary": "StaffDeck 是面向企业数字员工的开源平台，尝试把专业知识、标准作业程序和决策规则转化为可持续工作、改进并保留组织知识的任务系统，而非传统聊天机器人。",
-      "comment": "点评：企业 AI 的焦点正在从部署问答机器人转向把岗位流程变成可监督任务系统；护城河仍是组织知识的结构化程度和权限治理质量。",
-      "advice": "建议：从知识检索、会议纪要、资料归档等单一高频低权限流程开始，先固化 SOP、异常分支和验收标准。"
-    },
-    {
-      "topic": "safety",
-      "title": "xAI 起诉 Grok 用户制作儿童性虐待内容，不再否认模型被滥用",
-      "source": "Ars Technica：AI（RSS）",
-      "url": "https://arstechnica.com/tech-policy/2026/07/xai-cant-deny-grok-makes-csam-anymore-so-its-suing-users",
-      "date": "2026-07-17",
-      "score": 87,
-      "tags": [
-        "AI HOT",
-        "Grok",
-        "安全",
-        "治理"
-      ],
-      "publishedAt": "2026-07-16T20:26:23.000Z",
-      "category": "industry",
-      "summary": "xAI 首次对一名 Grok 用户提起诉讼，指控其利用模型制作儿童性虐待图像。报道显示，争议不只在用户行为，也在平台如何识别、阻断和留存处置证据。",
-      "comment": "点评：高风险滥用不是仅靠用户协议就能解决的问题；生成、编辑和自动化传播能力一旦上线，护栏、举报、处置时效和取证链路都会成为产品能力。",
-      "advice": "建议：建立分级风控、快速举报与人工升级通道；涉及未成年人和非自愿私密内容时，采用保守的拦截和审查策略。"
-    },
-    {
-      "topic": "safety",
-      "title": "54% 企业已遭遇 AI 智能体安全事件，多数仍共享凭证",
-      "source": "VentureBeat：AI（RSS）",
-      "url": "https://venturebeat.com/ai/the-agent-security-gap-54-of-enterprises-have-already-had-an-ai-agent-incident-and-most-still-let-agents-share-credentials",
-      "date": "2026-07-17",
+      "topic": "tip",
+      "title": "Index Ventures 联合创始人 Neil Rimer 认为 AI 财富将面临\"再分配\"",
+      "source": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/17/neil-rimer-thinks-the-ai-money-is-coming-back-out",
+      "date": "2026-07-19",
       "score": 70,
       "tags": [
         "AI HOT",
-        "Agent",
-        "安全",
-        "企业AI"
+        "观点"
       ],
-      "publishedAt": "2026-07-16T19:02:38.000Z",
-      "category": "industry",
-      "summary": "对 107 家企业的调查显示，54% 已遭遇 AI 智能体安全事件或险些酿成事故；仅 32% 为每个智能体分配独立身份凭证，30% 将高风险智能体隔离在沙箱中。",
-      "comment": "点评：Agent 安全的最小单位不是模型，而是身份、工具、数据和操作范围；共享凭证会让审计、撤销、归因和最小权限全部失效。",
-      "advice": "建议：为每个 Agent 建立独立服务身份、最小权限与短期令牌；高风险工具默认隔离，并对异常调用、密钥访问和外网请求设置告警。"
-    },
-    {
-      "topic": "industry",
-      "title": "企业 AI 智能体评估存在“现实对齐”缺口",
-      "source": "VentureBeat：AI（RSS）",
-      "url": "https://venturebeat.com/ai/the-agent-evaluation-gap-enterprise-ai-organizations-have-a-reality-alignment-problem-not-a-coverage-problem-and-most-are-shipping-to-production-anyway",
-      "date": "2026-07-17",
-      "score": 72,
-      "tags": [
-        "AI HOT",
-        "Agent",
-        "评测",
-        "企业AI"
-      ],
-      "publishedAt": "2026-07-16T16:40:48.000Z",
+      "summary": "Index Ventures 联合创始人 Neil Rimer 表示，围绕 AI 积累的巨额财富将面临\"某种形式的再分配\"，无论是自愿还是强制。他呼吁科技领袖在推动自愿再分配中发挥主导作用。与此同时，美国慈善捐赠总额虽创新高，但捐赠人数持续下降，而加州正考虑对亿万富翁征收 5% 的一次性财富税。",
+      "publishedAt": "2026-07-18T04:47:25.000Z",
       "category": "tip",
-      "summary": "对 157 家企业的调查显示，约半数组织曾把通过内部测试的 AI Agent 或 LLM 功能部署到生产后却导致客户故障；只有少数组织完全信任自动化评估。",
-      "comment": "点评：离线分数好看，不等于线上可无人值守。评测若没覆盖脏数据、外部依赖失败、并发和长尾流程，就无法代表真实业务风险。",
-      "advice": "建议：用真实工单、匿名化历史数据和故障回放构建分层评测；采用灰度、影子运行、可回滚输出和人工兜底。"
+      "comment": "点评：这类表态反映了 AI 收益分配已经从抽象伦理问题进入资本、税收与公共信任议题。技术公司若无法证明生产率收益能被更广泛地分享，监管与社会压力会持续上升。",
+      "advice": "建议：管理层把 AI 项目的收益与影响纳入同一复盘：除节省成本外，持续记录岗位变化、培训投入、客户影响和数据权益，并提前准备可解释的治理口径。"
     },
     {
-      "topic": "industry",
-      "title": "欧盟裁定 Google 必须向竞争对手开放 Android 和 Search，影响 Gemini 等 AI 服务",
-      "source": "The Verge：AI（RSS）",
-      "url": "https://www.theverge.com/policy/966438/eu-google-android-ai-interoperability-search-data-dma",
-      "date": "2026-07-17",
-      "score": 78,
+      "topic": "tip",
+      "title": "使用 NVIDIA NeMo AutoModel 在单 GPU Colab 上对 Qwen3-0.6B 进行 LoRA 微调",
+      "source": "MarkTechPost（RSS）",
+      "url": "https://www.marktechpost.com/2026/07/18/fine-tuning-qwen3-with-lora-using-nvidia-nemo-automodel-a-complete-single-gpu-google-colab-workflow-tutorial",
+      "date": "2026-07-19",
+      "score": 68,
       "tags": [
         "AI HOT",
         "Google",
-        "Gemini",
+        "Nvidia",
+        "Qwen",
+        "观点"
+      ],
+      "summary": "本教程展示了在 Google Colab 单 GPU 环境下，使用 NVIDIA NeMo AutoModel 对 Qwen3-0.6B 进行 LoRA 参数高效微调的完整流程。",
+      "publishedAt": "2026-07-19T01:08:52.000Z",
+      "category": "tip",
+      "comment": "点评：单 GPU 微调门槛下降，意味着差异化将更多来自数据质量、评测设计和部署闭环，而不是“是否能跑通教程”。小模型微调尤其适合验证垂直任务的性价比。",
+      "advice": "建议：用自有脱敏样本划分训练、验证和留出测试集；与基础模型比较准确率、幻觉、延迟和每次任务成本，并保留可回滚的模型、数据与训练配置版本。"
+    },
+    {
+      "topic": "safety",
+      "title": "Moonshot AI 发布开源模型 Kimi K3，性能接近前沿闭源模型",
+      "source": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/18/kimi-threat-or-menace",
+      "date": "2026-07-19",
+      "score": 67,
+      "tags": [
+        "AI HOT",
+        "Claude",
+        "GPT",
+        "Kimi",
+        "开源",
         "产业"
       ],
-      "publishedAt": "2026-07-16T12:06:51.000Z",
+      "summary": "中国公司 Moonshot AI 本周发布新版开源模型 Kimi K3。Moonshot 称其虽仍落后于 Claude Fable 5 和 GPT 5.6 Sol，但在评测中持续优于其他测试模型，Arena.ai 和 Vals AI 的独立分析也表明 Kimi 可与前沿旗舰模型竞争。该消息引发美国…",
+      "publishedAt": "2026-07-18T18:51:07.000Z",
       "category": "industry",
-      "summary": "欧盟依据《数字市场法案》要求 Google 向竞争对手开放 Android 和 Google Search 的关键部分，并为第三方 AI 助手和搜索引擎提供更大的访问空间。",
-      "comment": "点评：AI 助手的竞争已从模型层延伸到系统入口、搜索分发和默认设置；数据接口、兼容标准与迁移成本正在成为战略变量。",
-      "advice": "建议：把登录、数据导出、工具接口和模型路由设计成可替换模块，不要把增长完全建立在单一系统入口或单一搜索分发上。"
-    },
-    {
-      "topic": "paper",
-      "title": "Moonshot AI 发布 PerceptionBench：多模态模型视觉感知能力诊断基准",
-      "source": "Moonshot AI：Kimi Blog",
-      "url": "https://www.kimi.com/blog/perception-bench",
-      "date": "2026-07-17",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "多模态",
-        "评测",
-        "论文"
-      ],
-      "publishedAt": "2026-07-16T19:11:01.192Z",
-      "category": "paper",
-      "summary": "PerceptionBench 从 40 多个既有基准的失败案例归纳出 10 项原子感知能力与 3,000 道验证题；报告显示，被测模型准确率均未超过 60%，且部分正确答案无法稳定复现。",
-      "comment": "点评：多模态系统最危险的错误是看错了却很自信。视觉理解进入质检、风控或机器人场景后，稳定性、可重复性和证据呈现比单次演示更重要。",
-      "advice": "建议：记录模型版本、预处理与提示词；关键结论采用多次采样、规则校验或人工复核，不将一次模型回答直接写入业务系统。"
-    },
-    {
-      "topic": "paper",
-      "title": "HYPIC：混合注意力大模型的位置无关缓存系统",
-      "source": "公众号：小红书技术（dots.llm）",
-      "url": "https://mp.weixin.qq.com/s/RWveWvw9yBH6YQINBQ-XjA",
-      "date": "2026-07-17",
-      "score": 77,
-      "tags": [
-        "AI HOT",
-        "推理",
-        "性能",
-        "论文"
-      ],
-      "publishedAt": "2026-07-16T10:00:00.000Z",
-      "category": "paper",
-      "summary": "HYPIC 面向混合注意力大模型实现位置无关缓存，报告称首 token 延迟平均降低 3.25 倍，在四个生产级模型上、同等服务目标下的持续 QPS 提升 1.66 倍。",
-      "comment": "点评：真实产品体验不只由参数规模决定，首 token 延迟、并发、缓存命中与单位成本同样关键；推理系统优化决定模型像不像可用工具。",
-      "advice": "建议：同时观察 P50/P95 延迟、缓存命中率、吞吐、输出质量与异常回退，不要只用单个平均值判断优化价值。"
+      "comment": "点评：开源模型逼近前沿闭源能力，会让企业模型选型从单纯比较排行榜，转向比较本地部署、数据控制、工具调用稳定性和单位任务成本。性能声明仍需用自己的任务集复核。",
+      "advice": "建议：用中文长文档、代码修改、函数调用和安全边界等真实任务与现有模型对跑；同时核查许可证、权重获取、推理栈、更新节奏和私有部署成本。"
     },
     {
       "topic": "tip",
-      "title": "Anthropic 用 Claude Code 大规模迁移代码：Bun 百万行 Zig 转 Rust，两周完成",
-      "source": "Claude：Blog（网页）",
-      "url": "https://claude.com/blog/ai-code-migration",
-      "date": "2026-07-17",
+      "title": "可灵AI教你打造梦幻云门效果",
+      "source": "X：可灵 Kling AI (@Kling_ai)",
+      "url": "https://x.com/Kling_ai/status/2078495005241700399",
+      "date": "2026-07-19",
+      "score": 66,
+      "tags": [
+        "AI HOT",
+        "观点"
+      ],
+      "summary": "如何使用可灵AI打造一扇通往云端的梦幻之门？",
+      "publishedAt": "2026-07-18T15:00:00.000Z",
+      "category": "tip",
+      "comment": "点评：这类教程显示视频生成的竞争正转向“可复刻的制作流程”。对内容团队而言，能否稳定复用参考图、镜头运动和后期模板，比单个炫酷效果更具生产价值。",
+      "advice": "建议：把提示词、参考图、参数、镜头脚本和后期步骤沉淀为模板；用同一模板测试角色一致性、生成耗时、可编辑性和商业素材授权。"
+    },
+    {
+      "topic": "tip",
+      "title": "用GPT-Image-2+剪映一键生成爆款跳舞视频",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "url": "https://x.com/AYi_AInotes/status/2078508800475029833",
+      "date": "2026-07-19",
       "score": 65,
       "tags": [
         "AI HOT",
-        "Claude Code",
-        "编程",
-        "Agent"
-      ],
-      "publishedAt": "2026-07-16T17:32:26.540Z",
-      "category": "tip",
-      "summary": "Anthropic 分享 Claude Code 推进大规模代码迁移的案例：Bun 的百万行 Zig 迁移至 Rust 在两周内完成，既有测试全部通过；合并后出现的 19 个回归问题也已修复。",
-      "comment": "点评：案例的价值不在 AI 写了多少代码，而在测试、人工审查、回归修复与经济账一起被呈现；Agent 能加速迁移，但不能替代架构边界和验收责任。",
-      "advice": "建议：大型迁移采用模块化切片、兼容层、可重复基准和逐步切流；记录生成比例、测试覆盖、人工返工、回归数量与成本。"
-    },
-    {
-      "topic": "tip",
-      "title": "Patter SDK 教程：构建带护栏、延迟仪表盘与评估检查的电话智能体",
-      "source": "MarkTechPost（RSS）",
-      "url": "https://www.marktechpost.com/2026/07/16/patter-sdk-guide-to-building-a-restaurant-booking-phone-agent-with-dynamic-variables-guardrails-latency-dashboards-and-eval-checks",
-      "date": "2026-07-17",
-      "score": 72,
-      "tags": [
-        "AI HOT",
-        "语音Agent",
-        "护栏",
-        "评测"
-      ],
-      "publishedAt": "2026-07-16T07:42:49.000Z",
-      "category": "tip",
-      "summary": "Patter SDK 的电话智能体示例覆盖动态变量、工具调用、PII 脱敏、话题护栏、脚本化通话模拟、延迟与成本追踪，以及回归式评估检查。",
-      "comment": "点评：语音 Agent 的产品化不取决于声音像不像人，而取决于能否把身份、隐私、工具调用、超时、转人工和评估做成闭环。",
-      "advice": "建议：先从预约、查询、回访等流程明确的任务做起；将脱敏、误解澄清、转人工阈值、告知与失败监控作为上线前必备项。"
-    },
-    {
-      "topic": "tip",
-      "title": "Decoy 字体：用空间频率混淆让 AI 看不清输入文字",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://www.mixfont.com/experiments/decoy-font",
-      "date": "2026-07-17",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "视觉模型",
-        "安全",
+        "GPT",
         "观点"
       ],
-      "publishedAt": "2026-07-16T18:32:23.680Z",
+      "summary": "用户用GPT-Image-2生成游艇美女图，再导入剪映搜索\"梦的翅膀受了伤\"选剪同款，即可生成不带AI标志的跳舞视频。该方法操作简单，适合抖音、小红书快速起号。",
+      "publishedAt": "2026-07-18T15:54:49.000Z",
+      "category": "tip",
+      "comment": "点评：一键式素材链路降低了短视频试错成本，也放大了肖像、音乐和平台标识规避等风险。传播效率不该成为绕过授权、标注或平台规则的理由。",
+      "advice": "建议：营销团队仅使用已获授权的人物、音乐和平台素材，并保留生成记录、版权凭证和人工审核；不要以去除或规避 AI 标识作为增长策略。"
+    },
+    {
+      "topic": "safety",
+      "title": "设置备用 Mac 让 Claude Code 完全控制：分步指南",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://ykdojo.github.io/claude-controls-mac",
+      "date": "2026-07-19",
+      "score": 63,
+      "tags": [
+        "AI HOT",
+        "Claude",
+        "Claude Code",
+        "观点"
+      ],
+      "summary": "一篇分步指南介绍如何将备用 Mac 设置为可由 Claude Code 完全控制的常开机器，启用 computer use 功能。该方案通过 SSH 从主 Mac 连接，并可通过手机上的 Claude 应用控制，从而在主机器上隔离风险。指南建议在备用 Mac 上创建不含个人数据的新本地账户，并配置…",
+      "publishedAt": "2026-07-18T19:37:23.960Z",
+      "category": "tip",
+      "comment": "点评：把高权限 Agent 放到隔离设备是比直接授权主力电脑更成熟的做法，但隔离设备仍是生产资产：远程访问、凭证、网络出口和误操作恢复都需要工程化控制。",
+      "advice": "建议：使用专用设备、独立账号和最小权限密钥，限制可访问目录与出站网络；删除、部署、付款和共享凭证等动作必须要求人工确认并保留审计日志。"
+    },
+    {
+      "topic": "tip",
+      "title": "腾讯 WorkBuddy 成中国版 Codex，月活 885 万",
+      "source": "X：X.PIN (@thexpin)",
+      "url": "https://x.com/thexpin/status/2078522123522572338",
+      "date": "2026-07-19",
+      "score": 61,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "GPT",
+        "开源",
+        "观点"
+      ],
+      "summary": "腾讯云办公 AI 智能体平台 WorkBuddy 以 885 万月活成为中国同类最大产品，其目标用户是非技术人员的普通办公者，通过预设工作流让用户无需理解智能体或提示词即可直接使用。相比之下，OpenAI 的 Codex 和 ChatGPT Work 周活合计刚超 800 万。WorkBuddy …",
+      "publishedAt": "2026-07-18T16:47:45.000Z",
+      "category": "tip",
+      "comment": "点评：面向非技术用户的 Agent 产品，竞争重点不再是提示词能力，而是预设流程是否真的减少理解和操作成本。高月活需要进一步用任务完成率、复用率和人工兜底率检验。",
+      "advice": "建议：试点时挑选一个可量化办公流程，跟踪任务完成率、平均耗时、人工修订率、权限异常与持续使用率，不要把注册量或月活直接等同于业务价值。"
+    },
+    {
+      "topic": "tip",
+      "title": "无人机编队表演舞蹈与特技",
+      "source": "X：fofr (@fofrAI)",
+      "url": "https://x.com/fofrAI/status/2078624943021928715",
+      "date": "2026-07-19",
+      "score": 60,
+      "tags": [
+        "AI HOT",
+        "观点"
+      ],
+      "summary": "在繁忙交通堵塞上空，小型无人机搭载舞者表演宝莱坞舞蹈，每架无人机一人，聚焦舞蹈动作。 （SD2） 啦啦队员身穿飞行服，在游乐园上空的无人机上进行特技表演，最后组成人塔，由地面业余电影人拍摄，白天。镜头稍微拉近，重新对焦。 （SD2）",
+      "publishedAt": "2026-07-18T23:36:20.000Z",
+      "category": "tip",
+      "comment": "点评：生成式视频正在把复杂的物理场景变成低成本创意素材，但视觉逼真度越高，越需要清楚地区分虚构演示与真实拍摄，避免误导传播或诱发不安全模仿。",
+      "advice": "建议：发布此类素材时明确标注生成属性，避免与真实公共安全事件混淆；品牌团队还应建立物理风险、误导风险和平台审核的发布检查清单。"
+    },
+    {
+      "topic": "industry",
+      "title": "作家埃格斯受邀给 OpenAI 员工演讲，批评 ChatGPT 正夺走一代人的表达能力",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/978/607.htm",
+      "date": "2026-07-19",
+      "score": 58,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "GPT",
+        "产业"
+      ],
+      "summary": "美国作家戴夫·埃格斯（Dave Eggers）应 OpenAI CEO 萨姆·奥尔特曼邀请，为约 200 名 OpenAI 员工发表演讲。他批评 ChatGPT 给教育工作者带来\"灾难性\"影响，称学生若用它写作将永远学不会真正表达，自己的声音会被夺走，导致一两代人陷入沉默。埃格斯此前曾公开批评 A…",
+      "publishedAt": "2026-07-18T23:12:58.000Z",
+      "category": "industry",
+      "comment": "点评：对写作能力的担忧不应被简化为“禁用或拥抱 AI”。关键在于把 AI 放在构思、反馈和修订环节，而不是替代学生或员工形成观点、组织证据和承担署名责任。",
+      "advice": "建议：教育与知识工作场景可要求保留提纲、资料来源、修改记录和个人反思；把 AI 用作批评者、陪练和改稿工具，而不是无痕代笔。"
+    },
+    {
+      "topic": "model",
+      "title": "商汤发布原生多模态旗舰模型SenseNova U1 Pro",
+      "source": "X：商汤 SenseTime (@SenseTime_AI)",
+      "url": "https://x.com/SenseTime_AI/status/2078510614889238997",
+      "date": "2026-07-19",
+      "score": 58,
+      "tags": [
+        "AI HOT",
+        "推理",
+        "多模态",
+        "模型"
+      ],
+      "summary": "商汤发布旗舰原生多模态基础模型SenseNova U1 Pro，基于NEO-Unify架构，统一理解、生成与行动能力，并支持原生交织视觉-语言推理。相比U1 Lite，U1 Pro支持数十轮智能体生成循环、8K原生分辨率输出、超低文字渲染错误率，以及超宽/超高图像生成。预览版现已开放邀请，2026…",
+      "publishedAt": "2026-07-18T16:02:02.000Z",
+      "category": "ai-models",
+      "comment": "点评：原生多模态和长循环 Agent 能力的价值，要靠复杂任务中的一致性来证明。图像生成指标、上下文长度和演示效果之外，真实业务更关心工具调用成功率、错误恢复和可观测性。",
+      "advice": "建议：用包含文本、图像和多轮工具调用的真实任务集测试，并记录成功率、重试次数、成本、延迟和失败恢复；高风险输出保留人工审核与回滚路径。"
+    },
+    {
+      "topic": "product",
+      "title": "NVIDIA 发布 DeepStream 9.1，新增 13 项智能体技能与多视角 3D 追踪",
+      "source": "MarkTechPost（RSS）",
+      "url": "https://www.marktechpost.com/2026/07/18/nvidia-released-deepstream-9-1-bringing-agentic-ai-to-vision-ai-with-13-skills-and-multi-view-3d-tracking",
+      "date": "2026-07-19",
+      "score": 56,
+      "tags": [
+        "AI HOT",
+        "Nvidia",
+        "Agent",
+        "产品"
+      ],
+      "summary": "NVIDIA 发布 DeepStream 9.1，新增 13 项 agentic skills，支持通过自然语言描述构建多摄像头视觉管线。核心技能 MV3DT 将多摄像头检测投影至统一 3D 坐标系，为跨视角目标分配全局一致的 ID；AMC 技能可自动估算摄像头内外参，替代手动棋盘格标定。",
+      "publishedAt": "2026-07-18T19:16:22.000Z",
       "category": "ai-products",
-      "summary": "Decoy Font 通过在同一字符中叠加不同空间频率图形，使人眼和视觉模型在不同观察条件下读取到不同文字，展示两者在感知上的差异。",
-      "comment": "点评：把文字变成图片并不天然等于安全，也不应被当成隐藏敏感信息的手段；它更适合作为模型鲁棒性和人机感知差异的研究素材。",
-      "advice": "建议：将此类对抗样本纳入 OCR、视觉审核和文档理解的测试集；安全仍应依赖权限控制、加密、审计与数据最小化。"
+      "comment": "点评：视觉 AI 正从单摄像头识别走向跨摄像头空间理解，这更接近安防、零售、物流和工业场景的真实需求。落地难点会集中在现场标定、数据漂移、隐私合规与持续运维。",
+      "advice": "建议：先在受控现场以有限摄像头试点，验证标定维护、遮挡场景、误报漏报、数据留存和告警闭环；涉及人员追踪时应先完成隐私与合规评估。"
     }
   ],
   "sources": [
@@ -240,46 +238,68 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "xAI：News（网页）",
-      "url": "https://x.ai/news/grok-automations",
-      "note": "Grok Automations"
+      "name": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+      "url": "https://x.com/omarsar0/status/2078573267015885136",
+      "note": "DAIR.AI 发布 X 智能体技能：自动追踪 AI 前沿动态"
     },
     {
-      "name": "VentureBeat：AI（RSS）",
-      "url": "https://venturebeat.com/ai/the-agent-security-gap-54-of-enterprises-have-already-had-an-ai-agent-incident-and-most-still-let-agents-share-credentials",
-      "note": "企业 AI 智能体安全调查"
+      "name": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/17/neil-rimer-thinks-the-ai-money-is-coming-back-out",
+      "note": "Index Ventures 联合创始人 Neil Rimer 认为 AI 财…"
     },
     {
-      "name": "Moonshot AI：Kimi Blog",
-      "url": "https://www.kimi.com/blog/perception-bench",
-      "note": "PerceptionBench 多模态视觉感知基准"
+      "name": "MarkTechPost（RSS）",
+      "url": "https://www.marktechpost.com/2026/07/18/fine-tuning-qwen3-with-lora-using-nvidia-nemo-automodel-a-complete-single-gpu-google-colab-workflow-tutorial",
+      "note": "使用 NVIDIA NeMo AutoModel 在单 GPU Colab 上…"
     },
     {
-      "name": "Claude：Blog（网页）",
-      "url": "https://claude.com/blog/ai-code-migration",
-      "note": "Claude Code 大规模代码迁移案例"
+      "name": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/18/kimi-threat-or-menace",
+      "note": "Moonshot AI 发布开源模型 Kimi K3，性能接近前沿闭源模型"
     },
     {
-      "name": "Google Blog：AI（RSS）",
-      "url": "https://blog.google/products-and-platforms/products/workspace/gemini-omni-personal-avatars",
-      "note": "Google Vids、Gemini Omni 与个人数字分身"
+      "name": "X：可灵 Kling AI (@Kling_ai)",
+      "url": "https://x.com/Kling_ai/status/2078495005241700399",
+      "note": "可灵AI教你打造梦幻云门效果"
+    },
+    {
+      "name": "X：阿易 AI Notes (@AYi_AInotes)",
+      "url": "https://x.com/AYi_AInotes/status/2078508800475029833",
+      "note": "用GPT-Image-2+剪映一键生成爆款跳舞视频"
+    },
+    {
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://ykdojo.github.io/claude-controls-mac",
+      "note": "设置备用 Mac 让 Claude Code 完全控制：分步指南"
     }
   ]
 };
 
 const episodeHistory = [
-{
-  "date": "2026-07-17",
-  "title": "AI HOT 日报：Grok Automations、智能体安全、Claude Code迁移",
-  "summary": "重点关注产品自动化、智能体安全、真实场景评测、多模态可靠性与推理效率。核心信号是：Grok 让任务按计划或邮件触发；企业 Agent 的身份与评测缺口浮现；Claude Code 的大规模迁移案例展示收益必须与测试和回归一起衡量。",
-  "link": "/posts/71717/",
-  "tags": [
-    "AI HOT",
-    "Grok",
-    "Agent",
-    "安全"
-  ]
-},
+  {
+    "date": "2026-07-19",
+    "title": "AI HOT 日报：DAIR.AI 发布、Index Vent、Nvidia",
+    "summary": "重点关注 技巧与观点、行业动态、模型发布/更新、产品发布/更新。核心信号是：DAIR.AI 发布 X 智能体技能：自动追踪 AI 前沿动态；Index Ventures 联合创始人 Neil Rimer 认为 AI 财富将面临\"再分配\"；使用 NVIDIA NeMo AutoM…",
+    "link": "/posts/71919/",
+    "tags": [
+      "AI HOT",
+      "Claude",
+      "Agent",
+      "MCP"
+    ]
+  },
+  {
+    "date": "2026-07-17",
+    "title": "AI HOT 日报：Grok Automations、智能体安全、Claude Code迁移",
+    "summary": "重点关注产品自动化、智能体安全、真实场景评测、多模态可靠性与推理效率。核心信号是：Grok 让任务按计划或邮件触发；企业 Agent 的身份与评测缺口浮现；Claude Code 的大规模迁移案例展示收益必须与测试和回归一起衡量。",
+    "link": "/posts/71717/",
+    "tags": [
+      "AI HOT",
+      "Grok",
+      "Agent",
+      "安全"
+    ]
+  },
   {
     "date": "2026-07-16",
     "title": "AI HOT 日报：Apple智能接入千问、Grok Build开源、Agent基础设施",
