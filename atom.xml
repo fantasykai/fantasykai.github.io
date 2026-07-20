@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-07-19T02:06:27.659Z</updated>
+  <updated>2026-07-20T02:38:27.234Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Meta, 产品, Kimi, Qwen, Agent, 观点, Nvidia, 机器人, 产业, 开源, 模型" scheme="https://aimak.cn/tags/AI-HOT-Meta-%E4%BA%A7%E5%93%81-Kimi-Qwen-Agent-%E8%A7%82%E7%82%B9-Nvidia-%E6%9C%BA%E5%99%A8%E4%BA%BA-%E4%BA%A7%E4%B8%9A-%E5%BC%80%E6%BA%90-%E6%A8%A1%E5%9E%8B/"/>
+    <id>https://aimak.cn/posts/72020/</id>
+    <link href="https://aimak.cn/posts/72020/"/>
+    <published>2026-07-20T02:38:27.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-07-20：transcribe、不会代码也能做产品、黄仁勋访日</title>
+    <updated>2026-07-20T02:38:27.234Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -352,23 +370,5 @@
     </summary>
     <title>AI HOT 日报 2026-06-27：版权诉讼、GPT-5.6 Sol、千问输入法</title>
     <updated>2026-06-27T07:34:04.357Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, AI经济, GPT-5.6, Agentic Coding, OpenAI, Codex, Claude Code, Midjourney, Runway, AI治理" scheme="https://aimak.cn/tags/AI-HOT-AI%E7%BB%8F%E6%B5%8E-GPT-5-6-Agentic-Coding-OpenAI-Codex-Claude-Code-Midjourney-Runway-AI%E6%B2%BB%E7%90%86/"/>
-    <id>https://aimak.cn/posts/62626/</id>
-    <link href="https://aimak.cn/posts/62626/"/>
-    <published>2026-06-26T09:28:00.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-06-26：AI 经济、GPT-5.6、Agentic Coding</title>
-    <updated>2026-06-26T09:30:37.970Z</updated>
   </entry>
 </feed>

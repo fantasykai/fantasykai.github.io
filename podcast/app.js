@@ -1,234 +1,195 @@
 const episode = {
-  "date": "2026-07-19",
-  "title": "AI HOT 日报：DAIR.AI 发布、Index Vent、Nvidia",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 技巧与观点、行业动态、模型发布/更新、产品发布/更新。核心信号是：DAIR.AI 发布 X 智能体技能：自动追踪 AI 前沿动态；Index Ventures 联合创始人 Neil Rimer 认为 AI 财富将面临\"再分配\"；使用 NVIDIA NeMo AutoModel 在单 GPU Colab 上对 Qwen3-0.6B 进行 LoRA 微调。",
+  "date": "2026-07-20",
+  "title": "AI HOT 日报：transcribe、不会代码也能做产品、黄仁勋访日",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 产品发布/更新、技巧与观点、行业动态、模型发布/更新。核心信号是：transcribe.cpp 发布：基于 ggml 的跨平台语音转录库，支持 16 个 ASR 模型族；不会代码也能做产品：一份从0开始的Vibe Coding保姆级教程；黄仁勋访日：Nvidia 联手日本打造物理 AI 时代，Noetra 主权 AI 工厂与 Cosmos 机器人联盟落地。",
   "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "topic": "tip",
-      "title": "DAIR.AI 发布 X 智能体技能：自动追踪 AI 前沿动态",
-      "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-      "url": "https://x.com/omarsar0/status/2078573267015885136",
-      "date": "2026-07-19",
-      "score": 73,
-      "tags": [
-        "AI HOT",
-        "Claude",
-        "Agent",
-        "MCP",
-        "观点"
-      ],
-      "summary": "DAIR.AI 创始人 Elvis Saravia 发布了一款名为\"x-agent-intelligence\"的 AI 智能体技能，可自动追踪 X 平台高信号账号的 AI 新闻、论文和项目。该技能基于 X MCP 工具构建，支持 Codex、Claude 等智能体，能生成美观的 HTML 摘要页面…",
-      "publishedAt": "2026-07-18T20:10:59.000Z",
-      "category": "tip",
-      "comment": "点评：自动化追踪信息源的价值，不在于再多抓几条新闻，而在于能否把账号白名单、去重、可信度判断和团队分发规则做成可审计流程；否则只会更快地制造信息噪声。",
-      "advice": "建议：为新闻追踪 Agent 设定可信账号白名单、主题规则、去重阈值、原文链接和人工抽检；先用于内部晨报，再决定是否自动对外发布。"
-    },
-    {
-      "topic": "tip",
-      "title": "Index Ventures 联合创始人 Neil Rimer 认为 AI 财富将面临\"再分配\"",
-      "source": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/07/17/neil-rimer-thinks-the-ai-money-is-coming-back-out",
-      "date": "2026-07-19",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "观点"
-      ],
-      "summary": "Index Ventures 联合创始人 Neil Rimer 表示，围绕 AI 积累的巨额财富将面临\"某种形式的再分配\"，无论是自愿还是强制。他呼吁科技领袖在推动自愿再分配中发挥主导作用。与此同时，美国慈善捐赠总额虽创新高，但捐赠人数持续下降，而加州正考虑对亿万富翁征收 5% 的一次性财富税。",
-      "publishedAt": "2026-07-18T04:47:25.000Z",
-      "category": "tip",
-      "comment": "点评：这类表态反映了 AI 收益分配已经从抽象伦理问题进入资本、税收与公共信任议题。技术公司若无法证明生产率收益能被更广泛地分享，监管与社会压力会持续上升。",
-      "advice": "建议：管理层把 AI 项目的收益与影响纳入同一复盘：除节省成本外，持续记录岗位变化、培训投入、客户影响和数据权益，并提前准备可解释的治理口径。"
-    },
-    {
-      "topic": "tip",
-      "title": "使用 NVIDIA NeMo AutoModel 在单 GPU Colab 上对 Qwen3-0.6B 进行 LoRA 微调",
-      "source": "MarkTechPost（RSS）",
-      "url": "https://www.marktechpost.com/2026/07/18/fine-tuning-qwen3-with-lora-using-nvidia-nemo-automodel-a-complete-single-gpu-google-colab-workflow-tutorial",
-      "date": "2026-07-19",
-      "score": 68,
-      "tags": [
-        "AI HOT",
-        "Google",
-        "Nvidia",
-        "Qwen",
-        "观点"
-      ],
-      "summary": "本教程展示了在 Google Colab 单 GPU 环境下，使用 NVIDIA NeMo AutoModel 对 Qwen3-0.6B 进行 LoRA 参数高效微调的完整流程。",
-      "publishedAt": "2026-07-19T01:08:52.000Z",
-      "category": "tip",
-      "comment": "点评：单 GPU 微调门槛下降，意味着差异化将更多来自数据质量、评测设计和部署闭环，而不是“是否能跑通教程”。小模型微调尤其适合验证垂直任务的性价比。",
-      "advice": "建议：用自有脱敏样本划分训练、验证和留出测试集；与基础模型比较准确率、幻觉、延迟和每次任务成本，并保留可回滚的模型、数据与训练配置版本。"
-    },
-    {
-      "topic": "safety",
-      "title": "Moonshot AI 发布开源模型 Kimi K3，性能接近前沿闭源模型",
-      "source": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/07/18/kimi-threat-or-menace",
-      "date": "2026-07-19",
-      "score": 67,
-      "tags": [
-        "AI HOT",
-        "Claude",
-        "GPT",
-        "Kimi",
-        "开源",
-        "产业"
-      ],
-      "summary": "中国公司 Moonshot AI 本周发布新版开源模型 Kimi K3。Moonshot 称其虽仍落后于 Claude Fable 5 和 GPT 5.6 Sol，但在评测中持续优于其他测试模型，Arena.ai 和 Vals AI 的独立分析也表明 Kimi 可与前沿旗舰模型竞争。该消息引发美国…",
-      "publishedAt": "2026-07-18T18:51:07.000Z",
-      "category": "industry",
-      "comment": "点评：开源模型逼近前沿闭源能力，会让企业模型选型从单纯比较排行榜，转向比较本地部署、数据控制、工具调用稳定性和单位任务成本。性能声明仍需用自己的任务集复核。",
-      "advice": "建议：用中文长文档、代码修改、函数调用和安全边界等真实任务与现有模型对跑；同时核查许可证、权重获取、推理栈、更新节奏和私有部署成本。"
-    },
-    {
-      "topic": "tip",
-      "title": "可灵AI教你打造梦幻云门效果",
-      "source": "X：可灵 Kling AI (@Kling_ai)",
-      "url": "https://x.com/Kling_ai/status/2078495005241700399",
-      "date": "2026-07-19",
-      "score": 66,
-      "tags": [
-        "AI HOT",
-        "观点"
-      ],
-      "summary": "如何使用可灵AI打造一扇通往云端的梦幻之门？",
-      "publishedAt": "2026-07-18T15:00:00.000Z",
-      "category": "tip",
-      "comment": "点评：这类教程显示视频生成的竞争正转向“可复刻的制作流程”。对内容团队而言，能否稳定复用参考图、镜头运动和后期模板，比单个炫酷效果更具生产价值。",
-      "advice": "建议：把提示词、参考图、参数、镜头脚本和后期步骤沉淀为模板；用同一模板测试角色一致性、生成耗时、可编辑性和商业素材授权。"
-    },
-    {
-      "topic": "tip",
-      "title": "用GPT-Image-2+剪映一键生成爆款跳舞视频",
-      "source": "X：阿易 AI Notes (@AYi_AInotes)",
-      "url": "https://x.com/AYi_AInotes/status/2078508800475029833",
-      "date": "2026-07-19",
-      "score": 65,
-      "tags": [
-        "AI HOT",
-        "GPT",
-        "观点"
-      ],
-      "summary": "用户用GPT-Image-2生成游艇美女图，再导入剪映搜索\"梦的翅膀受了伤\"选剪同款，即可生成不带AI标志的跳舞视频。该方法操作简单，适合抖音、小红书快速起号。",
-      "publishedAt": "2026-07-18T15:54:49.000Z",
-      "category": "tip",
-      "comment": "点评：一键式素材链路降低了短视频试错成本，也放大了肖像、音乐和平台标识规避等风险。传播效率不该成为绕过授权、标注或平台规则的理由。",
-      "advice": "建议：营销团队仅使用已获授权的人物、音乐和平台素材，并保留生成记录、版权凭证和人工审核；不要以去除或规避 AI 标识作为增长策略。"
-    },
-    {
-      "topic": "safety",
-      "title": "设置备用 Mac 让 Claude Code 完全控制：分步指南",
+      "topic": "product",
+      "title": "transcribe.cpp 发布：基于 ggml 的跨平台语音转录库，支持 16 个 ASR 模型族",
       "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://ykdojo.github.io/claude-controls-mac",
-      "date": "2026-07-19",
-      "score": 63,
+      "url": "https://workshop.cjpais.com/projects/transcribe-cpp",
+      "date": "2026-07-20",
+      "score": 78,
       "tags": [
         "AI HOT",
-        "Claude",
-        "Claude Code",
-        "观点"
+        "Meta",
+        "产品"
       ],
-      "summary": "一篇分步指南介绍如何将备用 Mac 设置为可由 Claude Code 完全控制的常开机器，启用 computer use 功能。该方案通过 SSH 从主 Mac 连接，并可通过手机上的 Claude 应用控制，从而在主机器上隔离风险。指南建议在备用 Mac 上创建不含个人数据的新本地账户，并配置…",
-      "publishedAt": "2026-07-18T19:37:23.960Z",
-      "category": "tip",
-      "comment": "点评：把高权限 Agent 放到隔离设备是比直接授权主力电脑更成熟的做法，但隔离设备仍是生产资产：远程访问、凭证、网络出口和误操作恢复都需要工程化控制。",
-      "advice": "建议：使用专用设备、独立账号和最小权限密钥，限制可访问目录与出站网络；删除、部署、付款和共享凭证等动作必须要求人工确认并保留审计日志。"
+      "summary": "transcribe.cpp v0.1.0 发布，一个基于 ggml 的语音转录库，支持 16 个 ASR 模型族（60+ 模型），并通过 Vulkan、Metal、CUDA 和 TinyBLAS 实现 GPU 加速。",
+      "publishedAt": "2026-07-19T02:49:15.657Z",
+      "category": "ai-products",
+      "comment": "点评：本地语音转录正在从单一 Whisper 工具走向多模型、跨硬件的基础库形态。对播客、会议纪要和客服质检来说，离线部署、批量吞吐和模型可替换性会比单次 Demo 更关键。",
+      "advice": "建议：音频团队可用同一批中文、英文、噪声、多人会议样本横测不同 ASR 模型，记录字错率、时间戳质量、吞吐、显存/CPU 占用和离线部署成本，再决定是否替换现有转写链路。"
     },
     {
       "topic": "tip",
-      "title": "腾讯 WorkBuddy 成中国版 Codex，月活 885 万",
-      "source": "X：X.PIN (@thexpin)",
-      "url": "https://x.com/thexpin/status/2078522123522572338",
-      "date": "2026-07-19",
-      "score": 61,
+      "title": "不会代码也能做产品：一份从0开始的Vibe Coding保姆级教程",
+      "source": "公众号：数字生命卡兹克",
+      "url": "https://mp.weixin.qq.com/s/EeHjsju08ARLbwtwFcViqg",
+      "date": "2026-07-20",
+      "score": 76,
       "tags": [
         "AI HOT",
-        "OpenAI",
-        "GPT",
-        "开源",
+        "Kimi",
+        "Qwen",
+        "Agent",
         "观点"
       ],
-      "summary": "腾讯云办公 AI 智能体平台 WorkBuddy 以 885 万月活成为中国同类最大产品，其目标用户是非技术人员的普通办公者，通过预设工作流让用户无需理解智能体或提示词即可直接使用。相比之下，OpenAI 的 Codex 和 ChatGPT Work 周活合计刚超 800 万。WorkBuddy …",
-      "publishedAt": "2026-07-18T16:47:45.000Z",
+      "summary": "本文面向零代码用户，提供一套使用国产大模型（Kimi、GLM、Qwen等）从零开发并上线产品的完整流程。核心步骤包括购买Coding Plan、下载官方Agent编程产品、注册域名与服务器并同步做ICP备案，然后通过Agent的Plan模式描述需求并让AI自动执行开发。上线后建议建立分支保护与测试…",
+      "publishedAt": "2026-07-20T00:08:00.000Z",
       "category": "tip",
-      "comment": "点评：面向非技术用户的 Agent 产品，竞争重点不再是提示词能力，而是预设流程是否真的减少理解和操作成本。高月活需要进一步用任务完成率、复用率和人工兜底率检验。",
-      "advice": "建议：试点时挑选一个可量化办公流程，跟踪任务完成率、平均耗时、人工修订率、权限异常与持续使用率，不要把注册量或月活直接等同于业务价值。"
-    },
-    {
-      "topic": "tip",
-      "title": "无人机编队表演舞蹈与特技",
-      "source": "X：fofr (@fofrAI)",
-      "url": "https://x.com/fofrAI/status/2078624943021928715",
-      "date": "2026-07-19",
-      "score": 60,
-      "tags": [
-        "AI HOT",
-        "观点"
-      ],
-      "summary": "在繁忙交通堵塞上空，小型无人机搭载舞者表演宝莱坞舞蹈，每架无人机一人，聚焦舞蹈动作。 （SD2） 啦啦队员身穿飞行服，在游乐园上空的无人机上进行特技表演，最后组成人塔，由地面业余电影人拍摄，白天。镜头稍微拉近，重新对焦。 （SD2）",
-      "publishedAt": "2026-07-18T23:36:20.000Z",
-      "category": "tip",
-      "comment": "点评：生成式视频正在把复杂的物理场景变成低成本创意素材，但视觉逼真度越高，越需要清楚地区分虚构演示与真实拍摄，避免误导传播或诱发不安全模仿。",
-      "advice": "建议：发布此类素材时明确标注生成属性，避免与真实公共安全事件混淆；品牌团队还应建立物理风险、误导风险和平台审核的发布检查清单。"
+      "comment": "点评：Vibe Coding 的门槛下降，会让更多非工程背景的人直接进入产品验证；但“能上线”不等于“可维护”，真正的分水岭是需求拆解、测试、分支保护、数据安全和持续迭代。",
+      "advice": "建议：非技术创业者先把需求写成一页 PRD、验收清单和数据权限表；让 Agent 小步生成、小步测试，并在上线前补齐分支保护、备份、监控、ICP备案和人工回滚方案。"
     },
     {
       "topic": "industry",
-      "title": "作家埃格斯受邀给 OpenAI 员工演讲，批评 ChatGPT 正夺走一代人的表达能力",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/978/607.htm",
-      "date": "2026-07-19",
-      "score": 58,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "GPT",
-        "产业"
-      ],
-      "summary": "美国作家戴夫·埃格斯（Dave Eggers）应 OpenAI CEO 萨姆·奥尔特曼邀请，为约 200 名 OpenAI 员工发表演讲。他批评 ChatGPT 给教育工作者带来\"灾难性\"影响，称学生若用它写作将永远学不会真正表达，自己的声音会被夺走，导致一两代人陷入沉默。埃格斯此前曾公开批评 A…",
-      "publishedAt": "2026-07-18T23:12:58.000Z",
-      "category": "industry",
-      "comment": "点评：对写作能力的担忧不应被简化为“禁用或拥抱 AI”。关键在于把 AI 放在构思、反馈和修订环节，而不是替代学生或员工形成观点、组织证据和承担署名责任。",
-      "advice": "建议：教育与知识工作场景可要求保留提纲、资料来源、修改记录和个人反思；把 AI 用作批评者、陪练和改稿工具，而不是无痕代笔。"
-    },
-    {
-      "topic": "model",
-      "title": "商汤发布原生多模态旗舰模型SenseNova U1 Pro",
-      "source": "X：商汤 SenseTime (@SenseTime_AI)",
-      "url": "https://x.com/SenseTime_AI/status/2078510614889238997",
-      "date": "2026-07-19",
-      "score": 58,
-      "tags": [
-        "AI HOT",
-        "推理",
-        "多模态",
-        "模型"
-      ],
-      "summary": "商汤发布旗舰原生多模态基础模型SenseNova U1 Pro，基于NEO-Unify架构，统一理解、生成与行动能力，并支持原生交织视觉-语言推理。相比U1 Lite，U1 Pro支持数十轮智能体生成循环、8K原生分辨率输出、超低文字渲染错误率，以及超宽/超高图像生成。预览版现已开放邀请，2026…",
-      "publishedAt": "2026-07-18T16:02:02.000Z",
-      "category": "ai-models",
-      "comment": "点评：原生多模态和长循环 Agent 能力的价值，要靠复杂任务中的一致性来证明。图像生成指标、上下文长度和演示效果之外，真实业务更关心工具调用成功率、错误恢复和可观测性。",
-      "advice": "建议：用包含文本、图像和多轮工具调用的真实任务集测试，并记录成功率、重试次数、成本、延迟和失败恢复；高风险输出保留人工审核与回滚路径。"
-    },
-    {
-      "topic": "product",
-      "title": "NVIDIA 发布 DeepStream 9.1，新增 13 项智能体技能与多视角 3D 追踪",
-      "source": "MarkTechPost（RSS）",
-      "url": "https://www.marktechpost.com/2026/07/18/nvidia-released-deepstream-9-1-bringing-agentic-ai-to-vision-ai-with-13-skills-and-multi-view-3d-tracking",
-      "date": "2026-07-19",
-      "score": 56,
+      "title": "黄仁勋访日：Nvidia 联手日本打造物理 AI 时代，Noetra 主权 AI 工厂与 Cosmos 机器人联盟落地",
+      "source": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/19/what-to-watch-for-after-jensen-huangs-japan-visit",
+      "date": "2026-07-20",
+      "score": 75,
       "tags": [
         "AI HOT",
         "Nvidia",
-        "Agent",
+        "机器人",
+        "产业"
+      ],
+      "summary": "Nvidia CEO 黄仁勋在 7 月 15-16 日访日期间，宣布为日本建设\"Vera Rubin AI 工厂\"，配备 13，750 颗 Vera CPU 和 27，500 颗 Rubin GPU，预计 2028 年投运。",
+      "publishedAt": "2026-07-19T21:16:07.000Z",
+      "category": "industry",
+      "comment": "点评：Nvidia 与日本的合作说明 AI 基础设施正在与国家产业战略、机器人和主权算力绑定。未来竞争不只是买 GPU，而是能否把算力、电力、软件生态和本地行业场景组织成长期能力。",
+      "advice": "建议：关注日本制造、机器人和工业软件场景的团队，可以跟踪 Cosmos、Omniverse、合成数据和本地算力服务；做预算时同步评估能源、网络、人才和供应商锁定风险。"
+    },
+    {
+      "topic": "model",
+      "title": "Qwen3.8 开源发布，2.4T 参数模型上线",
+      "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
+      "url": "https://x.com/Alibaba_Qwen/status/2078754377473601787",
+      "date": "2026-07-20",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "Qwen",
+        "开源",
+        "模型"
+      ],
+      "summary": "Qwen3.8 即将发布并很快开源权重！🌐 该模型拥有 2.4T 海量参数，正在持续进化。我们相信它是目前最强大的模型之一，可与领先的前沿 AI 模型媲美，仅次于 Fable 5。 你无需等待即可测试。就在刚才，Qwen3.8-Max-Preview 已在阿里巴巴的 Token Plan、Qod…",
+      "publishedAt": "2026-07-19T08:10:39.000Z",
+      "category": "ai-models",
+      "comment": "点评：Qwen3.8 把国产开源模型继续推向超大参数与前沿对标区间。对企业来说，关注点应从“参数有多大”转向中文长上下文、代码、工具调用、部署成本和许可证能否支撑真实业务。",
+      "advice": "建议：把 Qwen3.8 放进真实中文任务集评测：长文档问答、代码修改、函数调用、多轮 Agent、成本和延迟；如果考虑私有化，还要提前核查权重、许可证、推理栈和芯片适配。"
+    },
+    {
+      "topic": "product",
+      "title": "ChatGPT Work 功能：建站、邮件、文档处理",
+      "source": "X：Tibo (@thsottiaux)",
+      "url": "https://x.com/thsottiaux/status/2078697631019303273",
+      "date": "2026-07-20",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "GPT",
         "产品"
       ],
-      "summary": "NVIDIA 发布 DeepStream 9.1，新增 13 项 agentic skills，支持通过自然语言描述构建多摄像头视觉管线。核心技能 MV3DT 将多摄像头检测投影至统一 3D 坐标系，为跨视角目标分配全局一致的 ID；AMC 技能可自动估算摄像头内外参，替代手动棋盘格标定。",
-      "publishedAt": "2026-07-18T19:16:22.000Z",
+      "summary": "ChatGPT Work 适用于 ✅ 创建和托管网站 ✅ 为你管理电子邮件 ✅ 总结海量文档 ✅ 制作一流的文档、表格和幻灯片 已在你的移动应用或 http://chatgpt.com 上提供，包含在 Plus、Pro、Business 和 Enterprise 套餐中。",
+      "publishedAt": "2026-07-19T04:25:10.000Z",
       "category": "ai-products",
-      "comment": "点评：视觉 AI 正从单摄像头识别走向跨摄像头空间理解，这更接近安防、零售、物流和工业场景的真实需求。落地难点会集中在现场标定、数据漂移、隐私合规与持续运维。",
-      "advice": "建议：先在受控现场以有限摄像头试点，验证标定维护、遮挡场景、误报漏报、数据留存和告警闭环；涉及人员追踪时应先完成隐私与合规评估。"
+      "comment": "点评：ChatGPT Work 把通用助手进一步推向跨应用执行入口。它的价值不在于能做多少种任务，而在于每个任务是否有清晰权限、可回滚输出和人类确认边界。",
+      "advice": "建议：先选择一个低风险办公流程试点，例如资料汇总或草稿生成；明确邮箱、文档、网站托管等连接器的读写边界，并把发送邮件、发布页面、删除文件设为人工确认动作。"
+    },
+    {
+      "topic": "industry",
+      "title": "Ollama 获 8800 万美元融资，加速开放模型生态发展",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://ollama.com/blog/all-aboard-open-models",
+      "date": "2026-07-20",
+      "score": 73,
+      "tags": [
+        "AI HOT",
+        "推理",
+        "产业"
+      ],
+      "summary": "Ollama 宣布完成 8800 万美元融资，由 Benchmark、Theory Ventures 和 8VC 等领投。该平台已服务 890 万开发者，并被 85% 的财富 500 强企业使用，其云端 token 用量月均翻倍。资金将用于支持无缝混合推理、新模型发布当日集成，以及让开发者在不牺牲…",
+      "publishedAt": "2026-07-20T01:45:09.765Z",
+      "category": "industry",
+      "comment": "点评：Ollama 融资体现了开放模型生态的基础设施价值：开发者希望在本地、云端和混合推理之间自由切换。模型越来越多以后，分发、更新、兼容和隐私边界本身会成为平台能力。",
+      "advice": "建议：开发团队可把 Ollama 作为本地/云端模型评测入口，但要统一模型版本、Prompt、测试集和日志；生产场景还需补齐权限、镜像来源、更新策略和隐私审计。"
+    },
+    {
+      "topic": "model",
+      "title": "昆仑万维宣布2026为\"世界模型元年\"，发布Matrix-Game 3.5等模型",
+      "source": "公众号：昆仑万维（天工）",
+      "url": "https://mp.weixin.qq.com/s/LidvGePhOOoUY3KTor_w9g",
+      "date": "2026-07-20",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "开源",
+        "模型"
+      ],
+      "summary": "昆仑万维董事长方汉在WAIC上宣布2026年为\"世界模型元年\"，并发布Matrix-Game 3.5世界模型、Mureka v9.5与O3音乐模型。Matrix-Game 3.5实现Patch级记忆注入，5B模型在720p分辨率下单卡可达20FPS实时生成，核心架构已开源。",
+      "publishedAt": "2026-07-19T12:35:56.000Z",
+      "category": "ai-models",
+      "comment": "点评：世界模型叙事正在从概念展示走向实时生成、游戏交互和内容生产工具链。关键不只是 720p 或 20FPS，而是场景一致性、可控编辑、版权素材和下游应用能否闭环。",
+      "advice": "建议：内容和游戏团队可用短脚本验证世界模型的连续性、镜头控制、交互延迟、素材授权和二次编辑成本；不要只看单条演示视频的视觉冲击力。"
+    },
+    {
+      "topic": "model",
+      "title": "面壁智能开源 MiniCPM-Robot 具身智能模型系列",
+      "source": "X：面壁智能 OpenBMB (@OpenBMB)",
+      "url": "https://x.com/OpenBMB/status/2078839529591759025",
+      "date": "2026-07-20",
+      "score": 71,
+      "tags": [
+        "AI HOT",
+        "开源",
+        "推理",
+        "机器人",
+        "模型"
+      ],
+      "summary": "面壁智能开源首个具身AI模型系列 MiniCPM-Robot，包含 1.5B 参数的通用视觉-语言-动作（VLA）模型 MiniCPM-RobotManip 和用于目标跟踪的 MiniCPM-RobotTrack。同时发布高性能推理框架 PhyAI，旨在让机器人实现理解、记忆与行动。",
+      "publishedAt": "2026-07-19T13:49:01.000Z",
+      "category": "ai-models",
+      "comment": "点评：MiniCPM-Robot 指向小模型在机器人上的实用路线：理解、记忆、目标跟踪和动作执行需要在低延迟环境中协同。具身智能的胜负会更多取决于数据、推理框架和安全控制。",
+      "advice": "建议：机器人团队先在仿真和低风险台架上测试抓取、跟踪、失败恢复与实时推理；所有真实设备测试都要设定速度限制、急停、日志回放和人工接管机制。"
+    },
+    {
+      "topic": "tip",
+      "title": "AI 热潮正在瓦解全球决策机制",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://ludic.mataroa.blog/blog/ai-mania-is-eviscerating-global-decision-making",
+      "date": "2026-07-20",
+      "score": 71,
+      "tags": [
+        "AI HOT",
+        "机器人",
+        "观点"
+      ],
+      "summary": "一位拥有 300 多次行业交流经验的从业者观察到，全球公私机构正陷入集体性 AI 狂热，决策层要么没有计划，要么只能低头回避。过去一年半中，其团队所见的所有 AI 项目均以失败告终（成功率 0%），失败原因常与 LLM 能力无关，而是企业本就难以有效运行软件项目，且 AI 项目叠加了额外风险。内部…",
+      "publishedAt": "2026-07-19T05:13:24.607Z",
+      "category": "tip",
+      "comment": "点评：这条观点提醒我们，很多 AI 项目的失败不是模型不够强，而是组织原本就缺少清晰目标、数据流程和软件交付能力。AI 会放大管理问题，而不是自动修复管理问题。",
+      "advice": "建议：启动 AI 项目前先做“反狂热”检查：目标是否可量化、数据是否可用、流程是否有人负责、失败如何回滚、三个月内如何复盘 ROI；答不清就不要急着采购或扩招。"
+    },
+    {
+      "topic": "model",
+      "title": "MiniCPM5-2B发布：4B以下全球性能第一，适配9款芯片",
+      "source": "公众号：面壁智能（MiniCPM）",
+      "url": "https://mp.weixin.qq.com/s/rjFxrUylyGMqa5QtgypCdw",
+      "date": "2026-07-20",
+      "score": 68,
+      "tags": [
+        "AI HOT",
+        "Qwen",
+        "开源",
+        "模型"
+      ],
+      "summary": "面壁智能联合OpenBMB发布端侧模型MiniCPM5-2B，以2B参数量在AA-Index榜单取得4B以下模型最高分17分，平均分54.26，超越Qwen3.5-2B等竞品。模型原生支持混合思考与512K上下文，已完成华为昇腾、英伟达等9款芯片的Day0适配，即将开源。",
+      "publishedAt": "2026-07-19T13:12:39.000Z",
+      "category": "ai-models",
+      "comment": "点评：MiniCPM5-2B 强调的是端侧小模型的性价比曲线：小参数、长上下文与多芯片适配组合起来，可能比更大模型更适合私有化、移动端和边缘设备场景。",
+      "advice": "建议：端侧场景优先测试延迟、内存、功耗、上下文召回和离线安全；和云端大模型对比单位任务成本与失败率，再决定哪些任务适合下沉到本地。"
     }
   ],
   "sources": [
@@ -238,44 +199,56 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
-      "url": "https://x.com/omarsar0/status/2078573267015885136",
-      "note": "DAIR.AI 发布 X 智能体技能：自动追踪 AI 前沿动态"
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://workshop.cjpais.com/projects/transcribe-cpp",
+      "note": "transcribe.cpp 发布：基于 ggml 的跨平台语音转录库，支持 …"
+    },
+    {
+      "name": "公众号：数字生命卡兹克",
+      "url": "https://mp.weixin.qq.com/s/EeHjsju08ARLbwtwFcViqg",
+      "note": "不会代码也能做产品：一份从0开始的Vibe Coding保姆级教程"
     },
     {
       "name": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/07/17/neil-rimer-thinks-the-ai-money-is-coming-back-out",
-      "note": "Index Ventures 联合创始人 Neil Rimer 认为 AI 财…"
+      "url": "https://techcrunch.com/2026/07/19/what-to-watch-for-after-jensen-huangs-japan-visit",
+      "note": "黄仁勋访日：Nvidia 联手日本打造物理 AI 时代，Noetra 主权 A…"
     },
     {
-      "name": "MarkTechPost（RSS）",
-      "url": "https://www.marktechpost.com/2026/07/18/fine-tuning-qwen3-with-lora-using-nvidia-nemo-automodel-a-complete-single-gpu-google-colab-workflow-tutorial",
-      "note": "使用 NVIDIA NeMo AutoModel 在单 GPU Colab 上…"
+      "name": "X：通义千问 / Qwen (@Alibaba_Qwen)",
+      "url": "https://x.com/Alibaba_Qwen/status/2078754377473601787",
+      "note": "Qwen3.8 开源发布，2.4T 参数模型上线"
     },
     {
-      "name": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/07/18/kimi-threat-or-menace",
-      "note": "Moonshot AI 发布开源模型 Kimi K3，性能接近前沿闭源模型"
-    },
-    {
-      "name": "X：可灵 Kling AI (@Kling_ai)",
-      "url": "https://x.com/Kling_ai/status/2078495005241700399",
-      "note": "可灵AI教你打造梦幻云门效果"
-    },
-    {
-      "name": "X：阿易 AI Notes (@AYi_AInotes)",
-      "url": "https://x.com/AYi_AInotes/status/2078508800475029833",
-      "note": "用GPT-Image-2+剪映一键生成爆款跳舞视频"
+      "name": "X：Tibo (@thsottiaux)",
+      "url": "https://x.com/thsottiaux/status/2078697631019303273",
+      "note": "ChatGPT Work 功能：建站、邮件、文档处理"
     },
     {
       "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://ykdojo.github.io/claude-controls-mac",
-      "note": "设置备用 Mac 让 Claude Code 完全控制：分步指南"
+      "url": "https://ollama.com/blog/all-aboard-open-models",
+      "note": "Ollama 获 8800 万美元融资，加速开放模型生态发展"
+    },
+    {
+      "name": "公众号：昆仑万维（天工）",
+      "url": "https://mp.weixin.qq.com/s/LidvGePhOOoUY3KTor_w9g",
+      "note": "昆仑万维宣布2026为\"世界模型元年\"，发布Matrix-Game 3.5等模型"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-07-20",
+    "title": "AI HOT 日报：transcribe、不会代码也能做产品、黄仁勋访日",
+    "summary": "重点关注 产品发布/更新、技巧与观点、行业动态、模型发布/更新。核心信号是：transcribe.cpp 发布：基于 ggml 的跨平台语音转录库，支持 16 个 ASR 模型族；不会代码也能做产品：一份从0开始的Vibe Coding保姆级教程；黄仁勋访日：Nvidia 联手…",
+    "link": "/posts/72020/",
+    "tags": [
+      "AI HOT",
+      "Meta",
+      "产品",
+      "Kimi"
+    ]
+  },
   {
     "date": "2026-07-19",
     "title": "AI HOT 日报：DAIR.AI 发布、Index Vent、Nvidia",
