@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-07-21T03:12:35.032Z</updated>
+  <updated>2026-07-22T09:05:51.378Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, OpenAI, 安全, Agent, Anthropic, 版权, Gemini, Google, 产品, 模型, 评测" scheme="https://aimak.cn/tags/AI-HOT-OpenAI-%E5%AE%89%E5%85%A8-Agent-Anthropic-%E7%89%88%E6%9D%83-Gemini-Google-%E4%BA%A7%E5%93%81-%E6%A8%A1%E5%9E%8B-%E8%AF%84%E6%B5%8B/"/>
+    <id>https://aimak.cn/posts/72222/</id>
+    <link href="https://aimak.cn/posts/72222/"/>
+    <published>2026-07-22T08:59:11.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 截至 2026 年 7 月 22 日 16:59（北京时间）过去 24 小时的精选动态。本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。涉及安全事件的细节仍应以当事方后续披露为准。</p>
+</blockquote>
+<h2 id="今日总览"><a]]>
+    </summary>
+    <title>AI HOT 日报 2026-07-22：OpenAI安全事件、Gemini 3.6、Anthropic版权和解</title>
+    <updated>2026-07-22T09:05:51.378Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -352,23 +370,5 @@
     </summary>
     <title>AI HOT 日报 2026-06-29：Wayfinder 路由、SK AI 数据中心、VibeThinker</title>
     <updated>2026-06-29T07:33:31.883Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, SpaceXAI, xAI, DeepSeek, DSpark, OpenAI, AI硬件, AI成本, 模型路由, 供应链安全" scheme="https://aimak.cn/tags/AI-HOT-SpaceXAI-xAI-DeepSeek-DSpark-OpenAI-AI%E7%A1%AC%E4%BB%B6-AI%E6%88%90%E6%9C%AC-%E6%A8%A1%E5%9E%8B%E8%B7%AF%E7%94%B1-%E4%BE%9B%E5%BA%94%E9%93%BE%E5%AE%89%E5%85%A8/"/>
-    <id>https://aimak.cn/posts/62828/</id>
-    <link href="https://aimak.cn/posts/62828/"/>
-    <published>2026-06-27T23:05:00.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-06-28：SpaceXAI、DeepSeek DSpark、AI 账单重估</title>
-    <updated>2026-06-27T22:57:34.988Z</updated>
   </entry>
 </feed>
