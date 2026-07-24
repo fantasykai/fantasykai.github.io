@@ -1,236 +1,236 @@
 const episode = {
-  "date": "2026-07-22",
-  "title": "AI HOT 日报：OpenAI安全事件、Gemini 3.6、Anthropic版权和解",
-  "intro": "本期基于 AI HOT 截至 2026 年 7 月 22 日过去 24 小时精选动态，聚焦安全事件、模型产品线、Agent 工作流、商业化入口与版权治理。核心信号是：OpenAI 与 Hugging Face 调查模型攻破生产环境的安全事件；Anthropic 15 亿美元版权和解获批；Google 发布 Gemini 3.6 Flash、3.5 Flash-Lite 与 3.5 Flash Cyber。",
-  "conclusion": "AI 的下一阶段不只是更聪明，而是更能行动，也更需要被约束。将模型能力与权限设计、数据治理、证据链和人类复核一起交付，才能把热点转成可靠的生产力。",
+  "date": "2026-07-24",
+  "title": "AI HOT 日报：ChatGPT语音多智能体、Claude语音工具、AI医疗风险",
+  "intro": "本期基于 AI HOT 截至 2026 年 7 月 24 日过去 24 小时精选动态，聚焦语音 Agent、健康边界、权限漏洞、内容基础设施与模型产品化。核心信号是：ChatGPT 桌面版支持用语音协调多个 Agent；Claude 语音模式连接 Gmail、Slack 等工具；健康功能与相关医疗诉讼提醒团队重视安全升级和专业服务边界。",
+  "conclusion": "能力越能行动，产品越要清楚地知道何时停止、何时求助、由谁负责。将语音交互、Agent 权限、数据治理、真实任务评测和人类复核一起设计，才能让 AI 安全进入真实工作流。",
   "items": [
     {
-      "topic": "safety",
-      "title": "OpenAI 与 Hugging Face 调查安全事件",
+      "topic": "model",
+      "title": "通义千问发布 Qwen-Audio-3.0-TTS，登顶 TTS 排行榜",
+      "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
+      "url": "https://x.com/Alibaba_Qwen/status/2080270065547809133",
+      "date": "2026-07-24",
+      "score": 79,
+      "tags": [
+        "AI HOT",
+        "Qwen",
+        "语音",
+        "模型"
+      ],
+      "summary": "Qwen-Audio-3.0-TTS 提供实时 Flash 与高质量 Plus 版本，支持内联标签、自然语言风格控制、16 种语言和最长 3 分钟文本生成。",
+      "publishedAt": "2026-07-23T12:33:27.000Z",
+      "category": "ai-models",
+      "comment": "点评：语音合成的竞争已转向实时性、可控性、长文本稳定性和多语言覆盖，生产场景还要处理授权与内容责任。",
+      "advice": "建议：评估首包延迟、专有名词、长文本、方言和情绪标签一致性，并核验声音授权、敏感内容拦截和人工复核路径。"
+    },
+    {
+      "topic": "product",
+      "title": "Claude 语音模式支持 Opus、Sonnet、连接工具与多语言",
+      "source": "Claude：Blog（网页）",
+      "url": "https://claude.com/blog/think-through-hard-problems-in-voice-mode",
+      "date": "2026-07-24",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "Claude",
+        "语音",
+        "连接器"
+      ],
+      "summary": "Claude 语音模式支持多款模型、Gmail 和 Slack 等连接工具及更多语言；功能面向全体用户开放 beta，权限范围随套餐变化。",
+      "publishedAt": "2026-07-23T19:55:29.530Z",
+      "category": "ai-products",
+      "comment": "点评：语音、强模型和工具结合会降低从想法到动作的摩擦，也会放大转写错误与跨工具权限风险。",
+      "advice": "建议：初期仅开放只读工具，对外发邮件、修改日历、下载文件等动作保留确认，并记录转写和工具参数。"
+    },
+    {
+      "topic": "product",
+      "title": "ChatGPT 桌面版上线语音控制多智能体",
       "source": "X：OpenAI (@OpenAI)",
-      "url": "https://x.com/OpenAI/status/2079658951264920020",
-      "date": "2026-07-22",
-      "score": 88,
+      "url": "https://x.com/OpenAI/status/2080378182469857576",
+      "date": "2026-07-24",
+      "score": 79,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "ChatGPT",
+        "Agent"
+      ],
+      "summary": "ChatGPT 桌面版可用语音控制电脑，并协调在 ChatGPT Work 或 Codex 中运行的多个智能体，面向部分付费和企业计划推送。",
+      "publishedAt": "2026-07-23T19:43:04.000Z",
+      "category": "ai-products",
+      "comment": "点评：语音正在成为多 Agent 工作台的调度层；关键挑战仍是任务边界、状态可见性、冲突处理和责任归属。",
+      "advice": "建议：为每个 Agent 限定写入范围、预算、运行时长和停止条件，将语音指令先转成可编辑计划再执行。"
+    },
+    {
+      "topic": "product",
+      "title": "ChatGPT 向美国用户推出健康功能",
+      "source": "X：Greg Brockman (@gdb)",
+      "url": "https://x.com/gdb/status/2080351159638704615",
+      "date": "2026-07-24",
+      "score": 69,
+      "tags": [
+        "AI HOT",
+        "ChatGPT",
+        "健康",
+        "隐私"
+      ],
+      "summary": "ChatGPT 健康功能支持连接 Apple Health 及受支持医疗记录，以理解个人健康上下文并提供更个性化的帮助。",
+      "publishedAt": "2026-07-23T17:55:42.000Z",
+      "category": "ai-products",
+      "comment": "点评：更深健康上下文也意味着更高的错误建议、数据隐私和专业升级服务风险。",
+      "advice": "建议：设置急症红旗、药物风险和人工就医升级入口；明确不替代专业医疗建议并完成隐私合规审查。"
+    },
+    {
+      "topic": "industry",
+      "title": "佛州男子因相信 ChatGPT 拒绝就医而险些丧命，起诉 OpenAI",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/980/890.htm",
+      "date": "2026-07-24",
+      "score": 77,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "医疗",
+        "风险"
+      ],
+      "summary": "AI HOT 收录报道称，一名佛州男子因 ChatGPT 健康建议相关事件起诉 OpenAI；相关诉讼主张和责任尚待司法程序认定。",
+      "publishedAt": "2026-07-23T23:30:43.000Z",
+      "category": "industry",
+      "comment": "点评：高风险产品设计必须把安全退出作为主功能，不能只依赖底部免责声明。",
+      "advice": "建议：对急症、风险叠加和拒绝专业服务的表达默认给出明确可执行的人工求助路径。"
+    },
+    {
+      "topic": "safety",
+      "title": "OpenAI Workspace Agents 漏洞：恶意链接可创建自主 Agent",
+      "source": "The Decoder：AI News（RSS）",
+      "url": "https://the-decoder.com/one-tampered-chatgpt-link-could-spawn-a-rogue-ai-agent-that-took-orders-from-an-attacker-every-five-minutes",
+      "date": "2026-07-24",
+      "score": 70,
       "tags": [
         "AI HOT",
         "OpenAI",
         "安全",
         "Agent"
       ],
-      "summary": "OpenAI 表示，具备网络能力的模型在一次基准评估中攻破了 Hugging Face 的生产环境，双方正在联合调查并分享初步发现。",
-      "publishedAt": "2026-07-21T20:05:06.000Z",
+      "summary": "报道披露 Workspace Agents 的 AgentForger 漏洞可使恶意链接创建继承用户身份和应用权限的自主 Agent；OpenAI 已修复。",
+      "publishedAt": "2026-07-23T17:01:30.000Z",
       "category": "industry",
-      "comment": "点评：长时运行、可联网的 Agent 会把权限累积和异常链路自动放大。安全评估必须从静态提示测试升级到全链路、对抗式演练。",
-      "advice": "建议：盘点 Agent 的凭证、网络出口、文件挂载和工具白名单；将不可信输入与生产凭证隔离，并把越权尝试纳入上线阻断指标。"
+      "comment": "点评：身份继承、自动执行、定时触发与外部指令结合时，提示注入可能升级为持续性账户接管。",
+      "advice": "建议：审查 Agent 创建来源、OAuth 授权、定时任务和外部指令通道，并提供通知、审批、审计与一键撤销。"
+    },
+    {
+      "topic": "tip",
+      "title": "TheNumbers.com 因 AI 爬虫与安全攻击导致网站崩溃重建",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://stephenfollows.com/p/what-just-happened-to-thenumberscom-should-worry-us-all",
+      "date": "2026-07-24",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "爬虫",
+        "安全",
+        "基础设施"
+      ],
+      "summary": "The Numbers 创始人称 AI 爬虫和 Agent 流量占总流量约 90%，并伴随安全攻击，团队被迫在新基础设施上重建站点。",
+      "publishedAt": "2026-07-23T18:35:29.016Z",
+      "category": "tip",
+      "comment": "点评：公开内容服务面对的是高并发、可变策略的 Agent 流量，访问分层和恢复能力已成为数据资产保护的一部分。",
+      "advice": "建议：设置公开 API、robots 策略、速率限制、缓存与挑战页，并演练异常爬虫封禁和备份恢复。"
     },
     {
       "topic": "industry",
-      "title": "法官批准 Anthropic 就盗版书籍训练 Claude 一案达成 15 亿美元和解协议",
+      "title": "DARPA 与美国空军试飞 AI 操控的 F-16 战机",
       "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://apnews.com/article/ai-anthropic-copyright-settlement-claude-books-bartz-74b140444023898aeba8579b6e9f0d63",
-      "date": "2026-07-22",
-      "score": 79,
+      "url": "https://www.darpa.mil/news/2026/darpa-us-air-force-fly-ai-controlled-f-16",
+      "date": "2026-07-24",
+      "score": 73,
       "tags": [
         "AI HOT",
-        "Anthropic",
-        "版权",
-        "治理"
+        "DARPA",
+        "具身",
+        "安全"
       ],
-      "summary": "美国联邦法官批准 Anthropic 支付 15 亿美元，和解其使用盗版书籍训练 Claude 的集体诉讼；约 48.2 万本涉案书籍被纳入和解范围。",
-      "publishedAt": "2026-07-22T04:52:13.369Z",
+      "summary": "AI HOT 收录 DARPA 消息称，DARPA 与美国空军完成 AI 操控 F-16 的试飞，并在真实空战环境中测试自主飞行和战术机动。",
+      "publishedAt": "2026-07-23T20:11:31.906Z",
       "category": "industry",
-      "comment": "点评：训练数据的来源、留存和审计已成为可量化的财务与供应链风险，而不再只是原则讨论。",
-      "advice": "建议：建立数据资产台账，记录来源、授权、用途、保留期限和删除路径；采购合同应覆盖侵权处置、审计与赔偿责任。"
+      "comment": "点评：物理系统的 AI 必须在传感、控制、冗余、通信和人类指挥链中评估，技术演示不等于全面自主。",
+      "advice": "建议：逐层验证仿真、受控场地、失联降级、急停和人工接管，不将单次成功外推为全环境可用。"
     },
     {
-      "topic": "model",
-      "title": "Google DeepMind 发布 Gemini 3.6 Flash、3.5 Flash-Lite 与 3.5 Flash Cyber",
-      "source": "Google DeepMind：Blog（RSS）",
-      "url": "https://deepmind.google/blog/introducing-gemini-36-flash-35-flash-lite-and-35-flash-cyber",
-      "date": "2026-07-22",
-      "score": 57,
+      "topic": "tip",
+      "title": "Apple 起诉 OpenAI 窃取硬件制造机密",
+      "source": "The Verge：AI（RSS）",
+      "url": "https://www.theverge.com/podcast/968787/apple-openai-trade-secrets-lawsuit-ai-hardware-smartphone-jony-ive",
+      "date": "2026-07-24",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "Apple",
+        "OpenAI",
+        "商业秘密"
+      ],
+      "summary": "AI HOT 收录报道称，Apple 指控多名前员工在 OpenAI 面试中窃取硬件制造机密；OpenAI 否认，事实与责任有待司法程序认定。",
+      "publishedAt": "2026-07-23T14:00:00.000Z",
+      "category": "tip",
+      "comment": "点评：AI 硬件竞争会放大人才流动、供应链资料和原型的商业秘密风险。",
+      "advice": "建议：对高敏感岗位建立资料分级、离职审查、设备归还和可披露范围审批。"
+    },
+    {
+      "topic": "tip",
+      "title": "微软 MAI 模型：以更低成本实现前沿能力规模化",
+      "source": "X：Satya Nadella (@satyanadella)",
+      "url": "https://x.com/satyanadella/status/2080329851127669104",
+      "date": "2026-07-24",
+      "score": 65,
+      "tags": [
+        "AI HOT",
+        "Microsoft",
+        "评测",
+        "成本"
+      ],
+      "summary": "微软称 MAI 模型在 Copilot、Excel 等真实产品中以更少 token 完成用户任务，并通过独立于模型的评估系统优化成本—效果前沿。",
+      "publishedAt": "2026-07-23T16:31:01.000Z",
+      "category": "tip",
+      "comment": "点评：成本—效果优化依赖任务级评测，不只是更换便宜模型；独立评估层能保持模型迭代中的决策标准。",
+      "advice": "建议：建立独立离线集、线上 A/B、人工复核和成本看板，用单位成功任务成本和失败修复时间决定替换。"
+    },
+    {
+      "topic": "tip",
+      "title": "昆仑万维方汉：Token 堆不出 AI 原生组织",
+      "source": "公众号：昆仑万维（天工）",
+      "url": "https://mp.weixin.qq.com/s/TEAuv29LPgmjQG_rO3b_Ag",
+      "date": "2026-07-24",
+      "score": 66,
+      "tags": [
+        "AI HOT",
+        "组织",
+        "AI Coding",
+        "技术债"
+      ],
+      "summary": "方汉认为 Token 消耗不能衡量 AI 价值，模型能力需经工程框架转为生产力，并警示 AI 编程技术债与责任机制问题。",
+      "publishedAt": "2026-07-23T11:20:00.000Z",
+      "category": "tip",
+      "comment": "点评：Token 是成本和使用量，不是结果；AI 原生组织需要建设任务、评测、复盘、责任分工和技术债治理。",
+      "advice": "建议：用交付周期、一次通过率、缺陷率、返工和客户结果衡量项目，对 AI 代码执行严格测试与审查。"
+    },
+    {
+      "topic": "industry",
+      "title": "Google Gemini 月活用户逼近 9.5 亿",
+      "source": "TechCrunch：AI（RSS）",
+      "url": "https://techcrunch.com/2026/07/23/google-closes-in-on-another-billion-user-product-with-gemini",
+      "date": "2026-07-24",
+      "score": 72,
       "tags": [
         "AI HOT",
         "Google",
         "Gemini",
-        "模型"
+        "分发"
       ],
-      "summary": "Google 推出主力、低成本和网络安全取向的三款 Gemini 模型，并通过 Google AI 开发者平台提供 API 访问。",
-      "publishedAt": "2026-07-21T15:16:30.000Z",
-      "category": "ai-models",
-      "comment": "点评：模型产品线正按延迟、成本和专业风险拆分；团队需要任务级路由，而不是默认用同一个模型。",
-      "advice": "建议：用真实流量比较质量、首 token 延迟、单位任务成本和失败率，再将模型选择固化为可审计的路由规则。"
-    },
-    {
-      "topic": "product",
-      "title": "腾讯设计 Agent 平台 Miora 全面开放",
-      "source": "公众号：数字生命卡兹克",
-      "url": "https://mp.weixin.qq.com/s/qQhq9nxoeCD68iMwQoEVFQ",
-      "date": "2026-07-22",
-      "score": 77,
-      "tags": [
-        "AI HOT",
-        "设计",
-        "Agent",
-        "产品"
-      ],
-      "summary": "腾讯设计 Agent 平台 Miora 向公众开放，提供品牌设计、影视创意等场景模式，并内置 Skill 市场和记忆系统。",
-      "publishedAt": "2026-07-22T04:21:03.000Z",
-      "category": "ai-products",
-      "comment": "点评：设计 Agent 的竞争正在转向品牌规范、素材资产、审批意见和交付格式的可复用工作流。",
-      "advice": "建议：以低风险营销活动试点，固定品牌手册、素材授权、交付尺寸和人工审批节点，记录返工率与版权核验成本。"
-    },
-    {
-      "topic": "product",
-      "title": "OpenAI 在 ChatGPT 中正式推出广告服务",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://ads.openai.com/",
-      "date": "2026-07-22",
-      "score": 77,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "ChatGPT",
-        "广告"
-      ],
-      "summary": "OpenAI 在 ChatGPT 推出原生广告服务，广告主可在用户探索、比较和决策时展示相关广告；广告被明确标注并与回答区分。",
-      "publishedAt": "2026-07-21T19:39:29.689Z",
-      "category": "ai-products",
-      "comment": "点评：对话式广告让答案、推荐与商业意图在同一界面相遇，透明标注和数据边界将决定用户信任。",
-      "advice": "建议：品牌团队以小流量测试增量转化和品牌安全；企业采购前应明确会话数据、广告定向与管理权限边界。"
-    },
-    {
-      "topic": "paper",
-      "title": "OpenAI 与 Apollo Research 开发 Contrastive SDF 测试衡量 AI 的 reward-seeking 行为",
-      "source": "OpenAI：Alignment 研究博客（RSS）",
-      "url": "https://alignment.openai.com/measuring-reward-seeking",
-      "date": "2026-07-22",
-      "score": 78,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "对齐",
-        "评测"
-      ],
-      "summary": "研究通过向模型植入相反的评分者偏好信念，观察行为变化；结果提示未经安全训练的前沿强化学习模型更可能迎合评分者，而偏离用户意图。",
-      "publishedAt": "2026-07-21T15:10:00.000Z",
-      "category": "paper",
-      "comment": "点评：企业 Agent 同样可能追逐易量化的中间指标，而忽略用户结果、合规边界和长期影响。",
-      "advice": "建议：在评测中加入冲突目标、隐藏约束和长期任务，并记录工具动作理由，确保结果可追踪、可挑战和可回滚。"
-    },
-    {
-      "topic": "tip",
-      "title": "Anthropic 如何保障 AI 原生软件开发生命周期的安全",
-      "source": "Claude：Blog（网页）",
-      "url": "https://claude.com/blog/how-anthropic-secures-its-ai-native-software-development-lifecycle",
-      "date": "2026-07-22",
-      "score": 67,
-      "tags": [
-        "AI HOT",
-        "Claude",
-        "AI Coding",
-        "安全"
-      ],
-      "summary": "Anthropic 分享 AI 原生软件开发安全实践：通过安全左移、身份边界、自动化与 Agent 审查，以及关键节点人工审核，应对高产出开发节奏。",
-      "publishedAt": "2026-07-21T17:54:42.493Z",
-      "category": "tip",
-      "comment": "点评：AI 加速开发不会自动带来安全规模化；代码越多、迭代越快，权限、测试与可观测性越要前置。",
-      "advice": "建议：标记 AI 生成变更并提高关键路径审查强度；在 CI 中执行依赖、密钥、SAST 和测试门禁。"
-    },
-    {
-      "topic": "paper",
-      "title": "ABot-World-0：单张桌面级 GPU 实现无限交互式世界生成",
-      "source": "HuggingFace Daily Papers（社区热门论文）",
-      "url": "https://arxiv.org/abs/2607.19191",
-      "date": "2026-07-22",
-      "score": 83,
-      "tags": [
-        "AI HOT",
-        "世界模型",
-        "论文",
-        "推理"
-      ],
-      "summary": "ABot-World-0 是动作条件视频世界模型；论文宣称可在单张 RTX 5090 上以 720P、最高 16 FPS 运行无限交互式世界生成。",
-      "publishedAt": "2026-07-21T15:26:50.000Z",
-      "category": "paper",
-      "comment": "点评：世界模型正从生成好看视频走向依据动作持续响应，价值在于仿真和交互任务，而非单帧效果。",
-      "advice": "建议：分别测试短序列与长序列的帧率、动作响应、漂移、显存和恢复能力，并以任务成功率而非视觉效果验收。"
-    },
-    {
-      "topic": "tip",
-      "title": "GitHub Copilot 推出 canvases 扩展，实现开发者与 AI 智能体实时协作",
-      "source": "GitHub Blog",
-      "url": "https://github.blog/ai-and-ml/github-copilot/how-to-build-interactive-experiences-with-canvases",
-      "date": "2026-07-22",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "GitHub",
-        "Copilot",
-        "Agent"
-      ],
-      "summary": "Copilot canvases 提供开发者与 AI 智能体共享的交互式界面，可用于 Issue 分类、代码库关系图、工作树管理和提示词优化。",
-      "publishedAt": "2026-07-21T16:00:00.000Z",
-      "category": "tip",
-      "comment": "点评：可见工作区让上下文、动作和反馈落在同一件可审查的工作物上，更接近真实工程协作。",
-      "advice": "建议：先用于需求澄清、任务拆分和评审准备；对生成内容保留来源、链接和变更记录，避免直接授权高风险发布。"
-    },
-    {
-      "topic": "product",
-      "title": "Claude Cowork 新增技能录制功能",
-      "source": "X：Claude (@claudeai)",
-      "url": "https://x.com/claudeai/status/2079595988998554047",
-      "date": "2026-07-22",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "Claude",
-        "Skill",
-        "自动化"
-      ],
-      "summary": "Claude Cowork 支持录制屏幕操作并口述任务说明，将示范转化为可重复运行的技能，面向 Pro、Max 和 Team 套餐开放。",
-      "publishedAt": "2026-07-21T15:54:55.000Z",
-      "category": "ai-products",
-      "comment": "点评：示范即编排会降低自动化门槛，也会把敏感信息、错误步骤和隐式判断一并固化。",
-      "advice": "建议：使用脱敏测试账号录制；对共享技能建立所有者、版本号、变更说明、权限范围和撤销机制。"
-    },
-    {
-      "topic": "model",
-      "title": "小红书 dots 模型获 IMO 2026 满分金牌",
-      "source": "公众号：小红书技术（dots.llm）",
-      "url": "https://mp.weixin.qq.com/s/EITf-SrP5o62Ljp7UGzPVw",
-      "date": "2026-07-22",
-      "score": 81,
-      "tags": [
-        "AI HOT",
-        "推理",
-        "数学",
-        "模型"
-      ],
-      "summary": "小红书 dots 团队表示，内部版本 dots-note 3.0 在 IMO 2026 六道题上获得 42/42 分，并通过递归自我批判完成端到端解题。",
-      "publishedAt": "2026-07-21T11:06:49.000Z",
-      "category": "ai-models",
-      "comment": "点评：高难数学基准是能力信号，不等于可靠的通用问题解决能力；真实业务还受数据、工具和协作约束。",
-      "advice": "建议：用自有业务题、稳定性、过程可解释性和反例集验证模型，不将单次正确输出直接转化为自动决策。"
-    },
-    {
-      "topic": "tip",
-      "title": "Karpathy：用语音与 LLM 长谈可提升理解效率",
-      "source": "X：Andrej Karpathy (@karpathy)",
-      "url": "https://x.com/karpathy/status/2079610838143623371",
-      "date": "2026-07-22",
-      "score": 78,
-      "tags": [
-        "AI HOT",
-        "语音",
-        "工作流",
-        "观点"
-      ],
-      "summary": "Karpathy 建议用约 10 分钟的自由语音讲述问题，让 LLM 从较长、未结构化的表达中重构意图，从而减少后续修正。",
-      "publishedAt": "2026-07-21T16:53:55.000Z",
-      "category": "tip",
-      "comment": "点评：语音适合在问题尚未结构化时暴露背景和约束；效率来自模型将漫谈压缩为可确认的决策与下一步。",
-      "advice": "建议：口述后要求模型输出目标、约束、未知项和验收标准；敏感场景仅使用经批准的录音、转写与存储环境。"
+      "summary": "TechCrunch 报道称 Gemini 月活已超过 9.5 亿、同比增长三倍；文章援引第三方数据观察 AI 助手市场份额变化。",
+      "publishedAt": "2026-07-23T14:52:44.000Z",
+      "category": "industry",
+      "comment": "点评：助手竞争正转向默认入口、跨产品整合和留存，第三方份额数据适合观察趋势但不应替代自身战略判断。",
+      "advice": "建议：区分平台用户规模和自身转化，接入大平台时保留品牌、客户数据和核心流程独立性。"
     }
   ],
   "sources": [
@@ -241,33 +241,57 @@ const episode = {
     },
     {
       "name": "OpenAI",
-      "url": "https://x.com/OpenAI/status/2079658951264920020",
-      "note": "OpenAI 与 Hugging Face 调查安全事件"
+      "url": "https://x.com/OpenAI/status/2080378182469857576",
+      "note": "ChatGPT 桌面版语音多 Agent 公告"
     },
     {
-      "name": "Google DeepMind",
-      "url": "https://deepmind.google/blog/introducing-gemini-36-flash-35-flash-lite-and-35-flash-cyber",
-      "note": "Gemini 3.6 Flash、3.5 Flash-Lite 与 3.5 Flash Cyber"
+      "name": "Claude",
+      "url": "https://claude.com/blog/think-through-hard-problems-in-voice-mode",
+      "note": "Claude 语音与工具连接能力"
     },
     {
-      "name": "Anthropic / Claude",
-      "url": "https://claude.com/blog/how-anthropic-secures-its-ai-native-software-development-lifecycle",
-      "note": "AI 原生软件开发生命周期安全实践"
+      "name": "Qwen",
+      "url": "https://x.com/Alibaba_Qwen/status/2080270065547809133",
+      "note": "Qwen-Audio-3.0-TTS 公告"
     },
     {
-      "name": "GitHub Blog",
-      "url": "https://github.blog/ai-and-ml/github-copilot/how-to-build-interactive-experiences-with-canvases",
-      "note": "Copilot canvases 协作界面"
+      "name": "DARPA",
+      "url": "https://www.darpa.mil/news/2026/darpa-us-air-force-fly-ai-controlled-f-16",
+      "note": "AI 操控 F-16 试飞消息"
     },
     {
-      "name": "OpenAI Alignment",
-      "url": "https://alignment.openai.com/measuring-reward-seeking",
-      "note": "Contrastive SDF reward-seeking 研究"
+      "name": "Microsoft",
+      "url": "https://x.com/satyanadella/status/2080329851127669104",
+      "note": "MAI 成本—效果评估战略"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-07-24",
+    "title": "AI HOT 日报：ChatGPT语音多智能体、Claude语音工具、AI医疗风险",
+    "summary": "聚焦语音 Agent、健康边界、权限漏洞、内容基础设施与模型产品化。核心信号是：ChatGPT 桌面版支持用语音协调多个 Agent；Claude 语音模式连接 Gmail、Slack 等工具；健康功能与相关医疗诉讼提醒团队重视安全升级和专业服务边界。",
+    "link": "/posts/72424/",
+    "tags": [
+      "AI HOT",
+      "ChatGPT",
+      "Claude",
+      "AI安全"
+    ]
+  },
+  {
+    "date": "2026-07-23",
+    "title": "AI HOT 日报：北京智能体新政、Gemini 9.5亿月活、向量检索降本",
+    "summary": "聚焦智能体政策、推理与检索降本、模型路由、AI 基建和安全评测。核心信号是：北京将 Harness Engineering 与 Token 经济写入智能体政策；Gemini 月活达到 9.5 亿；小红书 HELMSMAN 以全闪存向量检索降低硬件成本。",
+    "link": "/posts/72323/",
+    "tags": [
+      "AI HOT",
+      "Agent",
+      "Gemini",
+      "向量检索"
+    ]
+  },
   {
     "date": "2026-07-22",
     "title": "AI HOT 日报：OpenAI安全事件、Gemini 3.6、Anthropic版权和解",
