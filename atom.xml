@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-07-24T02:34:30.409Z</updated>
+  <updated>2026-07-25T01:59:24.033Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Claude, Anthropic, Opus 5, 开放权重, FLUX, Agent, 无人机, 模型, 安全" scheme="https://aimak.cn/tags/AI-HOT-Claude-Anthropic-Opus-5-%E5%BC%80%E6%94%BE%E6%9D%83%E9%87%8D-FLUX-Agent-%E6%97%A0%E4%BA%BA%E6%9C%BA-%E6%A8%A1%E5%9E%8B-%E5%AE%89%E5%85%A8/"/>
+    <id>https://aimak.cn/posts/72525/</id>
+    <link href="https://aimak.cn/posts/72525/"/>
+    <published>2026-07-25T01:56:12.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 截至 2026 年 7 月 25 日 09:56（北京时间）过去 24 小时的精选动态。本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。涉及监管、基准和安全事件的结论，应结合原始报告与后续正式披露理解。</p>
+</blockquote>
+<h2]]>
+    </summary>
+    <title>AI HOT 日报 2026-07-25：Claude Opus 5、开放权重监管、FLUX 3</title>
+    <updated>2026-07-25T01:59:24.033Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -350,23 +368,5 @@
     </summary>
     <title>AI HOT 日报 2026-07-02：阿宝、OpenAI 持股、Kimi K2.7 Code</title>
     <updated>2026-07-02T11:41:52.352Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Anthropic, Claude, Claude Code, 产业, Agent, 开源, 推理, 模型, 论文, 观点, 产品" scheme="https://aimak.cn/tags/AI-HOT-Anthropic-Claude-Claude-Code-%E4%BA%A7%E4%B8%9A-Agent-%E5%BC%80%E6%BA%90-%E6%8E%A8%E7%90%86-%E6%A8%A1%E5%9E%8B-%E8%AE%BA%E6%96%87-%E8%A7%82%E7%82%B9-%E4%BA%A7%E5%93%81/"/>
-    <id>https://aimak.cn/posts/70101/</id>
-    <link href="https://aimak.cn/posts/70101/"/>
-    <published>2026-07-01T07:20:14.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-07-01：Anthropic、美团 LongCat、Claude</title>
-    <updated>2026-07-01T07:20:14.597Z</updated>
   </entry>
 </feed>
