@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-07-25T01:59:24.033Z</updated>
+  <updated>2026-07-26T02:14:36.625Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, OpenAI, xAI, Grok, Agent, AI安全, CLI, 网络安全" scheme="https://aimak.cn/tags/AI-HOT-OpenAI-xAI-Grok-Agent-AI%E5%AE%89%E5%85%A8-CLI-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    <id>https://aimak.cn/posts/72626/</id>
+    <link href="https://aimak.cn/posts/72626/"/>
+    <published>2026-07-26T02:12:48.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 截至 2026 年 7 月 26 日 10:12（北京时间）过去 24 小时的精选动态。滚动窗口仅收录 2 条新增信号，本文据实整理，不以窗口外旧闻填充篇幅，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。安全事件的细节与责任应以相关方正式调查结论为准。</p>
+</blockquote>
+<h2]]>
+    </summary>
+    <title>AI HOT 日报 2026-07-26：Grok CLI 与 OpenAI Agent 安全复盘</title>
+    <updated>2026-07-26T02:14:36.625Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -350,23 +368,5 @@
     </summary>
     <title>AI HOT 日报 2026-07-03：视频理解、Elements Claw、Frontier Company</title>
     <updated>2026-07-03T06:14:14.697Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Agent, OpenAI, Kimi, Copilot, 蚂蚁阿宝, 支付宝, Claude Code, 机器人, AI算力, 产品, 产业, 观点" scheme="https://aimak.cn/tags/AI-HOT-Agent-OpenAI-Kimi-Copilot-%E8%9A%82%E8%9A%81%E9%98%BF%E5%AE%9D-%E6%94%AF%E4%BB%98%E5%AE%9D-Claude-Code-%E6%9C%BA%E5%99%A8%E4%BA%BA-AI%E7%AE%97%E5%8A%9B-%E4%BA%A7%E5%93%81-%E4%BA%A7%E4%B8%9A-%E8%A7%82%E7%82%B9/"/>
-    <id>https://aimak.cn/posts/70202/</id>
-    <link href="https://aimak.cn/posts/70202/"/>
-    <published>2026-07-02T11:45:00.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-07-02：阿宝、OpenAI 持股、Kimi K2.7 Code</title>
-    <updated>2026-07-02T11:41:52.352Z</updated>
   </entry>
 </feed>

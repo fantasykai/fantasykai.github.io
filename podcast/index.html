@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI HOT 日报：Claude Opus 5、开放权重监管、FLUX 3 · AI 资讯播客</title>
-  <meta name="description" content="聚焦 Claude Opus 5、开放权重监管、FLUX 3、物理 Agent 评测、视频工作流与成本控制。">
+  <title>AI HOT 日报：Grok CLI 与 OpenAI Agent 安全复盘 · AI 资讯播客</title>
+  <meta name="description" content="聚焦 Grok CLI 的终端 Agent 入口，以及 OpenAI Agent 安全事件带来的隔离、监测与止损启示。">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -29,8 +29,8 @@
         </div>
         <aside class="signal-card">
           <span>更新锚点</span>
-          <strong>2026-07-25</strong>
-          <p>信源优先级：AI HOT 过去 24 小时精选 / 官方公告 / 研究博客 / 开源发布 / 企业实践。监管、基准和安全事件以原始报告及后续正式披露为准；语音由浏览器本地 SpeechSynthesis 播放。</p>
+          <strong>2026-07-26</strong>
+          <p>信源优先级：AI HOT 过去 24 小时精选 / 官方公告 / 研究博客 / 开源发布 / 企业实践。安全事件的细节与责任以相关方正式调查结论为准；语音由浏览器本地 SpeechSynthesis 播放。</p>
         </aside>
       </section>
     </header>
@@ -60,21 +60,9 @@
     </section>
 
     <section class="insight-grid" aria-label="本期核心判断">
-      <article>
-        <span>01</span>
-        <h3>旗舰能力需要任务级验证</h3>
-        <p>Claude Opus 5 与 Ling-3.0-flash 指向同一件事：模型升级应由真实任务的成功率、延迟、成本和恢复能力验证，而不是由单个基准决定。</p>
-      </article>
-      <article>
-        <span>02</span>
-        <h3>开放权重走向分层治理</h3>
-        <p>开放生态能降低创新门槛，也要求企业对许可证、权重访问、微调数据、部署环境和滥用监控承担更明确的责任。</p>
-      </article>
-      <article>
-        <span>03</span>
-        <h3>物理 Agent 要从可控评测开始</h3>
-        <p>FLUX 3 与 Drone-Bench 展示了视频动作和无人机能力的进展；仿真、边界场景、权限限制和人工接管仍是进入实体世界的前提。</p>
-      </article>
+      <article><span>01</span><h3>CLI Agent 先从最小权限开始</h3><p>Grok CLI 降低了终端 Agent 的上手门槛。试用时必须隔离仓库、账号、环境变量与网络权限，不能把教程直接变成生产授权。</p></article>
+      <article><span>02</span><h3>长时 Agent 的风险会累积</h3><p>网络能力 Agent 若能持续执行、探索环境和调用工具，局部异常会沿权限链放大。硬隔离、独立告警与分钟级止损缺一不可。</p></article>
+      <article><span>03</span><h3>少资讯，更要如实呈现</h3><p>本期滚动窗口只有两条精选。本站保留完整来源与行动建议，不以窗口外旧闻填充“日报”，让每条结论都可追溯。</p></article>
     </section>
 
     <section class="toolbar" aria-label="资讯筛选">
@@ -125,9 +113,9 @@
         <h2>结合本站 AI 内容继续阅读</h2>
       </div>
       <div class="reading-grid">
-        <a href="/posts/72525/">
-          <strong>AI HOT 日报：Claude Opus 5、开放权重监管、FLUX 3</strong>
-          <span>聚焦 Claude Opus 5、开放权重监管、物理 Agent 评测、视频工作流与成本控制。核心信号是：Anthropic 发布 Claude Opus 5；英伟达、微软与 Meta 呼吁避免过度监管开放权重；FLUX 3 与 Drone-Bench 推进视频动作和实体任务评测。</span>
+        <a href="/posts/72626/">
+          <strong>AI HOT 日报：Grok CLI 与 OpenAI Agent 安全复盘</strong>
+          <span>滚动窗口仅收录 2 条新增信号：xAI 发布 Grok CLI 并加入教程入口；OpenAI Agent 安全事件的后续报道提醒团队对长时、可联网 Agent 实施严格隔离、监测和止损。</span>
         </a>
         <a href="/posts/29847/">
           <strong>AI Agent 全解析：从概念到网络运维实战</strong>
