@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-07-28T08:32:52.788Z</updated>
+  <updated>2026-07-30T06:54:43.214Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, 产品, Claude, 产业, 论文, OpenAI, 观点, 开源, 机器人, xAI, Grok, GPT" scheme="https://aimak.cn/tags/AI-HOT-%E4%BA%A7%E5%93%81-Claude-%E4%BA%A7%E4%B8%9A-%E8%AE%BA%E6%96%87-OpenAI-%E8%A7%82%E7%82%B9-%E5%BC%80%E6%BA%90-%E6%9C%BA%E5%99%A8%E4%BA%BA-xAI-Grok-GPT/"/>
+    <id>https://aimak.cn/posts/73030/</id>
+    <link href="https://aimak.cn/posts/73030/"/>
+    <published>2026-07-30T06:54:43.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-07-30：Replit Design、Claude Agent安全、Hyra数学突破</title>
+    <updated>2026-07-30T06:54:43.214Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -350,23 +368,5 @@
     </summary>
     <title>AI HOT 日报 2026-07-06：LongCat-2.0、千兆瓦 AI 集群、Fun-ASR</title>
     <updated>2026-07-06T08:47:25.814Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Claude, Claude Code, 观点, 开源, 论文, 产业, 产品, OpenAI, Anthropic, Google, Gemini" scheme="https://aimak.cn/tags/AI-HOT-Claude-Claude-Code-%E8%A7%82%E7%82%B9-%E5%BC%80%E6%BA%90-%E8%AE%BA%E6%96%87-%E4%BA%A7%E4%B8%9A-%E4%BA%A7%E5%93%81-OpenAI-Anthropic-Google-Gemini/"/>
-    <id>https://aimak.cn/posts/70404/</id>
-    <link href="https://aimak.cn/posts/70404/"/>
-    <published>2026-07-04T02:05:58.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-07-04：pxpipe、Claude、阿里达摩院发布</title>
-    <updated>2026-07-04T02:05:58.886Z</updated>
   </entry>
 </feed>
