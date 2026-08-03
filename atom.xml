@@ -10,7 +10,43 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-07-31T08:17:57.702Z</updated>
+  <updated>2026-08-03T03:19:54.825Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Qwen, 开源, 模型, GPT, Agent, 观点, Grok, 产品, OpenAI, AI日报, AI资讯" scheme="https://aimak.cn/tags/AI-HOT-Qwen-%E5%BC%80%E6%BA%90-%E6%A8%A1%E5%9E%8B-GPT-Agent-%E8%A7%82%E7%82%B9-Grok-%E4%BA%A7%E5%93%81-OpenAI-AI%E6%97%A5%E6%8A%A5-AI%E8%B5%84%E8%AE%AF/"/>
+    <id>https://aimak.cn/posts/80303/</id>
+    <link href="https://aimak.cn/posts/80303/"/>
+    <published>2026-08-03T03:19:54.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-08-03：Qwen、Codex 子代理协作、Grok 视频理解</title>
+    <updated>2026-08-03T03:19:54.825Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, DeepSeek, MiniMax, 智能体, AI安全, 开源, 多模态, 合规, 评测" scheme="https://aimak.cn/tags/AI-HOT-DeepSeek-MiniMax-%E6%99%BA%E8%83%BD%E4%BD%93-AI%E5%AE%89%E5%85%A8-%E5%BC%80%E6%BA%90-%E5%A4%9A%E6%A8%A1%E6%80%81-%E5%90%88%E8%A7%84-%E8%AF%84%E6%B5%8B/"/>
+    <id>https://aimak.cn/posts/80101/</id>
+    <link href="https://aimak.cn/posts/80101/"/>
+    <published>2026-08-01T02:52:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-08-01：DeepSeek V4 Flash、MiniMax H3、Agent 安全</title>
+    <updated>2026-08-01T02:55:10.988Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -332,41 +368,5 @@
     </summary>
     <title>AI HOT 日报 2026-07-10：ChatGPT Work、Flint、LongCat-2.0</title>
     <updated>2026-07-10T06:09:48.311Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Claude, Agent, Copilot, 产业, 论文, 开源, 观点, OpenAI, GPT, Anthropic, Claude Code" scheme="https://aimak.cn/tags/AI-HOT-Claude-Agent-Copilot-%E4%BA%A7%E4%B8%9A-%E8%AE%BA%E6%96%87-%E5%BC%80%E6%BA%90-%E8%A7%82%E7%82%B9-OpenAI-GPT-Anthropic-Claude-Code/"/>
-    <id>https://aimak.cn/posts/70909/</id>
-    <link href="https://aimak.cn/posts/70909/"/>
-    <published>2026-07-09T06:19:43.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-07-09：GitLost、提示注入僵尸网络、Skill编排</title>
-    <updated>2026-07-09T06:19:43.963Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Google, Meta, Microsoft, 产业, Agent, Copilot, 观点, Claude, 开源, Claude Code, 产品" scheme="https://aimak.cn/tags/AI-HOT-Google-Meta-Microsoft-%E4%BA%A7%E4%B8%9A-Agent-Copilot-%E8%A7%82%E7%82%B9-Claude-%E5%BC%80%E6%BA%90-Claude-Code-%E4%BA%A7%E5%93%81/"/>
-    <id>https://aimak.cn/posts/70707/</id>
-    <link href="https://aimak.cn/posts/70707/"/>
-    <published>2026-07-07T02:12:52.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-07-07：AI裁员潮、初级程序员危机、OfficeCLI</title>
-    <updated>2026-07-07T02:12:52.479Z</updated>
   </entry>
 </feed>
