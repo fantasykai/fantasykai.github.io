@@ -1,223 +1,160 @@
 const episode = {
-  "date": "2026-08-04",
-  "title": "AI HOT 日报：AirLLM低显存推理、欧盟AI透明度规则、Palantir数据控制权",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 技巧与观点、行业动态、产品发布/更新、模型发布/更新。核心信号是：AirLLM 实现单块 4GB GPU 运行 70B 模型推理；欧盟《人工智能法案》透明度规则生效，违规最高罚 1500 万欧元；Palantir 强劲季度后，CEO Alex Karp 称 AI 行业\"马克思主义\"。",
-  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
+  "date": "2026-08-05",
+  "title": "AI HOT 日报：Agent开发生命周期、多模态开源与算力治理",
+  "intro": "本期基于 AI HOT 过去 24 小时的 28 条精选动态，筛选出影响工程决策的 8 条。核心信号是：Agent 开发开始具备可观测、可调试、可审查的完整生命周期；统一多模态与开放权重继续下沉；算力供给和安全治理同步成为产品交付约束。",
+  "conclusion": "AI 的竞争已经不止发生在模型发布页，而是在开发生命周期、部署效率、供应链韧性和安全证据上展开。把热点转化成可测试的工作流或可检查的治理能力，才是团队应有的下一步。",
   "items": [
     {
-      "topic": "tip",
-      "title": "AirLLM 实现单块 4GB GPU 运行 70B 模型推理",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://github.com/lyogavin/airllm",
-      "date": "2026-08-04",
-      "score": 76,
-      "tags": [
-        "AI HOT",
-        "开源",
-        "推理",
-        "观点"
-      ],
-      "summary": "AirLLM 项目支持在单块 4GB 显存 GPU 上运行 70B 参数大模型推理，无需多卡或大规模显存配置。该项目已开源，相关讨论在 Hacker News 上获得 103 点热度，引发社区关注。",
-      "publishedAt": "2026-08-03T16:24:45.027Z",
-      "category": "tip",
-      "comment": "点评：AirLLM 的意义不在于让所有 70B 模型都能在低显存设备上流畅运行，而在于用分层加载把大模型推理门槛继续下拉。显存不再是唯一限制后，延迟、内存带宽和任务吞吐会成为更现实的取舍。",
-      "advice": "建议：在目标设备上用固定提示长度和真实任务测量首 token 延迟、总耗时、内存占用、模型加载稳定性与输出质量；把它作为低频离线或开发辅助方案前，先确认吞吐能否满足预期。"
-    },
-    {
-      "topic": "industry",
-      "title": "欧盟《人工智能法案》透明度规则生效，违规最高罚 1500 万欧元",
-      "source": "The Verge：AI（RSS）",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/974571/eu-ai-act-transparency-labels-rules-deepfakes",
-      "date": "2026-08-04",
-      "score": 73,
-      "tags": [
-        "AI HOT",
-        "产业"
-      ],
-      "summary": "欧盟《人工智能法案》下的新透明度义务于 8 月 2 日生效，要求公司披露用户何时与 AI 模型互动，并为合成音视频和文本添加机器可读标记。欧盟还推出了一套可选的 AI 披露标签供平台采用，但标注要求本身是强制性的。违规公司面临最高 1500 万欧元（约 1720 万美元）或全球年营业额 3% 的罚…",
-      "publishedAt": "2026-08-03T17:38:45.000Z",
-      "category": "industry",
-      "comment": "点评：欧盟将 AI 交互披露与合成内容机器可读标记落为强制要求，表明“可识别、可追溯”正在从产品加分项变成上线能力。生成内容越接近真实沟通和公共信息，透明度设计越不能留到事后补救。",
-      "advice": "建议：面向欧盟用户的产品应梳理 AI 交互提示、合成内容标记、元数据保留和投诉处理链路；对既有模型与内容库存建立责任人和宽限期整改清单。"
-    },
-    {
-      "topic": "tip",
-      "title": "Palantir 强劲季度后，CEO Alex Karp 称 AI 行业\"马克思主义\"",
-      "source": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/08/03/after-killer-quarter-palantir-ceo-alex-karp-calls-ai-industry-marxist",
-      "date": "2026-08-04",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "观点"
-      ],
-      "summary": "Palantir CEO Alex Karp 在季度股东信中警告，前沿 AI 实验室对企业过于不可信，并称其意图\"占有所谓合作伙伴的生产资料\"，带有\"马克思主义色彩\"。该公司第二季度营收 19 亿美元，同比增长 93%，利润 11 亿美元。Karp 主张 Palantir 提供模型无关的 AI 与…",
-      "publishedAt": "2026-08-03T23:19:50.000Z",
-      "category": "tip",
-      "comment": "点评：Karp 的措辞服务于商业立场，但其强调的数据、提示词、编排与上下文控制权，确实点出了企业 AI 的核心焦虑。模型可以替换，业务语境、数据治理和运行记录才是长期资产。",
-      "advice": "建议：采购或自建企业 AI 平台时，把数据所有权、提示词和工作流导出、日志保留、模型替换成本及供应商训练使用条款写入验收与合同。"
-    },
-    {
       "topic": "product",
-      "title": "Cloudflare 推出 Billable Usage API：为自助账户提供按产品与计费周期的程序化成本可见性",
+      "title": "Cloudflare 推出 Agent Development Lifecycle",
       "source": "Cloudflare Blog",
-      "url": "https://blog.cloudflare.com/billable-usage-api",
-      "date": "2026-08-04",
-      "score": 70,
+      "url": "https://blog.cloudflare.com/agent-development-lifecycle",
+      "date": "2026-08-05",
+      "score": 66,
       "tags": [
         "AI HOT",
+        "Agent",
         "产品"
       ],
-      "summary": "Cloudflare 发布 Billable Usage API，为自助账户提供单一端点，一次调用即可返回按产品和计费周期拆分的用量与成本，覆盖 Workers、R2、D1、Workers AI、Vectorize、Images 和 Stream。",
-      "publishedAt": "2026-08-03T13:00:00.000Z",
+      "summary": "Cloudflare 提出 Agent Development Lifecycle，希望将 AI 智能体从单纯生成代码，扩展到承担更多软件开发流程。",
+      "publishedAt": "2026-08-04T13:00:00.000Z",
       "category": "ai-products",
-      "comment": "点评：成本可见性被做成 API，说明 AI 与云工作负载的治理正在进入精细化运营阶段。团队需要把用量数据与任务成功率和业务归因联动，才能知道每一笔模型或基础设施支出是否有效。",
-      "advice": "建议：将云用量 API 接入成本看板，按产品、环境和任务归集费用；设置预算告警，并将异常增长与发布变更、重试率和业务指标一起复盘。"
-    },
-    {
-      "topic": "tip",
-      "title": "Kimi Work 幻灯片制作教程发布",
-      "source": "X：Kimi.ai (@Kimi_Moonshot)",
-      "url": "https://x.com/Kimi_Moonshot/status/2084245860339298423",
-      "date": "2026-08-04",
-      "score": 70,
-      "tags": [
-        "AI HOT",
-        "Kimi",
-        "观点"
-      ],
-      "summary": "使用 Kimi Work 制作幻灯片 - 教程 #1。 Kimi Slides 处理整个幻灯片制作流程： - 清晰的结构与研究，由 Kimi K3 驱动 - 连贯的设计，包括精美的图表和 SmartArts - 可编辑并可直接下载 欢迎在评论区告诉我们你还想看什么内容！",
-      "publishedAt": "2026-08-03T11:51:51.000Z",
-      "category": "tip",
-      "comment": "点评：AI 幻灯片工具的价值在于把研究、结构、视觉和可编辑交付串成一条链，而不是替代表达判断。内容团队真正需要验证的是事实引用、品牌规范、可编辑性和最终人工修改成本。",
-      "advice": "建议：用一次真实汇报验证资料引用、图表口径、版式可编辑性和导出质量；把品牌模板、事实校对与演讲者审阅保留为交付前的固定关卡。"
+      "comment": "点评：Agent 的质量不能只用最终代码判断。任务上下文、工具调用、权限、执行轨迹、回归结果和人工接管点，都会决定它是否能进入真实工程流程。",
+      "advice": "建议：为生产试点定义输入、允许工具、成功标准、失败阈值和人工接管人；把运行轨迹与代码变更、CI 结果关联保存。"
     },
     {
       "topic": "product",
-      "title": "OpenRouter 推出 Ori Eval 简化评估流程",
-      "source": "X：OpenRouter (@OpenRouter)",
-      "url": "https://x.com/OpenRouter/status/2084301100078027143",
-      "date": "2026-08-04",
-      "score": 68,
+      "title": "Cloudflare Agents 与本地追踪功能上线",
+      "source": "Cloudflare Blog",
+      "url": "https://blog.cloudflare.com/agents-on-cloudflare",
+      "date": "2026-08-05",
+      "score": 66,
       "tags": [
         "AI HOT",
+        "Agent",
+        "可观测性",
         "产品"
       ],
-      "summary": "推出 Ori Eval：编写首个评估的最简单方式。 没有绝对最好的模型，只有最适合每项任务的模型。Ori Eval 利用 OpenRouter 的 API 处理代码库中的每项任务，然后评估结果。 curl -fsSL https://openrouter.ai/skills/spawn-ori-e…",
-      "publishedAt": "2026-08-03T15:31:21.000Z",
+      "summary": "Cloudflare Agents 将智能体会话集中管理并提供 agent tracing；本地 Workers 开发则自动捕获 OpenTelemetry 追踪，智能体可查询调用、工具执行和错误信息。",
+      "publishedAt": "2026-08-04T13:00:00.000Z",
       "category": "ai-products",
-      "comment": "点评：模型选择正在从追逐“通用最强”转向按任务比较。评估工具降低起步门槛是好事，但真正有用的评测必须覆盖业务样本、失败代价、提示词版本和成本，而不是只跑一组漂亮分数。",
-      "advice": "建议：先从 20 至 50 个脱敏真实任务建立基线，覆盖正确性、时延、成本和人工返工；评测通过后再扩大模型路由，而不要把公开榜单直接设为生产默认。"
+      "comment": "点评：可观测性正在成为 Agent 平台的基本配置。只有看到模型调用、工具耗时、重试和失败上下文，团队才能排查偶发失误，并对成本和稳定性负责。",
+      "advice": "建议：给现有 Agent 接入统一 trace ID，至少记录模型、提示词版本、工具调用、耗时、token、错误和用户影响；先为高风险动作设置告警和回放。"
     },
     {
+      "topic": "tip",
+      "title": "GitHub：用堆叠式 Pull Request 拆解 AI 生成的巨型代码",
+      "source": "GitHub Engineering",
+      "url": "https://github.blog/engineering/turn-one-giant-ai-generated-pull-request-to-a-reviewable-stack",
+      "date": "2026-08-05",
+      "score": 67,
+      "tags": [
+        "AI HOT",
+        "工程实践",
+        "观点"
+      ],
+      "summary": "GitHub 建议将 AI 生成的千行级改动按数据、API、接线和 UI 分成 L1-L4 的堆叠式 Pull Request，以便逐层审查和分配责任。",
+      "publishedAt": "2026-08-04T16:47:18.000Z",
+      "category": "tip",
+      "comment": "点评：AI 提高了产出速度，却可能放大审查负担。把变更拆成可独立验证的层次，比要求审查者看完巨型 diff 更可靠。",
+      "advice": "建议：为 AI 辅助开发设定 PR 规模和依赖层级约束，先合入数据模型与测试，再合入接口和界面；每层必须有验证证据。"
+    },
+    {
+      "topic": "product",
       "topic": "model",
-      "title": "商汤发布 SenseNova U1.5-Lite-Preview 开源模型",
-      "source": "X：商汤 SenseTime (@SenseTime_AI)",
-      "url": "https://x.com/SenseTime_AI/status/2084288424236782073",
-      "date": "2026-08-04",
-      "score": 68,
+      "title": "商汤开源 SenseNova U1：统一推理与图像生成",
+      "source": "SenseTime on X",
+      "url": "https://x.com/SenseTime_AI/status/2084667189479837741",
+      "date": "2026-08-05",
+      "score": 67,
       "tags": [
         "AI HOT",
         "开源",
         "多模态",
         "模型"
       ],
-      "summary": "商汤推出 SenseNova U1.5-Lite-Preview，一个基于 NEO-Unify 架构的轻量级原生统一多模态模型，仅 8B-MoT 参数即可达到商业闭源模型的生成与编辑质量。",
-      "publishedAt": "2026-08-03T14:40:59.000Z",
+      "summary": "商汤发布开源 SenseNova U1，可在统一流程中完成推理与图像生成，并提供信息图和交错图文生成等模式。",
+      "publishedAt": "2026-08-04T15:46:03.000Z",
       "category": "ai-models",
-      "comment": "点评：轻量原生多模态模型若能在生成与编辑上接近闭源体验，会扩大私有部署和行业微调的可选范围。发布参数和演示质量之外，跨模态一致性、中文指令遵循与推理栈成熟度仍需实测。",
-      "advice": "建议：在本地或目标云环境用图文理解、图像编辑和多轮指令任务横测，记录显存、延迟、失败样本和许可证；高风险内容仍保留审核与回滚链路。"
+      "comment": "点评：统一多模态模型能减少跨模型编排和语义丢失，但演示中的美观不等于生产可用，事实正确性、版式稳定性、版权和敏感内容处理仍要单独验证。",
+      "advice": "建议：选取真实素材测试信息图准确率、图文一致性、编辑成本和失败率；对外发布内容保留事实校对、版权素材检查与人工审核。"
     },
     {
-      "topic": "product",
-      "title": "Cloudflare 推出 @cloudflare/computer 预览版：为智能体提供虚拟文件系统与多执行环境",
-      "source": "Cloudflare Blog",
-      "url": "https://blog.cloudflare.com/cloudflare-computer",
-      "date": "2026-08-04",
-      "score": 68,
-      "tags": [
-        "AI HOT",
-        "开源",
-        "产品"
-      ],
-      "summary": "Cloudflare 发布 @cloudflare/computer 早期预览版，这是一个开源智能体运行时，为每个智能体提供虚拟文件系统，并支持在 isolate、容器沙箱或浏览器中执行代码。",
-      "publishedAt": "2026-08-03T13:15:24.000Z",
-      "category": "ai-products",
-      "comment": "点评：为 Agent 提供“计算机”而非单一容器，意味着运行时开始同时管理文件、代码、浏览器与隔离边界。它有助于承载真实任务，但也要求把身份、网络、持久化和审计设计成默认能力。",
-      "advice": "建议：先在隔离环境评估文件持久化、网络出口、浏览器会话和执行模式切换；为每个 Agent 绑定短期身份、资源额度、工具白名单和可检索审计日志。"
-    },
-    {
-      "topic": "product",
-      "title": "GPT-Live实时音频新架构发布",
-      "source": "X：Greg Brockman (@gdb)",
-      "url": "https://x.com/gdb/status/2084405421041963356",
-      "date": "2026-08-04",
+      "topic": "model",
+      "title": "蚂蚁百灵开源 Ling-3.0-flash 权重",
+      "source": "AntLingAGI on X",
+      "url": "https://x.com/AntLingAGI/status/2084656533489754475",
+      "date": "2026-08-05",
       "score": 66,
       "tags": [
         "AI HOT",
-        "GPT",
-        "推理",
-        "产品"
+        "开源",
+        "模型",
+        "推理"
       ],
-      "summary": "GPT-Live 是一种用于实时音频的新架构和栈： GPT-Live 可以在说话的同时聆听。 为了让这种体验在 ChatGPT 规模下显得自然，我们从客户端到模型重建了语音栈。 这一新架构让音频持续流动，因此更深入的推理和工具使用不会打断对话。",
-      "publishedAt": "2026-08-03T22:25:53.000Z",
-      "category": "ai-products",
-      "comment": "点评：实时语音体验的竞争正在从“能否听懂并说话”转向连续对话中的低延迟、不中断推理和工具协同。语音 Agent 一旦可自然打断和恢复，会成为客服、陪练与工作助手的高频入口。",
-      "advice": "建议：语音产品用真实双向对话测试打断恢复、工具调用等待、首响延迟、转写错误和长会话稳定性；涉及客户或员工录音时，先明确告知、留存与访问策略。"
-    },
-    {
-      "topic": "tip",
-      "title": "Claude Code 连接器可复用至 Artifacts",
-      "source": "X：Thariq (@trq212)",
-      "url": "https://x.com/trq212/status/2084387303959740449",
-      "date": "2026-08-04",
-      "score": 65,
-      "tags": [
-        "AI HOT",
-        "Claude",
-        "Claude Code",
-        "观点"
-      ],
-      "summary": "我想很多人没有意识到--如果你连接了一个 Claude 连接器（例如你的 Gmail、日历、Slack 等），Claude Code 也将能够使用它们，包括在 Artifacts 中。",
-      "publishedAt": "2026-08-03T21:13:53.000Z",
-      "category": "tip",
-      "comment": "点评：连接器在 Claude Code 与 Artifacts 间复用，会显著缩短从个人上下文到可交付产物的路径；同时也让原本分散的邮件、日历和协作数据进入更多执行表面，权限边界需要同步扩大。",
-      "advice": "建议：按连接器分别配置最小读写权限和数据分类；先在测试账号验证 Artifact 是否会带出敏感邮件、日历或 Slack 内容，并为外发和发布动作保留人工确认。"
-    },
-    {
-      "topic": "tip",
-      "title": "EA 首席战略官谈生成式 AI 如何进入可游玩的实时游戏世界",
-      "source": "Runway：News（网页）",
-      "url": "https://runwayml.com/news/company-news/electronic-arts-ai-summit-2026",
-      "date": "2026-08-04",
-      "score": 65,
-      "tags": [
-        "AI HOT",
-        "观点"
-      ],
-      "summary": "EA 首席战略官 Mihir Vaidya 认为，游戏是 AI 的试验场，但生成式 AI 进入游戏面临 60 帧/秒、数千玩家同步和低延迟等严苛约束，不能只追求\"看起来真实\"，而必须\"行为正确\"。他主张采用神经符号架构，在生成能力之外保留确定性与可控性，并称\"控制是下一个前沿\"。EA 将 AI 影…",
-      "publishedAt": "2026-08-03T20:12:03.229Z",
-      "category": "tip",
-      "comment": "点评：这条动态值得从方法论、最佳实践和落地风险三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
-      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
+      "summary": "蚂蚁百灵发布 Ling-3.0-flash 开源权重，并提供 BF16 与 FP8 量化版本，供开发者按硬件和部署需求选择。",
+      "publishedAt": "2026-08-04T15:03:43.000Z",
+      "category": "ai-models",
+      "comment": "点评：模型发布已更接近部署选择而非只展示能力。量化对中文、长上下文、工具调用和极端输入的影响，不能从通用榜单推断。",
+      "advice": "建议：用脱敏业务集横测 BF16 与 FP8 的质量、首 token 延迟、吞吐、显存和单位任务成本，并准备清晰的降级策略。"
     },
     {
       "topic": "product",
-      "title": "微软开源 Orchard 智能体训练框架",
-      "source": "X：Microsoft Research (@MSFTResearch)",
-      "url": "https://x.com/MSFTResearch/status/2084364547142418722",
-      "date": "2026-08-04",
+      "topic": "model",
+      "title": "NVIDIA Alpamayo 2 Super 面向自动驾驶开放商用",
+      "source": "NVIDIA Blog",
+      "url": "https://blogs.nvidia.com/blog/alpamayo-2-super-open-model-now-available",
+      "date": "2026-08-05",
+      "score": 66,
+      "tags": [
+        "AI HOT",
+        "自动驾驶",
+        "模型",
+        "安全"
+      ],
+      "summary": "NVIDIA 开放 Alpamayo 2 Super 商用，面向 Robotaxi 与自动驾驶场景，支持轨迹预测、因果链推理、元动作、自动标注和视觉问答等多任务输出。",
+      "publishedAt": "2026-08-04T15:00:49.000Z",
+      "category": "ai-models",
+      "comment": "点评：物理世界模型的竞争不只是看懂画面，而是能否在安全约束下输出稳定、可验证的决策辅助；模型能力不等于车辆控制能力。",
+      "advice": "建议：先将输出限定为感知、标注或离线仿真辅助，在封闭数据集和场景回放中验证，再将覆盖率和安全降级设为上线门槛。"
+    },
+    {
+      "topic": "industry",
+      "title": "Anthropic 与 Volta 签署 100 亿美元算力协议",
+      "source": "Rohan Paul on X",
+      "url": "https://x.com/rohanpaul_ai/status/2084655258102546579",
+      "date": "2026-08-05",
+      "score": 66,
+      "tags": [
+        "AI HOT",
+        "算力",
+        "供应链",
+        "产业"
+      ],
+      "summary": "报道称 Anthropic 与云初创公司 Volta 达成 100 亿美元算力协议，核心交换条件是交付速度与更高的交易对手风险。",
+      "publishedAt": "2026-08-04T14:58:39.000Z",
+      "category": "industry",
+      "comment": "点评：大额算力合同反映交付速度仍是稀缺资源，也暴露 AI 供应链的集中度和信用风险。企业不应把单一模型或单一云作为不可替代的生产前提。",
+      "advice": "建议：梳理模型、云、向量库和关键工具的单点依赖，准备可切换的接口与降级路径；采购中审查服务连续性、数据迁移和退出条款。"
+    },
+    {
+      "topic": "industry",
+      "title": "L3/L4 自动驾驶系统安全要求强制性国标发布",
+      "source": "IT之家",
+      "url": "https://www.ithome.com/0/985/665.htm",
+      "date": "2026-08-05",
       "score": 65,
       "tags": [
         "AI HOT",
-        "开源",
-        "产品"
+        "AI治理",
+        "自动驾驶",
+        "产业"
       ],
-      "summary": "Orchard 是一个面向研究社区的开源框架，用于跨任务类型训练和评估 AI 智能体。它降低了复杂性，同时通过让研究人员复用同一套基础设施，支持较小模型也能实现强劲性能。https://msft.it/6019a8fqP",
-      "publishedAt": "2026-08-03T19:43:28.000Z",
-      "category": "ai-products",
-      "comment": "点评：智能体研发开始从各自搭建任务环境，走向共享训练与评测基础设施。统一框架能降低重复工程，但只有任务定义、轨迹记录与可复现实验也标准化，横向结果才有比较价值。",
-      "advice": "建议：研究团队可从一个可回放任务接入，固定环境、工具版本、任务样本和评价指标；同时记录 Agent 轨迹、失败类型和人工干预，避免只比较最终得分。"
+      "summary": "《智能网联汽车 自动驾驶系统安全要求》获批发布，计划于 2027 年 7 月实施，为 L3/L4 自动驾驶产品建立统一的安全准入基线。",
+      "publishedAt": "2026-08-04T11:06:29.000Z",
+      "category": "industry",
+      "comment": "点评：当 AI 从信息服务进入物理世界，合规会改变系统设计、测试证据和责任分工；安全标准将倒逼模型、传感器、数据与运营流程一体化留痕。",
+      "advice": "建议：尽早把法规条目转成工程需求、测试用例和证据清单，建立从数据版本、模型版本到发布审批和现场事件的可追溯链路。"
     }
   ],
   "sources": [
@@ -227,48 +164,60 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://github.com/lyogavin/airllm",
-      "note": "AirLLM 实现单块 4GB GPU 运行 70B 模型推理"
-    },
-    {
-      "name": "The Verge：AI（RSS）",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/974571/eu-ai-act-transparency-labels-rules-deepfakes",
-      "note": "欧盟《人工智能法案》透明度规则生效，违规最高罚 1500 万欧元"
-    },
-    {
-      "name": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/08/03/after-killer-quarter-palantir-ceo-alex-karp-calls-ai-industry-marxist",
-      "note": "Palantir 强劲季度后，CEO Alex Karp 称 AI 行业\"马克…"
-    },
-    {
       "name": "Cloudflare Blog",
-      "url": "https://blog.cloudflare.com/billable-usage-api",
-      "note": "Cloudflare 推出 Billable Usage API：为自助账户提…"
+      "url": "https://blog.cloudflare.com/agent-development-lifecycle",
+      "note": "Agent Development Lifecycle 与可观测性能力"
     },
     {
-      "name": "X：Kimi.ai (@Kimi_Moonshot)",
-      "url": "https://x.com/Kimi_Moonshot/status/2084245860339298423",
-      "note": "Kimi Work 幻灯片制作教程发布"
+      "name": "GitHub Engineering",
+      "url": "https://github.blog/engineering/turn-one-giant-ai-generated-pull-request-to-a-reviewable-stack",
+      "note": "用堆叠式 Pull Request 审查 AI 生成代码"
     },
     {
-      "name": "X：OpenRouter (@OpenRouter)",
-      "url": "https://x.com/OpenRouter/status/2084301100078027143",
-      "note": "OpenRouter 推出 Ori Eval 简化评估流程"
+      "name": "SenseTime on X",
+      "url": "https://x.com/SenseTime_AI/status/2084667189479837741",
+      "note": "SenseNova U1 统一推理与图像生成"
     },
     {
-      "name": "X：商汤 SenseTime (@SenseTime_AI)",
-      "url": "https://x.com/SenseTime_AI/status/2084288424236782073",
-      "note": "商汤发布 SenseNova U1.5-Lite-Preview 开源模型"
+      "name": "AntLingAGI on X",
+      "url": "https://x.com/AntLingAGI/status/2084656533489754475",
+      "note": "Ling-3.0-flash 开源权重与量化版本"
+    },
+    {
+      "name": "NVIDIA Blog",
+      "url": "https://blogs.nvidia.com/blog/alpamayo-2-super-open-model-now-available",
+      "note": "Alpamayo 2 Super 面向自动驾驶开放商用"
+    },
+    {
+      "name": "Rohan Paul on X",
+      "url": "https://x.com/rohanpaul_ai/status/2084655258102546579",
+      "note": "Anthropic 与 Volta 的算力协议报道"
+    },
+    {
+      "name": "IT之家",
+      "url": "https://www.ithome.com/0/985/665.htm",
+      "note": "L3/L4 自动驾驶系统安全要求强制性国标"
     }
   ]
 };
 
 const episodeHistory = [
   {
+    "date": "2026-08-05",
+    "title": "AI HOT 日报：Agent开发生命周期、多模态开源与算力治理",
+    "summary": "过去 24 小时的 28 条精选动态显示，Agent 正在走向可观测、可调试、可审查的完整工程生命周期；统一多模态与开放权重继续下沉；算力供给和安全治理同步成为产品交付约束。",
+    "link": "/posts/80505/",
+    "tags": [
+      "AI HOT",
+      "Agent",
+      "多模态",
+      "AI治理"
+    ]
+  },
+  {
     "date": "2026-08-04",
     "title": "AI HOT 日报：AirLLM低显存推理、欧盟AI透明度规则、Palantir数据控制权",
-    "summary": "重点关注 技巧与观点、行业动态、产品发布/更新、模型发布/更新。核心信号是：AirLLM 实现单块 4GB GPU 运行 70B 模型推理；欧盟《人工智能法案》透明度规则生效，违规最高罚 1500 万欧元；Palantir 强劲季度后，CEO Alex Karp 称 AI 行业…",
+    "summary": "重点关注技巧与观点、行业动态、产品发布与模型更新：AirLLM 实现单块 4GB GPU 运行 70B 模型推理；欧盟 AI 透明度规则生效；Palantir 强调企业的数据控制权。",
     "link": "/posts/80404/",
     "tags": [
       "AI HOT",
