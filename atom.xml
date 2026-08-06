@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-08-05T02:18:12.459Z</updated>
+  <updated>2026-08-06T07:41:10.590Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Agent, AI安全, 提示注入, Skill, 模型, 企业治理, 评测" scheme="https://aimak.cn/tags/AI-HOT-Agent-AI%E5%AE%89%E5%85%A8-%E6%8F%90%E7%A4%BA%E6%B3%A8%E5%85%A5-Skill-%E6%A8%A1%E5%9E%8B-%E4%BC%81%E4%B8%9A%E6%B2%BB%E7%90%86-%E8%AF%84%E6%B5%8B/"/>
+    <id>https://aimak.cn/posts/80606/</id>
+    <link href="https://aimak.cn/posts/80606/"/>
+    <published>2026-08-06T07:40:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 <a href="https://aihot.virxact.com/">AI HOT</a> 2026-08-06 日报与过去 24 小时精选动态。本文从 26 条动态中筛选 8 条，补充个人点评与可执行建议；播客版已同步更新至「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2]]>
+    </summary>
+    <title>AI HOT 日报 2026-08-06：Agent安全、技能迁移与模型落地</title>
+    <updated>2026-08-06T07:41:10.590Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -350,23 +368,5 @@
     </summary>
     <title>AI HOT 日报 2026-07-13：xAI、黄仁勋、ChatGPT Work</title>
     <updated>2026-07-13T06:40:53.238Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, OpenAI, Anthropic, GPT, Agent, 产业, Claude, 开源, 观点, MCP, 推理, 模型" scheme="https://aimak.cn/tags/AI-HOT-OpenAI-Anthropic-GPT-Agent-%E4%BA%A7%E4%B8%9A-Claude-%E5%BC%80%E6%BA%90-%E8%A7%82%E7%82%B9-MCP-%E6%8E%A8%E7%90%86-%E6%A8%A1%E5%9E%8B/"/>
-    <id>https://aimak.cn/posts/71212/</id>
-    <link href="https://aimak.cn/posts/71212/"/>
-    <published>2026-07-12T01:31:54.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-07-12：OpenAI、Ghost Font、蚂蚁集团 Robby</title>
-    <updated>2026-07-12T01:31:54.866Z</updated>
   </entry>
 </feed>
