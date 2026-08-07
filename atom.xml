@@ -10,7 +10,23 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-08-06T07:41:10.590Z</updated>
+  <updated>2026-08-07T07:11:54.085Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Agent, 视频生成, Skill, MCP, AI安全, 开源, 模型, 企业治理" scheme="https://aimak.cn/tags/AI-HOT-Agent-%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90-Skill-MCP-AI%E5%AE%89%E5%85%A8-%E5%BC%80%E6%BA%90-%E6%A8%A1%E5%9E%8B-%E4%BC%81%E4%B8%9A%E6%B2%BB%E7%90%86/"/>
+    <id>https://aimak.cn/posts/80707/</id>
+    <link href="https://aimak.cn/posts/80707/"/>
+    <published>2026-08-07T07:10:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 <a href="https://aihot.virxact.com/">AI HOT</a> 过去 24 小时精选动态。本文在 2026-08-06T07:03:07Z 至 2026-08-07T07:03:07Z 的滚动窗口内，从 20 条精选资讯中挑出 8 条，补充点评与建议；播客版已同步更新至「<a href="/podcast/">AI]]>
+    </summary>
+    <title>AI HOT 日报 2026-08-07：视频Agent、技能标准与安全边界</title>
+    <updated>2026-08-07T07:11:54.085Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -350,23 +366,5 @@
     </summary>
     <title>AI HOT 日报 2026-07-14：OpenAI、前沿模型实际成本、Meta</title>
     <updated>2026-07-14T03:23:09.739Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Google, xAI, Grok, Claude, 产业, Anthropic, GPT, 产品, Agent, 推理, 模型" scheme="https://aimak.cn/tags/AI-HOT-Google-xAI-Grok-Claude-%E4%BA%A7%E4%B8%9A-Anthropic-GPT-%E4%BA%A7%E5%93%81-Agent-%E6%8E%A8%E7%90%86-%E6%A8%A1%E5%9E%8B/"/>
-    <id>https://aimak.cn/posts/71313/</id>
-    <link href="https://aimak.cn/posts/71313/"/>
-    <published>2026-07-13T06:40:53.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-07-13：xAI、黄仁勋、ChatGPT Work</title>
-    <updated>2026-07-13T06:40:53.238Z</updated>
   </entry>
 </feed>

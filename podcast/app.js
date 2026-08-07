@@ -1,4 +1,4 @@
-const episode = {
+const previousEpisode = {
   "date": "2026-08-06",
   "title": "AI HOT 日报：Agent安全、技能迁移与模型落地",
   "intro": "本期基于 AI HOT 日报 26 条动态与过去 24 小时精选池，筛选出 8 条最值得工程团队关注的信号。核心变化是：Agent 的权限与安全边界正在前置；技能文档和评测开始具备跨模型迁移价值；模型与云平台继续把能力压到更低的使用门槛，但上线责任没有因此减少。",
@@ -129,7 +129,56 @@ const episode = {
   ]
 };
 
+const episode = {
+  date: '2026-08-07',
+  title: 'AI HOT 日报：视频Agent、技能标准与安全边界',
+  intro: '本期基于 AI HOT 过去 24 小时的 20 条精选动态，筛选出 8 条值得工程团队关注的信号：视频与办公助手扩大了可执行动作；插件和技能开始寻求跨平台封装；模型体验下放的同时，权限、安全分流与反迎合评测需要同步进入产品设计。',
+  conclusion: '今天最重要的判断不是模型又多了什么功能，而是它们更快进入真实工作和交易链路。把可移植的 Skill、最小权限、可解释护栏和可撤销执行过程一起交付，才是 AI 工具走向长期使用的前提。',
+  items: [
+    {
+      topic: 'product', title: 'Seedance 2.5 API上线，视频生成开启电影级长叙事', source: '公众号：火山引擎', url: 'https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247543416&idx=1&sn=badeafc780a939033a1e4cb0bba4221c', date: '2026-08-07', score: 81, tags: ['AI HOT', '视频生成', '多模态', '产品'], category: 'ai-products', publishedAt: '2026-08-07T06:01:45.000Z', summary: 'Seedance 2.5 API 将单次视频生成时长提升至 30 秒，支持最高 50 个全模态素材参考，并强调多角色与场景关系的一致性。', comment: '点评：视频生成的竞争正从单镜头美感转向连续叙事、素材约束和可控修改；生成时长增加并不自动降低事实、版权与后期编辑成本。', advice: '建议：用真实脚本与品牌素材评测连续性、文字和配音准确性、可编辑性及人工返工时长，并保留素材授权与审核闭环。'
+    },
+    {
+      topic: 'product', title: '千问推出研究、定时任务与办公助理', source: '公众号：千问APP（阿里）', url: 'https://mp.weixin.qq.com/s?__biz=MzYzNDE5MDEwMQ%3D%3D&mid=2247488266&idx=1&sn=3a1988ba0710abcefba9c9dd282b464e', date: '2026-08-07', score: 67, tags: ['AI HOT', 'Agent', '办公', '自动化'], category: 'ai-products', publishedAt: '2026-08-07T02:04:51.000Z', summary: '千问新增思考研究、定时任务、办公助理和语音通话；办公助理可连接备忘录、日历并操作浏览器输出 Office 文档。', comment: '点评：助手从问答进入周期性任务，风险也会从回答错误转为误发、误改与越权访问。', advice: '建议：先将定时任务限定为只读汇总和草稿生成；为浏览器、日历和文档设置最小权限，对外发和删除动作要求二次确认与回放。'
+    },
+    {
+      topic: 'product', title: 'Agent Plugins 1.0.0 发布统一插件规范', source: 'Google Developers Blog', url: 'https://developers.googleblog.com/agent-plugins-package-your-skills-tools-and-more', date: '2026-08-07', score: 75, tags: ['AI HOT', 'Agent', 'Skill', 'MCP'], category: 'ai-products', publishedAt: '2026-08-06T16:53:12.298Z', summary: '谷歌、亚马逊、微软等支持的规范，用 plugin.json 和固定目录布局打包 Agent Skills 与 MCP 服务器，提升跨工具链可移植性。', comment: '点评：标准化能降低迁移成本，也会把提示词、代码、服务器配置和访问声明集中成新的供应链风险。', advice: '建议：像管理第三方依赖一样管理插件，固定来源与版本，审查脚本、权限和网络访问，并先在隔离环境验证。'
+    },
+    {
+      topic: 'tip', title: 'GitHub Copilot 应用中的斜杠命令工作流', source: 'GitHub Blog', url: 'https://github.blog/ai-and-ml/github-copilot/a-guide-to-slash-commands-in-the-github-copilot-app', date: '2026-08-07', score: 69, tags: ['AI HOT', 'Copilot', '工作流', '工程'], category: 'tip', publishedAt: '2026-08-06T19:49:34.000Z', summary: 'Copilot 应用通过斜杠命令管理会话、导航项目和自定义工作流，涵盖规划、假设挑战和自动执行等阶段。', comment: '点评：命令化的价值是把模糊任务拆成有边界的阶段，但命令本身不能替代输入、验收与人工接管。', advice: '建议：收敛为需求澄清、方案评审、实现、测试等少量可审计命令，并为每一类规定目录范围、工具边界和验证产物。'
+    },
+    {
+      topic: 'model', title: 'OpenAI 改进 ChatGPT 模型体验并扩大免费访问', source: 'OpenAI', url: 'https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt', date: '2026-08-07', score: 74, tags: ['AI HOT', 'ChatGPT', '模型', '产品'], category: 'ai-models', publishedAt: '2026-08-06T23:01:28.628Z', summary: 'OpenAI 表示将改进 GPT-5.6 Sol 的准确性与回答聚焦度，并扩大免费用户对 GPT-5.6 Luna 文本对话的访问。', comment: '点评：能力下放会扩大试用，也会让质量、成本和自动化边界的责任更多落到应用侧。', advice: '建议：按业务任务而非模型名称定义质量门槛，持续追踪正确率、人工接管、延迟和单位成功任务成本。'
+    },
+    {
+      topic: 'safety', title: 'Anthropic 更新 Claude Fable 5 生物安全防护', source: 'Anthropic Newsroom', url: 'https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards', date: '2026-08-07', score: 66, tags: ['AI HOT', '安全', '生物安全', '治理'], category: 'ai-products', publishedAt: '2026-08-07T02:41:46.636Z', summary: 'Anthropic 表示新防护机制将生物查询的回退次数减少约 85%，同时继续限制双重用途病毒学、毒理学和分子设计请求。', comment: '点评：更成熟的安全目标是让低风险正当请求少受误伤，同时继续限制高风险能力。', advice: '建议：用分级请求集分别衡量通过率、拦截率、漏拦、升级路径与审查时效，不以单一拒答率替代安全效果。'
+    },
+    {
+      topic: 'model', title: 'NVIDIA Cosmos 3 推进开放世界物理 AI', source: 'NVIDIA Blog', url: 'https://blogs.nvidia.com/blog/open-world-models-physical-ai', date: '2026-08-07', score: 71, tags: ['AI HOT', '物理AI', '世界模型', '多模态'], category: 'ai-models', publishedAt: '2026-08-06T13:00:00.000Z', summary: 'NVIDIA 发布 Cosmos 3，整合视觉推理、世界生成与动作预测，面向物理 AI 场景。', comment: '点评：物理世界模型的价值在于辅助理解和预测，但模型能力不能直接等同于可安全控制真实设备。', advice: '建议：先将输出限定为仿真、标注和离线决策辅助，使用场景回放、覆盖率和置信度校准作为上线门槛。'
+    },
+    {
+      topic: 'safety', title: '研究关注阿谀奉承式 AI 的依赖风险', source: 'arXiv', url: 'https://arxiv.org/abs/2510.01395', date: '2026-08-07', score: 77, tags: ['AI HOT', '论文', '安全', '对齐'], category: 'paper', publishedAt: '2026-08-06T07:03:41.634Z', summary: '研究报告称，阿谀奉承式回复可能降低参与者修复人际冲突的意愿，并增强其自认为正确的信念。', comment: '点评：用户喜欢不等于用户受益；在关系、健康和重大决策场景，模型附和会掩盖不确定性并放大偏见。', advice: '建议：为高敏感场景建立反迎合评测，检查不确定性说明、替代视角与专业转介，并将长期风险与满意度共同纳入优化目标。'
+    }
+  ],
+  sources: [
+    {name: 'AI HOT 过去 24 小时精选', url: 'https://aihot.virxact.com/api/public/items?mode=selected&since=2026-08-06T07:03:07Z&take=50', note: '滚动 24 小时精选池，共 20 条动态'},
+    {name: 'Google Developers Blog', url: 'https://developers.googleblog.com/agent-plugins-package-your-skills-tools-and-more', note: 'Agent Plugins 1.0.0 规范'},
+    {name: 'OpenAI', url: 'https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt', note: 'ChatGPT 模型体验更新'},
+    {name: 'Anthropic Newsroom', url: 'https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards', note: 'Fable 5 生物安全防护'},
+    {name: 'GitHub Blog', url: 'https://github.blog/ai-and-ml/github-copilot/a-guide-to-slash-commands-in-the-github-copilot-app', note: 'Copilot 斜杠命令指南'},
+    {name: 'NVIDIA Blog', url: 'https://blogs.nvidia.com/blog/open-world-models-physical-ai', note: 'Cosmos 3 物理 AI'},
+    {name: 'arXiv', url: 'https://arxiv.org/abs/2510.01395', note: '阿谀奉承式 AI 研究'}
+  ]
+};
+
 const episodeHistory = [
+  {
+    date: '2026-08-07',
+    title: 'AI HOT 日报：视频Agent、技能标准与安全边界',
+    summary: '过去 24 小时的 20 条精选动态显示，视频与办公 Agent 正走入真实工作流；插件与 Skill 进入跨平台封装阶段；安全的关键是最小权限、风险分流与反迎合评测。',
+    link: '/posts/80707/',
+    tags: ['AI HOT', '视频Agent', 'Skill', 'AI安全']
+  },
   {
     "date": "2026-08-06",
     "title": "AI HOT 日报：Agent安全、技能迁移与模型落地",
