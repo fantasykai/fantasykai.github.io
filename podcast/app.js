@@ -130,581 +130,739 @@ const previousEpisode = {
 };
 
 const episode = {
-  date: '2026-08-07',
-  title: 'AI HOT 日报：视频Agent、技能标准与安全边界',
-  intro: '本期基于 AI HOT 过去 24 小时的 20 条精选动态，筛选出 8 条值得工程团队关注的信号：视频与办公助手扩大了可执行动作；插件和技能开始寻求跨平台封装；模型体验下放的同时，权限、安全分流与反迎合评测需要同步进入产品设计。',
-  conclusion: '今天最重要的判断不是模型又多了什么功能，而是它们更快进入真实工作和交易链路。把可移植的 Skill、最小权限、可解释护栏和可撤销执行过程一起交付，才是 AI 工具走向长期使用的前提。',
-  items: [
+  "date": "2026-08-08",
+  "title": "AI HOT 日报：Seedance 2、Astra 数学评测、Kitesurf",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 产品发布/更新、行业动态、模型发布/更新、论文研究。核心信号是：Seedance 2.5 API上线，视频生成开启「电影级长叙事」；OpenAI：因网络安全风险，延缓 Astra 模型发布；Kitesurf：一款在 V8 隔离环境中运行的\"代理优先\"浏览器。",
+  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
+  "items": [
     {
-      topic: 'product', title: 'Seedance 2.5 API上线，视频生成开启电影级长叙事', source: '公众号：火山引擎', url: 'https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247543416&idx=1&sn=badeafc780a939033a1e4cb0bba4221c', date: '2026-08-07', score: 81, tags: ['AI HOT', '视频生成', '多模态', '产品'], category: 'ai-products', publishedAt: '2026-08-07T06:01:45.000Z', summary: 'Seedance 2.5 API 将单次视频生成时长提升至 30 秒，支持最高 50 个全模态素材参考，并强调多角色与场景关系的一致性。', comment: '点评：视频生成的竞争正从单镜头美感转向连续叙事、素材约束和可控修改；生成时长增加并不自动降低事实、版权与后期编辑成本。', advice: '建议：用真实脚本与品牌素材评测连续性、文字和配音准确性、可编辑性及人工返工时长，并保留素材授权与审核闭环。'
+      "topic": "product",
+      "title": "Seedance 2.5 API上线，视频生成开启「电影级长叙事」",
+      "source": "公众号：火山引擎",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247543416&idx=1&sn=badeafc780a939033a1e4cb0bba4221c",
+      "date": "2026-08-08",
+      "score": 81,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "火山引擎正式上线 Seedance 2.5 API，将单次视频生成时长从15秒提升至30秒，并支持最高50个全模态素材参考。模型在指令遵循、长叙事、真人感及声画质感上大幅提升，能稳定保持多角色外形与场景关系，兼容十余种语言。",
+      "publishedAt": "2026-08-07T06:01:45.000Z",
+      "category": "ai-products",
+      "comment": "点评：视频生成的竞争焦点正在从单镜头质量转向长叙事、角色一致性、声画协同和可编辑交付。30 秒与 50 个参考素材降低了试错门槛，但真正的生产力仍取决于返工率和素材版权。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     },
     {
-      topic: 'product', title: '千问推出研究、定时任务与办公助理', source: '公众号：千问APP（阿里）', url: 'https://mp.weixin.qq.com/s?__biz=MzYzNDE5MDEwMQ%3D%3D&mid=2247488266&idx=1&sn=3a1988ba0710abcefba9c9dd282b464e', date: '2026-08-07', score: 67, tags: ['AI HOT', 'Agent', '办公', '自动化'], category: 'ai-products', publishedAt: '2026-08-07T02:04:51.000Z', summary: '千问新增思考研究、定时任务、办公助理和语音通话；办公助理可连接备忘录、日历并操作浏览器输出 Office 文档。', comment: '点评：助手从问答进入周期性任务，风险也会从回答错误转为误发、误改与越权访问。', advice: '建议：先将定时任务限定为只读汇总和草稿生成；为浏览器、日历和文档设置最小权限，对外发和删除动作要求二次确认与回放。'
+      "topic": "safety",
+      "title": "OpenAI：因网络安全风险，延缓 Astra 模型发布",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/987/221.htm",
+      "date": "2026-08-08",
+      "score": 78,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "产业"
+      ],
+      "summary": "OpenAI 因内部与专家评估显示 Astra 在智能体编程和网络安全领域取得重大突破，依据《准备框架》将其列为旗下首个网络安全风险达\"关键\"级别的模型，决定延缓发布。OpenAI 已采取隔离测试环境、限制网络与工具访问、强化权重保护与加密、全局监控智能体应用及审查思维链等管控措施，并与政府机构和…",
+      "publishedAt": "2026-08-07T23:08:56.000Z",
+      "category": "industry",
+      "comment": "点评：延缓发布本身就是能力成熟度的一部分：当模型在网络安全领域达到关键风险级别，权重保护、隔离测试、工具限制和部署监控必须先于规模化开放。",
+      "advice": "建议：将此类传闻和评论视为待验证信号，优先等待官方技术报告、评测协议和独立复现；模型选型仍应基于自有任务集和可审计结果。"
     },
     {
-      topic: 'product', title: 'Agent Plugins 1.0.0 发布统一插件规范', source: 'Google Developers Blog', url: 'https://developers.googleblog.com/agent-plugins-package-your-skills-tools-and-more', date: '2026-08-07', score: 75, tags: ['AI HOT', 'Agent', 'Skill', 'MCP'], category: 'ai-products', publishedAt: '2026-08-06T16:53:12.298Z', summary: '谷歌、亚马逊、微软等支持的规范，用 plugin.json 和固定目录布局打包 Agent Skills 与 MCP 服务器，提升跨工具链可移植性。', comment: '点评：标准化能降低迁移成本，也会把提示词、代码、服务器配置和访问声明集中成新的供应链风险。', advice: '建议：像管理第三方依赖一样管理插件，固定来源与版本，审查脚本、权限和网络访问，并先在隔离环境验证。'
+      "topic": "product",
+      "title": "Kitesurf：一款在 V8 隔离环境中运行的\"代理优先\"浏览器",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://blog.cloudflare.com/kitesurf",
+      "date": "2026-08-08",
+      "score": 77,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "Cloudflare 推出 Kitesurf，一款专为 AI 智能体设计的浏览器，完全运行在 Workers 上，基于 V8 隔离环境，现已在 Browser Run 中免费开放测试。",
+      "publishedAt": "2026-08-07T18:54:34.746Z",
+      "category": "ai-products",
+      "comment": "点评：浏览器正在成为 Agent 的执行环境，而不只是信息入口。把运行时放进 V8 隔离有助于降低单次任务风险，但身份、Cookie、下载、外发和跨站提示注入仍需独立治理。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     },
     {
-      topic: 'tip', title: 'GitHub Copilot 应用中的斜杠命令工作流', source: 'GitHub Blog', url: 'https://github.blog/ai-and-ml/github-copilot/a-guide-to-slash-commands-in-the-github-copilot-app', date: '2026-08-07', score: 69, tags: ['AI HOT', 'Copilot', '工作流', '工程'], category: 'tip', publishedAt: '2026-08-06T19:49:34.000Z', summary: 'Copilot 应用通过斜杠命令管理会话、导航项目和自定义工作流，涵盖规划、假设挑战和自动执行等阶段。', comment: '点评：命令化的价值是把模糊任务拆成有边界的阶段，但命令本身不能替代输入、验收与人工接管。', advice: '建议：收敛为需求澄清、方案评审、实现、测试等少量可审计命令，并为每一类规定目录范围、工具边界和验证产物。'
+      "topic": "product",
+      "title": "HPC-Ops × SGLang：腾讯混元开源高性能 Attention、Router GEMM 与 MoE 算子",
+      "source": "LMSYS：Blog（Chatbot Arena 团队）",
+      "url": "https://www.lmsys.org/blog/2026-08-07-hpc-ops-sglang",
+      "date": "2026-08-08",
+      "score": 76,
+      "tags": [
+        "AI HOT",
+        "开源",
+        "产品"
+      ],
+      "summary": "腾讯混元开源算子库 HPC-Ops 已集成至 SGLang 主分支，其 Dynamic Attention 与 Fused MoE 在 Hy3 模型上最高降低 TPOT 48.8%。",
+      "publishedAt": "2026-08-07T17:51:24.888Z",
+      "category": "ai-products",
+      "comment": "点评：推理优化已经深入 Attention、Router 和 MoE 算子层。相比“又发布一个模型”，这类基础设施更直接影响单位请求成本、并发吞吐和国产算力的可用性。",
+      "advice": "建议：评估 Hy3 这类业务导向模型时，用真实 Agent 任务做 A/B：任务完成率、耗时、人工接管、幻觉率、微信生态接入成本和数据权限要一起看。"
     },
     {
-      topic: 'model', title: 'OpenAI 改进 ChatGPT 模型体验并扩大免费访问', source: 'OpenAI', url: 'https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt', date: '2026-08-07', score: 74, tags: ['AI HOT', 'ChatGPT', '模型', '产品'], category: 'ai-models', publishedAt: '2026-08-06T23:01:28.628Z', summary: 'OpenAI 表示将改进 GPT-5.6 Sol 的准确性与回答聚焦度，并扩大免费用户对 GPT-5.6 Luna 文本对话的访问。', comment: '点评：能力下放会扩大试用，也会让质量、成本和自动化边界的责任更多落到应用侧。', advice: '建议：按业务任务而非模型名称定义质量门槛，持续追踪正确率、人工接管、延迟和单位成功任务成本。'
+      "topic": "model",
+      "title": "蚂蚁百灵开源 Ling-3.0-flash：124B 总参数 MoE 模型，支持 API、单机与高性能三种部署",
+      "source": "公众号：蚂蚁百灵（Ling）",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzkyODk2MDQwNw%3D%3D&mid=2247487457&idx=1&sn=24ad4a355d81291e53fbe680ca987112",
+      "date": "2026-08-08",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "开源",
+        "推理",
+        "模型"
+      ],
+      "summary": "蚂蚁百灵正式开源新一代原生混合推理模型 Ling-3.0-flash，采用 124B 总参数、5.1B 激活参数的 MoE 架构，并提供 FP8、FP4、INT4 等多个版本。",
+      "publishedAt": "2026-08-07T12:02:16.000Z",
+      "category": "ai-models",
+      "comment": "点评：Ling-3.0-flash 同时提供 API、单机和高性能部署，体现开源模型正在从“放出权重”走向完整交付。企业最终要比较的是激活参数、量化损失、工具调用稳定性和运维成本。",
+      "advice": "建议：开发团队可把 Ollama 作为本地/云端模型评测入口，但要统一模型版本、Prompt、测试集和日志；生产场景还需补齐权限、镜像来源、更新策略和隐私审计。"
     },
     {
-      topic: 'safety', title: 'Anthropic 更新 Claude Fable 5 生物安全防护', source: 'Anthropic Newsroom', url: 'https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards', date: '2026-08-07', score: 66, tags: ['AI HOT', '安全', '生物安全', '治理'], category: 'ai-products', publishedAt: '2026-08-07T02:41:46.636Z', summary: 'Anthropic 表示新防护机制将生物查询的回退次数减少约 85%，同时继续限制双重用途病毒学、毒理学和分子设计请求。', comment: '点评：更成熟的安全目标是让低风险正当请求少受误伤，同时继续限制高风险能力。', advice: '建议：用分级请求集分别衡量通过率、拦截率、漏拦、升级路径与审查时效，不以单一拒答率替代安全效果。'
+      "topic": "product",
+      "title": "Runway 上线 Seedance 2.5，支持 50 个角色参考",
+      "source": "X：Runway (@runwayml)",
+      "url": "https://x.com/runwayml/status/2085684483366523193",
+      "date": "2026-08-08",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "Seedance 2.5 现已登陆 Runway。每次生成最多可引用 50 个角色参考，构建充满角色的完整世界；可创作最长 30 秒、带完整音效与对白的片段，再按你的故事需求随意剪辑与延展。 点击下方链接立即开始。",
+      "publishedAt": "2026-08-07T11:08:25.000Z",
+      "category": "ai-products",
+      "comment": "点评：视频生成的竞争焦点正在从单镜头质量转向长叙事、角色一致性、声画协同和可编辑交付。30 秒与 50 个参考素材降低了试错门槛，但真正的生产力仍取决于返工率和素材版权。",
+      "advice": "建议：内容团队可用它测试多语言海报和广告素材，但交付前必须检查文字准确性、商标版权、人物一致性和不同地区合规要求。"
     },
     {
-      topic: 'model', title: 'NVIDIA Cosmos 3 推进开放世界物理 AI', source: 'NVIDIA Blog', url: 'https://blogs.nvidia.com/blog/open-world-models-physical-ai', date: '2026-08-07', score: 71, tags: ['AI HOT', '物理AI', '世界模型', '多模态'], category: 'ai-models', publishedAt: '2026-08-06T13:00:00.000Z', summary: 'NVIDIA 发布 Cosmos 3，整合视觉推理、世界生成与动作预测，面向物理 AI 场景。', comment: '点评：物理世界模型的价值在于辅助理解和预测，但模型能力不能直接等同于可安全控制真实设备。', advice: '建议：先将输出限定为仿真、标注和离线决策辅助，使用场景回放、覆盖率和置信度校准作为上线门槛。'
+      "topic": "product",
+      "title": "Claude Code 会话间可互发消息",
+      "source": "X：Claude Devs (@ClaudeDevs)",
+      "url": "https://x.com/ClaudeDevs/status/2085817074816070014",
+      "date": "2026-08-08",
+      "score": 73,
+      "tags": [
+        "AI HOT",
+        "Claude",
+        "Claude Code",
+        "产品"
+      ],
+      "summary": "Claude Code 新功能：你的会话现在可以互相发送消息了。 无需在另一个会话中重新解释自己，你现在可以让 Claude 代为传达。它会发送一份摘要（而非你的历史记录或文件），另一个会话会在任务进行中接收该摘要。",
+      "publishedAt": "2026-08-07T19:55:17.000Z",
+      "category": "ai-products",
+      "comment": "点评：会话间通信让多 Agent 协作更自然，但摘要传递也会引入上下文丢失、错误扩散和权限混淆。协作链需要可追踪的消息来源、任务边界和人工接管点。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     },
     {
-      topic: 'safety', title: '研究关注阿谀奉承式 AI 的依赖风险', source: 'arXiv', url: 'https://arxiv.org/abs/2510.01395', date: '2026-08-07', score: 77, tags: ['AI HOT', '论文', '安全', '对齐'], category: 'paper', publishedAt: '2026-08-06T07:03:41.634Z', summary: '研究报告称，阿谀奉承式回复可能降低参与者修复人际冲突的意愿，并增强其自认为正确的信念。', comment: '点评：用户喜欢不等于用户受益；在关系、健康和重大决策场景，模型附和会掩盖不确定性并放大偏见。', advice: '建议：为高敏感场景建立反迎合评测，检查不确定性说明、替代视角与专业转介，并将长期风险与满意度共同纳入优化目标。'
+      "topic": "paper",
+      "title": "斯坦福与 Arc Institute 用 AI 设计全新病毒基因组，16 种在实验室成功杀死细菌",
+      "source": "The Decoder：AI News（RSS）",
+      "url": "https://the-decoder.com/stanford-and-arc-institute-scientists-used-ai-to-design-new-viruses-that-killed-bacteria-in-the-lab",
+      "date": "2026-08-08",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "论文"
+      ],
+      "summary": "斯坦福大学与 Arc Institute 团队用 AI 模型 Evo 从零设计完整病毒基因组，并在实验室构建出 16 种自然界不存在的功能性病毒。Evo 提出 70 万个候选基因组，团队仅筛选最有希望的 285 个序列合成并植入细菌，其中 16 个成功复制并杀死宿主。该研究已通过同行评审发表于《S…",
+      "publishedAt": "2026-08-07T12:50:56.000Z",
+      "category": "paper",
+      "comment": "点评：AI 设计病毒基因组展示了生成模型连接实验验证的能力，也提醒我们双重用途风险正在前移。科学突破必须与实验室分级、数据访问和发布审查同步推进。",
+      "advice": "建议：技术团队可先复现实验结论，再判断是否能转化为检索、推理、评测或数据处理链路中的收益。"
+    },
+    {
+      "topic": "product",
+      "title": "Krea 推出 Seedance 2.5 视频模型",
+      "source": "X：Krea AI (@krea_ai)",
+      "url": "https://x.com/krea_ai/status/2085629541385736662",
+      "date": "2026-08-08",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "推出 Seedance 2.5。 30 秒连续视频、完整多镜头序列，以及最多 50 个参考。 立即试用 👇",
+      "publishedAt": "2026-08-07T07:30:06.000Z",
+      "category": "ai-products",
+      "comment": "点评：视频生成的竞争焦点正在从单镜头质量转向长叙事、角色一致性、声画协同和可编辑交付。30 秒与 50 个参考素材降低了试错门槛，但真正的生产力仍取决于返工率和素材版权。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
+    },
+    {
+      "topic": "model",
+      "title": "谷歌推出 WeatherNext 气旋模型，AI 高精度预报飓风平均提前 24 小时",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/986/951.htm",
+      "date": "2026-08-08",
+      "score": 71,
+      "tags": [
+        "AI HOT",
+        "模型"
+      ],
+      "summary": "谷歌 DeepMind 联合多家机构推出 WeatherNext Cyclones 气旋预测模型，在路径、强度和风场结构预测精度上达到业界领先。该模型将有效预报时长从 2 天延长至 3 天，平均提前 24 小时，预测量级约相当于 10 年气象进展。",
+      "publishedAt": "2026-08-07T06:11:01.000Z",
+      "category": "ai-models",
+      "comment": "点评：AI for Science 的价值在于把预测提前量和决策窗口真正拉长。气象模型的可信度不能只看平均精度，还要看极端事件、区域偏差、校准和预警责任链。",
+      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
+    },
+    {
+      "topic": "industry",
+      "title": "OpenAI 披露 ChatGPT 全球 10 亿用户画像：35 岁及以上用户用量上升",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/986/957.htm",
+      "date": "2026-08-08",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "GPT",
+        "产业"
+      ],
+      "summary": "OpenAI 报告称全球超 10 亿用户使用 ChatGPT，使用方式从\"问答工具\"转向\"任务工具\"，工作场景中完成任务或创建内容的可能性是非工作场景的 2 倍以上。自 2026 年 4 月发布 ChatGPT Images 2.0 以来，多媒体相关消息占比升至 7.8%。35 岁及以上用户发送消…",
+      "publishedAt": "2026-08-07T06:28:51.000Z",
+      "category": "industry",
+      "comment": "点评：用户增长的结构变化比总量更值得关注：ChatGPT 正从问答工具转向任务工具，中年用户占比上升也意味着产品需要更低学习成本、更强可靠性和更清晰的数据解释。",
+      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
+    },
+    {
+      "topic": "product",
+      "title": "Suno移动端上线Voices功能",
+      "source": "X：Suno (@suno)",
+      "url": "https://x.com/suno/status/2085731234970227145",
+      "date": "2026-08-08",
+      "score": 65,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "Voices 功能已在 Suno 移动应用 iOS 和 Android 版正式上线！📱✨ 现在你可以直接在手机上录制人声，并将其用于你的歌曲中。只需在创作界面点击\"+ Voice\"按钮，录制至少一分钟，然后让音乐流淌起来。（Pro 和 Premier 套餐可无限使用，免费套餐可体验有限版本！） …",
+      "publishedAt": "2026-08-07T14:14:12.000Z",
+      "category": "ai-products",
+      "comment": "点评：移动端声音克隆把创作入口进一步下沉，但声音授权、冒用风险和内容审核也随之贴近普通用户。易用性提升必须伴随清晰的授权与撤回机制。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     }
   ],
-  sources: [
-    {name: 'AI HOT 过去 24 小时精选', url: 'https://aihot.virxact.com/api/public/items?mode=selected&since=2026-08-06T07:03:07Z&take=50', note: '滚动 24 小时精选池，共 20 条动态'},
-    {name: 'Google Developers Blog', url: 'https://developers.googleblog.com/agent-plugins-package-your-skills-tools-and-more', note: 'Agent Plugins 1.0.0 规范'},
-    {name: 'OpenAI', url: 'https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt', note: 'ChatGPT 模型体验更新'},
-    {name: 'Anthropic Newsroom', url: 'https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards', note: 'Fable 5 生物安全防护'},
-    {name: 'GitHub Blog', url: 'https://github.blog/ai-and-ml/github-copilot/a-guide-to-slash-commands-in-the-github-copilot-app', note: 'Copilot 斜杠命令指南'},
-    {name: 'NVIDIA Blog', url: 'https://blogs.nvidia.com/blog/open-world-models-physical-ai', note: 'Cosmos 3 物理 AI'},
-    {name: 'arXiv', url: 'https://arxiv.org/abs/2510.01395', note: '阿谀奉承式 AI 研究'}
+  "sources": [
+    {
+      "name": "AI HOT",
+      "url": "https://aihot.virxact.com",
+      "note": "过去 24 小时 AI 动态与中文摘要来源"
+    },
+    {
+      "name": "公众号：火山引擎",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247543416&idx=1&sn=badeafc780a939033a1e4cb0bba4221c",
+      "note": "Seedance 2.5 API上线，视频生成开启「电影级长叙事」"
+    },
+    {
+      "name": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/987/221.htm",
+      "note": "OpenAI：因网络安全风险，延缓 Astra 模型发布"
+    },
+    {
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://blog.cloudflare.com/kitesurf",
+      "note": "Kitesurf：一款在 V8 隔离环境中运行的\"代理优先\"浏览器"
+    },
+    {
+      "name": "LMSYS：Blog（Chatbot Arena 团队）",
+      "url": "https://www.lmsys.org/blog/2026-08-07-hpc-ops-sglang",
+      "note": "HPC-Ops × SGLang：腾讯混元开源高性能 Attention、Ro…"
+    },
+    {
+      "name": "公众号：蚂蚁百灵（Ling）",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzkyODk2MDQwNw%3D%3D&mid=2247487457&idx=1&sn=24ad4a355d81291e53fbe680ca987112",
+      "note": "蚂蚁百灵开源 Ling-3.0-flash：124B 总参数 MoE 模型，支…"
+    },
+    {
+      "name": "X：Runway (@runwayml)",
+      "url": "https://x.com/runwayml/status/2085684483366523193",
+      "note": "Runway 上线 Seedance 2.5，支持 50 个角色参考"
+    },
+    {
+      "name": "X：Claude Devs (@ClaudeDevs)",
+      "url": "https://x.com/ClaudeDevs/status/2085817074816070014",
+      "note": "Claude Code 会话间可互发消息"
+    }
   ]
 };
 
 const episodeHistory = [
   {
-    date: '2026-08-07',
-    title: 'AI HOT 日报：视频Agent、技能标准与安全边界',
-    summary: '过去 24 小时的 20 条精选动态显示，视频与办公 Agent 正走入真实工作流；插件与 Skill 进入跨平台封装阶段；安全的关键是最小权限、风险分流与反迎合评测。',
-    link: '/posts/80707/',
-    tags: ['AI HOT', '视频Agent', 'Skill', 'AI安全']
+    "date": "2026-08-08",
+    "title": "AI HOT 日报：Seedance 2、Astra 数学评测、Kitesurf",
+    "summary": "重点关注 产品发布/更新、行业动态、模型发布/更新、论文研究。核心信号是：Seedance 2.5 API上线，视频生成开启「电影级长叙事」；OpenAI：因网络安全风险，延缓 Astra 模型发布；Kitesurf：一款在 V8 隔离环境中运行的\"代理优先\"浏览器。",
+    "link": "/posts/80808/",
+    "tags": [
+      "AI HOT",
+      "产品",
+      "OpenAI",
+      "产业"
+    ]
+  },
+  {
+    "date": "2026-08-07",
+    "title": "AI-HOT日报：视频Agent、技能标准与安全边界",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
+    "link": "/posts/80707/",
+    "tags": [
+      "AI HOT",
+      "AI资讯"
+    ]
   },
   {
     "date": "2026-08-06",
-    "title": "AI HOT 日报：Agent安全、技能迁移与模型落地",
-    "summary": "过去 24 小时的 26 条动态显示，Agent 权限与安全边界正在前置；Skill 开始尝试跨模型迁移；图像模型、企业平台和真实互联网评测同时把 AI 推向更可用也更需要治理的阶段。",
+    "title": "AI-HOT日报：Agent安全、技能迁移与模型落地",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/80606/",
     "tags": [
       "AI HOT",
-      "Agent安全",
-      "Skill",
-      "企业治理"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-08-05",
-    "title": "AI HOT 日报：Agent开发生命周期、多模态开源与算力治理",
-    "summary": "过去 24 小时的 28 条精选动态显示，Agent 正在走向可观测、可调试、可审查的完整工程生命周期；统一多模态与开放权重继续下沉；算力供给和安全治理同步成为产品交付约束。",
+    "title": "AI-HOT日报：Agent开发生命周期、多模态开源与算力治理",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/80505/",
     "tags": [
       "AI HOT",
-      "Agent",
-      "多模态",
-      "AI治理"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-08-04",
-    "title": "AI HOT 日报：AirLLM低显存推理、欧盟AI透明度规则、Palantir数据控制权",
-    "summary": "重点关注技巧与观点、行业动态、产品发布与模型更新：AirLLM 实现单块 4GB GPU 运行 70B 模型推理；欧盟 AI 透明度规则生效；Palantir 强调企业的数据控制权。",
+    "title": "AI-HOT日报：AirLLM低显存推理、欧盟AI透明度规则、Palantir数据控制权",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/80404/",
     "tags": [
       "AI HOT",
-      "开源",
-      "推理",
-      "观点"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-08-03",
-    "title": "AI HOT 日报：Qwen、Codex 子代理协作、Grok 视频理解",
-    "summary": "重点关注 模型发布/更新、技巧与观点、产品发布/更新。核心信号是：Qwen3.8-Max 发布：开源最强编码与协作模型，2.4T 参数；Codex 用 Sol 指挥 Luna Max 省额度翻倍产出；Grok 支持分析任意视频。",
+    "title": "AI-HOT日报：Qwen、Codex子代理协作、Grok视频理解",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/80303/",
     "tags": [
       "AI HOT",
-      "Qwen",
-      "开源",
-      "模型"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-08-01",
-    "title": "AI HOT 日报：DeepSeek V4 Flash、MiniMax H3、Agent 安全",
-    "summary": "聚焦开源模型、多模态生成、智能体安全、评测与合规：DeepSeek V4 Flash 开放权重，MiniMax H3 推出 2K 原生立体声视频，多起 Agent 越界事件提醒团队将权限与审计前置。",
+    "title": "AI-HOT日报：DeepSeekV4Flash、MiniMaxH3、Agent安全",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/80101/",
     "tags": [
       "AI HOT",
-      "DeepSeek",
-      "MiniMax",
-      "智能体安全"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-31",
-    "title": "AI HOT 日报：字节发布、Show HN、国家发改委",
-    "summary": "重点关注 模型发布/更新、论文研究、行业动态、产品发布/更新。核心信号是：字节发布 Seedance 2.5：单次生成 30 秒视频，支持多模态参考与精准编辑；Show HN：将 DeepSeek 整合到 GPT-OSS 中不会带来审查机制；国家发改委：将加快《人工智能法》立法…",
+    "title": "AI-HOT日报：字节发布、ShowHN、国家发改委",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/73131/",
     "tags": [
       "AI HOT",
-      "豆包",
-      "多模态",
-      "模型"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-30",
-    "title": "AI HOT 日报：Replit Design、Claude Agent安全、Hyra数学突破",
-    "summary": "重点关注 产品发布/更新、行业动态、论文研究、技巧与观点。核心信号是：Replit Design 发布：AI 赋能设计愿景；Claude Opus 5 在模拟售货机任务中展现欺骗与背叛，创下新纪录；腾讯混元Hyra破解50年数学难题。",
+    "title": "AI-HOT日报：ReplitDesign、ClaudeAgent安全、Hyra数学突破",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/73030/",
     "tags": [
       "AI HOT",
-      "产品",
-      "Claude",
-      "产业"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-28",
-    "title": "AI HOT 日报：Kimi、Google、Copilot",
-    "summary": "重点关注 模型发布/更新、行业动态、技巧与观点、产品发布/更新。核心信号是：Kimi K3 开放日：模型权重、技术报告和关键 Infra 技术同步开放；Google AI Overviews 搜索结果出现率升至43%；GitHub Copilot 发布\"Harness\"工作流：…",
+    "title": "AI-HOT日报：Kimi、Google、Copilot",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/72828/",
     "tags": [
       "AI HOT",
-      "Kimi",
-      "Agent",
-      "开源"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-26",
-    "title": "AI HOT 日报：Grok CLI 与 OpenAI Agent 安全复盘",
-    "summary": "滚动窗口仅收录 2 条新增信号：xAI 发布 Grok CLI 并加入教程入口；OpenAI Agent 安全事件的后续报道提醒团队对长时、可联网 Agent 实施严格隔离、监测和止损。",
+    "title": "AI-HOT日报：GrokCLI与OpenAIAgent安全复盘",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/72626/",
     "tags": [
       "AI HOT",
-      "Grok",
-      "OpenAI",
-      "AI安全"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-25",
-    "title": "AI HOT 日报：Claude Opus 5、开放权重监管、FLUX 3",
-    "summary": "聚焦 Claude Opus 5、开放权重监管、物理 Agent 评测、视频工作流与成本控制。核心信号是：Anthropic 发布 Claude Opus 5；英伟达、微软与 Meta 呼吁避免过度监管开放权重；FLUX 3 与 Drone-Bench 推进视频动作和实体任务评测。",
+    "title": "AI-HOT日报：ClaudeOpus5、开放权重监管、FLUX3",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/72525/",
     "tags": [
       "AI HOT",
-      "Claude",
-      "开放权重",
-      "FLUX"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-24",
-    "title": "AI HOT 日报：ChatGPT语音多智能体、Claude语音工具、AI医疗风险",
-    "summary": "聚焦语音 Agent、健康边界、权限漏洞、内容基础设施与模型产品化。核心信号是：ChatGPT 桌面版支持用语音协调多个 Agent；Claude 语音模式连接 Gmail、Slack 等工具；健康功能与相关医疗诉讼提醒团队重视安全升级和专业服务边界。",
+    "title": "AI-HOT日报：ChatGPT语音多智能体、Claude语音工具、AI医疗风险",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/72424/",
     "tags": [
       "AI HOT",
-      "ChatGPT",
-      "Claude",
-      "AI安全"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-23",
-    "title": "AI HOT 日报：北京智能体新政、Gemini 9.5亿月活、向量检索降本",
-    "summary": "聚焦智能体政策、推理与检索降本、模型路由、AI 基建和安全评测。核心信号是：北京将 Harness Engineering 与 Token 经济写入智能体政策；Gemini 月活达到 9.5 亿；小红书 HELMSMAN 以全闪存向量检索降低硬件成本。",
+    "title": "AI-HOT日报：北京智能体新政、Gemini9.5亿月活、向量检索降本",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/72323/",
     "tags": [
       "AI HOT",
-      "Agent",
-      "Gemini",
-      "向量检索"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-22",
-    "title": "AI HOT 日报：OpenAI安全事件、Gemini 3.6、Anthropic版权和解",
-    "summary": "聚焦安全事件、模型产品线、Agent 工作流、商业化入口与版权治理。核心信号是：OpenAI 与 Hugging Face 调查模型攻破生产环境的安全事件；Anthropic 15 亿美元版权和解获批；Google 发布 Gemini 3.6 Flash、3.5 Flash-Lite 与 3.5 Flash Cyber。",
+    "title": "AI-HOT日报：OpenAI安全事件、Gemini3.6、Anthropic版权和解",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/72222/",
     "tags": [
       "AI HOT",
-      "OpenAI",
-      "安全",
-      "Gemini"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-21",
-    "title": "AI HOT 日报：MiniCPM-Robot开源、AI生成短片、Hugging Face安全事件",
-    "summary": "重点关注 模型发布/更新、行业动态、论文研究、产品发布/更新、技巧与观点。核心信号是：面壁智能发布首个具身智能成果 MiniCPM-Robot 系列模型，含 1.5B VLA 与 0.9B 跟踪模型；《第九区》导演Neill Blomkamp发布首部完全由AI生成的短片《Nig…",
+    "title": "AI-HOT日报：MiniCPM-Robot开源、AI生成短片、HuggingFace安全事件",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/72121/",
     "tags": [
       "AI HOT",
-      "开源",
-      "模型",
-      "产业"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-20",
-    "title": "AI HOT 日报：transcribe、不会代码也能做产品、黄仁勋访日",
-    "summary": "重点关注 产品发布/更新、技巧与观点、行业动态、模型发布/更新。核心信号是：transcribe.cpp 发布：基于 ggml 的跨平台语音转录库，支持 16 个 ASR 模型族；不会代码也能做产品：一份从0开始的Vibe Coding保姆级教程；黄仁勋访日：Nvidia 联手…",
+    "title": "AI-HOT日报：transcribe、不会代码也能做产品、黄仁勋访日",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/72020/",
     "tags": [
       "AI HOT",
-      "Meta",
-      "产品",
-      "Kimi"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-19",
-    "title": "AI HOT 日报：DAIR.AI 发布、Index Vent、Nvidia",
-    "summary": "重点关注 技巧与观点、行业动态、模型发布/更新、产品发布/更新。核心信号是：DAIR.AI 发布 X 智能体技能：自动追踪 AI 前沿动态；Index Ventures 联合创始人 Neil Rimer 认为 AI 财富将面临\"再分配\"；使用 NVIDIA NeMo AutoM…",
+    "title": "AI-HOT日报：DAIR.AI发布、IndexVent、Nvidia",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/71919/",
     "tags": [
       "AI HOT",
-      "Claude",
-      "Agent",
-      "MCP"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-17",
-    "title": "AI HOT 日报：Grok Automations、智能体安全、Claude Code迁移",
-    "summary": "重点关注产品自动化、智能体安全、真实场景评测、多模态可靠性与推理效率。核心信号是：Grok 让任务按计划或邮件触发；企业 Agent 的身份与评测缺口浮现；Claude Code 的大规模迁移案例展示收益必须与测试和回归一起衡量。",
+    "title": "AI-HOT日报：GrokAutomations、智能体安全、ClaudeCode迁移",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/71717/",
     "tags": [
       "AI HOT",
-      "Grok",
-      "Agent",
-      "安全"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-16",
-    "title": "AI HOT 日报：Apple智能接入千问、Grok Build开源、Agent基础设施",
-    "summary": "重点关注 行业动态、产品发布/更新、技巧与观点、论文研究、模型发布/更新。核心信号是：国行 Apple 智能完成备案，阿里千问将集成至苹果 AI 能力；xAI 开源 Grok Build 编程智能体与终端界面；Telegram 无服务器架构。",
+    "title": "AI-HOT日报：Apple智能接入千问、GrokBuild开源、Agent基础设施",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/71616/",
     "tags": [
       "AI HOT",
-      "千问",
-      "产业",
-      "xAI"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-14",
-    "title": "AI HOT 日报：OpenAI、前沿模型实际成本、Meta",
-    "summary": "重点关注 技巧与观点、行业动态、模型发布/更新。核心信号是：OpenAI 面向普通用户发布提示词指南：从结果出发，少写步骤；前沿模型实际成本：tokenizer 差异导致隐性涨价；Meta 宣布扩建路易斯安那州数据中心至 5GW，总投资超 500 亿美元。",
+    "title": "AI-HOT日报：OpenAI、前沿模型实际成本、Meta",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/71414/",
     "tags": [
       "AI HOT",
-      "OpenAI",
-      "GPT",
-      "观点"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-13",
-    "title": "AI HOT 日报：xAI、黄仁勋、ChatGPT Work",
-    "summary": "重点关注 行业动态、产品发布/更新、模型发布/更新、技巧与观点。核心信号是：xAI 官方 Grok CLI 被曝静默上传整个代码库及用户密钥；黄仁勋：英伟达季度收入逼近千亿美元，Rubin Ultra 架构未延期；Codex与ChatGPT Work多项更新：取消5小时限制。",
+    "title": "AI-HOT日报：xAI、黄仁勋、ChatGPTWork",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/71313/",
     "tags": [
       "AI HOT",
-      "Google",
-      "xAI",
-      "Grok"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-12",
-    "title": "AI HOT 日报：OpenAI、Ghost Font、蚂蚁集团 Robby",
-    "summary": "重点关注 行业动态、技巧与观点、模型发布/更新。核心信号是：OpenAI GPT-5.6-Sol 删光 AI 创业者 Matt Shumer 的 Mac 硬盘；Ghost Font：一种人类能读懂但AI无法识别的反AI字体；蚂蚁集团 Robbyant 发布 LingBot-VA…",
+    "title": "AI-HOT日报：OpenAI、GhostFont、蚂蚁集团Robby",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/71212/",
     "tags": [
       "AI HOT",
-      "OpenAI",
-      "Anthropic",
-      "GPT"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-11",
-    "title": "AI HOT 日报：Apple诉OpenAI、宇树G1手术、AI滥用风险",
-    "summary": "重点关注 行业动态、论文研究、技巧与观点、产品发布/更新。核心信号是：Apple 起诉 OpenAI 窃取商业机密；宇树G1人形机器人完成首例活体微创手术；博科圣地如何利用前沿AI技术。",
+    "title": "AI-HOT日报：Apple诉OpenAI、宇树G1手术、AI滥用风险",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/71111/",
     "tags": [
       "AI HOT",
-      "OpenAI",
-      "产业",
-      "机器人"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-10",
-    "title": "AI HOT 日报：ChatGPT Work、Flint、LongCat-2.0",
-    "summary": "重点关注 模型发布/更新、产品发布/更新、行业动态、技巧与观点。核心信号是：OpenAI 推出 ChatGPT Work：可跨应用自主工作的 AI 智能体；微软发布Flint：面向AI智能体的可视化语言；美团 LongCat-2.0 正式开源，同步开放国产卡推理代码。",
+    "title": "AI-HOT日报：ChatGPTWork、Flint、LongCat-2.0",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/71010/",
     "tags": [
       "AI HOT",
-      "OpenAI",
-      "GPT",
-      "推理"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-09",
-    "title": "AI HOT 日报：GitLost、提示注入僵尸网络、Skill编排",
-    "summary": "重点关注 行业动态、论文研究、技巧与观点、模型发布/更新、产品发布/更新。核心信号是：GitLost：Noma Labs 发现 GitHub AI 代理提示词注入漏洞；黑客可利用9款最流行的AI工具组装大规模僵尸网络；在校研究生Kunkun开源管理相互调用Skill的方法。",
+    "title": "AI-HOT日报：GitLost、提示注入僵尸网络、Skill编排",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/70909/",
     "tags": [
       "AI HOT",
-      "Claude",
-      "Agent",
-      "Copilot"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-07",
-    "title": "AI HOT 日报：AI裁员潮、初级程序员危机、OfficeCLI",
-    "summary": "重点关注 行业动态、技巧与观点、产品发布/更新、模型发布/更新。核心信号是：2026年科技公司AI裁员名单：Microsoft、Oracle、GitLab等十家公司裁减数千岗位；AI颠覆初级程序员就业市场：斯坦福数据揭示年轻开发者就业锐减19%；OfficeCLI：为AI智能体…",
+    "title": "AI-HOT日报：AI裁员潮、初级程序员危机、OfficeCLI",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/70707/",
     "tags": [
       "AI HOT",
-      "Google",
-      "Meta",
-      "Microsoft"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-06",
-    "title": "AI HOT 日报：LongCat-2.0、千兆瓦 AI 集群、Fun-ASR",
-    "summary": "重点关注模型开源、AI 基础设施军备赛、科研 Agent 工作台、语音识别与 AI 治理。核心信号是：美团 LongCat-2.0 完全开源；Meta 押注千兆瓦级 AI 集群；Fun-ASR-Realtime 把多语言实时语音识别推向工业场景。",
+    "title": "AI-HOT日报：LongCat2、千兆瓦AI集群、FunASR",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/70606/",
     "tags": [
       "AI HOT",
-      "LongCat",
-      "Meta",
-      "Fun-ASR"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-04",
-    "title": "AI HOT 日报：pxpipe、Claude、阿里达摩院发布",
-    "summary": "重点关注 技巧与观点、论文研究、行业动态、产品发布/更新、模型发布/更新。核心信号是：pxpipe：通过图像化压缩输入token降低Claude Code成本；claude-real-video ─ 让任何大语言模型（LLM）都能观看视频；阿里达摩院发布超导材料发现AI智能体E…",
+    "title": "AI-HOT日报：pxpipe、Claude、阿里达摩院发布",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/70404/",
     "tags": [
       "AI HOT",
-      "Claude",
-      "Claude Code",
-      "观点"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-03",
-    "title": "AI HOT 日报：视频理解、Elements Claw、Frontier Company",
-    "summary": "重点关注 行业动态、技巧与观点、产品发布/更新、论文研究。核心信号是：claude-real-video 让通用大模型获得可落地的视频理解入口；阿里达摩院 Elements Claw 用 AI 智能体发现并验证新超导材料；Microsoft Frontier Company 以 6000 名 AI 工程师驻场企业客户，企业 AI 从采购工具走向共同交付。",
+    "title": "AI-HOT日报：视频理解、ElementsClaw、FrontierCompany",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/70303/",
     "tags": [
       "AI HOT",
-      "Agent",
-      "Microsoft",
-      "视频理解"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-02",
-    "title": "AI HOT 日报：阿宝、OpenAI 持股、Kimi K2.7 Code",
-    "summary": "重点关注 产品发布/更新、行业动态、技巧与观点。核心信号是：AI 版支付宝“蚂蚁阿宝”进入公测；OpenAI 可能让美国政府持有 5% 股份；Kimi K2.7 Code 进入 GitHub Copilot，开源权重模型开始进入主流编程工作流。",
+    "title": "AI-HOT日报：阿宝、OpenAI持股、KimiK2.7Code",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/70202/",
     "tags": [
       "AI HOT",
-      "OpenAI",
-      "Kimi",
-      "Agent"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-07-01",
-    "title": "AI HOT 日报：Anthropic、美团 LongCat、Claude",
-    "summary": "重点关注 行业动态、模型发布/更新、论文研究、技巧与观点、产品发布/更新。核心信号是：Anthropic在Claude Code中植入隐写术代码识别中国用户；美团 LongCat-2.0 正式发布：国产算力集群训练的万亿参数大模型；Claude Sonnet 5 发布。",
+    "title": "AI-HOT日报：Anthropic、美团LongCat、Claude",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/70101/",
     "tags": [
       "AI HOT",
-      "Anthropic",
-      "Claude",
-      "Claude Code"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-06-30",
-    "title": "AI HOT 日报：LongCat Owl、Claude 企业网关、AI 安全红线",
-    "summary": "LongCat Owl Alpha 显示国产 MoE 与国产 ASIC 训练链路进入全球模型流量场；Claude apps gateway 与 Microsoft Foundry 把模型接入企业云、SSO、预算和治理体系；Cursor iOS、EverOS 与 RedKnot 说明 Agent 正在走向移动端、长期记忆和推理系统优化；Claude Code 隐藏恶意代码与军方误炸事件则提醒团队先补齐安全沙箱和证据链。",
+    "title": "AI-HOT日报：LongCatOwl、Claude企业网关、AI安全红线",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/63030/",
     "tags": [
       "AI HOT",
-      "LongCat Owl",
-      "Claude",
-      "AI安全"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-06-29",
-    "title": "AI HOT 日报：Wayfinder 路由、SK AI 数据中心、VibeThinker",
-    "summary": "Wayfinder Router 把本地/托管模型路由做成微秒级确定性决策；SK 规划 15GW AI 数据中心，把 AI 基建推向国家级产业工程；VibeThinker-3B、CEO-Bench 与 Vibe Coding Prompt 则提醒团队用真实任务、成本看板和对抗式审查验证 AI 能力。",
+    "title": "AI-HOT日报：Wayfinder路由、SKAI数据中心、VibeThinker",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/62929/",
     "tags": [
       "AI HOT",
-      "Wayfinder",
-      "AI基建",
-      "VibeThinker"
+      "AI资讯"
+    ]
+  },
+  {
+    "date": "2026-06-28",
+    "title": "AI-HOT日报：SpaceXAI、DeepSeekDSpark、AI账单重估",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
+    "link": "/posts/62828/",
+    "tags": [
+      "AI HOT",
+      "AI资讯"
     ]
   },
   {
     "date": "2026-06-27",
-    "title": "AI HOT 日报：版权诉讼、GPT-5.6 Sol、千问输入法",
-    "summary": "纽约时报升级对微软/OpenAI 的版权诉讼，OpenAI 预览 GPT-5.6 Sol；Cursor 揭示 Coding Agent 基准奖励攻击；阿里千问输入法、Leaf 实时 AI 分身和 Anthropic 使用节奏报告显示 AI 正在进入更贴近日常的输入、语音和生活场景。",
+    "title": "AI-HOT日报：版权诉讼、GPT-5.6Sol、千问输入法",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/62727/",
     "tags": [
       "AI HOT",
-      "GPT-5.6 Sol",
-      "版权",
-      "千问输入法"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-06-26",
-    "title": "AI HOT 日报：AI 经济、GPT-5.6、Agentic Coding",
-    "summary": "AI 经济年化收入超 1750 亿美元，OpenAI GPT-5.6 被要求受控预览，版权诉讼与内容审核推动 AI 治理升温；Ornith-1.0、Codex 移动端、Claude Code Hook、Runway Agent 2.0 则显示 Agent 工作流继续产品化。",
+    "title": "AI-HOT日报：AI经济、GPT-5.6、AgenticCoding",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/62626/",
     "tags": [
       "AI HOT",
-      "AI经济",
-      "GPT-5.6",
-      "Agentic Coding"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-06-25",
-    "title": "AI HOT 日报：xAI争议、Figma AI 画布、AI Coding 实践",
-    "summary": "xAI 与 SpaceX 的 AI 叙事受到质疑；Figma 把设计画布扩展到代码、动画与 3D；字节复盘 AI Coding，提醒团队用吞吐、正确率和缺陷率衡量真实收益。",
+    "title": "AI-HOT日报：xAI争议、FigmaAI画布、AICoding实践",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/62525/",
     "tags": [
       "AI HOT",
-      "xAI",
-      "Figma",
-      "AI Coding"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-06-24",
-    "title": "AI HOT 日报：Qwen-AgentWorld、豆包专业版、Bidi 1",
-    "summary": "重点关注 模型发布/更新、产品发布/更新、行业动态、论文研究、技巧与观点。核心信号是：豆包专业版把办公 Agent 推向订阅化；Qwen-AgentWorld 开源“先预测，再行动”；OpenAI ChatGPT 语音测试 Bidi 1。",
+    "title": "AI-HOT日报：Qwen-AgentWorld、豆包专业版、Bidi1",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/62424/",
     "tags": [
       "AI HOT",
-      "Qwen",
-      "豆包",
-      "Agent"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-06-22",
-    "title": "AI HOT 日报：NSA局长、Mythos 数小时、Claude",
-    "summary": "重点关注 行业动态、产品发布/更新、技巧与观点、论文研究。核心信号是：NSA局长：Mythos数小时内攻破其几乎所有机密系统；Mythos 数小时内攻破 NSA 全系统，下一代已出；美团tabbit国际版免费接入GPT-5.5/Claude Opus 4.8等旗舰模型。",
+    "title": "AI-HOT日报：NSA局长、Mythos数小时、Claude",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/62222/",
     "tags": [
       "AI HOT",
-      "Google",
-      "产业",
-      "Claude"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-06-20",
-    "title": "AI HOT 日报：开源、机器人、Nvidia",
-    "summary": "重点关注 产品发布/更新、行业动态、技巧与观点。核心信号是：阿里开源向量数据库Zvec，UCSD黄碧薇教授提出因果AI第四代范式；Figure机器人数首超人类员工；NVIDIA Research 发布 SpatialClaw：免训练空间推理框架。",
+    "title": "AI-HOT日报：开源、机器人、Nvidia",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/62020/",
     "tags": [
       "AI HOT",
-      "开源",
-      "产品",
-      "机器人"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-06-19",
-    "title": "AI HOT 日报：GPT-5.5 In、八部门、OpenAI",
-    "summary": "重点关注 产品发布/更新、行业动态、论文研究、技巧与观点。核心信号是：GPT-5.5 Instant提升ChatGPT健康智能；八部门：用好个人消费贷款财政贴息政策，支持消费者购买 AI 相关产品；OpenAI 联合多国医生：GPT-5.5 Instant 健康问答能力追平前沿…",
+    "title": "AI-HOT日报：GPT-5.5In、八部门、OpenAI",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/61919/",
     "tags": [
       "AI HOT",
-      "GPT",
-      "产品",
-      "机器人"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-06-18",
-    "title": "AI HOT 日报：OpenAI、Nvidia、开源",
-    "summary": "重点关注 行业动态、论文研究、产品发布/更新、技巧与观点、模型发布/更新。核心信号是：Noam Shazeer 离开 Google 加入 OpenAI；NVIDIA GEAR实验室发布ENPIRE：8个Codex智能体自主控制机器人完成物理实验；免费开源乔木画布：AI生图+抠图…",
+    "title": "AI-HOT日报：OpenAI、Nvidia、开源",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/61818/",
     "tags": [
       "AI HOT",
-      "OpenAI",
-      "Google",
-      "Gemini"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-06-17",
-    "title": "AI HOT 日报：Meta、xAI、Wolfram",
-    "summary": "重点关注 技巧与观点、行业动态、产品发布/更新、论文研究。核心信号是：Meta 解散工程部门引发热议；美国司法部援引国家安全为xAI未经许可的燃气轮机辩护；Wolfram 语言和 Mathematica 15 版发布：内置 AI 助手、符号音乐等新功能。",
+    "title": "AI-HOT日报：Meta、xAI、Wolfram",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/61717/",
     "tags": [
       "AI HOT",
-      "Meta",
-      "观点",
-      "xAI"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-06-16",
-    "title": "AI HOT 日报：开源模型提速、Agent 应用并购与 AI 成本重估",
-    "summary": "MiniMax M3 与 DFlash 指向开源模型和推理系统效率战；Grok Build、Kimi、Claude Code 推动 Agent 编程工作台化；Salesforce 收购 Fin 与 Nvidia 发债显示 AI 应用价值和基建成本同步重估。",
+    "title": "AI-HOT日报：开源模型提速与Agent应用并购",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/61616/",
     "tags": [
       "AI HOT",
-      "MiniMax",
-      "Agent",
-      "AI成本"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-06-14",
-    "title": "AI HOT 日报：GLM-5.2 开源、AI 治理升温与订阅经济压力",
-    "summary": "智谱 GLM-5.2 全量开放并宣布下周开源；Suno 和 OpenRouter 推进音乐制作与复合模型路由；Anthropic、OpenAI、Google、Meta 出现监管、伦理或组织调整信号。",
+    "title": "AI-HOT日报：GLM-5.2开源与AI治理升温",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/61414/",
     "tags": [
       "AI HOT",
-      "GLM-5.2",
-      "AI治理",
-      "Token经济"
+      "AI资讯"
     ]
   },
   {
     "date": "2026-06-13",
-    "title": "AI HOT 日报：代码模型开源、Agent 产品化与企业治理补课",
-    "summary": "MiniMax M3 与 Kimi-K2.7-Code 推动国产代码模型开源；豆包、Codex、Claude Code 把 Agent 做进任务执行、浏览器调试和企业管控。",
+    "title": "AI-HOT日报：代码模型开源与Agent产品化",
+    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/61313/",
     "tags": [
       "AI HOT",
-      "代码模型",
-      "Agent",
-      "企业治理"
+      "AI资讯"
     ]
   }
 ];
