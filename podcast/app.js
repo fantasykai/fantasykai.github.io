@@ -130,229 +130,236 @@ const previousEpisode = {
 };
 
 const episode = {
-  "date": "2026-08-11",
-  "title": "AI HOT 日报：英伟达5000亿美元AI工厂、Muse Glimmer开源、AI会议录音泄露",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、模型发布/更新、技巧与观点、产品发布/更新、论文研究。核心信号是：英伟达联合六大机构融资5000亿美元建AI工厂；Scale AI 开源 Muse 系列模型；tl；dv 逾18.1万段AI会议录音被公开暴露，可实时闯入他人通话。",
+  "date": "2026-08-14",
+  "title": "AI HOT 日报：DeepSeek、GPT-5.6 构建、开源",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 模型发布/更新、技巧与观点、产品发布/更新。核心信号是：DeepSeek-V4-Pro 正式版上线，Agent 能力大幅增强；GPT-5.6 构建者指南：如何以更低成本实现前沿智能体性能；小红书开源连续自回归语音合成模型 dots.tts：打造可持续扩展的 TTS 基座。",
   "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "topic": "industry",
-      "title": "英伟达联合六大机构融资5000亿美元建AI工厂",
-      "source": "X：Jensen Huang (@JensenHuang)",
-      "url": "https://x.com/JensenHuang/status/2086934705207959965",
-      "date": "2026-08-11",
-      "score": 79,
+      "topic": "model",
+      "title": "DeepSeek-V4-Pro 正式版上线，Agent 能力大幅增强",
+      "source": "DeepSeek：API 更新日志",
+      "url": "https://api-docs.deepseek.com/zh-cn/updates#%E6%97%B6%E9%97%B4-2026-08-13",
+      "date": "2026-08-14",
+      "score": 81,
       "tags": [
         "AI HOT",
-        "产业"
+        "DeepSeek",
+        "Agent",
+        "模型"
       ],
-      "summary": "英伟达宣布与Apollo、BlackRock、Blackstone、Brookfield、Goldman Sachs和KKR合作，建立独立融资平台，动员超5000亿美元第三方资本支持AI基础设施建设。",
-      "publishedAt": "2026-08-10T21:56:21.000Z",
-      "category": "industry",
-      "comment": "点评：这笔超大规模融资说明，AI 竞争正从采购 GPU 走向由资本、能源、土地、网络和长期客户合同共同决定的“工业化供给”。基础设施扩张会降低供给瓶颈，但并不自动证明每一单位算力都能产生足够回报。",
-      "advice": "建议：采购或建设算力时，按真实业务峰谷、利用率、单位任务成本和退出条款建模；将长期容量承诺与可迁移架构、预算上限和季度 ROI 复盘绑定。"
+      "summary": "DeepSeek-V4-Pro 正式版已在 APP、网页端和 API 同步上线，模型名设为 deepseek-v4-pro 即可使用。其 Agent 能力显著提升，HLE （wo/w tools） 达 42.7/60.0，Terminal Bench 2.1 为 87.9。",
+      "publishedAt": "2026-08-13T11:16:42.199Z",
+      "category": "ai-models",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
+    },
+    {
+      "topic": "tip",
+      "title": "GPT-5.6 构建者指南：如何以更低成本实现前沿智能体性能",
+      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "url": "https://openai.com/index/builders-guide-to-gpt-5-6",
+      "date": "2026-08-14",
+      "score": 80,
+      "tags": [
+        "AI HOT",
+        "GPT",
+        "推理",
+        "观点"
+      ],
+      "summary": "GPT-5.6 模型家族以更低成本实现前沿级智能体性能，并新增推理持久化、原生多智能体编排和程序化工具调用等 API 能力。在 ARC-AGI-3 上，启用保留推理和压缩后，Sol 得分从 13.3% 跃升至 38.3%，且输出 token 减少约 6 倍。Luna 在 BrowseComp 上以…",
+      "publishedAt": "2026-08-13T11:00:00.000Z",
+      "category": "tip",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
     },
     {
       "topic": "model",
-      "title": "Scale AI 开源 Muse 系列模型",
-      "source": "X：Alexandr Wang（Scale AI 创始人/Meta 首席 AI 官） (@alexandr_wang)",
-      "url": "https://x.com/alexandr_wang/status/2086756152034066792",
-      "date": "2026-08-11",
-      "score": 77,
+      "title": "小红书开源连续自回归语音合成模型 dots.tts：打造可持续扩展的 TTS 基座",
+      "source": "公众号：小红书技术（dots.llm）",
+      "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496062&idx=1&sn=d4c48926c5d7607f129dfea03699a6c0",
+      "date": "2026-08-14",
+      "score": 75,
       "tags": [
         "AI HOT",
         "开源",
         "模型"
       ],
-      "summary": "1/ 今天有个重大消息：我们很快将发布 Muse Spark 1.2 的开源权重版本。 同时，我们还将发布 Muse Glimmer--一个 30B 参数的智能体模型，采用 Apache 2.0 协议开源权重。Muse Glimmer 可在 24GB 显存上运行，且不损失智能体可靠性。🧵",
-      "publishedAt": "2026-08-10T10:06:51.000Z",
+      "summary": "小红书 dots 团队开源 20 亿参数全连续端到端自回归语音合成模型 dots.tts，在 Seed-TTS-Eval 三个子集上取得最佳平均内容准确度和平均说话人相似度。",
+      "publishedAt": "2026-08-13T09:59:00.000Z",
       "category": "ai-models",
-      "comment": "点评：30B 开放权重模型瞄准本地、常驻的 Agent 工作流，竞争点不只是参数量，而是能否在受限显存下稳定完成多步任务。权重开放与 Day-0 推理支持降低了试用门槛，但可靠性、工具权限和实际吞吐仍需独立验证。",
-      "advice": "建议：在目标硬件上用真实多步任务测试量化后的准确率、首 token 延迟、吞吐、显存占用和工具调用成功率；先以只读、可回放任务试点，再决定是否接入生产工作流。"
-    },
-    {
-      "topic": "tip",
-      "title": "tl；dv 逾18.1万段AI会议录音被公开暴露，可实时闯入他人通话",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://bobdahacker.com/blog/tldv-hack",
-      "date": "2026-08-11",
-      "score": 72,
-      "tags": [
-        "AI HOT",
-        "观点"
-      ],
-      "summary": "AI会议记录平台tl；dv的Firestore数据库因缺乏租户隔离，任何已认证用户可查询全部18.1万段会议记录，涉及84，312名用户、35，003个域名，含23国政府及多所高校会议。处于录制状态的约1，000场会议会暴露可加入的会议ID，研究者借此闯入马来西亚教育部及美国某大学创业团队的实时通…",
-      "publishedAt": "2026-08-10T14:03:26.804Z",
-      "category": "tip",
-      "comment": "点评：会议助手把高敏感语音、转写和实时会议信息集中到一处后，租户隔离失效就不再是普通数据泄露，而可能直接变成窃听入口。AI 功能越贴近沟通主干，身份校验、资源授权和默认私密性越必须先于“自动总结”上线。",
-      "advice": "建议：立即盘点会议 AI 的录音、转写、分享链接与第三方集成；验证逐资源授权和租户隔离，关闭不必要的公开访问，并准备令牌轮换、审计回溯和受影响人员通知流程。"
-    },
-    {
-      "topic": "tip",
-      "title": "智能体真的会用电脑吗？a16z 用数据给出答案",
-      "source": "a16z：News（RSS）",
-      "url": "https://www.a16z.news/p/can-agents-use-a-computer-yet-weve",
-      "date": "2026-08-11",
-      "score": 72,
-      "tags": [
-        "AI HOT",
-        "Claude",
-        "观点"
-      ],
-      "summary": "a16z 数据显示，计算机操作智能体在 OSWorld-Verified 基准上的最佳成绩已从一年前的 42% 升至 85%，超过人类测试者约 72% 的水平，Claude Fable 5 以 85% 领先。",
-      "publishedAt": "2026-08-10T14:00:46.000Z",
-      "category": "tip",
-      "comment": "点评：电脑操作基准的快速提升说明 Agent 已能覆盖更多标准化界面任务，但基准分数不等于生产可靠性：登录态、页面变化、异常分支和不可逆操作都会放大失败代价。应把它视为自动化候选范围扩大，而非无人值守的通行证。",
-      "advice": "建议：从低风险、可回滚的浏览器或桌面任务开始，建立成功率、异常处理、人工接管和恢复时间指标；支付、发布、删除及身份变更仍保留明确确认。"
+      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
     },
     {
       "topic": "model",
-      "title": "SGLang 为 Muse Glimmer 提供 Day-0 支持，针对本地智能体工作流优化推理",
-      "source": "LMSYS：Blog（Chatbot Arena 团队）",
-      "url": "https://www.lmsys.org/blog/2026-08-10-meta-muse-glimmer",
-      "date": "2026-08-11",
-      "score": 72,
-      "tags": [
-        "AI HOT",
-        "Meta",
-        "推理",
-        "多模态",
-        "模型"
-      ],
-      "summary": "SGLang 与 Meta Superintelligence Labs 合作，为 30B 参数多模态模型 Muse Glimmer 提供 Day-0 支持，该模型拥有 128k+ token 上下文窗口。",
-      "publishedAt": "2026-08-10T11:51:38.747Z",
-      "category": "ai-models",
-      "comment": "点评：30B 开放权重模型瞄准本地、常驻的 Agent 工作流，竞争点不只是参数量，而是能否在受限显存下稳定完成多步任务。权重开放与 Day-0 推理支持降低了试用门槛，但可靠性、工具权限和实际吞吐仍需独立验证。",
-      "advice": "建议：在目标硬件上用真实多步任务测试量化后的准确率、首 token 延迟、吞吐、显存占用和工具调用成功率；先以只读、可回放任务试点，再决定是否接入生产工作流。"
-    },
-    {
-      "topic": "product",
-      "title": "Qwen-MM-Plugins 让智能体原生支持多模态",
-      "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
-      "url": "https://x.com/Alibaba_Qwen/status/2086664887560970531",
-      "date": "2026-08-11",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "Qwen",
-        "多模态",
-        "产品"
-      ],
-      "summary": "👀 看见只是开始。 借助 Qwen-MM-Plugins，让你的智能体原生支持多模态--读取图片、视频和文档，编辑视频，处理 3D/CAD，以及更多。 从多模态模型 → 多模态智能体。🚀 观看实际效果：https://github.com/QwenLM/Qwen-MM-Plugins",
-      "publishedAt": "2026-08-10T04:04:12.000Z",
-      "category": "ai-products",
-      "comment": "点评：让 Agent 原生读取图片、视频、文档与 3D/CAD，会扩大它可完成的任务，也同步扩大不可信输入、隐私素材和工具调用的攻击面。多模态能力应与来源标记、内容扫描和最小权限一起进入产品设计。",
-      "advice": "建议：用已授权素材测试多模态任务，并对上传内容做来源隔离、恶意文件扫描和敏感信息脱敏；把视频编辑、文件写入和外发动作分级授权。"
-    },
-    {
-      "topic": "product",
-      "title": "Claude Code 自动模式默认开启原理",
-      "source": "X：Claude Devs (@ClaudeDevs)",
-      "url": "https://x.com/ClaudeDevs/status/2086844755770757531",
-      "date": "2026-08-11",
-      "score": 69,
+      "title": "GLM-5.3 发布：编程能力开源第一，并涌现网络安全能力",
+      "source": "公众号：智谱（GLM）",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzkyMzI3NzQ0Mg%3D%3D&mid=2247494084&idx=1&sn=a2e5cd9a534a4825feb3633ea1b6d492",
+      "date": "2026-08-14",
+      "score": 73,
       "tags": [
         "AI HOT",
         "Claude",
-        "Claude Code",
-        "产品"
+        "智谱",
+        "开源",
+        "模型"
       ],
-      "summary": "我们最近将自动模式设为 Claude Code 的默认选项，这意味着你不再需要批准每一个操作。 但什么决定某个操作是否可以安全运行？看看它是如何工作的：",
-      "publishedAt": "2026-08-10T15:58:56.000Z",
-      "category": "ai-products",
-      "comment": "点评：把自动模式设为默认值，代表编程 Agent 正把摩擦从逐次确认转移到预先定义的风险策略。体验会更顺畅，但安全性取决于隔离范围、允许动作、异常拦截和用户能否及时看见并撤销变更。",
-      "advice": "建议：为自动模式配置仓库、目录、网络和命令白名单，要求每次任务保留 diff 与测试证据；将依赖安装、外发、删除和生产操作继续置于人工确认之后。"
+      "summary": "智谱发布GLM-5.3，基于与GLM-5.2相同的基座，通过极致的后训练Scaling提升智能上界，编程能力较前代提升50%，在Terminal Bench 3.0等公开基准中取得开源第一，并接近Claude Fable 5。模型在白盒代码审查等安全任务中表现持平Mythos 5，在CyberGy…",
+      "publishedAt": "2026-08-14T05:31:04.000Z",
+      "category": "ai-models",
+      "comment": "点评：Claude Fable 强调的不是更会执行命令，而是帮助用户发现盲点。高质量人机协作正在从“下指令”转向“共同暴露假设、未知和验证路径”。",
+      "advice": "建议：每次交给模型实现前，先让它列出假设、未知、风险、反例和验证计划；完成后再让它对照这些清单做一次盲点复盘。"
+    },
+    {
+      "topic": "model",
+      "title": "Google DeepMind 推出 Gemini 3.7 Flash：面向编程与智能体的最强工作模型",
+      "source": "Google DeepMind：Blog（RSS）",
+      "url": "https://deepmind.google/blog/introducing-gemini-3-7-flash",
+      "date": "2026-08-14",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "Google",
+        "Gemini",
+        "模型"
+      ],
+      "summary": "Google DeepMind 发布 Gemini 3.7 Flash，距 3.6 Flash 仅三周，主打编程与智能体任务，输入/输出价格分别为每百万 token $0.75 和 $3.75，为原 3.6 Flash 的一半。",
+      "publishedAt": "2026-08-13T17:04:18.000Z",
+      "category": "ai-models",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
     },
     {
       "topic": "tip",
-      "title": "扎克伯格：超级智能应人人可用",
-      "source": "X：Mark Zuckerberg (@finkd)",
-      "url": "https://x.com/finkd/status/2086754845218726027",
-      "date": "2026-08-11",
+      "title": "从0到1带你速通DeepSeek Harness。",
+      "source": "公众号：数字生命卡兹克",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647685238&idx=1&sn=c3159dba0dd5a141f8dd726fd474e6e2",
+      "date": "2026-08-14",
       "score": 69,
       "tags": [
         "AI HOT",
-        "Meta",
+        "DeepSeek",
         "观点"
       ],
-      "summary": "我相信每个人都应能使用超级智能，我撰写了一篇长文，阐述 Meta 为所有人构建积极未来的理念与价值观。http://meta.com/thefutureisforeveryone",
-      "publishedAt": "2026-08-10T10:01:39.000Z",
+      "summary": "从0到1带你速通DeepSeek Harness。",
+      "publishedAt": "2026-08-13T23:58:00.000Z",
       "category": "tip",
       "comment": "点评：这条动态值得从方法论、最佳实践和落地风险三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
       "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
     },
     {
-      "topic": "tip",
-      "title": "微信小微AI帮写与AI点评内测：朋友圈最后一点人味正在消失",
-      "source": "公众号：数字生命卡兹克",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647685081&idx=1&sn=13a05578a3959c047209c8e74b56fa48",
-      "date": "2026-08-11",
-      "score": 65,
+      "topic": "product",
+      "title": "Qwen3.8-2.4T-A95B 开源，硅基流动即日上线",
+      "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
+      "url": "https://x.com/SiliconFlowAI/status/2087903227224412222",
+      "date": "2026-08-14",
+      "score": 67,
       "tags": [
         "AI HOT",
-        "观点"
+        "Qwen",
+        "开源",
+        "产品"
       ],
-      "summary": "微信基于小微推出朋友圈AI帮写与AI点评内测功能，前者可根据图片和已写文字生成3条朋友圈文案，后者可长按文字生成评价或快捷评论。作者认为这两个功能将AI置于社交核心位置，可能鼓励AI内容、破坏朋友圈自2012年确立的\"记录美好生活\"基调。公众号端小微还常驻首位，自动总结常看公众号文章，作者担忧这会…",
-      "publishedAt": "2026-08-11T00:12:00.000Z",
-      "category": "tip",
-      "comment": "点评：AI 进入社交表达后，提升发布效率与保留个人声音之间会出现真实张力。尤其是自动点评，若用户无法清楚区分真人与生成内容，社交信任可能被“看似活跃”的互动稀释。",
-      "advice": "建议：社交产品应将生成与自动点评保持显式可选，提供清晰标识、关闭入口与误触撤销；创作者则可把 AI 用于起草和校对，但发布前保留个人判断与真实表达。"
+      "summary": "阿里开源 Qwen3.8-2.4T-A95B，硅基流动已提供 Day-0 支持。该模型拥有 2.4T 参数、95B 激活参数，主打自主编码、深度研究与端到端智能体执行。API 定价为输入 $2.00/百万 token，输出 $6.00/百万 token，缓存输入 $0.25/百万 token。",
+      "publishedAt": "2026-08-13T14:04:55.000Z",
+      "category": "ai-products",
+      "comment": "点评：Qwen3.8 把国产开源模型继续推向超大参数与前沿对标区间。对企业来说，关注点应从“参数有多大”转向中文长上下文、代码、工具调用、部署成本和许可证能否支撑真实业务。",
+      "advice": "建议：把 Qwen3.8 放进真实中文任务集评测：长文档问答、代码修改、函数调用、多轮 Agent、成本和延迟；如果考虑私有化，还要提前核查权重、许可证、推理栈和芯片适配。"
     },
     {
-      "topic": "safety",
-      "title": "Databricks 如何在兼顾治理的前提下让 Genie Agents 同时基于结构化数据与文档运行",
-      "source": "Databricks：Blog（RSS）",
-      "url": "https://www.databricks.com/blog/how-ground-genie-agents-both-structured-data-and-documents-without-losing-governance",
-      "date": "2026-08-11",
-      "score": 65,
+      "topic": "tip",
+      "title": "Claude 接管应用日常维护：388 个 PR 的实践",
+      "source": "X：Boris Cherny (@bcherny)",
+      "url": "https://x.com/bcherny/status/2088014489438621990",
+      "date": "2026-08-14",
+      "score": 66,
       "tags": [
         "AI HOT",
-        "Agent",
+        "Claude",
+        "Claude Code",
         "观点"
       ],
-      "summary": "Databricks 介绍如何让 Genie Agents 同时基于结构化数据与文档运行，且不牺牲治理能力。文章探讨了构建自动化简单业务任务的智能体虽易，但要在统一治理框架下融合两类数据源、确保安全合规地执行查询，仍需解决数据权限、血缘追踪与策略管控等关键问题。",
-      "publishedAt": "2026-08-10T23:08:50.000Z",
+      "summary": "Boris Cherny 尝试让 Claude 接管其应用的日常维护，通过 Slack 频道运行崩溃模糊测试、重复代码统一、死代码移除等日常任务。数周内自动开出 388 个 PR，其中 180 个经 Claude Code Review 和人工审核后合并。Claude 通常一次就能改对，出错时可通…",
+      "publishedAt": "2026-08-13T21:27:02.000Z",
       "category": "tip",
-      "comment": "点评：把表格、指标和非结构化文档放进同一 Agent 上下文，能减少人工查找与拼接；但权限继承、数据血缘和答案可追溯性必须同时成立，否则“更会回答”会放大越权与错误决策风险。",
-      "advice": "建议：为每次回答保留引用数据、权限来源和查询轨迹；先在只读、脱敏数据集上验证跨源问答，再逐步开放受控写入或自动化决策。"
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
+    },
+    {
+      "topic": "product",
+      "title": "DeepSeek Harness v0.1 开发者预览版发布",
+      "source": "X：DeepSeek (@deepseek_ai)",
+      "url": "https://x.com/deepseek_ai/status/2087887408440164663",
+      "date": "2026-08-14",
+      "score": 66,
+      "tags": [
+        "AI HOT",
+        "DeepSeek",
+        "开源",
+        "产品"
+      ],
+      "summary": "DeepSeek Harness v0.1 现已推出开发者预览版，并以 MIT 许可证开源。该智能体框架基于 Cordis 元框架构建，核心设计为\"一切皆插件\"，模型、工具、技能、会话、沙箱、文件系统、循环、编排及 UI 均可自由组合、替换和扩展。",
+      "publishedAt": "2026-08-13T13:02:03.000Z",
+      "category": "ai-products",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     },
     {
       "topic": "model",
-      "title": "Meta 发布开源模型 Muse Glimmer",
-      "source": "X：AI at Meta (@AIatMeta)",
-      "url": "https://x.com/AIatMeta/status/2086757844544811485",
-      "date": "2026-08-11",
-      "score": 58,
+      "title": "DeepSeek V4 Pro 登陆硅基流动，1M 上下文",
+      "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
+      "url": "https://x.com/SiliconFlowAI/status/2088127458558271885",
+      "date": "2026-08-14",
+      "score": 65,
       "tags": [
         "AI HOT",
-        "Meta",
+        "DeepSeek",
+        "开源",
+        "推理",
+        "模型"
+      ],
+      "summary": "DeepSeek-V4-Pro-0813 正式上线硅基流动 SiliconFlow，提供 Day-0 支持，具备 1M 上下文窗口及低/高/最大三档推理强度，更侧重编码、工具调用与智能体工作流，仍保持 MIT 开源协议。定价为输入 $1.32/M、输出 $3.96/M、缓存命中 $0.44/M。同…",
+      "publishedAt": "2026-08-14T04:55:56.000Z",
+      "category": "ai-models",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
+    },
+    {
+      "topic": "product",
+      "title": "Cursor 推出 builds：云智能体启动速度提升至 3 倍",
+      "source": "Cursor Blog",
+      "url": "https://cursor.com/blog/builds",
+      "date": "2026-08-14",
+      "score": 65,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "Cursor 推出 builds 功能，在后台持续准备就绪的开发环境副本，让云智能体启动时无需从零搭建，响应速度最高提升 3 倍。内部环境启动快 10 倍，首个 token 生成快 3 倍；智能体始终从最近一次成功的 build 启动，依赖更新或安装脚本出错时不会影响运行。8 月 17 日起所有环…",
+      "publishedAt": "2026-08-13T12:00:00.000Z",
+      "category": "ai-products",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
+    },
+    {
+      "topic": "model",
+      "title": "MiniMax Music 3.0 发布：新一代开源权重、生产级全能音乐模型",
+      "source": "MiniMax：Blog（网页）",
+      "url": "https://www.minimax.io/blog/minimax-music-3-0-next-generation-open-weights-production-ready-versatile-music-model",
+      "date": "2026-08-14",
+      "score": 63,
+      "tags": [
+        "AI HOT",
+        "MiniMax",
         "开源",
         "模型"
       ],
-      "summary": "推出 Muse Glimmer，一款开放权重、300 亿参数的模型，专为本地、常驻运行的智能体工作流优化。 与同尺寸领先模型相比，Muse Glimmer 在关键智能体用例和基准测试中表现出色，并设计为完全在消费级硬件（如 Mac 或配备高性能 GPU 的 PC）上运行。 秉承我们长期分享基础 A…",
-      "publishedAt": "2026-08-10T10:13:34.000Z",
+      "summary": "MiniMax 推出 Music 3.0，新一代音乐生成模型，可根据创意概念和可选歌词一次性完成整首歌的作曲、编曲、演奏与制作，最长支持五分钟。",
+      "publishedAt": "2026-08-13T16:52:23.676Z",
       "category": "ai-models",
-      "comment": "点评：30B 开放权重模型瞄准本地、常驻的 Agent 工作流，竞争点不只是参数量，而是能否在受限显存下稳定完成多步任务。权重开放与 Day-0 推理支持降低了试用门槛，但可靠性、工具权限和实际吞吐仍需独立验证。",
-      "advice": "建议：在目标硬件上用真实多步任务测试量化后的准确率、首 token 延迟、吞吐、显存占用和工具调用成功率；先以只读、可回放任务试点，再决定是否接入生产工作流。"
-    },
-    {
-      "topic": "paper",
-      "title": "Claude 未发布研究版将黎曼 zeta 函数零点下界从 41.6% 提升至 67.2%",
-      "source": "Anthropic：Research（发表成果 · 网页）",
-      "url": "https://www.anthropic.com/research/riemann-zeta",
-      "date": "2026-08-11",
-      "score": 57,
-      "tags": [
-        "AI HOT",
-        "Anthropic",
-        "Claude",
-        "论文"
-      ],
-      "summary": "Anthropic 员工让 Claude 尝试攻克黎曼猜想，虽未成功，但一个未发布的研究版 Claude 在相关问题上取得突破：将满足黎曼猜想的 zeta 函数零点比例下界从 41.6% 提升至 67.2%。",
-      "publishedAt": "2026-08-10T17:46:50.781Z",
-      "category": "paper",
-      "comment": "点评：在数学问题上取得可验证改进，比泛化的“模型很聪明”更有研究价值；不过未发布研究版的能力、证明过程和同行复核仍决定其结论能否成为领域共识。AI 辅助科研的关键是可检查的证据链，而不是新闻标题。",
-      "advice": "建议：追踪公开证明、复现材料与独立专家评议；研究团队使用模型辅助数学工作时，应保存提示、工具、验证器和人工审查记录，确保每步结论可复查。"
+      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
     }
   ],
   "sources": [
@@ -362,44 +369,68 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "X：Jensen Huang (@JensenHuang)",
-      "url": "https://x.com/JensenHuang/status/2086934705207959965",
-      "note": "英伟达联合六大机构融资5000亿美元建AI工厂"
+      "name": "DeepSeek：API 更新日志",
+      "url": "https://api-docs.deepseek.com/zh-cn/updates#%E6%97%B6%E9%97%B4-2026-08-13",
+      "note": "DeepSeek-V4-Pro 正式版上线，Agent 能力大幅增强"
     },
     {
-      "name": "X：Alexandr Wang（Scale AI 创始人/Meta 首席 AI 官） (@alexandr_wang)",
-      "url": "https://x.com/alexandr_wang/status/2086756152034066792",
-      "note": "Scale AI 开源 Muse 系列模型"
+      "name": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "url": "https://openai.com/index/builders-guide-to-gpt-5-6",
+      "note": "GPT-5.6 构建者指南：如何以更低成本实现前沿智能体性能"
     },
     {
-      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://bobdahacker.com/blog/tldv-hack",
-      "note": "tl；dv 逾18.1万段AI会议录音被公开暴露，可实时闯入他人通话"
+      "name": "公众号：小红书技术（dots.llm）",
+      "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496062&idx=1&sn=d4c48926c5d7607f129dfea03699a6c0",
+      "note": "小红书开源连续自回归语音合成模型 dots.tts：打造可持续扩展的 TTS …"
     },
     {
-      "name": "a16z：News（RSS）",
-      "url": "https://www.a16z.news/p/can-agents-use-a-computer-yet-weve",
-      "note": "智能体真的会用电脑吗？a16z 用数据给出答案"
+      "name": "公众号：智谱（GLM）",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzkyMzI3NzQ0Mg%3D%3D&mid=2247494084&idx=1&sn=a2e5cd9a534a4825feb3633ea1b6d492",
+      "note": "GLM-5.3 发布：编程能力开源第一，并涌现网络安全能力"
     },
     {
-      "name": "LMSYS：Blog（Chatbot Arena 团队）",
-      "url": "https://www.lmsys.org/blog/2026-08-10-meta-muse-glimmer",
-      "note": "SGLang 为 Muse Glimmer 提供 Day-0 支持，针对本地智…"
+      "name": "Google DeepMind：Blog（RSS）",
+      "url": "https://deepmind.google/blog/introducing-gemini-3-7-flash",
+      "note": "Google DeepMind 推出 Gemini 3.7 Flash：面向编…"
     },
     {
-      "name": "X：通义千问 / Qwen (@Alibaba_Qwen)",
-      "url": "https://x.com/Alibaba_Qwen/status/2086664887560970531",
-      "note": "Qwen-MM-Plugins 让智能体原生支持多模态"
+      "name": "公众号：数字生命卡兹克",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647685238&idx=1&sn=c3159dba0dd5a141f8dd726fd474e6e2",
+      "note": "从0到1带你速通DeepSeek Harness。"
     },
     {
-      "name": "X：Claude Devs (@ClaudeDevs)",
-      "url": "https://x.com/ClaudeDevs/status/2086844755770757531",
-      "note": "Claude Code 自动模式默认开启原理"
+      "name": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
+      "url": "https://x.com/SiliconFlowAI/status/2087903227224412222",
+      "note": "Qwen3.8-2.4T-A95B 开源，硅基流动即日上线"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-08-14",
+    "title": "AI HOT 日报：DeepSeek、GPT-5.6 构建、开源",
+    "summary": "重点关注 模型发布/更新、技巧与观点、产品发布/更新。核心信号是：DeepSeek-V4-Pro 正式版上线，Agent 能力大幅增强；GPT-5.6 构建者指南：如何以更低成本实现前沿智能体性能；小红书开源连续自回归语音合成模型 dots.tts：打造可持续扩展的 TTS 基…",
+    "link": "/posts/81414/",
+    "tags": [
+      "AI HOT",
+      "DeepSeek",
+      "Agent",
+      "模型"
+    ]
+  },
+  {
+    "date": "2026-08-13",
+    "title": "AI HOT 日报：Qwen 2.4T 开源、MAI 推理模型与多智能体治理",
+    "summary": "过去 24 小时 10 条精选动态：Qwen 开放 2.4T MoE 权重、微软推出 MAI-Thinking-1；跨端 Agent 与多智能体治理成为本期重点。",
+    "link": "/posts/81313/",
+    "tags": [
+      "AI HOT",
+      "Qwen",
+      "Agent",
+      "模型"
+    ]
+  },
   {
     "date": "2026-08-11",
     "title": "AI HOT 日报：英伟达5000亿美元AI工厂、Muse Glimmer开源、AI会议录音泄露",

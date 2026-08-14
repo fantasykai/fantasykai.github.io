@@ -10,7 +10,43 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-08-11T03:07:47.596Z</updated>
+  <updated>2026-08-14T06:16:37.928Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, DeepSeek, Agent, 模型, GPT, 推理, 观点, 开源, Claude, 智谱, Google, Gemini" scheme="https://aimak.cn/tags/AI-HOT-DeepSeek-Agent-%E6%A8%A1%E5%9E%8B-GPT-%E6%8E%A8%E7%90%86-%E8%A7%82%E7%82%B9-%E5%BC%80%E6%BA%90-Claude-%E6%99%BA%E8%B0%B1-Google-Gemini/"/>
+    <id>https://aimak.cn/posts/81414/</id>
+    <link href="https://aimak.cn/posts/81414/"/>
+    <published>2026-08-14T06:16:37.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-08-14：DeepSeek、GPT-5.6 构建、开源</title>
+    <updated>2026-08-14T06:16:37.928Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Qwen, Microsoft, Anthropic, 多智能体, Agent, 开源模型, 推理模型, 企业治理, AI日报" scheme="https://aimak.cn/tags/AI-HOT-Qwen-Microsoft-Anthropic-%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93-Agent-%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B-%E6%8E%A8%E7%90%86%E6%A8%A1%E5%9E%8B-%E4%BC%81%E4%B8%9A%E6%B2%BB%E7%90%86-AI%E6%97%A5%E6%8A%A5/"/>
+    <id>https://aimak.cn/posts/81313/</id>
+    <link href="https://aimak.cn/posts/81313/"/>
+    <published>2026-08-13T09:20:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 <a href="https://aihot.virxact.com/">AI HOT</a> 过去 24 小时精选动态（截至 2026-08-13 17:12，北京时间）。本文补充趋势点评与落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a]]>
+    </summary>
+    <title>AI HOT 日报 2026-08-13：Qwen 2.4T 开源、MAI 推理模型与多智能体治理</title>
+    <updated>2026-08-13T09:15:10.103Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -330,41 +366,5 @@
     </summary>
     <title>AI HOT 日报 2026-07-21：MiniCPM-Robot开源、AI生成短片、Hugging Face安全事件</title>
     <updated>2026-07-21T03:12:35.032Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Meta, 产品, Kimi, Qwen, Agent, 观点, Nvidia, 机器人, 产业, 开源, 模型" scheme="https://aimak.cn/tags/AI-HOT-Meta-%E4%BA%A7%E5%93%81-Kimi-Qwen-Agent-%E8%A7%82%E7%82%B9-Nvidia-%E6%9C%BA%E5%99%A8%E4%BA%BA-%E4%BA%A7%E4%B8%9A-%E5%BC%80%E6%BA%90-%E6%A8%A1%E5%9E%8B/"/>
-    <id>https://aimak.cn/posts/72020/</id>
-    <link href="https://aimak.cn/posts/72020/"/>
-    <published>2026-07-20T02:38:27.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-07-20：transcribe、不会代码也能做产品、黄仁勋访日</title>
-    <updated>2026-07-20T02:38:27.234Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Claude, Agent, MCP, 观点, Google, Nvidia, Qwen, GPT, Kimi, 开源, 产业" scheme="https://aimak.cn/tags/AI-HOT-Claude-Agent-MCP-%E8%A7%82%E7%82%B9-Google-Nvidia-Qwen-GPT-Kimi-%E5%BC%80%E6%BA%90-%E4%BA%A7%E4%B8%9A/"/>
-    <id>https://aimak.cn/posts/71919/</id>
-    <link href="https://aimak.cn/posts/71919/"/>
-    <published>2026-07-19T02:06:27.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-07-19：DAIR.AI 发布、Index Vent、Nvidia</title>
-    <updated>2026-07-19T02:06:27.659Z</updated>
   </entry>
 </feed>
