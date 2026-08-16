@@ -130,236 +130,45 @@ const previousEpisode = {
 };
 
 const episode = {
-  "date": "2026-08-14",
-  "title": "AI HOT 日报：DeepSeek、GPT-5.6 构建、开源",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 模型发布/更新、技巧与观点、产品发布/更新。核心信号是：DeepSeek-V4-Pro 正式版上线，Agent 能力大幅增强；GPT-5.6 构建者指南：如何以更低成本实现前沿智能体性能；小红书开源连续自回归语音合成模型 dots.tts：打造可持续扩展的 TTS 基座。",
-  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
+  "date": "2026-08-16",
+  "title": "AI HOT 日报：Cursor 被 SpaceX 收购、AI 生成书籍冲击创作者收入",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、论文研究。核心信号是：Cursor 正式被 SpaceX 收购；AI生成书籍正淹没亚马逊，并拉低人类作者的单书收入。",
+  "conclusion": "本期两条信号分别指向 AI 产业的供给集中与内容市场的供给过剩。无论选择开发工具还是扩大内容生产，都应优先建立可迁移的工作流、可验证的质量标准和能反映真实回报的业务指标。",
   "items": [
     {
-      "topic": "model",
-      "title": "DeepSeek-V4-Pro 正式版上线，Agent 能力大幅增强",
-      "source": "DeepSeek：API 更新日志",
-      "url": "https://api-docs.deepseek.com/zh-cn/updates#%E6%97%B6%E9%97%B4-2026-08-13",
-      "date": "2026-08-14",
-      "score": 81,
+      "topic": "industry",
+      "title": "Cursor 正式被 SpaceX 收购",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://cursor.com/blog/joining-spacex",
+      "date": "2026-08-16",
+      "score": 71,
       "tags": [
         "AI HOT",
-        "DeepSeek",
-        "Agent",
-        "模型"
+        "Grok",
+        "产业"
       ],
-      "summary": "DeepSeek-V4-Pro 正式版已在 APP、网页端和 API 同步上线，模型名设为 deepseek-v4-pro 即可使用。其 Agent 能力显著提升，HLE （wo/w tools） 达 42.7/60.0，Terminal Bench 2.1 为 87.9。",
-      "publishedAt": "2026-08-13T11:16:42.199Z",
-      "category": "ai-models",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
+      "summary": "Cursor 已被 SpaceX 正式收购，完成自 4 月启动的收购流程。借助 SpaceX 全球最大规模的 GPU 集群，Cursor 将构建更强且运行成本更低的模型，并以更低价格向客户提供更强大的模型。本周三发布的 Grok 4.6 是双方合作成果的早期体现。",
+      "publishedAt": "2026-08-15T20:05:54.703Z",
+      "category": "industry",
+      "comment": "点评：Cursor 并入 SpaceX，意味着 AI 编程工具的竞争进一步与算力供给、模型训练和长期资本绑定。更强模型与更低推理成本值得期待，但企业用户也要重新评估供应商集中度、产品路线变化和迁移成本。",
+      "advice": "建议：正在使用 Cursor 的团队应把 IDE、模型能力与关键工作流解耦：保留可导出的项目规则、提示词、评测与审计记录，并为核心代码流程准备替代工具的试运行方案。"
     },
     {
-      "topic": "tip",
-      "title": "GPT-5.6 构建者指南：如何以更低成本实现前沿智能体性能",
-      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "url": "https://openai.com/index/builders-guide-to-gpt-5-6",
-      "date": "2026-08-14",
-      "score": 80,
+      "topic": "paper",
+      "title": "AI生成书籍正淹没亚马逊，并拉低人类作者的单书收入",
+      "source": "The Decoder：AI News（RSS）",
+      "url": "https://the-decoder.com/ai-generated-books-are-flooding-amazon-and-tanking-sales-for-human-authors",
+      "date": "2026-08-16",
+      "score": 70,
       "tags": [
         "AI HOT",
-        "GPT",
-        "推理",
-        "观点"
+        "论文"
       ],
-      "summary": "GPT-5.6 模型家族以更低成本实现前沿级智能体性能，并新增推理持久化、原生多智能体编排和程序化工具调用等 API 能力。在 ARC-AGI-3 上，启用保留推理和压缩后，Sol 得分从 13.3% 跃升至 38.3%，且输出 token 减少约 6 倍。Luna 在 BrowseComp 上以…",
-      "publishedAt": "2026-08-13T11:00:00.000Z",
-      "category": "tip",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
-    },
-    {
-      "topic": "model",
-      "title": "小红书开源连续自回归语音合成模型 dots.tts：打造可持续扩展的 TTS 基座",
-      "source": "公众号：小红书技术（dots.llm）",
-      "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496062&idx=1&sn=d4c48926c5d7607f129dfea03699a6c0",
-      "date": "2026-08-14",
-      "score": 75,
-      "tags": [
-        "AI HOT",
-        "开源",
-        "模型"
-      ],
-      "summary": "小红书 dots 团队开源 20 亿参数全连续端到端自回归语音合成模型 dots.tts，在 Seed-TTS-Eval 三个子集上取得最佳平均内容准确度和平均说话人相似度。",
-      "publishedAt": "2026-08-13T09:59:00.000Z",
-      "category": "ai-models",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
-    },
-    {
-      "topic": "model",
-      "title": "GLM-5.3 发布：编程能力开源第一，并涌现网络安全能力",
-      "source": "公众号：智谱（GLM）",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzkyMzI3NzQ0Mg%3D%3D&mid=2247494084&idx=1&sn=a2e5cd9a534a4825feb3633ea1b6d492",
-      "date": "2026-08-14",
-      "score": 73,
-      "tags": [
-        "AI HOT",
-        "Claude",
-        "智谱",
-        "开源",
-        "模型"
-      ],
-      "summary": "智谱发布GLM-5.3，基于与GLM-5.2相同的基座，通过极致的后训练Scaling提升智能上界，编程能力较前代提升50%，在Terminal Bench 3.0等公开基准中取得开源第一，并接近Claude Fable 5。模型在白盒代码审查等安全任务中表现持平Mythos 5，在CyberGy…",
-      "publishedAt": "2026-08-14T05:31:04.000Z",
-      "category": "ai-models",
-      "comment": "点评：Claude Fable 强调的不是更会执行命令，而是帮助用户发现盲点。高质量人机协作正在从“下指令”转向“共同暴露假设、未知和验证路径”。",
-      "advice": "建议：每次交给模型实现前，先让它列出假设、未知、风险、反例和验证计划；完成后再让它对照这些清单做一次盲点复盘。"
-    },
-    {
-      "topic": "model",
-      "title": "Google DeepMind 推出 Gemini 3.7 Flash：面向编程与智能体的最强工作模型",
-      "source": "Google DeepMind：Blog（RSS）",
-      "url": "https://deepmind.google/blog/introducing-gemini-3-7-flash",
-      "date": "2026-08-14",
-      "score": 72,
-      "tags": [
-        "AI HOT",
-        "Google",
-        "Gemini",
-        "模型"
-      ],
-      "summary": "Google DeepMind 发布 Gemini 3.7 Flash，距 3.6 Flash 仅三周，主打编程与智能体任务，输入/输出价格分别为每百万 token $0.75 和 $3.75，为原 3.6 Flash 的一半。",
-      "publishedAt": "2026-08-13T17:04:18.000Z",
-      "category": "ai-models",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
-    },
-    {
-      "topic": "tip",
-      "title": "从0到1带你速通DeepSeek Harness。",
-      "source": "公众号：数字生命卡兹克",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647685238&idx=1&sn=c3159dba0dd5a141f8dd726fd474e6e2",
-      "date": "2026-08-14",
-      "score": 69,
-      "tags": [
-        "AI HOT",
-        "DeepSeek",
-        "观点"
-      ],
-      "summary": "从0到1带你速通DeepSeek Harness。",
-      "publishedAt": "2026-08-13T23:58:00.000Z",
-      "category": "tip",
-      "comment": "点评：这条动态值得从方法论、最佳实践和落地风险三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
-      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
-    },
-    {
-      "topic": "product",
-      "title": "Qwen3.8-2.4T-A95B 开源，硅基流动即日上线",
-      "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
-      "url": "https://x.com/SiliconFlowAI/status/2087903227224412222",
-      "date": "2026-08-14",
-      "score": 67,
-      "tags": [
-        "AI HOT",
-        "Qwen",
-        "开源",
-        "产品"
-      ],
-      "summary": "阿里开源 Qwen3.8-2.4T-A95B，硅基流动已提供 Day-0 支持。该模型拥有 2.4T 参数、95B 激活参数，主打自主编码、深度研究与端到端智能体执行。API 定价为输入 $2.00/百万 token，输出 $6.00/百万 token，缓存输入 $0.25/百万 token。",
-      "publishedAt": "2026-08-13T14:04:55.000Z",
-      "category": "ai-products",
-      "comment": "点评：Qwen3.8 把国产开源模型继续推向超大参数与前沿对标区间。对企业来说，关注点应从“参数有多大”转向中文长上下文、代码、工具调用、部署成本和许可证能否支撑真实业务。",
-      "advice": "建议：把 Qwen3.8 放进真实中文任务集评测：长文档问答、代码修改、函数调用、多轮 Agent、成本和延迟；如果考虑私有化，还要提前核查权重、许可证、推理栈和芯片适配。"
-    },
-    {
-      "topic": "tip",
-      "title": "Claude 接管应用日常维护：388 个 PR 的实践",
-      "source": "X：Boris Cherny (@bcherny)",
-      "url": "https://x.com/bcherny/status/2088014489438621990",
-      "date": "2026-08-14",
-      "score": 66,
-      "tags": [
-        "AI HOT",
-        "Claude",
-        "Claude Code",
-        "观点"
-      ],
-      "summary": "Boris Cherny 尝试让 Claude 接管其应用的日常维护，通过 Slack 频道运行崩溃模糊测试、重复代码统一、死代码移除等日常任务。数周内自动开出 388 个 PR，其中 180 个经 Claude Code Review 和人工审核后合并。Claude 通常一次就能改对，出错时可通…",
-      "publishedAt": "2026-08-13T21:27:02.000Z",
-      "category": "tip",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
-    },
-    {
-      "topic": "product",
-      "title": "DeepSeek Harness v0.1 开发者预览版发布",
-      "source": "X：DeepSeek (@deepseek_ai)",
-      "url": "https://x.com/deepseek_ai/status/2087887408440164663",
-      "date": "2026-08-14",
-      "score": 66,
-      "tags": [
-        "AI HOT",
-        "DeepSeek",
-        "开源",
-        "产品"
-      ],
-      "summary": "DeepSeek Harness v0.1 现已推出开发者预览版，并以 MIT 许可证开源。该智能体框架基于 Cordis 元框架构建，核心设计为\"一切皆插件\"，模型、工具、技能、会话、沙箱、文件系统、循环、编排及 UI 均可自由组合、替换和扩展。",
-      "publishedAt": "2026-08-13T13:02:03.000Z",
-      "category": "ai-products",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
-    },
-    {
-      "topic": "model",
-      "title": "DeepSeek V4 Pro 登陆硅基流动，1M 上下文",
-      "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
-      "url": "https://x.com/SiliconFlowAI/status/2088127458558271885",
-      "date": "2026-08-14",
-      "score": 65,
-      "tags": [
-        "AI HOT",
-        "DeepSeek",
-        "开源",
-        "推理",
-        "模型"
-      ],
-      "summary": "DeepSeek-V4-Pro-0813 正式上线硅基流动 SiliconFlow，提供 Day-0 支持，具备 1M 上下文窗口及低/高/最大三档推理强度，更侧重编码、工具调用与智能体工作流，仍保持 MIT 开源协议。定价为输入 $1.32/M、输出 $3.96/M、缓存命中 $0.44/M。同…",
-      "publishedAt": "2026-08-14T04:55:56.000Z",
-      "category": "ai-models",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
-    },
-    {
-      "topic": "product",
-      "title": "Cursor 推出 builds：云智能体启动速度提升至 3 倍",
-      "source": "Cursor Blog",
-      "url": "https://cursor.com/blog/builds",
-      "date": "2026-08-14",
-      "score": 65,
-      "tags": [
-        "AI HOT",
-        "产品"
-      ],
-      "summary": "Cursor 推出 builds 功能，在后台持续准备就绪的开发环境副本，让云智能体启动时无需从零搭建，响应速度最高提升 3 倍。内部环境启动快 10 倍，首个 token 生成快 3 倍；智能体始终从最近一次成功的 build 启动，依赖更新或安装脚本出错时不会影响运行。8 月 17 日起所有环…",
-      "publishedAt": "2026-08-13T12:00:00.000Z",
-      "category": "ai-products",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
-    },
-    {
-      "topic": "model",
-      "title": "MiniMax Music 3.0 发布：新一代开源权重、生产级全能音乐模型",
-      "source": "MiniMax：Blog（网页）",
-      "url": "https://www.minimax.io/blog/minimax-music-3-0-next-generation-open-weights-production-ready-versatile-music-model",
-      "date": "2026-08-14",
-      "score": 63,
-      "tags": [
-        "AI HOT",
-        "MiniMax",
-        "开源",
-        "模型"
-      ],
-      "summary": "MiniMax 推出 Music 3.0，新一代音乐生成模型，可根据创意概念和可选歌词一次性完成整首歌的作曲、编曲、演奏与制作，最长支持五分钟。",
-      "publishedAt": "2026-08-13T16:52:23.676Z",
-      "category": "ai-models",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
+      "summary": "一项对14，419本自出版电子书的分析显示，AI生成书籍正以数量而非质量挤占人类作者市场，即便未检测到AI文本的书籍，单书收入也在下滑。2023年Q1至2026年Q1，书目总量增长38.3倍，而季度收入仅增长8.9倍；在八个类型中，七个类型的无AI文本书籍单书收入下降。",
+      "publishedAt": "2026-08-15T11:00:50.000Z",
+      "category": "paper",
+      "comment": "点评：这份分析呈现的是市场相关性，而非单一原因的定论；不过当低成本生成内容快速增加时，创作者的核心竞争会更集中到选题、可信度、编辑质量、读者关系和可验证的作者身份。平台也需要更透明地处理内容来源与推荐分发。",
+      "advice": "建议：内容团队应建立 AI 使用披露、事实核验和人工编辑标准；持续跟踪曝光、转化、复购与单书收入，而不是只用发布数量衡量增长。"
     }
   ],
   "sources": [
@@ -369,44 +178,31 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "DeepSeek：API 更新日志",
-      "url": "https://api-docs.deepseek.com/zh-cn/updates#%E6%97%B6%E9%97%B4-2026-08-13",
-      "note": "DeepSeek-V4-Pro 正式版上线，Agent 能力大幅增强"
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://cursor.com/blog/joining-spacex",
+      "note": "Cursor 正式被 SpaceX 收购"
     },
     {
-      "name": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "url": "https://openai.com/index/builders-guide-to-gpt-5-6",
-      "note": "GPT-5.6 构建者指南：如何以更低成本实现前沿智能体性能"
-    },
-    {
-      "name": "公众号：小红书技术（dots.llm）",
-      "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496062&idx=1&sn=d4c48926c5d7607f129dfea03699a6c0",
-      "note": "小红书开源连续自回归语音合成模型 dots.tts：打造可持续扩展的 TTS …"
-    },
-    {
-      "name": "公众号：智谱（GLM）",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzkyMzI3NzQ0Mg%3D%3D&mid=2247494084&idx=1&sn=a2e5cd9a534a4825feb3633ea1b6d492",
-      "note": "GLM-5.3 发布：编程能力开源第一，并涌现网络安全能力"
-    },
-    {
-      "name": "Google DeepMind：Blog（RSS）",
-      "url": "https://deepmind.google/blog/introducing-gemini-3-7-flash",
-      "note": "Google DeepMind 推出 Gemini 3.7 Flash：面向编…"
-    },
-    {
-      "name": "公众号：数字生命卡兹克",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647685238&idx=1&sn=c3159dba0dd5a141f8dd726fd474e6e2",
-      "note": "从0到1带你速通DeepSeek Harness。"
-    },
-    {
-      "name": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
-      "url": "https://x.com/SiliconFlowAI/status/2087903227224412222",
-      "note": "Qwen3.8-2.4T-A95B 开源，硅基流动即日上线"
+      "name": "The Decoder：AI News（RSS）",
+      "url": "https://the-decoder.com/ai-generated-books-are-flooding-amazon-and-tanking-sales-for-human-authors",
+      "note": "AI生成书籍正淹没亚马逊，并拉低人类作者的单书收入"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-08-16",
+    "title": "AI HOT 日报：Cursor 被 SpaceX 收购、AI 生成书籍冲击创作者收入",
+    "summary": "重点关注 行业动态、论文研究。核心信号是：Cursor 正式被 SpaceX 收购；AI生成书籍正淹没亚马逊，并拉低人类作者的单书收入。",
+    "link": "/posts/81616/",
+    "tags": [
+      "AI HOT",
+      "Grok",
+      "产业",
+      "论文"
+    ]
+  },
   {
     "date": "2026-08-14",
     "title": "AI HOT 日报：DeepSeek、GPT-5.6 构建、开源",
