@@ -130,45 +130,47 @@ const previousEpisode = {
 };
 
 const episode = {
-  "date": "2026-08-16",
-  "title": "AI HOT 日报：Cursor 被 SpaceX 收购、AI 生成书籍冲击创作者收入",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、论文研究。核心信号是：Cursor 正式被 SpaceX 收购；AI生成书籍正淹没亚马逊，并拉低人类作者的单书收入。",
-  "conclusion": "本期两条信号分别指向 AI 产业的供给集中与内容市场的供给过剩。无论选择开发工具还是扩大内容生产，都应优先建立可迁移的工作流、可验证的质量标准和能反映真实回报的业务指标。",
+  "date": "2026-08-17",
+  "title": "AI HOT 日报：Qwen 3.8 27B、多智能体系统研究",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 技巧与观点、论文研究。核心信号是：Qwen 3.8 27B 表现出色，但默认推理强度过高导致过度思考；新兴多智能体系统的模式与问题。",
+  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "topic": "industry",
-      "title": "Cursor 正式被 SpaceX 收购",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://cursor.com/blog/joining-spacex",
-      "date": "2026-08-16",
-      "score": 71,
+      "topic": "tip",
+      "title": "Qwen 3.8 27B 表现出色，但默认推理强度过高导致过度思考",
+      "source": "Simon Willison 博客",
+      "url": "https://simonwillison.net/2026/Aug/16/qwen-38-27b",
+      "date": "2026-08-17",
+      "score": 73,
       "tags": [
         "AI HOT",
-        "Grok",
-        "产业"
+        "Qwen",
+        "推理",
+        "观点"
       ],
-      "summary": "Cursor 已被 SpaceX 正式收购，完成自 4 月启动的收购流程。借助 SpaceX 全球最大规模的 GPU 集群，Cursor 将构建更强且运行成本更低的模型，并以更低价格向客户提供更强大的模型。本周三发布的 Grok 4.6 是双方合作成果的早期体现。",
-      "publishedAt": "2026-08-15T20:05:54.703Z",
-      "category": "industry",
-      "comment": "点评：Cursor 并入 SpaceX，意味着 AI 编程工具的竞争进一步与算力供给、模型训练和长期资本绑定。更强模型与更低推理成本值得期待，但企业用户也要重新评估供应商集中度、产品路线变化和迁移成本。",
-      "advice": "建议：正在使用 Cursor 的团队应把 IDE、模型能力与关键工作流解耦：保留可导出的项目规则、提示词、评测与审计记录，并为核心代码流程准备替代工具的试运行方案。"
+      "summary": "阿里 Qwen 实验室发布 Apache 2 许可的 27B 参数视觉大模型 Qwen 3.8 27B，官方基准显示其超越前代 Qwen 3.6 27B 及闭源 Qwen 3.7-Plus。",
+      "publishedAt": "2026-08-16T22:00:39.000Z",
+      "category": "tip",
+      "comment": "点评：Qwen 3.8 说明开源模型的竞争已进入能力、推理强度和运行成本的综合优化阶段。默认开启高强度思考未必适合所有任务，企业应把质量提升与额外延迟、Token 消耗一起核算。",
+      "advice": "建议：把 Qwen 3.8 放进真实中文任务集评测：分别测试低、高推理预算下的质量、延迟、Token 消耗和失败率；如果考虑私有化，还要核查权重、许可证、推理栈和芯片适配。"
     },
     {
       "topic": "paper",
-      "title": "AI生成书籍正淹没亚马逊，并拉低人类作者的单书收入",
-      "source": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/ai-generated-books-are-flooding-amazon-and-tanking-sales-for-human-authors",
-      "date": "2026-08-16",
-      "score": 70,
+      "title": "新兴多智能体系统的模式与问题",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://www.anthropic.com/research/multiagent-systems",
+      "date": "2026-08-17",
+      "score": 73,
       "tags": [
         "AI HOT",
+        "Anthropic",
         "论文"
       ],
-      "summary": "一项对14，419本自出版电子书的分析显示，AI生成书籍正以数量而非质量挤占人类作者市场，即便未检测到AI文本的书籍，单书收入也在下滑。2023年Q1至2026年Q1，书目总量增长38.3倍，而季度收入仅增长8.9倍；在八个类型中，七个类型的无AI文本书籍单书收入下降。",
-      "publishedAt": "2026-08-15T11:00:50.000Z",
+      "summary": "随着AI智能体在共享代码库、市场等社会系统中承担更多任务，智能体间的真实交互将激增，其交互量可能超过人机交互。Anthropic实验显示，协调式智能体群在2700万token运行中发现266个漏洞，远超独立并行方法的21个，但两者互补性明显。智能体虽擅长工具使用，但在长期协作与协调方面仍面临挑战。",
+      "publishedAt": "2026-08-16T11:17:57.393Z",
       "category": "paper",
-      "comment": "点评：这份分析呈现的是市场相关性，而非单一原因的定论；不过当低成本生成内容快速增加时，创作者的核心竞争会更集中到选题、可信度、编辑质量、读者关系和可验证的作者身份。平台也需要更透明地处理内容来源与推荐分发。",
-      "advice": "建议：内容团队应建立 AI 使用披露、事实核验和人工编辑标准；持续跟踪曝光、转化、复购与单书收入，而不是只用发布数量衡量增长。"
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：技术团队可先复现实验结论，再判断是否能转化为检索、推理、评测或数据处理链路中的收益。"
     }
   ],
   "sources": [
@@ -178,19 +180,31 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://cursor.com/blog/joining-spacex",
-      "note": "Cursor 正式被 SpaceX 收购"
+      "name": "Simon Willison 博客",
+      "url": "https://simonwillison.net/2026/Aug/16/qwen-38-27b",
+      "note": "Qwen 3.8 27B 表现出色，但默认推理强度过高导致过度思考"
     },
     {
-      "name": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/ai-generated-books-are-flooding-amazon-and-tanking-sales-for-human-authors",
-      "note": "AI生成书籍正淹没亚马逊，并拉低人类作者的单书收入"
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://www.anthropic.com/research/multiagent-systems",
+      "note": "新兴多智能体系统的模式与问题"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-08-17",
+    "title": "AI HOT 日报：Qwen 3.8 27B、多智能体系统研究",
+    "summary": "重点关注 技巧与观点、论文研究。核心信号是：Qwen 3.8 27B 表现出色，但默认推理强度过高导致过度思考；新兴多智能体系统的模式与问题。",
+    "link": "/posts/81717/",
+    "tags": [
+      "AI HOT",
+      "Qwen",
+      "推理",
+      "观点"
+    ]
+  },
   {
     "date": "2026-08-16",
     "title": "AI HOT 日报：Cursor 被 SpaceX 收购、AI 生成书籍冲击创作者收入",

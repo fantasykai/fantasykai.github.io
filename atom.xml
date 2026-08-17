@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-08-16T04:39:26.685Z</updated>
+  <updated>2026-08-17T09:05:25.274Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Qwen, 推理, 观点, Anthropic, 论文, AI日报, AI资讯" scheme="https://aimak.cn/tags/AI-HOT-Qwen-%E6%8E%A8%E7%90%86-%E8%A7%82%E7%82%B9-Anthropic-%E8%AE%BA%E6%96%87-AI%E6%97%A5%E6%8A%A5-AI%E8%B5%84%E8%AE%AF/"/>
+    <id>https://aimak.cn/posts/81717/</id>
+    <link href="https://aimak.cn/posts/81717/"/>
+    <published>2026-08-17T09:05:25.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-08-17：Qwen 3.8 27B、多智能体系统研究</title>
+    <updated>2026-08-17T09:05:25.274Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -348,23 +366,5 @@
     </summary>
     <title>AI HOT 日报 2026-07-23：北京智能体新政、Gemini 9.5亿月活、向量检索降本</title>
     <updated>2026-07-23T11:32:48.151Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, OpenAI, 安全, Agent, Anthropic, 版权, Gemini, Google, 产品, 模型, 评测" scheme="https://aimak.cn/tags/AI-HOT-OpenAI-%E5%AE%89%E5%85%A8-Agent-Anthropic-%E7%89%88%E6%9D%83-Gemini-Google-%E4%BA%A7%E5%93%81-%E6%A8%A1%E5%9E%8B-%E8%AF%84%E6%B5%8B/"/>
-    <id>https://aimak.cn/posts/72222/</id>
-    <link href="https://aimak.cn/posts/72222/"/>
-    <published>2026-07-22T08:59:11.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 截至 2026 年 7 月 22 日 16:59（北京时间）过去 24 小时的精选动态。本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。涉及安全事件的细节仍应以当事方后续披露为准。</p>
-</blockquote>
-<h2 id="今日总览"><a]]>
-    </summary>
-    <title>AI HOT 日报 2026-07-22：OpenAI安全事件、Gemini 3.6、Anthropic版权和解</title>
-    <updated>2026-07-22T09:05:51.378Z</updated>
   </entry>
 </feed>
