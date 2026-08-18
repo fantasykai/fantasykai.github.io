@@ -10,7 +10,23 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-08-17T09:05:25.274Z</updated>
+  <updated>2026-08-18T08:04:27.345Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Cursor, Origin, Agent安全, NVIDIA, OpenAI, AI工厂, 版权, 机器人, AI日报, AI资讯" scheme="https://aimak.cn/tags/AI-HOT-Cursor-Origin-Agent%E5%AE%89%E5%85%A8-NVIDIA-OpenAI-AI%E5%B7%A5%E5%8E%82-%E7%89%88%E6%9D%83-%E6%9C%BA%E5%99%A8%E4%BA%BA-AI%E6%97%A5%E6%8A%A5-AI%E8%B5%84%E8%AE%AF/"/>
+    <id>https://aimak.cn/posts/81818/</id>
+    <link href="https://aimak.cn/posts/81818/"/>
+    <published>2026-08-18T08:01:15.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 <a href="https://aihot.virxact.com/">AI HOT</a> 截至 2026-08-18 16:01（北京时间）过去 24 小时的 9 条精选动态。本文将同一项目的 NVIDIA 与黄仁勋公告合并为一条，形成 8 个独立信号，并补充趋势点评、落地建议；播客版已同步更新至「<a href="/podcast/">AI]]>
+    </summary>
+    <title>AI HOT 日报 2026-08-18：Cursor Origin、零信任 Agent 与 AI 工厂</title>
+    <updated>2026-08-18T08:04:27.345Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -348,23 +364,5 @@
     </summary>
     <title>AI HOT 日报 2026-07-24：ChatGPT语音多智能体、Claude语音工具、AI医疗风险</title>
     <updated>2026-07-24T02:34:30.409Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Agent, 北京, Gemini, Google, 向量检索, 开源, Anthropic, AI安全, 推理, 模型" scheme="https://aimak.cn/tags/AI-HOT-Agent-%E5%8C%97%E4%BA%AC-Gemini-Google-%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2-%E5%BC%80%E6%BA%90-Anthropic-AI%E5%AE%89%E5%85%A8-%E6%8E%A8%E7%90%86-%E6%A8%A1%E5%9E%8B/"/>
-    <id>https://aimak.cn/posts/72323/</id>
-    <link href="https://aimak.cn/posts/72323/"/>
-    <published>2026-07-23T11:29:27.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 截至 2026 年 7 月 23 日 19:29（北京时间）过去 24 小时的精选动态。本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。政策、财务与基建数据以公开披露和后续正式文件为准。</p>
-</blockquote>
-<h2 id="今日总览"><a]]>
-    </summary>
-    <title>AI HOT 日报 2026-07-23：北京智能体新政、Gemini 9.5亿月活、向量检索降本</title>
-    <updated>2026-07-23T11:32:48.151Z</updated>
   </entry>
 </feed>

@@ -130,69 +130,206 @@ const previousEpisode = {
 };
 
 const episode = {
-  "date": "2026-08-17",
-  "title": "AI HOT 日报：Qwen 3.8 27B、多智能体系统研究",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 技巧与观点、论文研究。核心信号是：Qwen 3.8 27B 表现出色，但默认推理强度过高导致过度思考；新兴多智能体系统的模式与问题。",
-  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
+  "date": "2026-08-18",
+  "title": "AI HOT 日报：Cursor Origin、零信任 Agent 与 AI 工厂",
+  "intro": "本期基于 AI HOT 截至 8 月 18 日 16:01（北京时间）过去 24 小时的 9 条精选动态；其中 NVIDIA 与黄仁勋的两条公告属于同一项目，合并为 8 个独立信号。重点关注代码托管、Agent 安全、算力供给、训练数据与用户信任。",
+  "conclusion": "本期最重要的判断是：AI 的外围条件正在成为主战场。代码如何托管、Agent 如何受控、算力如何供给、数据如何获得、用户如何退出，都需要成为可验证、可审计、可迁移的产品能力。",
   "items": [
     {
-      "topic": "tip",
-      "title": "Qwen 3.8 27B 表现出色，但默认推理强度过高导致过度思考",
-      "source": "Simon Willison 博客",
-      "url": "https://simonwillison.net/2026/Aug/16/qwen-38-27b",
-      "date": "2026-08-17",
-      "score": 73,
+      "topic": "product",
+      "title": "Cursor 推出 Origin 代码托管服务，作为 GitHub 的替代方案",
+      "source": "Cursor 更新日志",
+      "url": "https://cursor.com/changelog/origin-code-hosting",
+      "date": "2026-08-18",
+      "score": 81,
       "tags": [
         "AI HOT",
-        "Qwen",
-        "推理",
-        "观点"
+        "Cursor",
+        "代码托管",
+        "产品"
       ],
-      "summary": "阿里 Qwen 实验室发布 Apache 2 许可的 27B 参数视觉大模型 Qwen 3.8 27B，官方基准显示其超越前代 Qwen 3.6 27B 及闭源 Qwen 3.7-Plus。",
-      "publishedAt": "2026-08-16T22:00:39.000Z",
-      "category": "tip",
-      "comment": "点评：Qwen 3.8 说明开源模型的竞争已进入能力、推理强度和运行成本的综合优化阶段。默认开启高强度思考未必适合所有任务，企业应把质量提升与额外延迟、Token 消耗一起核算。",
-      "advice": "建议：把 Qwen 3.8 放进真实中文任务集评测：分别测试低、高推理预算下的质量、延迟、Token 消耗和失败率；如果考虑私有化，还要核查权重、许可证、推理栈和芯片适配。"
+      "summary": "Cursor 向所有付费用户开放 Origin 代码托管早期测试，提供仓库、拉取请求、代码浏览和 GitHub 同步；评论与审查可双向同步，智能体功能仍在后续计划中。",
+      "publishedAt": "2026-08-17T22:14:00.748Z",
+      "category": "ai-products",
+      "comment": "点评：AI 编程工具开始掌握托管与审查入口后，竞争从补全质量扩展到谁定义团队工作流；便利与迁移成本、权限设计和审查留痕会同时增加。",
+      "advice": "建议：先在非关键仓库试用，核验 Git 镜像、PR 历史、评论同步、权限、审计导出和回退；将规则、CI、评测与提示词保留在可移植格式中。"
     },
     {
-      "topic": "paper",
-      "title": "新兴多智能体系统的模式与问题",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://www.anthropic.com/research/multiagent-systems",
-      "date": "2026-08-17",
+      "topic": "industry",
+      "title": "NVIDIA、SB Energy 锁定俄亥俄州电力容量，OpenAI 将成为 AI 工厂租户",
+      "source": "NVIDIA Blog",
+      "url": "https://blogs.nvidia.com/blog/securing-the-infrastructure-of-intelligence",
+      "date": "2026-08-18",
+      "score": 77,
+      "tags": [
+        "AI HOT",
+        "NVIDIA",
+        "OpenAI",
+        "算力"
+      ],
+      "summary": "NVIDIA 与 SB Energy 在俄亥俄州 PORTS-Pike 园区锁定电力容量以部署 AI 工厂，OpenAI 将成为租户；黄仁勋同期公告称初始规划约 4.25 吉瓦，两条信息指向同一项目。",
+      "publishedAt": "2026-08-17T12:34:51.000Z",
+      "category": "industry",
+      "comment": "点评：AI 基础设施的约束已从芯片延伸到电力、园区、并网和长期租约。大型项目增强供给确定性，也会提升产业集中度。",
+      "advice": "建议：用正常供给、峰值涨价和区域受限三种情景预算推理成本；保留多模型、多云或可降级路径，把缓存、批处理和模型路由视为产品能力。"
+    },
+    {
+      "topic": "industry",
+      "title": "报道称亚马逊批量购书扫描用于 AI 训练后销毁",
+      "source": "404 Media",
+      "url": "https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility",
+      "date": "2026-08-18",
+      "score": 71,
+      "tags": [
+        "AI HOT",
+        "训练数据",
+        "版权",
+        "产业"
+      ],
+      "summary": "404 Media 通过追踪设备报道一批珍本图书被送往亚马逊 AI 训练中心，可能被扫描用于训练后销毁；具体规模、授权范围和后续处理仍待当事方说明。",
+      "publishedAt": "2026-08-17T18:46:04.518Z",
+      "category": "industry",
+      "comment": "点评：这则报道再次凸显训练数据来源的透明度。数据取得方式会直接影响作者、出版商与用户对 AI 产品的信任。",
+      "advice": "建议：维护来源、授权、使用范围、保留期限和删除流程的可追溯数据台账；版权敏感数据应先经法务与伦理评估再扩大使用。"
+    },
+    {
+      "topic": "industry",
+      "title": "宇树科技宣布 8 月 19 日在科创板上市",
+      "source": "IT之家",
+      "url": "https://www.ithome.com/0/990/812.htm",
+      "date": "2026-08-18",
       "score": 73,
       "tags": [
         "AI HOT",
-        "Anthropic",
-        "论文"
+        "机器人",
+        "具身智能",
+        "产业"
       ],
-      "summary": "随着AI智能体在共享代码库、市场等社会系统中承担更多任务，智能体间的真实交互将激增，其交互量可能超过人机交互。Anthropic实验显示，协调式智能体群在2700万token运行中发现266个漏洞，远超独立并行方法的21个，但两者互补性明显。智能体虽擅长工具使用，但在长期协作与协调方面仍面临挑战。",
-      "publishedAt": "2026-08-16T11:17:57.393Z",
-      "category": "paper",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：技术团队可先复现实验结论，再判断是否能转化为检索、推理、评测或数据处理链路中的收益。"
+      "summary": "宇树科技公告称将于 8 月 19 日在科创板上市；报道列出其近年营收与盈利增长情况，并称其属于少数已实现盈利的高性能通用机器人公司。",
+      "publishedAt": "2026-08-17T12:25:27.000Z",
+      "category": "industry",
+      "comment": "点评：机器人公司进入资本市场，会让具身智能从概念热度接受交付、毛利、售后与安全责任的持续检验。",
+      "advice": "建议：按场景闭环衡量项目：任务成功率、人工接管率、维护频率、停机成本与安全事件；先在可回退场景试点。"
+    },
+    {
+      "topic": "safety",
+      "title": "用 Google 的 Agent Development Kit 构建零信任 AI 智能体",
+      "source": "Google Developers Blog",
+      "url": "https://developers.googleblog.com/build-zero-trust-ai-agents-with-googles-agent-development-kit",
+      "date": "2026-08-18",
+      "score": 69,
+      "tags": [
+        "AI HOT",
+        "Agent",
+        "零信任",
+        "安全"
+      ],
+      "summary": "Google 展示基于 ADK 与 Gemini 的零信任客服和退货 Agent：用加密签名保障写入、gVisor 沙箱隔离动态代码，并通过确定性网关校验业务逻辑。",
+      "publishedAt": "2026-08-17T23:22:25.902Z",
+      "category": "tip",
+      "comment": "点评：系统提示词只能影响模型行为，不能充当权限边界。身份、工具能力、写入校验和运行时隔离应置于模型之外。",
+      "advice": "建议：按读、建议、写、外发分级工具调用；高风险操作使用短时身份、参数白名单、服务端校验与人工确认，并持续回归提示注入样本。"
+    },
+    {
+      "topic": "tip",
+      "title": "设计 AI 评测：先求清晰，再谈可视化",
+      "source": "Google AI DEV",
+      "url": "https://dev.to/googleai/designing-ai-evals-clarity-now-and-visualization-next-4eii",
+      "date": "2026-08-18",
+      "score": 67,
+      "tags": [
+        "AI HOT",
+        "评测",
+        "Agent",
+        "观点"
+      ],
+      "summary": "文章演示用 Inspect AI 与 Harbor 评估 Agent 技能，再借助表格与数据工具分析结果，强调先厘清任务、指标和失败样本。",
+      "publishedAt": "2026-08-18T07:00:00.000Z",
+      "category": "tip",
+      "comment": "点评：没有稳定任务集、成功定义、基线和失败分类，再精致的图表也可能只是把噪声呈现得更漂亮。",
+      "advice": "建议：每个 Agent 试点先固定 20 至 50 个代表性任务，记录质量、时延、成本、人工介入、失败原因与安全违规，再扩展可视化。"
+    },
+    {
+      "topic": "tip",
+      "title": "“双向钢人论证”提示词：用相反立场逼近问题本质",
+      "source": "公众号：数字生命卡兹克",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647685329&idx=1&sn=9471278dc489641c097b228912965ed4",
+      "date": "2026-08-18",
+      "score": 71,
+      "tags": [
+        "AI HOT",
+        "提示词",
+        "决策",
+        "观点"
+      ],
+      "summary": "文章用钢人论证设计提示词：重述问题、强化正反观点、找出关键变量，并要求模型给出明确判断，以降低一味迎合。",
+      "publishedAt": "2026-08-17T23:58:00.000Z",
+      "category": "tip",
+      "comment": "点评：它的价值是让前提、反例和可推翻结论的证据显式化，而不是让模型看起来更有自信。",
+      "advice": "建议：用于方案评审时要求输出前提、反例、未知项和验证动作；高风险业务仍应以专业人员与原始证据为准。"
+    },
+    {
+      "topic": "tip",
+      "title": "如何禁用或避免侵入式 AI：一份跨平台实用指南",
+      "source": "Librarian.net",
+      "url": "https://www.librarian.net/notoai",
+      "date": "2026-08-18",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "隐私",
+        "用户信任",
+        "观点"
+      ],
+      "summary": "指南汇总 Windows、浏览器、移动系统和主流应用中减少或关闭侵入式 AI 功能的操作路径。",
+      "publishedAt": "2026-08-17T17:58:12.144Z",
+      "category": "tip",
+      "comment": "点评：用户主动寻找退出 AI 的路径，本身就是产品信任信号；难以理解的数据说明和繁琐关闭流程会透支长期关系。",
+      "advice": "建议：把关闭、数据导出、训练退出和功能说明放在清晰位置；用非技术用户测试默认设置，并追踪关闭率、投诉与支持工单。"
     }
   ],
   "sources": [
     {
       "name": "AI HOT",
       "url": "https://aihot.virxact.com",
-      "note": "过去 24 小时 AI 动态与中文摘要来源"
+      "note": "过去 24 小时精选动态与中文摘要来源"
     },
     {
-      "name": "Simon Willison 博客",
-      "url": "https://simonwillison.net/2026/Aug/16/qwen-38-27b",
-      "note": "Qwen 3.8 27B 表现出色，但默认推理强度过高导致过度思考"
+      "name": "Cursor 更新日志",
+      "url": "https://cursor.com/changelog/origin-code-hosting",
+      "note": "Origin 代码托管早期测试"
     },
     {
-      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://www.anthropic.com/research/multiagent-systems",
-      "note": "新兴多智能体系统的模式与问题"
+      "name": "NVIDIA Blog",
+      "url": "https://blogs.nvidia.com/blog/securing-the-infrastructure-of-intelligence",
+      "note": "OpenAI 租用的俄亥俄 AI 工厂项目"
+    },
+    {
+      "name": "Google Developers Blog",
+      "url": "https://developers.googleblog.com/build-zero-trust-ai-agents-with-googles-agent-development-kit",
+      "note": "基于 ADK 的零信任 Agent 示例"
+    },
+    {
+      "name": "404 Media",
+      "url": "https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility",
+      "note": "关于图书去向与 AI 训练的调查报道"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-08-18",
+    "title": "AI HOT 日报：Cursor Origin、零信任 Agent 与 AI 工厂",
+    "summary": "过去 24 小时 9 条精选动态合并为 8 个独立信号：Cursor 进入代码托管，零信任 Agent 与 AI 评测强调系统边界，算力、训练数据和用户退出机制成为关键变量。",
+    "link": "/posts/81818/",
+    "tags": [
+      "AI HOT",
+      "Cursor",
+      "Agent安全",
+      "NVIDIA"
+    ]
+  },
   {
     "date": "2026-08-17",
     "title": "AI HOT 日报：Qwen 3.8 27B、多智能体系统研究",
