@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-08-18T08:04:27.345Z</updated>
+  <updated>2026-08-19T02:41:19.562Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Claude, GPT, Kimi, 开源, 产品, Anthropic, 论文, Google, Agent, 观点, DeepSeek" scheme="https://aimak.cn/tags/AI-HOT-Claude-GPT-Kimi-%E5%BC%80%E6%BA%90-%E4%BA%A7%E5%93%81-Anthropic-%E8%AE%BA%E6%96%87-Google-Agent-%E8%A7%82%E7%82%B9-DeepSeek/"/>
+    <id>https://aimak.cn/posts/81919/</id>
+    <link href="https://aimak.cn/posts/81919/"/>
+    <published>2026-08-19T02:41:19.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-08-19：GLM-5.3上线、开源、Claude</title>
+    <updated>2026-08-19T02:41:19.562Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -348,21 +366,5 @@
     </summary>
     <title>AI HOT 日报 2026-07-25：Claude Opus 5、开放权重监管、FLUX 3</title>
     <updated>2026-07-25T01:59:24.033Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, OpenAI, ChatGPT, Claude, 语音, Agent, AI安全, 医疗, Qwen, Microsoft, 产业" scheme="https://aimak.cn/tags/AI-HOT-OpenAI-ChatGPT-Claude-%E8%AF%AD%E9%9F%B3-Agent-AI%E5%AE%89%E5%85%A8-%E5%8C%BB%E7%96%97-Qwen-Microsoft-%E4%BA%A7%E4%B8%9A/"/>
-    <id>https://aimak.cn/posts/72424/</id>
-    <link href="https://aimak.cn/posts/72424/"/>
-    <published>2026-07-24T02:31:04.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 截至 2026 年 7 月 24 日 10:31（北京时间）过去 24 小时的精选动态。本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI]]>
-    </summary>
-    <title>AI HOT 日报 2026-07-24：ChatGPT语音多智能体、Claude语音工具、AI医疗风险</title>
-    <updated>2026-07-24T02:34:30.409Z</updated>
   </entry>
 </feed>

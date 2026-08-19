@@ -130,194 +130,242 @@ const previousEpisode = {
 };
 
 const episode = {
-  "date": "2026-08-18",
-  "title": "AI HOT 日报：Cursor Origin、零信任 Agent 与 AI 工厂",
-  "intro": "本期基于 AI HOT 截至 8 月 18 日 16:01（北京时间）过去 24 小时的 9 条精选动态；其中 NVIDIA 与黄仁勋的两条公告属于同一项目，合并为 8 个独立信号。重点关注代码托管、Agent 安全、算力供给、训练数据与用户信任。",
-  "conclusion": "本期最重要的判断是：AI 的外围条件正在成为主战场。代码如何托管、Agent 如何受控、算力如何供给、数据如何获得、用户如何退出，都需要成为可验证、可审计、可迁移的产品能力。",
+  "date": "2026-08-19",
+  "title": "AI HOT 日报：GLM-5.3上线、开源、Claude",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 产品发布/更新、论文研究、技巧与观点。核心信号是：GLM-5.3上线：AA智能指数60分并列开源第一，成本更低；Mojo 语言正式开源，编译器与工具链全面开放；Claude 如何加速蛋白质设计与分析化学研究。",
+  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
       "topic": "product",
-      "title": "Cursor 推出 Origin 代码托管服务，作为 GitHub 的替代方案",
-      "source": "Cursor 更新日志",
-      "url": "https://cursor.com/changelog/origin-code-hosting",
-      "date": "2026-08-18",
-      "score": 81,
+      "title": "GLM-5.3上线：AA智能指数60分并列开源第一，成本更低",
+      "source": "公众号：智谱（GLM）",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzkyMzI3NzQ0Mg%3D%3D&mid=2247494105&idx=1&sn=8d7409e0fb846a3c7803c142b5d1a8e7",
+      "date": "2026-08-19",
+      "score": 79,
       "tags": [
         "AI HOT",
-        "Cursor",
-        "代码托管",
+        "Claude",
+        "GPT",
+        "Kimi",
+        "开源",
         "产品"
       ],
-      "summary": "Cursor 向所有付费用户开放 Origin 代码托管早期测试，提供仓库、拉取请求、代码浏览和 GitHub 同步；评论与审查可双向同步，智能体功能仍在后续计划中。",
-      "publishedAt": "2026-08-17T22:14:00.748Z",
+      "summary": "GLM-5.3 API即日上线，擅长复杂编码、防御性网络安全与长程任务，在AA综合智能指数中取得60分，与Claude Fable 5、GPT-5.6 Sol等闭源旗舰同级，并与Kimi K3并列开源模型第一。该模型以更小参数规模和更低调用成本降低前沿智能门槛，单任务成本为旗舰模型中最低。API定…",
+      "publishedAt": "2026-08-19T01:03:29.000Z",
       "category": "ai-products",
-      "comment": "点评：AI 编程工具开始掌握托管与审查入口后，竞争从补全质量扩展到谁定义团队工作流；便利与迁移成本、权限设计和审查留痕会同时增加。",
-      "advice": "建议：先在非关键仓库试用，核验 Git 镜像、PR 历史、评论同步、权限、审计导出和回退；将规则、CI、评测与提示词保留在可移植格式中。"
+      "comment": "点评：开源模型逼近前沿闭源能力，会让企业模型选型从单纯比较排行榜，转向比较本地部署、数据控制、工具调用稳定性和单位任务成本。性能声明仍需用自己的任务集复核。",
+      "advice": "建议：用中文长文档、代码修改、函数调用和安全边界等真实任务与现有模型对跑；同时核查许可证、权重获取、推理栈、更新节奏和私有部署成本。"
     },
     {
-      "topic": "industry",
-      "title": "NVIDIA、SB Energy 锁定俄亥俄州电力容量，OpenAI 将成为 AI 工厂租户",
-      "source": "NVIDIA Blog",
-      "url": "https://blogs.nvidia.com/blog/securing-the-infrastructure-of-intelligence",
-      "date": "2026-08-18",
-      "score": 77,
+      "topic": "product",
+      "title": "Mojo 语言正式开源，编译器与工具链全面开放",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://www.modular.com/blog/mojo-open-source",
+      "date": "2026-08-19",
+      "score": 74,
       "tags": [
         "AI HOT",
-        "NVIDIA",
-        "OpenAI",
-        "算力"
+        "开源",
+        "产品"
       ],
-      "summary": "NVIDIA 与 SB Energy 在俄亥俄州 PORTS-Pike 园区锁定电力容量以部署 AI 工厂，OpenAI 将成为租户；黄仁勋同期公告称初始规划约 4.25 吉瓦，两条信息指向同一项目。",
-      "publishedAt": "2026-08-17T12:34:51.000Z",
-      "category": "industry",
-      "comment": "点评：AI 基础设施的约束已从芯片延伸到电力、园区、并网和长期租约。大型项目增强供给确定性，也会提升产业集中度。",
-      "advice": "建议：用正常供给、峰值涨价和区域受限三种情景预算推理成本；保留多模型、多云或可降级路径，把缓存、批处理和模型路由视为产品能力。"
+      "summary": "Mojo🔥 语言现已正式开源，采用 Apache 2.0 许可证（含 LLVM 例外），编译器、工具链及全部源码已发布至 modular GitHub 仓库。Mojo 上周刚达成 1.0 版本（源码稳定），此次开源涵盖整个编译器与工具链。目前暂不接受编译器相关贡献，计划年底前开放，标准库自 20…",
+      "publishedAt": "2026-08-18T21:26:01.095Z",
+      "category": "ai-products",
+      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     },
     {
-      "topic": "industry",
-      "title": "报道称亚马逊批量购书扫描用于 AI 训练后销毁",
-      "source": "404 Media",
-      "url": "https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility",
-      "date": "2026-08-18",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "训练数据",
-        "版权",
-        "产业"
-      ],
-      "summary": "404 Media 通过追踪设备报道一批珍本图书被送往亚马逊 AI 训练中心，可能被扫描用于训练后销毁；具体规模、授权范围和后续处理仍待当事方说明。",
-      "publishedAt": "2026-08-17T18:46:04.518Z",
-      "category": "industry",
-      "comment": "点评：这则报道再次凸显训练数据来源的透明度。数据取得方式会直接影响作者、出版商与用户对 AI 产品的信任。",
-      "advice": "建议：维护来源、授权、使用范围、保留期限和删除流程的可追溯数据台账；版权敏感数据应先经法务与伦理评估再扩大使用。"
-    },
-    {
-      "topic": "industry",
-      "title": "宇树科技宣布 8 月 19 日在科创板上市",
-      "source": "IT之家",
-      "url": "https://www.ithome.com/0/990/812.htm",
-      "date": "2026-08-18",
+      "topic": "paper",
+      "title": "Claude 如何加速蛋白质设计与分析化学研究",
+      "source": "Anthropic：Research（发表成果 · 网页）",
+      "url": "https://www.anthropic.com/research/Claude-accelerates-protein-design",
+      "date": "2026-08-19",
       "score": 73,
       "tags": [
         "AI HOT",
-        "机器人",
-        "具身智能",
-        "产业"
+        "Anthropic",
+        "Claude",
+        "论文"
       ],
-      "summary": "宇树科技公告称将于 8 月 19 日在科创板上市；报道列出其近年营收与盈利增长情况，并称其属于少数已实现盈利的高性能通用机器人公司。",
-      "publishedAt": "2026-08-17T12:25:27.000Z",
-      "category": "industry",
-      "comment": "点评：机器人公司进入资本市场，会让具身智能从概念热度接受交付、毛利、售后与安全责任的持续检验。",
-      "advice": "建议：按场景闭环衡量项目：任务成功率、人工接管率、维护频率、停机成本与安全事件；先在可回退场景试点。"
-    },
-    {
-      "topic": "safety",
-      "title": "用 Google 的 Agent Development Kit 构建零信任 AI 智能体",
-      "source": "Google Developers Blog",
-      "url": "https://developers.googleblog.com/build-zero-trust-ai-agents-with-googles-agent-development-kit",
-      "date": "2026-08-18",
-      "score": 69,
-      "tags": [
-        "AI HOT",
-        "Agent",
-        "零信任",
-        "安全"
-      ],
-      "summary": "Google 展示基于 ADK 与 Gemini 的零信任客服和退货 Agent：用加密签名保障写入、gVisor 沙箱隔离动态代码，并通过确定性网关校验业务逻辑。",
-      "publishedAt": "2026-08-17T23:22:25.902Z",
-      "category": "tip",
-      "comment": "点评：系统提示词只能影响模型行为，不能充当权限边界。身份、工具能力、写入校验和运行时隔离应置于模型之外。",
-      "advice": "建议：按读、建议、写、外发分级工具调用；高风险操作使用短时身份、参数白名单、服务端校验与人工确认，并持续回归提示注入样本。"
+      "summary": "Anthropic 公布两项实验：Claude（Mythos Preview 和 Opus 4.8）针对 15 个靶点设计蛋白质结合剂，成功 14 个，命中率达 22.6%-35.1%。",
+      "publishedAt": "2026-08-18T22:27:16.191Z",
+      "category": "paper",
+      "comment": "点评：研究动态的价值不只在新方法本身，更在于能否被复现、接入现有系统并改善真实任务指标。",
+      "advice": "建议：技术团队可先复现实验结论，再判断是否能转化为检索、推理、评测或数据处理链路中的收益。"
     },
     {
       "topic": "tip",
       "title": "设计 AI 评测：先求清晰，再谈可视化",
-      "source": "Google AI DEV",
+      "source": "Google AI：DEV 作者专属（RSS）",
       "url": "https://dev.to/googleai/designing-ai-evals-clarity-now-and-visualization-next-4eii",
-      "date": "2026-08-18",
+      "date": "2026-08-19",
       "score": 67,
       "tags": [
         "AI HOT",
-        "评测",
+        "Google",
         "Agent",
+        "开源",
         "观点"
       ],
-      "summary": "文章演示用 Inspect AI 与 Harbor 评估 Agent 技能，再借助表格与数据工具分析结果，强调先厘清任务、指标和失败样本。",
+      "summary": "本文演示如何用开源评测框架 Inspect AI 和 Harbor 评估 agent 技能，并借助 Google Sheets 和 Data Studio 进行可视化分析。",
       "publishedAt": "2026-08-18T07:00:00.000Z",
       "category": "tip",
-      "comment": "点评：没有稳定任务集、成功定义、基线和失败分类，再精致的图表也可能只是把噪声呈现得更漂亮。",
-      "advice": "建议：每个 Agent 试点先固定 20 至 50 个代表性任务，记录质量、时延、成本、人工介入、失败原因与安全违规，再扩展可视化。"
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
+    },
+    {
+      "topic": "paper",
+      "title": "智能体记忆并非越多越好：八款模型评测显示剂量需按能力校准",
+      "source": "Hugging Face：Blog（RSS）",
+      "url": "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
+      "date": "2026-08-19",
+      "score": 66,
+      "tags": [
+        "AI HOT",
+        "GPT",
+        "DeepSeek",
+        "推理",
+        "论文"
+      ],
+      "summary": "智能体记忆并非可随意开启的功能，而是需按模型能力校准的剂量。强模型适合注入完整指南集，DeepSeek-V3.2（671B MoE）任务完成率提升+9.5个百分点；较弱模型采用精选检索效果最佳，gpt-oss-120b（117B MoE）提升+16.1pp且仅增加+5% token。该方法无需更新…",
+      "publishedAt": "2026-08-18T18:09:38.000Z",
+      "category": "paper",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：技术团队可先复现实验结论，再判断是否能转化为检索、推理、评测或数据处理链路中的收益。"
+    },
+    {
+      "topic": "product",
+      "title": "Claude 现已支持 Gmail 邮件与 Google Drive 文件管理",
+      "source": "X：Claude (@claudeai)",
+      "url": "https://x.com/claudeai/status/2089806039088517356",
+      "date": "2026-08-19",
+      "score": 65,
+      "tags": [
+        "AI HOT",
+        "Google",
+        "Claude",
+        "产品"
+      ],
+      "summary": "Claude 现在可以在 Gmail 中发送邮件，并管理 Google Drive 中的文件。 让 Claude 回复某个邮件线程，它会起草并发送回复。你可以控制何时需要你的批准。 从连接器菜单中选择连接 Gmail 或 Google Drive 即可试用。所有付费套餐均可用。",
+      "publishedAt": "2026-08-18T20:06:01.000Z",
+      "category": "ai-products",
+      "comment": "点评：这条动态值得从产品入口、用户工作流和商业化节奏三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
+    },
+    {
+      "topic": "safety",
+      "title": "OpenAI 在\"关键网络能力\"时代放缓模型开发节奏",
+      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "url": "https://openai.com/index/pacing-model-development-cyber-capabilities",
+      "date": "2026-08-19",
+      "score": 65,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "观点"
+      ],
+      "summary": "OpenAI 因 OpenAI-Hugging Face 事件及即将推出的 Astra 模型可能达到《预备框架》下的\"关键网络安全能力\"阈值，暂时放缓了模型扩展速度，包括暂停最新部署模型的强化学习训练两周，并搁置最大规模前沿 RL 运行。公司已加强研究环境安全，要求对 Astra 及网络相关负载实…",
+      "publishedAt": "2026-08-18T11:00:00.000Z",
+      "category": "tip",
+      "comment": "点评：延缓发布本身就是能力成熟度的一部分：当模型在网络安全领域达到关键风险级别，权重保护、隔离测试、工具限制和部署监控必须先于规模化开放。",
+      "advice": "建议：将此类传闻和评论视为待验证信号，优先等待官方技术报告、评测协议和独立复现；模型选型仍应基于自有任务集和可审计结果。"
     },
     {
       "topic": "tip",
-      "title": "“双向钢人论证”提示词：用相反立场逼近问题本质",
-      "source": "公众号：数字生命卡兹克",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647685329&idx=1&sn=9471278dc489641c097b228912965ed4",
-      "date": "2026-08-18",
-      "score": 71,
+      "title": "Claude Tag 如何担任 Anthropic CI/CD 故障的一线响应者",
+      "source": "Claude：Blog（网页）",
+      "url": "https://claude.com/blog/ai-ci-cd-on-call",
+      "date": "2026-08-19",
+      "score": 63,
       "tags": [
         "AI HOT",
-        "提示词",
-        "决策",
+        "Anthropic",
+        "Claude",
         "观点"
       ],
-      "summary": "文章用钢人论证设计提示词：重述问题、强化正反观点、找出关键变量，并要求模型给出明确判断，以降低一味迎合。",
-      "publishedAt": "2026-08-17T23:58:00.000Z",
+      "summary": "Anthropic 的 CI 工程师用 Claude Tag 构建了值班智能体，作为 CI/CD 故障的一线响应者。Claude 在事故发生后中位 14 分钟发布首份基于证据的分析，最快案例中 3 分钟内验证修复并确认错误率恢复基线。该方案通过 Slack 频道、Datadog 或 Grafana…",
+      "publishedAt": "2026-08-18T19:26:08.389Z",
       "category": "tip",
-      "comment": "点评：它的价值是让前提、反例和可推翻结论的证据显式化，而不是让模型看起来更有自信。",
-      "advice": "建议：用于方案评审时要求输出前提、反例、未知项和验证动作；高风险业务仍应以专业人员与原始证据为准。"
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
     },
     {
-      "topic": "tip",
-      "title": "如何禁用或避免侵入式 AI：一份跨平台实用指南",
-      "source": "Librarian.net",
-      "url": "https://www.librarian.net/notoai",
-      "date": "2026-08-18",
-      "score": 70,
+      "topic": "product",
+      "title": "OpenAI 推出 ChatGPT for Teens：面向青少年的学习体验与更强安全保护",
+      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "url": "https://openai.com/index/chatgpt-for-teens",
+      "date": "2026-08-19",
+      "score": 60,
       "tags": [
         "AI HOT",
-        "隐私",
-        "用户信任",
-        "观点"
+        "OpenAI",
+        "GPT",
+        "产品"
       ],
-      "summary": "指南汇总 Windows、浏览器、移动系统和主流应用中减少或关闭侵入式 AI 功能的操作路径。",
-      "publishedAt": "2026-08-17T17:58:12.144Z",
-      "category": "tip",
-      "comment": "点评：用户主动寻找退出 AI 的路径，本身就是产品信任信号；难以理解的数据说明和繁琐关闭流程会透支长期关系。",
-      "advice": "建议：把关闭、数据导出、训练退出和功能说明放在清晰位置；用非技术用户测试默认设置，并追踪关闭率、投诉与支持工单。"
+      "summary": "OpenAI 发布 ChatGPT for Teens，为 13-17 岁用户自动启用，内置更强安全保护与家长控制。新增 Study Mode、负责任作业提醒、测验与学习可视化，以及可设定默认开启时段的 Study Hours，引导青少年分步解题而非直接给答案。OpenAI 同时宣布与 CodeA…",
+      "publishedAt": "2026-08-18T11:00:00.000Z",
+      "category": "ai-products",
+      "comment": "点评：AI 能力越深入生产，治理越不能停留在原则口号，必须落到权限、审计、数据边界和责任链。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
     }
   ],
   "sources": [
     {
       "name": "AI HOT",
       "url": "https://aihot.virxact.com",
-      "note": "过去 24 小时精选动态与中文摘要来源"
+      "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "Cursor 更新日志",
-      "url": "https://cursor.com/changelog/origin-code-hosting",
-      "note": "Origin 代码托管早期测试"
+      "name": "公众号：智谱（GLM）",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzkyMzI3NzQ0Mg%3D%3D&mid=2247494105&idx=1&sn=8d7409e0fb846a3c7803c142b5d1a8e7",
+      "note": "GLM-5.3上线：AA智能指数60分并列开源第一，成本更低"
     },
     {
-      "name": "NVIDIA Blog",
-      "url": "https://blogs.nvidia.com/blog/securing-the-infrastructure-of-intelligence",
-      "note": "OpenAI 租用的俄亥俄 AI 工厂项目"
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://www.modular.com/blog/mojo-open-source",
+      "note": "Mojo 语言正式开源，编译器与工具链全面开放"
     },
     {
-      "name": "Google Developers Blog",
-      "url": "https://developers.googleblog.com/build-zero-trust-ai-agents-with-googles-agent-development-kit",
-      "note": "基于 ADK 的零信任 Agent 示例"
+      "name": "Anthropic：Research（发表成果 · 网页）",
+      "url": "https://www.anthropic.com/research/Claude-accelerates-protein-design",
+      "note": "Claude 如何加速蛋白质设计与分析化学研究"
     },
     {
-      "name": "404 Media",
-      "url": "https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility",
-      "note": "关于图书去向与 AI 训练的调查报道"
+      "name": "Google AI：DEV 作者专属（RSS）",
+      "url": "https://dev.to/googleai/designing-ai-evals-clarity-now-and-visualization-next-4eii",
+      "note": "设计 AI 评测：先求清晰，再谈可视化"
+    },
+    {
+      "name": "Hugging Face：Blog（RSS）",
+      "url": "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
+      "note": "智能体记忆并非越多越好：八款模型评测显示剂量需按能力校准"
+    },
+    {
+      "name": "X：Claude (@claudeai)",
+      "url": "https://x.com/claudeai/status/2089806039088517356",
+      "note": "Claude 现已支持 Gmail 邮件与 Google Drive 文件管理"
+    },
+    {
+      "name": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "url": "https://openai.com/index/pacing-model-development-cyber-capabilities",
+      "note": "OpenAI 在\"关键网络能力\"时代放缓模型开发节奏"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-08-19",
+    "title": "AI HOT 日报：GLM-5.3上线、开源、Claude",
+    "summary": "重点关注 产品发布/更新、论文研究、技巧与观点。核心信号是：GLM-5.3上线：AA智能指数60分并列开源第一，成本更低；Mojo 语言正式开源，编译器与工具链全面开放；Claude 如何加速蛋白质设计与分析化学研究。",
+    "link": "/posts/81919/",
+    "tags": [
+      "AI HOT",
+      "Claude",
+      "GPT",
+      "Kimi"
+    ]
+  },
   {
     "date": "2026-08-18",
     "title": "AI HOT 日报：Cursor Origin、零信任 Agent 与 AI 工厂",
