@@ -10,7 +10,43 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-08-19T02:41:19.562Z</updated>
+  <updated>2026-08-23T03:32:36.075Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Anthropic, 开源, 产业, 机器人, 产品, AI日报, AI资讯" scheme="https://aimak.cn/tags/AI-HOT-Anthropic-%E5%BC%80%E6%BA%90-%E4%BA%A7%E4%B8%9A-%E6%9C%BA%E5%99%A8%E4%BA%BA-%E4%BA%A7%E5%93%81-AI%E6%97%A5%E6%8A%A5-AI%E8%B5%84%E8%AE%AF/"/>
+    <id>https://aimak.cn/posts/82323/</id>
+    <link href="https://aimak.cn/posts/82323/"/>
+    <published>2026-08-23T03:32:36.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-08-23：失控AI Agent安全事件、人形机器人运动会、SGLang权重缓存</title>
+    <updated>2026-08-23T03:32:36.075Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Qwen, Agent, 模型, 产品, Anthropic, Claude, Claude Code, 观点, 开源, 推理, AI日报" scheme="https://aimak.cn/tags/AI-HOT-Qwen-Agent-%E6%A8%A1%E5%9E%8B-%E4%BA%A7%E5%93%81-Anthropic-Claude-Claude-Code-%E8%A7%82%E7%82%B9-%E5%BC%80%E6%BA%90-%E6%8E%A8%E7%90%86-AI%E6%97%A5%E6%8A%A5/"/>
+    <id>https://aimak.cn/posts/82121/</id>
+    <link href="https://aimak.cn/posts/82121/"/>
+    <published>2026-08-21T07:31:47.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-08-21：Qwen UI Agent、Agentic Search、AlloyDB 向量搜索</title>
+    <updated>2026-08-21T07:31:47.875Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -330,41 +366,5 @@
     </summary>
     <title>AI HOT 日报 2026-07-28：Kimi、Google、Copilot</title>
     <updated>2026-07-28T08:32:52.788Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, OpenAI, xAI, Grok, Agent, AI安全, CLI, 网络安全" scheme="https://aimak.cn/tags/AI-HOT-OpenAI-xAI-Grok-Agent-AI%E5%AE%89%E5%85%A8-CLI-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
-    <id>https://aimak.cn/posts/72626/</id>
-    <link href="https://aimak.cn/posts/72626/"/>
-    <published>2026-07-26T02:12:48.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 截至 2026 年 7 月 26 日 10:12（北京时间）过去 24 小时的精选动态。滚动窗口仅收录 2 条新增信号，本文据实整理，不以窗口外旧闻填充篇幅，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。安全事件的细节与责任应以相关方正式调查结论为准。</p>
-</blockquote>
-<h2]]>
-    </summary>
-    <title>AI HOT 日报 2026-07-26：Grok CLI 与 OpenAI Agent 安全复盘</title>
-    <updated>2026-07-26T02:14:36.625Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Claude, Anthropic, Opus 5, 开放权重, FLUX, Agent, 无人机, 模型, 安全" scheme="https://aimak.cn/tags/AI-HOT-Claude-Anthropic-Opus-5-%E5%BC%80%E6%94%BE%E6%9D%83%E9%87%8D-FLUX-Agent-%E6%97%A0%E4%BA%BA%E6%9C%BA-%E6%A8%A1%E5%9E%8B-%E5%AE%89%E5%85%A8/"/>
-    <id>https://aimak.cn/posts/72525/</id>
-    <link href="https://aimak.cn/posts/72525/"/>
-    <published>2026-07-25T01:56:12.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 截至 2026 年 7 月 25 日 09:56（北京时间）过去 24 小时的精选动态。本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。涉及监管、基准和安全事件的结论，应结合原始报告与后续正式披露理解。</p>
-</blockquote>
-<h2]]>
-    </summary>
-    <title>AI HOT 日报 2026-07-25：Claude Opus 5、开放权重监管、FLUX 3</title>
-    <updated>2026-07-25T01:59:24.033Z</updated>
   </entry>
 </feed>
