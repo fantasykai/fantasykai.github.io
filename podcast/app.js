@@ -130,47 +130,206 @@ const previousEpisode = {
 };
 
 const episode = {
-  "date": "2026-08-24",
-  "title": "AI HOT 日报：OpenAI 警示 AI 网络攻击风险",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，仅出现 1 条高相关资讯：OpenAI 首席全球事务官克里斯·勒汉恩提醒，前沿 AI 模型已经开始具备规划和发动复杂网络攻击的能力，公众与企业需要为持续性的 AI 网络攻击做好准备。",
-  "conclusion": "今天的关键不在于恐慌性地停用 AI，而在于把自动化能力放进可见、可控、可撤销的边界：最小权限、短期凭证、人工确认、审计日志和一键回滚应成为默认配置。",
+  "date": "2026-08-26",
+  "title": "AI HOT 日报：WeatherNext、OpenWorker、Claude",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 模型发布/更新、产品发布/更新、技巧与观点。核心信号是：WeatherNext 预测气旋：提前五天预警五级飓风；OpenWorker 新版发布，内置网络安全智能体；Claude 记忆功能全面打通聊天与 Cowork，用户可逐条查看和编辑。",
+  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
+      "topic": "model",
+      "title": "WeatherNext 预测气旋：提前五天预警五级飓风",
+      "source": "X：Google AI (@GoogleAI)",
+      "url": "https://x.com/GoogleAI/status/2092275116503707733",
+      "date": "2026-08-26",
+      "score": 73,
+      "tags": [
+        "AI HOT",
+        "Google",
+        "开源",
+        "模型"
+      ],
+      "summary": "Google AI 发布 WeatherNext 气旋预测模型，可同时预测风暴路径、强度和规模，比现有系统多提供一整天的预警时间。该模型在 2025 飓风季实战测试中，提前五天预测飓风 Melissa 在牙买加的五级登陆，系美国国家飓风中心首次实时使用 AI 模型。模型单场风暴可生成多达 1000…",
+      "publishedAt": "2026-08-25T15:37:15.000Z",
+      "category": "ai-models",
+      "comment": "点评：气象 AI 的突破不只在于更准，而在于把预警提前量变成可执行的防灾决策窗口。公开模型与权重有助于复核和本地适配，但极端天气中的区域偏差、校准方式和预警责任仍需由专业机构持续验证。",
+      "advice": "建议：气象、防灾和保险团队应把模型输出接入现有预报流程做回测，分别记录路径、强度、提前量和区域偏差；任何对外预警都应保留人工气象专家复核与明确的责任边界。"
+    },
+    {
       "topic": "safety",
-      "title": "OpenAI 警示公众与企业防范 AI 网络攻击",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/993/305.htm",
-      "date": "2026-08-24",
-      "score": 71,
-      "tags": ["AI HOT", "OpenAI", "AI安全", "网络安全"],
-      "summary": "OpenAI 首席全球事务官克里斯·勒汉恩警告，前沿 AI 模型已开始具备规划和发动复杂网络攻击的能力，公众和企业需为 AI 持续不断的攻击做好防御准备。AI HOT 收录信息还提到，OpenAI 本周暂停部分前沿模型训练以补充安全防护。",
-      "publishedAt": "2026-08-23T14:13:31.000Z",
-      "category": "industry",
-      "comment": "点评：风险焦点正从模型生成了什么内容，转向它以什么身份接触哪些资源、能否调用工具并写回系统。模型能力、授权范围、外部输入、工具链和监控能力共同决定真实攻击面。",
-      "advice": "建议：盘点所有可行动的 AI 入口；对代码合并、生产变更、外发和权限提升保留人工确认；使用独立身份、短期凭证、出站白名单和审计日志，并持续用提示注入、恶意链接和异常工具调用场景做回归演练。"
+      "title": "OpenWorker 新版发布，内置网络安全智能体",
+      "source": "X：Andrew Ng（DeepLearning.AI 创始人） (@AndrewYNg)",
+      "url": "https://x.com/AndrewYNg/status/2092315079576555806",
+      "date": "2026-08-26",
+      "score": 67,
+      "tags": [
+        "AI HOT",
+        "开源",
+        "产品"
+      ],
+      "summary": "Andrew Ng 旗下开源智能体 OpenWorker 发布新版，强化安全工作流。其 harness 完全开源，安全团队可审计无后门。新版内置代码漏洞扫描、依赖供应链注入检测和云安全配置检查三类网络安全智能体，并支持本地运行开源权重模型以保护敏感代码。",
+      "publishedAt": "2026-08-25T18:16:02.000Z",
+      "category": "ai-products",
+      "comment": "点评：把漏洞、依赖和云配置检查封装成开源 Agent，降低了安全自动化的试用门槛；但“开源可审计”不等于告警天然可信。价值取决于规则覆盖、误报处置、凭证边界和是否能融入现有安全运营流程。",
+      "advice": "建议：先在隔离环境和只读权限下运行，使用已知漏洞、依赖投毒和错误配置样本衡量召回率、误报率与修复耗时；不要让安全 Agent 直接修改生产配置或自动合并代码。"
+    },
+    {
+      "topic": "product",
+      "title": "Claude 记忆功能全面打通聊天与 Cowork，用户可逐条查看和编辑",
+      "source": "Claude：Blog（网页）",
+      "url": "https://claude.com/blog/claudes-memory-works-everywhere-and-you-decide-whats-in-it",
+      "date": "2026-08-26",
+      "score": 67,
+      "tags": [
+        "AI HOT",
+        "Claude",
+        "产品"
+      ],
+      "summary": "Claude 即日起将聊天与 Claude Cowork 的记忆统一，用户在任一场景对话时都能调用此前积累的上下文，减少重复解释。记忆会在聊天过程中实时更新，用户可在 Memory 设置中按主题查看、编辑或删除每条记忆。健康、信仰等敏感话题默认不存储，但可在设置中开启，且敏感识别号、犯罪记录等始终…",
+      "publishedAt": "2026-08-25T18:02:04.743Z",
+      "category": "ai-products",
+      "comment": "点评：跨场景记忆把 AI 从单次问答推进到持续协作，减少重复交代上下文；可查看、编辑和删除是必要的控制面。不过记忆覆盖范围扩大后，用户真正关心的是哪些信息会留下、何时更新，以及能否完整撤回。",
+      "advice": "建议：团队使用带记忆的助手前，应明确禁止写入的敏感信息、保留周期、管理员可见范围和离职/项目结束时的清理流程；先以非敏感工作流试点，再评估是否扩大覆盖。"
+    },
+    {
+      "topic": "tip",
+      "title": "Dylan Patel：Anthropic 与 OpenAI 到 2028 年将控制全球大部分算力",
+      "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
+      "url": "https://www.dwarkesh.com/p/dylan-patel-3",
+      "date": "2026-08-26",
+      "score": 64,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "Anthropic",
+        "观点"
+      ],
+      "summary": "在最新一期播客中，SemiAnalysis 创始人 Dylan Patel 与 Dwarkesh Patel 讨论实验室经济学，预计 Anthropic 和 OpenAI 到 2028 年将控制全球大部分可用 FLOPs，因其能更好变现算力并出价高于其他方。",
+      "publishedAt": "2026-08-25T15:32:57.000Z",
+      "category": "tip",
+      "comment": "点评：算力可能向少数能稳定变现、愿意长期投入的实验室集中，这是值得追踪的产业判断，而不是已经发生的事实。对应用团队而言，更直接的风险是供应商集中、价格波动与模型路线变化，而非预测本身。",
+      "advice": "建议：避免把关键业务锁死在单一模型或云上：保留可导出的提示词、评测集与调用日志，设置模型路由、预算告警和替代供应商演练，用任务完成率与成本而非行业预测做选型。"
+    },
+    {
+      "topic": "product",
+      "title": "Apple 推出搭载 M5 Max 与 M5 Ultra 的全新 Mac Studio",
+      "source": "Apple：Newsroom（RSS）",
+      "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-new-mac-studio-with-m5-max-and-m5-ultra",
+      "date": "2026-08-26",
+      "score": 64,
+      "tags": [
+        "AI HOT",
+        "推理",
+        "产品"
+      ],
+      "summary": "Apple 发布搭载 M5 Max 与全新 M5 Ultra 的 Mac Studio，AI 性能最高提升 4.3 倍，图形性能提升 1.8 倍，存储速度提升 2 倍。M5 Ultra 版本支持最高 512GB 统一内存与 1.2TB/s 内存带宽，可完全在设备端运行大型 LLM；四台集群可带来最…",
+      "publishedAt": "2026-08-25T13:00:23.969Z",
+      "category": "ai-products",
+      "comment": "点评：更高统一内存与带宽让大型模型的端侧推理更可行，尤其适合隐私敏感、低延迟或离线场景；但硬件规格不等于业务吞吐。实际价值取决于目标模型量化后的速度、上下文长度、能耗、热设计和运维方式。",
+      "advice": "建议：在采购前用目标模型与真实上下文做基准测试，记录首 token 延迟、持续吞吐、内存占用、能耗和并发能力；将端侧部署与云端方案按隐私、离线需求和单位任务成本共同比较。"
+    },
+    {
+      "topic": "product",
+      "title": "LangChain 与 Airbyte 集成：让数据摄取达到生产级就绪",
+      "source": "LangChain：Blog（RSS）",
+      "url": "https://www.langchain.com/blog/making-data-ingestion-production-ready-a-langchain-powered-airbyte-destination",
+      "date": "2026-08-26",
+      "score": 61,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "LangChain 与 Airbyte 的集成方案旨在将检索应用扩展至生产环境。该方案通过调度、文本拆分和 50 多种嵌入模型实现数据摄取自动化，帮助开发者构建可规模化的生产级数据管道。",
+      "publishedAt": "2026-08-25T21:12:53.000Z",
+      "category": "ai-products",
+      "comment": "点评：RAG 走向生产，瓶颈常常不在模型回答，而在数据摄取的增量更新、切分质量、权限继承和失败恢复。把连接器、调度与嵌入链路产品化，说明“新鲜且可追溯的数据”正在成为应用可靠性的基础设施。",
+      "advice": "建议：为每个数据源建立所有者、更新 SLA、访问控制和可追溯版本；在上线前压测增量同步、重复文档、删除传播和失败重试，并用真实问题集核查检索质量与引用准确性。"
+    },
+    {
+      "topic": "product",
+      "title": "Apple 发布 M6 与 M5 Ultra，性能与 AI 算力大幅跃升",
+      "source": "Apple：Newsroom（RSS）",
+      "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute",
+      "date": "2026-08-26",
+      "score": 55,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "Apple 推出首款 2nm 芯片 M6，搭载 12 核 CPU、12 核 GPU 及双 16 核神经引擎，统一内存带宽最高 170GB/s，多线程性能较 M5 提升 1.2 倍。M5 Ultra 采用首款四芯片封装架构，最高 36 核 CPU、80 核 GPU，带宽达 1.2TB/s，较 M3 …",
+      "publishedAt": "2026-08-25T12:58:13.056Z",
+      "category": "ai-products",
+      "comment": "点评：更高统一内存与带宽让大型模型的端侧推理更可行，尤其适合隐私敏感、低延迟或离线场景；但硬件规格不等于业务吞吐。实际价值取决于目标模型量化后的速度、上下文长度、能耗、热设计和运维方式。",
+      "advice": "建议：在采购前用目标模型与真实上下文做基准测试，记录首 token 延迟、持续吞吐、内存占用、能耗和并发能力；将端侧部署与云端方案按隐私、离线需求和单位任务成本共同比较。"
     }
   ],
   "sources": [
     {
       "name": "AI HOT",
       "url": "https://aihot.virxact.com",
-      "note": "过去 24 小时精选动态与中文摘要来源"
+      "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/993/305.htm",
-      "note": "OpenAI 首席全球事务官关于 AI 网络攻击风险的公开预警"
+      "name": "X：Google AI (@GoogleAI)",
+      "url": "https://x.com/GoogleAI/status/2092275116503707733",
+      "note": "WeatherNext 预测气旋：提前五天预警五级飓风"
+    },
+    {
+      "name": "X：Andrew Ng（DeepLearning.AI 创始人） (@AndrewYNg)",
+      "url": "https://x.com/AndrewYNg/status/2092315079576555806",
+      "note": "OpenWorker 新版发布，内置网络安全智能体"
+    },
+    {
+      "name": "Claude：Blog（网页）",
+      "url": "https://claude.com/blog/claudes-memory-works-everywhere-and-you-decide-whats-in-it",
+      "note": "Claude 记忆功能全面打通聊天与 Cowork，用户可逐条查看和编辑"
+    },
+    {
+      "name": "Dwarkesh Patel：Podcast & Blog（RSS）",
+      "url": "https://www.dwarkesh.com/p/dylan-patel-3",
+      "note": "Dylan Patel：Anthropic 与 OpenAI 到 2028 年…"
+    },
+    {
+      "name": "Apple：Newsroom（RSS）",
+      "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-new-mac-studio-with-m5-max-and-m5-ultra",
+      "note": "Apple 推出搭载 M5 Max 与 M5 Ultra 的全新 Mac St…"
+    },
+    {
+      "name": "LangChain：Blog（RSS）",
+      "url": "https://www.langchain.com/blog/making-data-ingestion-production-ready-a-langchain-powered-airbyte-destination",
+      "note": "LangChain 与 Airbyte 集成：让数据摄取达到生产级就绪"
+    },
+    {
+      "name": "Apple：Newsroom（RSS）",
+      "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute",
+      "note": "Apple 发布 M6 与 M5 Ultra，性能与 AI 算力大幅跃升"
     }
   ]
 };
 
 const episodeHistory = [
   {
+    "date": "2026-08-26",
+    "title": "AI HOT 日报：WeatherNext、OpenWorker、Claude",
+    "summary": "重点关注 模型发布/更新、产品发布/更新、技巧与观点。核心信号是：WeatherNext 预测气旋：提前五天预警五级飓风；OpenWorker 新版发布，内置网络安全智能体；Claude 记忆功能全面打通聊天与 Cowork，用户可逐条查看和编辑。",
+    "link": "/posts/82626/",
+    "tags": [
+      "AI HOT",
+      "Google",
+      "开源",
+      "模型"
+    ]
+  },
+  {
     "date": "2026-08-24",
     "title": "AI HOT 日报：OpenAI 警示 AI 网络攻击风险",
     "summary": "过去 24 小时精选池仅出现 1 条高相关资讯：OpenAI 提醒前沿 AI 已具备规划和发动复杂网络攻击的能力。本期围绕最小权限、人工确认、审计与回滚给出落地建议。",
     "link": "/posts/82424/",
-    "tags": ["AI HOT", "OpenAI", "AI安全", "网络安全"]
+    "tags": [
+      "AI HOT",
+      "OpenAI",
+      "AI安全",
+      "网络安全"
+    ]
   },
   {
     "date": "2026-08-23",
