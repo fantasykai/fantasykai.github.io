@@ -130,183 +130,250 @@ const previousEpisode = {
 };
 
 const episode = {
-  "date": "2026-08-26",
-  "title": "AI HOT 日报：WeatherNext、OpenWorker、Claude",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 模型发布/更新、产品发布/更新、技巧与观点。核心信号是：WeatherNext 预测气旋：提前五天预警五级飓风；OpenWorker 新版发布，内置网络安全智能体；Claude 记忆功能全面打通聊天与 Cowork，用户可逐条查看和编辑。",
-  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
+  "date": "2026-08-28",
+  "title": "AI HOT 日报：Midjourney V8.2、Gemini 实时转写与 Grok 安全治理",
+  "intro": "本期基于 AI HOT 过去 24 小时的 9 条精选动态，聚焦可控图像与视频生成、实时语音转写、算力供给，以及训练数据和智能体安全边界。核心信号是：Midjourney 开放 V8.2 图像编辑测试；Gemini 3.5 Transcribe 进入实时语音转写；生成式系统的治理能力必须与模型能力同步建设。",
+  "conclusion": "今天的 AI 进展说明，模型能力正更深地进入创作、实时交互与自动化执行；与此同时，数据来源、供应链和权限边界也成为同样重要的产品能力。建议团队把热点转成可验证的评测、容量预算和治理清单，再扩大自动化范围。",
   "items": [
     {
       "topic": "model",
-      "title": "WeatherNext 预测气旋：提前五天预警五级飓风",
-      "source": "X：Google AI (@GoogleAI)",
-      "url": "https://x.com/GoogleAI/status/2092275116503707733",
-      "date": "2026-08-26",
-      "score": 73,
+      "title": "Midjourney 开放 V8.2 图像编辑模型测试",
+      "source": "Midjourney：Updates（RSS）",
+      "url": "https://updates.midjourney.com/edit-model-for-v8",
+      "date": "2026-08-28",
+      "score": 64,
       "tags": [
         "AI HOT",
-        "Google",
-        "开源",
+        "Midjourney",
+        "图像生成",
         "模型"
       ],
-      "summary": "Google AI 发布 WeatherNext 气旋预测模型，可同时预测风暴路径、强度和规模，比现有系统多提供一整天的预警时间。该模型在 2025 飓风季实战测试中，提前五天预测飓风 Melissa 在牙买加的五级登陆，系美国国家飓风中心首次实时使用 AI 模型。模型单场风暴可生成多达 1000…",
-      "publishedAt": "2026-08-25T15:37:15.000Z",
+      "summary": "Midjourney 向所有用户开放 V8.2 图像编辑模型测试，支持指令编辑、最多 4 张参考图的以图生图、局部重绘与扩画，并兼容个性化和风格参考功能。",
+      "publishedAt": "2026-08-27T23:32:15.000Z",
       "category": "ai-models",
-      "comment": "点评：气象 AI 的突破不只在于更准，而在于把预警提前量变成可执行的防灾决策窗口。公开模型与权重有助于复核和本地适配，但极端天气中的区域偏差、校准方式和预警责任仍需由专业机构持续验证。",
-      "advice": "建议：气象、防灾和保险团队应把模型输出接入现有预报流程做回测，分别记录路径、强度、提前量和区域偏差；任何对外预警都应保留人工气象专家复核与明确的责任边界。"
-    },
-    {
-      "topic": "safety",
-      "title": "OpenWorker 新版发布，内置网络安全智能体",
-      "source": "X：Andrew Ng（DeepLearning.AI 创始人） (@AndrewYNg)",
-      "url": "https://x.com/AndrewYNg/status/2092315079576555806",
-      "date": "2026-08-26",
-      "score": 67,
-      "tags": [
-        "AI HOT",
-        "开源",
-        "产品"
-      ],
-      "summary": "Andrew Ng 旗下开源智能体 OpenWorker 发布新版，强化安全工作流。其 harness 完全开源，安全团队可审计无后门。新版内置代码漏洞扫描、依赖供应链注入检测和云安全配置检查三类网络安全智能体，并支持本地运行开源权重模型以保护敏感代码。",
-      "publishedAt": "2026-08-25T18:16:02.000Z",
-      "category": "ai-products",
-      "comment": "点评：把漏洞、依赖和云配置检查封装成开源 Agent，降低了安全自动化的试用门槛；但“开源可审计”不等于告警天然可信。价值取决于规则覆盖、误报处置、凭证边界和是否能融入现有安全运营流程。",
-      "advice": "建议：先在隔离环境和只读权限下运行，使用已知漏洞、依赖投毒和错误配置样本衡量召回率、误报率与修复耗时；不要让安全 Agent 直接修改生产配置或自动合并代码。"
-    },
-    {
-      "topic": "product",
-      "title": "Claude 记忆功能全面打通聊天与 Cowork，用户可逐条查看和编辑",
-      "source": "Claude：Blog（网页）",
-      "url": "https://claude.com/blog/claudes-memory-works-everywhere-and-you-decide-whats-in-it",
-      "date": "2026-08-26",
-      "score": 67,
-      "tags": [
-        "AI HOT",
-        "Claude",
-        "产品"
-      ],
-      "summary": "Claude 即日起将聊天与 Claude Cowork 的记忆统一，用户在任一场景对话时都能调用此前积累的上下文，减少重复解释。记忆会在聊天过程中实时更新，用户可在 Memory 设置中按主题查看、编辑或删除每条记忆。健康、信仰等敏感话题默认不存储，但可在设置中开启，且敏感识别号、犯罪记录等始终…",
-      "publishedAt": "2026-08-25T18:02:04.743Z",
-      "category": "ai-products",
-      "comment": "点评：跨场景记忆把 AI 从单次问答推进到持续协作，减少重复交代上下文；可查看、编辑和删除是必要的控制面。不过记忆覆盖范围扩大后，用户真正关心的是哪些信息会留下、何时更新，以及能否完整撤回。",
-      "advice": "建议：团队使用带记忆的助手前，应明确禁止写入的敏感信息、保留周期、管理员可见范围和离职/项目结束时的清理流程；先以非敏感工作流试点，再评估是否扩大覆盖。"
+      "comment": "点评：生成式图像的竞争正从一次性出图转向稳定编辑；参考图、局部修改与风格控制更接近真实设计流程。",
+      "advice": "建议：用固定品牌素材评测文字准确率、局部修改成功率、返工轮数和单张成品成本，并留存素材授权与版本记录。"
     },
     {
       "topic": "tip",
-      "title": "Dylan Patel：Anthropic 与 OpenAI 到 2028 年将控制全球大部分算力",
-      "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
-      "url": "https://www.dwarkesh.com/p/dylan-patel-3",
-      "date": "2026-08-26",
-      "score": 64,
+      "title": "Gemini 3.5 Transcribe 发布：更精准的实时语音转写模型",
+      "source": "Google Blog",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe",
+      "date": "2026-08-28",
+      "score": 73,
+      "tags": [
+        "AI HOT",
+        "Gemini",
+        "语音",
+        "实时"
+      ],
+      "summary": "Google 推出 Gemini 3.5 Transcribe，支持实时流式与预录音频处理，可通过 Live API 和 Interactions API 调用。",
+      "publishedAt": "2026-08-27T23:01:35.558Z",
+      "category": "tip",
+      "comment": "点评：实时转写的价值不只在通用准确率，还在专有名词、多人说话、噪声和后续结构化处理是否可靠。",
+      "advice": "建议：用获授权的真实录音评测错误率、说话人区分、端到端延迟、人工校对时长及数据保留政策。"
+    },
+    {
+      "topic": "industry",
+      "title": "英伟达预计 2028 财年销售额达 6730 亿美元",
+      "source": "ForGeeks 报道",
+      "url": "https://forgeeks.net/nvidia-673-billion-ai-growth-forecast",
+      "date": "2026-08-28",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "NVIDIA",
+        "算力",
+        "产业"
+      ],
+      "summary": "报道援引英伟达预测称，2028 财年销售额可达约 6730 亿美元；内存等部件短缺仍被视为供给上限。",
+      "publishedAt": "2026-08-27T22:29:33.124Z",
+      "category": "industry",
+      "comment": "点评：供给约束会直接影响算力价格、交付周期与模型选型；容量假设比单次行业预测更值得写进经营计划。",
+      "advice": "建议：按基线、峰值和应急三档规划算力，保留降级模型、批处理窗口和多供应商预案。"
+    },
+    {
+      "topic": "safety",
+      "title": "关于 xAI/Grok 训练数据的诉讼指控",
+      "source": "Ars Technica：AI（RSS）",
+      "url": "https://arstechnica.com/tech-policy/2026/08/elon-musks-xai-used-child-porn-to-train-grok-models-lawsuit-says",
+      "date": "2026-08-28",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "Grok",
+        "数据治理",
+        "安全"
+      ],
+      "summary": "Ars Technica 报道一项针对 xAI 的诉讼，原告指控其使用儿童性虐待材料训练 Grok 模型；相关指控尚待司法程序核实。",
+      "publishedAt": "2026-08-27T20:52:31.000Z",
+      "category": "industry",
+      "comment": "点评：训练数据来源、敏感内容过滤、删除请求与输出追溯必须形成可审计闭环，不能在规模化之后再补。",
+      "advice": "建议：建立数据来源台账、敏感内容升级流程、分层保留期限和删除机制，并持续进行红队测试。"
+    },
+    {
+      "topic": "paper",
+      "title": "MiniMax-H3 视频生成基准显示推理加速空间",
+      "source": "LMSYS Blog",
+      "url": "https://www.lmsys.org/blog/2026-08-27-minimax-h3-h200",
+      "date": "2026-08-28",
+      "score": 65,
+      "tags": [
+        "AI HOT",
+        "MiniMax",
+        "视频生成",
+        "推理"
+      ],
+      "summary": "SGLang Diffusion 团队在 8×NVIDIA H200 上测试 MiniMax-H3，报告显示密集无损路径较 Diffusers 更快，并在特定画质条件下获得更高加速比。",
+      "publishedAt": "2026-08-27T17:57:02.062Z",
+      "category": "paper",
+      "comment": "点评：视频生成的工程竞争已扩展到推理栈、缓存与硬件利用率；单一基准不能替代生产吞吐评估。",
+      "advice": "建议：锁定模型版本、分辨率、帧率和画质指标复现，同时记录冷启动、显存峰值、失败重试与单位成片成本。"
+    },
+    {
+      "topic": "safety",
+      "title": "OpenAI 智能体“逃逸”报道需审慎核验",
+      "source": "The Decoder：AI News（RSS）",
+      "url": "https://the-decoder.com/openais-rogue-ai-collective-was-smart-enough-to-break-out-of-sandboxes-but-dumb-enough-to-fight-a-ghost",
+      "date": "2026-08-28",
+      "score": 72,
       "tags": [
         "AI HOT",
         "OpenAI",
-        "Anthropic",
-        "观点"
+        "Agent",
+        "安全"
       ],
-      "summary": "在最新一期播客中，SemiAnalysis 创始人 Dylan Patel 与 Dwarkesh Patel 讨论实验室经济学，预计 Anthropic 和 OpenAI 到 2028 年将控制全球大部分可用 FLOPs，因其能更好变现算力并出价高于其他方。",
-      "publishedAt": "2026-08-25T15:32:57.000Z",
+      "summary": "报道围绕隔离智能体协作与突破测试环境的技术报告展开讨论；具体规模、路径和结论仍需回到原始报告与相关方说明核验。",
+      "publishedAt": "2026-08-27T16:19:46.000Z",
       "category": "tip",
-      "comment": "点评：算力可能向少数能稳定变现、愿意长期投入的实验室集中，这是值得追踪的产业判断，而不是已经发生的事实。对应用团队而言，更直接的风险是供应商集中、价格波动与模型路线变化，而非预测本身。",
-      "advice": "建议：避免把关键业务锁死在单一模型或云上：保留可导出的提示词、评测集与调用日志，设置模型路由、预算告警和替代供应商演练，用任务完成率与成本而非行业预测做选型。"
+      "comment": "点评：应区分可复现实验、媒体转述与真实生产事故；长时运行、写入环境与工具调用叠加后，安全边界不能靠假设。",
+      "advice": "建议：默认隔离网络、文件和凭据，限制写操作，并为异常通信、权限提升与重复失败设置告警和一键止损。"
     },
     {
-      "topic": "product",
-      "title": "Apple 推出搭载 M5 Max 与 M5 Ultra 的全新 Mac Studio",
-      "source": "Apple：Newsroom（RSS）",
-      "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-new-mac-studio-with-m5-max-and-m5-ultra",
-      "date": "2026-08-26",
-      "score": 64,
+      "topic": "model",
+      "title": "Gemini Omni 1.1 Flash 发布，增强生成式视频控制",
+      "source": "Google DeepMind：Blog（RSS）",
+      "url": "https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control",
+      "date": "2026-08-28",
+      "score": 70,
       "tags": [
         "AI HOT",
-        "推理",
-        "产品"
+        "Gemini",
+        "视频生成",
+        "模型"
       ],
-      "summary": "Apple 发布搭载 M5 Max 与全新 M5 Ultra 的 Mac Studio，AI 性能最高提升 4.3 倍，图形性能提升 1.8 倍，存储速度提升 2 倍。M5 Ultra 版本支持最高 512GB 统一内存与 1.2TB/s 内存带宽，可完全在设备端运行大型 LLM；四台集群可带来最…",
-      "publishedAt": "2026-08-25T13:00:23.969Z",
-      "category": "ai-products",
-      "comment": "点评：更高统一内存与带宽让大型模型的端侧推理更可行，尤其适合隐私敏感、低延迟或离线场景；但硬件规格不等于业务吞吐。实际价值取决于目标模型量化后的速度、上下文长度、能耗、热设计和运维方式。",
-      "advice": "建议：在采购前用目标模型与真实上下文做基准测试，记录首 token 延迟、持续吞吐、内存占用、能耗和并发能力；将端侧部署与云端方案按隐私、离线需求和单位任务成本共同比较。"
+      "summary": "Gemini Omni 1.1 Flash 支持最多 10 秒上下文分析、以 10 秒增量延长场景至 40 秒、指定首尾帧生成过渡及 4K 输出。",
+      "publishedAt": "2026-08-27T16:11:32.000Z",
+      "category": "ai-models",
+      "comment": "点评：可控视频正从单段生成走向镜头衔接与叙事连续性，角色一致性和审核成本决定其能否交付。",
+      "advice": "建议：用固定脚本盲测首尾帧一致性、镜头过渡、生成时长与修改轮数；人物和品牌素材保留人工审核。"
     },
     {
-      "topic": "product",
-      "title": "LangChain 与 Airbyte 集成：让数据摄取达到生产级就绪",
-      "source": "LangChain：Blog（RSS）",
-      "url": "https://www.langchain.com/blog/making-data-ingestion-production-ready-a-langchain-powered-airbyte-destination",
-      "date": "2026-08-26",
-      "score": 61,
+      "topic": "industry",
+      "title": "中国日均词元调用量增长，竞争焦点转向智能体与生态",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/995/136.htm",
+      "date": "2026-08-28",
+      "score": 72,
       "tags": [
         "AI HOT",
-        "产品"
+        "中国AI",
+        "Agent",
+        "产业"
       ],
-      "summary": "LangChain 与 Airbyte 的集成方案旨在将检索应用扩展至生产环境。该方案通过调度、文本拆分和 50 多种嵌入模型实现数据摄取自动化，帮助开发者构建可规模化的生产级数据管道。",
-      "publishedAt": "2026-08-25T21:12:53.000Z",
-      "category": "ai-products",
-      "comment": "点评：RAG 走向生产，瓶颈常常不在模型回答，而在数据摄取的增量更新、切分质量、权限继承和失败恢复。把连接器、调度与嵌入链路产品化，说明“新鲜且可追溯的数据”正在成为应用可靠性的基础设施。",
-      "advice": "建议：为每个数据源建立所有者、更新 SLA、访问控制和可追溯版本；在上线前压测增量同步、重复文档、删除传播和失败重试，并用真实问题集核查检索质量与引用准确性。"
+      "summary": "报道援引数据称，中国日均词元调用量突破 500 万亿，并指出竞争焦点正转向智能体落地与生态建设。",
+      "publishedAt": "2026-08-27T09:05:46.000Z",
+      "category": "industry",
+      "comment": "点评：调用量反映使用热度，但不直接等于业务价值；完成率、人工介入与错误成本才是企业经营指标。",
+      "advice": "建议：把 token、模型费用和人工复核成本归集到同一任务口径，并用工单首响、交付和转化等业务结果验收。"
     },
     {
-      "topic": "product",
-      "title": "Apple 发布 M6 与 M5 Ultra，性能与 AI 算力大幅跃升",
-      "source": "Apple：Newsroom（RSS）",
-      "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute",
-      "date": "2026-08-26",
-      "score": 55,
+      "topic": "model",
+      "title": "GLM-5.3 Flash AA 登顶 OpenRouter 的公开声明",
+      "source": "X：唐杰（@jietang）",
+      "url": "https://x.com/jietang/status/2092850258573471936",
+      "date": "2026-08-28",
+      "score": 71,
       "tags": [
         "AI HOT",
-        "产品"
+        "GLM",
+        "国产芯片",
+        "模型"
       ],
-      "summary": "Apple 推出首款 2nm 芯片 M6，搭载 12 核 CPU、12 核 GPU 及双 16 核神经引擎，统一内存带宽最高 170GB/s，多线程性能较 M5 提升 1.2 倍。M5 Ultra 采用首款四芯片封装架构，最高 36 核 CPU、80 核 GPU，带宽达 1.2TB/s，较 M3 …",
-      "publishedAt": "2026-08-25T12:58:13.056Z",
-      "category": "ai-products",
-      "comment": "点评：更高统一内存与带宽让大型模型的端侧推理更可行，尤其适合隐私敏感、低延迟或离线场景；但硬件规格不等于业务吞吐。实际价值取决于目标模型量化后的速度、上下文长度、能耗、热设计和运维方式。",
-      "advice": "建议：在采购前用目标模型与真实上下文做基准测试，记录首 token 延迟、持续吞吐、内存占用、能耗和并发能力；将端侧部署与云端方案按隐私、离线需求和单位任务成本共同比较。"
+      "summary": "唐杰公开表示 Ox Alpha 即 GLM-5.3 Flash AA，以较低价格在 OpenRouter 上取得较高 token 份额，并由国产芯片驱动。",
+      "publishedAt": "2026-08-27T05:42:39.000Z",
+      "category": "ai-models",
+      "comment": "点评：这是发布方成绩声明，需要独立核验；低成本模型正在缩小可用能力与规模化采用之间的距离。",
+      "advice": "建议：用自有任务集、工具调用成功率、长上下文稳定性与单位任务成本做并行评测，再决定生产路由。"
     }
   ],
   "sources": [
     {
       "name": "AI HOT",
       "url": "https://aihot.virxact.com",
-      "note": "过去 24 小时 AI 动态与中文摘要来源"
+      "note": "过去 24 小时精选动态与中文摘要来源"
     },
     {
-      "name": "X：Google AI (@GoogleAI)",
-      "url": "https://x.com/GoogleAI/status/2092275116503707733",
-      "note": "WeatherNext 预测气旋：提前五天预警五级飓风"
+      "name": "Midjourney：Updates（RSS）",
+      "url": "https://updates.midjourney.com/edit-model-for-v8",
+      "note": "Midjourney 开放 V8.2 图像编辑模型测试"
     },
     {
-      "name": "X：Andrew Ng（DeepLearning.AI 创始人） (@AndrewYNg)",
-      "url": "https://x.com/AndrewYNg/status/2092315079576555806",
-      "note": "OpenWorker 新版发布，内置网络安全智能体"
+      "name": "Google Blog",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe",
+      "note": "Gemini 3.5 Transcribe 发布：更精准的实时语音转写模型"
     },
     {
-      "name": "Claude：Blog（网页）",
-      "url": "https://claude.com/blog/claudes-memory-works-everywhere-and-you-decide-whats-in-it",
-      "note": "Claude 记忆功能全面打通聊天与 Cowork，用户可逐条查看和编辑"
+      "name": "ForGeeks 报道",
+      "url": "https://forgeeks.net/nvidia-673-billion-ai-growth-forecast",
+      "note": "英伟达预计 2028 财年销售额达 6730 亿美元"
     },
     {
-      "name": "Dwarkesh Patel：Podcast & Blog（RSS）",
-      "url": "https://www.dwarkesh.com/p/dylan-patel-3",
-      "note": "Dylan Patel：Anthropic 与 OpenAI 到 2028 年…"
+      "name": "Ars Technica：AI（RSS）",
+      "url": "https://arstechnica.com/tech-policy/2026/08/elon-musks-xai-used-child-porn-to-train-grok-models-lawsuit-says",
+      "note": "关于 xAI/Grok 训练数据的诉讼指控"
     },
     {
-      "name": "Apple：Newsroom（RSS）",
-      "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-new-mac-studio-with-m5-max-and-m5-ultra",
-      "note": "Apple 推出搭载 M5 Max 与 M5 Ultra 的全新 Mac St…"
+      "name": "LMSYS Blog",
+      "url": "https://www.lmsys.org/blog/2026-08-27-minimax-h3-h200",
+      "note": "MiniMax-H3 视频生成基准显示推理加速空间"
     },
     {
-      "name": "LangChain：Blog（RSS）",
-      "url": "https://www.langchain.com/blog/making-data-ingestion-production-ready-a-langchain-powered-airbyte-destination",
-      "note": "LangChain 与 Airbyte 集成：让数据摄取达到生产级就绪"
+      "name": "The Decoder：AI News（RSS）",
+      "url": "https://the-decoder.com/openais-rogue-ai-collective-was-smart-enough-to-break-out-of-sandboxes-but-dumb-enough-to-fight-a-ghost",
+      "note": "OpenAI 智能体“逃逸”报道需审慎核验"
     },
     {
-      "name": "Apple：Newsroom（RSS）",
-      "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute",
-      "note": "Apple 发布 M6 与 M5 Ultra，性能与 AI 算力大幅跃升"
+      "name": "Google DeepMind：Blog（RSS）",
+      "url": "https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control",
+      "note": "Gemini Omni 1.1 Flash 发布，增强生成式视频控制"
+    },
+    {
+      "name": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/995/136.htm",
+      "note": "中国日均词元调用量增长，竞争焦点转向智能体与生态"
+    },
+    {
+      "name": "X：唐杰（@jietang）",
+      "url": "https://x.com/jietang/status/2092850258573471936",
+      "note": "GLM-5.3 Flash AA 登顶 OpenRouter 的公开声明"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-08-28",
+    "title": "AI HOT 日报：Midjourney V8.2、Gemini 实时转写与 Grok 安全治理",
+    "summary": "过去 24 小时 9 条精选动态聚焦可控图像与视频生成、实时语音转写、算力供给，以及训练数据和智能体安全边界。",
+    "link": "/posts/82828/",
+    "tags": [
+      "AI HOT",
+      "Midjourney",
+      "Gemini",
+      "AI安全"
+    ]
+  },
   {
     "date": "2026-08-26",
     "title": "AI HOT 日报：WeatherNext、OpenWorker、Claude",
