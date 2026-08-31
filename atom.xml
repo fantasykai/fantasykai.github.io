@@ -10,7 +10,61 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-08-28T02:18:23.470Z</updated>
+  <updated>2026-08-31T06:21:51.051Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, OpenAI, GPT, 观点, Anthropic, Claude, 产业, MiniMax, 产品, AI日报, AI资讯" scheme="https://aimak.cn/tags/AI-HOT-OpenAI-GPT-%E8%A7%82%E7%82%B9-Anthropic-Claude-%E4%BA%A7%E4%B8%9A-MiniMax-%E4%BA%A7%E5%93%81-AI%E6%97%A5%E6%8A%A5-AI%E8%B5%84%E8%AE%AF/"/>
+    <id>https://aimak.cn/posts/83131/</id>
+    <link href="https://aimak.cn/posts/83131/"/>
+    <published>2026-08-31T06:21:51.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-08-31：ChatGPT Work、Anthropic、AI 智能体自主协作</title>
+    <updated>2026-08-31T06:21:51.051Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Agent, 软件工程, 多智能体, 论文, Qwen, 本地部署, AI安全" scheme="https://aimak.cn/tags/AI-HOT-Agent-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93-%E8%AE%BA%E6%96%87-Qwen-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2-AI%E5%AE%89%E5%85%A8/"/>
+    <id>https://aimak.cn/posts/83030/</id>
+    <link href="https://aimak.cn/posts/83030/"/>
+    <published>2026-08-30T04:32:52.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态（北京时间 8 月 29 日 12:32 至 8 月 30 日 12:32）。本文在原始资讯基础上补充趋势点评与落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览"]]>
+    </summary>
+    <title>AI HOT 日报 2026-08-30：Uber Agent、AI 文明与本地 Qwen</title>
+    <updated>2026-08-30T04:35:20.962Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, 开源, 模型, Anthropic, Claude, 论文, OpenAI, RAG, 观点, Google, Gemini, 产业" scheme="https://aimak.cn/tags/AI-HOT-%E5%BC%80%E6%BA%90-%E6%A8%A1%E5%9E%8B-Anthropic-Claude-%E8%AE%BA%E6%96%87-OpenAI-RAG-%E8%A7%82%E7%82%B9-Google-Gemini-%E4%BA%A7%E4%B8%9A/"/>
+    <id>https://aimak.cn/posts/82929/</id>
+    <link href="https://aimak.cn/posts/82929/"/>
+    <published>2026-08-29T03:46:23.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-08-29：腾讯混元发布、Anthropic、AI 工程师笔记本</title>
+    <updated>2026-08-29T03:46:23.442Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -312,59 +366,5 @@
     </summary>
     <title>AI HOT 日报 2026-08-05：Agent开发生命周期、多模态开源与算力治理</title>
     <updated>2026-08-05T02:18:12.459Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, 开源, 推理, 观点, 产业, 产品, Kimi, 多模态, 模型, GPT, Claude, Claude Code" scheme="https://aimak.cn/tags/AI-HOT-%E5%BC%80%E6%BA%90-%E6%8E%A8%E7%90%86-%E8%A7%82%E7%82%B9-%E4%BA%A7%E4%B8%9A-%E4%BA%A7%E5%93%81-Kimi-%E5%A4%9A%E6%A8%A1%E6%80%81-%E6%A8%A1%E5%9E%8B-GPT-Claude-Claude-Code/"/>
-    <id>https://aimak.cn/posts/80404/</id>
-    <link href="https://aimak.cn/posts/80404/"/>
-    <published>2026-08-04T03:21:52.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-08-04：AirLLM低显存推理、欧盟AI透明度规则、Palantir数据控制权</title>
-    <updated>2026-08-04T03:21:52.324Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Qwen, 开源, 模型, GPT, Agent, 观点, Grok, 产品, OpenAI, AI日报, AI资讯" scheme="https://aimak.cn/tags/AI-HOT-Qwen-%E5%BC%80%E6%BA%90-%E6%A8%A1%E5%9E%8B-GPT-Agent-%E8%A7%82%E7%82%B9-Grok-%E4%BA%A7%E5%93%81-OpenAI-AI%E6%97%A5%E6%8A%A5-AI%E8%B5%84%E8%AE%AF/"/>
-    <id>https://aimak.cn/posts/80303/</id>
-    <link href="https://aimak.cn/posts/80303/"/>
-    <published>2026-08-03T03:19:54.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-08-03：Qwen、Codex 子代理协作、Grok 视频理解</title>
-    <updated>2026-08-03T03:19:54.825Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, DeepSeek, MiniMax, 智能体, AI安全, 开源, 多模态, 合规, 评测" scheme="https://aimak.cn/tags/AI-HOT-DeepSeek-MiniMax-%E6%99%BA%E8%83%BD%E4%BD%93-AI%E5%AE%89%E5%85%A8-%E5%BC%80%E6%BA%90-%E5%A4%9A%E6%A8%A1%E6%80%81-%E5%90%88%E8%A7%84-%E8%AF%84%E6%B5%8B/"/>
-    <id>https://aimak.cn/posts/80101/</id>
-    <link href="https://aimak.cn/posts/80101/"/>
-    <published>2026-08-01T02:52:00.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-08-01：DeepSeek V4 Flash、MiniMax H3、Agent 安全</title>
-    <updated>2026-08-01T02:55:10.988Z</updated>
   </entry>
 </feed>
