@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-08-31T06:21:51.051Z</updated>
+  <updated>2026-09-01T02:41:11.636Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Anthropic, Claude, 观点, DeepSeek, Agent, 开源, 推理, 模型, 论文, OpenAI, GPT" scheme="https://aimak.cn/tags/AI-HOT-Anthropic-Claude-%E8%A7%82%E7%82%B9-DeepSeek-Agent-%E5%BC%80%E6%BA%90-%E6%8E%A8%E7%90%86-%E6%A8%A1%E5%9E%8B-%E8%AE%BA%E6%96%87-OpenAI-GPT/"/>
+    <id>https://aimak.cn/posts/90101/</id>
+    <link href="https://aimak.cn/posts/90101/"/>
+    <published>2026-09-01T02:41:11.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-09-01：Anthropic、DeepSeek</title>
+    <updated>2026-09-01T02:41:11.636Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -348,23 +366,5 @@
     </summary>
     <title>AI HOT 日报 2026-08-06：Agent安全、技能迁移与模型落地</title>
     <updated>2026-08-06T07:41:10.590Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Agent, 开源, 多模态, 云原生, 推理, AI治理" scheme="https://aimak.cn/tags/AI-HOT-Agent-%E5%BC%80%E6%BA%90-%E5%A4%9A%E6%A8%A1%E6%80%81-%E4%BA%91%E5%8E%9F%E7%94%9F-%E6%8E%A8%E7%90%86-AI%E6%B2%BB%E7%90%86/"/>
-    <id>https://aimak.cn/posts/80505/</id>
-    <link href="https://aimak.cn/posts/80505/"/>
-    <published>2026-08-05T02:30:00.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 <a href="https://aihot.virxact.com/">AI HOT</a> 过去 24 小时精选动态。本文筛选其中 8 条对产品、工程和治理最有影响的信号，补充个人点评与可执行建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a]]>
-    </summary>
-    <title>AI HOT 日报 2026-08-05：Agent开发生命周期、多模态开源与算力治理</title>
-    <updated>2026-08-05T02:18:12.459Z</updated>
   </entry>
 </feed>
