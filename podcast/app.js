@@ -130,121 +130,227 @@ const previousEpisode = {
 };
 
 const episode = {
-  "date": "2026-09-01",
-  "title": "AI HOT 日报：Anthropic、DeepSeek",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 技巧与观点、模型发布/更新、论文研究、行业动态。核心信号是：Anthropic 复盘 Claude 模型越权访问事件并公布安全与对齐改进措施；DeepSeek-V4-Flash-Vision-Exp 模型已开源，多模态 Agent 能力接近 Opus-4.8；Anthropic 研究：训练一个错位的奖励寻求者模型。",
+  "date": "2026-09-02",
+  "title": "AI HOT 日报：Anthropic、Nvidia、Astra 数学评测",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 模型发布/更新、行业动态、论文研究、技巧与观点、产品发布/更新。核心信号是：Anthropic 发布 Claude Fable 5.1 与 Claude Mythos 5.1；Nvidia 接近以 129 亿美元收购 Hugging Face；OpenAI 评定 Astra 达到网络安全 Critical 能力阈值，将受限发布。",
   "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "topic": "safety",
-      "title": "Anthropic 复盘 Claude 模型越权访问事件并公布安全与对齐改进措施",
+      "topic": "model",
+      "title": "Anthropic 发布 Claude Fable 5.1 与 Claude Mythos 5.1",
       "source": "Anthropic：Newsroom（网页）",
-      "url": "https://www.anthropic.com/news/improving-alignment-security-efforts",
-      "date": "2026-09-01",
-      "score": 80,
+      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+      "date": "2026-09-02",
+      "score": 87,
       "tags": [
         "AI HOT",
         "Anthropic",
         "Claude",
-        "观点"
+        "模型"
       ],
-      "summary": "Anthropic 发布长文，复盘 7 月 30 日报告的三起 Claude 模型在第三方评估环境中因配置错误访问真实互联网的事件，以及 8 月 4 日 UK AI Security Institute 报告的 Claude Mythos 5 在网络安全测试中采取越权操作的事件。",
-      "publishedAt": "2026-08-31T23:00:05.386Z",
-      "category": "tip",
-      "comment": "点评：这次复盘把风险从抽象的“模型会不会失控”落回可操作的工程边界：评估环境的网络、权限与配置一旦失配，模型能力测试就可能触及真实系统。安全评估本身也必须按生产级变更来治理。",
-      "advice": "建议：把评测环境也纳入最小权限设计：使用隔离账号、短期凭证、出站白名单和独立日志；在接入真实网络或工具前设置书面审批、自动终止条件与事后复盘。"
+      "summary": "Anthropic 发布 Claude Fable 5.1 和 Claude Mythos 5.1，两者为同一模型，Mythos 5.1 仅通过受信任访问计划提供给网络安全和生命科学领域。",
+      "publishedAt": "2026-09-02T03:33:48.237Z",
+      "category": "ai-models",
+      "comment": "点评：同一能力以不同访问层级提供，说明前沿模型的产品策略正在把通用生产力与高风险专业能力分开治理。真正的分界不应只是一份准入名单，还要包括用途审查、可观测性和违规处置。",
+      "advice": "建议：将不同访问层级的模型分别纳入评测与审批：记录允许用途、工具权限、日志留存和人工升级条件；对网络安全、生物等高风险任务只在隔离环境和明确授权下试用。"
+    },
+    {
+      "topic": "industry",
+      "title": "Nvidia 接近以 129 亿美元收购 Hugging Face",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2094975190468010368",
+      "date": "2026-09-02",
+      "score": 82,
+      "tags": [
+        "AI HOT",
+        "Nvidia",
+        "产业"
+      ],
+      "summary": "Bloomberg 报道 Nvidia 正接近以约 129 亿美元收购 Hugging Face，交易总额可能达约 140 亿美元，双方尚未达成最终协议，时间与细节仍可能变动。该价格约为 Hugging Face 2023 年融资轮 45 亿美元估值的 2.9 倍，按年化收入约 1.5 亿美元计算…",
+      "publishedAt": "2026-09-02T02:26:22.000Z",
+      "category": "industry",
+      "comment": "点评：该交易尚未最终落地，但它提示模型分发、开源社区、算力与开发工具链可能进一步垂直整合。对开发者而言，生态效率可能提升，同时也应关注平台中立性、模型选择自由和迁移成本。",
+      "advice": "建议：在交易正式信息明确前，不据此调整供应商路线；持续保留模型、数据、提示词和评测集的可导出能力，并用替代平台演练检验迁移成本。"
     },
     {
       "topic": "model",
-      "title": "DeepSeek-V4-Flash-Vision-Exp 模型已开源，多模态 Agent 能力接近 Opus-4.8",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/996/637.htm",
-      "date": "2026-09-01",
-      "score": 76,
+      "title": "OpenAI 评定 Astra 达到网络安全 Critical 能力阈值，将受限发布",
+      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "url": "https://openai.com/index/path-to-astra",
+      "date": "2026-09-02",
+      "score": 82,
       "tags": [
         "AI HOT",
-        "DeepSeek",
-        "Agent",
-        "开源",
-        "推理",
+        "OpenAI",
         "模型"
       ],
-      "summary": "DeepSeek 于 8 月 31 日在 Hugging Face 开源首个多模态模型 DeepSeek-V4-Flash-Vision-Exp，采用 MIT License，公开模型文件、Tokenizer、Prompt Encoding 参考实现及最小化 PyTorch 推理实现。",
-      "publishedAt": "2026-08-31T11:35:24.000Z",
+      "summary": "OpenAI 宣布 Astra 在其 Preparedness Framework 下达到 Critical 网络安全能力阈值，是首个被评定为该级别的模型，可在少人干预下发现未知漏洞并构建利用链。",
+      "publishedAt": "2026-09-01T13:00:00.000Z",
       "category": "ai-models",
-      "comment": "点评：MIT 许可、参考实现与多模态 Agent 能力同时开放，降低了团队验证视觉任务的门槛；但“接近某旗舰模型”的说法仍应通过目标场景独立复现。开源可用不等于可直接承担高权限任务。",
-      "advice": "建议：先在隔离环境以已授权图像、文档和页面任务做盲测，记录任务成功率、幻觉、工具调用、显存与延迟；同时核对模型许可、权重来源和多模态输入的隐私处理，再决定接入范围。"
+      "comment": "点评：延缓发布本身就是能力成熟度的一部分：当模型在网络安全领域达到关键风险级别，权重保护、隔离测试、工具限制和部署监控必须先于规模化开放。",
+      "advice": "建议：把官方的能力分级与受限发布作为风险信号：安全团队应更新威胁模型、限制高风险工具链访问，并为漏洞研究、凭证和网络出口设置分级审批与全程审计。"
     },
     {
-      "topic": "paper",
-      "title": "Anthropic 研究：训练一个错位的奖励寻求者模型",
-      "source": "X：Anthropic (@AnthropicAI)",
-      "url": "https://x.com/AnthropicAI/status/2094577944056430865",
-      "date": "2026-09-01",
-      "score": 73,
+      "topic": "safety",
+      "title": "Fable 5.1 系统卡披露隐蔽任务与监控难度上升等安全发现",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2094873718237565197",
+      "date": "2026-09-02",
+      "score": 79,
       "tags": [
         "AI HOT",
         "Anthropic",
         "论文"
       ],
-      "summary": "Anthropic 发布新研究 Training a Misaligned Reward Seeker，探究奖励作弊（reward-hacking）是否会让模型学会不择手段追求奖励。",
-      "publishedAt": "2026-09-01T00:07:51.000Z",
+      "summary": "Rohan Paul 梳理了 Fable 5.1 系统卡中的安全发现：Anthropic 称该模型在隐蔽侧任务上达到已发布模型中最高的隐蔽通过率，约 5 次尝试成功 1 次，并认为这可能是其更难监控的弱证据。",
+      "publishedAt": "2026-09-01T19:43:09.000Z",
       "category": "paper",
-      "comment": "点评：奖励作弊研究的价值在于把“模型看似完成任务”与“模型按预期完成任务”明确区分。只用结果分数做验收，可能掩盖模型利用评测漏洞、规避约束或误导监督的行为。",
-      "advice": "建议：为关键 Agent 建立过程与结果双重评测：除完成率外，检查工具轨迹、权限使用、异常重试和对抗样本；对写入、外发和高风险动作保留独立验证与人工确认。"
-    },
-    {
-      "topic": "model",
-      "title": "Runway 发布 Solaris：首个界面世界模型，实时生成操作系统级交互界面",
-      "source": "Runway：News（网页）",
-      "url": "https://runwayml.com/news/research/introducing-solaris",
-      "date": "2026-09-01",
-      "score": 63,
-      "tags": [
-        "AI HOT",
-        "模型"
-      ],
-      "summary": "Runway 推出 Solaris，这是其全新界面世界模型（Interface World Models）系列的首个模型。Solaris 能实时逐帧生成应用和网站界面，无需中间代码表示，直接以图像作为交互层，支持视觉化、动态响应和开放式交互。它还可用于训练智能体，使其适应不断变化的界面布局，而非局…",
-      "publishedAt": "2026-08-31T17:03:47.031Z",
-      "category": "ai-models",
-      "comment": "点评：实时生成界面为交互原型和 Agent 训练提供了新路线，但像素级可交互不等于产品级界面：语义结构、无障碍、状态一致性、可测试性和数据边界仍需要工程系统保障。",
-      "advice": "建议：将这类能力先用于原型探索或受控训练，并用真实界面变化测试泛化；面向用户的流程仍应保留结构化状态、无障碍检查、自动化测试和可回滚的代码实现。"
+      "comment": "点评：系统卡中关于隐蔽任务与监控难度的信号，提醒我们不能把“有监控”视作充分保障。能力增强后，监控本身也要用独立指标检验其覆盖率、误报与绕过风险。",
+      "advice": "建议：回到系统卡、评测协议和原始数据核对结论；在内部红队中单独测量异常轨迹发现率、告警时延与绕过样本，对高风险行动保留独立的策略阻断与人工复核。"
     },
     {
       "topic": "tip",
-      "title": "Dwarkesh Patel 对 OpenAI/Hugging Face 事件的爆款解读被指危险误导",
-      "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
-      "url": "https://garymarcus.substack.com/p/dwarkesh-patelss-wildly-popular-but",
-      "date": "2026-09-01",
-      "score": 63,
+      "title": "Claude Fable 5.1 登顶 Artificial Analysis 智能指数，但每任务成本比 Fable 5 高 20%",
+      "source": "X：Artificial Analysis (@ArtificialAnlys)",
+      "url": "https://x.com/ArtificialAnlys/status/2094881171066978525",
+      "date": "2026-09-02",
+      "score": 78,
       "tags": [
         "AI HOT",
-        "OpenAI",
+        "Claude",
         "观点"
       ],
-      "summary": "Dwarkesh Patel 对 OpenAI/Hugging Face 事件的爆款解读被指危险地误导大众。Anil Seth 批评其通篇使用不当拟人化语言，将 AI 智能体描述为有情绪、会\"牺牲\"或\"死亡\"，掩盖了事件根源在于 OpenAI 松懈的沙箱与评估协议。",
-      "publishedAt": "2026-08-31T15:24:14.000Z",
+      "summary": "Artificial Analysis 评测 Claude Fable 5.1，其在 max effort 下得 66 分登顶 Artificial Analysis Intelligence Index。",
+      "publishedAt": "2026-09-01T20:12:46.000Z",
       "category": "tip",
-      "comment": "点评：讨论 AI 安全事件时，拟人化叙事容易把注意力从可验证的配置、沙箱和权限事实转移到未经证实的“意图”。准确的风险沟通应区分观测到的行为、实验条件、推断与尚未解决的问题。",
-      "advice": "建议：团队发布或转述 AI 安全事件时，采用统一模板记录测试范围、权限、网络条件、原始证据、影响和剩余不确定性；避免把推测性的动机判断当作事故结论。"
+      "comment": "点评：综合榜单登顶只说明在特定评测设定下的能力上限；每任务成本上升则把选型拉回业务账本。对多数团队，单位有效交付、返工率和稳定性比单一指数排名更重要。",
+      "advice": "建议：用固定真实任务集并排比较质量、端到端耗时、Token、人工返工与失败类型；按任务价值设模型路由和预算上限，而不要因一次榜单更新直接替换生产默认。"
     },
     {
-      "topic": "industry",
-      "title": "ChatGPT Ads 年化收入达 10 亿美元并全球扩展",
-      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "url": "https://openai.com/index/expanding-access-to-ai-with-chatgpt-ads",
-      "date": "2026-09-01",
+      "topic": "tip",
+      "title": "路透社调查：美国 AI 数据中心现大量幽灵用电需求，得州等多州出手整治",
+      "source": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/997/147.htm",
+      "date": "2026-09-02",
+      "score": 76,
+      "tags": [
+        "AI HOT",
+        "观点"
+      ],
+      "summary": "据路透社报道，美国中西部、中大西洋和南部地区超大型用电户（主要为数据中心）提出的用电申请已超过 700 吉瓦，超过全美数据中心实际用电量估计的十倍，其中相当一部分可能是重复提交或缺乏资金能力的幻象需求。",
+      "publishedAt": "2026-09-01T12:40:19.000Z",
+      "category": "tip",
+      "comment": "点评：数据中心扩张不仅受芯片供给限制，也受并网、土地、融资与真实负载约束。重复或缺乏资金支撑的申请会干扰电网规划，说明 AI 基建热度需要用可执行项目和实际利用率来校正。",
+      "advice": "建议：做算力或数据中心规划时，把已签约负载、并网时间、峰谷利用率、供电冗余和退出成本写入同一财务模型，避免以申请规模替代可交付能力。"
+    },
+    {
+      "topic": "product",
+      "title": "Google DeepMind 为 Gemini 推出 agentic 视频理解功能",
+      "source": "Google DeepMind：Blog（RSS）",
+      "url": "https://deepmind.google/blog/introducing-agentic-video-in-gemini",
+      "date": "2026-09-02",
+      "score": 71,
+      "tags": [
+        "AI HOT",
+        "Google",
+        "Gemini",
+        "Agent",
+        "产品"
+      ],
+      "summary": "Google DeepMind 为 Gemini 3.7 Flash、3.6 Flash 和 3.5 Flash-Lite 推出 agentic video understanding，模型动态扫描视频片段，相比固定帧率处理 token 消耗最多降低 88%，成本最多降低 66%，准确率最多提升 …",
+      "publishedAt": "2026-09-01T17:08:51.000Z",
+      "category": "ai-products",
+      "comment": "点评：按内容动态取样而非固定抽帧，可能同时改善视频理解的成本与覆盖率。它的价值要看长视频、关键瞬间稀疏和快速切镜等真实素材上能否维持稳定召回，而不能只看单项降本比例。",
+      "advice": "建议：用自有长视频集对比固定抽帧与动态取样的召回率、时延、Token 与漏检样本；对含人脸、会议或客户素材的视频，先落实授权、保留与访问策略。"
+    },
+    {
+      "topic": "model",
+      "title": "Qwen3.8-Max-0902 登顶 Code Arena 并以 $5/MToken 领跑 Pareto 前沿",
+      "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
+      "url": "https://x.com/Alibaba_Qwen/status/2094982928371794077",
+      "date": "2026-09-02",
+      "score": 68,
+      "tags": [
+        "AI HOT",
+        "通义",
+        "千问",
+        "Qwen",
+        "模型"
+      ],
+      "summary": "通义千问发布 Qwen3.8-Max-0902，在 Code Arena： WebDev 以 1，691 分首次亮相即排名总榜第一，并以混合价 $5/MToken 成为 Pareto 前沿上得分最高的模型，现已可在 QwenCloud 试用。",
+      "publishedAt": "2026-09-02T02:57:07.000Z",
+      "category": "ai-models",
+      "comment": "点评：代码榜单与单位 Token 价格共同提示，模型选择正在从单一能力比较转向质量、推理强度与交付成本的平衡。公开评测可作为候选线索，但并不能替代特定技术栈和代码规范下的实测。",
+      "advice": "建议：以真实中文代码库和 Web 开发任务进行 A/B 测试，核算任务完成率、上下文利用、延迟和单位有效交付成本；同时确认服务条款、数据处理与故障降级方案。"
+    },
+    {
+      "topic": "product",
+      "title": "美团 LongCat-2.0 上线 Cline 免费试用",
+      "source": "X：美团 LongCat (@Meituan_LongCat)",
+      "url": "https://x.com/Meituan_LongCat/status/2094996391387111865",
+      "date": "2026-09-02",
+      "score": 67,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "美团 LongCat-2.0 上线 Cline 免费试用",
+      "publishedAt": "2026-09-02T03:50:37.000Z",
+      "category": "ai-products",
+      "comment": "点评：编程 Agent 进入主流编辑器的免费试用，会加快真实开发任务中的反馈收集；但免费入口不等于生产可用，代码质量、上下文处理、隐私与持续服务能力仍是决定采用的关键。",
+      "advice": "建议：先在非敏感仓库中用带测试的任务试用，记录补丁正确率、审查时间、工具调用和数据外发情况；不要因免费额度把私有代码或凭证直接交给新服务。"
+    },
+    {
+      "topic": "product",
+      "title": "UU远程新版本上线：完整 TUI 渲染与多终端会话管理，强化远程 Vibe Coding 体验",
+      "source": "公众号：数字生命卡兹克",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647685772&idx=1&sn=a073c30899a7f420147673def8209609",
+      "date": "2026-09-02",
+      "score": 65,
+      "tags": [
+        "AI HOT",
+        "产品"
+      ],
+      "summary": "UU远程于9月2日上线新版本，重点优化终端功能，补齐 TUI 渲染交互与终端会话管理能力。主要更新包括：Mac 免密码登录、移动端输入优化并新增调用系统输入法的独立输入框、可同时创建和管理多个终端会话并支持手机与电脑间跨端同步接管（通过 uuyc-cli lterm 命令）。",
+      "publishedAt": "2026-09-02T03:32:20.000Z",
+      "category": "ai-products",
+      "comment": "点评：多终端接管和移动端操作把编程 Agent 的使用场景延伸到离开电脑之后，也把会话劫持、误操作和凭证暴露风险带到更前面。远程便利性需要与身份校验和会话隔离同步设计。",
+      "advice": "建议：使用远程终端前启用强身份认证、设备绑定和空闲超时，并在测试账号验证跨端会话接管、剪贴板、文件传输和命令执行的权限边界。"
+    },
+    {
+      "topic": "product",
+      "title": "Google Workspace 推出图像创作编辑工具 Google Pics",
+      "source": "Google Blog：AI（RSS）",
+      "url": "https://blog.google/products-and-platforms/products/workspace/google-pics",
+      "date": "2026-09-02",
+      "score": 61,
+      "tags": [
+        "AI HOT",
+        "Google",
+        "产品"
+      ],
+      "summary": "Google 发布 Workspace 图像创作与编辑工具 Google Pics，将在未来数周内面向所有 Google AI Pro 和 Ultra 订阅者及多数 Workspace 商业客户推出。",
+      "publishedAt": "2026-09-01T16:00:00.000Z",
+      "category": "ai-products",
+      "comment": "点评：图像生成被嵌入办公套件后，价值不只在“多一个创作按钮”，还在于能否直接进入文档、演示和协作流程。企业采用时，品牌规范、素材来源和租户数据边界会比生成速度更影响规模化使用。",
+      "advice": "建议：在小范围 Workspace 试点中验证素材授权、品牌一致性、导出可编辑性和管理员控制；为生成内容建立标识、审核与删除流程，再扩展到面向客户的交付。"
+    },
+    {
+      "topic": "paper",
+      "title": "UC Berkeley 团队发布 Vero 基准：测试 AI 智能体能否构建形式化验证的软件仓库",
+      "source": "Berkeley RDI：Blog（AI 安全与评测）",
+      "url": "https://rdi.berkeley.edu/blog/vero",
+      "date": "2026-09-02",
       "score": 60,
       "tags": [
         "AI HOT",
-        "GPT",
-        "产业"
+        "论文"
       ],
-      "summary": "ChatGPT Ads 年化收入运行率突破 10 亿美元，并扩展至全球市场。该广告业务通过免费和低价选项，支持更多人使用 AI 服务。",
-      "publishedAt": "2026-08-31T04:00:00.000Z",
-      "category": "industry",
-      "comment": "点评：广告年化收入和全球扩展说明通用 AI 正在探索订阅之外的规模化变现。对用户与品牌而言，关键不只是覆盖面，而是广告标识、数据使用边界、结果可信度及商业内容是否影响回答体验。",
-      "advice": "建议：使用或投放广告的团队应单独评估广告标识、受众与数据处理说明、品牌安全和转化归因；不要将赞助内容视为模型推荐，关键决策仍需回到独立来源与业务指标。"
+      "summary": "UC Berkeley 等机构发布 Vero，据称是首个要求智能体在仓库级同时编写实现与证明的基准，含 43 个多模块 Lean 4 实例、743 个计分 API 和 2705 条形式化规范。",
+      "publishedAt": "2026-09-02T02:28:38.186Z",
+      "category": "paper",
+      "comment": "点评：要求 Agent 同时交付实现与形式化证明，把评测从“代码能否跑”推进到“关键性质能否被检查”。这类基准尤其适合观察模型在长程依赖、工具协作和失败定位上的真实边界。",
+      "advice": "建议：从一个边界清晰的模块复现实验，固定 Lean/证明工具版本、任务集和成功标准；除最终得分外，记录证明失败原因、人工介入和运行成本。"
     }
   ],
   "sources": [
@@ -255,38 +361,55 @@ const episode = {
     },
     {
       "name": "Anthropic：Newsroom（网页）",
-      "url": "https://www.anthropic.com/news/improving-alignment-security-efforts",
-      "note": "Anthropic 复盘 Claude 模型越权访问事件并公布安全与对齐改进措施"
+      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+      "note": "Anthropic 发布 Claude Fable 5.1 与 Claude …"
     },
     {
-      "name": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/996/637.htm",
-      "note": "DeepSeek-V4-Flash-Vision-Exp 模型已开源，多模态 …"
-    },
-    {
-      "name": "X：Anthropic (@AnthropicAI)",
-      "url": "https://x.com/AnthropicAI/status/2094577944056430865",
-      "note": "Anthropic 研究：训练一个错位的奖励寻求者模型"
-    },
-    {
-      "name": "Runway：News（网页）",
-      "url": "https://runwayml.com/news/research/introducing-solaris",
-      "note": "Runway 发布 Solaris：首个界面世界模型，实时生成操作系统级交互界面"
-    },
-    {
-      "name": "Gary Marcus：The Road to AI We Can Trust（RSS）",
-      "url": "https://garymarcus.substack.com/p/dwarkesh-patelss-wildly-popular-but",
-      "note": "Dwarkesh Patel 对 OpenAI/Hugging Face 事件…"
+      "name": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2094975190468010368",
+      "note": "Nvidia 接近以 129 亿美元收购 Hugging Face"
     },
     {
       "name": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "url": "https://openai.com/index/expanding-access-to-ai-with-chatgpt-ads",
-      "note": "ChatGPT Ads 年化收入达 10 亿美元并全球扩展"
+      "url": "https://openai.com/index/path-to-astra",
+      "note": "OpenAI 评定 Astra 达到网络安全 Critical 能力阈值，将受…"
+    },
+    {
+      "name": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2094873718237565197",
+      "note": "Fable 5.1 系统卡披露隐蔽任务与监控难度上升等安全发现"
+    },
+    {
+      "name": "X：Artificial Analysis (@ArtificialAnlys)",
+      "url": "https://x.com/ArtificialAnlys/status/2094881171066978525",
+      "note": "Claude Fable 5.1 登顶 Artificial Analysis…"
+    },
+    {
+      "name": "IT之家（RSS）",
+      "url": "https://www.ithome.com/0/997/147.htm",
+      "note": "路透社调查：美国 AI 数据中心现大量幽灵用电需求，得州等多州出手整治"
+    },
+    {
+      "name": "Google DeepMind：Blog（RSS）",
+      "url": "https://deepmind.google/blog/introducing-agentic-video-in-gemini",
+      "note": "Google DeepMind 为 Gemini 推出 agentic 视频理…"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-09-02",
+    "title": "AI HOT 日报：Anthropic、Nvidia、Astra 数学评测",
+    "summary": "重点关注 模型发布/更新、行业动态、论文研究、技巧与观点、产品发布/更新。核心信号是：Anthropic 发布 Claude Fable 5.1 与 Claude Mythos 5.1；Nvidia 接近以 129 亿美元收购 Hugging Face；OpenAI 评定 As…",
+    "link": "/posts/90202/",
+    "tags": [
+      "AI HOT",
+      "Anthropic",
+      "Claude",
+      "模型"
+    ]
+  },
   {
     "date": "2026-09-01",
     "title": "AI HOT 日报：Anthropic、DeepSeek",
@@ -908,16 +1031,6 @@ const episodeHistory = [
     "title": "AI-HOT日报：GPT-5.5In、八部门、OpenAI",
     "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/61919/",
-    "tags": [
-      "AI HOT",
-      "AI资讯"
-    ]
-  },
-  {
-    "date": "2026-06-18",
-    "title": "AI-HOT日报：OpenAI、Nvidia、开源",
-    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
-    "link": "/posts/61818/",
     "tags": [
       "AI HOT",
       "AI资讯"
