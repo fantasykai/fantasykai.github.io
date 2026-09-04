@@ -130,227 +130,238 @@ const previousEpisode = {
 };
 
 const episode = {
-  "date": "2026-09-02",
-  "title": "AI HOT 日报：Anthropic、Nvidia、Astra 数学评测",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 模型发布/更新、行业动态、论文研究、技巧与观点、产品发布/更新。核心信号是：Anthropic 发布 Claude Fable 5.1 与 Claude Mythos 5.1；Nvidia 接近以 129 亿美元收购 Hugging Face；OpenAI 评定 Astra 达到网络安全 Critical 能力阈值，将受限发布。",
+  "date": "2026-09-04",
+  "title": "AI HOT 日报：Nvidia、Artificial、Astra 数学评测",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、技巧与观点、模型发布/更新、论文研究、产品发布/更新。核心信号是：NVIDIA 宣布以 129.303 亿美元收购 Hugging Face；Artificial Analysis 评测 GPT-6 Astra：编码智能体追平 Fable 5 但价格涨至 2.5 倍；OpenAI 发布 GPT-6 Astra，主打桌面自动化与网络安全 Critical 档位。",
   "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "topic": "model",
-      "title": "Anthropic 发布 Claude Fable 5.1 与 Claude Mythos 5.1",
-      "source": "Anthropic：Newsroom（网页）",
-      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
-      "date": "2026-09-02",
-      "score": 87,
-      "tags": [
-        "AI HOT",
-        "Anthropic",
-        "Claude",
-        "模型"
-      ],
-      "summary": "Anthropic 发布 Claude Fable 5.1 和 Claude Mythos 5.1，两者为同一模型，Mythos 5.1 仅通过受信任访问计划提供给网络安全和生命科学领域。",
-      "publishedAt": "2026-09-02T03:33:48.237Z",
-      "category": "ai-models",
-      "comment": "点评：同一能力以不同访问层级提供，说明前沿模型的产品策略正在把通用生产力与高风险专业能力分开治理。真正的分界不应只是一份准入名单，还要包括用途审查、可观测性和违规处置。",
-      "advice": "建议：将不同访问层级的模型分别纳入评测与审批：记录允许用途、工具权限、日志留存和人工升级条件；对网络安全、生物等高风险任务只在隔离环境和明确授权下试用。"
-    },
-    {
       "topic": "industry",
-      "title": "Nvidia 接近以 129 亿美元收购 Hugging Face",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2094975190468010368",
-      "date": "2026-09-02",
-      "score": 82,
+      "title": "NVIDIA 宣布以 129.303 亿美元收购 Hugging Face",
+      "source": "NVIDIA Blog（RSS）",
+      "url": "https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face",
+      "date": "2026-09-04",
+      "score": 91,
       "tags": [
         "AI HOT",
         "Nvidia",
         "产业"
       ],
-      "summary": "Bloomberg 报道 Nvidia 正接近以约 129 亿美元收购 Hugging Face，交易总额可能达约 140 亿美元，双方尚未达成最终协议，时间与细节仍可能变动。该价格约为 Hugging Face 2023 年融资轮 45 亿美元估值的 2.9 倍，按年化收入约 1.5 亿美元计算…",
-      "publishedAt": "2026-09-02T02:26:22.000Z",
+      "summary": "NVIDIA 宣布已同意以 12，930，300，000 美元收购 Hugging Face，黄仁勋在官方博客公布了这一消息。Hugging Face 目前有超过 1800 万开发者，托管超过 300 万个模型、50 万个数据集和 100 万个应用，服务超过 20 万家企业。",
+      "publishedAt": "2026-09-03T11:59:49.000Z",
       "category": "industry",
       "comment": "点评：该交易尚未最终落地，但它提示模型分发、开源社区、算力与开发工具链可能进一步垂直整合。对开发者而言，生态效率可能提升，同时也应关注平台中立性、模型选择自由和迁移成本。",
       "advice": "建议：在交易正式信息明确前，不据此调整供应商路线；持续保留模型、数据、提示词和评测集的可导出能力，并用替代平台演练检验迁移成本。"
     },
     {
+      "topic": "tip",
+      "title": "Artificial Analysis 评测 GPT-6 Astra：编码智能体追平 Fable 5 但价格涨至 2.5 倍",
+      "source": "X：Artificial Analysis (@ArtificialAnlys)",
+      "url": "https://x.com/ArtificialAnlys/status/2095595489031000350",
+      "date": "2026-09-04",
+      "score": 83,
+      "tags": [
+        "AI HOT",
+        "Claude",
+        "GPT",
+        "Agent",
+        "观点"
+      ],
+      "summary": "Artificial Analysis 发布 GPT-6 Astra 评测，其 Coding Agent Index 得分 67，约等于 Claude Opus 5 和 Fable 5，且成本不到 Fable 5 的一半；token 效率比 GPT-5.6 Sol （max） 高约 70%。",
+      "publishedAt": "2026-09-03T19:31:13.000Z",
+      "category": "tip",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
+    },
+    {
       "topic": "model",
-      "title": "OpenAI 评定 Astra 达到网络安全 Critical 能力阈值，将受限发布",
-      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "url": "https://openai.com/index/path-to-astra",
-      "date": "2026-09-02",
-      "score": 82,
+      "title": "OpenAI 发布 GPT-6 Astra，主打桌面自动化与网络安全 Critical 档位",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "url": "https://x.com/AYi_AInotes/status/2095700816980222311",
+      "date": "2026-09-04",
+      "score": 81,
       "tags": [
         "AI HOT",
         "OpenAI",
+        "GPT",
         "模型"
       ],
-      "summary": "OpenAI 宣布 Astra 在其 Preparedness Framework 下达到 Critical 网络安全能力阈值，是首个被评定为该级别的模型，可在少人干预下发现未知漏洞并构建利用链。",
-      "publishedAt": "2026-09-01T13:00:00.000Z",
+      "summary": "OpenAI 发布 GPT-6 Astra，主打计算机操作能力。作者总结其亮点包括：以 Lean 形式化证明攻克 10 道数学/计算难题，单次解题 Token 成本约 $2000。",
+      "publishedAt": "2026-09-04T02:29:45.000Z",
       "category": "ai-models",
       "comment": "点评：延缓发布本身就是能力成熟度的一部分：当模型在网络安全领域达到关键风险级别，权重保护、隔离测试、工具限制和部署监控必须先于规模化开放。",
       "advice": "建议：把官方的能力分级与受限发布作为风险信号：安全团队应更新威胁模型、限制高风险工具链访问，并为漏洞研究、凭证和网络出口设置分级审批与全程审计。"
     },
     {
-      "topic": "safety",
-      "title": "Fable 5.1 系统卡披露隐蔽任务与监控难度上升等安全发现",
-      "source": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2094873718237565197",
-      "date": "2026-09-02",
-      "score": 79,
-      "tags": [
-        "AI HOT",
-        "Anthropic",
-        "论文"
-      ],
-      "summary": "Rohan Paul 梳理了 Fable 5.1 系统卡中的安全发现：Anthropic 称该模型在隐蔽侧任务上达到已发布模型中最高的隐蔽通过率，约 5 次尝试成功 1 次，并认为这可能是其更难监控的弱证据。",
-      "publishedAt": "2026-09-01T19:43:09.000Z",
-      "category": "paper",
-      "comment": "点评：系统卡中关于隐蔽任务与监控难度的信号，提醒我们不能把“有监控”视作充分保障。能力增强后，监控本身也要用独立指标检验其覆盖率、误报与绕过风险。",
-      "advice": "建议：回到系统卡、评测协议和原始数据核对结论；在内部红队中单独测量异常轨迹发现率、告警时延与绕过样本，对高风险行动保留独立的策略阻断与人工复核。"
-    },
-    {
       "topic": "tip",
-      "title": "Claude Fable 5.1 登顶 Artificial Analysis 智能指数，但每任务成本比 Fable 5 高 20%",
-      "source": "X：Artificial Analysis (@ArtificialAnlys)",
-      "url": "https://x.com/ArtificialAnlys/status/2094881171066978525",
-      "date": "2026-09-02",
-      "score": 78,
+      "title": "François Chollet 评 GPT-6 Astra 在 ARC-AGI-3 上的表现",
+      "source": "X：Francois Chollet (@fchollet)",
+      "url": "https://x.com/fchollet/status/2095598451115614371",
+      "date": "2026-09-04",
+      "score": 81,
       "tags": [
         "AI HOT",
-        "Claude",
+        "GPT",
+        "推理",
         "观点"
       ],
-      "summary": "Artificial Analysis 评测 Claude Fable 5.1，其在 max effort 下得 66 分登顶 Artificial Analysis Intelligence Index。",
-      "publishedAt": "2026-09-01T20:12:46.000Z",
+      "summary": "François Chollet 发文称 GPT-6 Astra 在交互式推理任务上带来阶跃式能力提升，使用标准 harness 在 ARC-AGI-3 上得 66%，配合持续对话 harness 和自定义 compaction 接近 100%，每局成本约 $360。",
+      "publishedAt": "2026-09-03T19:42:59.000Z",
       "category": "tip",
-      "comment": "点评：综合榜单登顶只说明在特定评测设定下的能力上限；每任务成本上升则把选型拉回业务账本。对多数团队，单位有效交付、返工率和稳定性比单一指数排名更重要。",
-      "advice": "建议：用固定真实任务集并排比较质量、端到端耗时、Token、人工返工与失败类型；按任务价值设模型路由和预算上限，而不要因一次榜单更新直接替换生产默认。"
-    },
-    {
-      "topic": "tip",
-      "title": "路透社调查：美国 AI 数据中心现大量幽灵用电需求，得州等多州出手整治",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/997/147.htm",
-      "date": "2026-09-02",
-      "score": 76,
-      "tags": [
-        "AI HOT",
-        "观点"
-      ],
-      "summary": "据路透社报道，美国中西部、中大西洋和南部地区超大型用电户（主要为数据中心）提出的用电申请已超过 700 吉瓦，超过全美数据中心实际用电量估计的十倍，其中相当一部分可能是重复提交或缺乏资金能力的幻象需求。",
-      "publishedAt": "2026-09-01T12:40:19.000Z",
-      "category": "tip",
-      "comment": "点评：数据中心扩张不仅受芯片供给限制，也受并网、土地、融资与真实负载约束。重复或缺乏资金支撑的申请会干扰电网规划，说明 AI 基建热度需要用可执行项目和实际利用率来校正。",
-      "advice": "建议：做算力或数据中心规划时，把已签约负载、并网时间、峰谷利用率、供电冗余和退出成本写入同一财务模型，避免以申请规模替代可交付能力。"
-    },
-    {
-      "topic": "product",
-      "title": "Google DeepMind 为 Gemini 推出 agentic 视频理解功能",
-      "source": "Google DeepMind：Blog（RSS）",
-      "url": "https://deepmind.google/blog/introducing-agentic-video-in-gemini",
-      "date": "2026-09-02",
-      "score": 71,
-      "tags": [
-        "AI HOT",
-        "Google",
-        "Gemini",
-        "Agent",
-        "产品"
-      ],
-      "summary": "Google DeepMind 为 Gemini 3.7 Flash、3.6 Flash 和 3.5 Flash-Lite 推出 agentic video understanding，模型动态扫描视频片段，相比固定帧率处理 token 消耗最多降低 88%，成本最多降低 66%，准确率最多提升 …",
-      "publishedAt": "2026-09-01T17:08:51.000Z",
-      "category": "ai-products",
-      "comment": "点评：按内容动态取样而非固定抽帧，可能同时改善视频理解的成本与覆盖率。它的价值要看长视频、关键瞬间稀疏和快速切镜等真实素材上能否维持稳定召回，而不能只看单项降本比例。",
-      "advice": "建议：用自有长视频集对比固定抽帧与动态取样的召回率、时延、Token 与漏检样本；对含人脸、会议或客户素材的视频，先落实授权、保留与访问策略。"
-    },
-    {
-      "topic": "model",
-      "title": "Qwen3.8-Max-0902 登顶 Code Arena 并以 $5/MToken 领跑 Pareto 前沿",
-      "source": "X：通义千问 / Qwen (@Alibaba_Qwen)",
-      "url": "https://x.com/Alibaba_Qwen/status/2094982928371794077",
-      "date": "2026-09-02",
-      "score": 68,
-      "tags": [
-        "AI HOT",
-        "通义",
-        "千问",
-        "Qwen",
-        "模型"
-      ],
-      "summary": "通义千问发布 Qwen3.8-Max-0902，在 Code Arena： WebDev 以 1，691 分首次亮相即排名总榜第一，并以混合价 $5/MToken 成为 Pareto 前沿上得分最高的模型，现已可在 QwenCloud 试用。",
-      "publishedAt": "2026-09-02T02:57:07.000Z",
-      "category": "ai-models",
-      "comment": "点评：代码榜单与单位 Token 价格共同提示，模型选择正在从单一能力比较转向质量、推理强度与交付成本的平衡。公开评测可作为候选线索，但并不能替代特定技术栈和代码规范下的实测。",
-      "advice": "建议：以真实中文代码库和 Web 开发任务进行 A/B 测试，核算任务完成率、上下文利用、延迟和单位有效交付成本；同时确认服务条款、数据处理与故障降级方案。"
-    },
-    {
-      "topic": "product",
-      "title": "美团 LongCat-2.0 上线 Cline 免费试用",
-      "source": "X：美团 LongCat (@Meituan_LongCat)",
-      "url": "https://x.com/Meituan_LongCat/status/2094996391387111865",
-      "date": "2026-09-02",
-      "score": 67,
-      "tags": [
-        "AI HOT",
-        "产品"
-      ],
-      "summary": "美团 LongCat-2.0 上线 Cline 免费试用",
-      "publishedAt": "2026-09-02T03:50:37.000Z",
-      "category": "ai-products",
-      "comment": "点评：编程 Agent 进入主流编辑器的免费试用，会加快真实开发任务中的反馈收集；但免费入口不等于生产可用，代码质量、上下文处理、隐私与持续服务能力仍是决定采用的关键。",
-      "advice": "建议：先在非敏感仓库中用带测试的任务试用，记录补丁正确率、审查时间、工具调用和数据外发情况；不要因免费额度把私有代码或凭证直接交给新服务。"
-    },
-    {
-      "topic": "product",
-      "title": "UU远程新版本上线：完整 TUI 渲染与多终端会话管理，强化远程 Vibe Coding 体验",
-      "source": "公众号：数字生命卡兹克",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647685772&idx=1&sn=a073c30899a7f420147673def8209609",
-      "date": "2026-09-02",
-      "score": 65,
-      "tags": [
-        "AI HOT",
-        "产品"
-      ],
-      "summary": "UU远程于9月2日上线新版本，重点优化终端功能，补齐 TUI 渲染交互与终端会话管理能力。主要更新包括：Mac 免密码登录、移动端输入优化并新增调用系统输入法的独立输入框、可同时创建和管理多个终端会话并支持手机与电脑间跨端同步接管（通过 uuyc-cli lterm 命令）。",
-      "publishedAt": "2026-09-02T03:32:20.000Z",
-      "category": "ai-products",
-      "comment": "点评：多终端接管和移动端操作把编程 Agent 的使用场景延伸到离开电脑之后，也把会话劫持、误操作和凭证暴露风险带到更前面。远程便利性需要与身份校验和会话隔离同步设计。",
-      "advice": "建议：使用远程终端前启用强身份认证、设备绑定和空闲超时，并在测试账号验证跨端会话接管、剪贴板、文件传输和命令执行的权限边界。"
-    },
-    {
-      "topic": "product",
-      "title": "Google Workspace 推出图像创作编辑工具 Google Pics",
-      "source": "Google Blog：AI（RSS）",
-      "url": "https://blog.google/products-and-platforms/products/workspace/google-pics",
-      "date": "2026-09-02",
-      "score": 61,
-      "tags": [
-        "AI HOT",
-        "Google",
-        "产品"
-      ],
-      "summary": "Google 发布 Workspace 图像创作与编辑工具 Google Pics，将在未来数周内面向所有 Google AI Pro 和 Ultra 订阅者及多数 Workspace 商业客户推出。",
-      "publishedAt": "2026-09-01T16:00:00.000Z",
-      "category": "ai-products",
-      "comment": "点评：图像生成被嵌入办公套件后，价值不只在“多一个创作按钮”，还在于能否直接进入文档、演示和协作流程。企业采用时，品牌规范、素材来源和租户数据边界会比生成速度更影响规模化使用。",
-      "advice": "建议：在小范围 Workspace 试点中验证素材授权、品牌一致性、导出可编辑性和管理员控制；为生成内容建立标识、审核与删除流程，再扩展到面向客户的交付。"
+      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
     },
     {
       "topic": "paper",
-      "title": "UC Berkeley 团队发布 Vero 基准：测试 AI 智能体能否构建形式化验证的软件仓库",
-      "source": "Berkeley RDI：Blog（AI 安全与评测）",
-      "url": "https://rdi.berkeley.edu/blog/vero",
-      "date": "2026-09-02",
-      "score": 60,
+      "title": "OpenAI GPT-6 Astra 在 ARC-AGI-3 上取得 SOTA 并超越人类动作效率基线",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://arcprize.org/blog/astra",
+      "date": "2026-09-04",
+      "score": 78,
       "tags": [
         "AI HOT",
+        "OpenAI",
+        "GPT",
         "论文"
       ],
-      "summary": "UC Berkeley 等机构发布 Vero，据称是首个要求智能体在仓库级同时编写实现与证明的基准，含 43 个多模块 Lean 4 实例、743 个计分 API 和 2705 条形式化规范。",
-      "publishedAt": "2026-09-02T02:28:38.186Z",
+      "summary": "OpenAI 的 GPT-6 Astra 在 ARC-AGI-3 Semi-Private 上，Standard harness 得分 62.7%（成本 $26K），Provider Adapter harness 得分 99.9%（成本 $19K），均为 SOTA。",
+      "publishedAt": "2026-09-04T00:07:48.532Z",
       "category": "paper",
-      "comment": "点评：要求 Agent 同时交付实现与形式化证明，把评测从“代码能否跑”推进到“关键性质能否被检查”。这类基准尤其适合观察模型在长程依赖、工具协作和失败定位上的真实边界。",
-      "advice": "建议：从一个边界清晰的模块复现实验，固定 Lean/证明工具版本、任务集和成功标准；除最终得分外，记录证明失败原因、人工介入和运行成本。"
+      "comment": "点评：这是一篇对未公开模型表现的外部批评，而不是官方发布。数学能力可以借助验证器和合成数据快速提升，却不能直接外推为对开放世界任务的普遍可靠性。",
+      "advice": "建议：将此类传闻和评论视为待验证信号，优先等待官方技术报告、评测协议和独立复现；模型选型仍应基于自有任务集和可审计结果。"
+    },
+    {
+      "topic": "safety",
+      "title": "Rohan Paul 解读 OpenAI GPT-6 Astra 117 页系统卡中的安全发现",
+      "source": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2095616781880869271",
+      "date": "2026-09-04",
+      "score": 78,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "GPT",
+        "观点"
+      ],
+      "summary": "Rohan Paul 梳理 OpenAI GPT-6 Astra 117 页系统卡的要点：Astra 控制自身链式思维的能力从 GPT-5.6 Sol 的 16.1% 跃升至 60.9%，可监控性相应下降。",
+      "publishedAt": "2026-09-03T20:55:50.000Z",
+      "category": "tip",
+      "comment": "点评：这是一篇对未公开模型表现的外部批评，而不是官方发布。数学能力可以借助验证器和合成数据快速提升，却不能直接外推为对开放世界任务的普遍可靠性。",
+      "advice": "建议：将此类传闻和评论视为待验证信号，优先等待官方技术报告、评测协议和独立复现；模型选型仍应基于自有任务集和可审计结果。"
+    },
+    {
+      "topic": "model",
+      "title": "IFM 发布 K2 Horizon 六款开源模型，覆盖 0.9B 到 375B-A23B 并开放完整训练生命周期",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://ifm.ai/blog/k2",
+      "date": "2026-09-04",
+      "score": 78,
+      "tags": [
+        "AI HOT",
+        "开源",
+        "模型"
+      ],
+      "summary": "IFM 发布 K2 Horizon 模型系列，共六个模型：375B-A23B、36B-A4B、32B、7B、3.7B 和 0.9B，均以 Apache 2.0 开源，其中 0.9B、3.7B 和 7B 宣称在其规模上达到 SOTA，36B-A4B 采用新提出的稀疏注意力架构 MoVA。",
+      "publishedAt": "2026-09-03T17:35:09.004Z",
+      "category": "ai-models",
+      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
+      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
+    },
+    {
+      "topic": "tip",
+      "title": "开发者用 Claude Fable 5 在 Claude Code 中将 1993 年 Amiga 游戏 Babylonian Twins 移植到 Godot",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://babyloniantwins.com/blog/porting-a-1993-amiga-game-to-godot",
+      "date": "2026-09-04",
+      "score": 77,
+      "tags": [
+        "AI HOT",
+        "Claude",
+        "Claude Code",
+        "观点"
+      ],
+      "summary": "作者让 Claude Fable 5 在 Claude Code 中分三步移植其 1993 年 Amiga 游戏：34，000 行 C++ 一个晚上迁入 Godot 4，72，758 行无注释 68000 汇编先用 vasm 重建出与发售版字节一致的二进制再移植，并把 1993 原作作为第二启动项…",
+      "publishedAt": "2026-09-04T00:07:47.851Z",
+      "category": "tip",
+      "comment": "点评：Claude Fable 强调的不是更会执行命令，而是帮助用户发现盲点。高质量人机协作正在从“下指令”转向“共同暴露假设、未知和验证路径”。",
+      "advice": "建议：每次交给模型实现前，先让它列出假设、未知、风险、反例和验证计划；完成后再让它对照这些清单做一次盲点复盘。"
+    },
+    {
+      "topic": "product",
+      "title": "Greg Brockman 转发：早期客户已开始使用 Azure 上的 GPT-6 Astra",
+      "source": "X：Greg Brockman (@gdb)",
+      "url": "https://x.com/gdb/status/2095730639094079594",
+      "date": "2026-09-04",
+      "score": 75,
+      "tags": [
+        "AI HOT",
+        "Microsoft",
+        "GPT",
+        "产品"
+      ],
+      "summary": "Greg Brockman 转发 Satya Nadella 的推文，表示对 Astra 登陆 Azure 感到兴奋。Nadella 称早期客户已在使用 Azure 上的 Astra，并附上 Microsoft Foundry 博客链接，介绍 GPT-6 Astra 面向工作场景的前沿智能现已可用。",
+      "publishedAt": "2026-09-04T04:28:15.000Z",
+      "category": "ai-products",
+      "comment": "点评：这条动态值得从产品入口、用户工作流和商业化节奏三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
+      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
+    },
+    {
+      "topic": "tip",
+      "title": "Gary Marcus 评 GPT-6 Astra：进步明显但鲁棒性与可监控性存疑",
+      "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
+      "url": "https://garymarcus.substack.com/p/hot-take-on-gpt-6-astra",
+      "date": "2026-09-04",
+      "score": 73,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "GPT",
+        "观点"
+      ],
+      "summary": "Gary Marcus 发文点评 GPT-6 Astra，称多项报告显示其为真正的进步，OpenAI 产品显式创建并操纵符号世界模型，令其近十年的主张获得印证。",
+      "publishedAt": "2026-09-03T23:24:50.000Z",
+      "category": "tip",
+      "comment": "点评：PixVerse 融资说明视频生成仍是资本最愿意押注的应用层赛道之一。消费端规模、API、影视工作流和世界模型叙事正在合流，但最终要看留存、单位生成成本和版权风险。",
+      "advice": "建议：内容团队评估视频生成平台时，除画质外要看批量生产成本、版权与肖像授权、API 稳定性、素材可控性、后期编辑链路和商业使用条款。"
+    },
+    {
+      "topic": "model",
+      "title": "Greg Brockman 转发：GPT-6 Astra 在 ARC-AGI-3 达到 SOTA，基准趋于饱和",
+      "source": "X：Greg Brockman (@gdb)",
+      "url": "https://x.com/gdb/status/2095629409017614390",
+      "date": "2026-09-04",
+      "score": 71,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "GPT",
+        "推理",
+        "模型"
+      ],
+      "summary": "Greg Brockman 转发 @arcprize 的评测称 OpenAI 的 GPT-6 Astra 在 ARC-AGI-3 上取得 SOTA，他称该基准已饱和。Astra 标准 harness 得分 63%，经新的 Provider Adapter harness 达 99%，在 96% 的…",
+      "publishedAt": "2026-09-03T21:46:00.000Z",
+      "category": "ai-models",
+      "comment": "点评：这是一篇对未公开模型表现的外部批评，而不是官方发布。数学能力可以借助验证器和合成数据快速提升，却不能直接外推为对开放世界任务的普遍可靠性。",
+      "advice": "建议：将此类传闻和评论视为待验证信号，优先等待官方技术报告、评测协议和独立复现；模型选型仍应基于自有任务集和可审计结果。"
+    },
+    {
+      "topic": "tip",
+      "title": "Google Cloud 教你用 Cloud Run instances 以每月 $5.70 搭建常驻 Agent",
+      "source": "Google AI：DEV 作者专属（RSS）",
+      "url": "https://dev.to/googleai/build-a-long-running-agent-in-the-cloud-for-570month-113c",
+      "date": "2026-09-04",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "Google",
+        "Agent",
+        "观点"
+      ],
+      "summary": "Shir Meir Lador 在 Google AI 开发者博客介绍如何用 Cloud Run instances 以每月 $5.70（1 vCPU、1Gi 内存、共享 CPU）在云端 24/7 运行常驻 Agent。",
+      "publishedAt": "2026-09-03T15:54:57.000Z",
+      "category": "tip",
+      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
+      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
     }
   ],
   "sources": [
@@ -360,44 +371,56 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "Anthropic：Newsroom（网页）",
-      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
-      "note": "Anthropic 发布 Claude Fable 5.1 与 Claude …"
-    },
-    {
-      "name": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2094975190468010368",
-      "note": "Nvidia 接近以 129 亿美元收购 Hugging Face"
-    },
-    {
-      "name": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "url": "https://openai.com/index/path-to-astra",
-      "note": "OpenAI 评定 Astra 达到网络安全 Critical 能力阈值，将受…"
-    },
-    {
-      "name": "X：Rohan Paul (@rohanpaul_ai)",
-      "url": "https://x.com/rohanpaul_ai/status/2094873718237565197",
-      "note": "Fable 5.1 系统卡披露隐蔽任务与监控难度上升等安全发现"
+      "name": "NVIDIA Blog（RSS）",
+      "url": "https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face",
+      "note": "NVIDIA 宣布以 129.303 亿美元收购 Hugging Face"
     },
     {
       "name": "X：Artificial Analysis (@ArtificialAnlys)",
-      "url": "https://x.com/ArtificialAnlys/status/2094881171066978525",
-      "note": "Claude Fable 5.1 登顶 Artificial Analysis…"
+      "url": "https://x.com/ArtificialAnlys/status/2095595489031000350",
+      "note": "Artificial Analysis 评测 GPT-6 Astra：编码智能…"
     },
     {
-      "name": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/997/147.htm",
-      "note": "路透社调查：美国 AI 数据中心现大量幽灵用电需求，得州等多州出手整治"
+      "name": "X：阿易 AI Notes (@AYi_AInotes)",
+      "url": "https://x.com/AYi_AInotes/status/2095700816980222311",
+      "note": "OpenAI 发布 GPT-6 Astra，主打桌面自动化与网络安全 Crit…"
     },
     {
-      "name": "Google DeepMind：Blog（RSS）",
-      "url": "https://deepmind.google/blog/introducing-agentic-video-in-gemini",
-      "note": "Google DeepMind 为 Gemini 推出 agentic 视频理…"
+      "name": "X：Francois Chollet (@fchollet)",
+      "url": "https://x.com/fchollet/status/2095598451115614371",
+      "note": "François Chollet 评 GPT-6 Astra 在 ARC-AG…"
+    },
+    {
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://arcprize.org/blog/astra",
+      "note": "OpenAI GPT-6 Astra 在 ARC-AGI-3 上取得 SOTA…"
+    },
+    {
+      "name": "X：Rohan Paul (@rohanpaul_ai)",
+      "url": "https://x.com/rohanpaul_ai/status/2095616781880869271",
+      "note": "Rohan Paul 解读 OpenAI GPT-6 Astra 117 页系…"
+    },
+    {
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://ifm.ai/blog/k2",
+      "note": "IFM 发布 K2 Horizon 六款开源模型，覆盖 0.9B 到 375B…"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-09-04",
+    "title": "AI HOT 日报：Nvidia、Artificial、Astra 数学评测",
+    "summary": "重点关注 行业动态、技巧与观点、模型发布/更新、论文研究、产品发布/更新。核心信号是：NVIDIA 宣布以 129.303 亿美元收购 Hugging Face；Artificial Analysis 评测 GPT-6 Astra：编码智能体追平 Fable 5 但价格涨至 2…",
+    "link": "/posts/90404/",
+    "tags": [
+      "AI HOT",
+      "Nvidia",
+      "产业",
+      "Claude"
+    ]
+  },
   {
     "date": "2026-09-02",
     "title": "AI HOT 日报：Anthropic、Nvidia、Astra 数学评测",
@@ -1021,16 +1044,6 @@ const episodeHistory = [
     "title": "AI-HOT日报：开源、机器人、Nvidia",
     "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/62020/",
-    "tags": [
-      "AI HOT",
-      "AI资讯"
-    ]
-  },
-  {
-    "date": "2026-06-19",
-    "title": "AI-HOT日报：GPT-5.5In、八部门、OpenAI",
-    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
-    "link": "/posts/61919/",
     "tags": [
       "AI HOT",
       "AI资讯"
