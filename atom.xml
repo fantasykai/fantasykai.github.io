@@ -10,7 +10,37 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-09-04T07:40:25.467Z</updated>
+  <updated>2026-09-05T02:46:09.794Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT" scheme="https://aimak.cn/tags/AI-HOT/"/>
+    <category term="AI日报" scheme="https://aimak.cn/tags/AI%E6%97%A5%E6%8A%A5/"/>
+    <category term="Agent" scheme="https://aimak.cn/tags/Agent/"/>
+    <category term="AI安全" scheme="https://aimak.cn/tags/AI%E5%AE%89%E5%85%A8/"/>
+    <category term="模型评测" scheme="https://aimak.cn/tags/%E6%A8%A1%E5%9E%8B%E8%AF%84%E6%B5%8B/"/>
+    <category term="形式化验证" scheme="https://aimak.cn/tags/%E5%BD%A2%E5%BC%8F%E5%8C%96%E9%AA%8C%E8%AF%81/"/>
+    <id>https://aimak.cn/posts/90505/</id>
+    <link href="https://aimak.cn/posts/90505/"/>
+    <published>2026-09-05T02:46:09.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 <a href="https://aihot.virxact.com/">AI HOT</a>。本文整理过去 24 小时精选资讯，补充独立点评与行动建议；同步提供<a href="/podcast/">中文语音播报与播报稿</a>。</p>
+</blockquote>
+<h2 id="本期范围与阅读提示"><a href="#本期范围与阅读提示" class="headerlink" title="本期范围与阅读提示"></a>本期范围与阅读提示</h2><ul>
+<li>**统计窗口：北京时间 2026-09-04 10:41:58 — 2026-09-05 10:41:58。**按资讯发布时间筛选，共 13 条精选，合并重复报道后形成 8 个主题。</li>
+<li>同时参考了 <a href="https://aihot.virxact.com/daily/2026-09-05">AI HOT 9 月 5 日日报</a>。该日报覆盖北京时间前一日 08:00 至当日 08:00，与本文滚动窗口不同，未直接混入窗口外新闻。</li>
+<li>“过去 24 小时”指报道进入本期的时间，<strong>不代表相关事件都在过去一天发生</strong>。尤其是 Wiki 事件，报道讨论的是此前训练活动。</li>
+<li>AI HOT 摘要为二次整理，不作为原文引语。下文标明信息来源；媒体转述、厂商自述和本文判断分别处理。IPO 预期、可用范围及研究效果均不应视为保证。</li>
+</ul>
+<h2 id="今日总览：从“模型更强”转向“结果可验收”"><a href="#今日总览：从“模型更强”转向“结果可验收”" class="headerlink" title="今日总览：从“模型更强”转向“结果可验收”"></a>今日总览：从“模型更强”转向“结果可验收”</h2><p>今天的新闻可以用三条线串起来。第一，模型开放正在变成账户、入口与服务承诺的工程问题。第二，编排和形式化验证提醒我们：真正值得优化的是通过验收的结果，而不是调用次数或生成长度。第三，提示注入与公共 Wiki 事件再次说明，能力提升不自动解决系统权限问题。</p>
+<p><strong>我的判断：接下来的差异化，不只是拿到新模型，而是让任务以可控成本完成，并且知道什么时候必须停下来。</strong></p>]]>
+    </summary>
+    <title>AI HOT 日报 2026-09-05：从模型开放到可验证交付</title>
+    <updated>2026-09-05T02:46:09.794Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -350,23 +380,5 @@
     </summary>
     <title>AI HOT 日报 2026-08-10：安全、Nvidia、千问开放平台上线</title>
     <updated>2026-08-10T02:22:44.135Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, 产品, OpenAI, 产业, 开源, 推理, 模型, Claude, Claude Code, 论文, GPT, AI日报" scheme="https://aimak.cn/tags/AI-HOT-%E4%BA%A7%E5%93%81-OpenAI-%E4%BA%A7%E4%B8%9A-%E5%BC%80%E6%BA%90-%E6%8E%A8%E7%90%86-%E6%A8%A1%E5%9E%8B-Claude-Claude-Code-%E8%AE%BA%E6%96%87-GPT-AI%E6%97%A5%E6%8A%A5/"/>
-    <id>https://aimak.cn/posts/80808/</id>
-    <link href="https://aimak.cn/posts/80808/"/>
-    <published>2026-08-08T03:19:27.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-08-08：Seedance 2、Astra 数学评测、Kitesurf</title>
-    <updated>2026-08-08T03:19:27.441Z</updated>
   </entry>
 </feed>
