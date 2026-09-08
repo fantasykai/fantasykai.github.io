@@ -130,117 +130,135 @@ const previousEpisode = {
 };
 
 const episode = {
-  "date": "2026-09-07",
-  "title": "AI HOT 日报：自动化研究 Agent、Astra 评测修订、对齐监测",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 技巧与观点。核心信号是：OpenAI 发布内部研究加速报告：已达成自动化研究实习生目标，推进 2028 年 3 月自动化 AI 研究员；Fortune 报道 OpenAI 多次修改 GPT-6 Astra 基准测试数据，部分成绩大幅变化；OpenAI 长文阐述对齐与监测困境，称 CoT 监控能力正在减弱。",
-  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
+  "date": "2026-09-08",
+  "title": "AI HOT 日报：算力重注、开放权重与 AI 交付的证据边界",
+  "intro": "本期覆盖北京时间 9 月 7 日 17:31 至 9 月 8 日 17:31 的 24 小时，共四条精选。Mistral 的融资与 Anthropic 的算力合同报道指向长期资源布局；数学研究声明与 Blender 个人实测则提醒我们，能力演示之外，还要核对贡献、成本和验收证据。以下将来源陈述与个人点评分开，Mistral 公告与公众号内容本次未能直接访问，按 AI HOT 摘要转述。",
+  "conclusion": "今天不妨少问一句“AI 又有多强”，多问三句：资本承诺兑现了吗？研究贡献说清了吗？业务交付验收了吗？对个人，先做一个可复现的小任务；对团队，沉淀成本和质量台账；对管理者，为供应商依赖保留退出与降级方案。真正值得积累的不是热点清单，而是把新能力变成可靠成果的方法。",
   "items": [
     {
-      "topic": "tip",
-      "title": "OpenAI 发布内部研究加速报告：已达成自动化研究实习生目标，推进 2028 年 3 月自动化 AI 研究员",
-      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "url": "https://openai.com/index/research-acceleration-view-inside-openai",
-      "date": "2026-09-07",
-      "score": 81,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "观点"
-      ],
-      "summary": "OpenAI 发文披露自动化研究进展，宣布已达成去年秋天设定的今年 9 月拥有自动化研究实习生（可在人类指导下完成耗时数天的明确研究任务）的目标，并计划在 2028 年 3 月前造出自动化 AI 研究员。",
-      "publishedAt": "2026-09-06T08:00:00.000Z",
-      "category": "tip",
-      "comment": "点评：这是一项来自 OpenAI 的内部进展披露。“3.1 个 Agent 工作日”描述的是运行时投入，不是等效的人类产出；真正值得关注的是在明确任务上，交付质量、监督成本、失败率和可复现性是否同步改善。",
-      "advice": "建议：挑选 10 至 20 个边界清晰的历史研究或分析任务，固定输入、工具权限与验收标准；同时记录一次通过率、人工复核时长、重试次数、运行成本和越权动作，再判断是否值得扩大试点。"
-    },
-    {
-      "topic": "tip",
-      "title": "Fortune 报道 OpenAI 多次修改 GPT-6 Astra 基准测试数据，部分成绩大幅变化",
-      "source": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/998/927.htm",
-      "date": "2026-09-07",
-      "score": 77,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "GPT",
-        "观点"
-      ],
-      "summary": "据 Fortune 报道，OpenAI 自 9 月 3 日发布 GPT-6 Astra 公告以来多次修改评测基准数据：Astra 幻觉率曾从 4.2% 降至 2% 后又改回。",
-      "publishedAt": "2026-09-06T06:46:16.000Z",
-      "category": "tip",
-      "comment": "点评：评测数值的修订本身不必然说明模型能力有问题，却会直接影响外界比较。基准、提示词、预算、评分版本与修订原因若不能被完整追溯，单个漂亮数字就不应成为采购或宣传结论。",
-      "advice": "建议：建立评测台账，保存模型版本、提示词、工具配置、样本集、原始输出和评分脚本；外部榜单只作为候选线索，切换生产模型前必须在自有任务集上复测。"
-    },
-    {
-      "topic": "safety",
-      "title": "OpenAI 长文阐述对齐与监测困境，称 CoT 监控能力正在减弱",
-      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "url": "https://openai.com/index/an-alien-mind",
-      "date": "2026-09-07",
+      "url": "https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier",
+      "publishedAt": "2026-09-08T05:58:27.839Z",
+      "category": "industry",
       "score": 72,
+      "date": "2026-09-08",
+      "topic": "industry",
+      "title": "Mistral 宣布融资 30 亿欧元：开放权重与主权 AI 的资本信号",
+      "source": "Mistral AI 官方公告（据 AI HOT 摘要，原文未直接核实）",
+      "summary": "据 AI HOT 对 Mistral 官方公告的摘要，公司宣布完成 30 亿欧元 D 轮融资，投后估值超过 210 亿欧元，继续强调主权 AI 与开放权重路线。本次原站访问超时，金额与轮次未直接复核；融资也不等于某款模型已达到技术前沿。",
+      "comment": "点评：“主权”不只是模型在什么地方训练，还包括谁控制部署、数据流向与供应链。开放权重提供了选择空间，但不自动等于无限制商用；具体版本的许可与运行成本仍需逐项核对。融资规模本身也不能替代产品可用性和客户留存。",
+      "advice": "建议：有本地部署或数据驻留需求的团队，可把 Mistral 放入候选清单，用已脱敏任务比较质量、时延、硬件成本、许可证和支持条款。先做一个可迁移的小试点，不因融资新闻立刻更换生产供应商。",
       "tags": [
         "AI HOT",
-        "OpenAI",
-        "GPT",
-        "推理",
-        "观点"
-      ],
-      "summary": "OpenAI 发布长文《An Alien Mind》，回溯 2023 年 RLSlow 项目中确认推理模型可扩展训练的起点，并系统阐述目标对齐与价值对齐的区分。文章指出链式思维监控的效果正随着模型能力提升而逐步减弱，GPT-6 Astra 在对齐上显著优于 GPT-5.6 Sol；作者预期进展可能…",
-      "publishedAt": "2026-09-06T09:00:00.000Z",
-      "category": "tip",
-      "comment": "点评：如果模型的可读推理越来越难作为可靠监控信号，安全不能只押在“看它怎么想”上。更稳妥的控制面仍是工具权限、行为日志、异常检测和对高副作用动作的独立拦截。",
-      "advice": "建议：把不可信内容与工具指令隔离，对外发、写入、删除和支付设置最小权限、预算上限与人工确认；定期用提示注入和长程任务漂移样本回归测试，而非把推理文本当作唯一安全证据。"
+        "Mistral",
+        "开放权重",
+        "产业"
+      ]
     },
     {
-      "topic": "tip",
-      "title": "GPT-6 Astra爆火后，卡兹克谈执行能力贬值与判断力断层",
-      "source": "公众号：数字生命卡兹克",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647685960&idx=1&sn=df5885920be226f9514f47a7f2d30621",
-      "date": "2026-09-07",
-      "score": 71,
+      "url": "https://the-decoder.com/anthropic-reportedly-signs-517-billion-in-compute-deals-after-dario-amodei-warned-rivals-about-reckless-risk",
+      "publishedAt": "2026-09-07T18:12:41.000Z",
+      "category": "industry",
+      "score": 76,
+      "date": "2026-09-08",
+      "topic": "industry",
+      "title": "Anthropic 被报道签下巨额算力合同：承诺规模不等于已上线产能",
+      "source": "The Decoder（转述 The Information）",
+      "summary": "The Decoder 援引 The Information 报道称，Anthropic 在十一个月内签署高达 5170 亿美元的算力合同，自 2025 年 10 月以来锁定至少 14.8 吉瓦相关容量，并计划自建数据中心。这是媒体报道口径，不是本刊独立审计或已交付容量证明。",
+      "comment": "点评：这里最容易混淆三件事：合同承诺、现金实际支出和已经可用的算力。吉瓦衡量功率，不能直接换算成模型能力或每秒可服务的请求数。大额长期承诺可能换来供应确定性，也会增加利用率不足时的经营压力；不能只读成“需求已经兑现”。",
+      "advice": "建议：做采购和预算时，关注可用区域、配额、服务等级、故障记录和退出条款。对关键流程保留第二供应商及降级路径，把成本按真实任务完成量核算，而不是按新闻中的资本规模下注。",
       "tags": [
         "AI HOT",
-        "GPT",
-        "观点"
-      ],
-      "summary": "GPT-6 Astra上线后，大量用户用它自主操控Blender、Houdini、Unity、Aseprite等专业软件，做出游戏Demo、3D复刻旧金山艺术宫等作品，其中旧金山艺术宫案例里Astra自己搜索几百张参考图、翻到美国国会图书馆的老扫描文件找柱子尺寸，多数工作在夜间自主完成。",
-      "publishedAt": "2026-09-07T00:08:00.000Z",
+        "Anthropic",
+        "算力",
+        "产业"
+      ]
+    },
+    {
+      "url": "https://cims.nyu.edu/~tristanb/statement.pdf",
+      "publishedAt": "2026-09-08T07:20:02.739Z",
       "category": "tip",
-      "comment": "点评：当执行型任务的边际成本下降，稀缺的并不是“能不能做”，而是问题定义、质量判断与结果负责。展示级案例很有启发，但复杂软件中的可维护性、版权、数据来源与返工成本仍须由人验收。",
-      "advice": "建议：把 Agent 用在可分阶段验收的生产链路：先让它调研、出草稿或搭原型，再由负责人审查约束、素材权利、关键参数和最终交付；复盘返工率，而不是只展示一次性成果。"
+      "score": 82,
+      "date": "2026-09-08",
+      "topic": "tip",
+      "title": "数学家公开 blowup 结果声明：先看命题边界，再谈 AI 贡献",
+      "source": "Tristan Buckmaster 公开声明（已核对原文）",
+      "summary": "已核对 Buckmaster 的公开声明：他与 Levent Alpöge 宣布了带光滑强迫的不可压缩多孔介质、Boussinesq 和三维不可压缩 Euler 方程的有限时间 blowup 结果。作者称使用了多个 LLM，Astra 仅用于撰写与论证审查；另一个低耗散 Navier–Stokes 结果尚未完成 Lean 验证。他还陈述了与 OpenAI 在发布和署名安排上的分歧，但明确表示未见其证明、不知道用户数据是否被使用。这些是作者声明，不是本刊对证明或争议的独立裁定。",
+      "comment": "点评：这不是“AI 已解决完整纳维—斯托克斯千禧年难题”的证据。方程类型、强迫条件和验证状态必须精确区分；研究路线的先行者、人类研究者与不同模型的贡献也不应被一个品牌标签覆盖。声明中的沟通过程属于作者一方陈述，不能据此断言存在数据盗用或科研不端。",
+      "advice": "建议：科研团队使用 AI 时，保留提示、输出、反例、计算脚本和人工修订记录；对外传播先核对原始命题及作者的贡献说明。未能审阅完整证明前，用“作者宣布”“声明称”而不是“已证实”“AI 攻克”。",
+      "tags": [
+        "AI HOT",
+        "科研",
+        "数学",
+        "证据边界"
+      ]
+    },
+    {
+      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686056&idx=1&sn=c1710404c08cf3201da27f4d53f94940",
+      "publishedAt": "2026-09-08T00:17:23.000Z",
+      "category": "tip",
+      "score": 76,
+      "date": "2026-09-08",
+      "topic": "tip",
+      "title": "Astra 操作 Blender 的个人实测：从惊艳演示回到交付成本",
+      "source": "数字生命卡兹克（AI HOT 摘要转述，原文待复核）",
+      "summary": "AI HOT 转述一篇 GPT-6 Astra 操作 Blender 的个人教程，涉及 MCP、Computer Use 与脚本路径，以及长任务超时和额度消耗。原公众号页面本次访问需要验证，未直接核实正文；因此这里不把其中耗时、费用或成功案例作为通用性能结论。",
+      "comment": "点评：这一案例值得讨论的是控制路径：界面操作灵活，但长链路可能积累误差；结构化工具和脚本更便于复现，却需要接口维护与参数校验。模型“能操作软件”与“能交付可修改、符合规范的资产”之间，仍隔着验收、返工和资源预算。",
+      "advice": "建议：从一个简单、无敏感素材的场景试起，事先定义尺寸、材质、层级和导出格式。每阶段保存工程副本，限制执行时长与额度，在临时目录运行并检查脚本；最后由人确认可编辑性、素材权利和交付质量。",
+      "tags": [
+        "AI HOT",
+        "Agent",
+        "Blender",
+        "工作流"
+      ]
     }
   ],
   "sources": [
     {
       "name": "AI HOT",
       "url": "https://aihot.virxact.com",
-      "note": "过去 24 小时 AI 动态与中文摘要来源"
+      "note": "本期 24 小时精选；发布时间以聚合平台记录为准"
     },
     {
-      "name": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "url": "https://openai.com/index/research-acceleration-view-inside-openai",
-      "note": "OpenAI 发布内部研究加速报告：已达成自动化研究实习生目标，推进 2028…"
+      "name": "AI HOT 9 月 8 日日报",
+      "url": "https://aihot.virxact.com/daily/2026-09-08",
+      "note": "固定日切片，仅作交叉核对，不用于补入窗口外旧闻"
     },
     {
-      "name": "IT之家（RSS）",
-      "url": "https://www.ithome.com/0/998/927.htm",
-      "note": "Fortune 报道 OpenAI 多次修改 GPT-6 Astra 基准测试…"
+      "name": "Mistral AI 官方公告（据 AI HOT 摘要，原文未直接核实）",
+      "url": "https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier",
+      "note": "Mistral 宣布融资 30 亿欧元：开放权重与主权 AI 的资本信号"
     },
     {
-      "name": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
-      "url": "https://openai.com/index/an-alien-mind",
-      "note": "OpenAI 长文阐述对齐与监测困境，称 CoT 监控能力正在减弱"
+      "name": "The Decoder（转述 The Information）",
+      "url": "https://the-decoder.com/anthropic-reportedly-signs-517-billion-in-compute-deals-after-dario-amodei-warned-rivals-about-reckless-risk",
+      "note": "Anthropic 被报道签下巨额算力合同：承诺规模不等于已上线产能"
     },
     {
-      "name": "公众号：数字生命卡兹克",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647685960&idx=1&sn=df5885920be226f9514f47a7f2d30621",
-      "note": "GPT-6 Astra爆火后，卡兹克谈执行能力贬值与判断力断层"
+      "name": "Tristan Buckmaster 公开声明（已核对原文）",
+      "url": "https://cims.nyu.edu/~tristanb/statement.pdf",
+      "note": "数学家公开 blowup 结果声明：先看命题边界，再谈 AI 贡献"
+    },
+    {
+      "name": "数字生命卡兹克（AI HOT 摘要转述，原文待复核）",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686056&idx=1&sn=c1710404c08cf3201da27f4d53f94940",
+      "note": "Astra 操作 Blender 的个人实测：从惊艳演示回到交付成本"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-09-08",
+    "title": "AI HOT 日报：算力重注、开放权重与 AI 交付的证据边界",
+    "summary": "四条精选：Mistral 融资、Anthropic 算力合同报道、数学研究声明与 Blender 实测。区分资本承诺、能力演示和可验收交付，并给出具体行动建议。",
+    "link": "/posts/90808/",
+    "tags": [
+      "AI HOT",
+      "Mistral",
+      "开放权重",
+      "产业"
+    ]
+  },
   {
     "date": "2026-09-07",
     "title": "AI HOT 日报：自动化研究 Agent、Astra 评测修订、对齐监测",

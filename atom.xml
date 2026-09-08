@@ -10,7 +10,31 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-09-07T01:09:42.022Z</updated>
+  <updated>2026-09-08T09:42:17.820Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT" scheme="https://aimak.cn/tags/AI-HOT/"/>
+    <category term="AI日报" scheme="https://aimak.cn/tags/AI%E6%97%A5%E6%8A%A5/"/>
+    <category term="Agent" scheme="https://aimak.cn/tags/Agent/"/>
+    <category term="AI治理" scheme="https://aimak.cn/tags/AI%E6%B2%BB%E7%90%86/"/>
+    <category term="Mistral" scheme="https://aimak.cn/tags/Mistral/"/>
+    <category term="Anthropic" scheme="https://aimak.cn/tags/Anthropic/"/>
+    <id>https://aimak.cn/posts/90808/</id>
+    <link href="https://aimak.cn/posts/90808/"/>
+    <published>2026-09-08T09:31:14.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p><strong>统计窗口：北京时间 2026 年 9 月 7 日 17:31:14—9 月 8 日 17:31:14。</strong> 数据来自 <a href="https://aihot.virxact.com/">AI HOT</a>，本期收录窗口内 4 条精选，不代表全行业全部新闻。每条保留来源，点评与建议为本文分析。同步收听：<a href="/podcast/">AI 资讯播客</a>。</p>
+</blockquote>
+<h2 id="今日总览：把“能力”与“兑现”分开看"><a href="#今日总览：把“能力”与“兑现”分开看" class="headerlink" title="今日总览：把“能力”与“兑现”分开看"></a>今日总览：把“能力”与“兑现”分开看</h2><p>今天的四条消息可以分成两条线：一条是资源供给——融资和算力合同把竞争周期拉长；另一条是结果验证——科研声明和软件操作案例，让“谁做了什么、花了多少、结果是否成立”变得更重要。</p>
+<p><strong>我的核心判断是：未来的差异化不只在拿到更强模型，还在能否把资源、证据与验收连接起来。</strong> 钱多不等于算力已到位，工具能执行不等于成果已合格，模型参与研究也不等于独立完成突破。</p>]]>
+    </summary>
+    <title>AI HOT 日报 2026-09-08：算力重注、开放权重与 AI 交付的证据边界</title>
+    <updated>2026-09-08T09:42:17.820Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -362,23 +386,5 @@
     </summary>
     <title>AI HOT 日报 2026-08-13：Qwen 2.4T 开源、MAI 推理模型与多智能体治理</title>
     <updated>2026-08-13T09:15:10.103Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, 产业, 开源, 模型, 观点, Claude, Meta, 推理, 多模态, Qwen, 产品, Claude Code" scheme="https://aimak.cn/tags/AI-HOT-%E4%BA%A7%E4%B8%9A-%E5%BC%80%E6%BA%90-%E6%A8%A1%E5%9E%8B-%E8%A7%82%E7%82%B9-Claude-Meta-%E6%8E%A8%E7%90%86-%E5%A4%9A%E6%A8%A1%E6%80%81-Qwen-%E4%BA%A7%E5%93%81-Claude-Code/"/>
-    <id>https://aimak.cn/posts/81111/</id>
-    <link href="https://aimak.cn/posts/81111/"/>
-    <published>2026-08-11T03:07:47.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-08-11：英伟达5000亿美元AI工厂、Muse Glimmer开源、AI会议录音泄露</title>
-    <updated>2026-08-11T03:07:47.596Z</updated>
   </entry>
 </feed>
