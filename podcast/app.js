@@ -130,123 +130,250 @@ const previousEpisode = {
 };
 
 const episode = {
-  "date": "2026-09-08",
-  "title": "AI HOT 日报：算力重注、开放权重与 AI 交付的证据边界",
-  "intro": "本期覆盖北京时间 9 月 7 日 17:31 至 9 月 8 日 17:31 的 24 小时，共四条精选。Mistral 的融资与 Anthropic 的算力合同报道指向长期资源布局；数学研究声明与 Blender 个人实测则提醒我们，能力演示之外，还要核对贡献、成本和验收证据。以下将来源陈述与个人点评分开，Mistral 公告与公众号内容本次未能直接访问，按 AI HOT 摘要转述。",
-  "conclusion": "今天不妨少问一句“AI 又有多强”，多问三句：资本承诺兑现了吗？研究贡献说清了吗？业务交付验收了吗？对个人，先做一个可复现的小任务；对团队，沉淀成本和质量台账；对管理者，为供应商依赖保留退出与降级方案。真正值得积累的不是热点清单，而是把新能力变成可靠成果的方法。",
+  "date": "2026-09-09",
+  "title": "AI HOT 日报：OpenAI、论文研究、观点",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 论文研究、技巧与观点、模型发布/更新、行业动态、产品发布/更新。核心信号是：OpenAI 宣布以内部 AI 系统给出 Navier-Stokes 千禧年问题解答；数学家巴克马斯特宣布多项方程 blowup 结果并公开与 OpenAI 沟通经过；OpenAI 发布 ChatGPT Images 2.5 图像模型。",
+  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
-      "url": "https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier",
-      "publishedAt": "2026-09-08T05:58:27.839Z",
-      "category": "industry",
-      "score": 72,
-      "date": "2026-09-08",
-      "topic": "industry",
-      "title": "Mistral 宣布融资 30 亿欧元：开放权重与主权 AI 的资本信号",
-      "source": "Mistral AI 官方公告（据 AI HOT 摘要，原文未直接核实）",
-      "summary": "据 AI HOT 对 Mistral 官方公告的摘要，公司宣布完成 30 亿欧元 D 轮融资，投后估值超过 210 亿欧元，继续强调主权 AI 与开放权重路线。本次原站访问超时，金额与轮次未直接复核；融资也不等于某款模型已达到技术前沿。",
-      "comment": "点评：“主权”不只是模型在什么地方训练，还包括谁控制部署、数据流向与供应链。开放权重提供了选择空间，但不自动等于无限制商用；具体版本的许可与运行成本仍需逐项核对。融资规模本身也不能替代产品可用性和客户留存。",
-      "advice": "建议：有本地部署或数据驻留需求的团队，可把 Mistral 放入候选清单，用已脱敏任务比较质量、时延、硬件成本、许可证和支持条款。先做一个可迁移的小试点，不因融资新闻立刻更换生产供应商。",
+      "topic": "paper",
+      "title": "OpenAI 宣布以内部 AI 系统给出 Navier-Stokes 千禧年问题解答",
+      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "url": "https://openai.com/index/navier-stokes-solution",
+      "date": "2026-09-09",
+      "score": 85,
       "tags": [
         "AI HOT",
-        "Mistral",
-        "开放权重",
-        "产业"
-      ]
+        "OpenAI",
+        "论文"
+      ],
+      "summary": "OpenAI 宣布其内部 AI 系统给出 Navier-Stokes 存在与光滑性问题的解答，证明初始光滑的流体可在有限时间内形成奇点，并附证明文稿与 Lean 形式化验证。",
+      "publishedAt": "2026-09-08T10:00:00.000Z",
+      "category": "paper",
+      "comment": "点评：这是 OpenAI 对一项重大数学结果的公开主张，不应被直接写成学界已经定论。形式化验证可以增强对已形式化命题和证明步骤的检查，但不能替代对问题范围、前提设定与证明文本的独立同行审阅。",
+      "advice": "建议：传播或引用该结果时，明确使用“OpenAI 宣布”而非“已解决”；链接原始证明和验证材料，并等待独立数学家对命题范围、证明完整性和形式化覆盖范围的审阅。"
     },
     {
-      "url": "https://the-decoder.com/anthropic-reportedly-signs-517-billion-in-compute-deals-after-dario-amodei-warned-rivals-about-reckless-risk",
-      "publishedAt": "2026-09-07T18:12:41.000Z",
-      "category": "industry",
-      "score": 76,
-      "date": "2026-09-08",
+      "topic": "tip",
+      "title": "数学家巴克马斯特宣布多项方程 blowup 结果并公开与 OpenAI 沟通经过",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "url": "https://cims.nyu.edu/~tristanb/statement.pdf",
+      "date": "2026-09-09",
+      "score": 82,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "观点"
+      ],
+      "summary": "特里斯坦·巴克马斯特（Tristan Buckmaster）与 Levent Alpöge 公开三项有限时间 blowup 结果，涵盖带光滑强迫的不可压缩多孔介质方程。",
+      "publishedAt": "2026-09-08T07:20:02.739Z",
+      "category": "tip",
+      "comment": "点评：不同方程、初始条件与验证状态不能被压缩成同一个“解决了纳维—斯托克斯问题”的标签。作者对研究过程和沟通经过的描述应归为其公开陈述；在完整论文与独立审阅出现前，报道需要保留这一证据边界。",
+      "advice": "建议：写作和决策时分别标注原始命题、作者声明、形式化验证状态与独立复核进度；不要将不同方程的结果、署名争议或社交媒体评论合并为单一结论。"
+    },
+    {
+      "topic": "model",
+      "title": "OpenAI 发布 ChatGPT Images 2.5 图像模型",
+      "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "url": "https://openai.com/index/introducing-chatgpt-images-2-5",
+      "date": "2026-09-09",
+      "score": 79,
+      "tags": [
+        "AI HOT",
+        "OpenAI",
+        "GPT",
+        "模型"
+      ],
+      "summary": "OpenAI 发布 ChatGPT Images 2.5 图像模型，生成延迟比 Images 2.0 降低最多 50%，细节、编辑精度、参考照片保真度和多轮编辑一致性均有提升。",
+      "publishedAt": "2026-09-08T11:30:00.000Z",
+      "category": "ai-models",
+      "comment": "点评：多模态模型开始进入“速度和单价”竞争。对内容生产团队而言，低成本图像生成会把试错次数拉高，真正的差异会转向工作流、版权和品牌一致性。",
+      "advice": "建议：内容团队可建立多模型素材流水线，但要同步维护风格规范、版权记录、提示词模板和人工抽检机制。"
+    },
+    {
       "topic": "industry",
-      "title": "Anthropic 被报道签下巨额算力合同：承诺规模不等于已上线产能",
-      "source": "The Decoder（转述 The Information）",
-      "summary": "The Decoder 援引 The Information 报道称，Anthropic 在十一个月内签署高达 5170 亿美元的算力合同，自 2025 年 10 月以来锁定至少 14.8 吉瓦相关容量，并计划自建数据中心。这是媒体报道口径，不是本刊独立审计或已交付容量证明。",
-      "comment": "点评：这里最容易混淆三件事：合同承诺、现金实际支出和已经可用的算力。吉瓦衡量功率，不能直接换算成模型能力或每秒可服务的请求数。大额长期承诺可能换来供应确定性，也会增加利用率不足时的经营压力；不能只读成“需求已经兑现”。",
-      "advice": "建议：做采购和预算时，关注可用区域、配额、服务等级、故障记录和退出条款。对关键流程保留第二供应商及降级路径，把成本按真实任务完成量核算，而不是按新闻中的资本规模下注。",
+      "title": "Mistral 完成 30 亿欧元 D 轮融资，估值超 210 亿欧元",
+      "source": "Mistral AI：News（网页）",
+      "url": "https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier",
+      "date": "2026-09-09",
+      "score": 72,
+      "tags": [
+        "AI HOT",
+        "产业"
+      ],
+      "summary": "Mistral 宣布完成 30 亿欧元 D 轮融资，投后估值超过 210 亿欧元，公司称这是欧洲科技公司有史以来最大的股权融资，距其成立三年。",
+      "publishedAt": "2026-09-08T05:58:27.839Z",
+      "category": "industry",
+      "comment": "点评：大额融资强化了“主权 AI”与开放权重路线的资源保障，但融资、可用产品和客户价值是三件不同的事。对用户而言，更关键的是模型质量、部署选择、许可证和长期支持能否匹配具体业务。",
+      "advice": "建议：将候选模型放入已脱敏的真实任务集，对比质量、时延、硬件或 API 成本、许可证、数据驻留和迁移难度；先完成可退出的小试点，再决定是否调整生产供应商。"
+    },
+    {
+      "topic": "tip",
+      "title": "GPT-6 Astra推理等级怎么选才最省Token",
+      "source": "公众号：数字生命卡兹克",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686094&idx=1&sn=c06c40993f7ab28f2302619e4b89986b",
+      "date": "2026-09-09",
+      "score": 70,
+      "tags": [
+        "AI HOT",
+        "GPT",
+        "推理",
+        "观点"
+      ],
+      "summary": "卡兹克发文讲解GPT-6 Astra的推理强度等级（Reasoning Effort）含义，指出各档位是同一模型的不同思考预算，Ultra则类似拉起多个智能体协作的专项工作组。",
+      "publishedAt": "2026-09-09T00:09:00.000Z",
+      "category": "tip",
+      "comment": "点评：推理等级本质上是在质量、响应时间与成本之间分配更多或更少的计算预算。它不是越高越好：简单任务的过度推理可能只增加延迟和费用，而复杂任务也不能只凭等级保证正确。",
+      "advice": "建议：按任务难度建立低、中、高推理预算的 A/B 基线，记录一次通过率、时延、Token 与人工返工；将复杂任务的高预算调用设为有上限、可观测的例外，而不是默认配置。"
+    },
+    {
+      "topic": "product",
+      "title": "Meta 智能体产品 Muse 开放体验，官方回应用户好评",
+      "source": "X：Alexandr Wang（Scale AI 创始人/Meta 首席 AI 官） (@alexandr_wang)",
+      "url": "https://x.com/alexandr_wang/status/2097472059077202339",
+      "date": "2026-09-09",
+      "score": 67,
+      "tags": [
+        "AI HOT",
+        "Meta",
+        "产品"
+      ],
+      "summary": "Meta 的 Muse 智能体产品开放更多用户试用，入口为 https://muse.ai/join，Meta 首席 AI 官 Alexandr Wang 称团队为产品倾注心血并感谢用户反响。引用的评价称其设计、速度和浏览器等智能体流程表现出色，具备 Instagram 等 Meta 产品原生集成…",
+      "publishedAt": "2026-09-08T23:48:02.000Z",
+      "category": "ai-products",
+      "comment": "点评：浏览器型智能体的体验竞争，正从能否完成一次演示转向能否在真实网站、登录态和异常页面中稳定完成任务。Meta 的产品生态可能带来分发优势，但也更需要清楚的数据使用边界与操作回放能力。",
+      "advice": "建议：从只读、可回滚的浏览器任务开始试用，记录成功率、人工接管次数、异常页面处理和数据外发；对提交表单、付款、发布等不可逆操作保留人工确认。"
+    },
+    {
+      "topic": "tip",
+      "title": "Anthropic 讲解用 Claude Platform 降低成本并提升性能的三个方法",
+      "source": "X：Claude Devs (@ClaudeDevs)",
+      "url": "https://x.com/ClaudeDevs/status/2097369738968195513",
+      "date": "2026-09-09",
+      "score": 67,
       "tags": [
         "AI HOT",
         "Anthropic",
-        "算力",
-        "产业"
-      ]
+        "Claude",
+        "观点"
+      ],
+      "summary": "Anthropic 团队文章指出，优化 prompt cache 命中率、清除升级到前沿 Claude 模型后的提示词反模式、校准 effort 三个手段可在不牺牲性能的情况下降低成本。",
+      "publishedAt": "2026-09-08T17:01:27.000Z",
+      "category": "tip",
+      "comment": "点评：模型调用的成本优化越来越依赖工程纪律，而不只是换一个更便宜的模型。缓存命中、提示词结构和推理预算会共同影响质量、时延与费用，需要按真实任务而非单轮对话衡量。",
+      "advice": "建议：为高频工作流建立基线：记录缓存命中率、任务完成率、延迟、Token 和重试次数；只在质量不下降的前提下调整提示词与推理预算，并将优化结果纳入版本管理。"
     },
     {
-      "url": "https://cims.nyu.edu/~tristanb/statement.pdf",
-      "publishedAt": "2026-09-08T07:20:02.739Z",
-      "category": "tip",
-      "score": 82,
-      "date": "2026-09-08",
-      "topic": "tip",
-      "title": "数学家公开 blowup 结果声明：先看命题边界，再谈 AI 贡献",
-      "source": "Tristan Buckmaster 公开声明（已核对原文）",
-      "summary": "已核对 Buckmaster 的公开声明：他与 Levent Alpöge 宣布了带光滑强迫的不可压缩多孔介质、Boussinesq 和三维不可压缩 Euler 方程的有限时间 blowup 结果。作者称使用了多个 LLM，Astra 仅用于撰写与论证审查；另一个低耗散 Navier–Stokes 结果尚未完成 Lean 验证。他还陈述了与 OpenAI 在发布和署名安排上的分歧，但明确表示未见其证明、不知道用户数据是否被使用。这些是作者声明，不是本刊对证明或争议的独立裁定。",
-      "comment": "点评：这不是“AI 已解决完整纳维—斯托克斯千禧年难题”的证据。方程类型、强迫条件和验证状态必须精确区分；研究路线的先行者、人类研究者与不同模型的贡献也不应被一个品牌标签覆盖。声明中的沟通过程属于作者一方陈述，不能据此断言存在数据盗用或科研不端。",
-      "advice": "建议：科研团队使用 AI 时，保留提示、输出、反例、计算脚本和人工修订记录；对外传播先核对原始命题及作者的贡献说明。未能审阅完整证明前，用“作者宣布”“声明称”而不是“已证实”“AI 攻克”。",
+      "topic": "product",
+      "title": "Runway 发布 Adobe 插件，可在 Premiere Pro 和 After Effects 内直接生成与编辑",
+      "source": "Runway：News（网页）",
+      "url": "https://runwayml.com/news/company-news/runway-for-adobe",
+      "date": "2026-09-09",
+      "score": 65,
       "tags": [
         "AI HOT",
-        "科研",
-        "数学",
-        "证据边界"
-      ]
+        "产品"
+      ],
+      "summary": "Runway 发布 Runway Plugins，新面板可直接嵌入 Premiere Pro 和 After Effects，在时间线内生成图像和视频、重绘片段并放置结果。Edit Studio 可基于已有片段用 Aleph 2 按原始时长重新渲染，插件免费下载（macOS 和 Windows），…",
+      "publishedAt": "2026-09-08T21:58:07.884Z",
+      "category": "ai-products",
+      "comment": "点评：生成与编辑能力进入 Premiere Pro、After Effects 的时间线，价值在于缩短创意到交付的路径，而不是替代后期流程。团队仍需评估镜头一致性、可编辑性、素材权利和返工成本。",
+      "advice": "建议：用一段真实项目素材测试生成质量、时间线兼容、导出稳定性和人工修改时长；同步核实商业素材、人物肖像、音乐与客户文件的授权和保留规则。"
     },
     {
-      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686056&idx=1&sn=c1710404c08cf3201da27f4d53f94940",
-      "publishedAt": "2026-09-08T00:17:23.000Z",
-      "category": "tip",
-      "score": 76,
-      "date": "2026-09-08",
-      "topic": "tip",
-      "title": "Astra 操作 Blender 的个人实测：从惊艳演示回到交付成本",
-      "source": "数字生命卡兹克（AI HOT 摘要转述，原文待复核）",
-      "summary": "AI HOT 转述一篇 GPT-6 Astra 操作 Blender 的个人教程，涉及 MCP、Computer Use 与脚本路径，以及长任务超时和额度消耗。原公众号页面本次访问需要验证，未直接核实正文；因此这里不把其中耗时、费用或成功案例作为通用性能结论。",
-      "comment": "点评：这一案例值得讨论的是控制路径：界面操作灵活，但长链路可能积累误差；结构化工具和脚本更便于复现，却需要接口维护与参数校验。模型“能操作软件”与“能交付可修改、符合规范的资产”之间，仍隔着验收、返工和资源预算。",
-      "advice": "建议：从一个简单、无敏感素材的场景试起，事先定义尺寸、材质、层级和导出格式。每阶段保存工程副本，限制执行时长与额度，在临时目录运行并检查脚本；最后由人确认可编辑性、素材权利和交付质量。",
+      "topic": "product",
+      "title": "OpenAI 向 Plus、Pro、Business 和 Enterprise 用户全面推送 Astra",
+      "source": "X：OpenAI (@OpenAI)",
+      "url": "https://x.com/OpenAI/status/2097431322117476423",
+      "date": "2026-09-09",
+      "score": 65,
       "tags": [
         "AI HOT",
-        "Agent",
-        "Blender",
-        "工作流"
-      ]
+        "OpenAI",
+        "GPT",
+        "产品"
+      ],
+      "summary": "OpenAI 宣布 Astra 已全面推送给 Codex 和 ChatGPT Work 中的 Plus、Pro、Business 和 Enterprise 用户。用户可以直接使用，并可通过 openai.com/gpt-tv/ 观看 Astra 的实机演示。",
+      "publishedAt": "2026-09-08T21:06:10.000Z",
+      "category": "ai-products",
+      "comment": "点评：面向更多订阅层级开放，说明模型从展示转向更广泛的产品验证；但“可用”不等于每个任务都适合高推理预算。实际价值仍取决于任务完成率、时延、限额和与既有工具链的衔接。",
+      "advice": "建议：用可回放的真实任务比较 Astra 与现有模型的完成率、端到端时延、Token 成本、限额和失败恢复；为关键流程保留降级路径，不因全量开放直接更改生产默认。"
+    },
+    {
+      "topic": "paper",
+      "title": "Dwarkesh Patel 研究：预训练进步主要来自数据改进",
+      "source": "Dwarkesh Patel：Podcast & Blog（RSS）",
+      "url": "https://www.dwarkesh.com/p/pretraining-progress-is-mostly-data",
+      "date": "2026-09-09",
+      "score": 60,
+      "tags": [
+        "AI HOT",
+        "论文"
+      ],
+      "summary": "Dwarkesh Patel 发布实验分析，在最高 1e19 FLOPs 的算力预算下训练 2019 至 2025 年各年度代表性模型配方与数据语料，发现数据改进带来 12.0x 算力效率提升，模型改进为 3.7x，数据贡献约为模型的 3.24 倍。",
+      "publishedAt": "2026-09-08T16:10:16.000Z",
+      "category": "paper",
+      "comment": "点评：这项分析将注意力从“更大模型”拉回数据质量、覆盖面和配方。它是特定实验预算下的研究结论，不能机械外推到所有模型；但对应用团队而言，数据治理通常确实比盲目增加提示词更值得优先投入。",
+      "advice": "建议：优先盘点业务数据的完整性、时效性、权限与错误样本，再评估微调或检索增强；用留出集跟踪数据改动对准确率、幻觉和成本的实际影响。"
     }
   ],
   "sources": [
     {
       "name": "AI HOT",
       "url": "https://aihot.virxact.com",
-      "note": "本期 24 小时精选；发布时间以聚合平台记录为准"
+      "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "AI HOT 9 月 8 日日报",
-      "url": "https://aihot.virxact.com/daily/2026-09-08",
-      "note": "固定日切片，仅作交叉核对，不用于补入窗口外旧闻"
+      "name": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "url": "https://openai.com/index/navier-stokes-solution",
+      "note": "OpenAI 宣布以内部 AI 系统给出 Navier-Stokes 千禧年问…"
     },
     {
-      "name": "Mistral AI 官方公告（据 AI HOT 摘要，原文未直接核实）",
-      "url": "https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier",
-      "note": "Mistral 宣布融资 30 亿欧元：开放权重与主权 AI 的资本信号"
-    },
-    {
-      "name": "The Decoder（转述 The Information）",
-      "url": "https://the-decoder.com/anthropic-reportedly-signs-517-billion-in-compute-deals-after-dario-amodei-warned-rivals-about-reckless-risk",
-      "note": "Anthropic 被报道签下巨额算力合同：承诺规模不等于已上线产能"
-    },
-    {
-      "name": "Tristan Buckmaster 公开声明（已核对原文）",
+      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
       "url": "https://cims.nyu.edu/~tristanb/statement.pdf",
-      "note": "数学家公开 blowup 结果声明：先看命题边界，再谈 AI 贡献"
+      "note": "数学家巴克马斯特宣布多项方程 blowup 结果并公开与 OpenAI 沟通经过"
     },
     {
-      "name": "数字生命卡兹克（AI HOT 摘要转述，原文待复核）",
-      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686056&idx=1&sn=c1710404c08cf3201da27f4d53f94940",
-      "note": "Astra 操作 Blender 的个人实测：从惊艳演示回到交付成本"
+      "name": "OpenAI：官网动态（RSS · 排除企业/客户案例）",
+      "url": "https://openai.com/index/introducing-chatgpt-images-2-5",
+      "note": "OpenAI 发布 ChatGPT Images 2.5 图像模型"
+    },
+    {
+      "name": "Mistral AI：News（网页）",
+      "url": "https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier",
+      "note": "Mistral 完成 30 亿欧元 D 轮融资，估值超 210 亿欧元"
+    },
+    {
+      "name": "公众号：数字生命卡兹克",
+      "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647686094&idx=1&sn=c06c40993f7ab28f2302619e4b89986b",
+      "note": "GPT-6 Astra推理等级怎么选才最省Token"
+    },
+    {
+      "name": "X：Alexandr Wang（Scale AI 创始人/Meta 首席 AI 官） (@alexandr_wang)",
+      "url": "https://x.com/alexandr_wang/status/2097472059077202339",
+      "note": "Meta 智能体产品 Muse 开放体验，官方回应用户好评"
+    },
+    {
+      "name": "X：Claude Devs (@ClaudeDevs)",
+      "url": "https://x.com/ClaudeDevs/status/2097369738968195513",
+      "note": "Anthropic 讲解用 Claude Platform 降低成本并提升性能…"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-09-09",
+    "title": "AI HOT 日报：OpenAI、论文研究、观点",
+    "summary": "重点关注 论文研究、技巧与观点、模型发布/更新、行业动态、产品发布/更新。核心信号是：OpenAI 宣布以内部 AI 系统给出 Navier-Stokes 千禧年问题解答；数学家巴克马斯特宣布多项方程 blowup 结果并公开与 OpenAI 沟通经过；OpenAI 发布 Ch…",
+    "link": "/posts/90909/",
+    "tags": [
+      "AI HOT",
+      "OpenAI",
+      "论文",
+      "观点"
+    ]
+  },
   {
     "date": "2026-09-08",
     "title": "AI HOT 日报：算力重注、开放权重与 AI 交付的证据边界",
@@ -878,26 +1005,6 @@ const episodeHistory = [
     "title": "AI-HOT日报：AI经济、GPT-5.6、AgenticCoding",
     "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/62626/",
-    "tags": [
-      "AI HOT",
-      "AI资讯"
-    ]
-  },
-  {
-    "date": "2026-06-25",
-    "title": "AI-HOT日报：xAI争议、FigmaAI画布、AICoding实践",
-    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
-    "link": "/posts/62525/",
-    "tags": [
-      "AI HOT",
-      "AI资讯"
-    ]
-  },
-  {
-    "date": "2026-06-24",
-    "title": "AI-HOT日报：Qwen-AgentWorld、豆包专业版、Bidi1",
-    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
-    "link": "/posts/62424/",
     "tags": [
       "AI HOT",
       "AI资讯"
