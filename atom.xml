@@ -10,7 +10,25 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-09-09T02:43:45.316Z</updated>
+  <updated>2026-09-11T07:55:03.751Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, 产业, Anthropic, Claude, DeepSeek, OpenAI, GPT, 观点, Agent, 开源, 多模态, 模型" scheme="https://aimak.cn/tags/AI-HOT-%E4%BA%A7%E4%B8%9A-Anthropic-Claude-DeepSeek-OpenAI-GPT-%E8%A7%82%E7%82%B9-Agent-%E5%BC%80%E6%BA%90-%E5%A4%9A%E6%A8%A1%E6%80%81-%E6%A8%A1%E5%9E%8B/"/>
+    <id>https://aimak.cn/posts/91111/</id>
+    <link href="https://aimak.cn/posts/91111/"/>
+    <published>2026-09-11T07:55:03.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-09-11：Shopify 宣布、Anthropic、Astra 数学评测</title>
+    <updated>2026-09-11T07:55:03.751Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -368,23 +386,5 @@
     </summary>
     <title>AI HOT 日报 2026-08-16：Cursor 被 SpaceX 收购、AI 生成书籍冲击创作者收入</title>
     <updated>2026-08-16T04:39:26.685Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, DeepSeek, Agent, 模型, GPT, 推理, 观点, 开源, Claude, 智谱, Google, Gemini" scheme="https://aimak.cn/tags/AI-HOT-DeepSeek-Agent-%E6%A8%A1%E5%9E%8B-GPT-%E6%8E%A8%E7%90%86-%E8%A7%82%E7%82%B9-%E5%BC%80%E6%BA%90-Claude-%E6%99%BA%E8%B0%B1-Google-Gemini/"/>
-    <id>https://aimak.cn/posts/81414/</id>
-    <link href="https://aimak.cn/posts/81414/"/>
-    <published>2026-08-14T06:16:37.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-08-14：DeepSeek、GPT-5.6 构建、开源</title>
-    <updated>2026-08-14T06:16:37.928Z</updated>
   </entry>
 </feed>
