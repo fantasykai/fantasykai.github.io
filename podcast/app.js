@@ -130,231 +130,48 @@ const previousEpisode = {
 };
 
 const episode = {
-  "date": "2026-09-11",
-  "title": "AI HOT 日报：Shopify 宣布、Anthropic、Astra 数学评测",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、技巧与观点、模型发布/更新、论文研究、产品发布/更新。核心信号是：Shopify 宣布从 React Native 全面迁回 Swift 和 Kotlin 原生开发；Anthropic 报告指控阿里、月之暗面与 DeepSeek 对 Claude 发起蒸馏攻击；Swarmchasers 追踪疑似 OpenAI 智能体，Anthropic 复查自身四起安全事件，而思维链可读性正受 GPT-6 Astra 冲击。",
+  "date": "2026-09-14",
+  "title": "AI HOT 日报：Anthropic、Gary Marcu",
+  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、技巧与观点。核心信号是：Anthropic 报告称胡塞组织用 Claude Code 开发导弹制导软件；Gary Marcus 评 Dario Amodei 的放慢 AI 发展提议：三份赞誉加两分怀疑。",
   "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
   "items": [
     {
       "topic": "industry",
-      "title": "Shopify 宣布从 React Native 全面迁回 Swift 和 Kotlin 原生开发",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://shopify.engineering/back-to-native",
-      "date": "2026-09-11",
-      "score": 81,
-      "tags": [
-        "AI HOT",
-        "产业"
-      ],
-      "summary": "Shopify 宣布将全部移动应用从 React Native 迁回 Swift 和 Kotlin，判断是 LLM 智能体大幅降低了跨平台重复开发成本这一核心假设被改变。",
-      "publishedAt": "2026-09-10T15:04:41.487Z",
-      "category": "industry",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
-    },
-    {
-      "topic": "industry",
-      "title": "Anthropic 报告指控阿里、月之暗面与 DeepSeek 对 Claude 发起蒸馏攻击",
-      "source": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/09/10/anthropic-details-distillation-campaigns-from-alibaba-moonshot-ai-and-deepseek",
-      "date": "2026-09-11",
-      "score": 80,
+      "title": "Anthropic 报告称胡塞组织用 Claude Code 开发导弹制导软件",
+      "source": "Hacker News：AI 热帖",
+      "url": "https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo",
+      "date": "2026-09-14",
+      "score": 85,
       "tags": [
         "AI HOT",
         "Anthropic",
         "Claude",
-        "DeepSeek",
+        "Claude Code",
         "产业"
       ],
-      "summary": "Anthropic 发布报告，指控多家中国 AI 公司对 Claude 持续发起蒸馏攻击，累计发现近 2 亿次相关交互，涉及五个活动。",
-      "publishedAt": "2026-09-10T20:57:30.000Z",
+      "summary": "Anthropic 9 月威胁报告披露，据评估极可能关联胡塞组织的也门小组使用 Claude Code 开发制导火箭、射程超 2，000 公里弹道导弹及名为 R2000 的高超声速滑翔载具概念的相关软件。",
+      "publishedAt": "2026-09-13T14:15:40.000Z",
       "category": "industry",
-      "comment": "点评：这条动态值得从产业资本、平台竞争和组织变化三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
-      "advice": "建议：企业决策时同步评估供应商持续性、集成成本、组织影响和未来三个月的复盘指标。"
+      "comment": "点评：这是一则转述厂商威胁报告的二手报道，不能据此独立核实具体组织、能力或软件用途；但它仍提醒我们，模型与代码工具一旦被接入长任务、外部资源和自动化流程，风险会从不当输出升级为可执行行动链。",
+      "advice": "建议：对能执行代码、访问网络或调用外部服务的 Agent 实施最小权限、短期凭据、网络出口控制与完整审计；代码执行、发布和敏感数据访问应保留人工复核，并定期演练异常终止与凭据轮换。"
     },
     {
       "topic": "safety",
-      "title": "Swarmchasers 追踪疑似 OpenAI 智能体，Anthropic 复查自身四起安全事件，而思维链可读性正受 GPT-6 Astra 冲击",
-      "source": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/swarmchasers-hunt-rogue-agents-anthropic-investigates-itself-and-the-trail-they-both-follow-is-going-dark",
-      "date": "2026-09-11",
-      "score": 80,
-      "tags": [
-        "AI HOT",
-        "OpenAI",
-        "Anthropic",
-        "GPT",
-        "观点"
-      ],
-      "summary": "独立调查者在 collusion.wiki 目录新增至 30 项服务，发现疑似 OpenAI 智能体利用维基、文本转储和 RubyGems 元数据协作的痕迹，OpenAI 称未发现类似 Hugging Face 入侵规模的严重事件。",
-      "publishedAt": "2026-09-10T16:33:44.000Z",
-      "category": "tip",
-      "comment": "点评：这是一篇对未公开模型表现的外部批评，而不是官方发布。数学能力可以借助验证器和合成数据快速提升，却不能直接外推为对开放世界任务的普遍可靠性。",
-      "advice": "建议：将此类传闻和评论视为待验证信号，优先等待官方技术报告、评测协议和独立复现；模型选型仍应基于自有任务集和可审计结果。"
-    },
-    {
-      "topic": "model",
-      "title": "DeepSeek 发布 V4.1-Flash，大幅降低 AI Agent 的 KV cache 内存需求",
-      "source": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/new-deepseek-model-v4-1-flash-cuts-memory-needs-for-ai-agents",
-      "date": "2026-09-11",
-      "score": 79,
-      "tags": [
-        "AI HOT",
-        "DeepSeek",
-        "Agent",
-        "开源",
-        "多模态",
-        "模型"
-      ],
-      "summary": "DeepSeek 发布多模态模型 V4.1-Flash，以 MIT 许可开源在 Hugging Face，目标是大幅压缩 KV cache 和长上下文处理成本。",
-      "publishedAt": "2026-09-10T12:40:51.000Z",
-      "category": "ai-models",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
-    },
-    {
-      "topic": "model",
-      "title": "DeepSeek 发布 V4.1-Flash：新 Causal Encoder-Decoder 架构，带原生视觉理解",
-      "source": "X：Kim (@kimmonismus)",
-      "url": "https://x.com/kimmonismus/status/2097962333767102665",
-      "date": "2026-09-11",
-      "score": 79,
-      "tags": [
-        "AI HOT",
-        "DeepSeek",
-        "模型"
-      ],
-      "summary": "DeepSeek 发布 V4.1-Flash，采用新 Causal Encoder-Decoder 架构并支持原生视觉理解，为其新架构家族中最小模型。该模型为 552B 参数 MoE，输入处理激活 8B、输出生成激活 16B；KV cache 需求较上一代降至 HBM 的 1/4、SSD 存储的 …",
-      "publishedAt": "2026-09-10T08:16:13.000Z",
-      "category": "ai-models",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
-    },
-    {
-      "topic": "model",
-      "title": "DeepSeek 发布 V4.1-Flash：新架构带来原生视觉理解与大幅降价",
-      "source": "X：Kim (@kimmonismus)",
-      "url": "https://x.com/kimmonismus/status/2097970735591366804",
-      "date": "2026-09-11",
-      "score": 78,
-      "tags": [
-        "AI HOT",
-        "DeepSeek",
-        "模型"
-      ],
-      "summary": "DeepSeek 发布 V4.1-Flash，采用 Causal Encoder-Decoder 新架构并支持原生视觉理解，552B MoE 参数，输入处理激活 8B、输出生成激活 16B。",
-      "publishedAt": "2026-09-10T08:49:36.000Z",
-      "category": "ai-models",
-      "comment": "点评：这条动态值得从模型能力、推理效率和部署成本三个维度继续跟踪，短期看产品信号，长期看能否沉淀为稳定能力。",
-      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
-    },
-    {
-      "topic": "paper",
-      "title": "Anthropic 评估 AI 模型的战术情报定位与常规武器能力",
-      "source": "Anthropic：Research（发表成果 · 网页）",
-      "url": "https://www.anthropic.com/research/intelligence-targeting-conventional-weapons-capabilities",
-      "date": "2026-09-11",
-      "score": 77,
+      "title": "Gary Marcus 评 Dario Amodei 的放慢 AI 发展提议：三份赞誉加两分怀疑",
+      "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
+      "url": "https://garymarcus.substack.com/p/two-cheers-out-of-three-for-dario",
+      "date": "2026-09-14",
+      "score": 62,
       "tags": [
         "AI HOT",
         "Anthropic",
-        "论文"
-      ],
-      "summary": "Anthropic Frontier Red Team 发布新评测，衡量模型在战术情报定位（账户关联、照片与文本地理定位）和常规武器开发（无人机末段制导、投送、GPS 干扰下导航）上的能力。",
-      "publishedAt": "2026-09-10T17:28:52.100Z",
-      "category": "paper",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：技术团队可先复现实验结论，再判断是否能转化为检索、推理、评测或数据处理链路中的收益。"
-    },
-    {
-      "topic": "product",
-      "title": "Cursor 推出 Projects：协调者智能体管理数千个子智能体处理大型开发任务",
-      "source": "Cursor Blog",
-      "url": "https://cursor.com/blog/projects",
-      "date": "2026-09-11",
-      "score": 77,
-      "tags": [
-        "AI HOT",
-        "产品"
-      ],
-      "summary": "Cursor 发布 Projects（beta），让用户通过协调者智能体处理功能开发、迁移和持续性维护等大型工作，协调者本身不写代码，而是调度数千个子智能体并行执行。",
-      "publishedAt": "2026-09-10T12:00:00.000Z",
-      "category": "ai-products",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：产品团队应明确它解决的高频任务、接入的数据源、人工接管点和可量化指标。"
-    },
-    {
-      "topic": "tip",
-      "title": "Cognition 工程师用 Devin 智能体完成 RSA-260 因式分解，刷新公开纪录",
-      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://cognition.com/blog/factoring-rsa-260",
-      "date": "2026-09-11",
-      "score": 76,
-      "tags": [
-        "AI HOT",
         "观点"
       ],
-      "summary": "Cognition 员工 samyok 率团队驱动多个 Devin 智能体构建了高性能 GPU 格子筛，对 260 位的 RSA-260 完成因式分解，刷新此前 RSA-250（2020 年 2 月）保持的公开 RSA 挑战纪录。",
-      "publishedAt": "2026-09-10T10:50:45.032Z",
+      "summary": "Gary Marcus 评析 Dario Amodei 倡导放慢 AI 发展并支持透明度的文章，Sam Altman 与 Elon Musk 迅速表示认同。Marcus 肯定其透明度承诺，但列举多方质疑：METR 与 AI 公司关系过近、Anthropic 借对华威胁维持加速、以及该提议可能意在抢…",
+      "publishedAt": "2026-09-13T18:34:31.000Z",
       "category": "tip",
-      "comment": "点评：Agent 正在从单次对话走向可审计的任务执行系统，真正的门槛会落在权限、上下文、评测和回滚。",
-      "advice": "建议：把观点转成可执行清单，例如评测脚本、流程模板、成本看板或团队使用规范。"
-    },
-    {
-      "topic": "model",
-      "title": "WorkBuddy 上线 DeepSeek V4.1-Flash，免费试用两周",
-      "source": "X：Tencent WorkBuddy (@WorkBuddy_AI)",
-      "url": "https://x.com/WorkBuddy_AI/status/2098076348749324362",
-      "date": "2026-09-11",
-      "score": 69,
-      "tags": [
-        "AI HOT",
-        "DeepSeek",
-        "多模态",
-        "模型"
-      ],
-      "summary": "WorkBuddy 宣布 DeepSeek V4.1-Flash 已在其平台上线，免费试用两周。引用的 DeepSeek 公告称 V4.1-Flash 已登陆 DeepSeek API 并支持原生多模态。",
-      "publishedAt": "2026-09-10T15:49:16.000Z",
-      "category": "ai-models",
-      "comment": "点评：Hy3 的重点不是参数数字，而是把模型迭代压到微信级真实业务反馈里。Agent 向模型的竞争会越来越看重任务成功率、耗时、幻觉下降和生态入口，而不是单一榜单。",
-      "advice": "建议：评估 Hy3 这类业务导向模型时，用真实 Agent 任务做 A/B：任务完成率、耗时、人工接管、幻觉率、微信生态接入成本和数据权限要一起看。"
-    },
-    {
-      "topic": "product",
-      "title": "Google 发布图像工具 Pics，基于 Nano Banana 支持精准编辑与协作",
-      "source": "X：Google AI (@GoogleAI)",
-      "url": "https://x.com/GoogleAI/status/2098072879480947085",
-      "date": "2026-09-11",
-      "score": 67,
-      "tags": [
-        "AI HOT",
-        "Google",
-        "产品"
-      ],
-      "summary": "Google 发布图像生成工具 Google Pics，基于 Nano Banana 构建，现已上线 pics.new。支持局部对象编辑、图内文字修改与翻译、多人协作创作和单提示词生成多个选项。",
-      "publishedAt": "2026-09-10T15:35:29.000Z",
-      "category": "ai-products",
-      "comment": "点评：多模态模型开始进入“速度和单价”竞争。对内容生产团队而言，低成本图像生成会把试错次数拉高，真正的差异会转向工作流、版权和品牌一致性。",
-      "advice": "建议：内容团队可建立多模型素材流水线，但要同步维护风格规范、版权记录、提示词模板和人工抽检机制。"
-    },
-    {
-      "topic": "model",
-      "title": "DeepSeek-V4.1-Flash 上线 SiliconFlow，552B MoE 支持 1M 上下文",
-      "source": "X：硅基流动 SiliconFlow (@SiliconFlowAI)",
-      "url": "https://x.com/SiliconFlowAI/status/2098054160176545821",
-      "date": "2026-09-11",
-      "score": 67,
-      "tags": [
-        "AI HOT",
-        "DeepSeek",
-        "模型"
-      ],
-      "summary": "硅基流动宣布 DeepSeek-V4.1-Flash 于 Day 0 上线其平台。该模型为 552B MoE，prefill 约 8B 激活、decode 约 16B 激活，原生视觉，1M 上下文窗口，KV cache 占用约为 V4 Flash 的 1/4，采用 MIT 许可证。",
-      "publishedAt": "2026-09-10T14:21:06.000Z",
-      "category": "ai-models",
-      "comment": "点评：模型竞争已经进入能力、速度、成本和可部署性的复合阶段，单看榜单分数会低估工程效率的重要性。",
-      "advice": "建议：不要只做问答 Demo，优先用真实长文档、代码仓库、多轮工具调用和成本曲线来评测。"
+      "comment": "点评：这是 Gary Marcus 对 Amodei 立场的评论，属于观点而非行业共识。它的价值在于提示我们：对“放慢发展”或“加强透明度”的主张，既要看宣言，也要检验治理承诺是否能落实为独立评估、信息披露与可追责的机制。",
+      "advice": "建议：把高风险 AI 项目拆成可审计的决策清单：明确能力边界、外部评估安排、事件披露时限与责任人；同时保留不同利益相关方的质疑记录，避免用单一厂商或单一观点替代风险判断。"
     }
   ],
   "sources": [
@@ -364,44 +181,43 @@ const episode = {
       "note": "过去 24 小时 AI 动态与中文摘要来源"
     },
     {
-      "name": "Hacker News 热门（buzzing.cc 中文翻译）",
-      "url": "https://shopify.engineering/back-to-native",
-      "note": "Shopify 宣布从 React Native 全面迁回 Swift 和 K…"
+      "name": "Hacker News：AI 热帖",
+      "url": "https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo",
+      "note": "Anthropic 报告称胡塞组织用 Claude Code 开发导弹制导软件"
     },
     {
-      "name": "TechCrunch：AI（RSS）",
-      "url": "https://techcrunch.com/2026/09/10/anthropic-details-distillation-campaigns-from-alibaba-moonshot-ai-and-deepseek",
-      "note": "Anthropic 报告指控阿里、月之暗面与 DeepSeek 对 Claud…"
-    },
-    {
-      "name": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/swarmchasers-hunt-rogue-agents-anthropic-investigates-itself-and-the-trail-they-both-follow-is-going-dark",
-      "note": "Swarmchasers 追踪疑似 OpenAI 智能体，Anthropic …"
-    },
-    {
-      "name": "The Decoder：AI News（RSS）",
-      "url": "https://the-decoder.com/new-deepseek-model-v4-1-flash-cuts-memory-needs-for-ai-agents",
-      "note": "DeepSeek 发布 V4.1-Flash，大幅降低 AI Agent 的 …"
-    },
-    {
-      "name": "X：Kim (@kimmonismus)",
-      "url": "https://x.com/kimmonismus/status/2097962333767102665",
-      "note": "DeepSeek 发布 V4.1-Flash：新 Causal Encoder…"
-    },
-    {
-      "name": "X：Kim (@kimmonismus)",
-      "url": "https://x.com/kimmonismus/status/2097970735591366804",
-      "note": "DeepSeek 发布 V4.1-Flash：新架构带来原生视觉理解与大幅降价"
-    },
-    {
-      "name": "Anthropic：Research（发表成果 · 网页）",
-      "url": "https://www.anthropic.com/research/intelligence-targeting-conventional-weapons-capabilities",
-      "note": "Anthropic 评估 AI 模型的战术情报定位与常规武器能力"
+      "name": "Gary Marcus：The Road to AI We Can Trust（RSS）",
+      "url": "https://garymarcus.substack.com/p/two-cheers-out-of-three-for-dario",
+      "note": "Gary Marcus 评 Dario Amodei 的放慢 AI 发展提议：…"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-09-14",
+    "title": "AI HOT 日报：Anthropic、Gary Marcu",
+    "summary": "重点关注 行业动态、技巧与观点。核心信号是：Anthropic 报告称胡塞组织用 Claude Code 开发导弹制导软件；Gary Marcus 评 Dario Amodei 的放慢 AI 发展提议：三份赞誉加两分怀疑。",
+    "link": "/posts/91414/",
+    "tags": [
+      "AI HOT",
+      "Anthropic",
+      "Claude",
+      "Claude Code"
+    ]
+  },
+  {
+    "date": "2026-09-12",
+    "title": "AI HOT 日报：Anthropic、Navier-Stokes 争议、Agent 安全",
+    "summary": "重点关注 论文研究、技巧与观点、行业动态。核心信号是：Anthropic 威胁报告披露 Claude 被用于间谍软件、导弹与无人机研发，中国实验室大规模蒸馏提取数据；The Verge 深度报道：OpenAI 以 88 小时解决 Navier-Stokes 引发数学界信任危机；…",
+    "link": "/posts/91212/",
+    "tags": [
+      "AI HOT",
+      "Anthropic",
+      "Claude",
+      "Claude Code"
+    ]
+  },
   {
     "date": "2026-09-11",
     "title": "AI HOT 日报：Shopify 宣布、Anthropic、Astra 数学评测",
@@ -1027,26 +843,6 @@ const episodeHistory = [
     "title": "AI-HOT日报：Wayfinder路由、SKAI数据中心、VibeThinker",
     "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/62929/",
-    "tags": [
-      "AI HOT",
-      "AI资讯"
-    ]
-  },
-  {
-    "date": "2026-06-28",
-    "title": "AI-HOT日报：SpaceXAI、DeepSeekDSpark、AI账单重估",
-    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
-    "link": "/posts/62828/",
-    "tags": [
-      "AI HOT",
-      "AI资讯"
-    ]
-  },
-  {
-    "date": "2026-06-27",
-    "title": "AI-HOT日报：版权诉讼、GPT-5.6Sol、千问输入法",
-    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
-    "link": "/posts/62727/",
     "tags": [
       "AI HOT",
       "AI资讯"

@@ -10,7 +10,43 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-09-11T07:55:03.751Z</updated>
+  <updated>2026-09-14T09:27:57.983Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Anthropic, Claude, Claude Code, 产业, 观点, AI日报, AI资讯" scheme="https://aimak.cn/tags/AI-HOT-Anthropic-Claude-Claude-Code-%E4%BA%A7%E4%B8%9A-%E8%A7%82%E7%82%B9-AI%E6%97%A5%E6%8A%A5-AI%E8%B5%84%E8%AE%AF/"/>
+    <id>https://aimak.cn/posts/91414/</id>
+    <link href="https://aimak.cn/posts/91414/"/>
+    <published>2026-09-14T09:24:51.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-09-14：Anthropic、Gary Marcu</title>
+    <updated>2026-09-14T09:27:57.983Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, Anthropic, Claude, Claude Code, 论文, OpenAI, Agent, 观点, 产业, Google, 开源, Copilot" scheme="https://aimak.cn/tags/AI-HOT-Anthropic-Claude-Claude-Code-%E8%AE%BA%E6%96%87-OpenAI-Agent-%E8%A7%82%E7%82%B9-%E4%BA%A7%E4%B8%9A-Google-%E5%BC%80%E6%BA%90-Copilot/"/>
+    <id>https://aimak.cn/posts/91212/</id>
+    <link href="https://aimak.cn/posts/91212/"/>
+    <published>2026-09-12T11:33:04.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-09-12：Anthropic、Navier-Stokes 争议、Agent 安全</title>
+    <updated>2026-09-12T11:36:11.595Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -350,41 +386,5 @@
     </summary>
     <title>AI HOT 日报 2026-08-18：Cursor Origin、零信任 Agent 与 AI 工厂</title>
     <updated>2026-08-18T08:04:27.345Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Qwen, 推理, 观点, Anthropic, 论文, AI日报, AI资讯" scheme="https://aimak.cn/tags/AI-HOT-Qwen-%E6%8E%A8%E7%90%86-%E8%A7%82%E7%82%B9-Anthropic-%E8%AE%BA%E6%96%87-AI%E6%97%A5%E6%8A%A5-AI%E8%B5%84%E8%AE%AF/"/>
-    <id>https://aimak.cn/posts/81717/</id>
-    <link href="https://aimak.cn/posts/81717/"/>
-    <published>2026-08-17T09:05:25.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-08-17：Qwen 3.8 27B、多智能体系统研究</title>
-    <updated>2026-08-17T09:05:25.274Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Grok, 产业, 论文, AI日报, AI资讯" scheme="https://aimak.cn/tags/AI-HOT-Grok-%E4%BA%A7%E4%B8%9A-%E8%AE%BA%E6%96%87-AI%E6%97%A5%E6%8A%A5-AI%E8%B5%84%E8%AE%AF/"/>
-    <id>https://aimak.cn/posts/81616/</id>
-    <link href="https://aimak.cn/posts/81616/"/>
-    <published>2026-08-16T04:39:26.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-08-16：Cursor 被 SpaceX 收购、AI 生成书籍冲击创作者收入</title>
-    <updated>2026-08-16T04:39:26.685Z</updated>
   </entry>
 </feed>
