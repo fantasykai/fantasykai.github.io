@@ -10,7 +10,41 @@
   <rights>All rights reserved 2026, fantasykai</rights>
   <subtitle>君子终日乾乾，夕惕若厉，无咎</subtitle>
   <title>枫哲's文栖小筑</title>
-  <updated>2026-09-14T09:27:57.983Z</updated>
+  <updated>2026-09-30T02:16:57.882Z</updated>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, AI日报, GPT-6.1 Sol, dots, Agent, 安全评测, 回归测试, Shopify" scheme="https://aimak.cn/tags/AI-HOT-AI%E6%97%A5%E6%8A%A5-GPT-6-1-Sol-dots-Agent-%E5%AE%89%E5%85%A8%E8%AF%84%E6%B5%8B-%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95-Shopify/"/>
+    <id>https://aimak.cn/posts/93030/</id>
+    <link href="https://aimak.cn/posts/93030/"/>
+    <published>2026-09-30T02:15:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>本文整理 AI HOT 在北京时间 <strong>9 月 29 日 10:15 至 9 月 30 日 10:15</strong> 的过去 24 小时精选动态。32 条入选资讯中，选取 6 个不重复的主题；摘要是资讯整理，点评和建议是我的判断，不等同于信源结论。同步收听：<a href="/podcast/">AI]]>
+    </summary>
+    <title>AI HOT 日报 2026-09-30：模型成本、常驻 Agent 与安全评测</title>
+    <updated>2026-09-30T02:16:57.882Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>fantasykai</name>
+    </author>
+    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
+    <category term="AI HOT, OpenAI, Microsoft, 产业, Anthropic, AI日报, AI资讯" scheme="https://aimak.cn/tags/AI-HOT-OpenAI-Microsoft-%E4%BA%A7%E4%B8%9A-Anthropic-AI%E6%97%A5%E6%8A%A5-AI%E8%B5%84%E8%AE%AF/"/>
+    <id>https://aimak.cn/posts/92828/</id>
+    <link href="https://aimak.cn/posts/92828/"/>
+    <published>2026-09-28T03:18:39.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
+</blockquote>
+<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
+    </summary>
+    <title>AI HOT 日报 2026-09-28：OpenAI、行业动态</title>
+    <updated>2026-09-28T03:18:39.973Z</updated>
+  </entry>
   <entry>
     <author>
       <name>fantasykai</name>
@@ -352,39 +386,5 @@
     </summary>
     <title>AI HOT 日报 2026-08-21：Qwen UI Agent、Agentic Search、AlloyDB 向量搜索</title>
     <updated>2026-08-21T07:31:47.875Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Claude, GPT, Kimi, 开源, 产品, Anthropic, 论文, Google, Agent, 观点, DeepSeek" scheme="https://aimak.cn/tags/AI-HOT-Claude-GPT-Kimi-%E5%BC%80%E6%BA%90-%E4%BA%A7%E5%93%81-Anthropic-%E8%AE%BA%E6%96%87-Google-Agent-%E8%A7%82%E7%82%B9-DeepSeek/"/>
-    <id>https://aimak.cn/posts/81919/</id>
-    <link href="https://aimak.cn/posts/81919/"/>
-    <published>2026-08-19T02:41:19.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 AI HOT 过去 24 小时精选动态，本文在原始资讯基础上补充趋势点评、落地建议，并同步更新到本站「<a href="/podcast/">AI 资讯播客</a>」。</p>
-</blockquote>
-<h2 id="今日总览"><a href="#今日总览" class="headerlink"]]>
-    </summary>
-    <title>AI HOT 日报 2026-08-19：GLM-5.3上线、开源、Claude</title>
-    <updated>2026-08-19T02:41:19.562Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>fantasykai</name>
-    </author>
-    <category term="AI" scheme="https://aimak.cn/categories/AI/"/>
-    <category term="AI HOT, Cursor, Origin, Agent安全, NVIDIA, OpenAI, AI工厂, 版权, 机器人, AI日报, AI资讯" scheme="https://aimak.cn/tags/AI-HOT-Cursor-Origin-Agent%E5%AE%89%E5%85%A8-NVIDIA-OpenAI-AI%E5%B7%A5%E5%8E%82-%E7%89%88%E6%9D%83-%E6%9C%BA%E5%99%A8%E4%BA%BA-AI%E6%97%A5%E6%8A%A5-AI%E8%B5%84%E8%AE%AF/"/>
-    <id>https://aimak.cn/posts/81818/</id>
-    <link href="https://aimak.cn/posts/81818/"/>
-    <published>2026-08-18T08:01:15.000Z</published>
-    <summary>
-      <![CDATA[<blockquote>
-<p>数据来自 <a href="https://aihot.virxact.com/">AI HOT</a> 截至 2026-08-18 16:01（北京时间）过去 24 小时的 9 条精选动态。本文将同一项目的 NVIDIA 与黄仁勋公告合并为一条，形成 8 个独立信号，并补充趋势点评、落地建议；播客版已同步更新至「<a href="/podcast/">AI]]>
-    </summary>
-    <title>AI HOT 日报 2026-08-18：Cursor Origin、零信任 Agent 与 AI 工厂</title>
-    <updated>2026-08-18T08:04:27.345Z</updated>
   </entry>
 </feed>

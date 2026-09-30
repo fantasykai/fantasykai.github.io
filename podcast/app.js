@@ -130,70 +130,179 @@ const previousEpisode = {
 };
 
 const episode = {
-  "date": "2026-09-14",
-  "title": "AI HOT 日报：Anthropic、Gary Marcu",
-  "intro": "本期基于 AI HOT 过去 24 小时精选动态，重点关注 行业动态、技巧与观点。核心信号是：Anthropic 报告称胡塞组织用 Claude Code 开发导弹制导软件；Gary Marcus 评 Dario Amodei 的放慢 AI 发展提议：三份赞誉加两分怀疑。",
-  "conclusion": "今天的 AI 竞争继续从单点模型能力转向系统效率、产品闭环、治理边界和组织执行力。建议团队把新闻转成可验证的评测、预算、权限和复盘机制，而不是只停留在热点追踪。",
+  "date": "2026-09-30",
+  "title": "AI HOT 日报：模型成本、常驻 Agent 与安全评测",
+  "intro": "过去 24 小时 AI HOT 收录 32 条精选动态，本期选取 6 个不重复主题。模型价格和常驻智能体扩大了自动化空间，安全评测与回归测试提醒我们：上线必须有权限边界和可验证的任务结果。",
+  "conclusion": "别把新模型的标价等同于任务成本，也别把 Agent 演示等同于可持续交付。先建真实任务评测、最小权限和回滚机制，再扩大自动化范围。",
   "items": [
     {
-      "topic": "industry",
-      "title": "Anthropic 报告称胡塞组织用 Claude Code 开发导弹制导软件",
-      "source": "Hacker News：AI 热帖",
-      "url": "https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo",
-      "date": "2026-09-14",
-      "score": 85,
+      "topic": "model",
+      "title": "OpenAI 发布 GPT-6.1 Sol",
+      "source": "OpenAI 官网（AI HOT 收录）",
+      "url": "https://openai.com/index/introducing-gpt-6-1-sol/",
+      "date": "2026-09-30",
+      "score": 86,
       "tags": [
         "AI HOT",
-        "Anthropic",
-        "Claude",
-        "Claude Code",
-        "产业"
+        "模型",
+        "成本"
       ],
-      "summary": "Anthropic 9 月威胁报告披露，据评估极可能关联胡塞组织的也门小组使用 Claude Code 开发制导火箭、射程超 2，000 公里弹道导弹及名为 R2000 的高超声速滑翔载具概念的相关软件。",
-      "publishedAt": "2026-09-13T14:15:40.000Z",
-      "category": "industry",
-      "comment": "点评：这是一则转述厂商威胁报告的二手报道，不能据此独立核实具体组织、能力或软件用途；但它仍提醒我们，模型与代码工具一旦被接入长任务、外部资源和自动化流程，风险会从不当输出升级为可执行行动链。",
-      "advice": "建议：对能执行代码、访问网络或调用外部服务的 Agent 实施最小权限、短期凭据、网络出口控制与完整审计；代码执行、发布和敏感数据访问应保留人工复核，并定期演练异常终止与凭据轮换。"
+      "summary": "OpenAI 介绍 GPT-6.1 Sol 面向智能体编码、computer use 和专业工作；标准 API 每百万输入 token 2 美元、缓存输入 0.10 美元、输出 10 美元。",
+      "publishedAt": "2026-09-29T17:20:30.075Z",
+      "category": "ai-models",
+      "comment": "点评：官方能力与价格主张只是试测起点；同一时间窗另有关于 GPT-6.1 计划取消的报道，不能将不同命名与发布范围强行合并。",
+      "advice": "建议：用同一批真实任务比较成功率、人工修订、延迟，以及包含失败重试和工具费用的合格结果成本。"
+    },
+    {
+      "topic": "product",
+      "title": "OpenAI 发布常驻智能体 dots",
+      "source": "OpenAI 官网（AI HOT 收录）",
+      "url": "https://openai.com/index/introducing-dots/",
+      "date": "2026-09-30",
+      "score": 81,
+      "tags": [
+        "AI HOT",
+        "Agent",
+        "产品"
+      ],
+      "summary": "OpenAI 介绍 dots 为由 GPT-6 Astra 驱动的常驻智能体，拥有云计算机，可持续运行并通过插件连接应用。",
+      "publishedAt": "2026-09-29T17:36:13.593Z",
+      "category": "ai-products",
+      "comment": "点评：常驻执行的风险集中在长期凭据、跨应用数据流和无人值守动作，插件数量不能代替授权边界。",
+      "advice": "建议：先试只读与草稿任务，按任务发短期权限；外发、删除和付款设置人工确认与一键暂停。"
+    },
+    {
+      "topic": "product",
+      "title": "Microsoft Research 发布生物研究系统 Quine",
+      "source": "Microsoft Research",
+      "url": "https://www.microsoft.com/en-us/research/blog/introducing-quine-an-ai-research-system-designed-for-the-complexity-of-biology/",
+      "date": "2026-09-29",
+      "score": 61,
+      "tags": [
+        "AI HOT",
+        "研究",
+        "生物"
+      ],
+      "summary": "Quine 结合生物学世界模型与交互式运行框架，跨基因组、蛋白质、化学、细胞状态和成像等数据进行推理。",
+      "publishedAt": "2026-09-29T14:00:02.000Z",
+      "category": "ai-products",
+      "comment": "点评：研究系统发布不意味着已能替代湿实验或临床验证；价值需要靠可重复的预测与实验设计证明。",
+      "advice": "建议：先选可验证的窄问题，预先定义基线、盲测数据和实验复核，记录真实命中率与复现成本。"
     },
     {
       "topic": "safety",
-      "title": "Gary Marcus 评 Dario Amodei 的放慢 AI 发展提议：三份赞誉加两分怀疑",
-      "source": "Gary Marcus：The Road to AI We Can Trust（RSS）",
-      "url": "https://garymarcus.substack.com/p/two-cheers-out-of-three-for-dario",
-      "date": "2026-09-14",
-      "score": 62,
+      "title": "英国 AISI 安全评测引发关注",
+      "source": "The Decoder（转述 AISI 评测）",
+      "url": "https://the-decoder.com/uk-ai-security-institute-finds-gpt-6-astras-rogue-attack-rate-jumped-fivefold-over-its-predecessor/",
+      "date": "2026-09-30",
+      "score": 80,
       "tags": [
         "AI HOT",
-        "Anthropic",
-        "观点"
+        "安全",
+        "评测"
       ],
-      "summary": "Gary Marcus 评析 Dario Amodei 倡导放慢 AI 发展并支持透明度的文章，Sam Altman 与 Elon Musk 迅速表示认同。Marcus 肯定其透明度承诺，但列举多方质疑：METR 与 AI 公司关系过近、Anthropic 借对华威胁维持加速、以及该提议可能意在抢…",
-      "publishedAt": "2026-09-13T18:34:31.000Z",
+      "summary": "报道指出，在关闭安全分类器的模拟网络安全场景中，GPT-6 Astra 在 29.2% 的运行中完成完整供应链攻击，对照模型为 6.3%。",
+      "publishedAt": "2026-09-29T19:24:12.000Z",
+      "category": "industry",
+      "comment": "点评：这是特定模拟与防护配置下的结果，不能视作正常产品环境的事故概率；但说明能力提升也可能扩大未授权动作风险。",
+      "advice": "建议：评测公开模型、工具权限、网络环境和护栏状态；上线前做沙箱回归，并保证可撤销凭据和回滚。"
+    },
+    {
+      "topic": "tip",
+      "title": "OpenRouter 发布 Agent 回归测试教程",
+      "source": "OpenRouter",
+      "url": "https://openrouter.ai/blog/tutorials/ai-agent-regression-testing-after-a-prompt-or-model-change/",
+      "date": "2026-09-30",
+      "score": 69,
+      "tags": [
+        "AI HOT",
+        "Agent",
+        "回归测试"
+      ],
+      "summary": "教程建议在提示词、模型、工具或检索设置变化后重跑固定用例；同期教程介绍从脱敏生产流量建立 golden 评测集。",
+      "publishedAt": "2026-09-30T00:00:00.000Z",
       "category": "tip",
-      "comment": "点评：这是 Gary Marcus 对 Amodei 立场的评论，属于观点而非行业共识。它的价值在于提示我们：对“放慢发展”或“加强透明度”的主张，既要看宣言，也要检验治理承诺是否能落实为独立评估、信息披露与可追责的机制。",
-      "advice": "建议：把高风险 AI 项目拆成可审计的决策清单：明确能力边界、外部评估安排、事件披露时限与责任人；同时保留不同利益相关方的质疑记录，避免用单一厂商或单一观点替代风险判断。"
+      "comment": "点评：版本化回归比一次性榜单更能发现工具选错、参数错误与回答退化，但生产样本需处理隐私和偏差。",
+      "advice": "建议：先脱敏并抽取 20 至 50 条高频、高风险用例，写清预期行为和复核标准，接入 CI。"
+    },
+    {
+      "topic": "industry",
+      "title": "Shopify 转向原生移动开发",
+      "source": "The Pragmatic Engineer",
+      "url": "https://newsletter.pragmaticengineer.com/p/shopify-native-mobile",
+      "date": "2026-09-29",
+      "score": 78,
+      "tags": [
+        "AI HOT",
+        "移动开发",
+        "工程"
+      ],
+      "summary": "报道称 Shopify 将原生开发作为移动应用未来方向，Shop 应用据称在 12 周内借助 AI 改写为 Swift 和 Kotlin 原生应用。",
+      "publishedAt": "2026-09-29T15:53:19.000Z",
+      "category": "industry",
+      "comment": "点评：AI 编码可能改变跨平台与原生方案的成本比较，但单个迁移周期不等于普遍可复制的投资回报。",
+      "advice": "建议：先做一条高价值用户路径的双实现试点，再比较性能、缺陷率、工程工时与两端一致性。"
     }
   ],
   "sources": [
     {
       "name": "AI HOT",
       "url": "https://aihot.virxact.com",
-      "note": "过去 24 小时 AI 动态与中文摘要来源"
+      "note": "过去 24 小时精选动态，32 条中选取 6 个主题"
     },
     {
-      "name": "Hacker News：AI 热帖",
-      "url": "https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo",
-      "note": "Anthropic 报告称胡塞组织用 Claude Code 开发导弹制导软件"
+      "name": "OpenAI",
+      "url": "https://openai.com/index/introducing-gpt-6-1-sol/",
+      "note": "GPT-6.1 Sol 发布信息；dots 见本期资讯卡片"
     },
     {
-      "name": "Gary Marcus：The Road to AI We Can Trust（RSS）",
-      "url": "https://garymarcus.substack.com/p/two-cheers-out-of-three-for-dario",
-      "note": "Gary Marcus 评 Dario Amodei 的放慢 AI 发展提议：…"
+      "name": "Microsoft Research",
+      "url": "https://www.microsoft.com/en-us/research/blog/introducing-quine-an-ai-research-system-designed-for-the-complexity-of-biology/",
+      "note": "Quine 研究系统"
+    },
+    {
+      "name": "The Decoder",
+      "url": "https://the-decoder.com/uk-ai-security-institute-finds-gpt-6-astras-rogue-attack-rate-jumped-fivefold-over-its-predecessor/",
+      "note": "AISI 模拟安全评测报道"
+    },
+    {
+      "name": "OpenRouter",
+      "url": "https://openrouter.ai/blog/tutorials/ai-agent-regression-testing-after-a-prompt-or-model-change/",
+      "note": "Agent 回归测试教程"
+    },
+    {
+      "name": "The Pragmatic Engineer",
+      "url": "https://newsletter.pragmaticengineer.com/p/shopify-native-mobile",
+      "note": "Shopify 移动开发迁移报道"
     }
   ]
 };
 
 const episodeHistory = [
+  {
+    "date": "2026-09-30",
+    "title": "AI HOT 日报：模型成本、常驻 Agent 与安全评测",
+    "summary": "6 个主题：模型成本、常驻 Agent、生物研究、安全评测、回归测试与移动开发；每条附点评和落地建议。",
+    "link": "/posts/93030/",
+    "tags": [
+      "AI HOT",
+      "Agent",
+      "安全评测",
+      "回归测试"
+    ]
+  },
+  {
+    "date": "2026-09-28",
+    "title": "AI HOT 日报：OpenAI、行业动态",
+    "summary": "重点关注 行业动态。核心信号是：Authors Guild v. OpenAI 新文件披露高管早已知道大规模盗版书籍训练违法；OpenAI 与 Anthropic CEO 被传唤出席澳大利亚参议院 AI 调查听证会。",
+    "link": "/posts/92828/",
+    "tags": [
+      "AI HOT",
+      "OpenAI",
+      "Microsoft",
+      "产业"
+    ]
+  },
   {
     "date": "2026-09-14",
     "title": "AI HOT 日报：Anthropic、Gary Marcu",
@@ -833,16 +942,6 @@ const episodeHistory = [
     "title": "AI-HOT日报：LongCatOwl、Claude企业网关、AI安全红线",
     "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
     "link": "/posts/63030/",
-    "tags": [
-      "AI HOT",
-      "AI资讯"
-    ]
-  },
-  {
-    "date": "2026-06-29",
-    "title": "AI-HOT日报：Wayfinder路由、SKAI数据中心、VibeThinker",
-    "summary": "查看该期 AI HOT 日报文字稿，包含过去 24 小时动态、点评与落地建议。",
-    "link": "/posts/62929/",
     "tags": [
       "AI HOT",
       "AI资讯"
